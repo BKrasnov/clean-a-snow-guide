@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Экономика — Clean a Snow</title>
+<style>/* Цвета взяты с кадров игры: снег, тёмно-синие плашки HUD, дерево домиков, золото монет. */
+:root {
+  --snow: #EEF3F8;
+  --ink: #1D2740;
+  --wood: #9A5A2C;
+  --wood-dark: #5E3417;
+  --gold: #F2C230;
+  --ice: #4A90C8;
+  --ice-dark: #234E78;
+  --muted: #7C8798;
+  --paper: #FFFFFF;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+body { margin: 0; background: var(--snow); color: var(--ink); font: 16px/1.55 "Segoe UI", system-ui, sans-serif; }
+a { color: var(--ice-dark); }
+code { font-family: Consolas, "Cascadia Mono", monospace; font-size: .9em; background: rgba(29, 39, 64, .07); padding: 0 .3em; border-radius: 4px; overflow-wrap: anywhere; }
+pre { white-space: pre-wrap; word-break: break-word; background: rgba(29, 39, 64, .06); padding: 12px; border-radius: 8px; font-size: 13px; }
+pre code { background: none; padding: 0; }
+
+.topbar { position: sticky; top: 0; z-index: 5; display: flex; gap: 16px; align-items: center; padding: 10px 20px; background: var(--ink); color: var(--snow); }
+.topbar .brand { color: var(--snow); font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap; }
+.topbar .top-link, #menu { white-space: nowrap; }
+.topbar .hint { margin-left: auto; font-size: 13px; color: var(--gold); }
+.topbar .hint code { background: rgba(238, 243, 248, .12); color: var(--snow); }
+.topbar .top-link { color: var(--snow); text-decoration: none; font-weight: 600; padding: 5px 12px; border: 2px solid var(--gold); border-radius: 6px; }
+.topbar .top-link:hover, .topbar .top-link[aria-current="page"] { background: var(--gold); color: var(--ink); }
+#menu { display: none; background: var(--wood); color: var(--snow); border: 0; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+
+/* Тестирование: группы сворачиваются, у пункта — галочка, у группы — счётчик отмеченных. */
+.test-total { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 15px; }
+#test-reset { background: transparent; color: var(--wood); border: 2px solid var(--wood); border-radius: 6px; padding: 4px 12px; font: inherit; font-weight: 600; cursor: pointer; }
+#test-reset:hover { background: var(--wood); color: var(--snow); }
+.test-group { margin: 14px 0; border: 2px solid rgba(29, 39, 64, .12); border-radius: 8px; background: rgba(255, 255, 255, .5); }
+.test-group > summary { cursor: pointer; padding: 10px 14px; font-weight: 700; font-size: 18px; }
+.test-group .test-count { margin-left: 8px; font-size: 13px; font-weight: 600; color: var(--wood); }
+.test-group.test-finished .test-count { color: var(--ice); }
+.test-task { padding: 4px 16px 12px; border-top: 1px solid rgba(29, 39, 64, .08); }
+.test-task h4 { margin: 10px 0 6px; }
+.test-item { display: flex; gap: 10px; align-items: flex-start; padding: 5px 4px; border-radius: 6px; line-height: 1.4; cursor: pointer; }
+.test-item:hover { background: rgba(154, 90, 44, .08); }
+.test-item input { width: 18px; height: 18px; margin-top: 2px; flex: none; accent-color: var(--wood); }
+.test-item:has(input:checked) { color: rgba(29, 39, 64, .55); text-decoration: line-through; }
+
+.layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); }
+#sidebar { position: sticky; top: 52px; align-self: start; height: calc(100vh - 52px); overflow-y: auto; padding: 16px 12px; border-right: 2px solid rgba(29, 39, 64, .1); }
+#sidebar ul { list-style: none; margin: 0; padding: 0; }
+#sidebar li a { display: block; padding: 6px 10px; border-radius: 6px; color: var(--ink); text-decoration: none; font-weight: 600; }
+#sidebar li a:hover, #sidebar li a[aria-current="page"] { background: var(--ice-dark); color: var(--snow); }
+#sidebar ul ul a { font-weight: 400; font-size: 14px; padding-left: 22px; }
+/* Сворачиваемый раздел: стрелка браузера слева сворачивает, ссылка рядом открывает страницу раздела. */
+#sidebar summary { cursor: pointer; color: var(--ice-dark); font-size: 15px; padding: 0 0 0 6px; border-radius: 6px; }
+#sidebar summary:hover { background: rgba(74, 144, 200, .14); }
+#sidebar summary a { display: inline-block; width: calc(100% - 22px); vertical-align: middle; }
+
+main { padding: 8px 32px 64px; max-width: 1280px; }
+.part { padding-top: 16px; padding-bottom: 24px; }
+.part > h2 { font-size: 28px; margin: 12px 0 16px; color: var(--wood-dark); }
+h3 { color: var(--ice-dark); margin-top: 28px; }
+.prose { max-width: 900px; }
+.prose table { border-collapse: collapse; margin: 12px 0; display: block; overflow-x: auto; }
+.prose th, .prose td { border: 1px solid rgba(29, 39, 64, .2); padding: 6px 10px; text-align: left; vertical-align: top; }
+.prose th { background: rgba(74, 144, 200, .14); }
+.prose img { max-width: 100%; border-radius: 8px; }
+.prose.small, .small { font-size: 14px; }
+.doc { background: var(--paper); border-radius: 12px; padding: 4px 24px 16px; margin: 0 0 20px; box-shadow: 0 1px 0 rgba(29, 39, 64, .1); }
+.doc .path { margin: 12px 0 0; font-size: 13px; color: var(--muted); }
+.lead { font-size: 17px; max-width: 900px; }
+.source { font-size: 13px; color: var(--muted); }
+
+.gallery { margin: 8px 0 28px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.shot { margin: 0; background: var(--paper); border-radius: 10px; padding: 8px; }
+.shot img { width: 100%; height: 190px; object-fit: cover; border-radius: 6px; cursor: zoom-in; display: block; }
+.shot figcaption { font-size: 14px; padding: 6px 2px 0; }
+.shot details { font-size: 13px; }
+.shot summary { cursor: pointer; color: var(--ice-dark); }
+.tag { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 999px; background: rgba(74, 144, 200, .15); color: var(--ice-dark); }
+.hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin: 0 0 20px; }
+.hero img { width: 100%; border-radius: 10px; cursor: zoom-in; display: block; }
+
+/* Таблицы данных из кода игры. */
+.table-wrap { overflow-x: auto; margin: 12px 0; }
+.data { border-collapse: collapse; background: var(--paper); border-radius: 8px; min-width: 420px; }
+.data th, .data td { padding: 7px 12px; border-bottom: 1px solid rgba(29, 39, 64, .1); text-align: left; vertical-align: top; }
+.data thead th { background: rgba(74, 144, 200, .14); font-size: 14px; white-space: nowrap; }
+.data tbody th { white-space: nowrap; }
+.data td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.data .sub { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
+.coin { color: #B8860B; font-weight: 600; }
+.gem { color: #2E7FB8; font-weight: 600; }
+.rar { display: inline-block; padding: 1px 8px 1px 6px; border-radius: 6px; background: var(--paper); border-left: 6px solid var(--rar); font-weight: 600; font-size: 13px; white-space: nowrap; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.chips code { background: var(--paper); border: 1px solid rgba(29, 39, 64, .12); padding: 2px 8px; }
+
+/* Раздел «Код»: модуль, вид и его первая строка-комментарий. */
+.modules { list-style: none; padding: 0; margin: 8px 0 20px; display: grid; gap: 6px; }
+.modules li { background: var(--paper); border-radius: 8px; padding: 6px 12px; display: grid; grid-template-columns: minmax(180px, 280px) 90px 60px minmax(0, 1fr); gap: 10px; align-items: baseline; }
+.modules .kind { font-size: 12px; color: var(--muted); }
+.modules .lines { font-size: 12px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+.modules .note { font-size: 14px; }
+.modules .note.empty { color: var(--muted); }
+
+#viewer { border: 0; padding: 0; max-width: 96vw; max-height: 96vh; background: var(--ink); color: var(--snow); border-radius: 10px; }
+#viewer::backdrop { background: rgba(29, 39, 64, .8); }
+.viewer-bar { display: flex; gap: 12px; align-items: center; padding: 8px 12px; }
+.viewer-bar p { margin: 0; flex: 1; font-size: 14px; word-break: break-all; }
+.viewer-bar a { color: var(--gold); }
+.viewer-bar button { background: var(--wood); color: var(--snow); border: 0; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+#viewer img { display: block; max-width: 94vw; max-height: calc(96vh - 52px); }
+
+.pages { list-style: none; padding: 0; display: grid; gap: 10px; }
+.pages > li { background: rgba(255, 255, 255, .6); border: 1px solid rgba(29, 39, 64, .1); border-radius: 10px; padding: 10px 14px; }
+.pages > li > a { font-weight: 700; font-size: 18px; }
+
+@media (max-width: 860px) {
+  #menu { display: inline-block; }
+  .topbar { gap: 10px; padding: 10px 12px; }
+  .topbar .top-link { padding: 4px 8px; }
+  /* На самых узких экранах сжимается название, кнопки остаются целыми. */
+  .topbar .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .topbar .top-link, #menu { flex: none; }
+  .topbar .hint { display: none; }
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  #sidebar { display: none; position: fixed; top: 52px; left: 0; right: 0; height: auto; max-height: 70vh; background: var(--snow); z-index: 4; border-bottom: 2px solid var(--ink); }
+  #sidebar.open { display: block; }
+  main { padding: 8px 16px 48px; }
+  .doc { padding: 4px 14px 12px; }
+  .modules li { grid-template-columns: minmax(0, 1fr) auto; }
+  .modules .note { grid-column: 1 / -1; }
+  .modules .lines { display: none; }
+}
+</style>
+</head>
+<body>
+<header class="topbar"><button id="menu" type="button" aria-expanded="false" aria-controls="sidebar">Разделы</button><a class="brand" href="index.html">Clean a Snow</a><a class="top-link" href="testing.html">Тестирование</a><span class="hint">Собрано из файлов репозитория: <code>node tools/guide/build.mjs</code></span></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Разделы"><ul><li><a href="index.html">Об игре</a></li><li><a href="place.html">Плейс и запуск</a></li><li><a href="economy.html" aria-current="page">Экономика</a></li><li><a href="weapons.html">Оружие</a></li><li><a href="garden.html">Сад</a></li><li><a href="code.html">Код</a></li><li><details class="group" data-group="galleries.html" open><summary><a href="galleries.html">Кадры и картинки</a></summary><ul><li><a href="gallery-frames.html">frames</a></li></ul></details></li><li><a href="docs.html">Документы</a></li></ul></nav>
+<main>
+<section class="part"><h2>Экономика</h2><p class="lead">Игрок разбивает снег, носит его в сумке и сдаёт в переработчик: каждая единица приносит монеты по цене своего вида снега. На монеты покупают инструменты, сумки, улучшения и зверей, на гемы — питомцев и помощника. Пометка <span class="tag">референс</span> — цена взята из присланного референса, остальное — дизайн проекта (так написано в <code>src/ReplicatedStorage/CleanSnow/Shared/Catalog.luau</code>).</p>
+<h3>Зоны карты и снег</h3>
+<p>Прочность — сколько урона выдерживает участок снега: её берёт снег карты из <code>Balance.MapPatchHealth</code>, число из каталога ниже серым. Награда — монеты за расчищенную зону. Разбитый участок даёт 1 ед. снега (<code>SnowBlockWorld.RewardUnits</code>); число участков в зоне берётся из индекса карты (<code>MapPatchIndex</code>).</p>
+<div class="table-wrap"><table class="data"><thead><tr><th>Зона</th><th>Снег</th><th>Цена единицы</th><th>Прочность</th><th>Награда</th></tr></thead><tbody><tr><th>1. Frostwood</th><td>Powder Snow</td><td class="num"><span class="coin">12</span></td><td class="num">3<span class="sub">в каталоге 6</span></td><td class="num"><span class="coin">10</span></td></tr><tr><th>2. Birch Hollow</th><td>Packed Snow</td><td class="num"><span class="coin">20</span></td><td class="num">6<span class="sub">в каталоге 12</span></td><td class="num"><span class="coin">20</span></td></tr><tr><th>3. Frozen Creek</th><td>Snow Crust</td><td class="num"><span class="coin">28</span></td><td class="num">9<span class="sub">в каталоге 18</span></td><td class="num"><span class="coin">30</span></td></tr><tr><th>4. Pine Ridge</th><td>Packed Snow</td><td class="num"><span class="coin">20</span></td><td class="num">12<span class="sub">в каталоге 24</span></td><td class="num"><span class="coin">40</span></td></tr><tr><th>5. Crystal Quarry</th><td>Ice</td><td class="num"><span class="coin">48</span></td><td class="num">18<span class="sub">в каталоге 36</span></td><td class="num"><span class="coin">50</span></td></tr><tr><th>6. Summit</th><td>Deep Snow</td><td class="num"><span class="coin">72</span></td><td class="num">24<span class="sub">в каталоге 48</span></td><td class="num"><span class="coin">60</span></td></tr></tbody></table></div>
+<h3>Мутации снега</h3>
+<p>Мутация умножает цену снега. Шанс указан там, где сервер его выдаёт случайно.</p>
+<div class="table-wrap"><table class="data"><thead><tr><th>Мутация</th><th>Шанс</th><th>Множитель</th></tr></thead><tbody><tr><th>Normal<span class="sub">Default</span></th><td class="num">98 %</td><td class="num">×1</td></tr><tr><th><span class="rar" style="--rar:rgb(255,144,171)">Candy</span><span class="sub">Candy</span></th><td class="num">2 %</td><td class="num">×2</td></tr><tr><th><span class="rar" style="--rar:rgb(255,198,42)">Golden Snow</span><span class="sub">Golden</span></th><td class="num">—</td><td class="num">×3</td></tr></tbody></table></div>
+<h3>Инструменты</h3>
+<p>Урон — сила одного удара. Пылесос не бьёт, а втягивает снег конусом.</p>
+<div class="table-wrap"><table class="data"><thead><tr><th>Инструмент</th><th>Цена</th><th>Урон</th><th>Нужно сначала</th></tr></thead><tbody><tr><th>Hands<span class="sub">Hands</span></th><td>бесплатно</td><td class="num">1</td><td>—</td></tr><tr><th>Starter Shovel<span class="sub">StarterShovel</span></th><td class="num"><span class="coin">20 монет</span> <span class="tag" title="Цена взята из референса">референс</span></td><td class="num">2</td><td>Hands</td></tr><tr><th>Steel Shovel<span class="sub">SteelShovel</span></th><td class="num"><span class="coin">750 монет</span></td><td class="num">3</td><td>Starter Shovel</td></tr><tr><th>Snow Pusher<span class="sub">SnowPusher</span></th><td class="num"><span class="coin">2 400 монет</span></td><td class="num">4</td><td>Steel Shovel</td></tr><tr><th>Frost Shovel<span class="sub">IceShovel</span></th><td class="num"><span class="coin">12 000 монет</span></td><td class="num">6</td><td>Snow Pusher</td></tr><tr><th>Snow Vacuum<span class="sub">SnowVacuum</span></th><td class="num"><span class="coin">1 000 монет</span> <span class="tag" title="Цена взята из референса">референс</span></td><td class="num">1</td><td>Starter Shovel</td></tr></tbody></table></div>
+<h3>Сумки</h3>
+<div class="table-wrap"><table class="data"><thead><tr><th>Сумка</th><th>Цена</th><th>Вместимость</th><th>Нужно сначала</th></tr></thead><tbody><tr><th>Starter Bag<span class="sub">StarterBag</span></th><td>бесплатно</td><td class="num">5 ед.</td><td>—</td></tr><tr><th>Trail Bag<span class="sub">TrailBag</span></th><td class="num"><span class="coin">175 монет</span> <span class="tag" title="Цена взята из референса">референс</span></td><td class="num">15 ед.</td><td>Starter Bag</td></tr><tr><th>Expedition Bag<span class="sub">ExpeditionBag</span></th><td class="num"><span class="coin">750 монет</span> <span class="tag" title="Цена взята из референса">референс</span></td><td class="num">30 ед.</td><td>Trail Bag</td></tr><tr><th>Hauler Bag<span class="sub">HaulerBag</span></th><td class="num"><span class="coin">3 000 монет</span> <span class="tag" title="Цена взята из референса">референс</span></td><td class="num">80 ед.</td><td>Expedition Bag</td></tr></tbody></table></div>
+<h3>Улучшения</h3>
+<p>Цены уровней и значения: первое значение — без улучшения, дальше по уровню. Для скорости лопаты и переработки меньше — быстрее.</p>
+<div class="table-wrap"><table class="data"><thead><tr><th>Улучшение</th><th>Что делает</th><th>Уровней</th><th>Цены уровней</th><th>Значения</th><th>Нужно сначала</th></tr></thead><tbody><tr><th>Hold<span class="sub">Hold</span></th><td>Hold the button to keep breaking snow instead of clicking.</td><td class="num">1</td><td><span class="coin">25 монет</span></td><td>0 → 1</td><td>—</td></tr><tr><th>Shovel Speed<span class="sub">ShovelSpeed</span></th><td>Swing your shovel more quickly.</td><td class="num">4</td><td><span class="coin">150 монет</span> → <span class="coin">400 монет</span> → <span class="coin">900 монет</span> → <span class="coin">2 200 монет</span></td><td>0,6 → 0,55 → 0,5 → 0,46 → 0,42</td><td>Starter Shovel</td></tr><tr><th>Shovel Edge<span class="sub">ShovelEdge</span></th><td>Deal more damage with each shovel hit.</td><td class="num">4</td><td><span class="coin">200 монет</span> → <span class="coin">450 монет</span> → <span class="coin">1 000 монет</span> → <span class="coin">2 500 монет</span></td><td>1 → 1,2 → 1,45 → 1,75 → 2,1</td><td>Starter Shovel</td></tr><tr><th>Walk Speed<span class="sub">WalkSpeed</span></th><td>Move faster through the valley.</td><td class="num">4</td><td><span class="coin">150 монет</span> → <span class="coin">350 монет</span> → <span class="coin">800 монет</span> → <span class="coin">1 800 монет</span></td><td>16 → 18 → 20 → 22 → 24</td><td>—</td></tr><tr><th>Processor Speed<span class="sub">ProcessorSpeed</span></th><td>Process each unit faster; its coin value stays the same.</td><td class="num">4</td><td><span class="coin">250 монет</span> → <span class="coin">600 монет</span> → <span class="coin">1 400 монет</span> → <span class="coin">3 200 монет</span></td><td>1 → 0,85 → 0,7 → 0,58 → 0,48</td><td>—</td></tr></tbody></table></div>
+<h3>Питомцы</h3>
+<div class="table-wrap"><table class="data"><thead><tr><th>Питомец</th><th>Цена</th><th>Бонус</th><th>Сколько</th></tr></thead><tbody><tr><th>Snow Fox<span class="sub">SnowFox</span></th><td class="num"><span class="gem">20 гемов</span></td><td>переработка быстрее</td><td>+5 %</td></tr><tr><th>Snow Hare<span class="sub">SnowHare</span></th><td class="num"><span class="gem">35 гемов</span></td><td>радиус подбора</td><td>+0,5 стада</td></tr><tr><th>Winter Owl<span class="sub">Owl</span></th><td class="num"><span class="gem">60 гемов</span></td><td>урон</td><td>+5 %</td></tr></tbody></table></div>
+<h3>Звери-компаньоны</h3>
+<p>Ходят за игроком, ловят птиц за монеты и носят снег.</p>
+<div class="table-wrap"><table class="data"><thead><tr><th>Зверь</th><th>Цена</th><th>Ловит птицу раз в</th><th>Описание</th></tr></thead><tbody><tr><th>Forest Cat<span class="sub">PetCat</span></th><td class="num"><span class="coin">500 монет</span></td><td class="num">7 с</td><td>Follows you, catches birds for coins and carries snow. Catches a bird every 7 seconds.</td></tr><tr><th>Forest Dog<span class="sub">PetDog</span></th><td class="num"><span class="coin">1 000 монет</span></td><td class="num">5,5 с</td><td>Follows you, catches birds for coins and carries snow. Catches a bird every 5.5 seconds.</td></tr><tr><th>Frost Wolf<span class="sub">PetFrozen</span></th><td class="num"><span class="coin">3 000 монет</span></td><td class="num">4,5 с</td><td>Follows you, catches birds for coins and carries snow. Catches a bird every 4.5 seconds.</td></tr><tr><th>Forest Bear<span class="sub">PetBear</span></th><td class="num"><span class="coin">8 000 монет</span></td><td class="num">3,5 с</td><td>Follows you, catches birds for coins and carries snow. Catches a bird every 3.5 seconds.</td></tr></tbody></table></div>
+<h3>Прочее</h3><div class="table-wrap"><table class="data"><thead><tr><th>Предмет</th><th>Вид</th><th>Цена</th></tr></thead><tbody><tr><th>Snow Helper<span class="sub">Helper01</span></th><td>Helper</td><td class="num"><span class="gem">200 гемов</span> <span class="tag" title="Цена взята из референса">референс</span></td></tr><tr><th>Snow Truck<span class="sub">SnowTruck</span></th><td>Truck</td><td class="num"><span class="coin">2 500 монет</span></td></tr></tbody></table></div>
+<h3>Награды</h3>
+<p>Ежедневная награда: <span class="coin">50 монет</span> после 60 с в игре, день считается по UTC.</p>
+<p>Колесо удачи:</p><div class="table-wrap"><table class="data"><thead><tr><th>Приз</th><th>Награда</th><th>Шанс</th></tr></thead><tbody><tr><th>Coins50</th><td class="num"><span class="coin">50 монет</span></td><td class="num">60 %</td></tr><tr><th>Coins100</th><td class="num"><span class="coin">100 монет</span></td><td class="num">30 %</td></tr><tr><th>Gems10</th><td class="num"><span class="gem">10 гемов</span></td><td class="num">10 %</td></tr></tbody></table></div>
+<p class="source">Источник: <code>src/ReplicatedStorage/CleanSnow/Shared/Catalog.luau</code>, <code>src/ReplicatedStorage/CleanSnow/Shared/Balance.luau</code>, <code>src/ReplicatedStorage/SnowCleaningDemo/SnowBlockWorld.luau</code>.</p>
+<h3>Основные числа</h3><div class="table-wrap"><table class="data"><thead><tr><th>Что</th><th>Значение</th></tr></thead><tbody><tr><th>Дальность удара<span class="sub">HitReach</span></th><td class="num">12 стадов</td></tr><tr><th>Перезарядка удара руками<span class="sub">HandsCooldown</span></th><td class="num">0,57 с</td></tr><tr><th>Перезарядка удара лопатой<span class="sub">ShovelCooldown</span></th><td class="num">0,6 с</td></tr><tr><th>Радиус подбора снега<span class="sub">PickupRadius</span></th><td class="num">10 стадов</td></tr><tr><th>Сколько живёт выпавший снег<span class="sub">DropLifetime</span></th><td class="num">180 с</td></tr><tr><th>Переработка одной единицы<span class="sub">ProcessorSecondsPerUnit</span></th><td class="num">1 с</td></tr><tr><th>Радиус переработчика<span class="sub">ProcessorRange</span></th><td class="num">10 стадов</td></tr><tr><th>Радиус магазина<span class="sub">ShopRange</span></th><td class="num">12 стадов</td></tr><tr><th>Отсчёт перед забегом<span class="sub">QueueCountdown</span></th><td class="num">5 с</td></tr><tr><th>Игроков в забеге<span class="sub">MaxPartySize</span></th><td class="num">до 4</td></tr><tr><th>Зон на карте<span class="sub">AreaCount</span></th><td class="num">6</td></tr><tr><th>Участков снега в зоне<span class="sub">NodesPerArea</span></th><td class="num">40</td></tr><tr><th>Питомцев надето одновременно<span class="sub">PetEquipCap</span></th><td class="num">до 2</td></tr><tr><th>Потолок бонуса питомцев<span class="sub">PetBonusCap</span></th><td class="num">15 %</td></tr><tr><th>Урон пылесоса по снегу карты<span class="sub">MapVacuumDamage</span></th><td class="num">3</td></tr><tr><th>Помощник: удар раз в<span class="sub">HelperCycle</span></th><td class="num">0,9 с</td></tr><tr><th>Помощник: урон<span class="sub">HelperDamage</span></th><td class="num">2</td></tr><tr><th>Помощник: несёт<span class="sub">HelperCapacity</span></th><td class="num">5 ед.</td></tr><tr><th>Грузовик: вместимость<span class="sub">TruckCapacity</span></th><td class="num">80 ед.</td></tr><tr><th>Грузовик: скорость<span class="sub">TruckMaxSpeed</span></th><td class="num">14 стадов/с</td></tr><tr><th>Пылесос: радиус<span class="sub">VacuumRadius</span></th><td class="num">9 стадов</td></tr><tr><th>Пылесос: единиц в секунду<span class="sub">VacuumUnitsPerSecond</span></th><td class="num">3</td></tr><tr><th>Вступительный ролик<span class="sub">IntroSeconds</span></th><td class="num">12 с</td></tr></tbody></table></div><p class="source">Источник: <code>src/ReplicatedStorage/CleanSnow/Shared/Balance.luau</code>.</p></section>
+</main>
+</div>
+<dialog id="viewer" aria-label="Просмотр картинки"><div class="viewer-bar"><p id="viewer-caption"></p><a id="viewer-open" target="_blank" rel="noopener">Открыть файл</a><button id="viewer-close" type="button">Закрыть</button></div><img id="viewer-image" alt=""></dialog>
+<script>// Поведение страницы: меню на узком экране и просмотр картинки. Текущую страницу в меню отмечает сборщик.
+(() => {
+  const menu = document.getElementById("menu");
+  const sidebar = document.getElementById("sidebar");
+  menu.addEventListener("click", () => {
+    const open = sidebar.classList.toggle("open");
+    menu.setAttribute("aria-expanded", String(open));
+  });
+  sidebar.addEventListener("click", (e) => {
+    if (e.target.closest("a")) {
+      sidebar.classList.remove("open");
+      menu.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  // Свёрнутые разделы меню. Выбор читателя помнит браузер; без него открыт только раздел текущей страницы.
+  const KEY = "clean-a-snow-guide-nav-folds";
+  let folds = {};
+  try {
+    folds = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+  } catch {
+    folds = {};
+  }
+  for (const group of sidebar.querySelectorAll("details.group")) {
+    const id = group.dataset.group;
+    group.open = id in folds ? folds[id] : group.querySelector('[aria-current="page"]') !== null;
+    group.addEventListener("toggle", () => {
+      folds[id] = group.open;
+      try {
+        localStorage.setItem(KEY, JSON.stringify(folds));
+      } catch {
+        // Без хранилища выбор живёт до перехода на другую страницу.
+      }
+    });
+  }
+  // Галочки чеклиста «Тестирование». Отметки помнит браузер проверяющего; «Сбросить» начинает новый круг.
+  const checks = document.querySelectorAll("input[data-check]");
+  if (checks.length) {
+    const CHECKS = "clean-a-snow-guide-testing-checks";
+    let done = {};
+    try {
+      done = JSON.parse(localStorage.getItem(CHECKS) || "{}") || {};
+    } catch {
+      done = {};
+    }
+    const save = () => {
+      try {
+        localStorage.setItem(CHECKS, JSON.stringify(done));
+      } catch {
+        // Без хранилища отметки живут до ухода со страницы.
+      }
+    };
+    const count = () => {
+      for (const group of document.querySelectorAll("details.test-group")) {
+        const boxes = group.querySelectorAll("input[data-check]");
+        const ticked = [...boxes].filter((b) => b.checked).length;
+        group.querySelector(".test-count").textContent = `${ticked} из ${boxes.length}`;
+        group.classList.toggle("test-finished", ticked === boxes.length);
+      }
+      document.getElementById("test-done").textContent = String([...checks].filter((b) => b.checked).length);
+    };
+    for (const box of checks) {
+      box.checked = done[box.dataset.check] === true;
+      box.addEventListener("change", () => {
+        if (box.checked) done[box.dataset.check] = true;
+        else delete done[box.dataset.check];
+        save();
+        count();
+      });
+    }
+    document.getElementById("test-reset").addEventListener("click", () => {
+      if (!confirm("Снять все отметки и начать проверку заново?")) return;
+      done = {};
+      for (const box of checks) box.checked = false;
+      save();
+      count();
+    });
+    count();
+  }
+
+  const current = sidebar.querySelector('[aria-current="page"]');
+  if (current) current.scrollIntoView({ block: "nearest" });
+
+  const viewer = document.getElementById("viewer");
+  const image = document.getElementById("viewer-image");
+  const caption = document.getElementById("viewer-caption");
+  const open = document.getElementById("viewer-open");
+  document.addEventListener("click", (e) => {
+    const img = e.target.closest("main img");
+    if (!img) return;
+    image.src = img.src;
+    image.alt = img.alt;
+    caption.textContent = img.dataset.caption || img.alt;
+    open.href = img.src;
+    viewer.showModal();
+  });
+  document.getElementById("viewer-close").addEventListener("click", () => viewer.close());
+  viewer.addEventListener("click", (e) => {
+    if (e.target === viewer) viewer.close();
+  });
+})();
+</script>
+</body>
+</html>
