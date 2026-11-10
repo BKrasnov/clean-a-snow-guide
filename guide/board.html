@@ -587,42 +587,9 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
   <p class="board-empty" hidden>Пусто.</p>
 </section>
 <section class="board-column" data-status="doing">
-  <h3>В работе <span class="board-count">1</span></h3>
-  <div class="board-cards"><article class="board-card" id="card-8770fb" data-person="Богдан" data-status="doing">
-  <h3>Контракт: правило оружия отдельно от вида</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>8770fb</code> техработа · architecture</p>
-  <p class="board-lead">Исполнитель: Богдан. Контракт C (`bae98a`), №11 сводки.</p>
-  
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Исполнитель: Богдан. Контракт C (<code>bae98a</code>), №11 сводки.</p>
-<p>Разделить <code>WeaponDefs</code> на правило (урон, цели, кулдаун, дальность) и вид (поза, звук, частицы). Сервер читает дальность оружия из правила.</p>
-<h2>Готово когда</h2>
-<ul>
-<li><input checked="" disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
-<li><input disabled="" type="checkbox"> Play: каждое оружие бьёт и выглядит как раньше.</li>
-<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
-<li><input disabled="" type="checkbox"> Коммит и push.</li>
-</ul>
-<h2>Оценка</h2>
-<ul>
-<li>Новый контракт данных оружия, правило дальности на сервере, правка клиента и страниц.</li>
-</ul>
-<h2>Работа</h2>
-<ul>
-<li>2026-11-11 00:22 →</li>
-</ul>
-<h2>Заметки</h2>
-<ul>
-<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
-<li>По разбору <code>c4e3c6</code> (решение владельца 10.11.2026: числа игры в JSON) правило оружия кладётся сразу в <code>Data/weapons.json</code>, вид остаётся в Luau. Ложка сейчас с двумя наборами чисел: <code>SnowBlockWorld</code> (пауза .48/.40) и <code>Catalog</code> (урон 1) против <code>WeaponDefs.SnowSpoon</code> (.42, урон 2) — спросить владельца, какие верные. Добавлена зависимость от <code>34d5ff</code>.</li>
-<li>Из <code>6d3652</code> (10.11.2026): план удара <code>Shared/StrikePlan</code> читает у оружия только правило — <code>damage</code>, <code>targets</code>, <code>typeBonus</code>, <code>radius</code>, <code>coneCos</code>. Это готовый список полей для <code>Data/weapons.json</code>. Пауза оружия на клиенте переедет на <code>StrikeRules.interval(state, def)</code> во второй части <code>6d3652</code>.</li>
-<li>Решение владельца 11.11.2026: обе ложки верные — ложка со стойки остаётся своим оружием (урон 2, пауза 0,42), стартовая — инструментом каталога (урон 1, пауза 0,48 → 0,40).</li>
-<li>Решение владельца 11.11.2026: дальность отбойного молотка — 11, как на деле сейчас.</li>
-<li>Решение владельца 11.11.2026: спека и план согласованы («Да, делай»).</li>
-</ul>
-</div></details>
-</article></div>
-  <p class="board-empty" hidden>Пусто.</p>
+  <h3>В работе <span class="board-count">0</span></h3>
+  <div class="board-cards"></div>
+  <p class="board-empty">Пусто.</p>
 </section>
 <section class="board-column" data-status="paused">
   <h3>Пауза <span class="board-count">3</span></h3>
@@ -685,6 +652,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <li>Пауза 2026-11-11 00:16: Ждёт ответа владельца Q-20261111-002: цифры гемов за зону</li>
 <li>Решение владельца 10.11.2026 (аудит механик, <code>docs/mechanics-audit.md</code>, механика 2): «От размера зоны».</li>
 <li>Зависит от открытого вопроса 1 аудита (открытие зон 4–6): если открытые зоны станут сохраняться, награду, возможно, платить один раз в жизни за зону — решить вместе.</li>
+<li>Вопрос 1 аудита решён 10.11.2026: открытые зоны сохраняются навсегда, следующая открывается на 90 % текущей (<code>docs/mechanics-audit.md</code>). Платить гемы один раз за зону или каждый забег — решить в Q-20261111-002.</li>
 </ul>
 </div></details>
 </article>
@@ -716,7 +684,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
   <p class="board-empty" hidden>Пусто.</p>
 </section>
 <section class="board-column" data-status="done">
-  <h3>Готово <span class="board-count">46</span></h3>
+  <h3>Готово <span class="board-count">47</span></h3>
   <div class="board-cards"><article class="board-card" id="card-026145" data-person="Богдан" data-status="done">
   <h3>Рядом с игроком нет снега: поверхность исчерпала память</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>026145</code> баг · bug</p>
@@ -1462,6 +1430,44 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <li>Исполнитель: Богдан.</li>
 <li>Углубление, которое выберет владелец, заводится отдельной карточкой после сводки <code>dc68a4</code>: она сводит шесть разборов и ищет противоречия между ними.</li>
 <li>Решение владельца 10.11.2026: кандидат A — одна дверь к серверу (<code>Actions</code>: send и раздача ответов, автоподбор в одном месте, сад через неё).</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-8770fb" data-person="Богдан" data-status="done">
+  <h3>Контракт: правило оружия отдельно от вида</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>8770fb</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Контракт C (`bae98a`), №11 сводки.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Исполнитель: Богдан. Контракт C (<code>bae98a</code>), №11 сводки.</p>
+<p>Разделить <code>WeaponDefs</code> на правило (урон, цели, кулдаун, дальность) и вид (поза, звук, частицы). Сервер читает дальность оружия из правила.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input checked="" disabled="" type="checkbox"> Play: каждое оружие бьёт и выглядит как раньше.</li>
+<li><input checked="" disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input checked="" disabled="" type="checkbox"> Коммит и push (54cc19f).</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Новый контракт данных оружия, правило дальности на сервере, правка клиента и страниц.</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-11 00:22 → 2026-11-11 00:58</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
+<li>По разбору <code>c4e3c6</code> (решение владельца 10.11.2026: числа игры в JSON) правило оружия кладётся сразу в <code>Data/weapons.json</code>, вид остаётся в Luau. Ложка сейчас с двумя наборами чисел: <code>SnowBlockWorld</code> (пауза .48/.40) и <code>Catalog</code> (урон 1) против <code>WeaponDefs.SnowSpoon</code> (.42, урон 2) — спросить владельца, какие верные. Добавлена зависимость от <code>34d5ff</code>.</li>
+<li>Из <code>6d3652</code> (10.11.2026): план удара <code>Shared/StrikePlan</code> читает у оружия только правило — <code>damage</code>, <code>targets</code>, <code>typeBonus</code>, <code>radius</code>, <code>coneCos</code>. Это готовый список полей для <code>Data/weapons.json</code>. Пауза оружия на клиенте переедет на <code>StrikeRules.interval(state, def)</code> во второй части <code>6d3652</code>.</li>
+<li>Решение владельца 11.11.2026: обе ложки верные — ложка со стойки остаётся своим оружием (урон 2, пауза 0,42), стартовая — инструментом каталога (урон 1, пауза 0,48 → 0,40).</li>
+<li>Решение владельца 11.11.2026: дальность отбойного молотка — 11, как на деле сейчас.</li>
+<li>Решение владельца 11.11.2026: спека и план согласованы («Да, делай»).</li>
+<li>Сделано: правило оружия — <code>Data/weapons.json</code> (дверь <code>Catalog.Weapons</code>, <code>coneCos</code> из <code>coneAngle</code>), вид — <code>Shared/WeaponLook.luau</code>, <code>WeaponDefs</code> удалён. Одна дальность <code>reach</code>: сервер (<code>MapSnowService.hit</code>) и прицел клиента — <code>StrikeRules.reach(weapon)</code>; конус пылесоса и термопушки — длина <code>reach</code> (радиус термопушки ушёл), молотов — <code>reach + 6</code> (поле <code>range</code> ушло). Страницы оружия и механик читают <code>weapons.json</code>.</li>
+<li>Проверка: Node 63/63 (данные, страницы), <code>npm run test:game</code> 180/180, <code>npm run check</code> без новых замечаний. Вид и правило сверены с прежней таблицей скриптом: всё совпадает, кроме дальности молотка 11 (решение владельца).</li>
+<li>Play <code>npm run play -- weapon-hits</code> (новый сценарий): все 8 оружий берутся со стойки, сервер принял удар каждым; молоток на 12 стадах — <code>OutOfRange</code>, ледоруб на 12 — проходит дальность. Сценарий <code>held-items</code> прошёл без ошибок в Output. Кадры Studio в этом окне выходят без 3D-мира (белый фон, так же у прошлых прогонов <code>strike-plan</code>), поэтому вид проверен сверкой данных, а не кадрами. Мышь и клавиша E в Studio срабатывают через раз, поэтому <code>weapon-hits</code> берёт оружие подсказкой стойки и шлёт тот же <code>WeaponUse</code>, что игра.</li>
+<li>Прогон тестов ждал окна правила «раз в час» (~17 мин).</li>
 </ul>
 </div></details>
 </article>
