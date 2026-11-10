@@ -1,0 +1,905 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>mechanics-audit.md — Clean a Snow</title>
+<style>/* Цвета взяты с кадров игры: снег, тёмно-синие плашки HUD, дерево домиков, золото монет. */
+:root {
+  --snow: #EEF3F8;
+  --ink: #1D2740;
+  --wood: #9A5A2C;
+  --wood-dark: #5E3417;
+  --gold: #F2C230;
+  --ice: #4A90C8;
+  --ice-dark: #234E78;
+  --muted: #7C8798;
+  --paper: #FFFFFF;
+}
+* { box-sizing: border-box; }
+/* Своё display у блока не должно отменять атрибут hidden. */
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+body { margin: 0; background: var(--snow); color: var(--ink); font: 16px/1.55 "Segoe UI", system-ui, sans-serif; }
+a { color: var(--ice-dark); }
+code { font-family: Consolas, "Cascadia Mono", monospace; font-size: .9em; background: rgba(29, 39, 64, .07); padding: 0 .3em; border-radius: 4px; overflow-wrap: anywhere; }
+pre { white-space: pre-wrap; word-break: break-word; background: rgba(29, 39, 64, .06); padding: 12px; border-radius: 8px; font-size: 13px; }
+pre code { background: none; padding: 0; }
+
+.topbar { position: sticky; top: 0; z-index: 5; display: flex; gap: 16px; align-items: center; padding: 10px 20px; background: var(--ink); color: var(--snow); }
+.topbar .brand { color: var(--snow); font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap; }
+.topbar .top-link, #menu { white-space: nowrap; }
+.topbar .hint { margin-left: auto; font-size: 13px; color: var(--gold); }
+.topbar .hint code { background: rgba(238, 243, 248, .12); color: var(--snow); }
+.topbar .top-link { color: var(--snow); text-decoration: none; font-weight: 600; padding: 5px 12px; border: 2px solid var(--gold); border-radius: 6px; background: transparent; font: inherit; cursor: pointer; }
+.topbar .top-link:hover, .topbar .top-link[aria-current="page"] { background: var(--gold); color: var(--ink); }
+#menu { display: none; background: var(--wood); color: var(--snow); border: 0; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+
+/* Тестирование: группы сворачиваются, у пункта — галочка, у группы — счётчик отмеченных. */
+.test-total { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 15px; }
+#test-reset { background: transparent; color: var(--wood); border: 2px solid var(--wood); border-radius: 6px; padding: 4px 12px; font: inherit; font-weight: 600; cursor: pointer; }
+#test-reset:hover { background: var(--wood); color: var(--snow); }
+.test-group { margin: 14px 0; border: 2px solid rgba(29, 39, 64, .12); border-radius: 8px; background: rgba(255, 255, 255, .5); }
+.test-group > summary { cursor: pointer; padding: 10px 14px; font-weight: 700; font-size: 18px; }
+.test-group .test-count { margin-left: 8px; font-size: 13px; font-weight: 600; color: var(--wood); }
+.test-group.test-finished .test-count { color: var(--ice); }
+.test-task { padding: 4px 16px 12px; border-top: 1px solid rgba(29, 39, 64, .08); }
+.test-task h4 { margin: 10px 0 6px; }
+.test-item { display: flex; gap: 10px; align-items: flex-start; padding: 5px 4px; border-radius: 6px; line-height: 1.4; cursor: pointer; }
+.test-item:hover { background: rgba(154, 90, 44, .08); }
+.test-item input { width: 18px; height: 18px; margin-top: 2px; flex: none; accent-color: var(--wood); }
+.test-item:has(input:checked) > span:first-of-type { color: rgba(29, 39, 64, .55); text-decoration: line-through; }
+.test-people { margin-left: auto; flex: none; font-size: 12px; font-weight: 700; color: var(--wood); white-space: nowrap; }
+
+html:not(.site-open) .topbar,
+html:not(.site-open) .layout,
+html:not(.site-open) #viewer { display: none !important; }
+.site-lock { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; padding: 24px; background: var(--snow); }
+html.site-open .site-lock { display: none !important; }
+.site-lock-card { display: grid; gap: 10px; width: min(420px, 100%); padding: 16px; background: var(--paper); border: 2px solid var(--ink); border-radius: 10px; }
+.site-lock-card p { margin: 0; }
+.site-lock-card label { display: grid; gap: 4px; font-weight: 700; }
+.site-lock-card input { font: inherit; padding: 8px 10px; border: 2px solid var(--ink); border-radius: 6px; }
+.site-lock-card button, .board-filters button { font: inherit; font-weight: 700; padding: 6px 14px; border: 2px solid var(--ink); border-radius: 6px; background: var(--paper); color: var(--ink); cursor: pointer; }
+.site-lock-card button { justify-self: start; background: var(--gold); }
+.site-lock-error { color: var(--wood-dark); font-weight: 700; }
+.board-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 14px; }
+.board-filters button[aria-pressed="true"] { background: var(--ink); color: var(--snow); }
+.board-columns { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; align-items: start; }
+.board-column { background: rgba(255, 255, 255, .55); border: 1px solid rgba(29, 39, 64, .1); border-radius: 10px; padding: 10px; }
+.board-column > h3 { margin: 0 0 8px; font-size: 15px; }
+.board-count { display: inline-block; min-width: 1.4em; padding: 0 6px; border-radius: 999px; background: var(--ink); color: var(--snow); font-size: 12px; text-align: center; }
+.board-card { margin: 0 0 8px; padding: 10px 12px; background: var(--paper); border: 1px solid rgba(29, 39, 64, .12); border-radius: 8px; }
+.board-card h3 { margin: 0 0 6px; font-size: 16px; }
+.board-meta, .board-lead, .board-empty { margin: 0 0 6px; }
+.board-empty { color: var(--muted); }
+.board-archive { color: var(--muted); font-size: 12px; }
+.person { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+.person[data-person="Богдан"] { background: var(--gold); }
+.person[data-person="Леонид"] { background: var(--ice); color: var(--snow); }
+.person[data-person="Георгий"] { background: var(--wood); color: var(--snow); }
+.board-shots { display: grid; gap: 8px; margin: 0 0 8px; }
+.board-shots img { width: 100%; height: auto; border-radius: 6px; }
+.board-card details { margin-top: 4px; }
+.board-card summary { cursor: pointer; font-weight: 600; }
+@media (max-width: 1100px) {
+  .board-columns { grid-template-columns: 1fr 1fr; }
+}
+
+.layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); }
+#sidebar { position: sticky; top: 52px; align-self: start; height: calc(100vh - 52px); overflow-y: auto; padding: 16px 12px; border-right: 2px solid rgba(29, 39, 64, .1); }
+#sidebar ul { list-style: none; margin: 0; padding: 0; }
+#sidebar li a { display: block; padding: 6px 10px; border-radius: 6px; color: var(--ink); text-decoration: none; font-weight: 600; }
+#sidebar li a:hover, #sidebar li a[aria-current="page"] { background: var(--ice-dark); color: var(--snow); }
+#sidebar ul ul a { font-weight: 400; font-size: 14px; padding-left: 22px; }
+/* Сворачиваемый раздел: стрелка браузера слева сворачивает, ссылка рядом открывает страницу раздела. */
+#sidebar summary { cursor: pointer; color: var(--ice-dark); font-size: 15px; padding: 0 0 0 6px; border-radius: 6px; }
+#sidebar summary:hover { background: rgba(74, 144, 200, .14); }
+#sidebar summary a { display: inline-block; width: calc(100% - 22px); vertical-align: middle; }
+
+main { padding: 8px 32px 64px; max-width: 1280px; }
+.part { padding-top: 16px; padding-bottom: 24px; }
+.part > h2 { font-size: 28px; margin: 12px 0 16px; color: var(--wood-dark); }
+.toc { margin: 0 0 18px; }
+.toc ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { display: inline-block; padding: 4px 10px; border-radius: 999px; background: var(--paper); color: var(--ice-dark); text-decoration: none; font-weight: 600; font-size: 14px; }
+.toc a:hover { background: var(--ice-dark); color: var(--snow); }
+h3 { color: var(--ice-dark); margin-top: 28px; }
+.prose { max-width: 900px; }
+.prose table { border-collapse: collapse; margin: 12px 0; display: block; overflow-x: auto; }
+.prose th, .prose td { border: 1px solid rgba(29, 39, 64, .2); padding: 6px 10px; text-align: left; vertical-align: top; }
+.prose th { background: rgba(74, 144, 200, .14); }
+.prose img { max-width: 100%; border-radius: 8px; }
+.prose.small, .small { font-size: 14px; }
+.doc { background: var(--paper); border-radius: 12px; padding: 4px 24px 16px; margin: 0 0 20px; box-shadow: 0 1px 0 rgba(29, 39, 64, .1); }
+.doc .path { margin: 12px 0 0; font-size: 13px; color: var(--muted); }
+.lead { font-size: 17px; max-width: 900px; }
+.source { font-size: 13px; color: var(--muted); }
+
+.gallery { margin: 8px 0 28px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.shot { margin: 0; background: var(--paper); border-radius: 10px; padding: 8px; }
+.shot img { width: 100%; height: 190px; object-fit: cover; border-radius: 6px; cursor: zoom-in; display: block; }
+.shot figcaption { font-size: 14px; padding: 6px 2px 0; }
+.shot details { font-size: 13px; }
+.shot summary { cursor: pointer; color: var(--ice-dark); }
+.tag { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 999px; background: rgba(74, 144, 200, .15); color: var(--ice-dark); }
+.hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin: 0 0 20px; }
+.hero img { width: 100%; border-radius: 10px; cursor: zoom-in; display: block; }
+
+/* Таблицы данных из кода игры. */
+.table-wrap { overflow-x: auto; margin: 12px 0; }
+.data { border-collapse: collapse; background: var(--paper); border-radius: 8px; min-width: 420px; }
+.data th, .data td { padding: 7px 12px; border-bottom: 1px solid rgba(29, 39, 64, .1); text-align: left; vertical-align: top; }
+.data thead th { background: rgba(74, 144, 200, .14); font-size: 14px; white-space: nowrap; }
+.data tbody th { white-space: nowrap; }
+.data td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.data .sub { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
+.coin { color: #B8860B; font-weight: 600; }
+.gem { color: #2E7FB8; font-weight: 600; }
+.rar { display: inline-block; padding: 1px 8px 1px 6px; border-radius: 6px; background: var(--paper); border-left: 6px solid var(--rar); font-weight: 600; font-size: 13px; white-space: nowrap; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.chips code { background: var(--paper); border: 1px solid rgba(29, 39, 64, .12); padding: 2px 8px; }
+
+/* Раздел «Стиль»: образцы цветов палитры. */
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 8px 0 16px; }
+.swatch { margin: 0; background: var(--paper); border-radius: 10px; overflow: hidden; box-shadow: 0 1px 0 rgba(29, 39, 64, .1); }
+.swatch .chip { display: block; height: 72px; border-bottom: 1px solid rgba(29, 39, 64, .12); }
+.swatch figcaption { padding: 8px 10px 10px; font-size: 14px; }
+.swatch figcaption .small { display: block; margin-top: 4px; font-size: 13px; color: var(--muted); }
+
+/* Раздел «Код»: модуль, вид и его первая строка-комментарий. */
+.modules { list-style: none; padding: 0; margin: 8px 0 20px; display: grid; gap: 6px; }
+.modules li { background: var(--paper); border-radius: 8px; padding: 6px 12px; display: grid; grid-template-columns: minmax(180px, 280px) 90px 60px minmax(0, 1fr); gap: 10px; align-items: baseline; }
+.modules .kind { font-size: 12px; color: var(--muted); }
+.modules .lines { font-size: 12px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+.modules .note { font-size: 14px; }
+.modules .note.empty { color: var(--muted); }
+
+#viewer { border: 0; padding: 0; max-width: 96vw; max-height: 96vh; background: var(--ink); color: var(--snow); border-radius: 10px; }
+#viewer::backdrop { background: rgba(29, 39, 64, .8); }
+.viewer-bar { display: flex; gap: 12px; align-items: center; padding: 8px 12px; }
+.viewer-bar p { margin: 0; flex: 1; font-size: 14px; word-break: break-all; }
+.viewer-bar a { color: var(--gold); }
+.viewer-bar button { background: var(--wood); color: var(--snow); border: 0; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+#viewer img { display: block; max-width: 94vw; max-height: calc(96vh - 52px); }
+
+.pages { list-style: none; padding: 0; display: grid; gap: 10px; }
+.pages > li { background: rgba(255, 255, 255, .6); border: 1px solid rgba(29, 39, 64, .1); border-radius: 10px; padding: 10px 14px; }
+.pages > li > a { font-weight: 700; font-size: 18px; }
+
+.mechanic { margin: 12px 0; border: 2px solid rgba(29, 39, 64, .12); border-radius: 10px; background: rgba(255, 255, 255, .6); }
+.mechanic > summary { cursor: pointer; padding: 12px 16px; font-weight: 700; font-size: 20px; }
+.mechanic-body { padding: 0 16px 14px; }
+.mechanic-body .facts { margin: 8px 0 12px; }
+.flow { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 14px; padding: 0; list-style: none; }
+.flow li { display: flex; flex-direction: column; gap: 2px; flex: 1 1 140px; margin: 0; padding: 8px 10px; background: var(--paper); border: 2px solid var(--ink); border-radius: 8px; }
+.flow b { font-size: 15px; }
+.flow span { color: var(--muted); font-size: 13px; }
+.bars { margin: 8px 0 14px; }
+.bars-title { margin: 0 0 8px; font-weight: 700; }
+.bar { display: grid; grid-template-columns: minmax(7em, 11em) minmax(0, 1fr) auto; gap: 8px; align-items: center; margin: 6px 0; }
+.bar-track { height: 14px; background: rgba(29, 39, 64, .08); border-radius: 7px; overflow: hidden; }
+.bar-fill { display: block; height: 100%; background: var(--ice); }
+.bars-zone .bar-fill, .bars-tool .bar-fill { background: var(--wood); }
+.bar-value { font-weight: 700; white-space: nowrap; }
+
+@media (max-width: 860px) {
+  #menu { display: inline-block; }
+  .topbar { gap: 10px; padding: 10px 12px; }
+  .topbar .top-link { padding: 4px 8px; }
+  /* На самых узких экранах сжимается название, кнопки остаются целыми. */
+  .topbar .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .topbar .top-link, #menu { flex: none; }
+  .topbar .hint { display: none; }
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  #sidebar { display: none; position: fixed; top: 52px; left: 0; right: 0; height: auto; max-height: 70vh; background: var(--snow); z-index: 4; border-bottom: 2px solid var(--ink); }
+  #sidebar.open { display: block; }
+  main { padding: 8px 16px 48px; }
+  .doc { padding: 4px 14px 12px; }
+  .modules li { grid-template-columns: minmax(0, 1fr) auto; }
+  .modules .note { grid-column: 1 / -1; }
+  .modules .lines { display: none; }
+  .board-columns { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 1100px) {
+  .part.with-toc { display: grid; grid-template-columns: minmax(0, 1fr) 230px; column-gap: 28px; align-items: start; }
+  .part.with-toc > h2, .part.with-toc > .part-body { grid-column: 1; }
+  .part.with-toc > .toc { grid-column: 2; grid-row: 1 / span 2; position: sticky; top: 68px; max-height: calc(100vh - 84px); overflow: auto; margin: 18px 0 0; }
+  .part.with-toc > .toc ul { display: grid; gap: 2px; }
+  .part.with-toc > .toc a { display: block; border-radius: 6px; background: transparent; padding: 5px 8px; }
+}
+/* Подсвеченный блок в документе: открытый вопрос владельцу и другие важные пометки. */
+.doc blockquote { margin: 14px 0; padding: 6px 16px; background: rgba(242, 194, 48, .16); border-left: 4px solid var(--gold); border-radius: 8px; }
+</style>
+<script>try{if(localStorage.getItem("clean-a-snow-guide-open")==="1")document.documentElement.classList.add("site-open")}catch(e){}</script>
+</head>
+<body>
+<div id="site-lock" class="site-lock" role="dialog" aria-modal="true" aria-labelledby="site-lock-title">
+<form id="site-lock-form" class="site-lock-card">
+<p id="site-lock-title">Введите пароль, чтобы открыть страницы.</p>
+<label>Пароль <input name="password" type="password" autocomplete="current-password" required autofocus></label>
+<button type="submit">Открыть</button>
+<p id="site-lock-error" class="site-lock-error" hidden>Пароль не подошёл.</p>
+</form>
+</div>
+<header class="topbar"><button id="menu" type="button" aria-expanded="false" aria-controls="sidebar">Разделы</button><a class="brand" href="index.html">Clean a Snow</a><a class="top-link" href="testing.html">Тестирование</a><a class="top-link" href="board.html">Доска</a><a class="top-link" href="analysis.html">Анализ</a><a class="top-link" href="mechanics.html">Механики</a><a class="top-link" href="vfx.html">VFX</a><button id="site-close" class="top-link" type="button">Закрыть</button><span class="hint">Собрано из файлов репозитория: <code>node tools/guide/build.mjs</code></span></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Разделы"><ul><li><a href="index.html">Об игре</a></li><li><a href="place.html">Плейс и запуск</a></li><li><a href="style.html">Стиль</a></li><li><a href="economy.html">Экономика</a></li><li><a href="weapons.html">Оружие</a></li><li><a href="garden.html">Сад</a></li><li><a href="code.html">Код</a></li><li><details class="group" data-group="galleries.html" open><summary><a href="galleries.html">Кадры и картинки</a></summary><ul><li><a href="gallery-frames.html">Кадры игры</a></li><li><a href="gallery-palette-preview.html">Палитра</a></li><li><a href="gallery-refs.html">refs</a></li><li><a href="gallery-vfx.html">vfx</a></li></ul></details></li><li><details class="group" data-group="docs.html" open><summary><a href="docs.html">Документы</a></summary><ul><li><a href="doc-architecture-summary.html">architecture/summary.md</a></li><li><a href="doc-mechanics-audit.html" aria-current="page">mechanics-audit.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-catalog-answers.html">superpowers/plans/2026-11-10-catalog-answers.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-client-actions.html">superpowers/plans/2026-11-10-client-actions.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-economy.html">superpowers/plans/2026-11-10-data-economy.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-map-bake.html">superpowers/plans/2026-11-10-map-bake.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-packet-limits.html">superpowers/plans/2026-11-10-packet-limits.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-anchors.html">superpowers/plans/2026-11-10-place-anchors.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-role-world.html">superpowers/plans/2026-11-10-place-role-world.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-profile-store-core.html">superpowers/plans/2026-11-10-profile-store-core.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-receipt-ledger.html">superpowers/plans/2026-11-10-receipt-ledger.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-server-lifecycle.html">superpowers/plans/2026-11-10-server-lifecycle.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-break-burst.html">superpowers/plans/2026-11-10-snow-break-burst.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-cell-strength.html">superpowers/plans/2026-11-10-snow-cell-strength.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-clap.html">superpowers/plans/2026-11-10-snow-clap.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-starter-spoon.html">superpowers/plans/2026-11-10-starter-spoon.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-rules.html">superpowers/plans/2026-11-10-strike-rules.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-two-places.html">superpowers/plans/2026-11-10-two-places.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-wallet.html">superpowers/plans/2026-11-10-wallet.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-catalog-answers-design.html">superpowers/specs/2026-11-10-catalog-answers-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-client-actions-design.html">superpowers/specs/2026-11-10-client-actions-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-economy-design.html">superpowers/specs/2026-11-10-data-economy-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-map-bake-design.html">superpowers/specs/2026-11-10-map-bake-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-packet-limits-design.html">superpowers/specs/2026-11-10-packet-limits-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-anchors-design.html">superpowers/specs/2026-11-10-place-anchors-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-role-world-design.html">superpowers/specs/2026-11-10-place-role-world-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-profile-store-core-design.html">superpowers/specs/2026-11-10-profile-store-core-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-receipt-ledger-design.html">superpowers/specs/2026-11-10-receipt-ledger-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-server-lifecycle-design.html">superpowers/specs/2026-11-10-server-lifecycle-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-break-burst-design.html">superpowers/specs/2026-11-10-snow-break-burst-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-cell-strength-design.html">superpowers/specs/2026-11-10-snow-cell-strength-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-puff-design.html">superpowers/specs/2026-11-10-snow-puff-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-starter-spoon-design.html">superpowers/specs/2026-11-10-starter-spoon-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-rules-design.html">superpowers/specs/2026-11-10-strike-rules-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-two-places-design.html">superpowers/specs/2026-11-10-two-places-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-wallet-design.html">superpowers/specs/2026-11-10-wallet-design.md</a></li></ul></details></li></ul></nav>
+<main>
+<section class="part with-toc"><h2>mechanics-audit.md</h2><nav class="toc" aria-label="На этой странице"><ul><li><a href="#вопросы-владельцу">Вопросы владельцу</a></li><li><a href="#итог-этапа-1">Итог этапа 1</a></li><li><a href="#главные-расхождения">Главные расхождения</a></li><li><a href="#механики-по-одной">Механики по одной</a></li><li><a href="#1-снег-становится-монетами-расходится">1. Снег становится монетами — расходится</a></li><li><a href="#2-удар-ломает-снег-расходится">2. Удар ломает снег — расходится</a></li><li><a href="#3-очередь-на-площадке-совпадает">3. Очередь на площадке — совпадает</a></li><li><a href="#4-магазин-расходится">4. Магазин — расходится</a></li><li><a href="#5-сумка-расходится">5. Сумка — расходится</a></li><li><a href="#6-кузов-совпадает">6. Кузов — совпадает</a></li><li><a href="#7-сад-расходится">7. Сад — расходится</a></li><li><a href="#8-питомцы-расходится-мелко">8. Питомцы — расходится (мелко)</a></li><li><a href="#9-лесные-звери-расходится-мелко">9. Лесные звери — расходится (мелко)</a></li><li><a href="#10-оружие-со-стойки-расходится">10. Оружие со стойки — расходится</a></li><li><a href="#11-гемы-за-чистую-зону-расходится">11. Гемы за чистую зону — расходится</a></li><li><a href="#12-награды-вне-забега-расходится">12. Награды вне забега — расходится</a></li><li><a href="#13-смерть-расходится-мелко">13. Смерть — расходится (мелко)</a></li><li><a href="#14-обучение-совпадает">14. Обучение — совпадает</a></li><li><a href="#15-окна-магазина-совпадает">15. Окна магазина — совпадает</a></li><li><a href="#16-погода-совпадает">16. Погода — совпадает</a></li><li><a href="#17-профиль-расходится-мелко">17. Профиль — расходится (мелко)</a></li><li><a href="#18-урок-остров-совпадает">18. Урок-остров — совпадает</a></li><li><a href="#19-езда-совпадает">19. Езда — совпадает</a></li><li><a href="#механики-в-коде-которых-нет-на-странице">Механики в коде, которых нет на странице</a></li><li><a href="#этап-2-разбор-по-одной">Этап 2. Разбор по одной</a></li><li><a href="#механика-1-снег-становится-монетами-переработчик">Механика 1. Снег становится монетами (переработчик)</a></li><li><a href="#механика-2-гемы-и-открытие-зон">Механика 2. Гемы и открытие зон</a></li><li><a href="#механика-3-награды-вне-забега">Механика 3. Награды вне забега</a></li><li><a href="#механика-4-удар">Механика 4. Удар</a></li><li><a href="#механика-5-магазин-и-оружие-со-стойки">Механика 5. Магазин и оружие со стойки</a></li><li><a href="#механика-6-сумка-смерть-и-выход">Механика 6. Сумка, смерть и выход</a></li><li><a href="#механика-7-сад">Механика 7. Сад</a></li><li><a href="#механика-8-остальные-кузов-и-езда-питомцы-и-звери-очередь-обучение-окна-магазина-профиль-погода-урок-остров">Механика 8. Остальные: кузов и езда, питомцы и звери, очередь, обучение, окна магазина, профиль, погода, урок-остров</a></li><li><a href="#итог-этапа-2">Итог этапа 2</a></li></ul></nav><div class="part-body"><article class="doc prose" id="doc-mechanics-audit"><p class="path">docs/mechanics-audit.md</p><h1>Аудит механик: страница против кода</h1>
+<p>Страница: <code>docs/mechanics.md</code> (собранная — <code>guide/mechanics.html</code>). Код: <code>src/</code> на коммите <code>38d4175</code>, 10.11.2026.
+Этап 1 — сверка каждого утверждения страницы с кодом. Этап 2 — разбор механик по одной с решением владельца (ниже, раздел «Этап 2»).</p>
+<p>Текст <code>docs/mechanics.md</code> по итогам аудита не правился: правки ждут согласия владельца.</p>
+<h2 id="вопросы-владельцу">Вопросы владельцу</h2>
+<p>Открытые вопросы ждут созвона. Ответ записывается сюда и в раздел механики как «Решение владельца ДД.ММ.ГГГГ: …» (решение владельца 10.11.2026: так для всех вопросов аудита).</p>
+<blockquote>
+<p><strong>Вопрос 1. Открытие зон 4–6 (механика 2).</strong> Ждёт созвона.</p>
+<p>Сейчас: чтобы открыть зону 4, нужно сломать каждый из 6 256 узлов зоны 3, и всё за один забег (со стартовой лопатой около 1,7 ч кликов). В следующем забеге зоны 4–6 снова закрыты. Один пропущенный узел держит зону закрытой.</p>
+<ul>
+<li><strong>Сохранять + 90 % (рекомендую).</strong> Игрок очищает 90 % зоны — следующая открывается навсегда и остаётся открытой в новых забегах. HUD показывает зону под ногами и сколько осталось до новой.</li>
+<li><strong>Только 90 %.</strong> Следующая зона открывается на 90 %, но только в этом забеге. В новом забеге снова чистить зону 3.</li>
+<li><strong>Оставить как есть.</strong> Нужны все узлы зоны, в каждом забеге заново. Большинство игроков не увидят зоны 4–6.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>Вопрос 2. Откуда жетоны колеса (механика 3).</strong> Ждёт созвона.</p>
+<p>Сейчас: жетон дают только за полный забег — все 134 136 узлов карты, на деле недостижимо. Колесо на экране есть, крутить нечем.</p>
+<ul>
+<li><strong>Жетон за каждую новую открытую зону (рекомендую).</strong> Открыл зону впервые — получил жетон. Игрок крутит колесо несколько раз за игру, как раз когда продвигается.</li>
+<li><strong>Жетон раз в сутки за минуту в забеге.</strong> Вместе с ежедневными монетами. Колесо становится ежедневным ритуалом.</li>
+<li><strong>Убрать колесо.</strong> Игрок его не видит, пока нет понятного способа получить жетон.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>Вопрос 3. Отклик, когда удар не прошёл (механика 4).</strong> Ждёт созвона.</p>
+<p>Сейчас: если снег далеко, за стеной или удар слишком частый, клик молча пропадает. Ребёнку кажется, что игра сломалась.</p>
+<ul>
+<li><strong>Значок у прицела (рекомендую).</strong> На полсекунды у прицела появляется маленький значок: «далеко», «мешает стена», «зона закрыта». Без слов, частые клики не показываются.</li>
+<li><strong>Только «зона закрыта».</strong> Отклик лишь на закрытую зону, остальное молчит, как сейчас.</li>
+<li><strong>Оставить как есть.</strong> Отказ молчит.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>Вопрос 4. На что тратить монеты (механика 5).</strong> Ждёт созвона.</p>
+<p>Сейчас: весь магазин стоит 51 470 монет, а первые три зоны дают 242 116, вся карта — около 8 млн. После двух зон покупать нечего.</p>
+<ul>
+<li><strong>Цены и товары по доходу зон (рекомендую).</strong> Каждой зоне — свои вещи по цене её дохода: новая лопата, сумка, улучшение. Игроку всегда есть на что копить. Цифры считаем в разборе экономики.</li>
+<li><strong>Поднять цены.</strong> Те же вещи, но дороже. Игрок дольше копит на каждую.</li>
+<li><strong>Оставить как есть.</strong> Магазин закрывается за первые зоны, монеты дальше копятся без дела.</li>
+</ul>
+<p><strong>Вопрос 5. Оружие со стойки сильнее купленных лопат (механика 5).</strong> Ждёт созвона.</p>
+<p>Сейчас: бесплатный снегоуборщик со стойки чистит в 2–3 раза быстрее купленной стальной лопаты, термопушка — ещё быстрее.</p>
+<ul>
+<li><strong>Стойка — короткий бонус (рекомендую).</strong> Оружие со стойки работает ограниченное время или до перегрева, потом стойка ждёт. Купленная лопата — основной инструмент, стойка — праздник.</li>
+<li><strong>Ослабить оружие.</strong> Оружие со стойки слабее лопаты своего уровня, зато особое (бросок, конус, пар).</li>
+<li><strong>Оставить как есть.</strong> Игрок берёт оружие со стойки и почти не покупает лопаты.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>Вопрос 6. Сад приносит больше снега (механика 7).</strong> Ждёт созвона.</p>
+<p>Сейчас: растение окупает семя за 5 урожаев и дальше приносит монеты без конца. 16 грядок лучшего растения за 20 секунд дают столько, сколько весь снег карты.</p>
+<ul>
+<li><strong>Сад — побочный доход (рекомендую).</strong> Урожай приносит заметно меньше, чем снег за то же время, повторных урожаев немного. Главный заработок — снег, сад — для коллекции и красоты. Цифры — в разборе экономики.</li>
+<li><strong>Сад — второй путь заработка.</strong> Сад остаётся выгодным, но с потолком: доход сада не больше дохода снега на той же стадии игры.</li>
+<li><strong>Оставить как есть.</strong> Кто раскрутил сад, больше не чистит снег ради монет.</li>
+</ul>
+<p><strong>Вопрос 7. Сад пропадает после забега (механика 7).</strong> Ждёт созвона.</p>
+<p>Сейчас: грядки и растения есть только в забеге. Вышел — посаженное пропало, семя потрачено.</p>
+<ul>
+<li><strong>Сад живёт в профиле (рекомендую).</strong> Грядки и растения сохраняются: вернулся в следующий забег — сад на месте и дорос. Игрок ничего не теряет.</li>
+<li><strong>Вернуть семя при выходе.</strong> Сад по-прежнему только в забеге, но неспелое растение возвращается семенем в инвентарь.</li>
+<li><strong>Оставить как есть, но предупредить.</strong> Перед выходом окно: «Посаженное пропадёт».</li>
+</ul>
+</blockquote>
+<h2 id="итог-этапа-1">Итог этапа 1</h2>
+<ul>
+<li>Сверено механик: <strong>19</strong>.</li>
+<li>Совпадают: <strong>7</strong> — очередь, кузов, обучение, окна магазина, погода, урок-остров, езда.</li>
+<li>Расходятся: <strong>12</strong> — снег в монеты, удар, магазин, сумка, сад, питомцы, лесные звери, оружие со стойки, гемы, награды вне забега, смерть, профиль.</li>
+<li>Механик «в коде нет» (описаны, но не существуют): <strong>0</strong>. Есть отдельные утверждения, которых в коде уже нет (срок 180 с, «нет точки на земле»).</li>
+<li>Механик в коде, которых нет на странице: <strong>9</strong> (список ниже).</li>
+</ul>
+<h3 id="главные-расхождения">Главные расхождения</h3>
+<ol>
+<li><strong>Узлов в зоне не 40.</strong> Страница и графики «Монет за зону» считают 40 узлов на зону (<code>Catalog.Areas[].nodes</code>). Игра это число не читает: число узлов берёт из карты — <code>MapPatchIndex/init.luau:2</code>: 634, 2 967, 6 256, 11 835, 16 300, 96 144, всего 134 136. Отсюда неверны график зон (зона 1 даёт 7 608 монет, не 480; вся карта — около 8,18 млн, не 8 000), сравнение «ледяная лопата дороже полного забега» и смысл «полного забега»: чтобы записать забег и получить жетон колеса, нужно сломать все 134 136 узлов (<code>ProgressionService.luau:117</code>). Четвёртая зона открывается только когда сломаны все 6 256 узлов третьей.</li>
+<li><strong>Ежедневная награда не требует игры в этот день.</strong> Минута копится в <code>profile.activeSeconds</code> за всё время и не сбрасывается (<code>ExtrasService.luau:113</code>, проверка <code>:213</code>). Кто однажды набрал 60 секунд, дальше забирает монеты каждые сутки сразу, даже из лобби.</li>
+<li><strong>Стартовый инструмент — ложка, не кулаки.</strong> <code>Catalog.luau:38</code> <code>StarterTool = &quot;SnowSpoon&quot;</code>, старые профили переводятся с рук на ложку (<code>ProfileService.luau:95-97</code>). Страница в механиках «Удар» и «Магазин» пишет «кулаки».</li>
+<li><strong>Сад открывают 7 сломанных участков, а не 20 кусков.</strong> Каждый сломанный участок второй зоны прибавляет к счётчику 3 (<code>MapSnowService.luau:342</code>), порог 20 (<code>GardenService.luau:156</code>).</li>
+<li><strong>Удержание Hold проверяет только клиент.</strong> Сервер повтор ударов без Hold не запрещает (<code>ExperienceController.luau:689</code> — единственное место с <code>canHoldHit</code>). Автокликер даёт то же, что улучшение за 25 монет.</li>
+</ol>
+<h2 id="механики-по-одной">Механики по одной</h2>
+<h3 id="1-снег-становится-монетами-расходится">1. Снег становится монетами — расходится</h3>
+<p>Совпадает: удар создаёт кусок, монеты не сразу; сдача живым и не дальше 10 стадов (<code>Bootstrap.server.luau:91</code>); при сдаче кусок уходит в чек, монеты по таймеру (<code>ProcessorService.luau</code>); цена куска — цена снега зоны, фиксируется в момент слома; конфета 2 из 100 ×2, золото ×3 не выпадает (<code>Balance.luau:72</code>); если чек не записан, снег возвращается (<code>ProcessorService.luau:66</code>); записанный чек догоняет при следующем входе (<code>ProfileService.luau:191-208</code>).</p>
+<p>Расходится:</p>
+<ul>
+<li>«В зоне сорок узлов» и график зон — см. главное расхождение 1. График строит <code>tools/guide/build.mjs:946</code> из <code>area.nodes</code>.</li>
+<li>«Нет точки на земле — удар отказывается»: для удара игрока точка на земле есть всегда (<code>MapSnowService.luau:280</code>), отказ <code>BagFull</code> в этом случае недостижим (<code>InventoryService.luau:153-154</code>). Утверждение описывает мёртвую ветку.</li>
+</ul>
+<p>Не описано: если встать на поднос переработчика, снег сдаётся сам раз в 0,75 с (<code>Bootstrap.server.luau:144-168</code>).</p>
+<h3 id="2-удар-ломает-снег-расходится">2. Удар ломает снег — расходится</h3>
+<p>Совпадает: удар решает сервер; нет забега, смерть, сиденье — удара нет; пылесос этим ударом не бьёт (<code>MapSnowService.luau:413-447</code>); проверки досягаемости 12 + 0,3, взгляда, стены, открытого снега и края стенки над пустой клеткой (<code>SnowHitValidation.luau</code>); заточка умножает только лопату (<code>Balance.luau:104</code>); один клик — до 3 участков, соседние в радиусе 3 стадов позади удара (<code>SnowStrikeArea.luau:5</code>); зоны 1–3 открыты, 4-я после 3-й; урок-остров с лопатой; ложка 0,40 с, лопата 0,60 с (<code>StrikeRules.luau:26-28</code>).</p>
+<p>Расходится:</p>
+<ul>
+<li>«Урон кулаков — 1»: это ложка (<code>Catalog.luau:6</code>), см. главное расхождение 3.</li>
+<li>«Удержание повторяет удары только после Hold»: так ведёт себя клиент, сервер это не проверяет (главное расхождение 5).</li>
+<li>«Сова … вместе с другими процентами не выше 15»: потолок 15 % считается отдельно для каждого вида бонуса (<code>Balance.luau:44-54</code>). Урон поднимает только сова (+5 %), так что потолок сейчас не достигается.</li>
+</ul>
+<h3 id="3-очередь-на-площадке-совпадает">3. Очередь на площадке — совпадает</h3>
+<p>Все утверждения подтверждены <code>QueueService.luau</code>: 4 площадки, хозяин, размер 1–4, отсчёт 5 с по старту или полной плите, размер 1 запускает сам, уход хозяина сбрасывает отряд, уход другого снимает отсчёт, повторный вход только после схода с плиты, 20 с без выбора — сброс.
+Не описано: на плиту в ожидании другие игроки встают в отряд сами, без кнопки (<code>QueueService.luau:209</code>).</p>
+<h3 id="4-магазин-расходится">4. Магазин — расходится</h3>
+<p>Совпадает: цену решает сервер (<code>ShopService.luau</code>, <code>Wallet.spend</code>); цепочка лопат; повторно не продаётся; сумку можно надеть снова бесплатно, если снег влезает; всё, кроме улучшений, покупается у прилавка в 12 стадах, улучшения — из окна где угодно; помощник и питомцы за гемы, звери и грузовик за монеты; пылесос и лопата сразу в руках.</p>
+<p>Расходится:</p>
+<ul>
+<li>«Кулаки бесплатные и уже есть»: бесплатна ложка.</li>
+<li>«Ледяная лопата дороже одного полного забега»: полный забег даёт около 8,18 млн, а уже первые три зоны — 242 116 монет (главное расхождение 1).</li>
+</ul>
+<h3 id="5-сумка-расходится">5. Сумка — расходится</h3>
+<p>Совпадает: снег сразу в сумку, в руках не держится; место считает сервер по надетой сумке; лишнее падает рядом; подбор сам, ближайшее, пока есть место, в 10 стадах раз в 0,2 с; чужой кусок на земле поднимает любой из отряда; смерть и выход роняют сумку; помощник и грузовик носят отдельно.</p>
+<p>Расходится:</p>
+<ul>
+<li>«В балансе есть срок 180 секунд»: такого числа в <code>Balance.luau</code> больше нет. Вывод «кусок не исчезает по таймеру» верен.</li>
+<li>«Нет точки на земле — удар отказывается» — мёртвая ветка, как в п. 1.</li>
+</ul>
+<p>Не описано: при смерти на землю падает и стопка помощника (<code>InventoryService.luau:336-343</code>, вызывается из <code>RuntimeFactory.luau:16</code>).</p>
+<h3 id="6-кузов-совпадает">6. Кузов — совпадает</h3>
+<p>Подтверждено <code>InventoryService.luau</code>, <code>TruckService.luau</code>, <code>VehicleSnowService.luau</code>: ключи <code>забег:имя модели</code> и <code>забег:SnowTruck</code>; ездовая копит только с водителем; сама сдаёт в 28 стадах при водителе; магазинный грузовик — кнопка разгрузки, игрок у переработчика, машина не дальше 20 стадов от подноса; выход роняет только твой снег.
+Не описано: кнопка загрузки (G) перекладывает в грузовик твою сумку и куски на земле в 8 стадах (<code>InventoryService.luau:291-313</code>). Та же клавиша G кладёт оружие со стойки (<code>WeaponController.luau:358</code>, <code>ExperienceController.luau:622</code>).</p>
+<h3 id="7-сад-расходится">7. Сад — расходится</h3>
+<p>Совпадает: только вторая зона кормит счётчик; садовник, грабли, 5 морковок; покупка и продажа живым, в забеге, в 15 стадах от садовника; монеты в кошелёк, гемов нет; грядки на зелёной земле второй зоны без снега, не больше 16; дождь ×2, гроза — нет; семя моркови 1, продажа 2 (<code>max(2, 20 % цены)</code>).</p>
+<p>Расходится:</p>
+<ul>
+<li>«20 кусков снега»: на деле 7 сломанных участков второй зоны (главное расхождение 4). Помощник счётчик не кормит, машины и молотов кормят.</li>
+</ul>
+<p>Не описано: «земля с семенами» — 12 отмеченных пятен во второй зоне, перекопка даёт семя редкости пятна, до Mythic и Super (<code>GardenService.luau:81-98</code>, <code>:296-300</code>); мутации Gold за 1 500 и Rainbow за 5 000 перекрашивают грядку, но цену урожая не меняют (<code>GardenService.luau:251</code>, <code>:274</code>); пять семян по 1 монете с ростом 240 с.</p>
+<h3 id="8-питомцы-расходится-мелко">8. Питомцы — расходится (мелко)</h3>
+<p>Совпадает: лис, заяц, сова за гемы; надеть двоих; лис — переработка, сова — урон, заяц +0,5 стада к подбору; помощник за гемы, сам стартует в начале забега, стопка не в сумке.</p>
+<p>Расходится:</p>
+<ul>
+<li>«Проценты лиса и совы вместе не поднимаются выше потолка»: у каждого вида свой потолок 15 %, лис и сова не складываются (<code>Balance.luau:54</code>).</li>
+</ul>
+<h3 id="9-лесные-звери-расходится-мелко">9. Лесные звери — расходится (мелко)</h3>
+<p>Совпадает: четыре зверя за монеты, надет один; идёт следом; удар сквозь него проходит; «передать снег» отдаёт всю сумку, зверь несёт к переработчику; дикие звери и птицы выключены (<code>ForestAnimalService.luau:6</code>).</p>
+<p>Расходится:</p>
+<ul>
+<li>При смерти снег, который нёс зверь, падает там, где умер игрок, а не у зверя: сумка роняется раньше, чем убирается зверь (<code>RuntimeFactory.luau:16</code> и порядок <code>died</code>). При выходе из забега — у зверя.</li>
+</ul>
+<h3 id="10-оружие-со-стойки-расходится">10. Оружие со стойки — расходится</h3>
+<p>Совпадает: стойка бесплатна и не пустеет; пока вещь в руках, бьёт она; G кладёт; режимы клик/удержание/бросок; термопушка греется; снег от термопушки и молотова ×0,5; смерть и конец забега снимают вещь.</p>
+<p>Расходится:</p>
+<ul>
+<li>«Сидя в машине … бить нельзя»: молотов бросается и из машины — бросок не проверяет сиденье и жизнь (<code>WeaponService.luau:136-169</code>).</li>
+<li>Снегоуборщик заявлен на 5 участков (<code>WeaponDefs.luau:37</code>), но удар берёт не больше 3 (<code>SnowStrikeArea.luau:5</code>, <code>MapSnowService.luau:458</code>).</li>
+<li>Уход из забега в лобби вещь не снимает: у сервиса нет события выхода из забега, только конец забега (<code>RuntimeFactory.luau:32</code>).</li>
+</ul>
+<h3 id="11-гемы-за-чистую-зону-расходится">11. Гемы за чистую зону — расходится</h3>
+<p>Совпадает: гемы сразу, без сдачи, каждому в отряде полная сумма зоны; 1–3 открыты, 4-я после 3-й, 5-я после 4-й, 6-я после 5-й (<code>ProgressionService.luau:110</code>); снег можно сдать после записи забега; жетон колеса один раз.</p>
+<p>Расходится:</p>
+<ul>
+<li>«Когда сломаны все узлы карты» — это 134 136 узлов, фраза «Если карта не назвала число узлов, забег ждёт 240» описывает запасной случай, которого в этой карте нет (главное расхождение 1). Зона «пустая», только когда сломан каждый её узел: 6 256 в третьей.</li>
+</ul>
+<h3 id="12-награды-вне-забега-расходится">12. Награды вне забега — расходится</h3>
+<p>Совпадает: сутки по полуночи UTC; минута копится только в идущем забеге и только живым; повтор в те же сутки — отказ; колесо тратит жетон, повтор кручения не платит второй раз; призы 60/30/10.</p>
+<p>Расходится:</p>
+<ul>
+<li>Минута не «на сутки», а за всё время (главное расхождение 2).</li>
+<li>Глобальная таблица лидеров в опубликованной игре показывает номера игроков вместо имён (<code>ExtrasService.luau:569</code>).</li>
+</ul>
+<h3 id="13-смерть-расходится-мелко">13. Смерть — расходится (мелко)</h3>
+<p>Совпадает: забег не кончается, появление у старта карты; падают сумка и твой снег из кузова; профиль не трогается; вещь со стойки пропадает; зверь пропадает и возвращается пустым; помощник останавливается и сам не включается; чек продолжает тикать.</p>
+<p>Расходится: снег зверя падает у места смерти (п. 9); стопка помощника тоже падает (п. 5).</p>
+<h3 id="14-обучение-совпадает">14. Обучение — совпадает</h3>
+<p><code>ExtrasService.luau:605</code> (окно, 15 с, числа 12 и 0,6 уходят клиенту), <code>IntroController.luau</code>, <code>TutorialController.luau</code>. Сервер удар обучением не останавливает. Мелочь: плашка шагов прячется и когда урок-остров уже пройден (<code>TutorialController.luau:142</code>).</p>
+<h3 id="15-окна-магазина-совпадает">15. Окна магазина — совпадает</h3>
+<p>Запрос несёт имя вещи, сервер берёт <code>Balance.itemPrice</code>; подписи берутся из того же каталога (<code>InterfaceController.luau:95</code>); превью покупок не делает.</p>
+<h3 id="16-погода-совпадает">16. Погода — совпадает</h3>
+<p><code>GardenService.luau:18-21</code>, <code>:316-321</code>: одна на сервер, порядок перемешан, первая через 60 с, следующая через 600 с от старта предыдущей, длительности совпадают; рост ×2 только в дождь; мелкий снег у камеры прячется при дожде, грозе и снегопаде (<code>WeatherController.luau:123</code>).</p>
+<h3 id="17-профиль-расходится-мелко">17. Профиль — расходится (мелко)</h3>
+<p>Совпадает: в Studio профиль в памяти; автосохранение 30 с и при выходе; невыплаченный чек при входе становится монетами; старый сервер держит профиль 120 с, новый ждёт 130 с и выкидывает с просьбой зайти снова; без публикации телепорта нет.</p>
+<p>Расходится:</p>
+<ul>
+<li>«Покупка пишется сразу. Остальное — автосохранением»: сразу пишутся ещё чеки переработчика, награды, гемы, обучение, урок-остров, семена и продажа сада (<code>ProfileService.luau:268</code>, все вызовы <code>commit(..., true)</code>). Автосохранением — выбор инструмента, питомцы, настройки, статистика снега, игровые секунды.</li>
+</ul>
+<p>Не описано: после 5 000 сдач профиль перестаёт принимать снег (<code>ProfileService.luau:5</code>, <code>:317</code>) — чеки никогда не удаляются.</p>
+<h3 id="18-урок-остров-совпадает">18. Урок-остров — совпадает</h3>
+<p><code>MapSnowService.luau:224-246</code>, <code>:347-397</code>, <code>:436</code>: без лопаты не копается ни островок, ни снег рядом; с лопатой прямой удар — отказ, соседний удар снимает только первый слой; островок падает через 0,12 с, урок пишется всему отряду; урок открыт, пока у кого-то в отряде нет записанного забега.</p>
+<h3 id="19-езда-совпадает">19. Езда — совпадает</h3>
+<p><code>VehicleDriving.server.luau</code>, <code>VehicleSnowService.luau</code>, <code>VehicleDrivingClient.client.luau:77</code>: пустая стоит, сел — рулит твой компьютер, выход E; снег в кузов; полный кузов не трогает снег; островок не срезается; корпус и щётка 0,15 с, танк 0,25 с только с огнём; вертолёт не берёт снег выше 45.
+Уточнить формулировку: «Грузовик из магазина сам не едет» — им может рулить игрок, который его купил (<code>TruckService.luau:270-281</code>). Ездовые машины общие для всех отрядов сервера и не требуют покупки.</p>
+<h2 id="механики-в-коде-которых-нет-на-странице">Механики в коде, которых нет на странице</h2>
+<ol>
+<li><strong>Автосдача на подносе переработчика</strong> — встал на поднос, снег уходит сам раз в 0,75 с (<code>Bootstrap.server.luau:144-168</code>).</li>
+<li><strong>Загрузка магазинного грузовика</strong> — кнопка G перекладывает сумку и куски в 8 стадах в кузов (<code>InventoryService.luau:291-313</code>).</li>
+<li><strong>Земля с семенами в саду</strong> — 12 пятен по редкостям, перекопка даёт семя (<code>GardenService.luau:81-98</code>).</li>
+<li><strong>Мутации сада Gold и Rainbow</strong> — платные семена, меняют только цвет (<code>GardenService.luau:270-281</code>).</li>
+<li><strong>Возврат на старт при выходе за карту</strong> — сервер переносит игрока к старту, если он вне поля или провалился (<code>Bootstrap.server.luau:283-292</code>).</li>
+<li><strong>Защита машины от слишком быстрой езды</strong> — три нарушения скорости подряд выкидывают водителя (<code>VehicleDriving.server.luau:151-163</code>).</li>
+<li><strong>Следы на снегу</strong> — шаги продавливают снег на сервере (<code>MapSnowService.luau:900-947</code>).</li>
+<li><strong>Нападение диких зверей</strong> — урон 8, провокация 15 с; сейчас выключено вместе с птицами (<code>ForestAnimalService.luau:6</code>).</li>
+<li><strong>Старый путь удара <code>Hit</code> по узлу</strong> — остался в сети, но в долине всегда отвечает отказом: модуль снега не даёт функции <code>apply</code> (<code>SnowService.luau:24</code>). Мёртвый код.</li>
+</ol>
+<h2 id="этап-2-разбор-по-одной">Этап 2. Разбор по одной</h2>
+<p>Порядок и решения владельца записываются здесь по мере разбора.</p>
+<p>Решение владельца 10.11.2026: порядок «сначала деньги» — 1 снег в монеты и переработчик, 2 гемы и открытие зон, 3 награды вне забега, 4 удар, 5 магазин и оружие со стойки, 6 сумка, смерть и выход, 7 сад, дальше остальные (кузов и езда, питомцы и звери, очередь, обучение, окна магазина, профиль, погода, урок-остров).</p>
+<h3 id="механика-1-снег-становится-монетами-переработчик">Механика 1. Снег становится монетами (переработчик)</h3>
+<p><strong>Как работает на самом деле.</strong></p>
+<ul>
+<li>Сдать снег можно четырьмя путями: игрок у переработчика (кнопка или автосдача на лотке каждые 0,75 с, <code>Bootstrap.server.luau:144-168</code>), помощник (<code>ExtrasService.luau:481</code>), кузов машины, лесной зверь (<code>ForestAnimalService.luau:504</code>). Все идут в <code>ProcessorService.acceptLots</code> (<code>ProcessorService.luau:25</code>).</li>
+<li>Сервер сам проверяет: игрок жив и стоит у машины (для игрока), куски его и лежат в нужном месте, без повторов. Цену считает сервер: куски × цена куска (<code>:44</code>). Клиент на цену не влияет.</li>
+<li>На каждую сдачу пишется чек (<code>:49</code>) и сразу сохраняется в профиль (<code>prepareReceipt</code>, <code>ProfileService.luau:306</code>). Куски исчезают, машина «варит» их <code>куски × 1 с</code> (с улучшением до 0,48 с, <code>Catalog.luau:32</code>, питомцы ещё ускоряют). Потом монеты зачисляются и тоже сразу сохраняются (<code>creditReceipt</code>, <code>:325</code>).</li>
+<li>Если игрок вышел из игры до конца варки, монеты придут при следующем входе (<code>ProfileService.luau:191-207</code>). Смерть и выход в лобби варку не отменяют.</li>
+</ul>
+<p><strong>Что правильно.</strong> Сервер решает всё сам, двойного зачисления нет (чек с id, повтор отвечает «уже»), при ошибке сохранения куски возвращаются в сумку (<code>ProcessorService.luau:62-64</code>), монеты не теряются при выходе.</p>
+<p><strong>Что не так.</strong></p>
+<ol>
+<li>Критично: чеки не удаляются никогда (<code>ProfileService.luau:5</code>). Весь профиль — один ключ DataStore, предел 4 МБ. С сумкой на 80 кусков чек весит около 10 КБ, профиль перестанет сохраняться примерно после 400 сдач. С мелкими сдачами раньше кончится лимит 5 000 чеков, и машина перестанет принимать снег (<code>ReceiptLedgerFull</code>). Баг <code>BUG-20261110-007</code>, карточка <code>8955d9</code>.</li>
+<li>Каждая сдача — две немедленные записи в DataStore. Автосдача на лотке, помощник и машина дают много мелких сдач подряд, а Roblox ограничивает частоту записей в один ключ. Риск очереди и задержек сохранения в живой игре; в Studio без публикации не проверить.</li>
+<li>Варки идут параллельно, у каждой свой таймер (<code>ProcessorService.luau:57</code>, <code>:88</code>). Пять сдач по 16 кусков сварятся за 16 с, одна сдача 80 кусков — за 80 с. Большая сумка наказывает игрока, выгоднее сдавать по чуть-чуть.</li>
+<li>На странице: нет автосдачи на лотке; графики «монет за зону» посчитаны от 40 узлов, а в зонах их от 634 до 96 144 (этап 1, пункт 1).</li>
+<li>Для ребёнка: монеты приходят не сразу, а через десятки секунд; если не дождаться, кажется, что снег пропал. Полоска варки над машиной есть (<code>RuntimeFactory.luau:156</code>), но кадр пока не снят.</li>
+</ol>
+<p><strong>Что предлагаю (сначала важное).</strong></p>
+<ol>
+<li>Чинить <code>8955d9</code>: после зачисления хранить от чека только id (или удалять зачисленные чеки старше суток). Защита от двойного зачисления остаётся, профиль перестаёт расти.</li>
+<li>Одна очередь варки на игрока: новая сдача встаёт за предыдущей, время варки — от общего числа кусков. Тогда размер сдачи не важен.</li>
+<li>Проверить частоту записей на опубликованной тестовой копии. Если упрётся в лимит Roblox — склеивать сдачи одного игрока за несколько секунд в один чек (вместе с карточкой <code>653e08</code>, где правило сдачи и так переезжает в переработчик).</li>
+<li>Поправить страницу после решения владельца.</li>
+</ol>
+<p>Решение владельца 10.11.2026: чинить и сохранение, и очередь — чеки после зачисления не копятся в профиле (<code>8955d9</code>), варка у игрока идёт одной очередью, время от общего числа кусков (карточка <code>dfd1d3</code>). Страницу поправить вместе с исправлением.</p>
+<h3 id="механика-2-гемы-и-открытие-зон">Механика 2. Гемы и открытие зон</h3>
+<p><strong>Как работает на самом деле.</strong></p>
+<ul>
+<li>Забег начинается с открытыми зонами 1–3 (<code>SessionService.luau:88</code>). Сломанный узел снега засчитывается своей зоне (<code>ProgressionService.luau:72-97</code>).</li>
+<li>Когда сломан каждый узел зоны, всем в отряде сразу приходят гемы: 10 / 20 / 30 / 40 / 50 / 60 за зоны 1–6 (<code>Catalog.luau:56</code>), ключ награды <code>Area:&lt;забег&gt;:&lt;зона&gt;</code> — дважды за одну зону одного забега не заплатят (<code>Wallet.luau:99</code>). Зона 3 открывает 4-ю, 4-я — 5-ю, 5-я — 6-ю (<code>ProgressionService.luau:110-113</code>).</li>
+<li>Открытые зоны живут только в забеге. В профиль они не пишутся: следующий забег снова начинается с зон 1–3.</li>
+<li>Забег «пройден», только когда сломаны все 134 136 узлов карты (<code>:118</code>). Тогда жетон колеса, один раз за жизнь (<code>ExtrasService.luau:255-272</code>).</li>
+<li>В HUD полоска «AREA N/6 · X % cleared» показывает самую дальнюю открытую зону, а не ту, где стоит игрок (<code>RuntimeFactory.luau:147-150</code>, <code>InterfaceController.luau:707-711</code>). В начале забега это зона 3.</li>
+</ul>
+<p><strong>Что правильно.</strong> Гемы решает сервер, двойной выплаты нет, при сбое сохранения награда повторяется (<code>Wallet.luau:99-110</code>).</p>
+<p><strong>Что не так.</strong></p>
+<ol>
+<li>Зоны 4–6 почти недостижимы. Нужно сломать каждый узел зоны 3 (6 256 штук), и всё это в одном забеге, потому что открытие не сохраняется. Оценка чистых кликов (до 3 узлов за клик): со стартовой лопатой зона 3 — около 1,7 ч, с лучшей лопатой и заточкой — около 15 мин; зоны 3, 4 и 5 подряд с лучшей лопатой — около 2 ч. Это без ходьбы и поиска последнего узла.</li>
+<li>Один пропущенный узел держит зону закрытой. Подсказки, где остался снег зоны, нет. Если хоть один узел нельзя сломать (под домом, у края карты, как в <code>BUG-20261110-006</code>), зона не закроется никогда; проверить все 134 136 узлов на досягаемость пока нечем.</li>
+<li>Гемы выгоднее всего фармить в зоне 1: 10 гемов за 634 узла против 60 за 96 144 в зоне 6 — в 25 раз меньше гемов за узел. Лучшая стратегия — пройти зону 1 и начать новый забег.</li>
+<li>Полный забег (все 134 136 узлов) и жетон колеса за него на практике не получить: одна зона 6 — 96 144 узла.</li>
+<li>Для ребёнка: в начале забега HUD пишет «AREA 3/6 0 %», хотя ребёнок чистит первую зону, и полоска не двигается. Непонятно, что делать, чтобы открыть новую зону.</li>
+</ol>
+<p><strong>Что предлагаю (сначала важное).</strong></p>
+<ol>
+<li>Открытые зоны сохранять в профиле: открыл 4-ю — она открыта во всех следующих забегах.</li>
+<li>Открывать следующую зону не на 100 %, а на 90 % текущей. Последние узлы не держат игрока.</li>
+<li>HUD показывает зону, где стоит игрок, и сколько осталось до открытия следующей.</li>
+<li>Гемы за зону пересчитать от её размера (или платить за каждую тысячу узлов), чтобы фарм зоны 1 не был лучшей стратегией. Цифры — отдельно, вместе с экономикой (<code>34d5ff</code>).</li>
+<li>Цель полного забега пересмотреть после пунктов 1–2.</li>
+</ol>
+<p>Решение владельца 10.11.2026: гемы за зону считать от её размера, чтобы дальняя зона давала заметно больше ближней и игроку было выгодно идти вперёд, а не перезапускать забег. Точные цифры — вместе с разбором экономики (<code>34d5ff</code>), карточка <code>0d0017</code>. Открытие зон — открытый вопрос 1 (раздел «Вопросы владельцу»), ответ на созвоне.</p>
+<h3 id="механика-3-награды-вне-забега">Механика 3. Награды вне забега</h3>
+<p><strong>Как работает на самом деле.</strong></p>
+<ul>
+<li>Ежедневные монеты: 50 монет раз в сутки UTC (<code>Catalog.luau:66</code>). Ключ награды <code>Daily:&lt;номер суток&gt;</code> (<code>ExtrasService.luau:210</code>). Условие — <code>activeSeconds &gt;= 60</code> (<code>:213</code>). Секунды копятся только в идущем забеге, пока игрок жив (<code>:577-584</code>), и пишутся в профиль автосейвом (<code>:108-118</code>).</li>
+<li>Колесо: тратит жетон, приз 50 монет (60 %), 100 монет (30 %), 10 гемов (10 %) (<code>Catalog.luau:67-71</code>). Случай выбирает сервер один раз, повтор того же запроса возвращает тот же приз (<code>ExtrasService.luau:221-253</code>). Жетон дают только за первый полный забег, один раз за жизнь (<code>:255-272</code>).</li>
+<li>Таблица лидеров: снег и заработанные монеты. Раз в минуту сервер пишет очки игроков сервера в общую таблицу и читает топ-100 (<code>:557-575</code>). В Studio общей таблицы нет, показываются игроки сервера.</li>
+</ul>
+<p><strong>Что правильно.</strong> Всё решает сервер, двойной выплаты нет (ключи наград), приз колеса нельзя перекрутить повтором запроса.</p>
+<p><strong>Что не так.</strong></p>
+<ol>
+<li>Ежедневная награда после первой минуты в жизни больше не требует игры: секунды не обнуляются по суткам. Баг <code>BUG-20261110-009</code>, карточка <code>51b915</code>.</li>
+<li>Колесо на деле мёртвое: жетон только за полный забег, а это все 134 136 узлов карты (механика 2). Игрок видит колесо, но крутить ему нечем.</li>
+<li>Общая таблица лидеров покажет номера игроков вместо имён. Баг <code>BUG-20261110-008</code>, карточка <code>21c3a1</code>.</li>
+<li>Ключи наград копятся в профиле навсегда, как чеки переработчика: <code>Daily:&lt;сутки&gt;</code> раз в день, <code>Area:&lt;забег&gt;:&lt;зона&gt;</code> за каждую чистую зону каждого забега, <code>Wheel:&lt;запрос&gt;</code> с записью приза (<code>Wallet.luau:72</code>). Растёт медленно (десятки байт за ключ), но предела нет. Ключи <code>Area:</code> после конца забега не нужны. Добавлено в заметки <code>8955d9</code>.</li>
+<li>Суммы маленькие: 50 монет в день — это 4 куска пушистого снега. Цифры — в разборе экономики <code>34d5ff</code>.</li>
+</ol>
+<p><strong>Что предлагаю (сначала важное).</strong></p>
+<ol>
+<li>Решить, откуда берутся жетоны колеса (открытый вопрос 2).</li>
+<li>Чинить <code>51b915</code>: хранить день, к которому относятся секунды, и обнулять их в новых сутках.</li>
+<li>Чинить <code>21c3a1</code>: имена для общей таблицы.</li>
+<li>Ключи наград чистить вместе с чеками (<code>8955d9</code>).</li>
+</ol>
+<p>Решение владельца: открытый вопрос 2 (раздел «Вопросы владельцу»), ответ на созвоне. Баги 008 и 009 — без вопроса: страница описывает именно так, код расходится.</p>
+<h3 id="механика-4-удар">Механика 4. Удар</h3>
+<p><strong>Как работает на самом деле.</strong></p>
+<ul>
+<li>Клик отправляет на сервер точку, направление и номер удара. Сервер проверяет по порядку (<code>MapSnowService.luau:413-480</code>): не больше 24 запросов в секунду; номер удара растёт; идёт забег; игрок жив, не сидит; досягаемость 12 + 0,3 стада и взгляд (<code>SnowHitValidation</code>); срок удара — ложка 0,40 с, лопата 0,60–0,42 с по улучшению (<code>StrikeRules.luau:18-29</code>); точка внутри карты; зона открыта; снег открыт (если нет — ближайшая стенка того же узла, исправление <code>BUG-20261110-006</code>); стена не мешает.</li>
+<li>Урон: урон инструмента × заточка (только лопаты) × сова (<code>Balance.luau:102-106</code>). Ложка 1, стартовая лопата 2, … ледяная 6; заточка до ×2,1.</li>
+<li>Один клик бьёт до 3 участков: тот, куда целишься, и соседи до 3 стадов позади точки (<code>SnowStrikeArea.luau:5</code>), каждый со своей проверкой досягаемости и стены (<code>MapSnowService.luau:458-468</code>).</li>
+<li>Улучшение Hold (25 монет) включает удар при зажатой кнопке только на клиенте (<code>ExperienceController.luau:690</code>). Сервер принимает любой клик в свой срок.</li>
+</ul>
+<p><strong>Что правильно.</strong> Урон и срок решает сервер, клиент не может бить чаще или дальше. Закрытые зоны не бьются ни основным ударом, ни соседями. Повтор старого номера удара отклоняется.</p>
+<p><strong>Что не так.</strong></p>
+<ol>
+<li>Многие отказы молчат. <code>Cooldown</code>, <code>NotExposed</code>, <code>Obstructed</code>, <code>OutOfRange</code> и ещё 13 кодов клиент проглатывает без отклика (<code>InterfaceController.luau:889-891</code>). Ребёнок кликает, а ничего не происходит — так и был найден <code>BUG-20261110-006</code>. Причину одного случая исправили, но любой другой отказ по-прежнему выглядит как сломанная игра.</li>
+<li>Hold можно обойти автокликером: сервер не знает, куплен ли Hold. Вреда нет — чаще срока не ударить, а Hold стоит 25 монет. Записываю как факт, чинить не предлагаю.</li>
+<li>Ложка бьёт чаще лопаты (0,40 с против 0,60 с) — на ощупь лопата «медленнее», хотя урон за секунду выше (3,3 против 2,5). Это ощущение, не ошибка; смотреть вместе с аудитом предметов в руках (<code>2722e3</code>).</li>
+<li>На странице: «урон кулаков» — это ложка; Hold описан как серверное правило (этап 1, расхождения 3 и 5).</li>
+</ol>
+<p><strong>Что предлагаю (сначала важное).</strong></p>
+<ol>
+<li>Короткий отклик на отказ без слов (открытый вопрос 3): «далеко», «мешает», «закрытая зона». Делать в общем плане удара <code>6d3652</code>.</li>
+<li>Страницу поправить: ложка вместо кулаков, Hold — удобство на клиенте.</li>
+</ol>
+<p>Решение владельца: открытый вопрос 3 (раздел «Вопросы владельцу»), ответ на созвоне.</p>
+<h3 id="механика-5-магазин-и-оружие-со-стойки">Механика 5. Магазин и оружие со стойки</h3>
+<p>Цифры магазина — из <code>src/ReplicatedStorage/CleanSnow/Data/economy.json</code> (их туда переносит карточка <code>34d5ff</code>, на момент разбора файл ещё не в коммите), строки кода — на <code>3384b59</code>.</p>
+<p><strong>Как работает на самом деле.</strong></p>
+<ul>
+<li>Покупка: клиент шлёт вещь и номер версии профиля. Сервер проверяет, что игрок у прилавка (кроме улучшений), что вещь не куплена, что куплена предыдущая в цепочке, и списывает цену в той же записи профиля (<code>ShopService.luau:47-101</code>, <code>Wallet.spend</code>). Цену решает сервер. Устаревшая версия профиля — отказ, так что двойной клик не купит дважды.</li>
+<li>Купленная лопата или пылесос сразу в руках; сумку можно надеть заново бесплатно, если снег влезает (<code>:58-62</code>).</li>
+<li>Оружие со стойки: бесплатно, не кончается, берётся подсказкой у стойки (<code>WeaponService.luau:75-81</code>). Пока оно в руках, удар идёт им: свой урон, свой срок, до 3 целей (<code>MapSnowService.luau:448</code>, <code>:457-463</code>). G кладёт. Смерть и конец забега снимают (<code>WeaponService.luau:171-173</code>, <code>:206-210</code>).</li>
+</ul>
+<p><strong>Что правильно.</strong> Деньги и цена — на сервере, покупка атомарна с выдачей вещи. Цепочку лопат не перепрыгнуть.</p>
+<p><strong>Что не так.</strong></p>
+<ol>
+<li>Весь магазин стоит 51 470 монет и 315 гемов. Зона 1 даёт 7 608 монет, зоны 1–3 — 242 116, вся карта — около 8,18 млн. После первых двух зон покупать нечего: больше 99 % монет карты некуда тратить. Семена сада стоят до 30 млн, но это вложение, а не трата: они окупаются (механика 7).</li>
+<li>Бесплатное оружие со стойки сильнее купленных лопат. Урон в секунду по снегу (урон × цели / срок): стартовая лопата 10, стальная 15, толкатель 20, ледяная с заточкой до 90; со стойки — лопата 16, снегоуборщик 30, термопушка 46 (снег от неё стоит ×0,5). Ложка со стойки бьёт на 2, купленная стартовая — на 1. Первые покупки лопат теряют смысл.</li>
+<li>Снегоуборщик заявлен на 5 целей, а удар берёт не больше 3 (<code>WeaponDefs.luau:37</code>, <code>SnowStrikeArea.luau:5</code>).</li>
+<li>Молотов бросается из машины и после смерти: бросок не проверяет сиденье, жизнь и забег (<code>WeaponService.luau:136-142</code>). Снег он жжёт только в открытых зонах (<code>MapSnowService.luau:665</code>), так что вред — только расхождение со страницей.</li>
+<li>Выход из забега в лобби не снимает оружие (<code>RuntimeFactory.luau:32</code>): в лобби игрок стоит с термопушкой, удар не работает.</li>
+<li>Вид оружия в руках разбирает другой чат (<code>2722e3</code>), здесь не повторяю.</li>
+</ol>
+<p><strong>Что предлагаю (сначала важное).</strong></p>
+<ol>
+<li>Решить, на что тратить монеты после первых зон (открытый вопрос 4). Это главный вопрос экономики, считать вместе с <code>34d5ff</code>.</li>
+<li>Решить роль оружия со стойки (открытый вопрос 5).</li>
+<li>Мелочи без вопроса: бросок проверяет жизнь, сиденье и забег; выход в лобби снимает оружие; снегоуборщику честные 5 целей или 3 в описании. Карточка <code>f79ad4</code>.</li>
+</ol>
+<p>Решение владельца: открытые вопросы 4 и 5 (раздел «Вопросы владельцу»), ответ на созвоне.</p>
+<h3 id="механика-6-сумка-смерть-и-выход">Механика 6. Сумка, смерть и выход</h3>
+<p><strong>Как работает на самом деле.</strong></p>
+<ul>
+<li>Сломанный снег сразу ложится в сумку (<code>InventoryService.luau:145-174</code>). Место считает сервер по надетой сумке. Что не влезло — падает рядом обычным куском, его поднимает любой из отряда.</li>
+<li>Подбор: сам, ближайшее первым, пока есть место, в радиусе подбора и без стены между (<code>:226-262</code>). Подобранный кусок записывает «новый вид снега» в коллекцию профиля.</li>
+<li>Смерть, выход из забега в лобби и выход из игры роняют сумку, снег игрока из кузова и стопку помощника на место, где стоял игрок (<code>:331-345</code>, <code>RuntimeFactory.luau:16</code>). Забег не кончается, игрок появляется у старта карты. Монеты, вещи и уже сданный снег не трогаются: чек варится дальше.</li>
+<li>Куски на земле живут до конца забега, таймера нет.</li>
+</ul>
+<p><strong>Что правильно.</strong> Сумку считает сервер, подобрать чужое из сумки нельзя, при выходе ничего купленного не теряется. Повторный подбор одного куска невозможен: кусок меняет состояние сразу.</p>
+<p><strong>Что не так.</strong></p>
+<ol>
+<li>Куски забега никогда не удаляются, а каждый удар перебирает их все с начала забега. Чем дольше забег, тем дороже каждый удар для сервера. Баг <code>BUG-20261110-010</code>, карточка <code>4f5142</code>. Найдено по коду, замер в Play не сделан.</li>
+<li>С полной сумкой игрок продолжает ломать снег, и каждый слом бросает на землю модель до 5 деталей, которая лежит до конца забега. Ребёнок не понимает, почему снег «не собирается», а на сервере копятся детали. Это тот же баг, плюс вопрос отклика (открытый вопрос 3).</li>
+<li>Для ребёнка: после смерти сумка остаётся там, где он умер, а он появляется у старта карты. Подсказки, где лежит его снег, нет. Смерть сейчас редкая (звери не нападают), поэтому не главное.</li>
+<li>На странице: нет числа 180 секунд в балансе, нет падения стопки помощника при смерти (этап 1, п. 5 и 13).</li>
+</ol>
+<p><strong>Что предлагаю (сначала важное).</strong></p>
+<ol>
+<li>Чинить <code>4f5142</code>: сданные и пустые куски убирать из забега, перебирать только живые, а лишний снег на земле склеивать с ближайшим куском того же вида.</li>
+<li>Отклик «сумка полна» у прицела — вместе с открытым вопросом 3.</li>
+<li>Метку «твой снег здесь» после смерти — только если смерть станет частой.</li>
+</ol>
+<p>Решение владельца: без отдельного вопроса — баг чинить, отклик решается в открытом вопросе 3.</p>
+<h3 id="механика-7-сад">Механика 7. Сад</h3>
+<p><strong>Как работает на самом деле.</strong></p>
+<ul>
+<li>Сад открывается в профиле навсегда, когда счётчик снега второй зоны доходит до 20 (<code>GardenService.luau:149-158</code>). Счётчик растёт на каждый кусок, а слом участка даёт около трёх кусков, так что на деле это около 7 участков. Приходит садовник, грабли и 5 морковок.</li>
+<li>Грядки: грабли рыхлят зелёную землю второй зоны без снега, не больше 16 на игрока (<code>:293</code>). Семя тратится из профиля при посадке. Растение растёт 60–1 800 с, в дождь вдвое быстрее (<code>:329</code>). Урожай пишется в профиль, продажа садовнику по <code>max(2, 20 % цены семени)</code> за штуку (<code>:251-256</code>).</li>
+<li>Семена покупаются у садовника за монеты, любые из каталога, от 1 до 30 000 000 монет (<code>GardenCatalog.luau</code>). 12 пятен «земли с семенами» дают бесплатное семя своей редкости.</li>
+<li>Грядки и растения живут только в забеге: состояние сада хранится в забеге и исчезает вместе с ним (<code>:327</code>).</li>
+</ul>
+<p><strong>Что правильно.</strong> Покупка и продажа — через кошелёк на сервере, продажа сверяет урожай в той же записи, собрать чужое растение нельзя.</p>
+<p><strong>Что не так.</strong></p>
+<ol>
+<li>Сад — бесконечный источник монет. Растение, которое плодоносит повторно, окупает семя за 5 урожаев (20 % цены за урожай) и дальше приносит монеты, пока идёт забег. Самое дорогое (30 млн, урожай раз в 240 с) даёт 25 000 монет в секунду с грядки, 16 грядок — 400 000 в секунду. Весь снег карты (около 8,18 млн) — это 20 секунд такого сада. Снег как способ заработка теряет смысл, как только игрок раскрутит сад.</li>
+<li>Выход из забега уничтожает посаженное. Семя уже списано, растение пропадает. Ребёнок купил дорогое семя, посадил, вышел в лобби — семя потеряно, и об этом ничего не сказано.</li>
+<li>Мутации Gold (1 500) и Rainbow (5 000) только перекрашивают растение, цену урожая не меняют (<code>:272-280</code>, продажа их не учитывает). Игрок платит за цвет, думая, что за доход.</li>
+<li>Подсказка при открытии сада пишет «20 snow drops!», а игрок видит около 7 сломанных участков (этап 1, главное расхождение 4).</li>
+<li>Редкость семян почти ничего не значит: любое семя, включая Mythic и Super, можно купить у садовника за монеты.</li>
+</ol>
+<p><strong>Что предлагаю (сначала важное).</strong></p>
+<ol>
+<li>Решить место сада в экономике (открытый вопрос 6).</li>
+<li>Решить, что происходит с садом при выходе из забега (открытый вопрос 7).</li>
+<li>Мутации: либо поднимать цену урожая, либо честно подписать «только цвет». Вместе с вопросом 6.</li>
+<li>Подсказку открытия сада привязать к тому, что видит игрок (участки), — вместе с правкой страницы.</li>
+</ol>
+<p>Решение владельца: открытые вопросы 6 и 7 (раздел «Вопросы владельцу»), ответ на созвоне.</p>
+<h3 id="механика-8-остальные-кузов-и-езда-питомцы-и-звери-очередь-обучение-окна-магазина-профиль-погода-урок-остров">Механика 8. Остальные: кузов и езда, питомцы и звери, очередь, обучение, окна магазина, профиль, погода, урок-остров</h3>
+<p>Эти механики на этапе 1 совпали со страницей или разошлись по мелочи. Здесь — только то, что важно для правильности.</p>
+<p><strong>Кузов и езда.</strong></p>
+<ul>
+<li>Машиной рулит компьютер водителя, сервер лишь сверяет скорость: раз в 0,5 с, водителя высаживают после трёх замеров подряд быстрее 1,5 × предела (<code>VehicleDriving.server.luau:11-13</code>, <code>:152-163</code>). Один прыжок-телепорт даёт один замер, а следующий спокойный замер сбрасывает счёт. Машина, которую читер переносит скачками, не высаживается и собирает снег в месте прыжка (<code>VehicleSnowService.luau:14</code>, <code>:109-110</code>). Тот же класс, что и телепорт персонажа; дописано в карточку проверки движения <code>db18c4</code>.</li>
+<li>Ездовые машины общие для всех отрядов сервера, снег в кузове записан на того, кто его собрал. Ошибок не нашёл.</li>
+<li>G и кладёт оружие, и грузит снег в грузовик (этап 1). Мелочь, страница.</li>
+</ul>
+<p><strong>Питомцы и звери.</strong></p>
+<ul>
+<li>У каждого вида бонуса свой потолок 15 % (<code>Balance.luau:54</code>). Ошибкой не считаю, страницу поправить.</li>
+<li>При смерти снег зверя падает у места смерти игрока, а не у зверя (<code>RuntimeFactory.luau:16</code>). Мелочь.</li>
+<li>Дикие звери и птицы выключены (<code>ForestAnimalService.luau:6</code>), поэтому смерть почти не случается — см. механику 6.</li>
+</ul>
+<p><strong>Очередь, обучение, окна магазина, погода, урок-остров.</strong> Совпадают со страницей, ошибок правильности не нашёл. Мелочи: очередь сама добавляет встающих на плиту в отряд (не описано), плашка обучения прячется и после пройденного урока-острова (<code>TutorialController.luau:142</code>).</p>
+<p><strong>Профиль.</strong> Главное уже в механиках 1 и 3: чеки и ключи наград копятся навсегда (<code>8955d9</code>), каждая сдача — две немедленные записи. Остальное совпадает: профиль в памяти в Studio, автосохранение 30 с, невыплаченный чек приходит при входе.</p>
+<p><strong>Что предлагаю.</strong> Отдельных вопросов нет. Телепорт машины — в <code>db18c4</code>, остальное — правка страницы после ответов на открытые вопросы.</p>
+<h2 id="итог-этапа-2">Итог этапа 2</h2>
+<p>Разобраны все механики, 10.11.2026. Кадры из Play не сняты: все 5 окон Studio весь разбор были заняты другими чатами; находки этапа 2 получены из кода и расчётов, сценарий сдачи снега <code>tools/studio-scenarios/deposit.json</code> готов для кадра.</p>
+<p>Баги (журнал <code>tasks/bugs.md</code>):</p>
+<ul>
+<li><code>BUG-20261110-007</code> критичный — чеки переработчика и ключи наград копятся в профиле, сохранение сломается (<code>8955d9</code>).</li>
+<li><code>BUG-20261110-010</code> серьёзный — куски забега не удаляются, каждый удар дороже (<code>4f5142</code>).</li>
+<li><code>BUG-20261110-008</code> мелкий — таблица лидеров с номерами вместо имён (<code>21c3a1</code>).</li>
+<li><code>BUG-20261110-009</code> мелкий — ежедневная награда без игры в этот день (<code>51b915</code>).</li>
+</ul>
+<p>Карточки улучшений: очередь варки <code>dfd1d3</code>, гемы от размера зоны <code>0d0017</code>, оружие со стойки <code>f79ad4</code>; дописаны <code>db18c4</code> (телепорт машины) и <code>8955d9</code> (ключи наград).</p>
+<p>Открытые вопросы владельцу: 7 штук, раздел «Вопросы владельцу» в начале документа. Самые важные для игры — 1 (открытие зон), 4 (на что тратить монеты) и 6 (сад приносит больше снега).</p>
+<p>Текст <code>docs/mechanics.md</code> не правился: правки страницы — после ответов на вопросы.</p>
+</article></div></section>
+</main>
+</div>
+<dialog id="viewer" aria-label="Просмотр картинки"><div class="viewer-bar"><p id="viewer-caption"></p><a id="viewer-open" target="_blank" rel="noopener">Открыть файл</a><button id="viewer-close" type="button">Закрыть</button></div><img id="viewer-image" alt=""></dialog>
+<script>// Поведение страницы: пароль на весь сайт, меню на узком экране и просмотр картинки.
+// Текущую страницу в меню отмечает сборщик.
+(() => {
+  const SITE_KEY = "clean-a-snow-guide-open";
+  const SITE_PASSWORD = "91-23sdf-123dsf213-gfdf";
+  const lock = document.getElementById("site-lock-form");
+  if (lock) {
+    lock.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const error = document.getElementById("site-lock-error");
+      if (new FormData(lock).get("password") === SITE_PASSWORD) {
+        try {
+          localStorage.setItem(SITE_KEY, "1");
+        } catch {
+          // Без хранилища сайт откроется только до закрытия вкладки.
+        }
+        document.documentElement.classList.add("site-open");
+      } else if (error) error.hidden = false;
+    });
+  }
+
+  const close = document.getElementById("site-close");
+  if (close) {
+    close.addEventListener("click", () => {
+      try {
+        localStorage.removeItem(SITE_KEY);
+      } catch {
+        // Без хранилища достаточно убрать класс: следующая страница снова спросит пароль.
+      }
+      const error = document.getElementById("site-lock-error");
+      if (error) error.hidden = true;
+      const input = lock?.querySelector("input");
+      if (input) input.value = "";
+      document.documentElement.classList.remove("site-open");
+      input?.focus();
+    });
+  }
+
+  const board = document.querySelector(".board-columns");
+  if (board) {
+    const buttons = [...document.querySelectorAll("[data-person-filter]")];
+    const apply = (person) => {
+      for (const button of buttons) button.setAttribute("aria-pressed", String(button.dataset.personFilter === person));
+      for (const column of board.querySelectorAll(".board-column")) {
+        let visible = 0;
+        for (const card of column.querySelectorAll(".board-card")) {
+          const show = person === "all" || card.dataset.person === person;
+          card.hidden = !show;
+          if (show) visible += 1;
+        }
+        column.querySelector(".board-count").textContent = String(visible);
+        column.querySelector(".board-empty").hidden = visible !== 0;
+      }
+    };
+    for (const button of buttons) button.addEventListener("click", () => apply(button.dataset.personFilter));
+  }
+
+  const menu = document.getElementById("menu");
+  const sidebar = document.getElementById("sidebar");
+  menu.addEventListener("click", () => {
+    const open = sidebar.classList.toggle("open");
+    menu.setAttribute("aria-expanded", String(open));
+  });
+  sidebar.addEventListener("click", (e) => {
+    if (e.target.closest("a")) {
+      sidebar.classList.remove("open");
+      menu.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  // Свёрнутые разделы меню. Выбор читателя помнит браузер; без него открыт только раздел текущей страницы.
+  const KEY = "clean-a-snow-guide-nav-folds";
+  let folds = {};
+  try {
+    folds = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+  } catch {
+    folds = {};
+  }
+  for (const group of sidebar.querySelectorAll("details.group")) {
+    const id = group.dataset.group;
+    group.open = id in folds ? folds[id] : group.querySelector('[aria-current="page"]') !== null;
+    group.addEventListener("toggle", () => {
+      folds[id] = group.open;
+      try {
+        localStorage.setItem(KEY, JSON.stringify(folds));
+      } catch {
+        // Без хранилища выбор живёт до перехода на другую страницу.
+      }
+    });
+  }
+  // Галочки чеклиста «Тестирование». Общий файл на сервере, браузер держит копию.
+  // «Сбросить» начинает новый круг у всех. Сервер недоступен — остаётся копия в браузере.
+  const checks = document.querySelectorAll("input[data-check]");
+  if (checks.length) {
+    const CHECKS = "clean-a-snow-guide-testing-checks";
+    const CHECKS_URL = "https://atlas.31-58-209-99.sslip.io/clean-snow-checks/";
+    let done = {};
+    let revision = null;
+    let sending = false;
+    let dirty = false;
+    let resetPending = false;
+    const touched = new Set();
+    try {
+      done = JSON.parse(localStorage.getItem(CHECKS) || "{}") || {};
+    } catch {
+      done = {};
+    }
+    const save = () => {
+      try {
+        localStorage.setItem(CHECKS, JSON.stringify(done));
+      } catch {
+        // Без хранилища отметки живут до ухода со страницы.
+      }
+    };
+    const paint = () => {
+      for (const box of checks) box.checked = done[box.dataset.check] === true;
+      count();
+    };
+    const mergeTouched = (serverChecks, localChecks, keys) => {
+      const merged = { ...serverChecks };
+      for (const key of keys) {
+        if (localChecks[key] === true) merged[key] = true;
+        else delete merged[key];
+      }
+      return merged;
+    };
+    const push = () => {
+      if (revision === null || sending) {
+        dirty = true;
+        return;
+      }
+      sending = true;
+      dirty = false;
+      const sentChecks = { ...done };
+      const sentTouched = [...touched];
+      const wasReset = resetPending;
+      resetPending = false;
+      touched.clear();
+      fetch(CHECKS_URL, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ revision, checks: sentChecks }),
+      })
+        .then((res) => res.json().then((doc) => ({ status: res.status, doc })))
+        .then(({ status, doc }) => {
+          if (!doc || !doc.checks || !Number.isInteger(doc.revision)) return;
+          revision = doc.revision;
+          if (status === 409) {
+            const newerTouched = [...touched];
+            const newerChecks = { ...done };
+            if (wasReset && newerTouched.length === 0) done = {};
+            else done = mergeTouched(mergeTouched(doc.checks, sentChecks, sentTouched), newerChecks, newerTouched);
+            dirty = true;
+          } else if (status === 200) {
+            if (dirty || touched.size) done = { ...done };
+            else done = doc.checks;
+          }
+          save();
+          paint();
+        })
+        .catch(() => {
+          // Сервер недоступен: копия в браузере уже сохранена.
+        })
+        .finally(() => {
+          sending = false;
+          if (dirty || touched.size || resetPending) push();
+        });
+    };
+    const pull = () => {
+      fetch(CHECKS_URL)
+        .then((res) => (res.ok ? res.json() : null))
+        .then((doc) => {
+          if (!doc || !doc.checks || !Number.isInteger(doc.revision)) return;
+          if (revision === null) {
+            revision = doc.revision;
+            if (touched.size || resetPending) {
+              if (!resetPending) done = mergeTouched(doc.checks, done, touched);
+              push();
+            } else {
+              done = doc.checks;
+              save();
+              paint();
+            }
+            return;
+          }
+          if (sending || touched.size || resetPending) return;
+          if (revision === doc.revision) return;
+          revision = doc.revision;
+          done = doc.checks;
+          save();
+          paint();
+        })
+        .catch(() => {
+          // Без сервера страница остаётся на копии в браузере.
+        });
+    };
+    const visibleBoxes = (root) => [...root.querySelectorAll("input[data-check]")].filter((box) => !box.closest(".test-item")?.hidden);
+    const count = () => {
+      for (const group of document.querySelectorAll("details.test-group")) {
+        const boxes = visibleBoxes(group);
+        const ticked = boxes.filter((b) => b.checked).length;
+        group.querySelector(".test-count").textContent = `${ticked} из ${boxes.length}`;
+        group.classList.toggle("test-finished", boxes.length > 0 && ticked === boxes.length);
+      }
+      document.getElementById("test-done").textContent = String(visibleBoxes(document).filter((b) => b.checked).length);
+    };
+    const filterButtons = [...document.querySelectorAll("[data-test-filter]")];
+    const applyPerson = (person) => {
+      for (const button of filterButtons) button.setAttribute("aria-pressed", String(button.dataset.testFilter === person));
+      for (const item of document.querySelectorAll(".test-item")) {
+        const people = (item.dataset.people || "").split(/\s+/).filter(Boolean);
+        item.hidden = person !== "all" && people.length > 0 && !people.includes(person);
+      }
+      for (const task of document.querySelectorAll(".test-task")) {
+        task.hidden = ![...task.querySelectorAll(".test-item")].some((item) => !item.hidden);
+      }
+      for (const group of document.querySelectorAll("details.test-group")) {
+        group.hidden = ![...group.querySelectorAll(".test-item")].some((item) => !item.hidden);
+      }
+      const shown = visibleBoxes(document);
+      for (const node of document.querySelector(".test-total").childNodes) {
+        if (node.nodeType === Node.TEXT_NODE && node.textContent.includes(" из ")) node.textContent = ` из ${shown.length} `;
+      }
+      count();
+    };
+    for (const button of filterButtons) button.addEventListener("click", () => applyPerson(button.dataset.testFilter));
+    for (const box of checks) {
+      box.checked = done[box.dataset.check] === true;
+      box.addEventListener("change", () => {
+        if (box.checked) done[box.dataset.check] = true;
+        else delete done[box.dataset.check];
+        touched.add(box.dataset.check);
+        resetPending = false;
+        save();
+        count();
+        push();
+      });
+    }
+    document.getElementById("test-reset").addEventListener("click", () => {
+      if (!confirm("Снять все отметки и начать проверку заново?")) return;
+      done = {};
+      touched.clear();
+      resetPending = true;
+      save();
+      paint();
+      push();
+    });
+    count();
+    pull();
+    setInterval(pull, 2000);
+  }
+
+  const current = sidebar.querySelector('[aria-current="page"]');
+  if (current) current.scrollIntoView({ block: "nearest" });
+
+  const viewer = document.getElementById("viewer");
+  const image = document.getElementById("viewer-image");
+  const caption = document.getElementById("viewer-caption");
+  const open = document.getElementById("viewer-open");
+  document.addEventListener("click", (e) => {
+    const img = e.target.closest("main img");
+    if (!img) return;
+    image.src = img.src;
+    image.alt = img.alt;
+    caption.textContent = img.dataset.caption || img.alt;
+    open.href = img.src;
+    viewer.showModal();
+  });
+  document.getElementById("viewer-close").addEventListener("click", () => viewer.close());
+  viewer.addEventListener("click", (e) => {
+    if (e.target === viewer) viewer.close();
+  });
+})();
+</script>
+</body>
+</html>
