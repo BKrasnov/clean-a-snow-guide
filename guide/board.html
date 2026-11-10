@@ -543,39 +543,8 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
   <p class="board-empty" hidden>Пусто.</p>
 </section>
 <section class="board-column" data-status="doing">
-  <h3>В работе <span class="board-count">3</span></h3>
+  <h3>В работе <span class="board-count">2</span></h3>
   <div class="board-cards"><article class="board-card" data-person="Богдан" data-status="doing">
-  <h3>Мир: скрипт запекания данных карты</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>70ff28</code> техработа · architecture</p>
-  <p class="board-lead">Исполнитель: Богдан. Мир D (`ca1233`), №9 сводки.</p>
-  
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Исполнитель: Богдан. Мир D (<code>ca1233</code>), №9 сводки.</p>
-<p>Скрипт в репозитории, который в Studio по Terrain плейса забега пишет <code>SnowGroundData</code> и <code>MapPatchIndex</code>, и тест сверки схемы. <code>MapNodeIndex</code> удалить.</p>
-<h2>Готово когда</h2>
-<ul>
-<li><input checked="" disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
-<li><input disabled="" type="checkbox"> Пересборка даёт те же файлы, что сейчас в плейсе.</li>
-<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
-<li><input disabled="" type="checkbox"> Коммит и push.</li>
-</ul>
-<h2>Оценка</h2>
-<ul>
-<li>Новый скрипт запекания в Studio по Terrain и сверка с данными плейса</li>
-</ul>
-<h2>Работа</h2>
-<ul>
-<li>2026-11-10 17:19 →</li>
-</ul>
-<h2>Заметки</h2>
-<ul>
-<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
-<li>Сверка 10.11.2026 (копия плейса): данные репозитория и плейса совпадают побайтно. <code>MapPatchIndex</code> выводится из <code>SnowGroundData</code> точно (182 329 клеток, все <code>Counts</code>). Высоты: луч по Terrain, <code>round(Y×32)</code>; 99,2% точек совпали, 5 795 — ничьи на 1/64 стада, 1 815 — Terrain правили после запекания (стоянка до 0,31, две дорожки до 0,09). Зоны «без снега» рисовал утерянный скрипт — из плейса не выводятся.</li>
-<li>Решение владельца 10.11.2026: спека и план утверждены; высоты пересобрать по Terrain сейчас, зоны «без снега» оставить как есть.</li>
-</ul>
-</div></details>
-</article>
-<article class="board-card" data-person="Богдан" data-status="doing">
   <h3>Слом снега без красивого отклика</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>9d8916</code> баг · bug</p>
   <p class="board-lead">Воспроизвести и исправить `BUG-20261110-004` из `tasks/bugs.md`.</p>
@@ -610,33 +579,29 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </div></details>
 </article>
 <article class="board-card" data-person="Богдан" data-status="doing">
-  <h3>Контракт: каталог отвечает на вопросы, уборка мёртвого кода</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>f7143c</code> техработа · architecture</p>
-  <p class="board-lead">Исполнитель: Богдан. Контракт B и D (`bae98a`) и мёртвый код из сводки.</p>
+  <h3>Разбор: один источник правды для чисел игры</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>c4e3c6</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Разбор по `improve-codebase-architecture`: где живут все числа игры (экономика, прочность снега, урон, темп и дальность оружия, машины, питомцы, сад, звери, время, радиусы, лимиты сети) и как сделать для них один источник правды в данных, который читают и игра, и страницы `guide/`. Код `src/` не менять.</p>
   
   <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Исполнитель: Богдан. Контракт B и D (<code>bae98a</code>) и мёртвый код из сводки.</p>
-<p>Вопросы к каталогу (<code>isShovel</code> — сейчас три копии, включая <code>StrikeRules</code>; бросок мутации; цена снега; цена предмета) — в <code>Catalog</code>/<code>Balance</code>. Удалить 18 мёртвых полей <code>Balance</code>, <code>Shared/Types.luau</code>, мёртвую копию <code>Shared/ReferenceSnow</code>. <code>LeaderboardPage</code>: схема пускает 4 метрики, сервис 2 — если не вошло в <code>ca847e</code>.</p>
+<p>Исполнитель: Богдан. Разбор по <code>improve-codebase-architecture</code>: где живут все числа игры (экономика, прочность снега, урон, темп и дальность оружия, машины, питомцы, сад, звери, время, радиусы, лимиты сети) и как сделать для них один источник правды в данных, который читают и игра, и страницы <code>guide/</code>. Код <code>src/</code> не менять.</p>
 <h2>Готово когда</h2>
 <ul>
-<li><input checked="" disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
-<li><input disabled="" type="checkbox"> Тесты каталога и затронутых сервисов проходят.</li>
-<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
-<li><input disabled="" type="checkbox"> Коммит и push.</li>
+<li><input disabled="" type="checkbox"> Инвентаризация: где лежат числа, кто их читает (сервер, клиент, страница), где повторы.</li>
+<li><input disabled="" type="checkbox"> Сравнение форматов слоя для Rojo 7.7: <code>.json</code> в <code>src</code>, Luau как источник, JSON → Luau, TOML/CSV.</li>
+<li><input disabled="" type="checkbox"> Брейншторм и вопрос владельцу, ответ записан как «Решение владельца ДД.ММ.ГГГГ: …».</li>
+<li><input disabled="" type="checkbox"> HTML-отчёт в <code>docs/architecture/game-data.html</code>.</li>
+<li><input disabled="" type="checkbox"> Карточки на перенос с зависимостями.</li>
 </ul>
 <h2>Оценка</h2>
 <ul>
-<li>Меняет общий контракт Shared, сервисы сервера и HUD, удаляет модули</li>
+<li>Разбор без правки кода, отчёт и карточки</li>
 </ul>
 <h2>Работа</h2>
 <ul>
-<li>2026-11-10 17:19 →</li>
+<li>2026-11-10 18:03 →</li>
 </ul>
 <h2>Заметки</h2>
-<ul>
-<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
-<li>Решение владельца 10.11.2026: спека и план утверждены (вопросы к каталогу — в <code>Balance</code>, 13 мёртвых полей, <code>Types</code>, мёртвая часть <code>ReferenceSnow</code>); <code>SnowGuide</code>, <code>SnowShopGuide</code>, путь <code>SnowChips</code> не трогать — их правят другие чаты. <code>LeaderboardPage</code> — в <code>ca847e</code>.</li>
-</ul>
 </div></details>
 </article></div>
   <p class="board-empty" hidden>Пусто.</p>
@@ -682,7 +647,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
   <p class="board-empty" hidden>Пусто.</p>
 </section>
 <section class="board-column" data-status="done">
-  <h3>Готово <span class="board-count">18</span></h3>
+  <h3>Готово <span class="board-count">20</span></h3>
   <div class="board-cards"><article class="board-card" data-person="Богдан" data-status="done">
   <h3>Рядом с игроком нет снега: поверхность исчерпала память</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>026145</code> баг · bug</p>
@@ -849,6 +814,41 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <li>Решение владельца 10.11.2026: одно ядро протокола аренды (<code>Storage/ProfileLease</code>) и два adapter-а; спека и план утверждены, делаю сам.</li>
 <li>10.11.2026: ядро <code>Storage/ProfileLease.luau</code>, DataStore и память — только функция записи. Сбой памяти <code>FailAfterWrite</code> раньше не срабатывал (сравнивал запись саму с собой) — теперь запись остаётся, ответ теряется, как у DataStore. Тесты <code>ProfileStore_Test</code> на обоих adapter-ах (DataStore — поддельный <code>UpdateAsync</code> в памяти): Profile 14/14, Wallet 9/9. <code>npm run check</code> без новых замечаний.</li>
 <li>10.11.2026: Play в копии плейса (роль Lobby, хранилище Memory, модули хранилища из <code>src</code>): «profile ready … Memory», выгрузка при остановке без ошибок; в Output только известные чужие приватные картинки.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" data-person="Богдан" data-status="done">
+  <h3>Мир: скрипт запекания данных карты</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>70ff28</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Мир D (`ca1233`), №9 сводки.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Исполнитель: Богдан. Мир D (<code>ca1233</code>), №9 сводки.</p>
+<p>Скрипт в репозитории, который в Studio по Terrain плейса забега пишет <code>SnowGroundData</code> и <code>MapPatchIndex</code>, и тест сверки схемы. <code>MapNodeIndex</code> удалить.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input checked="" disabled="" type="checkbox"> Пересборка даёт те же файлы, что сейчас в плейсе (клетки побайтно; высоты — с объяснённой разницей).</li>
+<li><input checked="" disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input checked="" disabled="" type="checkbox"> Коммит и push.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Новый скрипт запекания в Studio по Terrain и сверка с данными плейса</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 17:19 → 2026-11-10 17:44</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
+<li>Сверка 10.11.2026 (копия плейса): данные репозитория и плейса совпадают побайтно. <code>MapPatchIndex</code> выводится из <code>SnowGroundData</code> точно (182 329 клеток, все <code>Counts</code>). Высоты: луч по Terrain, <code>round(Y×32)</code>; 99,2% точек совпали, 5 795 — ничьи на 1/64 стада, 1 815 — Terrain правили после запекания (стоянка до 0,31, две дорожки до 0,09). Зоны «без снега» рисовал утерянный скрипт — из плейса не выводятся.</li>
+<li>Решение владельца 10.11.2026: спека и план утверждены; высоты пересобрать по Terrain сейчас, зоны «без снега» оставить как есть.</li>
+<li>10.11.2026: готово. <code>tools/mapbake/bake.mjs --studio &quot;&lt;окно&gt;&quot; [--write]</code> + <code>MapBake.luau</code> (счёт в Studio) + <code>format.mjs</code>. Пересборка по копии плейса: <code>MapPatchIndex</code> — все 182 329 клеток и <code>Counts</code> те же, части побайтно те же, в заголовок добавлено <code>Radii</code>; <code>SnowGroundData</code> — 7 610 из 908 209 точек (стоянка до 0,31 стада, дорожки до 0,09, остальное ничьи 1/64), зоны «без снега» не изменились. Данные записаны по решению владельца. <code>MapNodeIndex</code> удалён.</li>
+<li>Тесты 10.11.2026: <code>format.test.mjs</code> 3/3, <code>MapPatchIndex_Test</code> 3/3, тесты снега (<code>-- Snow</code>) 18/18, <code>roblox.test.mjs</code> 7/7. Тестовому месту не хватало атрибутов <code>SnowGroundData</code> (синхронизация пропускает <code>.meta.json</code>), из-за этого <code>SnowConfig</code> не грузился в свежем окне тестов — атрибуты добавлены в <code>test.project.json</code>. <code>npm run check</code>: новые замечания только в <code>ReferenceSnow*</code> из-за незакоммиченной правки <code>baseline.json</code> сессией <code>f7143c</code>, мои файлы чистые.</li>
+<li>Play в своей копии плейса с кодом и данными репозитория: <code>runtime ready: 134136 snow nodes</code>, забег стартует, снег на поле на месте, Output без ошибок игры (только известные приватные картинки). Окно Studio закрыто, копия плейса не сохранялась.</li>
+<li>Удаление <code>MapNodeIndex</code> сначала случайно ушло в чужой коммит <code>2bcd797</code>, тот же автор вернул файлы в <code>73b9713</code>; итоговое удаление — в коммите этой карточки. В самом плейсе <code>MapNodeIndex</code> останется, пока его не уберёт Rojo или владелец.</li>
 </ul>
 </div></details>
 </article>
@@ -1495,6 +1495,40 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </div></details>
 </article>
 <article class="board-card" data-person="Богдан" data-status="done">
+  <h3>Контракт: каталог отвечает на вопросы, уборка мёртвого кода</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>f7143c</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Контракт B и D (`bae98a`) и мёртвый код из сводки.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Исполнитель: Богдан. Контракт B и D (<code>bae98a</code>) и мёртвый код из сводки.</p>
+<p>Вопросы к каталогу (<code>isShovel</code> — сейчас три копии, включая <code>StrikeRules</code>; бросок мутации; цена снега; цена предмета) — в <code>Catalog</code>/<code>Balance</code>. Удалить 18 мёртвых полей <code>Balance</code>, <code>Shared/Types.luau</code>, мёртвую копию <code>Shared/ReferenceSnow</code>. <code>LeaderboardPage</code>: схема пускает 4 метрики, сервис 2 — если не вошло в <code>ca847e</code>.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input checked="" disabled="" type="checkbox"> Тесты каталога и затронутых сервисов проходят.</li>
+<li><input checked="" disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input checked="" disabled="" type="checkbox"> Коммит и push.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Меняет общий контракт Shared, сервисы сервера и HUD, удаляет модули</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 17:19 → 2026-11-10 17:43</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
+<li>Решение владельца 10.11.2026: спека и план утверждены (вопросы к каталогу — в <code>Balance</code>, 13 мёртвых полей, <code>Types</code>, мёртвая часть <code>ReferenceSnow</code>); <code>SnowGuide</code>, <code>SnowShopGuide</code>, путь <code>SnowChips</code> не трогать — их правят другие чаты. <code>LeaderboardPage</code> — в <code>ca847e</code>.</li>
+<li>10.11.2026: вопросы в <code>Balance</code> (<code>isShovel</code>, <code>ownsShovel</code>, <code>rollMutation</code>, <code>snowValue</code>, <code>itemPrice</code>, <code>upgradePrice</code>); копии в <code>StrikeRules</code>, <code>MapSnowService</code>, <code>SnowService</code>, <code>ShopService</code>, <code>InterfaceController</code>, <code>TutorialController</code>, <code>SnowUpgradeFocus</code> убраны; <code>QueueService</code> берёт <code>MaxPartySize</code>. Удалены 8 полей без копий, <code>Types.luau</code>, <code>ReferenceSnow/{SnowBlockWorld,SnowFracture,SnowChunkRenderer,SnowFieldAdapter}</code>, <code>ReferenceSnowService</code>, <code>ReferenceSnowController</code>. <code>Intro*</code> и <code>Leaderboard*</code> оставлены: это копии литералов <code>ExtrasService</code>, страница «Механики» показывает расхождение.</li>
+<li>Проверки 10.11.2026: <code>npm run check</code> без новых замечаний; <code>node --test tools/guide/build.test.mjs</code> 33/33; <code>npm run test:game</code>: Balance 6/6, StrikeRules 4/4, Catalog 8/8, ShopService 14/14.</li>
+<li>Хвост на потом: списки лопат в <code>SnowGuide</code>/<code>SnowShopGuide</code> → <code>Balance.ownsShovel</code>; мёртвый путь <code>SnowChips</code> (<code>Bootstrap.client</code>, <code>WorldFxController</code>); <code>ExtrasService</code> читает <code>Intro*</code>/<code>Leaderboard*</code> из <code>Balance</code>. В плейсе остались экземпляры удалённых модулей <code>ReferenceSnow</code> (папка с <code>ignoreUnknownInstances</code>), их никто не грузит.</li>
+<li>Play 10.11.2026 (<code>studio-play</code>, копия плейса): забег с площадки, три удара ложкой разбили клетку «Powder Snow 3/3», снег подобран: 1 ед. на 12 монет (<code>Balance.snowValue</code>), сумка 1/5. Output без ошибок. Окно Studio закрыл раннер. Сценарий <code>snow-hit</code> падал на <code>InvalidEnvelope</code> (число в <code>requestId</code>), его поправил автор сценария.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" data-person="Богдан" data-status="done">
   <h3>Сеть: пакеты между клиентом и сервером</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>faa32b</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Разобрать шов сети и не менять код игры.</p>
@@ -1671,11 +1705,18 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
       }
     });
   }
-  // Галочки чеклиста «Тестирование». Отметки помнит браузер проверяющего; «Сбросить» начинает новый круг.
+  // Галочки чеклиста «Тестирование». Общий файл на сервере, браузер держит копию.
+  // «Сбросить» начинает новый круг у всех. Сервер недоступен — остаётся копия в браузере.
   const checks = document.querySelectorAll("input[data-check]");
   if (checks.length) {
     const CHECKS = "clean-a-snow-guide-testing-checks";
+    const CHECKS_URL = "https://atlas.31-58-209-99.sslip.io/clean-snow-checks/";
     let done = {};
+    let revision = null;
+    let sending = false;
+    let dirty = false;
+    let resetPending = false;
+    const touched = new Set();
     try {
       done = JSON.parse(localStorage.getItem(CHECKS) || "{}") || {};
     } catch {
@@ -1687,6 +1728,88 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
       } catch {
         // Без хранилища отметки живут до ухода со страницы.
       }
+    };
+    const paint = () => {
+      for (const box of checks) box.checked = done[box.dataset.check] === true;
+      count();
+    };
+    const mergeTouched = (serverChecks, localChecks, keys) => {
+      const merged = { ...serverChecks };
+      for (const key of keys) {
+        if (localChecks[key] === true) merged[key] = true;
+        else delete merged[key];
+      }
+      return merged;
+    };
+    const push = () => {
+      if (revision === null || sending) {
+        dirty = true;
+        return;
+      }
+      sending = true;
+      dirty = false;
+      const sentChecks = { ...done };
+      const sentTouched = [...touched];
+      const wasReset = resetPending;
+      resetPending = false;
+      touched.clear();
+      fetch(CHECKS_URL, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ revision, checks: sentChecks }),
+      })
+        .then((res) => res.json().then((doc) => ({ status: res.status, doc })))
+        .then(({ status, doc }) => {
+          if (!doc || !doc.checks || !Number.isInteger(doc.revision)) return;
+          revision = doc.revision;
+          if (status === 409) {
+            const newerTouched = [...touched];
+            const newerChecks = { ...done };
+            if (wasReset && newerTouched.length === 0) done = {};
+            else done = mergeTouched(mergeTouched(doc.checks, sentChecks, sentTouched), newerChecks, newerTouched);
+            dirty = true;
+          } else if (status === 200) {
+            if (dirty || touched.size) done = { ...done };
+            else done = doc.checks;
+          }
+          save();
+          paint();
+        })
+        .catch(() => {
+          // Сервер недоступен: копия в браузере уже сохранена.
+        })
+        .finally(() => {
+          sending = false;
+          if (dirty || touched.size || resetPending) push();
+        });
+    };
+    const pull = () => {
+      fetch(CHECKS_URL)
+        .then((res) => (res.ok ? res.json() : null))
+        .then((doc) => {
+          if (!doc || !doc.checks || !Number.isInteger(doc.revision)) return;
+          if (revision === null) {
+            revision = doc.revision;
+            if (touched.size || resetPending) {
+              if (!resetPending) done = mergeTouched(doc.checks, done, touched);
+              push();
+            } else {
+              done = doc.checks;
+              save();
+              paint();
+            }
+            return;
+          }
+          if (sending || touched.size || resetPending) return;
+          if (revision === doc.revision) return;
+          revision = doc.revision;
+          done = doc.checks;
+          save();
+          paint();
+        })
+        .catch(() => {
+          // Без сервера страница остаётся на копии в браузере.
+        });
     };
     const visibleBoxes = (root) => [...root.querySelectorAll("input[data-check]")].filter((box) => !box.closest(".test-item")?.hidden);
     const count = () => {
@@ -1723,18 +1846,25 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
       box.addEventListener("change", () => {
         if (box.checked) done[box.dataset.check] = true;
         else delete done[box.dataset.check];
+        touched.add(box.dataset.check);
+        resetPending = false;
         save();
         count();
+        push();
       });
     }
     document.getElementById("test-reset").addEventListener("click", () => {
       if (!confirm("Снять все отметки и начать проверку заново?")) return;
       done = {};
-      for (const box of checks) box.checked = false;
+      touched.clear();
+      resetPending = true;
       save();
-      count();
+      paint();
+      push();
     });
     count();
+    pull();
+    setInterval(pull, 2000);
   }
 
   const current = sidebar.querySelector('[aria-current="page"]');

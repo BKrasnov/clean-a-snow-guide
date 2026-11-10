@@ -306,7 +306,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <p>Пока открыты магазин, питомцы или улучшения, подпись кнопки переписывается из того же каталога. Окно подтверждения покупки тоже. Поэтому на этих кнопках игрок видит ту цену, которую сейчас снимут.</p>
 <p>Карточки нарисованы в плейсе. Если имя карточки не совпало с вещью в каталоге, старая подпись на ней остаётся. Нажатие всё равно снимет каталожную цену.</p>
 <p>Окно-превью покупок не делает. Игра его выключает.</p>
-<p class="facts" data-purchase-has-price="false" data-charge="catalog" data-price-path="direct" data-button-from-catalog="true" data-preview="off">Запрос покупки несёт имя вещи и номер профиля. Цены в нём нет. Сервер снимает цену из каталога. Подпись кнопки читает каталог сама. Превью окон выключено.</p><ol class="flow"><li><b>Кнопка</b><span>имя вещи, без цены</span></li><li><b>Сервер</b><span>Balance.itemPrice, сейчас цена каталога</span></li><li><b>Магазин открыт</b><span>подпись BUY из каталога</span></li><li><b>Чужое имя карточки</b><span>старая подпись может остаться</span></li><li><b>Превью</b><span>выключено, покупок нет</span></li></ol><p>Странное. Надпись, которую код не переписывает, может врать. Списание всё равно по каталогу. В тестирование добавлен пункт.</p>
+<p class="facts" data-purchase-has-price="false" data-charge="catalog" data-price-path="balance" data-button-from-catalog="true" data-preview="off">Запрос покупки несёт имя вещи и номер профиля. Цены в нём нет. Сервер снимает то, что вернул <b>Balance.itemPrice</b>. Сейчас это цена из каталога. Подпись кнопки читает каталог сама. Превью окон выключено.</p><ol class="flow"><li><b>Кнопка</b><span>имя вещи, без цены</span></li><li><b>Сервер</b><span>Balance.itemPrice, сейчас цена каталога</span></li><li><b>Магазин открыт</b><span>подпись BUY из каталога</span></li><li><b>Чужое имя карточки</b><span>старая подпись может остаться</span></li><li><b>Превью</b><span>выключено, покупок нет</span></li></ol><p>Странное. Надпись, которую код не переписывает, может врать. Списание всё равно по каталогу. В тестирование добавлен пункт.</p>
 </div></details>
 <details class="mechanic"><summary>Погода</summary><div class="mechanic-body"><p>Погода одна на весь сервер. Порядок каждый запуск сервера перемешивается. Первая приходит через минуту. Каждая следующая начинается через десять минут после старта предыдущей. Пока она идёт, небо занято. Потом небо чистое, пока не выйдут эти десять минут.</p>
 <p>Дождь и гроза длятся пять минут, радуга тоже. Кровавая луна — три. Снегопад, звездопад и сияние — две с половиной.</p>
@@ -319,6 +319,15 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <p>Чек, который уже записан в профиль, но ещё не выплачен, при следующем входе становится монетами.</p>
 <p>Если игрок уходит на другой сервер, старый может держать профиль две минуты. Новый ждёт чуть дольше и пробует снова. Не дождался — игрока выкидывает и просит зайти ещё раз. В этом плейсе без публикации телепорта нет, так что ожидание видно только когда серверов два.</p>
 <p class="facts" data-studio-memory="true" data-autosave="30" data-load-wait="130" data-lease-seconds="120" data-receipt-recover="true">В Studio профиль в памяти. Автосохранение раз в <b>30</b> с. Старый сервер держит профиль <b>120</b> с, новый ждёт <b>130</b> с. Невыплаченный чек при входе становится монетами.</p><ol class="flow"><li><b>Studio</b><span>профиль пропадает вместе с Play</span></li><li><b>Опубликованная игра</b><span>профиль остаётся</span></li><li><b>Покупка</b><span>пишется сразу</span></li><li><b>Чек уже в профиле</b><span>монеты при следующем входе</span></li><li><b>Другой сервер</b><span>старый держит профиль до двух минут</span></li></ol><p>Странное. В Studio нельзя проверить, что покупка переживёт перезапуск. В тестирование добавлен пункт.</p>
+</div></details>
+<details class="mechanic"><summary>Урок-остров</summary><div class="mechanic-body"><p>В первом забеге, пока полный забег ещё не записан, у старта стоит островок. Руками и ложкой его не копнуть, и снег вплотную к нему тоже: сервер просит купить лопату.</p>
+<p>Когда лопата есть, удар прямо по островку не ломает его. Снег вокруг срезается как обычно. Когда островок остаётся один, он падает сам. Всем, кто сейчас в отряде, в профиль пишется, что урок сделан. Со следующего забега этот снег бьётся как обычный.</p>
+<p class="facts" data-island-patches="6" data-island-delay=".12" data-island-protected="true" data-island-needs-shovel="true">Островок урока — <b>6</b> участков. Без купленной лопаты он не копается. С лопатой удар по нему не ломает: он падает через <b>0,12</b> с после того, как остаётся один.</p><ol class="flow"><li><b>Нет лопаты</b><span>островок и снег рядом не копаются</span></li><li><b>Есть лопата</b><span>удар по островку не ломает</span></li><li><b>Снег вокруг</b><span>срезаешь как обычно</span></li><li><b>Островок один</b><span>падает сам</span></li><li><b>Урок записан</b><span>дальше бьётся как весь снег</span></li></ol><p>Странное. Урок закрывается всему отряду, даже тому, кто снег не резал. После одного полного забега островок уже не особенный. В тестирование добавлены пункты.</p>
+</div></details>
+<details class="mechanic"><summary>Езда</summary><div class="mechanic-body"><p>Пустая машина стоит на месте и снег не берёт. Сел в кресло водителя — ею рулит твой компьютер, сервер только проверяет снег. Выход клавишей E, персонаж встаёт рядом. Пока сидишь, лопатой не бьёшь.</p>
+<p>Снег идёт в кузов этой машины, не в сумку. Грузовик из магазина сам не едет: это другая машина, у неё своя кнопка сдачи. Кузов полон — ездовая перестаёт трогать снег, чтобы не портить поле зря. Урок-остров она не срезает.</p>
+<p>Три способа брать снег. Грузовик и пикап режут корпусом. Снегоход режет кругом щётки. Это чаще. Вертолёт всасывает квадрат под собой: вверх — пробел, вниз — шифт. Поднялся выше предела — летит, но снег уже не берёт. Танк жжёт конус перед собой, только пока зажата кнопка огня.</p>
+<p class="facts" data-carve-interval=".15" data-harvest-interval=".25" data-air-ceiling="300" data-suction-height="45">Корпус и щётка режут снег каждые <b>0,15</b> с. Огонь танка — каждые <b>0,25</b> с, пока кнопка зажата. Вертолёт не берёт снег выше <b>45</b> стадов и не поднимается выше <b>300</b>. Машины: <span data-ride="CartoonPickup" data-ride-kind="корпус">Пикап</span>, <span data-ride="CartoonTruck" data-ride-kind="корпус">Грузовик</span>, <span data-ride="CartoonSnowmobile" data-ride-kind="щётка">Снегоход</span>, <span data-ride="CartoonTank" data-ride-kind="огонь">Танк</span>, <span data-ride="KESTREL_07" data-ride-kind="всасывание">Вертолёт</span>.</p><ol class="flow"><li><b>Сел</b><span>рулит твой компьютер, пустая машина стоит</span></li><li><b>Грузовик и пикап</b><span>режут снег корпусом</span></li><li><b>Снегоход</b><span>режет щёткой</span></li><li><b>Вертолёт</b><span>всасывает под собой, пока невысоко</span></li><li><b>Танк</b><span>жжёт, пока жмёшь огонь</span></li><li><b>Кузов полон</b><span>снег больше не трогает</span></li></ol><p>Странное. Вертолёт выше предела всё ещё летит, но снег под ним остаётся. Танк без кнопки огня по снегу не бьёт. В тестирование добавлены пункты.</p>
 </div></details>
 <p class="source">Источник: <code>docs/mechanics.md</code>. Графики читают <code>src/ReplicatedStorage/CleanSnow/Shared/Catalog.luau</code>, <code>src/ReplicatedStorage/SnowCleaningDemo/SnowBlockWorld.luau</code> и <code>src/ReplicatedStorage/CleanSnow/Shared/WeaponDefs.luau</code>.</p></section>
 </main>
@@ -414,11 +423,18 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
       }
     });
   }
-  // Галочки чеклиста «Тестирование». Отметки помнит браузер проверяющего; «Сбросить» начинает новый круг.
+  // Галочки чеклиста «Тестирование». Общий файл на сервере, браузер держит копию.
+  // «Сбросить» начинает новый круг у всех. Сервер недоступен — остаётся копия в браузере.
   const checks = document.querySelectorAll("input[data-check]");
   if (checks.length) {
     const CHECKS = "clean-a-snow-guide-testing-checks";
+    const CHECKS_URL = "https://atlas.31-58-209-99.sslip.io/clean-snow-checks/";
     let done = {};
+    let revision = null;
+    let sending = false;
+    let dirty = false;
+    let resetPending = false;
+    const touched = new Set();
     try {
       done = JSON.parse(localStorage.getItem(CHECKS) || "{}") || {};
     } catch {
@@ -430,6 +446,88 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
       } catch {
         // Без хранилища отметки живут до ухода со страницы.
       }
+    };
+    const paint = () => {
+      for (const box of checks) box.checked = done[box.dataset.check] === true;
+      count();
+    };
+    const mergeTouched = (serverChecks, localChecks, keys) => {
+      const merged = { ...serverChecks };
+      for (const key of keys) {
+        if (localChecks[key] === true) merged[key] = true;
+        else delete merged[key];
+      }
+      return merged;
+    };
+    const push = () => {
+      if (revision === null || sending) {
+        dirty = true;
+        return;
+      }
+      sending = true;
+      dirty = false;
+      const sentChecks = { ...done };
+      const sentTouched = [...touched];
+      const wasReset = resetPending;
+      resetPending = false;
+      touched.clear();
+      fetch(CHECKS_URL, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ revision, checks: sentChecks }),
+      })
+        .then((res) => res.json().then((doc) => ({ status: res.status, doc })))
+        .then(({ status, doc }) => {
+          if (!doc || !doc.checks || !Number.isInteger(doc.revision)) return;
+          revision = doc.revision;
+          if (status === 409) {
+            const newerTouched = [...touched];
+            const newerChecks = { ...done };
+            if (wasReset && newerTouched.length === 0) done = {};
+            else done = mergeTouched(mergeTouched(doc.checks, sentChecks, sentTouched), newerChecks, newerTouched);
+            dirty = true;
+          } else if (status === 200) {
+            if (dirty || touched.size) done = { ...done };
+            else done = doc.checks;
+          }
+          save();
+          paint();
+        })
+        .catch(() => {
+          // Сервер недоступен: копия в браузере уже сохранена.
+        })
+        .finally(() => {
+          sending = false;
+          if (dirty || touched.size || resetPending) push();
+        });
+    };
+    const pull = () => {
+      fetch(CHECKS_URL)
+        .then((res) => (res.ok ? res.json() : null))
+        .then((doc) => {
+          if (!doc || !doc.checks || !Number.isInteger(doc.revision)) return;
+          if (revision === null) {
+            revision = doc.revision;
+            if (touched.size || resetPending) {
+              if (!resetPending) done = mergeTouched(doc.checks, done, touched);
+              push();
+            } else {
+              done = doc.checks;
+              save();
+              paint();
+            }
+            return;
+          }
+          if (sending || touched.size || resetPending) return;
+          if (revision === doc.revision) return;
+          revision = doc.revision;
+          done = doc.checks;
+          save();
+          paint();
+        })
+        .catch(() => {
+          // Без сервера страница остаётся на копии в браузере.
+        });
     };
     const visibleBoxes = (root) => [...root.querySelectorAll("input[data-check]")].filter((box) => !box.closest(".test-item")?.hidden);
     const count = () => {
@@ -466,18 +564,25 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
       box.addEventListener("change", () => {
         if (box.checked) done[box.dataset.check] = true;
         else delete done[box.dataset.check];
+        touched.add(box.dataset.check);
+        resetPending = false;
         save();
         count();
+        push();
       });
     }
     document.getElementById("test-reset").addEventListener("click", () => {
       if (!confirm("Снять все отметки и начать проверку заново?")) return;
       done = {};
-      for (const box of checks) box.checked = false;
+      touched.clear();
+      resetPending = true;
       save();
-      count();
+      paint();
+      push();
     });
     count();
+    pull();
+    setInterval(pull, 2000);
   }
 
   const current = sidebar.querySelector('[aria-current="page"]');

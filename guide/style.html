@@ -401,11 +401,18 @@ Use only these colours: &lt;hex codes from art/palette.json&gt;.
       }
     });
   }
-  // Галочки чеклиста «Тестирование». Отметки помнит браузер проверяющего; «Сбросить» начинает новый круг.
+  // Галочки чеклиста «Тестирование». Общий файл на сервере, браузер держит копию.
+  // «Сбросить» начинает новый круг у всех. Сервер недоступен — остаётся копия в браузере.
   const checks = document.querySelectorAll("input[data-check]");
   if (checks.length) {
     const CHECKS = "clean-a-snow-guide-testing-checks";
+    const CHECKS_URL = "https://atlas.31-58-209-99.sslip.io/clean-snow-checks/";
     let done = {};
+    let revision = null;
+    let sending = false;
+    let dirty = false;
+    let resetPending = false;
+    const touched = new Set();
     try {
       done = JSON.parse(localStorage.getItem(CHECKS) || "{}") || {};
     } catch {
@@ -417,6 +424,88 @@ Use only these colours: &lt;hex codes from art/palette.json&gt;.
       } catch {
         // Без хранилища отметки живут до ухода со страницы.
       }
+    };
+    const paint = () => {
+      for (const box of checks) box.checked = done[box.dataset.check] === true;
+      count();
+    };
+    const mergeTouched = (serverChecks, localChecks, keys) => {
+      const merged = { ...serverChecks };
+      for (const key of keys) {
+        if (localChecks[key] === true) merged[key] = true;
+        else delete merged[key];
+      }
+      return merged;
+    };
+    const push = () => {
+      if (revision === null || sending) {
+        dirty = true;
+        return;
+      }
+      sending = true;
+      dirty = false;
+      const sentChecks = { ...done };
+      const sentTouched = [...touched];
+      const wasReset = resetPending;
+      resetPending = false;
+      touched.clear();
+      fetch(CHECKS_URL, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ revision, checks: sentChecks }),
+      })
+        .then((res) => res.json().then((doc) => ({ status: res.status, doc })))
+        .then(({ status, doc }) => {
+          if (!doc || !doc.checks || !Number.isInteger(doc.revision)) return;
+          revision = doc.revision;
+          if (status === 409) {
+            const newerTouched = [...touched];
+            const newerChecks = { ...done };
+            if (wasReset && newerTouched.length === 0) done = {};
+            else done = mergeTouched(mergeTouched(doc.checks, sentChecks, sentTouched), newerChecks, newerTouched);
+            dirty = true;
+          } else if (status === 200) {
+            if (dirty || touched.size) done = { ...done };
+            else done = doc.checks;
+          }
+          save();
+          paint();
+        })
+        .catch(() => {
+          // Сервер недоступен: копия в браузере уже сохранена.
+        })
+        .finally(() => {
+          sending = false;
+          if (dirty || touched.size || resetPending) push();
+        });
+    };
+    const pull = () => {
+      fetch(CHECKS_URL)
+        .then((res) => (res.ok ? res.json() : null))
+        .then((doc) => {
+          if (!doc || !doc.checks || !Number.isInteger(doc.revision)) return;
+          if (revision === null) {
+            revision = doc.revision;
+            if (touched.size || resetPending) {
+              if (!resetPending) done = mergeTouched(doc.checks, done, touched);
+              push();
+            } else {
+              done = doc.checks;
+              save();
+              paint();
+            }
+            return;
+          }
+          if (sending || touched.size || resetPending) return;
+          if (revision === doc.revision) return;
+          revision = doc.revision;
+          done = doc.checks;
+          save();
+          paint();
+        })
+        .catch(() => {
+          // Без сервера страница остаётся на копии в браузере.
+        });
     };
     const visibleBoxes = (root) => [...root.querySelectorAll("input[data-check]")].filter((box) => !box.closest(".test-item")?.hidden);
     const count = () => {
@@ -453,18 +542,25 @@ Use only these colours: &lt;hex codes from art/palette.json&gt;.
       box.addEventListener("change", () => {
         if (box.checked) done[box.dataset.check] = true;
         else delete done[box.dataset.check];
+        touched.add(box.dataset.check);
+        resetPending = false;
         save();
         count();
+        push();
       });
     }
     document.getElementById("test-reset").addEventListener("click", () => {
       if (!confirm("Снять все отметки и начать проверку заново?")) return;
       done = {};
-      for (const box of checks) box.checked = false;
+      touched.clear();
+      resetPending = true;
       save();
-      count();
+      paint();
+      push();
     });
     count();
+    pull();
+    setInterval(pull, 2000);
   }
 
   const current = sidebar.querySelector('[aria-current="page"]');
