@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>superpowers/plans/2026-11-10-strike-rules.md — Clean a Snow</title>
+<style>/* Цвета взяты с кадров игры: снег, тёмно-синие плашки HUD, дерево домиков, золото монет. */
+:root {
+  --snow: #EEF3F8;
+  --ink: #1D2740;
+  --wood: #9A5A2C;
+  --wood-dark: #5E3417;
+  --gold: #F2C230;
+  --ice: #4A90C8;
+  --ice-dark: #234E78;
+  --muted: #7C8798;
+  --paper: #FFFFFF;
+}
+* { box-sizing: border-box; }
+/* Своё display у блока не должно отменять атрибут hidden. */
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+body { margin: 0; background: var(--snow); color: var(--ink); font: 16px/1.55 "Segoe UI", system-ui, sans-serif; }
+a { color: var(--ice-dark); }
+code { font-family: Consolas, "Cascadia Mono", monospace; font-size: .9em; background: rgba(29, 39, 64, .07); padding: 0 .3em; border-radius: 4px; overflow-wrap: anywhere; }
+pre { white-space: pre-wrap; word-break: break-word; background: rgba(29, 39, 64, .06); padding: 12px; border-radius: 8px; font-size: 13px; }
+pre code { background: none; padding: 0; }
+
+.topbar { position: sticky; top: 0; z-index: 5; display: flex; gap: 16px; align-items: center; padding: 10px 20px; background: var(--ink); color: var(--snow); }
+.topbar .brand { color: var(--snow); font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap; }
+.topbar .top-link, #menu { white-space: nowrap; }
+.topbar .hint { margin-left: auto; font-size: 13px; color: var(--gold); }
+.topbar .hint code { background: rgba(238, 243, 248, .12); color: var(--snow); }
+.topbar .top-link { color: var(--snow); text-decoration: none; font-weight: 600; padding: 5px 12px; border: 2px solid var(--gold); border-radius: 6px; background: transparent; font: inherit; cursor: pointer; }
+.topbar .top-link:hover, .topbar .top-link[aria-current="page"] { background: var(--gold); color: var(--ink); }
+#menu { display: none; background: var(--wood); color: var(--snow); border: 0; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+
+/* Тестирование: группы сворачиваются, у пункта — галочка, у группы — счётчик отмеченных. */
+.test-total { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 15px; }
+#test-reset { background: transparent; color: var(--wood); border: 2px solid var(--wood); border-radius: 6px; padding: 4px 12px; font: inherit; font-weight: 600; cursor: pointer; }
+#test-reset:hover { background: var(--wood); color: var(--snow); }
+.test-group { margin: 14px 0; border: 2px solid rgba(29, 39, 64, .12); border-radius: 8px; background: rgba(255, 255, 255, .5); }
+.test-group > summary { cursor: pointer; padding: 10px 14px; font-weight: 700; font-size: 18px; }
+.test-group .test-count { margin-left: 8px; font-size: 13px; font-weight: 600; color: var(--wood); }
+.test-group.test-finished .test-count { color: var(--ice); }
+.test-task { padding: 4px 16px 12px; border-top: 1px solid rgba(29, 39, 64, .08); }
+.test-task h4 { margin: 10px 0 6px; }
+.test-item { display: flex; gap: 10px; align-items: flex-start; padding: 5px 4px; border-radius: 6px; line-height: 1.4; cursor: pointer; }
+.test-item:hover { background: rgba(154, 90, 44, .08); }
+.test-item input { width: 18px; height: 18px; margin-top: 2px; flex: none; accent-color: var(--wood); }
+.test-item:has(input:checked) { color: rgba(29, 39, 64, .55); text-decoration: line-through; }
+
+html:not(.site-open) .topbar,
+html:not(.site-open) .layout,
+html:not(.site-open) #viewer { display: none !important; }
+.site-lock { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; padding: 24px; background: var(--snow); }
+html.site-open .site-lock { display: none !important; }
+.site-lock-card { display: grid; gap: 10px; width: min(420px, 100%); padding: 16px; background: var(--paper); border: 2px solid var(--ink); border-radius: 10px; }
+.site-lock-card p { margin: 0; }
+.site-lock-card label { display: grid; gap: 4px; font-weight: 700; }
+.site-lock-card input { font: inherit; padding: 8px 10px; border: 2px solid var(--ink); border-radius: 6px; }
+.site-lock-card button, .board-filters button { font: inherit; font-weight: 700; padding: 6px 14px; border: 2px solid var(--ink); border-radius: 6px; background: var(--paper); color: var(--ink); cursor: pointer; }
+.site-lock-card button { justify-self: start; background: var(--gold); }
+.site-lock-error { color: var(--wood-dark); font-weight: 700; }
+.board-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 14px; }
+.board-filters button[aria-pressed="true"] { background: var(--ink); color: var(--snow); }
+.board-columns { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; align-items: start; }
+.board-column { background: rgba(255, 255, 255, .55); border: 1px solid rgba(29, 39, 64, .1); border-radius: 10px; padding: 10px; }
+.board-column > h3 { margin: 0 0 8px; font-size: 15px; }
+.board-count { display: inline-block; min-width: 1.4em; padding: 0 6px; border-radius: 999px; background: var(--ink); color: var(--snow); font-size: 12px; text-align: center; }
+.board-card { margin: 0 0 8px; padding: 10px 12px; background: var(--paper); border: 1px solid rgba(29, 39, 64, .12); border-radius: 8px; }
+.board-card h3 { margin: 0 0 6px; font-size: 16px; }
+.board-meta, .board-lead, .board-empty { margin: 0 0 6px; }
+.board-empty { color: var(--muted); }
+.board-archive { color: var(--muted); font-size: 12px; }
+.person { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+.person[data-person="Богдан"] { background: var(--gold); }
+.person[data-person="Леонид"] { background: var(--ice); color: var(--snow); }
+.person[data-person="Георгий"] { background: var(--wood); color: var(--snow); }
+.board-shots { display: grid; gap: 8px; margin: 0 0 8px; }
+.board-shots img { width: 100%; height: auto; border-radius: 6px; }
+.board-card details { margin-top: 4px; }
+.board-card summary { cursor: pointer; font-weight: 600; }
+@media (max-width: 1100px) {
+  .board-columns { grid-template-columns: 1fr 1fr; }
+}
+
+.layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); }
+#sidebar { position: sticky; top: 52px; align-self: start; height: calc(100vh - 52px); overflow-y: auto; padding: 16px 12px; border-right: 2px solid rgba(29, 39, 64, .1); }
+#sidebar ul { list-style: none; margin: 0; padding: 0; }
+#sidebar li a { display: block; padding: 6px 10px; border-radius: 6px; color: var(--ink); text-decoration: none; font-weight: 600; }
+#sidebar li a:hover, #sidebar li a[aria-current="page"] { background: var(--ice-dark); color: var(--snow); }
+#sidebar ul ul a { font-weight: 400; font-size: 14px; padding-left: 22px; }
+/* Сворачиваемый раздел: стрелка браузера слева сворачивает, ссылка рядом открывает страницу раздела. */
+#sidebar summary { cursor: pointer; color: var(--ice-dark); font-size: 15px; padding: 0 0 0 6px; border-radius: 6px; }
+#sidebar summary:hover { background: rgba(74, 144, 200, .14); }
+#sidebar summary a { display: inline-block; width: calc(100% - 22px); vertical-align: middle; }
+
+main { padding: 8px 32px 64px; max-width: 1280px; }
+.part { padding-top: 16px; padding-bottom: 24px; }
+.part > h2 { font-size: 28px; margin: 12px 0 16px; color: var(--wood-dark); }
+.toc { margin: 0 0 18px; }
+.toc ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { display: inline-block; padding: 4px 10px; border-radius: 999px; background: var(--paper); color: var(--ice-dark); text-decoration: none; font-weight: 600; font-size: 14px; }
+.toc a:hover { background: var(--ice-dark); color: var(--snow); }
+h3 { color: var(--ice-dark); margin-top: 28px; }
+.prose { max-width: 900px; }
+.prose table { border-collapse: collapse; margin: 12px 0; display: block; overflow-x: auto; }
+.prose th, .prose td { border: 1px solid rgba(29, 39, 64, .2); padding: 6px 10px; text-align: left; vertical-align: top; }
+.prose th { background: rgba(74, 144, 200, .14); }
+.prose img { max-width: 100%; border-radius: 8px; }
+.prose.small, .small { font-size: 14px; }
+.doc { background: var(--paper); border-radius: 12px; padding: 4px 24px 16px; margin: 0 0 20px; box-shadow: 0 1px 0 rgba(29, 39, 64, .1); }
+.doc .path { margin: 12px 0 0; font-size: 13px; color: var(--muted); }
+.lead { font-size: 17px; max-width: 900px; }
+.source { font-size: 13px; color: var(--muted); }
+
+.gallery { margin: 8px 0 28px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.shot { margin: 0; background: var(--paper); border-radius: 10px; padding: 8px; }
+.shot img { width: 100%; height: 190px; object-fit: cover; border-radius: 6px; cursor: zoom-in; display: block; }
+.shot figcaption { font-size: 14px; padding: 6px 2px 0; }
+.shot details { font-size: 13px; }
+.shot summary { cursor: pointer; color: var(--ice-dark); }
+.tag { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 999px; background: rgba(74, 144, 200, .15); color: var(--ice-dark); }
+.hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin: 0 0 20px; }
+.hero img { width: 100%; border-radius: 10px; cursor: zoom-in; display: block; }
+
+/* Таблицы данных из кода игры. */
+.table-wrap { overflow-x: auto; margin: 12px 0; }
+.data { border-collapse: collapse; background: var(--paper); border-radius: 8px; min-width: 420px; }
+.data th, .data td { padding: 7px 12px; border-bottom: 1px solid rgba(29, 39, 64, .1); text-align: left; vertical-align: top; }
+.data thead th { background: rgba(74, 144, 200, .14); font-size: 14px; white-space: nowrap; }
+.data tbody th { white-space: nowrap; }
+.data td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.data .sub { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
+.coin { color: #B8860B; font-weight: 600; }
+.gem { color: #2E7FB8; font-weight: 600; }
+.rar { display: inline-block; padding: 1px 8px 1px 6px; border-radius: 6px; background: var(--paper); border-left: 6px solid var(--rar); font-weight: 600; font-size: 13px; white-space: nowrap; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.chips code { background: var(--paper); border: 1px solid rgba(29, 39, 64, .12); padding: 2px 8px; }
+
+/* Раздел «Стиль»: образцы цветов палитры. */
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 8px 0 16px; }
+.swatch { margin: 0; background: var(--paper); border-radius: 10px; overflow: hidden; box-shadow: 0 1px 0 rgba(29, 39, 64, .1); }
+.swatch .chip { display: block; height: 72px; border-bottom: 1px solid rgba(29, 39, 64, .12); }
+.swatch figcaption { padding: 8px 10px 10px; font-size: 14px; }
+.swatch figcaption .small { display: block; margin-top: 4px; font-size: 13px; color: var(--muted); }
+
+/* Раздел «Код»: модуль, вид и его первая строка-комментарий. */
+.modules { list-style: none; padding: 0; margin: 8px 0 20px; display: grid; gap: 6px; }
+.modules li { background: var(--paper); border-radius: 8px; padding: 6px 12px; display: grid; grid-template-columns: minmax(180px, 280px) 90px 60px minmax(0, 1fr); gap: 10px; align-items: baseline; }
+.modules .kind { font-size: 12px; color: var(--muted); }
+.modules .lines { font-size: 12px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+.modules .note { font-size: 14px; }
+.modules .note.empty { color: var(--muted); }
+
+#viewer { border: 0; padding: 0; max-width: 96vw; max-height: 96vh; background: var(--ink); color: var(--snow); border-radius: 10px; }
+#viewer::backdrop { background: rgba(29, 39, 64, .8); }
+.viewer-bar { display: flex; gap: 12px; align-items: center; padding: 8px 12px; }
+.viewer-bar p { margin: 0; flex: 1; font-size: 14px; word-break: break-all; }
+.viewer-bar a { color: var(--gold); }
+.viewer-bar button { background: var(--wood); color: var(--snow); border: 0; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+#viewer img { display: block; max-width: 94vw; max-height: calc(96vh - 52px); }
+
+.pages { list-style: none; padding: 0; display: grid; gap: 10px; }
+.pages > li { background: rgba(255, 255, 255, .6); border: 1px solid rgba(29, 39, 64, .1); border-radius: 10px; padding: 10px 14px; }
+.pages > li > a { font-weight: 700; font-size: 18px; }
+
+.mechanic { margin: 12px 0; border: 2px solid rgba(29, 39, 64, .12); border-radius: 10px; background: rgba(255, 255, 255, .6); }
+.mechanic > summary { cursor: pointer; padding: 12px 16px; font-weight: 700; font-size: 20px; }
+.mechanic-body { padding: 0 16px 14px; }
+.mechanic-body .facts { margin: 8px 0 12px; }
+.flow { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 14px; padding: 0; list-style: none; }
+.flow li { display: flex; flex-direction: column; gap: 2px; flex: 1 1 140px; margin: 0; padding: 8px 10px; background: var(--paper); border: 2px solid var(--ink); border-radius: 8px; }
+.flow b { font-size: 15px; }
+.flow span { color: var(--muted); font-size: 13px; }
+.bars { margin: 8px 0 14px; }
+.bars-title { margin: 0 0 8px; font-weight: 700; }
+.bar { display: grid; grid-template-columns: minmax(7em, 11em) minmax(0, 1fr) auto; gap: 8px; align-items: center; margin: 6px 0; }
+.bar-track { height: 14px; background: rgba(29, 39, 64, .08); border-radius: 7px; overflow: hidden; }
+.bar-fill { display: block; height: 100%; background: var(--ice); }
+.bars-zone .bar-fill, .bars-tool .bar-fill { background: var(--wood); }
+.bar-value { font-weight: 700; white-space: nowrap; }
+
+@media (max-width: 860px) {
+  #menu { display: inline-block; }
+  .topbar { gap: 10px; padding: 10px 12px; }
+  .topbar .top-link { padding: 4px 8px; }
+  /* На самых узких экранах сжимается название, кнопки остаются целыми. */
+  .topbar .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .topbar .top-link, #menu { flex: none; }
+  .topbar .hint { display: none; }
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  #sidebar { display: none; position: fixed; top: 52px; left: 0; right: 0; height: auto; max-height: 70vh; background: var(--snow); z-index: 4; border-bottom: 2px solid var(--ink); }
+  #sidebar.open { display: block; }
+  main { padding: 8px 16px 48px; }
+  .doc { padding: 4px 14px 12px; }
+  .modules li { grid-template-columns: minmax(0, 1fr) auto; }
+  .modules .note { grid-column: 1 / -1; }
+  .modules .lines { display: none; }
+  .board-columns { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 1100px) {
+  .part.with-toc { display: grid; grid-template-columns: minmax(0, 1fr) 230px; column-gap: 28px; align-items: start; }
+  .part.with-toc > h2, .part.with-toc > .part-body { grid-column: 1; }
+  .part.with-toc > .toc { grid-column: 2; grid-row: 1 / span 2; position: sticky; top: 68px; max-height: calc(100vh - 84px); overflow: auto; margin: 18px 0 0; }
+  .part.with-toc > .toc ul { display: grid; gap: 2px; }
+  .part.with-toc > .toc a { display: block; border-radius: 6px; background: transparent; padding: 5px 8px; }
+}
+</style>
+<script>try{if(localStorage.getItem("clean-a-snow-guide-open")==="1")document.documentElement.classList.add("site-open")}catch(e){}</script>
+</head>
+<body>
+<div id="site-lock" class="site-lock" role="dialog" aria-modal="true" aria-labelledby="site-lock-title">
+<form id="site-lock-form" class="site-lock-card">
+<p id="site-lock-title">Введите пароль, чтобы открыть страницы.</p>
+<label>Пароль <input name="password" type="password" autocomplete="current-password" required autofocus></label>
+<button type="submit">Открыть</button>
+<p id="site-lock-error" class="site-lock-error" hidden>Пароль не подошёл.</p>
+</form>
+</div>
+<header class="topbar"><button id="menu" type="button" aria-expanded="false" aria-controls="sidebar">Разделы</button><a class="brand" href="index.html">Clean a Snow</a><a class="top-link" href="testing.html">Тестирование</a><a class="top-link" href="board.html">Доска</a><a class="top-link" href="analysis.html">Анализ</a><a class="top-link" href="mechanics.html">Механики</a><a class="top-link" href="vfx.html">VFX</a><button id="site-close" class="top-link" type="button">Закрыть</button><span class="hint">Собрано из файлов репозитория: <code>node tools/guide/build.mjs</code></span></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Разделы"><ul><li><a href="index.html">Об игре</a></li><li><a href="place.html">Плейс и запуск</a></li><li><a href="style.html">Стиль</a></li><li><a href="economy.html">Экономика</a></li><li><a href="weapons.html">Оружие</a></li><li><a href="garden.html">Сад</a></li><li><a href="code.html">Код</a></li><li><details class="group" data-group="galleries.html" open><summary><a href="galleries.html">Кадры и картинки</a></summary><ul><li><a href="gallery-frames.html">Кадры игры</a></li><li><a href="gallery-palette-preview.html">Палитра</a></li><li><a href="gallery-refs.html">refs</a></li></ul></details></li><li><details class="group" data-group="docs.html" open><summary><a href="docs.html">Документы</a></summary><ul><li><a href="doc-superpowers-plans-2026-11-10-packet-limits.html">superpowers/plans/2026-11-10-packet-limits.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-cell-strength.html">superpowers/plans/2026-11-10-snow-cell-strength.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-rules.html" aria-current="page">superpowers/plans/2026-11-10-strike-rules.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-wallet.html">superpowers/plans/2026-11-10-wallet.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-packet-limits-design.html">superpowers/specs/2026-11-10-packet-limits-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-cell-strength-design.html">superpowers/specs/2026-11-10-snow-cell-strength-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-rules-design.html">superpowers/specs/2026-11-10-strike-rules-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-wallet-design.html">superpowers/specs/2026-11-10-wallet-design.md</a></li></ul></details></li></ul></nav>
+<main>
+<section class="part with-toc"><h2>superpowers/plans/2026-11-10-strike-rules.md</h2><nav class="toc" aria-label="На этой странице"><ul><li><a href="#задача-1-тест-модуля">Задача 1: тест модуля</a></li><li><a href="#задача-2-модуль-strikerules">Задача 2: модуль StrikeRules</a></li><li><a href="#задача-3-сервер-спрашивает-один-счётчик">Задача 3: сервер спрашивает один счётчик</a></li><li><a href="#задача-4-клиент-и-контракт">Задача 4: клиент и контракт</a></li><li><a href="#задача-5-проверка">Задача 5: проверка</a></li><li><a href="#задача-6-сдача">Задача 6: сдача</a></li></ul></nav><div class="part-body"><article class="doc prose" id="doc-superpowers-plans-2026-11-10-strike-rules"><p class="path">docs/superpowers/plans/2026-11-10-strike-rules.md</p><h1>Одно правило удара на сервере — план</h1>
+<blockquote>
+<p><strong>Для агента:</strong> выполнять по шагам (<code>- [ ]</code>) через <code>executing-plans</code>. Спека: <code>docs/superpowers/specs/2026-11-10-strike-rules-design.md</code>. Карточка <code>8925d1</code>.</p>
+</blockquote>
+<p><strong>Цель:</strong> сервер отказывает в ударе раньше срока инструмента, улучшения или оружия; клиент бьёт по тому же сроку.</p>
+<p><strong>Архитектура:</strong> новый модуль <code>Shared/StrikeRules</code> (срок удара, ритм рук, счётчик <code>Gate</code>). Сервисы удара спрашивают один <code>ctx.strikeGate</code> вместо таблицы <code>ctx.toolHitReady</code>. <code>Balance.hitCooldown</code> и <code>Balance.HandsCooldown</code> удаляются.</p>
+<p><strong>Стек:</strong> Luau (<code>--!strict</code> для нового модуля), Rojo, тесты <code>tests/ServerStorage/UnitTest/Cases</code>, <code>npm run check</code>, <code>npm run test:game</code>.</p>
+<p>Правила студии: тест пишется первым, но в начале не запускается; один прогон — когда всё готово (хук <code>TEST-ROUND</code>). Коммит кода — только по слову владельца.</p>
+<hr>
+<h3 id="задача-1-тест-модуля">Задача 1: тест модуля</h3>
+<p><strong>Файлы:</strong> создать <code>tests/ServerStorage/UnitTest/Cases/StrikeRules_Test.luau</code>.</p>
+<ul>
+<li><input disabled="" type="checkbox"> Записать тест:</li>
+</ul>
+<pre><code class="language-lua">--!strict
+-- How often a player may strike. The server refuses a strike that comes too early and the
+-- client swings by the same rule, so an honest player never meets a refused strike.
+local Shared = game:GetService(&quot;ReplicatedStorage&quot;).CleanSnow.Shared
+local StrikeRules: any = require(Shared.StrikeRules)
+local Catalog: any = require(Shared.Catalog)
+local WeaponDefs: any = require(Shared.WeaponDefs)
+local Harness = require(game:GetService(&quot;ServerStorage&quot;).UnitTest.Harness)
+
+local PLAYER = 1
+
+local function shovel(level: number?): any
+	return { toolId = &quot;StarterShovel&quot;, upgrades = { ShovelSpeed = level or 0 } }
+end
+
+return function(t: Harness.Context)
+	t.test(&quot;an honest shovel rhythm passes, even when two packets arrive together after a lag&quot;, function()
+		local gate = StrikeRules.newGate()
+		local interval = StrikeRules.interval(shovel())
+		-- Strikes at 0, I and 2I; the next two are late and arrive together at 4I.
+		for _, at in { 0, interval, 2 * interval, 4 * interval, 4 * interval } do
+			t.expect.truthy(gate:try(PLAYER, interval, 100 + at))
+		end
+	end)
+
+	t.test(&quot;an honest player punching snow nonstop is never refused&quot;, function()
+		local gate = StrikeRules.newGate()
+		local hands = { toolId = &quot;Hands&quot;, upgrades = {} }
+		local swingAt, streak = 0, 0
+		for _ = 1, 30 do
+			local cooldown = StrikeRules.handsCooldown(streak)
+			-- The client sends the strike at the contact moment, 0.4 of the way into the swing.
+			t.expect.truthy(gate:try(PLAYER, StrikeRules.interval(hands), swingAt + cooldown * 0.4))
+			swingAt += cooldown
+			streak += 1
+		end
+	end)
+
+	t.test(&quot;an auto-clicker gets no more strikes than the shovel allows&quot;, function()
+		local gate = StrikeRules.newGate()
+		local interval = StrikeRules.interval(shovel())
+		local accepted = 0
+		for click = 0, 29 do -- six clicks a second for five seconds
+			if gate:try(PLAYER, interval, click / 6) then
+				accepted += 1
+			end
+		end
+		t.expect.truthy(accepted &lt;= 5 / interval + 2)
+		t.expect.truthy(accepted &gt;= 5 / interval - 1)
+	end)
+
+	t.test(&quot;each tool and weapon strikes at its own pace from the catalog&quot;, function()
+		local upgrade = Catalog.Upgrades.ShovelSpeed
+		t.expect.near(StrikeRules.interval(shovel(0)), upgrade.effects[1])
+		t.expect.near(StrikeRules.interval(shovel(upgrade.maxLevel)), upgrade.effects[upgrade.maxLevel + 1])
+		t.expect.near(StrikeRules.interval(shovel(), WeaponDefs.IceAxe), WeaponDefs.IceAxe.cooldown)
+		t.expect.near(StrikeRules.interval(shovel(), WeaponDefs.SnowVacuum), WeaponDefs.SnowVacuum.tick)
+	end)
+end
+</code></pre>
+<p>Не запускать: прогон один, в задаче 5.</p>
+<h3 id="задача-2-модуль-strikerules">Задача 2: модуль <code>StrikeRules</code></h3>
+<p><strong>Файлы:</strong> создать <code>src/ReplicatedStorage/CleanSnow/Shared/StrikeRules.luau</code>; в <code>src/ReplicatedStorage/SnowCleaningDemo/SnowBlockWorld.luau</code> удалить <code>Blocks.StrikeCooldown</code> (строки 292–294), числа ритма остаются.</p>
+<ul>
+<li><input disabled="" type="checkbox"> Записать модуль:</li>
+</ul>
+<pre><code class="language-lua">--!strict
+-- How often a player may strike: one rule for the server check and the client swing.
+local Shared = script.Parent
+local Catalog: any = require(Shared.Catalog)
+local Balance: any = require(Shared.Balance)
+local Blocks: any = require(Shared.Parent.Parent:WaitForChild(&quot;SnowCleaningDemo&quot;):WaitForChild(&quot;SnowBlockWorld&quot;))
+
+local StrikeRules = {}
+
+-- Float sums of intervals drift by a hair; a strike exactly on time must still pass.
+local EPSILON = 1e-6
+
+export type Gate = {
+	try: (self: Gate, userId: number, interval: number, now: number) -&gt; boolean,
+	forget: (self: Gate, userId: number) -&gt; (),
+}
+
+local function isShovel(profile: any): boolean
+	local item = Catalog.Items[profile.toolId]
+	return item ~= nil and item.kind == &quot;Tool&quot; and profile.toolId ~= &quot;Hands&quot; and profile.toolId ~= &quot;SnowVacuum&quot;
+end
+
+-- Shortest time between two strikes the server accepts.
+function StrikeRules.interval(profile: any, weapon: any?): number
+	if weapon then
+		return weapon.tick or weapon.cooldown
+	end
+	if profile.toolId == &quot;SnowVacuum&quot; then
+		return Balance.VacuumCooldown
+	end
+	if isShovel(profile) then
+		return Balance.upgradeValue(profile, &quot;ShovelSpeed&quot;)
+	end
+	return Blocks.MinCooldown
+end
+
+-- Hands swing faster within a streak, down to MinCooldown.
+function StrikeRules.handsCooldown(streak: number?): number
+	local steps = math.min(streak or 0, Blocks.StreakMax)
+	return Blocks.Cooldown - (Blocks.Cooldown - Blocks.MinCooldown) * steps / Blocks.StreakMax
+end
+
+-- GCRA: each strike moves the player&#39;s next due moment by one interval. One spare strike lets
+-- two packets bunched by the network through, while the average rate stays at 1/interval.
+function StrikeRules.newGate(): Gate
+	local due: { [number]: number } = {}
+	local gate = {}
+	function gate.try(_self: Gate, userId: number, interval: number, now: number): boolean
+		local at = math.max(due[userId] or now, now)
+		if at - now &gt; interval + EPSILON then
+			return false
+		end
+		due[userId] = at + interval
+		return true
+	end
+	function gate.forget(_self: Gate, userId: number)
+		due[userId] = nil
+	end
+	return (gate :: any) :: Gate
+end
+
+return StrikeRules
+</code></pre>
+<ul>
+<li><input disabled="" type="checkbox"> Рядом положить <code>StrikeRules.meta.json</code> по образцу соседних (<code>Balance.meta.json</code>).</li>
+</ul>
+<h3 id="задача-3-сервер-спрашивает-один-счётчик">Задача 3: сервер спрашивает один счётчик</h3>
+<p>Во всех файлах: в начале <code>Service.new</code>/<code>new</code> взять <code>local StrikeRules=require(game:GetService(&#39;ReplicatedStorage&#39;).CleanSnow.Shared.StrikeRules)</code> и <code>local gate=ctx.strikeGate or StrikeRules.newGate();ctx.strikeGate=gate</code>.</p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>src/ServerScriptService/CleanSnow/MapSnowService.luau</code>:<ul>
+<li>строка 43: вместо <code>local ready=ctx.toolHitReady or {};ctx.toolHitReady=ready</code> — строка с <code>gate</code>;</li>
+<li><code>api.hit</code>, сразу после <code>if not valid then return fail(reason) end</code>: <code>if not gate:try(id,StrikeRules.interval(profile,weapon),ctx.clock()) then return fail(&#39;Cooldown&#39;) end</code>;</li>
+<li><code>api.vacuum</code>, после <code>if not ctx.alive(id) then return fail(&#39;NotAlive&#39;) end</code>: та же строка;</li>
+<li>строка 783: <code>ready[id]=nil</code> → <code>gate:forget(id)</code>.</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <code>src/ServerScriptService/CleanSnow/SnowService.luau</code>: строки 4–5 — убрать <code>toolHitReady</code>/<code>ready</code>; строку 86 (<code>if ctx.clock()&lt;(ready[id] or 0)…</code>) удалить; строку 91 <code>ready[id]=…</code> заменить на <code>if not gate:try(id,StrikeRules.interval(p),ctx.clock()) then return fail(&#39;Cooldown&#39;) end</code>.</li>
+<li><input disabled="" type="checkbox"> <code>src/ServerScriptService/CleanSnow/WildlifeService.luau</code>: строки 11–12 — убрать <code>toolHitReady</code>/<code>ready</code>; строку 92 оставить только <code>local now=ctx.clock()</code>; строку 96 заменить на <code>if not gate:try(id,StrikeRules.interval(profile),now) then return fail(&#39;Cooldown&#39;) end</code>; в строке 147 убрать цикл по <code>ready</code> (выход игрока чистит <code>MapSnowService</code>).</li>
+<li><input disabled="" type="checkbox"> <code>src/ServerScriptService/CleanSnow/ForestAnimalService.luau</code>: строки 60–61 — <code>cooldowns</code> больше не нужен; в <code>api.hit</code> (стр. 275–276) и <code>api.catchBird</code> (стр. 315–316) пара «проверка + запись» заменяется на <code>if not gate:try(id,StrikeRules.interval(profile),ctx.clock()) then return result(false,&#39;Cooldown&#39;) end</code>.</li>
+<li><input disabled="" type="checkbox"> <code>src/ServerScriptService/CleanSnow/ExtrasService.luau:305</code> (запасная ветка без снега карты): взять <code>gate</code> как во всех файлах и заменить <code>or now &lt; ((ctx.toolHitReady or {})[id] or 0)</code> на <code>or not gate:try(id, StrikeRules.interval(p, weapon), now)</code>.</li>
+</ul>
+<h3 id="задача-4-клиент-и-контракт">Задача 4: клиент и контракт</h3>
+<ul>
+<li><input disabled="" type="checkbox"> <code>src/StarterPlayer/StarterPlayerScripts/CleanSnow/ExperienceController.luau</code>: после строки 9 добавить <code>local StrikeRules: any=require(ReplicatedStorage:WaitForChild(&quot;CleanSnow&quot;):WaitForChild(&quot;Shared&quot;):WaitForChild(&quot;StrikeRules&quot;))</code>; строки 417–424 заменить на:</li>
+</ul>
+<pre><code class="language-lua">        local cooldown=StrikeRules.interval(state)
+        if state.toolId==&quot;Hands&quot; then
+            -- Strike rhythm: each strike inside the window shortens the next one.
+            local blocks=require(game:GetService(&quot;ReplicatedStorage&quot;).SnowCleaningDemo.SnowBlockWorld)
+            local rhythm=ctx.strikeRhythm or {streak=0,last=-100};ctx.strikeRhythm=rhythm
+            rhythm.streak=if now-rhythm.last&lt;=blocks.StreakWindow then rhythm.streak+1 else 0
+            rhythm.last=now
+            cooldown=StrikeRules.handsCooldown(rhythm.streak)
+        end
+</code></pre>
+<ul>
+<li><input disabled="" type="checkbox"> <code>src/ReplicatedStorage/CleanSnow/Shared/Balance.luau</code>: удалить <code>HandsCooldown = 0.57</code> и функцию <code>Balance.hitCooldown</code>; <code>ShovelCooldown</code> оставить (по нему клиент считает касание лопаты).</li>
+<li><input disabled="" type="checkbox"> <code>tools/guide/build.mjs:245</code>: убрать строку <code>HandsCooldown</code> из <code>BALANCE_ROWS</code>; пересобрать <code>node tools/guide/build.mjs</code>.</li>
+<li><input disabled="" type="checkbox"> Проверить, что <code>hitCooldown</code>, <code>HandsCooldown</code>, <code>toolHitReady</code>, <code>StrikeCooldown</code> больше нигде не встречаются: <code>rg &quot;hitCooldown|HandsCooldown|toolHitReady|StrikeCooldown&quot; src tools</code>.</li>
+</ul>
+<h3 id="задача-5-проверка">Задача 5: проверка</h3>
+<ul>
+<li><input disabled="" type="checkbox"> <code>npm run check</code> — без новых замечаний.</li>
+<li><input disabled="" type="checkbox"> <code>npm run test:game -- StrikeRules</code> — 4/4. Затронутые наборы: <code>npm run test:game -- ShopService</code> (тот же прогон). Если упало — чинить и перезапускать только упавшее.</li>
+<li><input disabled="" type="checkbox"> <code>node --test tools/guide/build.test.mjs</code>.</li>
+<li><input disabled="" type="checkbox"> Живой Play в Studio через MCP <code>robloxstudio</code> на копии <code>place/NaLovi.rbxl</code> с <code>rojo serve</code>: быстрый заход в одиночку (AGENTS.md), удары руками и лопатой по снегу, удар по зверю. В Output нет отказов <code>Cooldown</code> при обычном темпе. Снять кадр, посмотреть PNG. Своё окно Studio закрыть.</li>
+</ul>
+<h3 id="задача-6-сдача">Задача 6: сдача</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Записать в карточку <code>8925d1</code> итог, кадр и результаты проверок; <code>board done</code>.</li>
+<li><input disabled="" type="checkbox"> Показать владельцу кадр и <code>git diff --stat</code>; коммит и push — только по его слову. Изменения <code>tasks/</code> коммитятся сразу.</li>
+</ul>
+</article></div></section>
+</main>
+</div>
+<dialog id="viewer" aria-label="Просмотр картинки"><div class="viewer-bar"><p id="viewer-caption"></p><a id="viewer-open" target="_blank" rel="noopener">Открыть файл</a><button id="viewer-close" type="button">Закрыть</button></div><img id="viewer-image" alt=""></dialog>
+<script>// Поведение страницы: пароль на весь сайт, меню на узком экране и просмотр картинки.
+// Текущую страницу в меню отмечает сборщик.
+(() => {
+  const SITE_KEY = "clean-a-snow-guide-open";
+  const SITE_PASSWORD = "91-23sdf-123dsf213-gfdf";
+  const lock = document.getElementById("site-lock-form");
+  if (lock) {
+    lock.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const error = document.getElementById("site-lock-error");
+      if (new FormData(lock).get("password") === SITE_PASSWORD) {
+        try {
+          localStorage.setItem(SITE_KEY, "1");
+        } catch {
+          // Без хранилища сайт откроется только до закрытия вкладки.
+        }
+        document.documentElement.classList.add("site-open");
+      } else if (error) error.hidden = false;
+    });
+  }
+
+  const close = document.getElementById("site-close");
+  if (close) {
+    close.addEventListener("click", () => {
+      try {
+        localStorage.removeItem(SITE_KEY);
+      } catch {
+        // Без хранилища достаточно убрать класс: следующая страница снова спросит пароль.
+      }
+      const error = document.getElementById("site-lock-error");
+      if (error) error.hidden = true;
+      const input = lock?.querySelector("input");
+      if (input) input.value = "";
+      document.documentElement.classList.remove("site-open");
+      input?.focus();
+    });
+  }
+
+  const board = document.querySelector(".board-columns");
+  if (board) {
+    const buttons = [...document.querySelectorAll("[data-person-filter]")];
+    const apply = (person) => {
+      for (const button of buttons) button.setAttribute("aria-pressed", String(button.dataset.personFilter === person));
+      for (const column of board.querySelectorAll(".board-column")) {
+        let visible = 0;
+        for (const card of column.querySelectorAll(".board-card")) {
+          const show = person === "all" || card.dataset.person === person;
+          card.hidden = !show;
+          if (show) visible += 1;
+        }
+        column.querySelector(".board-count").textContent = String(visible);
+        column.querySelector(".board-empty").hidden = visible !== 0;
+      }
+    };
+    for (const button of buttons) button.addEventListener("click", () => apply(button.dataset.personFilter));
+  }
+
+  const menu = document.getElementById("menu");
+  const sidebar = document.getElementById("sidebar");
+  menu.addEventListener("click", () => {
+    const open = sidebar.classList.toggle("open");
+    menu.setAttribute("aria-expanded", String(open));
+  });
+  sidebar.addEventListener("click", (e) => {
+    if (e.target.closest("a")) {
+      sidebar.classList.remove("open");
+      menu.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  // Свёрнутые разделы меню. Выбор читателя помнит браузер; без него открыт только раздел текущей страницы.
+  const KEY = "clean-a-snow-guide-nav-folds";
+  let folds = {};
+  try {
+    folds = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+  } catch {
+    folds = {};
+  }
+  for (const group of sidebar.querySelectorAll("details.group")) {
+    const id = group.dataset.group;
+    group.open = id in folds ? folds[id] : group.querySelector('[aria-current="page"]') !== null;
+    group.addEventListener("toggle", () => {
+      folds[id] = group.open;
+      try {
+        localStorage.setItem(KEY, JSON.stringify(folds));
+      } catch {
+        // Без хранилища выбор живёт до перехода на другую страницу.
+      }
+    });
+  }
+  // Галочки чеклиста «Тестирование». Отметки помнит браузер проверяющего; «Сбросить» начинает новый круг.
+  const checks = document.querySelectorAll("input[data-check]");
+  if (checks.length) {
+    const CHECKS = "clean-a-snow-guide-testing-checks";
+    let done = {};
+    try {
+      done = JSON.parse(localStorage.getItem(CHECKS) || "{}") || {};
+    } catch {
+      done = {};
+    }
+    const save = () => {
+      try {
+        localStorage.setItem(CHECKS, JSON.stringify(done));
+      } catch {
+        // Без хранилища отметки живут до ухода со страницы.
+      }
+    };
+    const count = () => {
+      for (const group of document.querySelectorAll("details.test-group")) {
+        const boxes = group.querySelectorAll("input[data-check]");
+        const ticked = [...boxes].filter((b) => b.checked).length;
+        group.querySelector(".test-count").textContent = `${ticked} из ${boxes.length}`;
+        group.classList.toggle("test-finished", ticked === boxes.length);
+      }
+      document.getElementById("test-done").textContent = String([...checks].filter((b) => b.checked).length);
+    };
+    for (const box of checks) {
+      box.checked = done[box.dataset.check] === true;
+      box.addEventListener("change", () => {
+        if (box.checked) done[box.dataset.check] = true;
+        else delete done[box.dataset.check];
+        save();
+        count();
+      });
+    }
+    document.getElementById("test-reset").addEventListener("click", () => {
+      if (!confirm("Снять все отметки и начать проверку заново?")) return;
+      done = {};
+      for (const box of checks) box.checked = false;
+      save();
+      count();
+    });
+    count();
+  }
+
+  const current = sidebar.querySelector('[aria-current="page"]');
+  if (current) current.scrollIntoView({ block: "nearest" });
+
+  const viewer = document.getElementById("viewer");
+  const image = document.getElementById("viewer-image");
+  const caption = document.getElementById("viewer-caption");
+  const open = document.getElementById("viewer-open");
+  document.addEventListener("click", (e) => {
+    const img = e.target.closest("main img");
+    if (!img) return;
+    image.src = img.src;
+    image.alt = img.alt;
+    caption.textContent = img.dataset.caption || img.alt;
+    open.href = img.src;
+    viewer.showModal();
+  });
+  document.getElementById("viewer-close").addEventListener("click", () => viewer.close());
+  viewer.addEventListener("click", (e) => {
+    if (e.target === viewer) viewer.close();
+  });
+})();
+</script>
+</body>
+</html>
