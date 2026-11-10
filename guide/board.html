@@ -48,7 +48,8 @@ pre code { background: none; padding: 0; }
 .test-item { display: flex; gap: 10px; align-items: flex-start; padding: 5px 4px; border-radius: 6px; line-height: 1.4; cursor: pointer; }
 .test-item:hover { background: rgba(154, 90, 44, .08); }
 .test-item input { width: 18px; height: 18px; margin-top: 2px; flex: none; accent-color: var(--wood); }
-.test-item:has(input:checked) { color: rgba(29, 39, 64, .55); text-decoration: line-through; }
+.test-item:has(input:checked) > span:first-of-type { color: rgba(29, 39, 64, .55); text-decoration: line-through; }
+.test-people { margin-left: auto; flex: none; font-size: 12px; font-weight: 700; color: var(--wood); white-space: nowrap; }
 
 html:not(.site-open) .topbar,
 html:not(.site-open) .layout,
@@ -223,124 +224,143 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </div>
 <header class="topbar"><button id="menu" type="button" aria-expanded="false" aria-controls="sidebar">Разделы</button><a class="brand" href="index.html">Clean a Snow</a><a class="top-link" href="testing.html">Тестирование</a><a class="top-link" href="board.html" aria-current="page">Доска</a><a class="top-link" href="analysis.html">Анализ</a><a class="top-link" href="mechanics.html">Механики</a><a class="top-link" href="vfx.html">VFX</a><button id="site-close" class="top-link" type="button">Закрыть</button><span class="hint">Собрано из файлов репозитория: <code>node tools/guide/build.mjs</code></span></header>
 <div class="layout">
-<nav id="sidebar" aria-label="Разделы"><ul><li><a href="index.html">Об игре</a></li><li><a href="place.html">Плейс и запуск</a></li><li><a href="style.html">Стиль</a></li><li><a href="economy.html">Экономика</a></li><li><a href="weapons.html">Оружие</a></li><li><a href="garden.html">Сад</a></li><li><a href="code.html">Код</a></li><li><details class="group" data-group="galleries.html" open><summary><a href="galleries.html">Кадры и картинки</a></summary><ul><li><a href="gallery-frames.html">Кадры игры</a></li><li><a href="gallery-palette-preview.html">Палитра</a></li><li><a href="gallery-refs.html">refs</a></li></ul></details></li><li><details class="group" data-group="docs.html" open><summary><a href="docs.html">Документы</a></summary><ul><li><a href="doc-superpowers-plans-2026-11-10-packet-limits.html">superpowers/plans/2026-11-10-packet-limits.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-cell-strength.html">superpowers/plans/2026-11-10-snow-cell-strength.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-rules.html">superpowers/plans/2026-11-10-strike-rules.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-wallet.html">superpowers/plans/2026-11-10-wallet.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-packet-limits-design.html">superpowers/specs/2026-11-10-packet-limits-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-cell-strength-design.html">superpowers/specs/2026-11-10-snow-cell-strength-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-rules-design.html">superpowers/specs/2026-11-10-strike-rules-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-wallet-design.html">superpowers/specs/2026-11-10-wallet-design.md</a></li></ul></details></li></ul></nav>
+<nav id="sidebar" aria-label="Разделы"><ul><li><a href="index.html">Об игре</a></li><li><a href="place.html">Плейс и запуск</a></li><li><a href="style.html">Стиль</a></li><li><a href="economy.html">Экономика</a></li><li><a href="weapons.html">Оружие</a></li><li><a href="garden.html">Сад</a></li><li><a href="code.html">Код</a></li><li><details class="group" data-group="galleries.html" open><summary><a href="galleries.html">Кадры и картинки</a></summary><ul><li><a href="gallery-frames.html">Кадры игры</a></li><li><a href="gallery-palette-preview.html">Палитра</a></li><li><a href="gallery-refs.html">refs</a></li><li><a href="gallery-vfx.html">vfx</a></li></ul></details></li><li><details class="group" data-group="docs.html" open><summary><a href="docs.html">Документы</a></summary><ul><li><a href="doc-architecture-summary.html">architecture/summary.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-catalog-answers.html">superpowers/plans/2026-11-10-catalog-answers.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-map-bake.html">superpowers/plans/2026-11-10-map-bake.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-packet-limits.html">superpowers/plans/2026-11-10-packet-limits.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-anchors.html">superpowers/plans/2026-11-10-place-anchors.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-role-world.html">superpowers/plans/2026-11-10-place-role-world.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-profile-store-core.html">superpowers/plans/2026-11-10-profile-store-core.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-server-lifecycle.html">superpowers/plans/2026-11-10-server-lifecycle.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-break-burst.html">superpowers/plans/2026-11-10-snow-break-burst.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-cell-strength.html">superpowers/plans/2026-11-10-snow-cell-strength.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-clap.html">superpowers/plans/2026-11-10-snow-clap.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-starter-spoon.html">superpowers/plans/2026-11-10-starter-spoon.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-rules.html">superpowers/plans/2026-11-10-strike-rules.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-two-places.html">superpowers/plans/2026-11-10-two-places.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-wallet.html">superpowers/plans/2026-11-10-wallet.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-catalog-answers-design.html">superpowers/specs/2026-11-10-catalog-answers-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-map-bake-design.html">superpowers/specs/2026-11-10-map-bake-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-packet-limits-design.html">superpowers/specs/2026-11-10-packet-limits-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-anchors-design.html">superpowers/specs/2026-11-10-place-anchors-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-role-world-design.html">superpowers/specs/2026-11-10-place-role-world-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-profile-store-core-design.html">superpowers/specs/2026-11-10-profile-store-core-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-server-lifecycle-design.html">superpowers/specs/2026-11-10-server-lifecycle-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-break-burst-design.html">superpowers/specs/2026-11-10-snow-break-burst-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-cell-strength-design.html">superpowers/specs/2026-11-10-snow-cell-strength-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-puff-design.html">superpowers/specs/2026-11-10-snow-puff-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-starter-spoon-design.html">superpowers/specs/2026-11-10-starter-spoon-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-rules-design.html">superpowers/specs/2026-11-10-strike-rules-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-two-places-design.html">superpowers/specs/2026-11-10-two-places-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-wallet-design.html">superpowers/specs/2026-11-10-wallet-design.md</a></li></ul></details></li></ul></nav>
 <main>
 <section class="part"><h2>Доска</h2><div class="board-filters" role="group" aria-label="Кто делает"><button type="button" data-person-filter="all" aria-pressed="true">Все</button><button type="button" data-person-filter="Богдан" aria-pressed="false">Богдан</button><button type="button" data-person-filter="Леонид" aria-pressed="false">Леонид</button><button type="button" data-person-filter="Георгий" aria-pressed="false">Георгий</button></div>
 <div class="board-columns"><section class="board-column" data-status="todo">
-  <h3>К выполнению <span class="board-count">10</span></h3>
+  <h3>К выполнению <span class="board-count">13</span></h3>
   <div class="board-cards"><article class="board-card" data-person="Богдан" data-status="todo">
-  <h3>Лобби и долина в одном плейсе, переход в забег грузит весь мир</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>0205ff</code> баг · bug</p>
-  <p class="board-lead">Воспроизвести и исправить `BUG-20261110-001` из `tasks/bugs.md`.</p>
+  <h3>Клиент: показ по одной форме и окна по одному</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>13a49d</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Клиент B и C (`7e9ffc`), №13–14 сводки.</p>
   
   <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Воспроизвести и исправить <code>BUG-20261110-001</code> из <code>tasks/bugs.md</code>.</p>
+<p>Исполнитель: Богдан. Клиент B и C (<code>7e9ffc</code>), №13–14 сводки.</p>
+<p>Одна форма показа <code>{state?, event?, step?, destroy}</code> и раздача по списку в <code>Bootstrap.client</code>. <code>InterfaceController</code> режется на окна; пути к элементам окна проверяются при запуске списком.</p>
 <h2>Готово когда</h2>
 <ul>
-<li><input disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
-<li><input disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
+<li><input disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input disabled="" type="checkbox"> Play: все окна открываются, Output без ошибок.</li>
+<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input disabled="" type="checkbox"> Коммит и push.</li>
 </ul>
 <h2>Работа</h2>
 <h2>Заметки</h2>
 <ul>
-<li>Журнал: <code>BUG-20261110-001</code>.</li>
-<li>Перед стартом нужен spec-plan: это смена устройства мест и телепорта, не локальная правка.</li>
-<li>Способ Roblox для нового кода (документация и объявление 28.10.2026): один <code>TeleportAsync</code> с сервера, <code>ReservedServerId</code> — GUID с <code>HttpService:GenerateGUID(false)</code>. Так отряд попадает на один приватный сервер. <code>ReserveServer</code>, <code>ShouldReserveServer</code> и <code>ReservedServerAccessCode</code> для новой работы не использовать. Этот GUID в <code>PartyTeleport</code> уже есть; не хватает второго плейса и включённого <code>MatchPlaceId</code>.</li>
-<li>Публикация второго плейса только по слову владельца. В Studio настоящий телепорт не проверить.</li>
+<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
 </ul>
 </div></details>
 </article>
 <article class="board-card" data-person="Богдан" data-status="todo">
-  <h3>Рядом с игроком нет снега: поверхность исчерпала память</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>026145</code> баг · bug</p>
-  <p class="board-lead">Воспроизвести и исправить `BUG-20261110-003` из `tasks/bugs.md`.</p>
+  <h3>Сервер: переработчик — единственная приёмка снега</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>653e08</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Сервер C (`e3afec`), №3 таблицы сводки.</p>
   
   <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Воспроизвести и исправить <code>BUG-20261110-003</code> из <code>tasks/bugs.md</code>.</p>
+<p>Исполнитель: Богдан. Сервер C (<code>e3afec</code>), №3 таблицы сводки.</p>
+<p>Одно правило зоны «рядом с переработчиком» и одна функция сдачи в <code>ProcessorService</code> для игрока, машины, грузовика, зверей и помощника. Авто-сдача уходит из <code>Bootstrap</code>.</p>
 <h2>Готово когда</h2>
 <ul>
-<li><input disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
-<li><input disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
+<li><input disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input disabled="" type="checkbox"> Тест до кода: одна точка у переработчика принимается одинаково для игрока и машины.</li>
+<li><input disabled="" type="checkbox"> Play: сдача руками, машиной и грузовиком.</li>
+<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input disabled="" type="checkbox"> Коммит и push.</li>
 </ul>
 <h2>Работа</h2>
 <h2>Заметки</h2>
 <ul>
-<li>Журнал: <code>BUG-20261110-003</code>.</li>
-<li>10.11.2026, владелец: зелёная земля — ферма под снегом, так и задумано. Дефект карточки, если он останется, только про белый покров, который не собрался из-за памяти сетки.</li>
-<li>Открытые вопросы: <code>Q-20261110-002</code>, <code>Q-20261110-003</code>. Пока они открыты, карточку не чинить.</li>
+<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
 </ul>
 </div></details>
 </article>
 <article class="board-card" data-person="Богдан" data-status="todo">
-  <h3>По умолчанию кулаки, нужна ложка</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>272a6c</code> баг · bug</p>
-  <p class="board-lead">Воспроизвести и исправить `BUG-20261110-005` из `tasks/bugs.md`.</p>
-  <div class="board-shots"><img loading="lazy" src="../art/refs/default-spoon.png" alt=""></div>
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Воспроизвести и исправить <code>BUG-20261110-005</code> из <code>tasks/bugs.md</code>.</p>
-<h2>Готово когда</h2>
-<ul>
-<li><input disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
-<li><input disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
-</ul>
-<h2>Работа</h2>
-<p><img src="../art/refs/default-spoon.png" alt="Ложка от первого лица"></p>
-<h2>Заметки</h2>
-<ul>
-<li>Журнал: <code>BUG-20261110-005</code>.</li>
-<li>Референс: <code>art/refs/default-spoon.png</code>. Кулаки убрать, по умолчанию одна ложка.</li>
-</ul>
-</div></details>
-</article>
-<article class="board-card" data-person="Богдан" data-status="todo">
-  <h3>Клиент: показ и ввод</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>7e9ffc</code> техработа · architecture</p>
-  <p class="board-lead">Исполнитель: Богдан. Разобрать клиентский слой и не менять код игры.</p>
+  <h3>Мир: содержимое плейсов в репозитории</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>670e36</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Мир C (`ca1233`), №16 сводки.</p>
   
   <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Исполнитель: Богдан. Разобрать клиентский слой и не менять код игры.</p>
-<p>Слой: <code>src/StarterPlayer/StarterPlayerScripts/CleanSnow</code>. <code>Bootstrap.client</code> включает контроллеры. Они рисуют и шлют намерение. Окна <code>StarterGui/CleanSnowUI</code> почти целиком лежат в плейсе, не в репозитории. Вождение лежит вне папки <code>CleanSnow</code>, но тоже сюда: <code>src/StarterPlayer/StarterPlayerScripts/VehicleDrivingClient.client.luau</code>.</p>
-<p>Клиентские модули снега (<code>MapSnowController</code>, <code>NearSnow</code> и <code>SnowCut*</code>) разбирает карточка <code>189be8</code>: здесь только отметить, как остальной клиент с ними связан.</p>
-<p>Порядок:</p>
-<ol>
-<li>Анализ: какие контроллеры только рисуют, а какие сами решают правило игры.</li>
-<li>Брейншторм по skill <code>brainstorming</code>: какой показ должен стать одним глубоким модулем.</li>
-<li>Skill <code>improve-codebase-architecture</code> только по этому слою. Словарь: module, interface, depth, seam, adapter, leverage, locality. Skill пишет HTML-отчёт во временную папку компьютера, владелец его не увидит: копию положить в <code>docs/architecture/client-view.html</code> и путь к копии записать в заметки.</li>
-</ol>
+<p>Исполнитель: Богдан. Мир C (<code>ca1233</code>), №16 сводки.</p>
+<p>Два проекта Rojo (лобби и забег) на общий <code>src/</code>, содержимое мест в <code>models/</code>. Резервные копии в ServerStorage плейса (628 тыс. объектов) убрать — только по слову владельца.</p>
 <h2>Готово когда</h2>
 <ul>
-<li><input disabled="" type="checkbox"> В заметках список контроллеров и где трение.</li>
-<li><input disabled="" type="checkbox"> Брейншторм записан: вопрос, варианты, рекомендация.</li>
-<li><input disabled="" type="checkbox"> Копия HTML-отчёта skill <code>improve-codebase-architecture</code> лежит в <code>docs/architecture/client-view.html</code> и показана владельцу, путь лежит в заметках.</li>
-<li><input disabled="" type="checkbox"> Код <code>src/</code> этой карточкой не изменён.</li>
+<li><input disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input disabled="" type="checkbox"> Оба плейса собираются из репозитория.</li>
+<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input disabled="" type="checkbox"> Коммит и push.</li>
 </ul>
 <h2>Работа</h2>
 <h2>Заметки</h2>
 <ul>
-<li>Исполнитель: Богдан.</li>
-<li>Углубление, которое выберет владелец, заводится отдельной карточкой после сводки <code>dc68a4</code>: она сводит шесть разборов и ищет противоречия между ними.</li>
+<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
 </ul>
 </div></details>
 </article>
 <article class="board-card" data-person="Богдан" data-status="todo">
-  <h3>Слом снега без красивого отклика</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>9d8916</code> баг · bug</p>
-  <p class="board-lead">Воспроизвести и исправить `BUG-20261110-004` из `tasks/bugs.md`.</p>
-  <div class="board-shots"><img loading="lazy" src="../art/refs/snow-break-feedback.png" alt=""></div>
+  <h3>Удар: общий план удара и главная кнопка</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>6d3652</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Снег B (`189be8`) и клиент D (`7e9ffc`), №5–6 сводки.</p>
+  
   <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Воспроизвести и исправить <code>BUG-20261110-004</code> из <code>tasks/bugs.md</code>.</p>
+<p>Исполнитель: Богдан. Снег B (<code>189be8</code>) и клиент D (<code>7e9ffc</code>), №5–6 сводки.</p>
+<p>Один модуль плана удара (точка, прицел, урон → клетки и стадии) с adapter-ами сервера и клиента. Затем одно место «что делает главная кнопка» на клиенте; паузы — из <code>StrikeRules</code>, у оружия тоже.</p>
 <h2>Готово когда</h2>
 <ul>
-<li><input disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
-<li><input disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
+<li><input disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input disabled="" type="checkbox"> Тест до кода: один удар даёт одинаковый список клеток у сервера и прогноза.</li>
+<li><input disabled="" type="checkbox"> Play: удары руками, лопатой и оружием на участках 1 и 4.</li>
+<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input disabled="" type="checkbox"> Коммит и push.</li>
 </ul>
 <h2>Работа</h2>
-<p><img src="../art/refs/snow-break-feedback.png" alt="Слом снега"></p>
 <h2>Заметки</h2>
 <ul>
-<li>Журнал: <code>BUG-20261110-004</code>.</li>
-<li>Правило владельца 10.11.2026: когда что-то ломается, всегда есть красивый зримый отзыв.</li>
-<li>Референс эффекта: <code>art/refs/snow-break-feedback.png</code>. Маленькая вспышка в точке удара — игровое решение, не ошибка сетки.</li>
+<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" data-person="Богдан" data-status="todo">
+  <h3>Контракт: правило оружия отдельно от вида</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>8770fb</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Контракт C (`bae98a`), №11 сводки.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Исполнитель: Богдан. Контракт C (<code>bae98a</code>), №11 сводки.</p>
+<p>Разделить <code>WeaponDefs</code> на правило (урон, цели, кулдаун, дальность) и вид (поза, звук, частицы). Сервер читает дальность оружия из правила.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input disabled="" type="checkbox"> Play: каждое оружие бьёт и выглядит как раньше.</li>
+<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input disabled="" type="checkbox"> Коммит и push.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" data-person="Богдан" data-status="todo">
+  <h3>Снег: одна высота снега</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>9cd888</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Снег D (`189be8`), №8 сводки.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Исполнитель: Богдан. Снег D (<code>189be8</code>), №8 сводки.</p>
+<p>Одна функция высоты снега с одним округлением для удара, прицела, грузовика и картинки. Сначала спросить владельца, влияют ли следы ног на удар.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input disabled="" type="checkbox"> Тест до кода: высота сервера и клиента в одной точке совпадает.</li>
+<li><input disabled="" type="checkbox"> Play: удары по краю следа.</li>
+<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input disabled="" type="checkbox"> Коммит и push.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
 </ul>
 </div></details>
 </article>
@@ -449,123 +469,250 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </div></details>
 </article>
 <article class="board-card" data-person="Богдан" data-status="todo">
-  <h3>Сводка шести разборов архитектуры и порядок работ</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>dc68a4</code> техработа · architecture</p>
-  <p class="board-lead">Исполнитель: Богдан. Свести шесть разборов слоёв в одну картину и не менять код игры.</p>
+  <h3>Клиент: одна дверь к серверу</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>ca847e</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Исправление по разбору клиента `7e9ffc` (кандидат A, `docs/architecture/client-view.html`). Клиентская половина кандидата B разбора сети (сад через `ActionRequest`): серверную часть делать вместе или после неё.</p>
   
   <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Исполнитель: Богдан. Свести шесть разборов слоёв в одну картину и не менять код игры.</p>
-<p>Входы — копии HTML-отчётов в <code>docs/architecture/</code> и заметки карточек:</p>
-<ul>
-<li><code>189be8</code> снег;</li>
-<li><code>7e9ffc</code> клиент;</li>
-<li><code>bae98a</code> общий контракт;</li>
-<li><code>ca1233</code> мир и плейс;</li>
-<li><code>e3afec</code> сервер;</li>
-<li><code>faa32b</code> сеть.</li>
-</ul>
-<p>Порядок:</p>
-<ol>
-<li>Собрать всех кандидатов на углубление из шести отчётов в одну таблицу: слой, модуль, что выигрываем, чего стоит.</li>
-<li>Найти, где отчёты предлагают разное для одного модуля (<code>RuntimeFactory</code>, <code>RemotesRouter</code>, сервисы снега, <code>PlaceConfig</code>) или где одно углубление зависит от другого.</li>
-<li>Брейншторм по skill <code>brainstorming</code>: какой порядок работ, что даёт больше всего пользы игроку и меньше всего ломает. Учесть открытый баг разделения плейсов <code>0205ff</code>.</li>
-<li>Показать владельцу сводку и вопрос с вариантами порядка, рекомендуемый первым с «(Рекомендую)».</li>
-</ol>
+<p>Исполнитель: Богдан. Исправление по разбору клиента <code>7e9ffc</code> (кандидат A, <code>docs/architecture/client-view.html</code>). Клиентская половина кандидата B разбора сети (сад через <code>ActionRequest</code>): серверную часть делать вместе или после неё.</p>
+<p>Сейчас к серверу ведут четыре двери. <code>Bootstrap.client.send</code> проверяет пакет по <code>NetSchema</code>, ждёт ответ 8 с и просит синхронизацию. <code>SnowMatchHud</code> шлёт <code>PickupNearby</code> мимо него. <code>GardenController</code> ходит через свой <code>Remotes.Garden</code>. Ответы Bootstrap раздаёт тремя ручными вызовами, а <code>InterfaceController.result</code> гасит отказы на запросы без вида заплаткой. Автоподбор снега идёт из двух мест.</p>
+<p>Сделать: модуль <code>Actions</code> (<code>--!strict</code>) из <code>send</code> и раздачи ответов: <code>send(kind, payload, кнопка?)</code>, <code>onResult(kind, обработчик)</code>. Все намерения клиента — только через него. Автоподбор — одно место с одной паузой. Заплатку в окне убрать. Вождение машины (<code>VehicleDrivingInput</code>) и <code>DevPanel</code> остаются как есть.</p>
+<p>По сводке <code>dc68a4</code> карточка включает сеть B: сад на сервере через <code>ActionRequest</code> (<code>GardenBuy</code>, <code>GardenSell</code>, <code>GardenWork</code> в <code>NetSchema</code> и <code>ctx.actions</code>), свой <code>Remotes.Garden</code> удаляется. Сюда же мелочи сети: <code>LeaderboardPage</code> (схема 4 метрики, сервис 2) и всегда закрытый <code>Throw</code>.</p>
 <h2>Готово когда</h2>
 <ul>
-<li><input disabled="" type="checkbox"> В <code>docs/architecture/summary.md</code> таблица всех кандидатов из шести отчётов.</li>
-<li><input disabled="" type="checkbox"> Названы противоречия между отчётами и как их развести.</li>
-<li><input disabled="" type="checkbox"> Владелец выбрал порядок, ответ записан как «Решение владельца ДД.ММ.ГГГГ: …».</li>
-<li><input disabled="" type="checkbox"> Каждое выбранное углубление заведено отдельной карточкой.</li>
-<li><input disabled="" type="checkbox"> Код <code>src/</code> этой карточкой не изменён.</li>
+<li><input disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input disabled="" type="checkbox"> Тест до кода: пакет вне схемы не уходит; ответ доходит до подписчика своего вида; без ответа за 8 с — тайм-аут и синхронизация; автоподбор шлёт не чаще своей паузы.</li>
+<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний, тесты проходят.</li>
+<li><input disabled="" type="checkbox"> Живой Play: подбор снега, покупка в магазине, грядка в саду; Output без ошибок, кадры.</li>
+<li><input disabled="" type="checkbox"> Коммит и push.</li>
 </ul>
 <h2>Работа</h2>
 <h2>Заметки</h2>
 <ul>
-<li>Исполнитель: Богдан.</li>
+<li>Решение владельца 10.11.2026: кандидат A из разбора <code>7e9ffc</code>.</li>
+<li>Пересекается с кандидатом B разбора сети <code>e3afec</code> (сад).</li>
+<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>). Эта карточка — первая.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" data-person="Богдан" data-status="todo">
+  <h3>Сеть: проверка движения</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>db18c4</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Сеть D (`faa32b`), №17 сводки.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Исполнитель: Богдан. Сеть D (<code>faa32b</code>), №17 сводки.</p>
+<p>Модуль движения на шве <code>ctx.position</code>: следит за скоростью персонажа и машины и отдаёт только правдоподобную позицию. Делать последним, с замером ложных откатов.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input disabled="" type="checkbox"> Тест до кода: телепорт к переработчику не проходит, обычный бег с лагом проходит.</li>
+<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input disabled="" type="checkbox"> Коммит и push.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" data-person="Богдан" data-status="todo">
+  <h3>Снег: один ответ на удар и дешёвый снимок</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>ee323d</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Снег C (`189be8`) = сеть C (`faa32b`), №7 сводки.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Исполнитель: Богдан. Снег C (<code>189be8</code>) = сеть C (<code>faa32b</code>), №7 сводки.</p>
+<p>Один пакет ответа на удар с <code>requestId</code> и стадиями целей, приходит через <code>Actions.onResult</code> из <code>ca847e</code>. Снимок снега по чанкам рядом с игроком и кэш по версии, лимит как у <code>Sync</code>.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input disabled="" type="checkbox"> Тест до кода: прогноз выше ответа правится сразу; снимок не обходит удары вне чанков игрока.</li>
+<li><input disabled="" type="checkbox"> Play: удары и снимок после перезахода.</li>
+<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input disabled="" type="checkbox"> Коммит и push.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
 </ul>
 </div></details>
 </article></div>
   <p class="board-empty" hidden>Пусто.</p>
 </section>
 <section class="board-column" data-status="doing">
-  <h3>В работе <span class="board-count">1</span></h3>
+  <h3>В работе <span class="board-count">3</span></h3>
   <div class="board-cards"><article class="board-card" data-person="Богдан" data-status="doing">
-  <h3>Мир: лобби, долина и содержимое плейса</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>ca1233</code> техработа · architecture</p>
-  <p class="board-lead">Исполнитель: Богдан. Разобрать слой мира и не менять код игры.</p>
+  <h3>Мир: скрипт запекания данных карты</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>70ff28</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Мир D (`ca1233`), №9 сводки.</p>
   
   <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Исполнитель: Богдан. Разобрать слой мира и не менять код игры.</p>
-<p>Слой: <code>MapAdapter</code>, <code>WorldRegistry</code>, <code>PartyTeleport</code>, <code>PlaceConfig</code> и то, чего нет в git: террейн, окна, модели оружия и сада в <code>place/NaLovi.rbxl</code>. Сюда же генерация растений сада в коде: <code>src/ReplicatedStorage/CleanSnowGardenAssets/PlantGenerationModules</code>.</p>
-<p><code>MapNodeIndex</code> (около 49 тысяч строк) и <code>MapPatchIndex</code> — готовые данные карты, их не читать построчно. Записать, откуда они берутся и чем их пересобрать: скрипта генерации в репозитории нет. Лобби и долина сейчас в одном плейсе. Баг <code>0205ff</code> про разделение плейсов этой карточкой не чинить: только разобрать шов между кодом и содержимым плейса.</p>
-<p>Порядок:</p>
-<ol>
-<li>Анализ: что код ищет в плейсе по именам и что сломается, если лобби и долина разъедутся.</li>
-<li>Брейншторм по skill <code>brainstorming</code>: какой интерфейс мира должен пережить два плейса.</li>
-<li>Skill <code>improve-codebase-architecture</code> только по этому слою. Словарь: module, interface, depth, seam, adapter, leverage, locality. Skill пишет HTML-отчёт во временную папку компьютера, владелец его не увидит: копию положить в <code>docs/architecture/place-world.html</code> и путь к копии записать в заметки.</li>
-</ol>
+<p>Исполнитель: Богдан. Мир D (<code>ca1233</code>), №9 сводки.</p>
+<p>Скрипт в репозитории, который в Studio по Terrain плейса забега пишет <code>SnowGroundData</code> и <code>MapPatchIndex</code>, и тест сверки схемы. <code>MapNodeIndex</code> удалить.</p>
 <h2>Готово когда</h2>
 <ul>
-<li><input checked="" disabled="" type="checkbox"> В заметках список якорей плейса, которые читает код, и где трение.</li>
-<li><input checked="" disabled="" type="checkbox"> Брейншторм записан: вопрос, варианты, рекомендация.</li>
-<li><input checked="" disabled="" type="checkbox"> Копия HTML-отчёта skill <code>improve-codebase-architecture</code> лежит в <code>docs/architecture/place-world.html</code> и показана владельцу, путь лежит в заметках.</li>
-<li><input checked="" disabled="" type="checkbox"> Код <code>src/</code> и файл плейса этой карточкой не изменены.</li>
+<li><input checked="" disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input disabled="" type="checkbox"> Пересборка даёт те же файлы, что сейчас в плейсе.</li>
+<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input disabled="" type="checkbox"> Коммит и push.</li>
 </ul>
 <h2>Оценка</h2>
 <ul>
-<li>Разбор и отчёт без правки кода</li>
+<li>Новый скрипт запекания в Studio по Terrain и сверка с данными плейса</li>
 </ul>
 <h2>Работа</h2>
 <ul>
-<li>2026-11-10 15:07 →</li>
+<li>2026-11-10 17:19 →</li>
 </ul>
 <h2>Заметки</h2>
 <ul>
-<li>Исполнитель: Богдан.</li>
-<li>Связанный баг разделения плейсов: <code>0205ff</code>. Эту карточку он не закрывает.</li>
-<li>Углубление, которое выберет владелец, заводится отдельной карточкой после сводки <code>dc68a4</code>: она сводит шесть разборов и ищет противоречия между ними.</li>
+<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
+<li>Сверка 10.11.2026 (копия плейса): данные репозитория и плейса совпадают побайтно. <code>MapPatchIndex</code> выводится из <code>SnowGroundData</code> точно (182 329 клеток, все <code>Counts</code>). Высоты: луч по Terrain, <code>round(Y×32)</code>; 99,2% точек совпали, 5 795 — ничьи на 1/64 стада, 1 815 — Terrain правили после запекания (стоянка до 0,31, две дорожки до 0,09). Зоны «без снега» рисовал утерянный скрипт — из плейса не выводятся.</li>
+<li>Решение владельца 10.11.2026: спека и план утверждены; высоты пересобрать по Terrain сейчас, зоны «без снега» оставить как есть.</li>
 </ul>
-<h3>Якоря плейса и трение (10.11.2026)</h3>
+</div></details>
+</article>
+<article class="board-card" data-person="Богдан" data-status="doing">
+  <h3>Слом снега без красивого отклика</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>9d8916</code> баг · bug</p>
+  <p class="board-lead">Воспроизвести и исправить `BUG-20261110-004` из `tasks/bugs.md`.</p>
+  <div class="board-shots"><img loading="lazy" src="../art/refs/snow-break-feedback.png" alt=""></div>
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Воспроизвести и исправить <code>BUG-20261110-004</code> из <code>tasks/bugs.md</code>.</p>
+<h2>Готово когда</h2>
 <ul>
-<li>Содержимое своей копии плейса: лобби — остров <code>LobbyArea</code> (X 6366..6633, 1.8 тыс. объектов) и <code>SpawnLocation</code>; долина — Terrain, <code>CartoonFarm</code> (33 тыс.), <code>FarmZone</code>, 221 безымянная <code>Model</code> (40 тыс.), горы, <code>SnowFar*</code>/<code>SnowPartialMeshes</code> (13 тыс.), машины и стенд оружия; <code>BrrrMechanicsTemplate</code> (4.8 тыс.) и <code>CleanSnowGardenAssets</code> (9.9 тыс.) нужны забегу. В ServerStorage 628 тыс. из 634 тыс. объектов — старые резервные копии. Файл 42 МБ, <code>StreamingEnabled</code> включён.</li>
-<li>Якоря по именам: <code>Workspace.LobbyArea</code> → <code>CleanSnowWorld.Lobby</code> (+ <code>LobbySpawn</code>, <code>QueueStations.Station01..04.Zone</code>, <code>ShopCabin</code>); <code>ServerStorage.BrrrMechanicsTemplate</code> (<code>Expedition</code>, <code>SunnyClouds</code>); <code>FarmZone.Farmhouse.GroundFloor</code>; <code>CartoonFarm.Trees</code> (сервер зверей и клиент <code>AmbientLifeController</code>); <code>CleanSnowWorld.Expedition</code> (<code>Processor</code>, <code>ShopCabin</code>, <code>Spawn</code>, <code>SunnyClouds</code>) — клиентские <code>SnowGuide</code>, <code>SnowShopGuide</code>, <code>WeatherController</code> и <code>GardenService</code>; <code>SpawnLocation</code>; <code>ReplicatedStorage.CleanSnowAssets</code>; Terrain + <code>SnowGroundData</code> + <code>MapPatchIndex</code>.</li>
-<li>Трение:<ul>
-<li><code>Bootstrap</code> на любом сервере строит долину (<code>MapAdapter.prepareWorld</code>, <code>assert</code> на <code>LobbyArea</code>) и требует лобби (<code>WorldRegistry.scan</code>, сервер падает на любой ошибке). Роль (<code>PlaceConfig.role</code>) решается только после этого. Плейс забега без лобби не стартует, плейс лобби строит пустую долину — поэтому второй плейс сейчас обязан быть копией всего файла (корень бага <code>0205ff</code>).</li>
-<li>Сервисы забега (снег, машины, звери, сад, оружие) подключаются на любой роли.</li>
-<li>Забеги на сервере лобби — сессии на одной карте со сдвигом 0, до 8 гаражей; чужих клиент прячет сам (<code>MapSessionVisibility</code>), сервер несёт все забеги.</li>
-<li>Телепорт: <code>PartyTeleport</code> (один <code>TeleportAsync</code>, GUID приватного сервера) и <code>MatchServer</code> (ждёт отряд 20 с) готовы, не хватает второго плейса и <code>MatchPlaceId</code> (0). Профиль: лобби сохраняет перед телепортом, сервер забега повторяет загрузку каждые 3 с до снятия аренды (120 с).</li>
-<li>Источник мира вне git: только <code>place/NaLovi.rbxl</code>; <code>models/*.rbxm</code> — снимки 09.11.2026, не в проекте Rojo.</li>
+<li><input checked="" disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
+<li><input checked="" disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
 </ul>
-</li>
-<li>Готовые данные карты: <code>MapPatchIndex</code> (427×427, схема 3, <code>Counts</code> по участкам) и <code>MapNodeIndex</code> (1.5 МБ, не читается) пришли импортом <code>fdfbfc8</code> 09.11.2026; генератора нет. <code>Counts</code> зависят от радиусов <code>SnowCells.Radii</code> и схемы <code>SnowBlockWorld</code> 3 — совпадение не проверяется. Пересборка — только новым скриптом в Studio по Terrain долины.</li>
-<li><code>PlantGenerationModules</code> — декомпилированный генератор растений, к шву плейса не привязан, читает <code>CleanSnowGardenAssets</code>.</li>
-</ul>
-<h3>Брейншторм (10.11.2026)</h3>
-<p>Вопрос: какой интерфейс мира переживёт два плейса — лобби и забег?</p>
+<h2>Оценка</h2>
 <ul>
-<li>A. Мир по роли места: роль решается первой, <code>World.open(role)</code> отдаёт только якоря своего места, Bootstrap подключает сервисы своей роли. Два adapter-а (лобби, долина) — настоящий seam. Strong.</li>
-<li>B. Список якорей и проверка плейса: один контракт имён и атрибутов на роль, проверка при запуске и тестом в Studio, клиент берёт якоря из него; сверка схемы <code>MapPatchIndex</code>. Strong.</li>
-<li>C. Содержимое плейсов в репозитории: два проекта Rojo, <code>models/</code> как источник, Terrain отдельно, резервные копии из ServerStorage убрать. Worth exploring.</li>
-<li>D. Скрипт запекания данных карты (<code>SnowGroundData</code>, <code>MapPatchIndex</code>) и удаление <code>MapNodeIndex</code>. Worth exploring.</li>
-<li>Рекомендация: A — без него второй плейс обязан быть копией всего мира; B сверху.</li>
+<li>Новый зримый эффект слома: вспышка, кубики и снежинки, новая текстура частиц.</li>
 </ul>
-<h3>Отчёт</h3>
+<h2>Работа</h2>
 <ul>
-<li>Копия HTML-отчёта: <code>docs/architecture/place-world.html</code>. Показан владельцу 10.11.2026.</li>
+<li>2026-11-10 16:00 →</li>
+</ul>
+<p><img src="../art/refs/snow-break-feedback.png" alt="Слом снега"></p>
+<h2>Заметки</h2>
+<ul>
+<li>Журнал: <code>BUG-20261110-004</code>.</li>
+<li>Правило владельца 10.11.2026: когда что-то ломается, всегда есть красивый зримый отзыв.</li>
+<li>Референс эффекта: <code>art/refs/snow-break-feedback.png</code>. Маленькая вспышка в точке удара — игровое решение, не ошибка сетки.</li>
+<li>Воспроизведено 10.11.2026 по коду: при сломе были только надпись, облачко и щепки; <code>SnowBreakSparkles</code> выключены (<code>SparklesEnabled=false</code>), вспышки слома нет.</li>
+<li>Решение владельца 10.11.2026: снежинки — картинкой ChatGPT Image. Готовой не нашлось, сгенерирована <code>art/vfx/snowflake.png</code> (попытка 1).</li>
+<li>Решение владельца 10.11.2026: снежинку в Roblox пока не грузим, «позже меня добавят в плейс и загрузим». Записано в <code>art/import.md</code>. До загрузки снежинок в игре нет, вспышка и кубики есть.</li>
+<li>Сделано: <code>SnowBreakRecipe</code> + <code>SnowBreakBurst</code>, вызов из <code>MapSnowFeedback.event</code>. Тест 4 из 4, <code>npm run check</code> чисто, Play и кадры показаны владельцу.</li>
+<li>В Studio плейс с текущим рабочим деревом не стартовал из-за чужой незакоммиченной правки (нет <code>BrrrMechanicsTemplate.SnowTruck</code>); проверял на коде из HEAD плюс свои файлы.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" data-person="Богдан" data-status="doing">
+  <h3>Контракт: каталог отвечает на вопросы, уборка мёртвого кода</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>f7143c</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Контракт B и D (`bae98a`) и мёртвый код из сводки.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Исполнитель: Богдан. Контракт B и D (<code>bae98a</code>) и мёртвый код из сводки.</p>
+<p>Вопросы к каталогу (<code>isShovel</code> — сейчас три копии, включая <code>StrikeRules</code>; бросок мутации; цена снега; цена предмета) — в <code>Catalog</code>/<code>Balance</code>. Удалить 18 мёртвых полей <code>Balance</code>, <code>Shared/Types.luau</code>, мёртвую копию <code>Shared/ReferenceSnow</code>. <code>LeaderboardPage</code>: схема пускает 4 метрики, сервис 2 — если не вошло в <code>ca847e</code>.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input disabled="" type="checkbox"> Тесты каталога и затронутых сервисов проходят.</li>
+<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input disabled="" type="checkbox"> Коммит и push.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Меняет общий контракт Shared, сервисы сервера и HUD, удаляет модули</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 17:19 →</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
+<li>Решение владельца 10.11.2026: спека и план утверждены (вопросы к каталогу — в <code>Balance</code>, 13 мёртвых полей, <code>Types</code>, мёртвая часть <code>ReferenceSnow</code>); <code>SnowGuide</code>, <code>SnowShopGuide</code>, путь <code>SnowChips</code> не трогать — их правят другие чаты. <code>LeaderboardPage</code> — в <code>ca847e</code>.</li>
 </ul>
 </div></details>
 </article></div>
   <p class="board-empty" hidden>Пусто.</p>
 </section>
 <section class="board-column" data-status="paused">
-  <h3>Пауза <span class="board-count">0</span></h3>
-  <div class="board-cards"></div>
-  <p class="board-empty">Пусто.</p>
+  <h3>Пауза <span class="board-count">1</span></h3>
+  <div class="board-cards"><article class="board-card" data-person="Богдан" data-status="paused">
+  <h3>Лобби и долина в одном плейсе, переход в забег грузит весь мир</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>0205ff</code> баг · bug</p>
+  <p class="board-lead">Воспроизвести и исправить `BUG-20261110-001` из `tasks/bugs.md`.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Воспроизвести и исправить <code>BUG-20261110-001</code> из <code>tasks/bugs.md</code>.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
+<li><input disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Два плейса, телепорт отряда и сборка файлов плейса.</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 17:22 → 2026-11-10 17:23</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Пауза 2026-11-10 17:23: Ждёт владельца: создать второй плейс, выложить файлы, прислать id для MatchPlaceId и проверить двумя аккаунтами</li>
+<li>Журнал: <code>BUG-20261110-001</code>.</li>
+<li>Перед стартом нужен spec-plan: это смена устройства мест и телепорта, не локальная правка.</li>
+<li>Способ Roblox для нового кода (документация и объявление 28.10.2026): один <code>TeleportAsync</code> с сервера, <code>ReservedServerId</code> — GUID с <code>HttpService:GenerateGUID(false)</code>. Так отряд попадает на один приватный сервер. <code>ReserveServer</code>, <code>ShouldReserveServer</code> и <code>ReservedServerAccessCode</code> для новой работы не использовать. Этот GUID в <code>PartyTeleport</code> уже есть; не хватает второго плейса и включённого <code>MatchPlaceId</code>.</li>
+<li>Публикация второго плейса только по слову владельца. В Studio настоящий телепорт не проверить.</li>
+<li>Решение владельца 10.11.2026 (сводка <code>dc68a4</code>): второй плейс — после жизненного цикла сервера <code>c0a127</code> и проверки якорей <code>7d4287</code>. Мир по роли места <code>c02288</code> готов.</li>
+<li>Решение владельца 10.11.2026 (при старте бага): сначала <code>c0a127</code> и <code>7d4287</code> в этой же сессии, потом баг. <code>ca847e</code> (одна дверь к серверу) не ждать: телепорту она не нужна.</li>
+<li>Решение владельца 10.11.2026: спека и план утверждены, делаю сам, одно ревью в конце.</li>
+<li>10.11.2026: воспроизведено — в Studio из лобби видна долина, старт забега переносит персонажа внутри того же сервера (<code>MatchPlaceId = 0</code>).</li>
+<li>10.11.2026: код в <code>a9537b7</code> (<code>PartyTeleport</code>, проверка якорей). Собраны <code>place/NaLovi-Lobby.rbxl</code> (было 42,2 МБ и 734 987 объектов, стало 2,1 МБ и 12 277: остров, горы на горизонте, Terrain только у острова, пустые <code>SnowFarMeshes</code>/<code>SnowFarSlabs</code> для клиента, <code>CleanSnowGardenAssets</code> нужны клиенту для иконки грабель) и <code>place/NaLovi-Match.rbxl</code> (15,7 МБ, 104 260 объектов: без <code>LobbyArea</code> и резервных копий в ServerStorage). В обоих <code>StudioRole</code> задан. Play: лобби — остров без долины; долина — забег стартует сам.</li>
+<li>Перед публикацией обновить скрипты в обоих файлах из <code>main</code> (rojo): в сохранённых файлах код рабочей папки на 10.11.2026 вместе с незаконченной работой других сессий.</li>
+</ul>
+</div></details>
+</article></div>
+  <p class="board-empty" hidden>Пусто.</p>
 </section>
 <section class="board-column" data-status="done">
-  <h3>Готово <span class="board-count">9</span></h3>
+  <h3>Готово <span class="board-count">18</span></h3>
   <div class="board-cards"><article class="board-card" data-person="Богдан" data-status="done">
+  <h3>Рядом с игроком нет снега: поверхность исчерпала память</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>026145</code> баг · bug</p>
+  <p class="board-lead">Воспроизвести и исправить `BUG-20261110-003` из `tasks/bugs.md`.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Воспроизвести и исправить <code>BUG-20261110-003</code> из <code>tasks/bugs.md</code>.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
+<li><input checked="" disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Известный дефект с воспроизведением: дальнее кольцо держит неизменяемые сетки в бюджете EditableMesh. Правка локальная в SnowSurface и повторах NearSnow, без нового поведения игрока.</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 16:18 → 2026-11-10 16:37</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Журнал: <code>BUG-20261110-003</code>.</li>
+<li>10.11.2026, владелец: зелёная земля — ферма под снегом, так и задумано. Дефект карточки, если он останется, только про белый покров, который не собрался из-за памяти сетки.</li>
+<li>10.11.2026: вопросы <code>Q-20261110-002</code> и <code>Q-20261110-003</code> отвечены. Чиним расход памяти EditableMesh: ошибок бюджета в Output быть не должно, при нехватке снег у ног деградирует до брусков. Удар и сдача не дефект.</li>
+<li>10.11.2026: причина — уходящие чанки держали сетки, пока строилось новое окно. Исправлено в <code>SnowSurface</code>, <code>NearSnow</code>, новом <code>SnowSurfaceBudget</code> и повторах <code>MapSnowController</code>; тесты <code>SnowSurface_Test</code>, <code>SnowSurfaceBudget_Test</code> 4/4, <code>npm run check</code> чисто, Play без строк про память. Кадры: заметки сессии, <code>near-snow-026145/03_fix_pressure.jpg</code>, <code>04_fix_after_tour.jpg</code>. Код ждёт слова владельца на коммит.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" data-person="Богдан" data-status="done">
   <h3>Снег: поле, удар и картинка</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>189be8</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Разобрать слой снега и не менять код игры.</p>
@@ -639,6 +786,168 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <h3>Решение</h3>
 <ul>
 <li>Решение владельца 10.11.2026: кандидат A — прочность клетки в одном модуле (участок по точке, HP, тип снега, урон → стадия → слои), общий для сервера, прогноза и эффектов.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" data-person="Богдан" data-status="done">
+  <h3>По умолчанию кулаки, нужна ложка</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>272a6c</code> баг · bug</p>
+  <p class="board-lead">Воспроизвести и исправить `BUG-20261110-005` из `tasks/bugs.md`.</p>
+  <div class="board-shots"><img loading="lazy" src="../art/refs/default-spoon.png" alt=""></div>
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Воспроизвести и исправить <code>BUG-20261110-005</code> из <code>tasks/bugs.md</code>.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
+<li><input checked="" disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Замена стартового инструмента: каталог, миграция старых профилей на сервере, вид от первого лица и HUD.</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 15:59 → 2026-11-10 17:05</li>
+</ul>
+<p><img src="../art/refs/default-spoon.png" alt="Ложка от первого лица"></p>
+<h2>Заметки</h2>
+<ul>
+<li>Журнал: <code>BUG-20261110-005</code>.</li>
+<li>Референс: <code>art/refs/default-spoon.png</code>. Кулаки убрать, по умолчанию одна ложка.</li>
+<li>10.11.2026: воспроизведено в Play до правки — два белых кулака, в каталоге <code>Hands</code>. Исправлено: <code>Catalog.StarterTool = &quot;SnowSpoon&quot;</code>, миграция в <code>ProfileService.sanitize</code>, вид ложки из модели стойки (<code>SpoonArt</code>), иконка и подписи хотбара <code>SPOON</code>/<code>SCOOP</code>.</li>
+<li>Проверка: тесты <code>Catalog</code>, <code>ProfileService</code>, <code>ShopService</code>, <code>NetSchema</code>, <code>StrikeRules</code>; <code>npm run check</code> без новых замечаний; Play — в руке только ложка, сервер засчитывает удар с уроном 1, снег ломается (цель 2/6, мешок 2/5), Output без новых ошибок.</li>
+<li>Вне задачи: переименовать <code>SnowFistsView</code>; растровая иконка ложки; кулаки в <code>VisualPreviewController</code>.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" data-person="Богдан" data-status="done">
+  <h3>Сервер: одно ядро хранилища профиля</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>624075</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Сервер D (`e3afec`), №15 сводки.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Исполнитель: Богдан. Сервер D (<code>e3afec</code>), №15 сводки.</p>
+<p>Одно ядро протокола аренды профиля и два adapter-а: DataStore (повторы, бюджет) и память (сбои для тестов).</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input checked="" disabled="" type="checkbox"> Тесты профиля проходят на обоих adapter-ах.</li>
+<li><input checked="" disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input checked="" disabled="" type="checkbox"> Коммит и push.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Меняет протокол аренды профиля в DataStore: ошибка ведёт к потере сохранений</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 17:10 → 2026-11-10 17:21</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
+<li>Решение владельца 10.11.2026: одно ядро протокола аренды (<code>Storage/ProfileLease</code>) и два adapter-а; спека и план утверждены, делаю сам.</li>
+<li>10.11.2026: ядро <code>Storage/ProfileLease.luau</code>, DataStore и память — только функция записи. Сбой памяти <code>FailAfterWrite</code> раньше не срабатывал (сравнивал запись саму с собой) — теперь запись остаётся, ответ теряется, как у DataStore. Тесты <code>ProfileStore_Test</code> на обоих adapter-ах (DataStore — поддельный <code>UpdateAsync</code> в памяти): Profile 14/14, Wallet 9/9. <code>npm run check</code> без новых замечаний.</li>
+<li>10.11.2026: Play в копии плейса (роль Lobby, хранилище Memory, модули хранилища из <code>src</code>): «profile ready … Memory», выгрузка при остановке без ошибок; в Output только известные чужие приватные картинки.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" data-person="Богдан" data-status="done">
+  <h3>Мир: список якорей и проверка плейса</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>7d4287</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Мир B из `docs/architecture/place-world.html` (`ca1233`), №3 сводки.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Исполнитель: Богдан. Мир B из <code>docs/architecture/place-world.html</code> (<code>ca1233</code>), №3 сводки.</p>
+<p>Один модуль-контракт: какие имена и атрибуты должны быть в плейсе каждой роли. Сервер проверяет его при запуске, клиент (<code>SnowGuide</code>, <code>WeatherController</code>, <code>AmbientLifeController</code>, <code>SnowShopGuide</code>) берёт якоря из него. Сверка <code>MapPatchIndex.Schema</code> с <code>SnowBlockWorld.SchemaVersion</code>. Нужен до второго плейса (<code>0205ff</code>).</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input checked="" disabled="" type="checkbox"> Тест до кода: плейс без якоря своей роли даёт понятную ошибку; якорь чужой роли не требуется.</li>
+<li><input checked="" disabled="" type="checkbox"> Play в ролях Lobby и Match.</li>
+<li><input checked="" disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input checked="" disabled="" type="checkbox"> Коммит и push.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Новый модуль-контракт мира, проверка плейса при запуске и клиентские якоря.</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 17:22 → 2026-11-10 17:22</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
+<li>Решение владельца 10.11.2026 (при старте бага <code>0205ff</code>): делать сейчас, до второго плейса; <code>ca847e</code> не ждать.</li>
+<li>Решение владельца 10.11.2026: спека и план утверждены, делаю сам, одно ревью в конце.</li>
+<li>10.11.2026: код готов — <code>Shared/PlaceAnchors.luau</code> (список, <code>check</code>, <code>world</code>), проверка в <code>Bootstrap</code> до сборки мира, клиент берёт якоря из <code>world</code>. Тесты <code>PlaceAnchors</code> и <code>PlaceWorld</code> прошли. После ревью: путь грузовика <code>Expedition.SnowTruck</code>, <code>Expedition.Spawn</code> и <code>ShopCabin.Displays</code> — обязательные (MapAdapter без них падает).</li>
+<li>10.11.2026: Play в ролях Lobby и Match без ошибок. Без <code>Processor</code> в шаблоне сервер останавливается: «Плейс забега: нет ServerStorage.BrrrMechanicsTemplate.Expedition.Processor (MapAdapter)». В список добавлены <code>SnowCleaningDemo</code>, <code>SnowFarMeshes</code>, <code>SnowFarSlabs</code> в Workspace для обоих плейсов: клиент снега ждёт их при запуске, без них лобби не догрузится. Тесты <code>PlaceAnchors</code> 14/14. Коммит <code>a9537b7</code>.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" data-person="Богдан" data-status="done">
+  <h3>Клиент: показ и ввод</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>7e9ffc</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Разобрать клиентский слой и не менять код игры.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Исполнитель: Богдан. Разобрать клиентский слой и не менять код игры.</p>
+<p>Слой: <code>src/StarterPlayer/StarterPlayerScripts/CleanSnow</code>. <code>Bootstrap.client</code> включает контроллеры. Они рисуют и шлют намерение. Окна <code>StarterGui/CleanSnowUI</code> почти целиком лежат в плейсе, не в репозитории. Вождение лежит вне папки <code>CleanSnow</code>, но тоже сюда: <code>src/StarterPlayer/StarterPlayerScripts/VehicleDrivingClient.client.luau</code>.</p>
+<p>Клиентские модули снега (<code>MapSnowController</code>, <code>NearSnow</code> и <code>SnowCut*</code>) разбирает карточка <code>189be8</code>: здесь только отметить, как остальной клиент с ними связан.</p>
+<p>Порядок:</p>
+<ol>
+<li>Анализ: какие контроллеры только рисуют, а какие сами решают правило игры.</li>
+<li>Брейншторм по skill <code>brainstorming</code>: какой показ должен стать одним глубоким модулем.</li>
+<li>Skill <code>improve-codebase-architecture</code> только по этому слою. Словарь: module, interface, depth, seam, adapter, leverage, locality. Skill пишет HTML-отчёт во временную папку компьютера, владелец его не увидит: копию положить в <code>docs/architecture/client-view.html</code> и путь к копии записать в заметки.</li>
+</ol>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> В заметках список контроллеров и где трение.</li>
+<li><input checked="" disabled="" type="checkbox"> Брейншторм записан: вопрос, варианты, рекомендация.</li>
+<li><input checked="" disabled="" type="checkbox"> Копия HTML-отчёта skill <code>improve-codebase-architecture</code> лежит в <code>docs/architecture/client-view.html</code> и показана владельцу, путь лежит в заметках.</li>
+<li><input checked="" disabled="" type="checkbox"> Код <code>src/</code> этой карточкой не изменён.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Разбор клиентского слоя без правки кода</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 15:45 → 2026-11-10 15:49</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Отчёт: <code>docs/architecture/client-view.html</code>.</li>
+<li>Контроллеры:<ul>
+<li>только рисуют: Weather, WorldFx, AmbientLife, ForestAnimal, DropAtmosphere, Loading, Intro, CounterFeedback, Vehicle*-визуалы, спреи, SnowIslandFx, SnowPartialVisuals, ReferenceSnowDrops, MapSessionVisibility;</li>
+<li>подсказки по состоянию: Tutorial, SnowGuide, SnowShopGuide, SnowUpgradeFocus (хватает ли монет — только показ);</li>
+<li>окна: InterfaceController (63 КБ; отказы до сервера и тексты ошибок), SnowMatchHud (внутри MapSnowController; автоподбор);</li>
+<li>ввод: ExperienceController, WeaponController (выбор цели, паузы по формулам Balance);</li>
+<li>свой канал: GardenController (<code>Remotes.Garden</code>), VehicleDrivingClient (<code>VehicleDrivingInput</code>), DevPanel;</li>
+<li>сборка: Bootstrap.client (<code>send</code>: NetSchema, ожидание 8 с, синхронизация), StateStore, GuiLookup.</li>
+</ul>
+</li>
+<li>Трение:<ul>
+<li>четыре двери к серверу; <code>SnowMatchHud</code> шлёт <code>ActionRequest</code> мимо <code>send</code>;</li>
+<li>автоподбор в двух местах, <code>InterfaceController.result</code> гасит лишние отказы заплаткой;</li>
+<li>ответы, состояние, события и кадр раздаются вручную (12 + 5 + 5 вызовов);</li>
+<li>паузы и радиус подбора повторяют Balance на клиенте;</li>
+<li>окна ищут имена из плейса при открытии, списка нет.</li>
+</ul>
+</li>
+<li>Связи со снегом (189be8): <code>MapSnowController</code> создаёт <code>SnowMatchHud</code>; удар получает снег через <code>setReferenceSnow</code>; ответ на удар идёт в снег из Bootstrap.</li>
+<li>Брейншторм. Вопрос: какой показ стать одним глубоким модулем? Варианты:<ul>
+<li>A. Одна дверь к серверу (<code>Actions</code>: send и раздача ответов), Strong;</li>
+<li>B. Показ по одной форме, Worth exploring;</li>
+<li>C. Окна по одному и список имён, Worth exploring;</li>
+<li>D. Главная кнопка, Speculative (вместе с B снега).
+Рекомендация A: единственный шов с ошибкой в поведении, тестируется без Studio. Пересекается с B разбора сети (сад).</li>
+</ul>
+</li>
+<li>Исполнитель: Богдан.</li>
+<li>Углубление, которое выберет владелец, заводится отдельной карточкой после сводки <code>dc68a4</code>: она сводит шесть разборов и ищет противоречия между ними.</li>
+<li>Решение владельца 10.11.2026: кандидат A — одна дверь к серверу (<code>Actions</code>: send и раздача ответов, автоподбор в одном месте, сад через неё).</li>
 </ul>
 </div></details>
 </article>
@@ -794,6 +1103,77 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </div></details>
 </article>
 <article class="board-card" data-person="Богдан" data-status="done">
+  <h3>Мир: сервер строит только своё место по роли</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>c02288</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Исправление по разбору мира `ca1233` (кандидат A, `docs/architecture/place-world.html`). Готовит баг `0205ff` (два плейса), но его не закрывает: второй плейс и `MatchPlaceId` — по слову владельца.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Исполнитель: Богдан. Исправление по разбору мира <code>ca1233</code> (кандидат A, <code>docs/architecture/place-world.html</code>). Готовит баг <code>0205ff</code> (два плейса), но его не закрывает: второй плейс и <code>MatchPlaceId</code> — по слову владельца.</p>
+<p>Сейчас любой сервер строит долину (<code>MapAdapter.prepareWorld</code>, <code>assert</code> на <code>Workspace.LobbyArea</code>) и требует лобби (<code>WorldRegistry.scan</code>), а роль (<code>PlaceConfig.role</code>) решается после. Поэтому плейс забега без острова лобби не стартует, и второй плейс обязан быть копией всего мира. Сервисы забега (снег, машины, звери, сад, оружие) поднимаются и на лобби.</p>
+<p>Сделать: роль решается первой; мир открывается по роли и отдаёт только якоря своего места (Lobby: спавн, зоны очереди, магазин; Match: старт, участки, переработчик, гаражи, ферма); Bootstrap подключает сервисы своей роли. Пока <code>MatchPlaceId = 0</code>, лобби по-прежнему проводит забеги у себя — это поведение не меняется.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input checked="" disabled="" type="checkbox"> Тест до кода: мир роли Lobby открывается без долины, мир роли Match — без острова лобби; текущий плейс в роли Lobby (забеги на месте) открывается как сейчас.</li>
+<li><input checked="" disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний, тесты мира проходят.</li>
+<li><input checked="" disabled="" type="checkbox"> Живой Play в Studio в обеих ролях (<code>StudioRole</code>): лобби и забег стартуют, Output без ошибок, кадры.</li>
+<li><input checked="" disabled="" type="checkbox"> Коммит и push.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Запуск сервера, мир и проверка якорей по роли места</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>10.11.2026: <code>PlaceConfig.layout</code> (лобби, забеги или оба), <code>WorldRegistry.scan</code> и <code>MapAdapter.prepareWorld</code> по раскладке, <code>Bootstrap</code> поднимает сервисы забега только там, где есть забеги. В лобби без забегов очередь получает ответ <code>NoMatchPlace</code> (табло — <code>TeleportFailed</code>). <code>GardenController</code> ждёт <code>Remotes.Garden</code> без предупреждения.</li>
+<li>Проверка: <code>npm run check</code> без новых замечаний; <code>test:game</code> PlaceWorld 4/4, ShopService 14/14. Play на копии плейса: без роли — заход в забег, в долине; <code>Lobby</code> — долины и сессий нет, свой <code>Lobby.ShopCabin</code> есть, очередь не стартует; <code>Match</code> — острова <code>LobbyArea</code> нет, игрок в долине, сессия стартовала. Output без ошибок игры (только чужие приватные картинки).</li>
+<li>2026-11-10 15:24 → 2026-11-10 15:30</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 10.11.2026: кандидат A из разбора <code>ca1233</code>.</li>
+<li>Связан с багом <code>0205ff</code>.</li>
+<li>Решение владельца 10.11.2026: спека <code>docs/superpowers/specs/2026-11-10-place-role-world-design.md</code> утверждена, остров лобби в плейсе забега удаляется. План — <code>docs/superpowers/plans/2026-11-10-place-role-world.md</code>.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" data-person="Богдан" data-status="done">
+  <h3>Сервер: жизненный цикл игрока и забега</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>c0a127</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Сервер B из `docs/architecture/server-rules.html` (`e3afec`), №2 сводки.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Исполнитель: Богдан. Сервер B из <code>docs/architecture/server-rules.html</code> (<code>e3afec</code>), №2 сводки.</p>
+<p>Один модуль владеет списком сервисов и их событиями жизни: начало и конец забега, игрок ушёл, умер, tick. Bootstrap только передаёт события Roblox. Забрать блок <code>if layout.runs</code> и проверки <code>if ctx.forestAnimals</code> из <code>c02288</code>, сохранив выбор сервисов по роли места. Сюда же частота <code>ExtrasService.flushActivity</code> (запись в DataStore раз в 15 с).</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input checked="" disabled="" type="checkbox"> Тест до кода: игрок ушёл → каждый сервис получил выход один раз; сервис забега не регистрируется в роли «только лобби».</li>
+<li><input checked="" disabled="" type="checkbox"> Play в трёх ролях (<code>StudioRole</code>), выход и смерть игрока в забеге; Output без ошибок.</li>
+<li><input checked="" disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input checked="" disabled="" type="checkbox"> Коммит и push.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Меняет запуск всех сервисов сервера и порядок событий выхода игрока.</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 16:08 → 2026-11-10 17:22</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
+<li>Решение владельца 10.11.2026 (при старте бага <code>0205ff</code>): делать сейчас, до второго плейса; <code>ca847e</code> не ждать.</li>
+<li>Решение владельца 10.11.2026: спека и план утверждены, делаю сам, одно ревью в конце.</li>
+<li>10.11.2026: код готов — <code>Lifecycle.luau</code>, список строк в <code>RuntimeFactory</code> (<code>plan(layout)</code>), <code>Bootstrap</code> только события Roblox, садовник уходит с игроком, время в игре через <code>commitChoice</code>. <code>npm run check</code> без новых замечаний. Тесты и Play — одним заходом вместе с <code>7d4287</code> и <code>0205ff</code>.</li>
+<li><code>WeaponService</code> по-прежнему сам слушает <code>PlayerRemoving</code>: файл правит сессия ложки (<code>272a6c</code>); перевести на <code>playerLeft</code> после неё.</li>
+<li>10.11.2026: Play в своей копии плейса. Без роли: забег, смерть (забег идёт дальше), «В лобби», выход игрока посреди забега — Output без ошибок <code>CleanSnow lifecycle</code>. Роль Lobby: снега нет, старт забега отвечает <code>NoMatchPlace</code>. Роль Match: забег стартует сам, смерть и «В лобби» без ошибок. Тесты <code>Lifecycle</code> 10/10. Коммит <code>a9537b7</code>.</li>
+<li>10.11.2026: тесты <code>Lifecycle</code> 8/8 прошли. После ревью: выход игрока не идёт дважды (закрытие сервера + <code>PlayerRemoving</code>), ошибка в начале забега снова откатывает старт (<code>SessionService</code>). Тесты на оба добавлены.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" data-person="Богдан" data-status="done">
   <h3>Лимит в схеме пакета</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>c687b8</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Исправление по разбору сети `faa32b` (кандидат A, `docs/architecture/network-seam.html`).</p>
@@ -835,6 +1215,76 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <li><code>npm run test:game</code>: NetSchema 3 из 3, ShopService 14 из 14, DevWallet 4 из 4.</li>
 <li>Живой Play на копии плейса (своё окно Studio, закрыто): смена настройки и инструмента — <code>OK</code>. 10 смен инструмента за 0.5 с с клиента: 4 прошли, 6 получили <code>RateLimited</code>. В Output ошибок скриптов нет, только известные предупреждения о чужих приватных картинках. Кадр: <code>packet-limits-play.jpg</code>.</li>
 <li>Страницы <code>guide/</code> эти числа не читают, пересборка не нужна.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" data-person="Богдан" data-status="done">
+  <h3>Мир: лобби, долина и содержимое плейса</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>ca1233</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Разобрать слой мира и не менять код игры.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Исполнитель: Богдан. Разобрать слой мира и не менять код игры.</p>
+<p>Слой: <code>MapAdapter</code>, <code>WorldRegistry</code>, <code>PartyTeleport</code>, <code>PlaceConfig</code> и то, чего нет в git: террейн, окна, модели оружия и сада в <code>place/NaLovi.rbxl</code>. Сюда же генерация растений сада в коде: <code>src/ReplicatedStorage/CleanSnowGardenAssets/PlantGenerationModules</code>.</p>
+<p><code>MapNodeIndex</code> (около 49 тысяч строк) и <code>MapPatchIndex</code> — готовые данные карты, их не читать построчно. Записать, откуда они берутся и чем их пересобрать: скрипта генерации в репозитории нет. Лобби и долина сейчас в одном плейсе. Баг <code>0205ff</code> про разделение плейсов этой карточкой не чинить: только разобрать шов между кодом и содержимым плейса.</p>
+<p>Порядок:</p>
+<ol>
+<li>Анализ: что код ищет в плейсе по именам и что сломается, если лобби и долина разъедутся.</li>
+<li>Брейншторм по skill <code>brainstorming</code>: какой интерфейс мира должен пережить два плейса.</li>
+<li>Skill <code>improve-codebase-architecture</code> только по этому слою. Словарь: module, interface, depth, seam, adapter, leverage, locality. Skill пишет HTML-отчёт во временную папку компьютера, владелец его не увидит: копию положить в <code>docs/architecture/place-world.html</code> и путь к копии записать в заметки.</li>
+</ol>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> В заметках список якорей плейса, которые читает код, и где трение.</li>
+<li><input checked="" disabled="" type="checkbox"> Брейншторм записан: вопрос, варианты, рекомендация.</li>
+<li><input checked="" disabled="" type="checkbox"> Копия HTML-отчёта skill <code>improve-codebase-architecture</code> лежит в <code>docs/architecture/place-world.html</code> и показана владельцу, путь лежит в заметках.</li>
+<li><input checked="" disabled="" type="checkbox"> Код <code>src/</code> и файл плейса этой карточкой не изменены.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Разбор и отчёт без правки кода</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 15:07 → 2026-11-10 15:16</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Исполнитель: Богдан.</li>
+<li>Связанный баг разделения плейсов: <code>0205ff</code>. Эту карточку он не закрывает.</li>
+<li>Углубление, которое выберет владелец, заводится отдельной карточкой после сводки <code>dc68a4</code>: она сводит шесть разборов и ищет противоречия между ними.</li>
+</ul>
+<h3>Якоря плейса и трение (10.11.2026)</h3>
+<ul>
+<li>Содержимое своей копии плейса: лобби — остров <code>LobbyArea</code> (X 6366..6633, 1.8 тыс. объектов) и <code>SpawnLocation</code>; долина — Terrain, <code>CartoonFarm</code> (33 тыс.), <code>FarmZone</code>, 221 безымянная <code>Model</code> (40 тыс.), горы, <code>SnowFar*</code>/<code>SnowPartialMeshes</code> (13 тыс.), машины и стенд оружия; <code>BrrrMechanicsTemplate</code> (4.8 тыс.) и <code>CleanSnowGardenAssets</code> (9.9 тыс.) нужны забегу. В ServerStorage 628 тыс. из 634 тыс. объектов — старые резервные копии. Файл 42 МБ, <code>StreamingEnabled</code> включён.</li>
+<li>Якоря по именам: <code>Workspace.LobbyArea</code> → <code>CleanSnowWorld.Lobby</code> (+ <code>LobbySpawn</code>, <code>QueueStations.Station01..04.Zone</code>, <code>ShopCabin</code>); <code>ServerStorage.BrrrMechanicsTemplate</code> (<code>Expedition</code>, <code>SunnyClouds</code>); <code>FarmZone.Farmhouse.GroundFloor</code>; <code>CartoonFarm.Trees</code> (сервер зверей и клиент <code>AmbientLifeController</code>); <code>CleanSnowWorld.Expedition</code> (<code>Processor</code>, <code>ShopCabin</code>, <code>Spawn</code>, <code>SunnyClouds</code>) — клиентские <code>SnowGuide</code>, <code>SnowShopGuide</code>, <code>WeatherController</code> и <code>GardenService</code>; <code>SpawnLocation</code>; <code>ReplicatedStorage.CleanSnowAssets</code>; Terrain + <code>SnowGroundData</code> + <code>MapPatchIndex</code>.</li>
+<li>Трение:<ul>
+<li><code>Bootstrap</code> на любом сервере строит долину (<code>MapAdapter.prepareWorld</code>, <code>assert</code> на <code>LobbyArea</code>) и требует лобби (<code>WorldRegistry.scan</code>, сервер падает на любой ошибке). Роль (<code>PlaceConfig.role</code>) решается только после этого. Плейс забега без лобби не стартует, плейс лобби строит пустую долину — поэтому второй плейс сейчас обязан быть копией всего файла (корень бага <code>0205ff</code>).</li>
+<li>Сервисы забега (снег, машины, звери, сад, оружие) подключаются на любой роли.</li>
+<li>Забеги на сервере лобби — сессии на одной карте со сдвигом 0, до 8 гаражей; чужих клиент прячет сам (<code>MapSessionVisibility</code>), сервер несёт все забеги.</li>
+<li>Телепорт: <code>PartyTeleport</code> (один <code>TeleportAsync</code>, GUID приватного сервера) и <code>MatchServer</code> (ждёт отряд 20 с) готовы, не хватает второго плейса и <code>MatchPlaceId</code> (0). Профиль: лобби сохраняет перед телепортом, сервер забега повторяет загрузку каждые 3 с до снятия аренды (120 с).</li>
+<li>Источник мира вне git: только <code>place/NaLovi.rbxl</code>; <code>models/*.rbxm</code> — снимки 09.11.2026, не в проекте Rojo.</li>
+</ul>
+</li>
+<li>Готовые данные карты: <code>MapPatchIndex</code> (427×427, схема 3, <code>Counts</code> по участкам) и <code>MapNodeIndex</code> (1.5 МБ, не читается) пришли импортом <code>fdfbfc8</code> 09.11.2026; генератора нет. <code>Counts</code> зависят от радиусов <code>SnowCells.Radii</code> и схемы <code>SnowBlockWorld</code> 3 — совпадение не проверяется. Пересборка — только новым скриптом в Studio по Terrain долины.</li>
+<li><code>PlantGenerationModules</code> — декомпилированный генератор растений, к шву плейса не привязан, читает <code>CleanSnowGardenAssets</code>.</li>
+</ul>
+<h3>Брейншторм (10.11.2026)</h3>
+<p>Вопрос: какой интерфейс мира переживёт два плейса — лобби и забег?</p>
+<ul>
+<li>A. Мир по роли места: роль решается первой, <code>World.open(role)</code> отдаёт только якоря своего места, Bootstrap подключает сервисы своей роли. Два adapter-а (лобби, долина) — настоящий seam. Strong.</li>
+<li>B. Список якорей и проверка плейса: один контракт имён и атрибутов на роль, проверка при запуске и тестом в Studio, клиент берёт якоря из него; сверка схемы <code>MapPatchIndex</code>. Strong.</li>
+<li>C. Содержимое плейсов в репозитории: два проекта Rojo, <code>models/</code> как источник, Terrain отдельно, резервные копии из ServerStorage убрать. Worth exploring.</li>
+<li>D. Скрипт запекания данных карты (<code>SnowGroundData</code>, <code>MapPatchIndex</code>) и удаление <code>MapNodeIndex</code>. Worth exploring.</li>
+<li>Рекомендация: A — без него второй плейс обязан быть копией всего мира; B сверху.</li>
+</ul>
+<h3>Отчёт</h3>
+<ul>
+<li>Копия HTML-отчёта: <code>docs/architecture/place-world.html</code>. Показан владельцу 10.11.2026.</li>
+</ul>
+<h3>Решение</h3>
+<ul>
+<li>Решение владельца 10.11.2026: кандидат A — мир по роли места (роль решается первой, мир открывает только якоря своего места, сервисы подключаются по роли).</li>
 </ul>
 </div></details>
 </article>
@@ -918,6 +1368,53 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <li>Журнал: <code>BUG-20261110-006</code>.</li>
 <li>Воспроизведено в Play на своей копии плейса: удар из лога в точку <code>(-10.98, 199.61)</code> на старом модуле — <code>NotExposed</code>. Причина: граница узла режет клетку поля, клетка очищена сломанным соседом, а стена целого узла висит в соседней клетке.</li>
 <li>Исправлено в <code>961260b</code> (<code>SnowHitValidation.ResolveContact</code> бьёт по ближайшему снегу того же узла в двух клетках). Тот же удар на новом модуле — <code>OK</code>. <code>SnowHitValidation_Test</code> 3/3, <code>npm run check</code> без новых замечаний.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" data-person="Богдан" data-status="done">
+  <h3>Сводка шести разборов архитектуры и порядок работ</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>dc68a4</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Свести шесть разборов слоёв в одну картину и не менять код игры.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Исполнитель: Богдан. Свести шесть разборов слоёв в одну картину и не менять код игры.</p>
+<p>Входы — копии HTML-отчётов в <code>docs/architecture/</code> и заметки карточек:</p>
+<ul>
+<li><code>189be8</code> снег;</li>
+<li><code>7e9ffc</code> клиент;</li>
+<li><code>bae98a</code> общий контракт;</li>
+<li><code>ca1233</code> мир и плейс;</li>
+<li><code>e3afec</code> сервер;</li>
+<li><code>faa32b</code> сеть.</li>
+</ul>
+<p>Порядок:</p>
+<ol>
+<li>Собрать всех кандидатов на углубление из шести отчётов в одну таблицу: слой, модуль, что выигрываем, чего стоит.</li>
+<li>Найти, где отчёты предлагают разное для одного модуля (<code>RuntimeFactory</code>, <code>RemotesRouter</code>, сервисы снега, <code>PlaceConfig</code>) или где одно углубление зависит от другого.</li>
+<li>Брейншторм по skill <code>brainstorming</code>: какой порядок работ, что даёт больше всего пользы игроку и меньше всего ломает. Учесть открытый баг разделения плейсов <code>0205ff</code>.</li>
+<li>Показать владельцу сводку и вопрос с вариантами порядка, рекомендуемый первым с «(Рекомендую)».</li>
+</ol>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> В <code>docs/architecture/summary.md</code> таблица всех кандидатов из шести отчётов.</li>
+<li><input checked="" disabled="" type="checkbox"> Названы противоречия между отчётами и как их развести.</li>
+<li><input checked="" disabled="" type="checkbox"> Владелец выбрал порядок, ответ записан как «Решение владельца ДД.ММ.ГГГГ: …».</li>
+<li><input checked="" disabled="" type="checkbox"> Каждое выбранное углубление заведено отдельной карточкой.</li>
+<li><input checked="" disabled="" type="checkbox"> Код <code>src/</code> этой карточкой не изменён.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Сводка разборов без правки кода</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 15:53 → 2026-11-10 15:53</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Исполнитель: Богдан.</li>
+<li>Сводка: <code>docs/architecture/summary.md</code> (таблица 17 кандидатов, 11 противоречий, брейншторм порядка).</li>
+<li>Решение владельца 10.11.2026: вариант 1 — «надёжность, потом два плейса». Карточки: ca847e (расширена сетью B), c0a127, 7d4287, 0205ff, 6d3652, ee323d, 653e08, 70ff28, 9cd888, f7143c, 8770fb, 13a49d, 624075, 670e36, db18c4.</li>
 </ul>
 </div></details>
 </article>
@@ -1191,15 +1688,36 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
         // Без хранилища отметки живут до ухода со страницы.
       }
     };
+    const visibleBoxes = (root) => [...root.querySelectorAll("input[data-check]")].filter((box) => !box.closest(".test-item")?.hidden);
     const count = () => {
       for (const group of document.querySelectorAll("details.test-group")) {
-        const boxes = group.querySelectorAll("input[data-check]");
-        const ticked = [...boxes].filter((b) => b.checked).length;
+        const boxes = visibleBoxes(group);
+        const ticked = boxes.filter((b) => b.checked).length;
         group.querySelector(".test-count").textContent = `${ticked} из ${boxes.length}`;
-        group.classList.toggle("test-finished", ticked === boxes.length);
+        group.classList.toggle("test-finished", boxes.length > 0 && ticked === boxes.length);
       }
-      document.getElementById("test-done").textContent = String([...checks].filter((b) => b.checked).length);
+      document.getElementById("test-done").textContent = String(visibleBoxes(document).filter((b) => b.checked).length);
     };
+    const filterButtons = [...document.querySelectorAll("[data-test-filter]")];
+    const applyPerson = (person) => {
+      for (const button of filterButtons) button.setAttribute("aria-pressed", String(button.dataset.testFilter === person));
+      for (const item of document.querySelectorAll(".test-item")) {
+        const people = (item.dataset.people || "").split(/\s+/).filter(Boolean);
+        item.hidden = person !== "all" && people.length > 0 && !people.includes(person);
+      }
+      for (const task of document.querySelectorAll(".test-task")) {
+        task.hidden = ![...task.querySelectorAll(".test-item")].some((item) => !item.hidden);
+      }
+      for (const group of document.querySelectorAll("details.test-group")) {
+        group.hidden = ![...group.querySelectorAll(".test-item")].some((item) => !item.hidden);
+      }
+      const shown = visibleBoxes(document);
+      for (const node of document.querySelector(".test-total").childNodes) {
+        if (node.nodeType === Node.TEXT_NODE && node.textContent.includes(" из ")) node.textContent = ` из ${shown.length} `;
+      }
+      count();
+    };
+    for (const button of filterButtons) button.addEventListener("click", () => applyPerson(button.dataset.testFilter));
     for (const box of checks) {
       box.checked = done[box.dataset.check] === true;
       box.addEventListener("change", () => {

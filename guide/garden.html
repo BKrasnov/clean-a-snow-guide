@@ -48,7 +48,8 @@ pre code { background: none; padding: 0; }
 .test-item { display: flex; gap: 10px; align-items: flex-start; padding: 5px 4px; border-radius: 6px; line-height: 1.4; cursor: pointer; }
 .test-item:hover { background: rgba(154, 90, 44, .08); }
 .test-item input { width: 18px; height: 18px; margin-top: 2px; flex: none; accent-color: var(--wood); }
-.test-item:has(input:checked) { color: rgba(29, 39, 64, .55); text-decoration: line-through; }
+.test-item:has(input:checked) > span:first-of-type { color: rgba(29, 39, 64, .55); text-decoration: line-through; }
+.test-people { margin-left: auto; flex: none; font-size: 12px; font-weight: 700; color: var(--wood); white-space: nowrap; }
 
 html:not(.site-open) .topbar,
 html:not(.site-open) .layout,
@@ -223,7 +224,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </div>
 <header class="topbar"><button id="menu" type="button" aria-expanded="false" aria-controls="sidebar">Разделы</button><a class="brand" href="index.html">Clean a Snow</a><a class="top-link" href="testing.html">Тестирование</a><a class="top-link" href="board.html">Доска</a><a class="top-link" href="analysis.html">Анализ</a><a class="top-link" href="mechanics.html">Механики</a><a class="top-link" href="vfx.html">VFX</a><button id="site-close" class="top-link" type="button">Закрыть</button><span class="hint">Собрано из файлов репозитория: <code>node tools/guide/build.mjs</code></span></header>
 <div class="layout">
-<nav id="sidebar" aria-label="Разделы"><ul><li><a href="index.html">Об игре</a></li><li><a href="place.html">Плейс и запуск</a></li><li><a href="style.html">Стиль</a></li><li><a href="economy.html">Экономика</a></li><li><a href="weapons.html">Оружие</a></li><li><a href="garden.html" aria-current="page">Сад</a></li><li><a href="code.html">Код</a></li><li><details class="group" data-group="galleries.html" open><summary><a href="galleries.html">Кадры и картинки</a></summary><ul><li><a href="gallery-frames.html">Кадры игры</a></li><li><a href="gallery-palette-preview.html">Палитра</a></li><li><a href="gallery-refs.html">refs</a></li></ul></details></li><li><details class="group" data-group="docs.html" open><summary><a href="docs.html">Документы</a></summary><ul><li><a href="doc-superpowers-plans-2026-11-10-packet-limits.html">superpowers/plans/2026-11-10-packet-limits.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-cell-strength.html">superpowers/plans/2026-11-10-snow-cell-strength.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-rules.html">superpowers/plans/2026-11-10-strike-rules.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-wallet.html">superpowers/plans/2026-11-10-wallet.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-packet-limits-design.html">superpowers/specs/2026-11-10-packet-limits-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-cell-strength-design.html">superpowers/specs/2026-11-10-snow-cell-strength-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-rules-design.html">superpowers/specs/2026-11-10-strike-rules-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-wallet-design.html">superpowers/specs/2026-11-10-wallet-design.md</a></li></ul></details></li></ul></nav>
+<nav id="sidebar" aria-label="Разделы"><ul><li><a href="index.html">Об игре</a></li><li><a href="place.html">Плейс и запуск</a></li><li><a href="style.html">Стиль</a></li><li><a href="economy.html">Экономика</a></li><li><a href="weapons.html">Оружие</a></li><li><a href="garden.html" aria-current="page">Сад</a></li><li><a href="code.html">Код</a></li><li><details class="group" data-group="galleries.html" open><summary><a href="galleries.html">Кадры и картинки</a></summary><ul><li><a href="gallery-frames.html">Кадры игры</a></li><li><a href="gallery-palette-preview.html">Палитра</a></li><li><a href="gallery-refs.html">refs</a></li><li><a href="gallery-vfx.html">vfx</a></li></ul></details></li><li><details class="group" data-group="docs.html" open><summary><a href="docs.html">Документы</a></summary><ul><li><a href="doc-architecture-summary.html">architecture/summary.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-catalog-answers.html">superpowers/plans/2026-11-10-catalog-answers.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-map-bake.html">superpowers/plans/2026-11-10-map-bake.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-packet-limits.html">superpowers/plans/2026-11-10-packet-limits.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-anchors.html">superpowers/plans/2026-11-10-place-anchors.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-role-world.html">superpowers/plans/2026-11-10-place-role-world.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-profile-store-core.html">superpowers/plans/2026-11-10-profile-store-core.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-server-lifecycle.html">superpowers/plans/2026-11-10-server-lifecycle.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-break-burst.html">superpowers/plans/2026-11-10-snow-break-burst.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-cell-strength.html">superpowers/plans/2026-11-10-snow-cell-strength.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-clap.html">superpowers/plans/2026-11-10-snow-clap.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-starter-spoon.html">superpowers/plans/2026-11-10-starter-spoon.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-rules.html">superpowers/plans/2026-11-10-strike-rules.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-two-places.html">superpowers/plans/2026-11-10-two-places.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-wallet.html">superpowers/plans/2026-11-10-wallet.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-catalog-answers-design.html">superpowers/specs/2026-11-10-catalog-answers-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-map-bake-design.html">superpowers/specs/2026-11-10-map-bake-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-packet-limits-design.html">superpowers/specs/2026-11-10-packet-limits-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-anchors-design.html">superpowers/specs/2026-11-10-place-anchors-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-role-world-design.html">superpowers/specs/2026-11-10-place-role-world-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-profile-store-core-design.html">superpowers/specs/2026-11-10-profile-store-core-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-server-lifecycle-design.html">superpowers/specs/2026-11-10-server-lifecycle-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-break-burst-design.html">superpowers/specs/2026-11-10-snow-break-burst-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-cell-strength-design.html">superpowers/specs/2026-11-10-snow-cell-strength-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-puff-design.html">superpowers/specs/2026-11-10-snow-puff-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-starter-spoon-design.html">superpowers/specs/2026-11-10-starter-spoon-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-rules-design.html">superpowers/specs/2026-11-10-strike-rules-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-two-places-design.html">superpowers/specs/2026-11-10-two-places-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-wallet-design.html">superpowers/specs/2026-11-10-wallet-design.md</a></li></ul></details></li></ul></nav>
 <main>
 <section class="part with-toc"><h2>Сад</h2><nav class="toc" aria-label="На этой странице"><ul><li><a href="#растения">Растения</a></li><li><a href="#мутации-семян">Мутации семян</a></li><li><a href="#погода">Погода</a></li></ul></nav><div class="part-body"><p class="lead">Свой огород у каждого игрока: купил семя, посадил на грядку, ждёшь, собираешь урожай и продаёшь садовнику. Растений в каталоге: <b>33</b>. <span class="rar" style="--rar:rgb(195,235,197)">Common</span> 3 <span class="rar" style="--rar:rgb(91,230,109)">Uncommon</span> 3 <span class="rar" style="--rar:rgb(64,165,255)">Rare</span> 7 <span class="rar" style="--rar:rgb(190,99,255)">Epic</span> 7 <span class="rar" style="--rar:rgb(255,193,63)">Legendary</span> 5 <span class="rar" style="--rar:rgb(255,81,146)">Mythic</span> 6 <span class="rar" style="--rar:rgb(74,255,231)">Super</span> 2</p>
 <p>Грядок: <b>12</b>. Золотое семя — <span class="coin">1 500</span>, радужное — <span class="coin">5 000</span> монет.</p>
@@ -344,15 +345,36 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
         // Без хранилища отметки живут до ухода со страницы.
       }
     };
+    const visibleBoxes = (root) => [...root.querySelectorAll("input[data-check]")].filter((box) => !box.closest(".test-item")?.hidden);
     const count = () => {
       for (const group of document.querySelectorAll("details.test-group")) {
-        const boxes = group.querySelectorAll("input[data-check]");
-        const ticked = [...boxes].filter((b) => b.checked).length;
+        const boxes = visibleBoxes(group);
+        const ticked = boxes.filter((b) => b.checked).length;
         group.querySelector(".test-count").textContent = `${ticked} из ${boxes.length}`;
-        group.classList.toggle("test-finished", ticked === boxes.length);
+        group.classList.toggle("test-finished", boxes.length > 0 && ticked === boxes.length);
       }
-      document.getElementById("test-done").textContent = String([...checks].filter((b) => b.checked).length);
+      document.getElementById("test-done").textContent = String(visibleBoxes(document).filter((b) => b.checked).length);
     };
+    const filterButtons = [...document.querySelectorAll("[data-test-filter]")];
+    const applyPerson = (person) => {
+      for (const button of filterButtons) button.setAttribute("aria-pressed", String(button.dataset.testFilter === person));
+      for (const item of document.querySelectorAll(".test-item")) {
+        const people = (item.dataset.people || "").split(/\s+/).filter(Boolean);
+        item.hidden = person !== "all" && people.length > 0 && !people.includes(person);
+      }
+      for (const task of document.querySelectorAll(".test-task")) {
+        task.hidden = ![...task.querySelectorAll(".test-item")].some((item) => !item.hidden);
+      }
+      for (const group of document.querySelectorAll("details.test-group")) {
+        group.hidden = ![...group.querySelectorAll(".test-item")].some((item) => !item.hidden);
+      }
+      const shown = visibleBoxes(document);
+      for (const node of document.querySelector(".test-total").childNodes) {
+        if (node.nodeType === Node.TEXT_NODE && node.textContent.includes(" из ")) node.textContent = ` из ${shown.length} `;
+      }
+      count();
+    };
+    for (const button of filterButtons) button.addEventListener("click", () => applyPerson(button.dataset.testFilter));
     for (const box of checks) {
       box.checked = done[box.dataset.check] === true;
       box.addEventListener("change", () => {
