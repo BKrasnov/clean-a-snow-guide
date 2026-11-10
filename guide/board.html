@@ -51,6 +51,16 @@ pre code { background: none; padding: 0; }
 .test-item:has(input:checked) > span:first-of-type { color: rgba(29, 39, 64, .55); text-decoration: line-through; }
 .test-people { margin-left: auto; flex: none; font-size: 12px; font-weight: 700; color: var(--wood); white-space: nowrap; }
 
+/* Вопросы: карточка вопроса, общая галочка «Ответ дан»; отвеченный вопрос бледнеет. */
+.question { margin: 14px 0; padding: 4px 16px 10px; border: 2px solid rgba(29, 39, 64, .12); border-radius: 8px; background: rgba(255, 255, 255, .5); }
+.question h3 { margin: 10px 0 6px; }
+.question-status { margin: 4px 0; font-size: 13px; font-weight: 600; color: var(--wood); }
+.answer-mark { display: inline-flex; gap: 8px; align-items: center; padding: 4px 10px; border: 2px solid var(--wood); border-radius: 6px; font-weight: 700; color: var(--wood); cursor: pointer; }
+.answer-mark input { width: 18px; height: 18px; margin: 0; accent-color: var(--ice); }
+.question-answered { border-color: var(--ice); }
+.question-answered .answer-mark { border-color: var(--ice); color: var(--ice-dark); }
+.question-answered > .prose { opacity: .55; }
+
 html:not(.site-open) .topbar,
 html:not(.site-open) .layout,
 html:not(.site-open) #viewer { display: none !important; }
@@ -241,13 +251,13 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <p id="site-lock-error" class="site-lock-error" hidden>Пароль не подошёл.</p>
 </form>
 </div>
-<header class="topbar"><button id="menu" type="button" aria-expanded="false" aria-controls="sidebar">Разделы</button><a class="brand" href="index.html">Clean a Snow</a><a class="top-link" href="testing.html">Тестирование</a><a class="top-link" href="board.html" aria-current="page">Доска</a><a class="top-link" href="analysis.html">Анализ</a><a class="top-link" href="mechanics.html">Механики</a><a class="top-link" href="ideas.html">Идеи</a><a class="top-link" href="doc-mechanics-audit.html#вопросы-владельцу">Вопросы</a><a class="top-link" href="vfx.html">VFX</a><a class="top-link" href="timeline.html">Таймлайн</a><button id="site-close" class="top-link" type="button">Закрыть</button><span class="hint">Собрано из файлов репозитория: <code>node tools/guide/build.mjs</code></span></header>
+<header class="topbar"><button id="menu" type="button" aria-expanded="false" aria-controls="sidebar">Разделы</button><a class="brand" href="index.html">Clean a Snow</a><a class="top-link" href="testing.html">Тестирование</a><a class="top-link" href="board.html" aria-current="page">Доска</a><a class="top-link" href="analysis.html">Анализ</a><a class="top-link" href="mechanics.html">Механики</a><a class="top-link" href="ideas.html">Идеи</a><a class="top-link" href="questions.html">Вопросы</a><a class="top-link" href="vfx.html">VFX</a><a class="top-link" href="timeline.html">Таймлайн</a><button id="site-close" class="top-link" type="button">Закрыть</button><span class="hint">Собрано из файлов репозитория: <code>node tools/guide/build.mjs</code></span></header>
 <div class="layout">
-<nav id="sidebar" aria-label="Разделы"><ul><li><a href="index.html">Об игре</a></li><li><a href="place.html">Плейс и запуск</a></li><li><a href="style.html">Стиль</a></li><li><a href="economy.html">Экономика</a></li><li><a href="weapons.html">Оружие</a></li><li><a href="garden.html">Сад</a></li><li><a href="code.html">Код</a></li><li><details class="group" data-group="galleries.html" open><summary><a href="galleries.html">Кадры и картинки</a></summary><ul><li><a href="gallery-bugs.html">Кадры багов</a></li><li><a href="gallery-frames.html">Кадры игры</a></li><li><a href="gallery-ideas.html">Референсы идей</a></li><li><a href="gallery-palette-preview.html">Палитра</a></li><li><a href="gallery-refs.html">refs</a></li><li><a href="gallery-vfx.html">vfx</a></li><li><a href="gallery-vfx-reviews.html">vfx/reviews</a></li></ul></details></li><li><details class="group" data-group="docs.html" open><summary><a href="docs.html">Документы</a></summary><ul><li><a href="doc-architecture-summary.html">architecture/summary.md</a></li><li><a href="doc-held-items-audit.html">held-items-audit.md</a></li><li><a href="doc-mechanics-audit.html">mechanics-audit.md</a></li><li><a href="doc-publish-places.html">publish-places.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-catalog-answers.html">superpowers/plans/2026-11-10-catalog-answers.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-client-actions.html">superpowers/plans/2026-11-10-client-actions.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-economy.html">superpowers/plans/2026-11-10-data-economy.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-garden-animals-vehicles.html">superpowers/plans/2026-11-10-data-garden-animals-vehicles.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-session-server.html">superpowers/plans/2026-11-10-data-session-server.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-held-items-audit.html">superpowers/plans/2026-11-10-held-items-audit.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-map-bake.html">superpowers/plans/2026-11-10-map-bake.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-movement-check.html">superpowers/plans/2026-11-10-movement-check.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-packet-limits.html">superpowers/plans/2026-11-10-packet-limits.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-anchors.html">superpowers/plans/2026-11-10-place-anchors.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-role-world.html">superpowers/plans/2026-11-10-place-role-world.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-processor-intake.html">superpowers/plans/2026-11-10-processor-intake.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-processor-queue.html">superpowers/plans/2026-11-10-processor-queue.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-profile-store-core.html">superpowers/plans/2026-11-10-profile-store-core.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-receipt-ledger.html">superpowers/plans/2026-11-10-receipt-ledger.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-server-lifecycle.html">superpowers/plans/2026-11-10-server-lifecycle.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-areas.html">superpowers/plans/2026-11-10-snow-areas.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-break-burst.html">superpowers/plans/2026-11-10-snow-break-burst.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-cell-strength.html">superpowers/plans/2026-11-10-snow-cell-strength.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-clap.html">superpowers/plans/2026-11-10-snow-clap.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-response.html">superpowers/plans/2026-11-10-snow-response.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-starter-spoon.html">superpowers/plans/2026-11-10-starter-spoon.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-plan.html">superpowers/plans/2026-11-10-strike-plan.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-rules.html">superpowers/plans/2026-11-10-strike-rules.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-two-places.html">superpowers/plans/2026-11-10-two-places.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-wallet.html">superpowers/plans/2026-11-10-wallet.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-data-client-copies.html">superpowers/plans/2026-11-11-data-client-copies.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-place-sources.html">superpowers/plans/2026-11-11-place-sources.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-weapon-rule.html">superpowers/plans/2026-11-11-weapon-rule.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-catalog-answers-design.html">superpowers/specs/2026-11-10-catalog-answers-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-client-actions-design.html">superpowers/specs/2026-11-10-client-actions-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-economy-design.html">superpowers/specs/2026-11-10-data-economy-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-garden-animals-vehicles-design.html">superpowers/specs/2026-11-10-data-garden-animals-vehicles-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-session-server-design.html">superpowers/specs/2026-11-10-data-session-server-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-held-items-audit-design.html">superpowers/specs/2026-11-10-held-items-audit-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-map-bake-design.html">superpowers/specs/2026-11-10-map-bake-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-movement-check-design.html">superpowers/specs/2026-11-10-movement-check-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-packet-limits-design.html">superpowers/specs/2026-11-10-packet-limits-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-anchors-design.html">superpowers/specs/2026-11-10-place-anchors-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-role-world-design.html">superpowers/specs/2026-11-10-place-role-world-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-processor-intake-design.html">superpowers/specs/2026-11-10-processor-intake-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-processor-queue-design.html">superpowers/specs/2026-11-10-processor-queue-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-profile-store-core-design.html">superpowers/specs/2026-11-10-profile-store-core-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-receipt-ledger-design.html">superpowers/specs/2026-11-10-receipt-ledger-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-server-lifecycle-design.html">superpowers/specs/2026-11-10-server-lifecycle-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-areas-design.html">superpowers/specs/2026-11-10-snow-areas-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-break-burst-design.html">superpowers/specs/2026-11-10-snow-break-burst-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-cell-strength-design.html">superpowers/specs/2026-11-10-snow-cell-strength-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-puff-design.html">superpowers/specs/2026-11-10-snow-puff-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-response-design.html">superpowers/specs/2026-11-10-snow-response-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-starter-spoon-design.html">superpowers/specs/2026-11-10-starter-spoon-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-plan-design.html">superpowers/specs/2026-11-10-strike-plan-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-rules-design.html">superpowers/specs/2026-11-10-strike-rules-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-two-places-design.html">superpowers/specs/2026-11-10-two-places-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-wallet-design.html">superpowers/specs/2026-11-10-wallet-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-data-client-copies-design.html">superpowers/specs/2026-11-11-data-client-copies-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-place-sources-design.html">superpowers/specs/2026-11-11-place-sources-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-weapon-rule-design.html">superpowers/specs/2026-11-11-weapon-rule-design.md</a></li></ul></details></li></ul></nav>
+<nav id="sidebar" aria-label="Разделы"><ul><li><a href="index.html">Об игре</a></li><li><a href="place.html">Плейс и запуск</a></li><li><a href="style.html">Стиль</a></li><li><a href="economy.html">Экономика</a></li><li><a href="weapons.html">Оружие</a></li><li><a href="garden.html">Сад</a></li><li><a href="code.html">Код</a></li><li><details class="group" data-group="galleries.html" open><summary><a href="galleries.html">Кадры и картинки</a></summary><ul><li><a href="gallery-bugs.html">Кадры багов</a></li><li><a href="gallery-frames.html">Кадры игры</a></li><li><a href="gallery-ideas.html">Референсы идей</a></li><li><a href="gallery-palette-preview.html">Палитра</a></li><li><a href="gallery-refs.html">refs</a></li><li><a href="gallery-vfx.html">vfx</a></li><li><a href="gallery-vfx-reviews.html">vfx/reviews</a></li></ul></details></li><li><details class="group" data-group="docs.html" open><summary><a href="docs.html">Документы</a></summary><ul><li><a href="doc-architecture-summary.html">architecture/summary.md</a></li><li><a href="doc-checks-server.html">checks-server.md</a></li><li><a href="doc-clearing-audit.html">clearing-audit.md</a></li><li><a href="doc-held-items-audit.html">held-items-audit.md</a></li><li><a href="doc-mechanics-audit.html">mechanics-audit.md</a></li><li><a href="doc-publish-places.html">publish-places.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-catalog-answers.html">superpowers/plans/2026-11-10-catalog-answers.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-client-actions.html">superpowers/plans/2026-11-10-client-actions.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-economy.html">superpowers/plans/2026-11-10-data-economy.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-garden-animals-vehicles.html">superpowers/plans/2026-11-10-data-garden-animals-vehicles.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-session-server.html">superpowers/plans/2026-11-10-data-session-server.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-held-items-audit.html">superpowers/plans/2026-11-10-held-items-audit.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-map-bake.html">superpowers/plans/2026-11-10-map-bake.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-movement-check.html">superpowers/plans/2026-11-10-movement-check.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-packet-limits.html">superpowers/plans/2026-11-10-packet-limits.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-anchors.html">superpowers/plans/2026-11-10-place-anchors.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-role-world.html">superpowers/plans/2026-11-10-place-role-world.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-processor-intake.html">superpowers/plans/2026-11-10-processor-intake.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-processor-queue.html">superpowers/plans/2026-11-10-processor-queue.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-profile-store-core.html">superpowers/plans/2026-11-10-profile-store-core.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-receipt-ledger.html">superpowers/plans/2026-11-10-receipt-ledger.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-server-lifecycle.html">superpowers/plans/2026-11-10-server-lifecycle.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-areas.html">superpowers/plans/2026-11-10-snow-areas.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-break-burst.html">superpowers/plans/2026-11-10-snow-break-burst.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-cell-strength.html">superpowers/plans/2026-11-10-snow-cell-strength.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-clap.html">superpowers/plans/2026-11-10-snow-clap.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-response.html">superpowers/plans/2026-11-10-snow-response.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-starter-spoon.html">superpowers/plans/2026-11-10-starter-spoon.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-plan.html">superpowers/plans/2026-11-10-strike-plan.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-rules.html">superpowers/plans/2026-11-10-strike-rules.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-two-places.html">superpowers/plans/2026-11-10-two-places.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-wallet.html">superpowers/plans/2026-11-10-wallet.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-data-client-copies.html">superpowers/plans/2026-11-11-data-client-copies.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-place-sources.html">superpowers/plans/2026-11-11-place-sources.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-weapon-rule.html">superpowers/plans/2026-11-11-weapon-rule.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-catalog-answers-design.html">superpowers/specs/2026-11-10-catalog-answers-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-client-actions-design.html">superpowers/specs/2026-11-10-client-actions-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-economy-design.html">superpowers/specs/2026-11-10-data-economy-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-garden-animals-vehicles-design.html">superpowers/specs/2026-11-10-data-garden-animals-vehicles-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-session-server-design.html">superpowers/specs/2026-11-10-data-session-server-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-held-items-audit-design.html">superpowers/specs/2026-11-10-held-items-audit-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-map-bake-design.html">superpowers/specs/2026-11-10-map-bake-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-movement-check-design.html">superpowers/specs/2026-11-10-movement-check-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-packet-limits-design.html">superpowers/specs/2026-11-10-packet-limits-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-anchors-design.html">superpowers/specs/2026-11-10-place-anchors-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-role-world-design.html">superpowers/specs/2026-11-10-place-role-world-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-processor-intake-design.html">superpowers/specs/2026-11-10-processor-intake-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-processor-queue-design.html">superpowers/specs/2026-11-10-processor-queue-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-profile-store-core-design.html">superpowers/specs/2026-11-10-profile-store-core-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-receipt-ledger-design.html">superpowers/specs/2026-11-10-receipt-ledger-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-server-lifecycle-design.html">superpowers/specs/2026-11-10-server-lifecycle-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-areas-design.html">superpowers/specs/2026-11-10-snow-areas-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-break-burst-design.html">superpowers/specs/2026-11-10-snow-break-burst-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-cell-strength-design.html">superpowers/specs/2026-11-10-snow-cell-strength-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-puff-design.html">superpowers/specs/2026-11-10-snow-puff-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-response-design.html">superpowers/specs/2026-11-10-snow-response-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-starter-spoon-design.html">superpowers/specs/2026-11-10-starter-spoon-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-plan-design.html">superpowers/specs/2026-11-10-strike-plan-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-rules-design.html">superpowers/specs/2026-11-10-strike-rules-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-two-places-design.html">superpowers/specs/2026-11-10-two-places-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-wallet-design.html">superpowers/specs/2026-11-10-wallet-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-data-client-copies-design.html">superpowers/specs/2026-11-11-data-client-copies-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-place-sources-design.html">superpowers/specs/2026-11-11-place-sources-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-shared-question-marks-design.html">superpowers/specs/2026-11-11-shared-question-marks-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-weapon-rule-design.html">superpowers/specs/2026-11-11-weapon-rule-design.md</a></li></ul></details></li></ul></nav>
 <main>
 <section class="part"><h2>Доска</h2><div class="board-filters" role="group" aria-label="Кто делает"><button type="button" data-person-filter="all" aria-pressed="true">Все</button><button type="button" data-person-filter="Богдан" aria-pressed="false">Богдан</button><button type="button" data-person-filter="Леонид" aria-pressed="false">Леонид</button><button type="button" data-person-filter="Георгий" aria-pressed="false">Георгий</button></div>
 <div class="board-columns"><section class="board-column" data-status="todo">
-  <h3>К выполнению <span class="board-count">8</span></h3>
+  <h3>К выполнению <span class="board-count">14</span></h3>
   <div class="board-cards"><article class="board-card" id="card-13a49d" data-person="Богдан" data-status="todo">
   <h3>Клиент: показ по одной форме и окна по одному</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>13a49d</code> техработа · architecture</p>
@@ -443,39 +453,142 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <h2>Работа</h2>
 <h2>Заметки</h2>
 </div></details>
+</article>
+<article class="board-card" id="card-23da01" data-person="Богдан" data-status="todo">
+  <h3>Страница об игре показывает урон пылесоса 1, в игре 3</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>23da01</code> баг · bug</p>
+  <p class="board-lead">Воспроизвести и исправить `BUG-20261111-002` из `tasks/bugs.md`.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Воспроизвести и исправить <code>BUG-20261111-002</code> из <code>tasks/bugs.md</code>.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
+<li><input disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Журнал: <code>BUG-20261111-002</code>.</li>
+<li>Делать вместе с <code>b81273</code> (одна формула урона игрока): там решается, какое число урона у пылесоса остаётся.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-3893bc" data-person="Богдан" data-status="todo">
+  <h3>Кузов ездовой машины показывает исчезнувший или чужой снег</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>3893bc</code> баг · bug</p>
+  <p class="board-lead">Воспроизвести и исправить `BUG-20261111-001` из `tasks/bugs.md`.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Воспроизвести и исправить <code>BUG-20261111-001</code> из <code>tasks/bugs.md</code>.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
+<li><input disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Журнал: <code>BUG-20261111-001</code>.</li>
+<li>Разбор: <code>docs/clearing-audit.md</code>, раздел «Кузов».</li>
+<li>Предложение из аудита: писать груз в модель каждый тик и без водителя, отдельно для каждого забега (например, атрибут с ключом забега), а клиент показывает кучу своего забега. Тогда после выхода, смерти и для другого отряда куча совпадает с тем, что можно сдать.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-3ca642" data-person="Богдан" data-status="todo">
+  <h3>Одна проверка работы по снегу для всех способов</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>3ca642</code> техработа · clearing</p>
+  <p class="board-lead">Шесть входов `MapSnowService` (`hit`, `vacuum`, `burn`, `helperHit`, `vehicleCarve`, `vehicleHarvest`) каждый сам проверяет забег, жизнь, сиденье, дальность, открытую зону и урок-остров, и наборы разные: молотов жжёт после смерти бросившего, помощник считает дальность своей формулой, машина пропускает весь урок-остров, зверь отходит только от удара в точку. Таблица — `docs/clearing-audit.md`, «Где правило написано дважды», п. 1.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Шесть входов <code>MapSnowService</code> (<code>hit</code>, <code>vacuum</code>, <code>burn</code>, <code>helperHit</code>, <code>vehicleCarve</code>, <code>vehicleHarvest</code>) каждый сам проверяет забег, жизнь, сиденье, дальность, открытую зону и урок-остров, и наборы разные: молотов жжёт после смерти бросившего, помощник считает дальность своей формулой, машина пропускает весь урок-остров, зверь отходит только от удара в точку. Таблица — <code>docs/clearing-audit.md</code>, «Где правило написано дважды», п. 1.</p>
+<p>Свести проверки в одно место, которое отвечает «может ли этот игрок этим способом работать по снегу здесь», и вызывать его из всех входов. Поведение для игрока не меняется, кроме явно согласованных отличий.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Перед кодом: разбор по <code>improve-codebase-architecture</code> и спека; отличия, которые увидит игрок, согласованы с владельцем.</li>
+<li><input disabled="" type="checkbox"> Тесты на каждую проверку и на то, что каждый вход её зовёт.</li>
+<li><input disabled="" type="checkbox"> Play: лопата, оружие со стоек, молотов, помощник, все машины убирают снег как раньше.</li>
+<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний, коммит и push.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Из аудита <code>a4c02e</code>. Делать после <code>8770fb</code>: он меняет дальность оружия в тех же входах.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-754194" data-person="Богдан" data-status="todo">
+  <h3>Убрать старый удар SnowService и пакет Hit</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>754194</code> техработа · clearing</p>
+  <p class="board-lead">Карта бьётся через `MapSnowService.hit` (`MapSnowHit`). Старый путь `SnowService.hit` и пакет `Hit` мёртвые, но роутер их принимает: пакет съедает общую паузу удара и на уже заведённом участке пишет предупреждение в Output (вызов несуществующего `referenceSnow.apply`). От `SnowService` живо только поле `helperHit`, которое `MapSnowService` подменяет.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Карта бьётся через <code>MapSnowService.hit</code> (<code>MapSnowHit</code>). Старый путь <code>SnowService.hit</code> и пакет <code>Hit</code> мёртвые, но роутер их принимает: пакет съедает общую паузу удара и на уже заведённом участке пишет предупреждение в Output (вызов несуществующего <code>referenceSnow.apply</code>). От <code>SnowService</code> живо только поле <code>helperHit</code>, которое <code>MapSnowService</code> подменяет.</p>
+<p>Убрать <code>SnowService</code>, пакет <code>Hit</code> из <code>NetSchema</code> и <code>RuntimeFactory</code>, ветку отправки <code>Hit</code> в <code>ExperienceController</code>; помощник зовёт <code>ctx.mapSnow.helperHit</code> напрямую. Разбор — <code>docs/clearing-audit.md</code>, «Где правило написано дважды», п. 2.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Пакета <code>Hit</code> и модуля <code>SnowService</code> нет; помощник бьёт снег как раньше.</li>
+<li><input disabled="" type="checkbox"> Тест: пакет <code>Hit</code> отклоняется роутером как неизвестный.</li>
+<li><input disabled="" type="checkbox"> Play: удар ложкой, лопатой и работа помощника без предупреждений в Output.</li>
+<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний, коммит и push.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Из аудита <code>a4c02e</code>.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-b81273" data-person="Богдан" data-status="todo">
+  <h3>Одна формула урона игрока</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>b81273</code> техработа · clearing</p>
+  <p class="board-lead">Урон игрока по снегу считается в трёх местах по-разному: `Balance.damage` (инструмент × заточка × сова) только для ложки и лопат; пылесос магазина — отдельное `MapVacuumDamage` = 3, а его `toolDamage` = 1 в `economy.json` мёртвый, но его показывает страница (`BUG-20261111-002`); оружие со стойки — свой урон без совы. Ритм ложки (0,48 → 0,40, серия 8) живёт в демо-модуле `SnowCleaningDemo/SnowBlockWorld.luau`, там же мёртвые `Reach`, `HandDamage`, `InventoryCapacity`. Разбор — `docs/clearing-audit.md`, п. 3 и 6.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Урон игрока по снегу считается в трёх местах по-разному: <code>Balance.damage</code> (инструмент × заточка × сова) только для ложки и лопат; пылесос магазина — отдельное <code>MapVacuumDamage</code> = 3, а его <code>toolDamage</code> = 1 в <code>economy.json</code> мёртвый, но его показывает страница (<code>BUG-20261111-002</code>); оружие со стойки — свой урон без совы. Ритм ложки (0,48 → 0,40, серия 8) живёт в демо-модуле <code>SnowCleaningDemo/SnowBlockWorld.luau</code>, там же мёртвые <code>Reach</code>, <code>HandDamage</code>, <code>InventoryCapacity</code>. Разбор — <code>docs/clearing-audit.md</code>, п. 3 и 6.</p>
+<p>Свести урон игрока в одно правило по ответу <code>Q-20261111-003</code>: у пылесоса одно число урона, ритм ложки — в <code>Data/*.json</code>, мёртвые поля удалены, страница показывает настоящий урон.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Владелец ответил на <code>Q-20261111-003</code>, ответ записан сюда.</li>
+<li><input disabled="" type="checkbox"> Тесты: урон ложки, лопаты с заточкой, пылесоса и оружия со стойки с совой и без — по ответу владельца.</li>
+<li><input disabled="" type="checkbox"> <code>BUG-20261111-002</code> исправлен: страница и игра показывают один урон пылесоса.</li>
+<li><input disabled="" type="checkbox"> Play: удар каждым способом, числа урона в Output совпадают с таблицей.</li>
+<li><input disabled="" type="checkbox"> <code>npm run check</code> и <code>node --test tools/data/data.test.mjs</code> без новых замечаний, страницы пересобраны, коммит и push.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Из аудита <code>a4c02e</code>. После <code>8770fb</code>: он переносит числа оружия в <code>Data/weapons.json</code>.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-ea16cb" data-person="Богдан" data-status="todo">
+  <h3>Машины: один след для сервера и клиента</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>ea16cb</code> техработа · clearing</p>
+  <p class="board-lead">След машины (корпус, диск щётки снегохода, квадрат вертолёта) построен дважды: на сервере `VehicleSnowService.carveSpec`, на клиенте `MapSnowController.cutFootprint`; `CUT_MARGIN` в обоих файлах, у клиента свои запасные `or 6`, `or 2`, `or 45`. Расходятся: у вертолёта сервер считает высоту над снегом, клиентский срез — над землёй, и над глубоким снегом срез «прыгает». Разбор — `docs/clearing-audit.md`, п. 5.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>След машины (корпус, диск щётки снегохода, квадрат вертолёта) построен дважды: на сервере <code>VehicleSnowService.carveSpec</code>, на клиенте <code>MapSnowController.cutFootprint</code>; <code>CUT_MARGIN</code> в обоих файлах, у клиента свои запасные <code>or 6</code>, <code>or 2</code>, <code>or 45</code>. Расходятся: у вертолёта сервер считает высоту над снегом, клиентский срез — над землёй, и над глубоким снегом срез «прыгает». Разбор — <code>docs/clearing-audit.md</code>, п. 5.</p>
+<p>Вынести след в общий модуль (как <code>StrikePlan</code> для ударов): сервер и клиент спрашивают его через свои порты.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Один модуль следа; запасные числа машин только из <code>Data/vehicles.json</code>.</li>
+<li><input disabled="" type="checkbox"> Тест: сервер и клиент для одной машины и позиции получают одинаковые клетки; высота вертолёта считается над снегом.</li>
+<li><input disabled="" type="checkbox"> Play: каждая из пяти машин срезает снег без скачков, кадры до и после.</li>
+<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний, коммит и push.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Из аудита <code>a4c02e</code>.</li>
+</ul>
+</div></details>
 </article></div>
   <p class="board-empty" hidden>Пусто.</p>
 </section>
 <section class="board-column" data-status="doing">
-  <h3>В работе <span class="board-count">4</span></h3>
-  <div class="board-cards"><article class="board-card" id="card-52722c" data-person="Богдан" data-status="doing">
-  <h3>Данные: клиент спрашивает дверь, а не держит копии</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>52722c</code> техработа · architecture</p>
-  <p class="board-lead">Исполнитель: Богдан. Клиентская часть переноса по разбору `c4e3c6` (`docs/architecture/game-data.html`).</p>
-  
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Исполнитель: Богдан. Клиентская часть переноса по разбору <code>c4e3c6</code> (<code>docs/architecture/game-data.html</code>).</p>
-<p>Клиентские копии чисел заменить вопросами к <code>Catalog</code>/<code>Balance</code>: списки лопат в <code>SnowGuide</code> и <code>SnowShopGuide</code> → <code>Balance.ownsShovel</code>; размер группы 4 и число зон 6 в <code>InterfaceController</code> и <code>TutorialController</code>; запасные вместимости <code>or 5</code> / <code>or 80</code>, <code>or 40</code>, золотой множитель <code>or 3</code>; число целей пылесоса <code>or 3</code>; пауза автоподбора — одна, из двери (после <code>ca847e</code> автоподбор в одном месте). Выключенный <code>VisualPreviewController</code> с ценой 150 — удалить или привести к данным.</p>
-<p>Числа вида (частицы, тряска, анимация) не трогать.</p>
-<h2>Готово когда</h2>
-<ul>
-<li><input disabled="" type="checkbox"> На клиенте нет копий чисел правил из общих данных.</li>
-<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
-<li><input disabled="" type="checkbox"> Play: обучение до покупки лопаты, окно магазина и HUD; кадры сняты.</li>
-<li><input disabled="" type="checkbox"> Коммит и push.</li>
-</ul>
-<h2>Оценка</h2>
-<ul>
-<li>около десяти точечных замен в клиенте по готовому разбору c4e3c6, плюс одно число в play.json</li>
-</ul>
-<h2>Работа</h2>
-<ul>
-<li>2026-11-11 00:21 →</li>
-</ul>
-<h2>Заметки</h2>
-</div></details>
-</article>
-<article class="board-card" id="card-670e36" data-person="Богдан" data-status="doing">
+  <h3>В работе <span class="board-count">2</span></h3>
+  <div class="board-cards"><article class="board-card" id="card-670e36" data-person="Богдан" data-status="doing">
   <h3>Мир: содержимое плейсов в репозитории</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>670e36</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Мир C (`ca1233`), №16 сводки.</p>
@@ -539,46 +652,6 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <li>Решение владельца 11.11.2026: обе ложки верные — ложка со стойки остаётся своим оружием (урон 2, пауза 0,42), стартовая — инструментом каталога (урон 1, пауза 0,48 → 0,40).</li>
 <li>Решение владельца 11.11.2026: дальность отбойного молотка — 11, как на деле сейчас.</li>
 <li>Решение владельца 11.11.2026: спека и план согласованы («Да, делай»).</li>
-</ul>
-</div></details>
-</article>
-<article class="board-card" id="card-a4c02e" data-person="Богдан" data-status="doing">
-  <h3>Аудит кода: оружие, машины и способы уборки снега</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>a4c02e</code> техработа · clearing</p>
-  <p class="board-lead">Исполнитель: Богдан. Разобрать в коде, как снег убирается разными способами. Код не менять.</p>
-  
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Исполнитель: Богдан. Разобрать в коде, как снег убирается разными способами. Код не менять.</p>
-<p>Нужен разбор, а не список файлов. Для каждого способа записать: кто решает урон, по какой площади, что уходит в сумку, что видит игрок.</p>
-<p>Способы, которые надо пройти:</p>
-<ol>
-<li>Руки и лопаты магазина: <code>MapSnowService.hit</code>, <code>SnowService.hit</code>, апгрейды скорости и кромки.</li>
-<li>Оружие со стоек: <code>WeaponDefs</code> и <code>WeaponService</code>. Режимы разные: удар (<code>Melee</code>: ледоруб, ложка, лопата), удержание (<code>Hold</code>: пылесос, отбойный молоток, снегоуборщик, термопушка), бросок (<code>Throw</code>: коктейль Молотова).</li>
-<li>Машины: <code>VehicleSnowService</code> и грузовик <code>TruckService</code>. Едет и собирает снег, груз считает сервер.</li>
-<li>Кузов, пока игрок сидит в машине. У каждой машины свой кузов: вместимость берётся из атрибута <code>SnowCapacity</code> модели. Снег этой машины лежит не в сумке игрока, а в книге грузов <code>InventoryService</code> (<code>truckLots</code>) под ключом машины. Надо записать: кто хозяин снега в кузове, копится ли он только у водителя, что видно на машине, что происходит при выходе из кабины, при смене машины и при разгрузке у переработчика (<code>unloadTruck</code>). Сравнить кузов ездовой машины и кузов грузовика из магазина: одна это книга или две.</li>
-<li>Звери, если они тоже уносят или бьют снег: <code>ForestAnimalService</code>.</li>
-</ol>
-<p>В итоге короткая записка в <code>docs/</code>: таблица способов, общий шов, где правило удара продублировано, что не сходится с тем, что видит игрок.</p>
-<h2>Готово когда</h2>
-<ul>
-<li><input disabled="" type="checkbox"> В <code>docs/</code> есть записка, её можно читать без открытия всех сервисов.</li>
-<li><input disabled="" type="checkbox"> У каждого способа сказано, кто считает урон и площадь и что попадает игроку.</li>
-<li><input disabled="" type="checkbox"> По кузову написано: ключ машины, вместимость, чей снег внутри, что остаётся после выхода и как он сдаётся.</li>
-<li><input disabled="" type="checkbox"> Названы места, где одно и то же правило написано дважды или способы расходятся.</li>
-<li><input disabled="" type="checkbox"> Код <code>src/</code> этой карточкой не изменён.</li>
-</ul>
-<h2>Оценка</h2>
-<ul>
-<li>Аудит кода без изменений src: чтение сервисов и записка в docs, проектирования нет</li>
-</ul>
-<h2>Работа</h2>
-<ul>
-<li>2026-11-11 00:17 →</li>
-</ul>
-<h2>Заметки</h2>
-<ul>
-<li>Исполнитель: Богдан.</li>
-<li>Это аудит кода. Новую систему уборки не проектировать: если она нужна, отдельная карточка после записки.</li>
 </ul>
 </div></details>
 </article></div>
@@ -676,7 +749,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
   <p class="board-empty" hidden>Пусто.</p>
 </section>
 <section class="board-column" data-status="done">
-  <h3>Готово <span class="board-count">42</span></h3>
+  <h3>Готово <span class="board-count">44</span></h3>
   <div class="board-cards"><article class="board-card" id="card-026145" data-person="Богдан" data-status="done">
   <h3>Рядом с игроком нет снега: поверхность исчерпала память</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>026145</code> баг · bug</p>
@@ -1004,6 +1077,40 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <li>Правило взято со страницы «Механики»: минута живым в идущем забеге в эти сутки UTC — вопрос владельцу не нужен.</li>
 <li>Исправлено: <code>activeDay</code> + <code>dayActiveSeconds</code> в профиле, проверка награды по ним; текст отказа <code>NeedActivity</code> на клиенте. Проверка — <code>tasks/bugs.md</code>, кадры <code>art/bugs/51b915-daily-*.jpg</code>, сценарий <code>lobby-rewards</code>.</li>
 <li>Не входит: ключи наград <code>profile.claims</code> (<code>Daily:&lt;сутки&gt;</code> и другие) копятся без предела — предложено владельцу отдельной задачей.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-52722c" data-person="Богдан" data-status="done">
+  <h3>Данные: клиент спрашивает дверь, а не держит копии</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>52722c</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Клиентская часть переноса по разбору `c4e3c6` (`docs/architecture/game-data.html`).</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Исполнитель: Богдан. Клиентская часть переноса по разбору <code>c4e3c6</code> (<code>docs/architecture/game-data.html</code>).</p>
+<p>Клиентские копии чисел заменить вопросами к <code>Catalog</code>/<code>Balance</code>: списки лопат в <code>SnowGuide</code> и <code>SnowShopGuide</code> → <code>Balance.ownsShovel</code>; размер группы 4 и число зон 6 в <code>InterfaceController</code> и <code>TutorialController</code>; запасные вместимости <code>or 5</code> / <code>or 80</code>, <code>or 40</code>, золотой множитель <code>or 3</code>; число целей пылесоса <code>or 3</code>; пауза автоподбора — одна, из двери (после <code>ca847e</code> автоподбор в одном месте). Выключенный <code>VisualPreviewController</code> с ценой 150 — удалить или привести к данным.</p>
+<p>Числа вида (частицы, тряска, анимация) не трогать.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> На клиенте нет копий чисел правил из общих данных.</li>
+<li><input checked="" disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input checked="" disabled="" type="checkbox"> Play: обучение до покупки лопаты, окно магазина и HUD; кадры сняты.</li>
+<li><input checked="" disabled="" type="checkbox"> Коммит и push.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>около десяти точечных замен в клиенте по готовому разбору c4e3c6, плюс одно число в play.json</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-11 00:21 → 2026-11-11 00:44</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Сделано: <code>SnowGuide</code>, <code>SnowShopGuide</code> → <code>Balance.ownsShovel</code>; <code>InterfaceController</code> — кнопки размера группы до <code>Balance.MaxPartySize</code>, «AREA x/N» и статистика по <code>#catalog.Areas</code>, золотой множитель из каталога, запасные вместимости из <code>Balance.capacity</code> и <code>Balance.TruckCapacity</code>; <code>TutorialController</code> — «choose 1–N players»; машины в <code>MapSnowController</code> — <code>Balance.Vehicles.Defaults</code>; целей пылесоса — новое <code>VacuumTargets</code> в <code>play.json</code> (клиент, <code>StrikePlan.cone</code> без запасного, сервер <code>MapSnowService</code>); <code>VisualPreviewController</code> удалён из <code>src</code>.</li>
+<li><code>or 40</code> на клиенте уже не было; пауза автоподбора уже одна (<code>Balance.pickupInterval</code> в <code>ExperienceController</code>).</li>
+<li>Проверка: тест <code>the client keeps no copies of the shared rule numbers</code> в <code>tools/data/data.test.mjs</code>; <code>npm run check</code> — новых замечаний нет; Play-сценарий <code>data-client-copies</code> прошёл: обучение «choose 1–4 players», окно магазина, HUD «AREA 3/6», покупка лопаты в забеге, <code>Balance.ownsShovel</code> в клиенте. Кадры — <code>build/studio-play/data-client-copies-20261110-173437/</code>.</li>
+<li>Не проверено в Play: стрелка «BUY THE STARTER SHOVEL» и урок «круг» включаются только после первой цепочки задания (сломать снег и сдать); сценарий до них не доходит, логику сравнения дверь покрывает.</li>
+<li>Коммиты: <code>8b6d2ad</code> (код), <code>60f62b9</code> (guide). Тесты данных: 20 из 20 (один прогон отложен правилом «раз в час» до 00:43). Luau <code>npm run test:game</code> не запускался: <code>StrikePlan</code> изменён только по типу, его тест уже передаёт <code>targets</code>.</li>
 </ul>
 </div></details>
 </article>
@@ -1502,6 +1609,47 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <li>Тонкие тёмно-синие звёздочки на живых кадрах — старые слои удара (запасная <code>sparkles_main.dds</code>), не слом снега.</li>
 <li>План критика: 1) снежинки разного размера и ниже; 2) ячейка занята, пока летят её снежинки; 3) звёздочка впереди кубиков, без подмешивания цвета; 4) мягче диск «меньше движения» без текстуры. Остался последний, пятый круг.</li>
 <li>Решение владельца 10.11.2026: «Хватит, принять как есть» — эффект принят в виде круга 4 (9/10 и 8/10), пятого круга нет. Звёздочка и снежинка ждут загрузки в Roblox (<code>art/import.md</code>).</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-a4c02e" data-person="Богдан" data-status="done">
+  <h3>Аудит кода: оружие, машины и способы уборки снега</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>a4c02e</code> техработа · clearing</p>
+  <p class="board-lead">Исполнитель: Богдан. Разобрать в коде, как снег убирается разными способами. Код не менять.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Исполнитель: Богдан. Разобрать в коде, как снег убирается разными способами. Код не менять.</p>
+<p>Нужен разбор, а не список файлов. Для каждого способа записать: кто решает урон, по какой площади, что уходит в сумку, что видит игрок.</p>
+<p>Способы, которые надо пройти:</p>
+<ol>
+<li>Руки и лопаты магазина: <code>MapSnowService.hit</code>, <code>SnowService.hit</code>, апгрейды скорости и кромки.</li>
+<li>Оружие со стоек: <code>WeaponDefs</code> и <code>WeaponService</code>. Режимы разные: удар (<code>Melee</code>: ледоруб, ложка, лопата), удержание (<code>Hold</code>: пылесос, отбойный молоток, снегоуборщик, термопушка), бросок (<code>Throw</code>: коктейль Молотова).</li>
+<li>Машины: <code>VehicleSnowService</code> и грузовик <code>TruckService</code>. Едет и собирает снег, груз считает сервер.</li>
+<li>Кузов, пока игрок сидит в машине. У каждой машины свой кузов: вместимость берётся из атрибута <code>SnowCapacity</code> модели. Снег этой машины лежит не в сумке игрока, а в книге грузов <code>InventoryService</code> (<code>truckLots</code>) под ключом машины. Надо записать: кто хозяин снега в кузове, копится ли он только у водителя, что видно на машине, что происходит при выходе из кабины, при смене машины и при разгрузке у переработчика (<code>unloadTruck</code>). Сравнить кузов ездовой машины и кузов грузовика из магазина: одна это книга или две.</li>
+<li>Звери, если они тоже уносят или бьют снег: <code>ForestAnimalService</code>.</li>
+</ol>
+<p>В итоге короткая записка в <code>docs/</code>: таблица способов, общий шов, где правило удара продублировано, что не сходится с тем, что видит игрок.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> В <code>docs/</code> есть записка, её можно читать без открытия всех сервисов.</li>
+<li><input checked="" disabled="" type="checkbox"> У каждого способа сказано, кто считает урон и площадь и что попадает игроку.</li>
+<li><input checked="" disabled="" type="checkbox"> По кузову написано: ключ машины, вместимость, чей снег внутри, что остаётся после выхода и как он сдаётся.</li>
+<li><input checked="" disabled="" type="checkbox"> Названы места, где одно и то же правило написано дважды или способы расходятся.</li>
+<li><input checked="" disabled="" type="checkbox"> Код <code>src/</code> этой карточкой не изменён.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Аудит кода без изменений src: чтение сервисов и записка в docs, проектирования нет</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-11 00:17 → 2026-11-11 00:28</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Исполнитель: Богдан.</li>
+<li>Это аудит кода. Новую систему уборки не проектировать: если она нужна, отдельная карточка после записки.</li>
+<li>11.11.2026: записка <code>docs/clearing-audit.md</code> (код на <code>f843827</code>, числа машин из <code>models/*.rbxm</code> через lune). Баги <code>BUG-20261111-001</code> (<code>3893bc</code>, кузов показывает не тот снег), <code>BUG-20261111-002</code> (<code>23da01</code>, урон пылесоса на странице). Карточки <code>754194</code>, <code>3ca642</code>, <code>b81273</code>, <code>ea16cb</code>. Вопрос <code>Q-20261111-003</code> (сова) блокирует <code>b81273</code>. Studio не запускался: выводы из кода, игровая проверка — в карточках исправлений. <code>src/</code> не менялся.</li>
 </ul>
 </div></details>
 </article>
@@ -2546,12 +2694,10 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
       }
     });
   }
-  // Галочки чеклиста «Тестирование». Общий файл на сервере, браузер держит копию.
-  // «Сбросить» начинает новый круг у всех. Сервер недоступен — остаётся копия в браузере.
-  const checks = document.querySelectorAll("input[data-check]");
-  if (checks.length) {
-    const CHECKS = "clean-a-snow-guide-testing-checks";
-    const CHECKS_URL = "https://atlas.31-58-209-99.sslip.io/clean-snow-checks/";
+  // Общие галочки: файл на сервере, браузер держит копию. Сервер недоступен — остаётся копия в браузере.
+  // Пользуются чеклист «Тестирование» и отметки «Ответ дан» страницы «Вопросы».
+  // reset() снимает все отметки у всех. onPaint вызывается после каждой смены галочек.
+  const sharedChecks = ({ boxes, keyOf, storageKey, url, onPaint }) => {
     let done = {};
     let revision = null;
     let sending = false;
@@ -2559,20 +2705,20 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
     let resetPending = false;
     const touched = new Set();
     try {
-      done = JSON.parse(localStorage.getItem(CHECKS) || "{}") || {};
+      done = JSON.parse(localStorage.getItem(storageKey) || "{}") || {};
     } catch {
       done = {};
     }
     const save = () => {
       try {
-        localStorage.setItem(CHECKS, JSON.stringify(done));
+        localStorage.setItem(storageKey, JSON.stringify(done));
       } catch {
         // Без хранилища отметки живут до ухода со страницы.
       }
     };
     const paint = () => {
-      for (const box of checks) box.checked = done[box.dataset.check] === true;
-      count();
+      for (const box of boxes) box.checked = done[keyOf(box)] === true;
+      onPaint();
     };
     const mergeTouched = (serverChecks, localChecks, keys) => {
       const merged = { ...serverChecks };
@@ -2594,7 +2740,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
       const wasReset = resetPending;
       resetPending = false;
       touched.clear();
-      fetch(CHECKS_URL, {
+      fetch(url, {
         method: "PUT",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ revision, checks: sentChecks }),
@@ -2625,7 +2771,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
         });
     };
     const pull = () => {
-      fetch(CHECKS_URL)
+      fetch(url)
         .then((res) => (res.ok ? res.json() : null))
         .then((doc) => {
           if (!doc || !doc.checks || !Number.isInteger(doc.revision)) return;
@@ -2652,6 +2798,36 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
           // Без сервера страница остаётся на копии в браузере.
         });
     };
+    for (const box of boxes) {
+      box.addEventListener("change", () => {
+        if (box.checked) done[keyOf(box)] = true;
+        else delete done[keyOf(box)];
+        touched.add(keyOf(box));
+        resetPending = false;
+        save();
+        onPaint();
+        push();
+      });
+    }
+    paint();
+    pull();
+    setInterval(pull, 2000);
+    return {
+      reset() {
+        done = {};
+        touched.clear();
+        resetPending = true;
+        save();
+        paint();
+        push();
+      },
+    };
+  };
+  const CHECKS_SERVER = "https://atlas.31-58-209-99.sslip.io/clean-snow-checks/";
+
+  // Галочки чеклиста «Тестирование». «Сбросить» начинает новый круг у всех.
+  const checks = document.querySelectorAll("input[data-check]");
+  if (checks.length) {
     const visibleBoxes = (root) => [...root.querySelectorAll("input[data-check]")].filter((box) => !box.closest(".test-item")?.hidden);
     const count = () => {
       for (const group of document.querySelectorAll("details.test-group")) {
@@ -2682,30 +2858,32 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
       count();
     };
     for (const button of filterButtons) button.addEventListener("click", () => applyPerson(button.dataset.testFilter));
-    for (const box of checks) {
-      box.checked = done[box.dataset.check] === true;
-      box.addEventListener("change", () => {
-        if (box.checked) done[box.dataset.check] = true;
-        else delete done[box.dataset.check];
-        touched.add(box.dataset.check);
-        resetPending = false;
-        save();
-        count();
-        push();
-      });
-    }
+    const testing = sharedChecks({
+      boxes: checks,
+      keyOf: (box) => box.dataset.check,
+      storageKey: "clean-a-snow-guide-testing-checks",
+      url: CHECKS_SERVER,
+      onPaint: count,
+    });
     document.getElementById("test-reset").addEventListener("click", () => {
       if (!confirm("Снять все отметки и начать проверку заново?")) return;
-      done = {};
-      touched.clear();
-      resetPending = true;
-      save();
-      paint();
-      push();
+      testing.reset();
     });
-    count();
-    pull();
-    setInterval(pull, 2000);
+  }
+
+  // Отметки «Ответ дан» страницы «Вопросы»: свой файл того же сервера.
+  const answers = document.querySelectorAll("input[data-answer]");
+  if (answers.length) {
+    sharedChecks({
+      boxes: answers,
+      keyOf: (box) => box.dataset.answer,
+      storageKey: "clean-a-snow-guide-question-answers",
+      url: "https://atlas.31-58-209-99.sslip.io/clean-snow-checks/questions",
+      onPaint: () => {
+        for (const box of answers) box.closest(".question")?.classList.toggle("question-answered", box.checked);
+        document.getElementById("answer-done").textContent = String([...answers].filter((b) => b.checked).length);
+      },
+    });
   }
 
   const current = sidebar.querySelector('[aria-current="page"]');
