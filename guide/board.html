@@ -587,41 +587,8 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
   <p class="board-empty" hidden>Пусто.</p>
 </section>
 <section class="board-column" data-status="doing">
-  <h3>В работе <span class="board-count">2</span></h3>
-  <div class="board-cards"><article class="board-card" id="card-670e36" data-person="Богдан" data-status="doing">
-  <h3>Мир: содержимое плейсов в репозитории</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>670e36</code> техработа · architecture</p>
-  <p class="board-lead">Исполнитель: Богдан. Мир C (`ca1233`), №16 сводки.</p>
-  
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Исполнитель: Богдан. Мир C (<code>ca1233</code>), №16 сводки.</p>
-<p>Два проекта Rojo (лобби и забег) на общий <code>src/</code>, содержимое мест в <code>models/</code>. Резервные копии в ServerStorage плейса (628 тыс. объектов) убрать — только по слову владельца.</p>
-<h2>Готово когда</h2>
-<ul>
-<li><input checked="" disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
-<li><input disabled="" type="checkbox"> Оба плейса собираются из репозитория.</li>
-<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
-<li><input disabled="" type="checkbox"> Коммит и push.</li>
-</ul>
-<h2>Оценка</h2>
-<ul>
-<li>Новый источник мира в репозитории, сборка трёх мест и выгрузка из Studio.</li>
-</ul>
-<h2>Работа</h2>
-<ul>
-<li>2026-11-11 00:26 →</li>
-</ul>
-<h2>Заметки</h2>
-<ul>
-<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
-<li>Решение владельца 11.11.2026: мир правится в Studio в собранном файле, потом выгрузка <code>node tools/places/export.mjs</code> кладёт правку в <code>models/</code>; сборка не перезаписывает файл с невыгруженной правкой мира.</li>
-<li>Решение владельца 11.11.2026: <code>place/NaLovi.rbxl</code> (Play) тоже собирается из репозитория — долина и остров без резервных копий, старый файл уходит в <code>place/backup/</code>.</li>
-<li>Решение владельца 11.11.2026: резервные копии из ServerStorage в репозиторий не брать, старый файл с ними остаётся в <code>place/backup/</code>.</li>
-<li>Решение владельца 11.11.2026: спека и план утверждены. Два проекта Rojo не делаются: мир перемешан с кодом, его собирает Lune по слоям <code>models/</code> (причина — в спеке).</li>
-</ul>
-</div></details>
-</article>
-<article class="board-card" id="card-8770fb" data-person="Богдан" data-status="doing">
+  <h3>В работе <span class="board-count">1</span></h3>
+  <div class="board-cards"><article class="board-card" id="card-8770fb" data-person="Богдан" data-status="doing">
   <h3>Контракт: правило оружия отдельно от вида</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>8770fb</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Контракт C (`bae98a`), №11 сводки.</p>
@@ -749,7 +716,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
   <p class="board-empty" hidden>Пусто.</p>
 </section>
 <section class="board-column" data-status="done">
-  <h3>Готово <span class="board-count">44</span></h3>
+  <h3>Готово <span class="board-count">46</span></h3>
   <div class="board-cards"><article class="board-card" id="card-026145" data-person="Богдан" data-status="done">
   <h3>Рядом с игроком нет снега: поверхность исчерпала память</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>026145</code> баг · bug</p>
@@ -1219,6 +1186,42 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <li>Грузовик из магазина в Play не проверен (нужна покупка и поездка); его разгрузка идёт через тот же <code>near</code> + <code>accept</code>, что проверены тестом и пикапом.</li>
 <li>В сценарии: первый перенос машины сервером откатывает клиент водителя (сеть и сторож скорости <code>VehicleDriving</code>), поэтому парковка дважды и с закреплённым <code>DriveRoot</code>.</li>
 <li>Прогон тестов ждал правила «раз в час» ~15 мин (окно 21:09).</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-670e36" data-person="Богдан" data-status="done">
+  <h3>Мир: содержимое плейсов в репозитории</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>670e36</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Мир C (`ca1233`), №16 сводки.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Исполнитель: Богдан. Мир C (<code>ca1233</code>), №16 сводки.</p>
+<p>Два проекта Rojo (лобби и забег) на общий <code>src/</code>, содержимое мест в <code>models/</code>. Резервные копии в ServerStorage плейса (628 тыс. объектов) убрать — только по слову владельца.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input checked="" disabled="" type="checkbox"> Оба плейса собираются из репозитория.</li>
+<li><input checked="" disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input checked="" disabled="" type="checkbox"> Коммит и push.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Новый источник мира в репозитории, сборка трёх мест и выгрузка из Studio.</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-11 00:26 → 2026-11-11 00:50</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
+<li>Решение владельца 11.11.2026: мир правится в Studio в собранном файле, потом выгрузка <code>node tools/places/export.mjs</code> кладёт правку в <code>models/</code>; сборка не перезаписывает файл с невыгруженной правкой мира.</li>
+<li>Решение владельца 11.11.2026: <code>place/NaLovi.rbxl</code> (Play) тоже собирается из репозитория — долина и остров без резервных копий, старый файл уходит в <code>place/backup/</code>.</li>
+<li>Решение владельца 11.11.2026: резервные копии из ServerStorage в репозиторий не брать, старый файл с ними остаётся в <code>place/backup/</code>.</li>
+<li>Решение владельца 11.11.2026: спека и план утверждены. Два проекта Rojo не делаются: мир перемешан с кодом, его собирает Lune по слоям <code>models/</code> (причина — в спеке).</li>
+<li>11.11.2026: сделано в <code>ebafd01</code>. Мир трёх мест в <code>models/</code> (слои <code>shared</code>, <code>lobby</code>, <code>match</code>, 17 МБ, из них Terrain долины 4,7 МБ и <code>SnowPartialMeshes</code> 8 МБ); <code>node tools/places/build.mjs</code> собирает <code>NaLovi-Lobby</code>, <code>NaLovi-Match</code> и <code>NaLovi.rbxl</code> (Play, оба мира, 19 МБ вместо 42) из <code>models/</code> и <code>src/</code> коммита и сверяет мир байт в байт; <code>node tools/places/export.mjs</code> выгружает правку мира из Studio. Старый <code>NaLovi.rbxl</code> с резервными копиями — <code>place/backup/Dev-2026-11-10T17-33-27-960Z.rbxl</code>. Потеряны две ссылки редактора анимаций между частями (<code>KESTREL_07</code> ↔ <code>RBX_ANIMSAVES</code>), игре не нужны.</li>
+<li>Проверка 11.11.2026: <code>node --test tools/places/content.test.mjs tools/places/build.test.mjs</code> 7/7, <code>npm run check</code> без новых замечаний, <code>build.mjs --check</code> и повторная сборка без <code>--force</code> проходят. Play: <code>deposit</code> на <code>NaLovi.rbxl</code> (очередь на острове, забег, сдача, 24 монеты), <code>publish-lobby</code> (остров без долины), <code>publish-match</code> (долина, забег стартует) — все прошли. Кадры в <code>build/studio-play/</code>.</li>
+<li>Страница гида «Модели в репозитории» (<code>tools/guide/build.mjs</code>, <code>placeSection</code>) теперь перечисляет части по слоям; её текст про Insert from File не правил — в файле идут чужие незакоммиченные правки.</li>
 </ul>
 </div></details>
 </article>
@@ -2586,6 +2589,36 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <li>Тесты 10.11.2026: <code>node --test</code> guide, data, mapbake — 63/63; <code>npm run test:game</code> (весь набор) — 177/177.</li>
 <li>Страницы <code>guide/</code> не пересобраны: их параллельно меняют другие сессии; пересобрать вместе со всеми.</li>
 </ul>
+</div></details>
+</article>
+<article class="board-card" id="card-8d37a2" data-person="Богдан" data-status="done">
+  <h3>Страница «Вопросы»: общие отметки «Ответ дан»</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>8d37a2</code> фича · guide</p>
+  <p class="board-lead">Отдельная страница «Вопросы» в гайде: вопросы аудита механик (`docs/mechanics-audit.md`) и открытые Q- доски (`tasks/questions.md`) в одном месте, у каждого галочка «Ответ дан», которую видят все — как галочки «Тестирования».</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Отдельная страница «Вопросы» в гайде: вопросы аудита механик (<code>docs/mechanics-audit.md</code>) и открытые Q- доски (<code>tasks/questions.md</code>) в одном месте, у каждого галочка «Ответ дан», которую видят все — как галочки «Тестирования».</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Кнопка «Вопросы» в шапке ведёт на <code>questions.html</code>, вопрос с номером Q- показан один раз.</li>
+<li><input checked="" disabled="" type="checkbox"> Сервер галочек хранит отметки по пути <code>/questions</code> в своём файле, чеклист не тронут.</li>
+<li><input checked="" disabled="" type="checkbox"> Две вкладки: галочка из одной появляется в другой (проверено с сервером на VPS).</li>
+<li><input checked="" disabled="" type="checkbox"> Тесты <code>tools/guide/checks-server.test.mjs</code> и <code>tools/guide/build.test.mjs</code> проходят.</li>
+<li><input checked="" disabled="" type="checkbox"> Сервер на VPS обновлён, сайт опубликован.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>сервер, страница и деплой на VPS</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-11 00:51 → 2026-11-11 00:51</li>
+<li>Спека и план: <code>docs/superpowers/specs/2026-11-11-shared-question-marks-design.md</code>.</li>
+<li>Как развёрнут сервер на VPS: <code>docs/checks-server.md</code>.</li>
+<li>Коммиты 4c303ca (код) и a0bea7f (guide).</li>
+</ul>
+<h2>Заметки</h2>
+<p>Владелец дал «апрув везде»: отдельная страница и второй путь того же сервера выбраны по рекомендации, решения записаны в спеку.</p>
 </div></details>
 </article></div>
   <p class="board-empty" hidden>Пусто.</p>

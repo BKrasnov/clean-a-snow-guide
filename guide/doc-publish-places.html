@@ -277,7 +277,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <td>В новый плейс той же игры (шаг 1)</td>
 </tr>
 </tbody></table>
-<p>Код в обоих файлах — из закоммиченного <code>origin/main</code>, без незаконченной работы из рабочей папки. Коммит записан в <code>build/places/build.json</code>. Проверить, что файлы несут код коммита:</p>
+<p>Код и мир в обоих файлах — из закоммиченного <code>origin/main</code>: код из <code>src/</code>, мир из <code>models/</code> (с 11.11.2026, <code>docs/place.md</code>), без незаконченной работы из рабочей папки. Коммит записан в <code>build/places/build.json</code>. Проверить, что файлы несут код и мир коммита:</p>
 <pre><code class="language-bash">node tools/places/build.mjs --check
 </code></pre>
 <p><strong>Сейчас публиковать рано.</strong> В файлах <code>MatchPlaceId = 0</code>: так лобби запускает забег у себя на острове, а долины там нет. Сначала нужен id нового плейса (шаги 1–4), потом пересборка, потом публикация.</p>
@@ -317,7 +317,8 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <p>Пересборка (делает агент, можно и самому):</p>
 <pre><code class="language-bash">node tools/places/build.mjs
 </code></pre>
-<p>Что она делает: берёт код из <code>origin/main</code> (рабочая папка не участвует), подменяет скрипты в обоих файлах, сверяет каждый скрипт с git, проверяет, что остров, долина, <code>CleanSnowAssets</code> и атрибут <code>StudioRole</code> не изменились. Старые файлы кладёт в <code>place/backup/</code>. Итог и коммит пишет в <code>build/places/build.json</code>, выгрузку коммита — в <code>build/places/tree</code> (из неё Play берёт код).</p>
+<p>Что она делает: берёт код и мир из <code>origin/main</code> (рабочая папка не участвует), собирает каждый файл заново из <code>models/</code> и <code>src/</code>, сверяет каждый скрипт с git и мир — с <code>models/</code>, ставит <code>StudioRole</code>. Заодно собирает <code>place/NaLovi.rbxl</code> для Play. Старые файлы кладёт в <code>place/backup/</code>. Итог и коммит пишет в <code>build/places/build.json</code>, код коммита — в <code>build/places/tree</code> (из неё Play берёт код).</p>
+<p>Если мир в одном из файлов правили в Studio, сборка остановится и попросит сначала выгрузить правку: <code>node tools/places/export.mjs &lt;Lobby|Match|Dev&gt;</code>, коммит и push <code>models/</code>, потом сборка снова.</p>
 <p>Проверка в Studio — каждый файл в своём окне, без кода рабочей папки:</p>
 <pre><code class="language-bash">npm run play -- publish-lobby
 </code></pre>
