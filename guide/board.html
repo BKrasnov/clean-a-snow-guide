@@ -257,7 +257,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <main>
 <section class="part"><h2>Доска</h2><div class="board-filters" role="group" aria-label="Кто делает"><button type="button" data-person-filter="all" aria-pressed="true">Все</button><button type="button" data-person-filter="Богдан" aria-pressed="false">Богдан</button><button type="button" data-person-filter="Леонид" aria-pressed="false">Леонид</button><button type="button" data-person-filter="Георгий" aria-pressed="false">Георгий</button></div>
 <div class="board-columns"><section class="board-column" data-status="todo">
-  <h3>К выполнению <span class="board-count">14</span></h3>
+  <h3>К выполнению <span class="board-count">15</span></h3>
   <div class="board-cards"><article class="board-card" id="card-13a49d" data-person="Богдан" data-status="todo">
   <h3>Клиент: показ по одной форме и окна по одному</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>13a49d</code> техработа · architecture</p>
@@ -277,6 +277,46 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <h2>Заметки</h2>
 <ul>
 <li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-3513bc" data-person="Богдан" data-status="todo">
+  <h3>Экран загрузки при входе в плейс</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>3513bc</code> фича · onboarding</p>
+  <p class="board-lead">Игрок с первой секунды входа в плейс видит экран загрузки игры, а не стандартный экран Roblox и не мир, который появляется по частям. Простой лоадер без картинки (решение владельца 10.11.2026).</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Игрок с первой секунды входа в плейс видит экран загрузки игры, а не стандартный экран Roblox и не мир, который появляется по частям. Простой лоадер без картинки (решение владельца 10.11.2026).</p>
+<p>Сейчас (проверено 10.11.2026 в Studio на <code>place/NaLovi.rbxl</code>): свой экран загрузки есть только в <code>LoadingController</code> — карточка «Getting things ready...» с полосой, CONTINUE через 5 с и таймаутом 12 с. Его создаёт <code>Bootstrap.client</code> в <code>StarterPlayerScripts</code>, то есть уже после загрузки клиентских скриптов. До этого игрок видит стандартный экран Roblox, а потом мир без интерфейса.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> При входе сразу виден экран игры: однотонный фон цветом из <code>art/palette.json</code>, название «Clean a Snow» и движущийся индикатор загрузки. Картинок, иконок и эмодзи нет. Стандартный экран Roblox убран (<code>ReplicatedFirst:RemoveDefaultLoadingScreen()</code>).</li>
+<li><input disabled="" type="checkbox"> Экран держится, пока мир не загрузился (<code>game:IsLoaded()</code>), и без мигания мира передаёт игрока <code>LoadingController</code> (или объединяется с ним): игрок видит один непрерывный экран загрузки до готовности снега и интерфейса.</li>
+<li><input disabled="" type="checkbox"> Лоадер не зависает: долгая загрузка ведёт себя как в <code>LoadingController</code> (CONTINUE, таймаут), после <code>fail</code> игрок видит сообщение об ошибке.</li>
+<li><input disabled="" type="checkbox"> Скрипт лежит в <code>src/ReplicatedFirst</code>: <code>ReplicatedFirst</code> добавлен в <code>default.project.json</code> и в управляемые сервисы сборки плейсов (<code>MANAGED</code> в <code>tools/places/build.mjs</code> и <code>tools/places/placeparts.luau</code>), тесты <code>tools/places</code> проходят, собранный <code>place/NaLovi.rbxl</code> содержит скрипт.</li>
+<li><input disabled="" type="checkbox"> На телефоне, планшете и ПК название и индикатор по центру, ничего не обрезано.</li>
+<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input disabled="" type="checkbox"> Проверено в живой игре: кадры начала загрузки, передачи к <code>LoadingController</code> и входа в лобби, PNG просмотрены.</li>
+<li><input disabled="" type="checkbox"> Документация: в <code>docs/place.md</code> — что видит игрок при входе, в таблице структуры <code>README.md</code> — папка <code>src/ReplicatedFirst</code>.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 10.11.2026: «Пусть будет простой loader без картинки».</li>
+<li>Маршрут: новое видимое игроку поведение → <code>spec-plan</code> (brainstorming → спека → план → <code>assess</code>).</li>
+<li>Правило AGENTS.md «новый экран начинается с референса ChatGPT Image»: владелец просил лоадер без картинки. Нужен ли референс макета — спросить владельца на brainstorming, не решать за него.</li>
+<li>Это полноэкранный оверлей: на спеке решить, проходит ли он критика <code>feature-design-critic</code> (раздел «Большие окна» AGENTS.md).</li>
+<li>Код сейчас: <code>src/StarterPlayer/StarterPlayerScripts/CleanSnow/LoadingController.luau</code> (<code>ScreenGui</code> <code>CleanSnowLoading</code>, <code>DisplayOrder=500</code>, атрибуты игрока <code>SnowClientLoading</code>, <code>SnowLoadingResult</code>), создаётся в <code>Bootstrap.client.luau:27</code>.</li>
+<li>Решение владельца 10.11.2026: пока только карточка, функционал не писать. Спеки и плана нет, карточка остаётся <code>todo</code>.</li>
+<li>Разбор 10.11.2026 (Studio, <code>place/NaLovi.rbxl</code>): <code>ReplicatedFirst</code> плейса пуст, добавление его в <code>MANAGED</code> ничего из мира не уберёт. В Studio вход до <code>SnowLoadingResult = ready</code> занял 4,5 с. Цвета <code>LoadingController</code> (тёмно-синий фон, белая карточка, голубая полоса) не из <code>art/palette.json</code>.</li>
+<li>На машине нет <code>rokit</code>, <code>lune</code>, <code>selene</code>, <code>luau-lsp</code>: без них не отметить пункты про <code>npm run check</code> и сборку плейса. Скачать — только с разрешения владельца.</li>
+<li>Вопросы владельцу до старта (задать на brainstorming):<ol>
+<li>Нужен ли референс ChatGPT Image или хватит кадров из игры. Предложение: без референса — голубой фон «Синяя гора» <code>#80A0E6</code>, название кремом <code>#FFFDF5</code> с контуром <code>#2B1A11</code>, три прыгающих снежка.</li>
+<li>Проходит ли экран критика <code>feature-design-critic</code>. Предложение: нет, это весь экран, а не окно; вместо критика — кадры телефона, планшета и ПК.</li>
+<li>Что видно в начале забега, пока догружается снег. Предложение: тот же экран, что при входе (один <code>ScreenGui</code>, <code>LoadingController</code> подхватывает его и добавляет полосу и CONTINUE).</li>
+<li>Можно ли скачать инструменты из <code>aftman.toml</code>.</li>
+</ol>
+</li>
 </ul>
 </div></details>
 </article>
