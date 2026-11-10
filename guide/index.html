@@ -17,6 +17,8 @@
   --paper: #FFFFFF;
 }
 * { box-sizing: border-box; }
+/* Своё display у блока не должно отменять атрибут hidden. */
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; scroll-padding-top: 64px; }
 body { margin: 0; background: var(--snow); color: var(--ink); font: 16px/1.55 "Segoe UI", system-ui, sans-serif; }
 a { color: var(--ice-dark); }
@@ -29,7 +31,7 @@ pre code { background: none; padding: 0; }
 .topbar .top-link, #menu { white-space: nowrap; }
 .topbar .hint { margin-left: auto; font-size: 13px; color: var(--gold); }
 .topbar .hint code { background: rgba(238, 243, 248, .12); color: var(--snow); }
-.topbar .top-link { color: var(--snow); text-decoration: none; font-weight: 600; padding: 5px 12px; border: 2px solid var(--gold); border-radius: 6px; }
+.topbar .top-link { color: var(--snow); text-decoration: none; font-weight: 600; padding: 5px 12px; border: 2px solid var(--gold); border-radius: 6px; background: transparent; font: inherit; cursor: pointer; }
 .topbar .top-link:hover, .topbar .top-link[aria-current="page"] { background: var(--gold); color: var(--ink); }
 #menu { display: none; background: var(--wood); color: var(--snow); border: 0; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
 
@@ -48,6 +50,39 @@ pre code { background: none; padding: 0; }
 .test-item input { width: 18px; height: 18px; margin-top: 2px; flex: none; accent-color: var(--wood); }
 .test-item:has(input:checked) { color: rgba(29, 39, 64, .55); text-decoration: line-through; }
 
+html:not(.site-open) .topbar,
+html:not(.site-open) .layout,
+html:not(.site-open) #viewer { display: none !important; }
+.site-lock { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; padding: 24px; background: var(--snow); }
+html.site-open .site-lock { display: none !important; }
+.site-lock-card { display: grid; gap: 10px; width: min(420px, 100%); padding: 16px; background: var(--paper); border: 2px solid var(--ink); border-radius: 10px; }
+.site-lock-card p { margin: 0; }
+.site-lock-card label { display: grid; gap: 4px; font-weight: 700; }
+.site-lock-card input { font: inherit; padding: 8px 10px; border: 2px solid var(--ink); border-radius: 6px; }
+.site-lock-card button, .board-filters button { font: inherit; font-weight: 700; padding: 6px 14px; border: 2px solid var(--ink); border-radius: 6px; background: var(--paper); color: var(--ink); cursor: pointer; }
+.site-lock-card button { justify-self: start; background: var(--gold); }
+.site-lock-error { color: var(--wood-dark); font-weight: 700; }
+.board-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 14px; }
+.board-filters button[aria-pressed="true"] { background: var(--ink); color: var(--snow); }
+.board-columns { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; align-items: start; }
+.board-column { background: rgba(255, 255, 255, .55); border: 1px solid rgba(29, 39, 64, .1); border-radius: 10px; padding: 10px; }
+.board-column > h3 { margin: 0 0 8px; font-size: 15px; }
+.board-count { display: inline-block; min-width: 1.4em; padding: 0 6px; border-radius: 999px; background: var(--ink); color: var(--snow); font-size: 12px; text-align: center; }
+.board-card { margin: 0 0 8px; padding: 10px 12px; background: var(--paper); border: 1px solid rgba(29, 39, 64, .12); border-radius: 8px; }
+.board-card h3 { margin: 0 0 6px; font-size: 16px; }
+.board-meta, .board-lead, .board-empty { margin: 0 0 6px; }
+.board-empty { color: var(--muted); }
+.board-archive { color: var(--muted); font-size: 12px; }
+.person { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+.person[data-person="Богдан"] { background: var(--gold); }
+.person[data-person="Леонид"] { background: var(--ice); color: var(--snow); }
+.person[data-person="Георгий"] { background: var(--wood); color: var(--snow); }
+.board-card details { margin-top: 4px; }
+.board-card summary { cursor: pointer; font-weight: 600; }
+@media (max-width: 1100px) {
+  .board-columns { grid-template-columns: 1fr 1fr; }
+}
+
 .layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); }
 #sidebar { position: sticky; top: 52px; align-self: start; height: calc(100vh - 52px); overflow-y: auto; padding: 16px 12px; border-right: 2px solid rgba(29, 39, 64, .1); }
 #sidebar ul { list-style: none; margin: 0; padding: 0; }
@@ -62,6 +97,10 @@ pre code { background: none; padding: 0; }
 main { padding: 8px 32px 64px; max-width: 1280px; }
 .part { padding-top: 16px; padding-bottom: 24px; }
 .part > h2 { font-size: 28px; margin: 12px 0 16px; color: var(--wood-dark); }
+.toc { margin: 0 0 18px; }
+.toc ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { display: inline-block; padding: 4px 10px; border-radius: 999px; background: var(--paper); color: var(--ice-dark); text-decoration: none; font-weight: 600; font-size: 14px; }
+.toc a:hover { background: var(--ice-dark); color: var(--snow); }
 h3 { color: var(--ice-dark); margin-top: 28px; }
 .prose { max-width: 900px; }
 .prose table { border-collapse: collapse; margin: 12px 0; display: block; overflow-x: auto; }
@@ -142,53 +181,142 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
   .modules li { grid-template-columns: minmax(0, 1fr) auto; }
   .modules .note { grid-column: 1 / -1; }
   .modules .lines { display: none; }
+  .board-columns { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 1100px) {
+  .part.with-toc { display: grid; grid-template-columns: minmax(0, 1fr) 230px; column-gap: 28px; align-items: start; }
+  .part.with-toc > h2, .part.with-toc > .part-body { grid-column: 1; }
+  .part.with-toc > .toc { grid-column: 2; grid-row: 1 / span 2; position: sticky; top: 68px; max-height: calc(100vh - 84px); overflow: auto; margin: 18px 0 0; }
+  .part.with-toc > .toc ul { display: grid; gap: 2px; }
+  .part.with-toc > .toc a { display: block; border-radius: 6px; background: transparent; padding: 5px 8px; }
 }
 </style>
+<script>try{if(localStorage.getItem("clean-a-snow-guide-open")==="1")document.documentElement.classList.add("site-open")}catch(e){}</script>
 </head>
 <body>
-<header class="topbar"><button id="menu" type="button" aria-expanded="false" aria-controls="sidebar">Разделы</button><a class="brand" href="index.html">Clean a Snow</a><a class="top-link" href="testing.html">Тестирование</a><span class="hint">Собрано из файлов репозитория: <code>node tools/guide/build.mjs</code></span></header>
+<div id="site-lock" class="site-lock" role="dialog" aria-modal="true" aria-labelledby="site-lock-title">
+<form id="site-lock-form" class="site-lock-card">
+<p id="site-lock-title">Введите пароль, чтобы открыть страницы.</p>
+<label>Пароль <input name="password" type="password" autocomplete="current-password" required autofocus></label>
+<button type="submit">Открыть</button>
+<p id="site-lock-error" class="site-lock-error" hidden>Пароль не подошёл.</p>
+</form>
+</div>
+<header class="topbar"><button id="menu" type="button" aria-expanded="false" aria-controls="sidebar">Разделы</button><a class="brand" href="index.html">Clean a Snow</a><a class="top-link" href="testing.html">Тестирование</a><a class="top-link" href="board.html">Доска</a><button id="site-close" class="top-link" type="button">Закрыть</button><span class="hint">Собрано из файлов репозитория: <code>node tools/guide/build.mjs</code></span></header>
 <div class="layout">
-<nav id="sidebar" aria-label="Разделы"><ul><li><a href="index.html" aria-current="page">Об игре</a></li><li><a href="place.html">Плейс и запуск</a></li><li><a href="style.html">Стиль</a></li><li><a href="economy.html">Экономика</a></li><li><a href="weapons.html">Оружие</a></li><li><a href="garden.html">Сад</a></li><li><a href="code.html">Код</a></li><li><details class="group" data-group="galleries.html" open><summary><a href="galleries.html">Кадры и картинки</a></summary><ul><li><a href="gallery-frames.html">frames</a></li><li><a href="gallery-palette-preview.html">palette-preview</a></li></ul></details></li><li><a href="docs.html">Документы</a></li></ul></nav>
+<nav id="sidebar" aria-label="Разделы"><ul><li><a href="index.html" aria-current="page">Об игре</a></li><li><a href="place.html">Плейс и запуск</a></li><li><a href="style.html">Стиль</a></li><li><a href="economy.html">Экономика</a></li><li><a href="weapons.html">Оружие</a></li><li><a href="garden.html">Сад</a></li><li><a href="code.html">Код</a></li><li><details class="group" data-group="galleries.html" open><summary><a href="galleries.html">Кадры и картинки</a></summary><ul><li><a href="gallery-frames.html">Кадры игры</a></li><li><a href="gallery-palette-preview.html">Палитра</a></li></ul></details></li><li><details class="group" data-group="docs.html" open><summary><a href="docs.html">Документы</a></summary><ul></ul></details></li></ul></nav>
 <main>
-<section class="part"><h2>Об игре</h2><article class="doc prose" id="doc-readme"><p class="path">docs/README.md</p><h1>Clean a Snow</h1>
-<p>Игра на Roblox про уборку снега. Её прислали коллеги по Roblox: код лежит в приватном репозитории на GitHub (<code>BKrasnov/clean-a-snow</code>), полный плейс — файл «НаЛови.rbxl». 9 ноября 2026 игра запущена у нас в Studio из этого плейса: лобби, интерфейс, обучение и забег на снегу работают.</p>
+<section class="part with-toc"><h2>Об игре</h2><nav class="toc" aria-label="На этой странице"><ul><li><a href="#как-играют">Как играют</a></li><li><a href="#обучение">Обучение</a></li><li><a href="#машины">Машины</a></li><li><a href="#что-ещё-есть-в-игре">Что ещё есть в игре</a></li><li><a href="#настройки">Настройки</a></li></ul></nav><div class="part-body"><article class="doc prose" id="doc-readme"><p class="path">docs/README.md</p><h1>Clean a Snow</h1>
+<p>Игра про уборку снега. Игрок чистит долину, носит снег в переработчик и на вырученное покупает лопаты, сумки, машины и зверей. Монеты, покупки и сад игра помнит.</p>
 <p><img src="../art/frames/01-lobby.jpeg" alt="Лобби"></p>
-<h2>Как играют</h2>
+<h2 id="как-играют">Как играют</h2>
 <ol>
-<li><strong>Лобби.</strong> Игрок появляется на дороге между домиками: магазин инструментов (Tool Shop), домик Snow Patrol, костёр. Впереди четыре площадки START A RUN.</li>
-<li><strong>Старт забега.</strong> Встал на площадку, выбрал, сколько игроков (1–4), нажал старт. После короткого отсчёта отряд переносится на снежную карту. У каждого отряда своя копия карты.</li>
-<li><strong>Разбить снег.</strong> Карта — заснеженная долина с фермой, в ней 6 зон, от Frostwood до Summit. Снег бьют руками, лопатами или пылесосом. Чем дальше зона, тем снег прочнее и дороже.</li>
-<li><strong>Унести.</strong> Разбитый снег падает кусками, их подбирают в сумку. Сумка ограничена, большие сумки покупают.</li>
-<li><strong>Сдать.</strong> Снег несут в переработчик у фермы: встал в зону — снег сдаётся сам. Переработчик превращает каждую единицу в монеты.</li>
-<li><strong>Прокачка.</strong> На монеты — лопаты, пылесос, сумки и улучшения (например, «Hold»: держать кнопку вместо кликов). На гемы — питомцы и помощник, который бьёт снег сам.</li>
+<li><strong>Лобби.</strong> Игрок стоит на дороге между домиками: магазин инструментов, домик Snow Patrol, костёр. Впереди четыре площадки START A RUN.</li>
+<li><strong>Старт забега.</strong> Встал на площадку, выбрал, сколько игроков (1–4), нажал старт. После короткого отсчёта отряд оказывается на снежной карте. У каждого отряда своя копия долины. В лобби можно вернуться.</li>
+<li><strong>Разбить снег.</strong> Долина с фермой, в ней 6 зон, от Frostwood до Summit. Снег бьют руками, лопатами или пылесосом. Чем дальше зона, тем снег прочнее и дороже.</li>
+<li><strong>Унести.</strong> Разбитый снег падает кусками и сам попадает в сумку. Сумка ограничена, большие сумки покупают.</li>
+<li><strong>Сдать.</strong> Снег несут в переработчик у фермы: встал в зону — снег сдаётся сам. Каждая единица становится монетами.</li>
+<li><strong>Прокачка.</strong> На монеты — лопаты, пылесос, сумки и улучшения. Например, «Hold»: держать кнопку, а не кликать. На гемы — питомцы и помощник, который бьёт снег сам.</li>
 </ol>
 <p><img src="../art/frames/02-snow-run.jpeg" alt="Забег"></p>
-<h2>Что ещё есть в игре</h2>
+<h2 id="обучение">Обучение</h2>
+<p>Первый забег ведёт пять подсказок:</p>
+<ol>
+<li>Начать забег: площадка START A RUN, число игроков 1–4, старт.</li>
+<li>Разбить первый снег.</li>
+<li>Подобрать куски. Они сразу падают в сумку.</li>
+<li>Сдать снег в переработчик. Встал на площадку сдачи — снег выгружается сам.</li>
+<li>Купить первую лопату в магазине.</li>
+</ol>
+<p>Когда шаги пройдены, игра пишет, что долина открыта, и дальше подсказывает первую лопату и первое улучшение.</p>
+<h2 id="машины">Машины</h2>
+<p>На них садятся и едут. Снег, который они собирают, считает игра.</p>
 <ul>
-<li><strong>Машины.</strong> Грузовик и пикап со шнеком и снегоход со щёткой собирают снег, пока на них едешь; груз считает сервер. Ещё на карте стоит танк, на нём тоже можно ездить.</li>
+<li><strong>Грузовик.</strong> Покупается. На ходу забирает снег спереди в кузов. У переработчика кузов можно погрузить, выгрузить и сесть в кабину.</li>
+<li><strong>Пикап.</strong> На ходу собирает снег спереди.</li>
+<li><strong>Снегоход.</strong> Щётка спереди счищает снег.</li>
+<li><strong>Танк.</strong> Стоит на карте, на нём можно ездить. Башня смотрит за взглядом, огонь счищает снег впереди.</li>
+<li><strong>Летающая машина.</strong> Всасывает снег под собой, пока летит невысоко.</li>
+</ul>
+<p>Цены и вместимость грузовика — на странице <a href="../guide/economy.html">Экономика</a>.</p>
+<h2 id="что-ещё-есть-в-игре">Что ещё есть в игре</h2>
+<ul>
 <li><strong>Оружие.</strong> Бесплатные ледоруб, ложка, лопата, пылесос, отбойный молоток, снегоуборщик, термопушка и коктейль Молотова лежат на стойках в мире. Подробно — <a href="../guide/weapons.html">Оружие</a>.</li>
-<li><strong>Звери.</strong> Кошка, собака, морозный волк и медведь ходят за игроком, ловят птиц за монеты и носят снег. По карте бегают кролики, их можно ловить.</li>
-<li><strong>Сад.</strong> Свои грядки: семена от моркови до «Moon Bloom», растения растут минуты, урожай продают садовнику. Погода в мире меняется: дождь, гроза, радуга, снегопад, кровавая луна, звездопад, сияние.</li>
-<li><strong>Награды.</strong> Ежедневная награда, колесо удачи, таблица лидеров.</li>
-<li><strong>Обучение.</strong> Пять шагов первого забега, подсказки к первой лопате и первому улучшению.</li>
+<li><strong>Звери.</strong> Кошка, собака, морозный волк и медведь ходят за игроком, ловят птиц за монеты и носят снег. По карте бегают кролики, их можно поймать.</li>
+<li><strong>Сад.</strong> Свои грядки: семена от моркови до «Moon Bloom». Растения растут минуты, урожай продают садовнику. Погода в мире меняется: дождь, гроза, радуга, снегопад, кровавая луна, звездопад, сияние. Числа — на странице <a href="../guide/garden.html">Сад</a>.</li>
+<li><strong>Награды.</strong> Ежедневная награда: 50 монет, если побыть в игре минуту, один раз в день. Колесо удачи: 50 монет, 100 монет или 10 гемов.</li>
+<li><strong>Таблица.</strong> Кнопка открывает список «кто расчистил больше снега», по десять имён. Общий список обновляется примерно раз в минуту. В окне своей статистики ещё монеты, число забегов, текущая зона и время в игре.</li>
 </ul>
-<p>Все цены и числа — на страницах <a href="../guide/economy.html">Экономика</a> и <a href="../guide/garden.html">Сад</a>: сборщик берёт их прямо из кода игры.</p>
-<h2>Как устроена</h2>
+<p>Все остальные цены — на странице <a href="../guide/economy.html">Экономика</a>.</p>
+<h2 id="настройки">Настройки</h2>
 <ul>
-<li>Код — проект Rojo в <code>src/</code>. Сервер решает всё про деньги, снег и инвентарь, клиент показывает и шлёт просьбы. Подробно — <a href="../guide/code.html">Код</a>.</li>
-<li>Интерфейс, RemoteEvent, модели оружия и сада, террейн и освещение есть только в плейсе. Без плейса из одного репозитория игра не запустится. Что где лежит и как запустить — <a href="place.html">Плейс и запуск</a>.</li>
-<li>В Studio прогресс хранится в памяти и пропадает после Play. В опубликованной игре — в DataStore.</li>
-<li>Матч-плейса нет (<code>MatchPlaceId = 0</code>): забеги идут на том же сервере, что и лобби.</li>
+<li><strong>Падающий снег.</strong> Снег в воздухе и эффекты погоды.</li>
+<li><strong>Звук.</strong> Звуки игры.</li>
+<li><strong>Меньше движения.</strong> Убирает тряску и лишние эффекты.</li>
+<li><strong>Тряска камеры</strong> и <strong>слова удара.</strong> Эти два переключателя живут только на этом устройстве.</li>
 </ul>
-<h2>Страницы об игре</h2>
-<p>Эти страницы собирает <code>node tools/guide/build.mjs</code> из файлов репозитория. Новый <code>.md</code> в <code>docs/</code> и новая папка с картинками в <code>art/</code> попадают на страницы сами.</p>
-<p>Сайт для всех: <a href="https://bkrasnov.github.io/clean-a-snow-guide/">https://bkrasnov.github.io/clean-a-snow-guide/</a> (обновляет <code>node tools/guide/publish.mjs</code>).</p>
-</article></section>
+</article></div></section>
 </main>
 </div>
 <dialog id="viewer" aria-label="Просмотр картинки"><div class="viewer-bar"><p id="viewer-caption"></p><a id="viewer-open" target="_blank" rel="noopener">Открыть файл</a><button id="viewer-close" type="button">Закрыть</button></div><img id="viewer-image" alt=""></dialog>
-<script>// Поведение страницы: меню на узком экране и просмотр картинки. Текущую страницу в меню отмечает сборщик.
+<script>// Поведение страницы: пароль на весь сайт, меню на узком экране и просмотр картинки.
+// Текущую страницу в меню отмечает сборщик.
 (() => {
+  const SITE_KEY = "clean-a-snow-guide-open";
+  const SITE_PASSWORD = "91-23sdf-123dsf213-gfdf";
+  const lock = document.getElementById("site-lock-form");
+  if (lock) {
+    lock.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const error = document.getElementById("site-lock-error");
+      if (new FormData(lock).get("password") === SITE_PASSWORD) {
+        try {
+          localStorage.setItem(SITE_KEY, "1");
+        } catch {
+          // Без хранилища сайт откроется только до закрытия вкладки.
+        }
+        document.documentElement.classList.add("site-open");
+      } else if (error) error.hidden = false;
+    });
+  }
+
+  const close = document.getElementById("site-close");
+  if (close) {
+    close.addEventListener("click", () => {
+      try {
+        localStorage.removeItem(SITE_KEY);
+      } catch {
+        // Без хранилища достаточно убрать класс: следующая страница снова спросит пароль.
+      }
+      const error = document.getElementById("site-lock-error");
+      if (error) error.hidden = true;
+      const input = lock?.querySelector("input");
+      if (input) input.value = "";
+      document.documentElement.classList.remove("site-open");
+      input?.focus();
+    });
+  }
+
+  const board = document.querySelector(".board-columns");
+  if (board) {
+    const buttons = [...document.querySelectorAll("[data-person-filter]")];
+    const apply = (person) => {
+      for (const button of buttons) button.setAttribute("aria-pressed", String(button.dataset.personFilter === person));
+      for (const column of board.querySelectorAll(".board-column")) {
+        let visible = 0;
+        for (const card of column.querySelectorAll(".board-card")) {
+          const show = person === "all" || card.dataset.person === person;
+          card.hidden = !show;
+          if (show) visible += 1;
+        }
+        column.querySelector(".board-count").textContent = String(visible);
+        column.querySelector(".board-empty").hidden = visible !== 0;
+      }
+    };
+    for (const button of buttons) button.addEventListener("click", () => apply(button.dataset.personFilter));
+  }
+
   const menu = document.getElementById("menu");
   const sidebar = document.getElementById("sidebar");
   menu.addEventListener("click", () => {

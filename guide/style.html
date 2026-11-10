@@ -17,6 +17,8 @@
   --paper: #FFFFFF;
 }
 * { box-sizing: border-box; }
+/* Своё display у блока не должно отменять атрибут hidden. */
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; scroll-padding-top: 64px; }
 body { margin: 0; background: var(--snow); color: var(--ink); font: 16px/1.55 "Segoe UI", system-ui, sans-serif; }
 a { color: var(--ice-dark); }
@@ -29,7 +31,7 @@ pre code { background: none; padding: 0; }
 .topbar .top-link, #menu { white-space: nowrap; }
 .topbar .hint { margin-left: auto; font-size: 13px; color: var(--gold); }
 .topbar .hint code { background: rgba(238, 243, 248, .12); color: var(--snow); }
-.topbar .top-link { color: var(--snow); text-decoration: none; font-weight: 600; padding: 5px 12px; border: 2px solid var(--gold); border-radius: 6px; }
+.topbar .top-link { color: var(--snow); text-decoration: none; font-weight: 600; padding: 5px 12px; border: 2px solid var(--gold); border-radius: 6px; background: transparent; font: inherit; cursor: pointer; }
 .topbar .top-link:hover, .topbar .top-link[aria-current="page"] { background: var(--gold); color: var(--ink); }
 #menu { display: none; background: var(--wood); color: var(--snow); border: 0; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
 
@@ -48,6 +50,39 @@ pre code { background: none; padding: 0; }
 .test-item input { width: 18px; height: 18px; margin-top: 2px; flex: none; accent-color: var(--wood); }
 .test-item:has(input:checked) { color: rgba(29, 39, 64, .55); text-decoration: line-through; }
 
+html:not(.site-open) .topbar,
+html:not(.site-open) .layout,
+html:not(.site-open) #viewer { display: none !important; }
+.site-lock { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; padding: 24px; background: var(--snow); }
+html.site-open .site-lock { display: none !important; }
+.site-lock-card { display: grid; gap: 10px; width: min(420px, 100%); padding: 16px; background: var(--paper); border: 2px solid var(--ink); border-radius: 10px; }
+.site-lock-card p { margin: 0; }
+.site-lock-card label { display: grid; gap: 4px; font-weight: 700; }
+.site-lock-card input { font: inherit; padding: 8px 10px; border: 2px solid var(--ink); border-radius: 6px; }
+.site-lock-card button, .board-filters button { font: inherit; font-weight: 700; padding: 6px 14px; border: 2px solid var(--ink); border-radius: 6px; background: var(--paper); color: var(--ink); cursor: pointer; }
+.site-lock-card button { justify-self: start; background: var(--gold); }
+.site-lock-error { color: var(--wood-dark); font-weight: 700; }
+.board-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 14px; }
+.board-filters button[aria-pressed="true"] { background: var(--ink); color: var(--snow); }
+.board-columns { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; align-items: start; }
+.board-column { background: rgba(255, 255, 255, .55); border: 1px solid rgba(29, 39, 64, .1); border-radius: 10px; padding: 10px; }
+.board-column > h3 { margin: 0 0 8px; font-size: 15px; }
+.board-count { display: inline-block; min-width: 1.4em; padding: 0 6px; border-radius: 999px; background: var(--ink); color: var(--snow); font-size: 12px; text-align: center; }
+.board-card { margin: 0 0 8px; padding: 10px 12px; background: var(--paper); border: 1px solid rgba(29, 39, 64, .12); border-radius: 8px; }
+.board-card h3 { margin: 0 0 6px; font-size: 16px; }
+.board-meta, .board-lead, .board-empty { margin: 0 0 6px; }
+.board-empty { color: var(--muted); }
+.board-archive { color: var(--muted); font-size: 12px; }
+.person { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+.person[data-person="Богдан"] { background: var(--gold); }
+.person[data-person="Леонид"] { background: var(--ice); color: var(--snow); }
+.person[data-person="Георгий"] { background: var(--wood); color: var(--snow); }
+.board-card details { margin-top: 4px; }
+.board-card summary { cursor: pointer; font-weight: 600; }
+@media (max-width: 1100px) {
+  .board-columns { grid-template-columns: 1fr 1fr; }
+}
+
 .layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); }
 #sidebar { position: sticky; top: 52px; align-self: start; height: calc(100vh - 52px); overflow-y: auto; padding: 16px 12px; border-right: 2px solid rgba(29, 39, 64, .1); }
 #sidebar ul { list-style: none; margin: 0; padding: 0; }
@@ -62,6 +97,10 @@ pre code { background: none; padding: 0; }
 main { padding: 8px 32px 64px; max-width: 1280px; }
 .part { padding-top: 16px; padding-bottom: 24px; }
 .part > h2 { font-size: 28px; margin: 12px 0 16px; color: var(--wood-dark); }
+.toc { margin: 0 0 18px; }
+.toc ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { display: inline-block; padding: 4px 10px; border-radius: 999px; background: var(--paper); color: var(--ice-dark); text-decoration: none; font-weight: 600; font-size: 14px; }
+.toc a:hover { background: var(--ice-dark); color: var(--snow); }
 h3 { color: var(--ice-dark); margin-top: 28px; }
 .prose { max-width: 900px; }
 .prose table { border-collapse: collapse; margin: 12px 0; display: block; overflow-x: auto; }
@@ -142,52 +181,70 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
   .modules li { grid-template-columns: minmax(0, 1fr) auto; }
   .modules .note { grid-column: 1 / -1; }
   .modules .lines { display: none; }
+  .board-columns { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 1100px) {
+  .part.with-toc { display: grid; grid-template-columns: minmax(0, 1fr) 230px; column-gap: 28px; align-items: start; }
+  .part.with-toc > h2, .part.with-toc > .part-body { grid-column: 1; }
+  .part.with-toc > .toc { grid-column: 2; grid-row: 1 / span 2; position: sticky; top: 68px; max-height: calc(100vh - 84px); overflow: auto; margin: 18px 0 0; }
+  .part.with-toc > .toc ul { display: grid; gap: 2px; }
+  .part.with-toc > .toc a { display: block; border-radius: 6px; background: transparent; padding: 5px 8px; }
 }
 </style>
+<script>try{if(localStorage.getItem("clean-a-snow-guide-open")==="1")document.documentElement.classList.add("site-open")}catch(e){}</script>
 </head>
 <body>
-<header class="topbar"><button id="menu" type="button" aria-expanded="false" aria-controls="sidebar">Разделы</button><a class="brand" href="index.html">Clean a Snow</a><a class="top-link" href="testing.html">Тестирование</a><span class="hint">Собрано из файлов репозитория: <code>node tools/guide/build.mjs</code></span></header>
+<div id="site-lock" class="site-lock" role="dialog" aria-modal="true" aria-labelledby="site-lock-title">
+<form id="site-lock-form" class="site-lock-card">
+<p id="site-lock-title">Введите пароль, чтобы открыть страницы.</p>
+<label>Пароль <input name="password" type="password" autocomplete="current-password" required autofocus></label>
+<button type="submit">Открыть</button>
+<p id="site-lock-error" class="site-lock-error" hidden>Пароль не подошёл.</p>
+</form>
+</div>
+<header class="topbar"><button id="menu" type="button" aria-expanded="false" aria-controls="sidebar">Разделы</button><a class="brand" href="index.html">Clean a Snow</a><a class="top-link" href="testing.html">Тестирование</a><a class="top-link" href="board.html">Доска</a><button id="site-close" class="top-link" type="button">Закрыть</button><span class="hint">Собрано из файлов репозитория: <code>node tools/guide/build.mjs</code></span></header>
 <div class="layout">
-<nav id="sidebar" aria-label="Разделы"><ul><li><a href="index.html">Об игре</a></li><li><a href="place.html">Плейс и запуск</a></li><li><a href="style.html" aria-current="page">Стиль</a></li><li><a href="economy.html">Экономика</a></li><li><a href="weapons.html">Оружие</a></li><li><a href="garden.html">Сад</a></li><li><a href="code.html">Код</a></li><li><details class="group" data-group="galleries.html" open><summary><a href="galleries.html">Кадры и картинки</a></summary><ul><li><a href="gallery-frames.html">frames</a></li><li><a href="gallery-palette-preview.html">palette-preview</a></li></ul></details></li><li><a href="docs.html">Документы</a></li></ul></nav>
+<nav id="sidebar" aria-label="Разделы"><ul><li><a href="index.html">Об игре</a></li><li><a href="place.html">Плейс и запуск</a></li><li><a href="style.html" aria-current="page">Стиль</a></li><li><a href="economy.html">Экономика</a></li><li><a href="weapons.html">Оружие</a></li><li><a href="garden.html">Сад</a></li><li><a href="code.html">Код</a></li><li><details class="group" data-group="galleries.html" open><summary><a href="galleries.html">Кадры и картинки</a></summary><ul><li><a href="gallery-frames.html">Кадры игры</a></li><li><a href="gallery-palette-preview.html">Палитра</a></li></ul></details></li><li><details class="group" data-group="docs.html" open><summary><a href="docs.html">Документы</a></summary><ul></ul></details></li></ul></nav>
 <main>
-<section class="part"><h2>Стиль</h2><article class="doc prose"><p class="path">docs/style.md</p><h1>Стиль игры</h1>
+<section class="part with-toc"><h2>Стиль</h2><nav class="toc" aria-label="На этой странице"><ul><li><a href="#суть">Суть</a></li><li><a href="#цвета">Цвета</a></li><li><a href="#шрифт-и-надписи">Шрифт и надписи</a></li><li><a href="#кнопки">Кнопки</a></li><li><a href="#окна">Окна</a></li><li><a href="#иконки">Иконки</a></li><li><a href="#модели">Модели</a></li><li><a href="#нельзя">Нельзя</a></li><li><a href="#промпт-концепта-модели">Промпт концепта модели</a></li><li><a href="#чек-лист-критика-по-стилю">Чек-лист критика по стилю</a></li><li><a href="#все-цвета-палитры">Все цвета палитры</a></li><li><a href="#снег-и-лёд">снег и лёд</a></li><li><a href="#горы">горы</a></li><li><a href="#зелень">зелень</a></li><li><a href="#дерево-и-земля">дерево и земля</a></li><li><a href="#постройки">постройки</a></li><li><a href="#интерфейс">интерфейс</a></li><li><a href="#добыча">добыча</a></li><li><a href="#редкость">редкость</a></li></ul></nav><div class="part-body"><article class="doc prose"><p class="path">docs/style.md</p><h1>Стиль игры</h1>
 <p>Решение владельца 10.11.2026: палитра, стайлгайд и лимиты моделей утверждены. Стиль — как сейчас в игре (решение владельца 09.11.2026). Источник — кадры <a href="../art/frames/">art/frames/</a>, цвета плейса и кода. Палитра — <a href="../art/palette.json">art/palette.json</a>, бюджеты моделей — <a href="../art/budgets.json">art/budgets.json</a>.</p>
 <p><img src="../art/palette-preview/palette-sheet.png" alt="Палитра"></p>
-<h2>Суть</h2>
+<h2 id="суть">Суть</h2>
 <p>Игрушечная ферма зимой. Низкополигональный мультяшный мир: плоские цвета без текстур, крупные простые формы, видны грани. Белый и сиреневый снег, пастельные горы, бирюзовые ели, тёплые деревянные домики и красный амбар. Светло и дружелюбно, для детей.</p>
 <p><img src="../art/palette-preview/palette-applied.png" alt="Палитра на кадре игры"></p>
-<h2>Цвета</h2>
+<h2 id="цвета">Цвета</h2>
 <ul>
 <li>Только цвета палитры. В картинках и промптах цвета пишутся кодами из <code>art/palette.json</code>.</li>
 <li>Снег и горы — фон. Дерево, земля и постройки — середина. Золото, кристалл, красный и зелёная кнопка — малые акценты.</li>
 <li>Цвета редкостей — только для рамок, плашек и надписей редкости. Это ровно цвета <code>GardenService.rarityColors</code>.</li>
 <li>Свет игры меняет видимый цвет: в забеге снег на экране серо-голубой («Снег на экране»), на закате в лобби — розовый. В свойствах Color и в текстурах стоят точные цвета палитры.</li>
 </ul>
-<h2>Шрифт и надписи</h2>
+<h2 id="шрифт-и-надписи">Шрифт и надписи</h2>
 <ul>
 <li>Шрифт — Fredoka One: жирный и круглый. Gotham Bold и Black встречаются редко, новый текст ими не делать.</li>
 <li>Надпись — «Крем» с тёмно-коричневым контуром «Контур». Число в надписи (монеты, гемы, счёт) — цвета своей добычи: «Золото» или «Кристалл».</li>
 <li>Слов мало: на кнопке одно слово, в подсказке 1–2 короткие строки.</li>
 </ul>
-<h2>Кнопки</h2>
+<h2 id="кнопки">Кнопки</h2>
 <ul>
 <li>Кнопка HUD — картинка-иконка, под ней одно слово крупными буквами (PETS, SHOP, UPGR). Столбик таких кнопок стоит у правого края.</li>
 <li>Маленькая квадратная кнопка — иконка на плашке «Тёмное дерево» с контуром.</li>
 <li>Длинная кнопка — плашка «Доска» со скруглёнными углами и надписью в одну строку (MORE ACTIONS).</li>
 <li>Кнопка «можно» и «купить» — «Зелёная кнопка» с тёмно-зелёным контуром.</li>
 </ul>
-<h2>Окна</h2>
+<h2 id="окна">Окна</h2>
 <ul>
 <li>Большое окно (магазин, питомцы, улучшения, сад) — доска «Доска» или «Тёмное дерево» с контуром «Контур», заголовок кремовым жирным шрифтом. Размер — по правилу «Большие окна» в <code>AGENTS.md</code>.</li>
 <li>Подсказка обучения — тёмная полупрозрачная плашка со скруглёнными углами: маленький золотой заголовок шага, крупная белая строка и одна строка пояснения.</li>
 </ul>
-<h2>Иконки</h2>
+<h2 id="иконки">Иконки</h2>
 <ul>
 <li>Иконки — растровые картинки ChatGPT Image (skill <code>codex-imagegen</code>), в стиле игры: объёмные, мультяшные, с мягким светом, без надписей. Кадры <code>art/frames/</code> идут в генерацию как <code>--ref</code>.</li>
 <li>Монета — золотое солнце, гем — голубой кристалл, питомцы — лапа, магазин — красная корзина, улучшения — зелёная стрелка.</li>
 <li>Эмодзи, Unicode-значки, шрифтовые иконки и нарисованные агентом SVG не использовать.</li>
 </ul>
-<h2>Модели</h2>
+<h2 id="модели">Модели</h2>
 <ul>
 <li>Крупные простые массы, мало мелких деталей. Грани видны, сглаживать их не нужно. Силуэт читается с расстояния забега на экране телефона.</li>
 <li>Пропорции чуть игрушечные: толстые доски и брёвна, большие окна и двери, округлые сугробы. Снег лежит шапками на крышах, заборах и ветках.</li>
@@ -197,14 +254,14 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <li>Лимиты по классам — <code>art/budgets.json</code>: инструмент 2000 треугольников, мелкий предмет 1000, крупный 3000, постройка 6000, машина 8000, питомец 3000 и 30 костей, зверёк 1500 и 20 костей, растение 1200.</li>
 <li>Модели, которые уже стоят в плейсе, сохраняют свои цвета. Палитра — для новых моделей, картинок и окон.</li>
 </ul>
-<h2>Нельзя</h2>
+<h2 id="нельзя">Нельзя</h2>
 <ul>
 <li>Реалистичные текстуры, фотоматериалы, шум, грязь и потёртости.</li>
 <li>Неоновые и кислотные цвета вне палитры, чёрный как основной цвет.</li>
 <li>Тонкие длинные детали, которые теряются на телефоне.</li>
 <li>Буквы и цифры на модели, если их не просили.</li>
 </ul>
-<h2>Промпт концепта модели</h2>
+<h2 id="промпт-концепта-модели">Промпт концепта модели</h2>
 <pre><code class="language-text">Low-poly cartoon 3D game asset for a Roblox winter farm game, &lt;object&gt;.
 Shown from the front, the side and the back in one image, same pose and scale, T-pose for creatures,
 plain light background, no text, no shadows on the ground.
@@ -212,7 +269,7 @@ Flat colours only, visible facets, chunky toy-like proportions, snow caps where 
 Use only these colours: &lt;hex codes from art/palette.json&gt;.
 </code></pre>
 <p>Для референса окна или экрана: кадры <code>art/frames/</code> идут в <code>--ref</code>, в промпте — деревянные плашки с тёмно-коричневым контуром, кремовый жирный круглый шрифт, золото и голубой только для монет и гемов.</p>
-<h2>Чек-лист критика по стилю</h2>
+<h2 id="чек-лист-критика-по-стилю">Чек-лист критика по стилю</h2>
 <ol>
 <li>Форма простая, грани видны, силуэт читается на телефоне.</li>
 <li>Все цвета из <code>art/palette.json</code>, оттенков сверх палитры нет.</li>
@@ -222,21 +279,76 @@ Use only these colours: &lt;hex codes from art/palette.json&gt;.
 <li>Модель или окно не выбивается рядом с домиками, елями, амбаром и HUD на кадрах игры.</li>
 </ol>
 </article>
-<section class="palette" id="palette"><h3>Все цвета палитры</h3><p class="small">Палитра: утверждена владельцем 10.11.2026.</p><p class="small">Источник: <code>art/palette.json</code>.</p>
-<h3>снег и лёд</h3><div class="swatches"><figure class="swatch"><span class="chip" style="background:#F3F6F5"></span><figcaption><b>Снег</b> <code>#F3F6F5</code> основной<span class="small">Снег под ногами: SnowGround лобби. Самая большая площадь кадра.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#CDCDED"></span><figcaption><b>Тень снега</b> <code>#CDCDED</code> тень<span class="small">Сиреневый дальний снег (SnowFarSlabs, материал Snow) и тени сугробов.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#B3C2D4"></span><figcaption><b>Снег на экране</b> <code>#B3C2D4</code> тень<span class="small">Так снежное поле забега выглядит на экране при свете игры (середина поля на кадре 02-snow-run). Для картинок и референсов со снегом в тени.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#A8DEE7"></span><figcaption><b>Лёд</b> <code>#A8DEE7</code> основной<span class="small">Лёд замёрзшего ручья: цвет материала Ice у Terrain.</span></figcaption></figure></div>
-<h3>горы</h3><div class="swatches"><figure class="swatch"><span class="chip" style="background:#A096DE"></span><figcaption><b>Лавандовая гора</b> <code>#A096DE</code> основной<span class="small">Дальние низкополигональные горы (Low Poly Mountain).</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#CE9ED2"></span><figcaption><b>Розовая гора</b> <code>#CE9ED2</code> свет<span class="small">Освещённые склоны гор.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#80A0E6"></span><figcaption><b>Синяя гора</b> <code>#80A0E6</code> тень<span class="small">Теневые склоны гор и предгорья.</span></figcaption></figure></div>
-<h3>зелень</h3><div class="swatches"><figure class="swatch"><span class="chip" style="background:#54A577"></span><figcaption><b>Хвоя</b> <code>#54A577</code> основной<span class="small">Низкополигональные ели (LowPolyPine) — средний из их оттенков.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#3C8E63"></span><figcaption><b>Тень хвои</b> <code>#3C8E63</code> тень<span class="small">Тёмные грани елей.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#77C98D"></span><figcaption><b>Светлая хвоя</b> <code>#77C98D</code> свет<span class="small">Светлые грани елей.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#96DC6A"></span><figcaption><b>Трава</b> <code>#96DC6A</code> основной<span class="small">Трава и листва: материал Grass у Terrain, кроны лиственных деревьев.</span></figcaption></figure></div>
-<h3>дерево и земля</h3><div class="swatches"><figure class="swatch"><span class="chip" style="background:#CD925C"></span><figcaption><b>Дерево</b> <code>#CD925C</code> основной<span class="small">Светлое дерево построек и ворот (GateArch), брёвна домиков.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#80401B"></span><figcaption><b>Тёмное дерево</b> <code>#80401B</code> тень<span class="small">Тёмные доски, стволы, тёмная доска кнопок интерфейса.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#966240"></span><figcaption><b>Земля</b> <code>#966240</code> основной<span class="small">Почва грядок сада (Field Soil).</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#FAD66E"></span><figcaption><b>Солома</b> <code>#FAD66E</code> свет<span class="small">Пшеница и солома фермы.</span></figcaption></figure></div>
-<h3>постройки</h3><div class="swatches"><figure class="swatch"><span class="chip" style="background:#D6392B"></span><figcaption><b>Красный амбар</b> <code>#D6392B</code> акцент<span class="small">Красный амбар фермы и красные сигналы интерфейса.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#A0B0C4"></span><figcaption><b>Металл</b> <code>#A0B0C4</code> основной<span class="small">Зернохранилища и металлические части машин.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#909282"></span><figcaption><b>Камень</b> <code>#909282</code> тень<span class="small">Камень острова лобби (материал Slate) и дорожки.</span></figcaption></figure></div>
-<h3>интерфейс</h3><div class="swatches"><figure class="swatch"><span class="chip" style="background:#2B1A11"></span><figcaption><b>Контур</b> <code>#2B1A11</code> тень<span class="small">Тёмно-коричневый контур кнопок и надписей интерфейса (UIStroke).</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#FFFDF5"></span><figcaption><b>Крем</b> <code>#FFFDF5</code> свет<span class="small">Кремовый текст интерфейса.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#C28E49"></span><figcaption><b>Доска</b> <code>#C28E49</code> основной<span class="small">Светлая деревянная плашка кнопок и окон интерфейса.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#5BB830"></span><figcaption><b>Зелёная кнопка</b> <code>#5BB830</code> акцент<span class="small">Кнопки «можно» и «купить».</span></figcaption></figure></div>
-<h3>добыча</h3><div class="swatches"><figure class="swatch"><span class="chip" style="background:#FFCE43"></span><figcaption><b>Золото</b> <code>#FFCE43</code> акцент<span class="small">Монеты и золотые надписи.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#8BE0FF"></span><figcaption><b>Кристалл</b> <code>#8BE0FF</code> акцент<span class="small">Гемы и голубые надписи о них.</span></figcaption></figure></div>
-<h3>редкость</h3><div class="swatches"><figure class="swatch"><span class="chip" style="background:#C3EBC5"></span><figcaption><b>Обычный</b> <code>#C3EBC5</code> акцент<span class="small">Редкость Common: семена и растения сада (GardenService, rarityColors).</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#5BE66D"></span><figcaption><b>Необычный</b> <code>#5BE66D</code> акцент<span class="small">Редкость Uncommon (GardenService, rarityColors).</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#40A5FF"></span><figcaption><b>Редкий</b> <code>#40A5FF</code> акцент<span class="small">Редкость Rare (GardenService, rarityColors).</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#BE63FF"></span><figcaption><b>Эпический</b> <code>#BE63FF</code> акцент<span class="small">Редкость Epic (GardenService, rarityColors).</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#FFC13F"></span><figcaption><b>Легендарный</b> <code>#FFC13F</code> акцент<span class="small">Редкость Legendary (GardenService, rarityColors).</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#FF5192"></span><figcaption><b>Мифический</b> <code>#FF5192</code> акцент<span class="small">Редкость Mythic (GardenService, rarityColors).</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#4AFFE7"></span><figcaption><b>Супер</b> <code>#4AFFE7</code> акцент<span class="small">Редкость Super (GardenService, rarityColors).</span></figcaption></figure></div>
-</section></section>
+<section class="palette" id="palette"><h3 id="все-цвета-палитры">Все цвета палитры</h3><p class="small">Палитра: утверждена владельцем 10.11.2026.</p><p class="small">Источник: <code>art/palette.json</code>.</p>
+<h3 id="снег-и-лёд">снег и лёд</h3><div class="swatches"><figure class="swatch"><span class="chip" style="background:#F3F6F5"></span><figcaption><b>Снег</b> <code>#F3F6F5</code> основной<span class="small">Снег под ногами: SnowGround лобби. Самая большая площадь кадра.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#CDCDED"></span><figcaption><b>Тень снега</b> <code>#CDCDED</code> тень<span class="small">Сиреневый дальний снег (SnowFarSlabs, материал Snow) и тени сугробов.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#B3C2D4"></span><figcaption><b>Снег на экране</b> <code>#B3C2D4</code> тень<span class="small">Так снежное поле забега выглядит на экране при свете игры (середина поля на кадре 02-snow-run). Для картинок и референсов со снегом в тени.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#A8DEE7"></span><figcaption><b>Лёд</b> <code>#A8DEE7</code> основной<span class="small">Лёд замёрзшего ручья: цвет материала Ice у Terrain.</span></figcaption></figure></div>
+<h3 id="горы">горы</h3><div class="swatches"><figure class="swatch"><span class="chip" style="background:#A096DE"></span><figcaption><b>Лавандовая гора</b> <code>#A096DE</code> основной<span class="small">Дальние низкополигональные горы (Low Poly Mountain).</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#CE9ED2"></span><figcaption><b>Розовая гора</b> <code>#CE9ED2</code> свет<span class="small">Освещённые склоны гор.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#80A0E6"></span><figcaption><b>Синяя гора</b> <code>#80A0E6</code> тень<span class="small">Теневые склоны гор и предгорья.</span></figcaption></figure></div>
+<h3 id="зелень">зелень</h3><div class="swatches"><figure class="swatch"><span class="chip" style="background:#54A577"></span><figcaption><b>Хвоя</b> <code>#54A577</code> основной<span class="small">Низкополигональные ели (LowPolyPine) — средний из их оттенков.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#3C8E63"></span><figcaption><b>Тень хвои</b> <code>#3C8E63</code> тень<span class="small">Тёмные грани елей.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#77C98D"></span><figcaption><b>Светлая хвоя</b> <code>#77C98D</code> свет<span class="small">Светлые грани елей.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#96DC6A"></span><figcaption><b>Трава</b> <code>#96DC6A</code> основной<span class="small">Трава и листва: материал Grass у Terrain, кроны лиственных деревьев.</span></figcaption></figure></div>
+<h3 id="дерево-и-земля">дерево и земля</h3><div class="swatches"><figure class="swatch"><span class="chip" style="background:#CD925C"></span><figcaption><b>Дерево</b> <code>#CD925C</code> основной<span class="small">Светлое дерево построек и ворот (GateArch), брёвна домиков.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#80401B"></span><figcaption><b>Тёмное дерево</b> <code>#80401B</code> тень<span class="small">Тёмные доски, стволы, тёмная доска кнопок интерфейса.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#966240"></span><figcaption><b>Земля</b> <code>#966240</code> основной<span class="small">Почва грядок сада (Field Soil).</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#FAD66E"></span><figcaption><b>Солома</b> <code>#FAD66E</code> свет<span class="small">Пшеница и солома фермы.</span></figcaption></figure></div>
+<h3 id="постройки">постройки</h3><div class="swatches"><figure class="swatch"><span class="chip" style="background:#D6392B"></span><figcaption><b>Красный амбар</b> <code>#D6392B</code> акцент<span class="small">Красный амбар фермы и красные сигналы интерфейса.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#A0B0C4"></span><figcaption><b>Металл</b> <code>#A0B0C4</code> основной<span class="small">Зернохранилища и металлические части машин.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#909282"></span><figcaption><b>Камень</b> <code>#909282</code> тень<span class="small">Камень острова лобби (материал Slate) и дорожки.</span></figcaption></figure></div>
+<h3 id="интерфейс">интерфейс</h3><div class="swatches"><figure class="swatch"><span class="chip" style="background:#2B1A11"></span><figcaption><b>Контур</b> <code>#2B1A11</code> тень<span class="small">Тёмно-коричневый контур кнопок и надписей интерфейса (UIStroke).</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#FFFDF5"></span><figcaption><b>Крем</b> <code>#FFFDF5</code> свет<span class="small">Кремовый текст интерфейса.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#C28E49"></span><figcaption><b>Доска</b> <code>#C28E49</code> основной<span class="small">Светлая деревянная плашка кнопок и окон интерфейса.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#5BB830"></span><figcaption><b>Зелёная кнопка</b> <code>#5BB830</code> акцент<span class="small">Кнопки «можно» и «купить».</span></figcaption></figure></div>
+<h3 id="добыча">добыча</h3><div class="swatches"><figure class="swatch"><span class="chip" style="background:#FFCE43"></span><figcaption><b>Золото</b> <code>#FFCE43</code> акцент<span class="small">Монеты и золотые надписи.</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#8BE0FF"></span><figcaption><b>Кристалл</b> <code>#8BE0FF</code> акцент<span class="small">Гемы и голубые надписи о них.</span></figcaption></figure></div>
+<h3 id="редкость">редкость</h3><div class="swatches"><figure class="swatch"><span class="chip" style="background:#C3EBC5"></span><figcaption><b>Обычный</b> <code>#C3EBC5</code> акцент<span class="small">Редкость Common: семена и растения сада (GardenService, rarityColors).</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#5BE66D"></span><figcaption><b>Необычный</b> <code>#5BE66D</code> акцент<span class="small">Редкость Uncommon (GardenService, rarityColors).</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#40A5FF"></span><figcaption><b>Редкий</b> <code>#40A5FF</code> акцент<span class="small">Редкость Rare (GardenService, rarityColors).</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#BE63FF"></span><figcaption><b>Эпический</b> <code>#BE63FF</code> акцент<span class="small">Редкость Epic (GardenService, rarityColors).</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#FFC13F"></span><figcaption><b>Легендарный</b> <code>#FFC13F</code> акцент<span class="small">Редкость Legendary (GardenService, rarityColors).</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#FF5192"></span><figcaption><b>Мифический</b> <code>#FF5192</code> акцент<span class="small">Редкость Mythic (GardenService, rarityColors).</span></figcaption></figure><figure class="swatch"><span class="chip" style="background:#4AFFE7"></span><figcaption><b>Супер</b> <code>#4AFFE7</code> акцент<span class="small">Редкость Super (GardenService, rarityColors).</span></figcaption></figure></div>
+</section></div></section>
 </main>
 </div>
 <dialog id="viewer" aria-label="Просмотр картинки"><div class="viewer-bar"><p id="viewer-caption"></p><a id="viewer-open" target="_blank" rel="noopener">Открыть файл</a><button id="viewer-close" type="button">Закрыть</button></div><img id="viewer-image" alt=""></dialog>
-<script>// Поведение страницы: меню на узком экране и просмотр картинки. Текущую страницу в меню отмечает сборщик.
+<script>// Поведение страницы: пароль на весь сайт, меню на узком экране и просмотр картинки.
+// Текущую страницу в меню отмечает сборщик.
 (() => {
+  const SITE_KEY = "clean-a-snow-guide-open";
+  const SITE_PASSWORD = "91-23sdf-123dsf213-gfdf";
+  const lock = document.getElementById("site-lock-form");
+  if (lock) {
+    lock.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const error = document.getElementById("site-lock-error");
+      if (new FormData(lock).get("password") === SITE_PASSWORD) {
+        try {
+          localStorage.setItem(SITE_KEY, "1");
+        } catch {
+          // Без хранилища сайт откроется только до закрытия вкладки.
+        }
+        document.documentElement.classList.add("site-open");
+      } else if (error) error.hidden = false;
+    });
+  }
+
+  const close = document.getElementById("site-close");
+  if (close) {
+    close.addEventListener("click", () => {
+      try {
+        localStorage.removeItem(SITE_KEY);
+      } catch {
+        // Без хранилища достаточно убрать класс: следующая страница снова спросит пароль.
+      }
+      const error = document.getElementById("site-lock-error");
+      if (error) error.hidden = true;
+      const input = lock?.querySelector("input");
+      if (input) input.value = "";
+      document.documentElement.classList.remove("site-open");
+      input?.focus();
+    });
+  }
+
+  const board = document.querySelector(".board-columns");
+  if (board) {
+    const buttons = [...document.querySelectorAll("[data-person-filter]")];
+    const apply = (person) => {
+      for (const button of buttons) button.setAttribute("aria-pressed", String(button.dataset.personFilter === person));
+      for (const column of board.querySelectorAll(".board-column")) {
+        let visible = 0;
+        for (const card of column.querySelectorAll(".board-card")) {
+          const show = person === "all" || card.dataset.person === person;
+          card.hidden = !show;
+          if (show) visible += 1;
+        }
+        column.querySelector(".board-count").textContent = String(visible);
+        column.querySelector(".board-empty").hidden = visible !== 0;
+      }
+    };
+    for (const button of buttons) button.addEventListener("click", () => apply(button.dataset.personFilter));
+  }
+
   const menu = document.getElementById("menu");
   const sidebar = document.getElementById("sidebar");
   menu.addEventListener("click", () => {
