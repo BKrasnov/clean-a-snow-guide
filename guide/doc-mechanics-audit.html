@@ -183,10 +183,27 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 .bar-fill { display: block; height: 100%; background: var(--ice); }
 .bars-zone .bar-fill, .bars-tool .bar-fill { background: var(--wood); }
 .bar-value { font-weight: 700; white-space: nowrap; }
+/* Таймлайн: день — аккордеон, внутри темы со списком сделанного, ссылками и коммитами. */
+.day { margin: 12px 0; border: 2px solid rgba(29, 39, 64, .12); border-radius: 10px; background: rgba(255, 255, 255, .6); }
+.day > summary { cursor: pointer; padding: 12px 16px; font-size: 17px; }
+.day-date { font-weight: 700; font-size: 20px; margin-right: 6px; }
+.day-summary { color: var(--muted); }
+.day-body { padding: 0 16px 14px; }
+.day-topic { margin: 10px 0 0; padding: 10px 0 0; border-top: 1px solid rgba(29, 39, 64, .12); }
+.day-topic h3 { margin: 0 0 6px; font-size: 18px; }
+.day-done { margin: 0 0 8px; padding-left: 20px; }
+.day-links { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 8px; padding: 0; list-style: none; }
+.day-links li { margin: 0; }
+.day-links a { display: inline-block; padding: 3px 8px; background: var(--paper); border: 1px solid rgba(29, 39, 64, .16); border-radius: 6px; text-decoration: none; font-size: 14px; }
+.day-links a:hover { border-color: var(--ice-dark); }
+.day-commits { margin: 0; color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
+.board-card { scroll-margin-top: 70px; }
+.board-card:target { outline: 3px solid var(--gold); outline-offset: 2px; }
 
 @media (max-width: 860px) {
   #menu { display: inline-block; }
-  .topbar { gap: 10px; padding: 10px 12px; }
+  /* Кнопок больше, чем ширина телефона: шапка листается вбок, страница остаётся на месте. */
+  .topbar { gap: 10px; padding: 10px 12px; overflow-x: auto; scrollbar-width: thin; }
   .topbar .top-link { padding: 4px 8px; }
   /* На самых узких экранах сжимается название, кнопки остаются целыми. */
   .topbar .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
@@ -224,11 +241,11 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <p id="site-lock-error" class="site-lock-error" hidden>Пароль не подошёл.</p>
 </form>
 </div>
-<header class="topbar"><button id="menu" type="button" aria-expanded="false" aria-controls="sidebar">Разделы</button><a class="brand" href="index.html">Clean a Snow</a><a class="top-link" href="testing.html">Тестирование</a><a class="top-link" href="board.html">Доска</a><a class="top-link" href="analysis.html">Анализ</a><a class="top-link" href="mechanics.html">Механики</a><a class="top-link" href="ideas.html">Идеи</a><a class="top-link" href="doc-mechanics-audit.html#вопросы-владельцу" aria-current="page">Вопросы</a><a class="top-link" href="vfx.html">VFX</a><button id="site-close" class="top-link" type="button">Закрыть</button><span class="hint">Собрано из файлов репозитория: <code>node tools/guide/build.mjs</code></span></header>
+<header class="topbar"><button id="menu" type="button" aria-expanded="false" aria-controls="sidebar">Разделы</button><a class="brand" href="index.html">Clean a Snow</a><a class="top-link" href="testing.html">Тестирование</a><a class="top-link" href="board.html">Доска</a><a class="top-link" href="analysis.html">Анализ</a><a class="top-link" href="mechanics.html">Механики</a><a class="top-link" href="ideas.html">Идеи</a><a class="top-link" href="doc-mechanics-audit.html#вопросы-владельцу" aria-current="page">Вопросы</a><a class="top-link" href="vfx.html">VFX</a><a class="top-link" href="timeline.html">Таймлайн</a><button id="site-close" class="top-link" type="button">Закрыть</button><span class="hint">Собрано из файлов репозитория: <code>node tools/guide/build.mjs</code></span></header>
 <div class="layout">
-<nav id="sidebar" aria-label="Разделы"><ul><li><a href="index.html">Об игре</a></li><li><a href="place.html">Плейс и запуск</a></li><li><a href="style.html">Стиль</a></li><li><a href="economy.html">Экономика</a></li><li><a href="weapons.html">Оружие</a></li><li><a href="garden.html">Сад</a></li><li><a href="code.html">Код</a></li><li><details class="group" data-group="galleries.html" open><summary><a href="galleries.html">Кадры и картинки</a></summary><ul><li><a href="gallery-bugs.html">Кадры багов</a></li><li><a href="gallery-frames.html">Кадры игры</a></li><li><a href="gallery-ideas.html">Референсы идей</a></li><li><a href="gallery-palette-preview.html">Палитра</a></li><li><a href="gallery-refs.html">refs</a></li><li><a href="gallery-vfx-reviews.html">vfx/reviews</a></li><li><a href="gallery-vfx.html">vfx</a></li></ul></details></li><li><details class="group" data-group="docs.html" open><summary><a href="docs.html">Документы</a></summary><ul><li><a href="doc-architecture-summary.html">architecture/summary.md</a></li><li><a href="doc-held-items-audit.html">held-items-audit.md</a></li><li><a href="doc-mechanics-audit.html" aria-current="page">mechanics-audit.md</a></li><li><a href="doc-publish-places.html">publish-places.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-catalog-answers.html">superpowers/plans/2026-11-10-catalog-answers.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-client-actions.html">superpowers/plans/2026-11-10-client-actions.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-economy.html">superpowers/plans/2026-11-10-data-economy.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-held-items-audit.html">superpowers/plans/2026-11-10-held-items-audit.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-map-bake.html">superpowers/plans/2026-11-10-map-bake.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-packet-limits.html">superpowers/plans/2026-11-10-packet-limits.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-anchors.html">superpowers/plans/2026-11-10-place-anchors.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-role-world.html">superpowers/plans/2026-11-10-place-role-world.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-profile-store-core.html">superpowers/plans/2026-11-10-profile-store-core.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-receipt-ledger.html">superpowers/plans/2026-11-10-receipt-ledger.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-server-lifecycle.html">superpowers/plans/2026-11-10-server-lifecycle.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-break-burst.html">superpowers/plans/2026-11-10-snow-break-burst.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-cell-strength.html">superpowers/plans/2026-11-10-snow-cell-strength.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-clap.html">superpowers/plans/2026-11-10-snow-clap.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-starter-spoon.html">superpowers/plans/2026-11-10-starter-spoon.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-rules.html">superpowers/plans/2026-11-10-strike-rules.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-two-places.html">superpowers/plans/2026-11-10-two-places.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-wallet.html">superpowers/plans/2026-11-10-wallet.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-catalog-answers-design.html">superpowers/specs/2026-11-10-catalog-answers-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-client-actions-design.html">superpowers/specs/2026-11-10-client-actions-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-economy-design.html">superpowers/specs/2026-11-10-data-economy-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-held-items-audit-design.html">superpowers/specs/2026-11-10-held-items-audit-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-map-bake-design.html">superpowers/specs/2026-11-10-map-bake-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-packet-limits-design.html">superpowers/specs/2026-11-10-packet-limits-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-anchors-design.html">superpowers/specs/2026-11-10-place-anchors-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-role-world-design.html">superpowers/specs/2026-11-10-place-role-world-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-profile-store-core-design.html">superpowers/specs/2026-11-10-profile-store-core-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-receipt-ledger-design.html">superpowers/specs/2026-11-10-receipt-ledger-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-server-lifecycle-design.html">superpowers/specs/2026-11-10-server-lifecycle-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-break-burst-design.html">superpowers/specs/2026-11-10-snow-break-burst-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-cell-strength-design.html">superpowers/specs/2026-11-10-snow-cell-strength-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-puff-design.html">superpowers/specs/2026-11-10-snow-puff-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-starter-spoon-design.html">superpowers/specs/2026-11-10-starter-spoon-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-rules-design.html">superpowers/specs/2026-11-10-strike-rules-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-two-places-design.html">superpowers/specs/2026-11-10-two-places-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-wallet-design.html">superpowers/specs/2026-11-10-wallet-design.md</a></li></ul></details></li></ul></nav>
+<nav id="sidebar" aria-label="Разделы"><ul><li><a href="index.html">Об игре</a></li><li><a href="place.html">Плейс и запуск</a></li><li><a href="style.html">Стиль</a></li><li><a href="economy.html">Экономика</a></li><li><a href="weapons.html">Оружие</a></li><li><a href="garden.html">Сад</a></li><li><a href="code.html">Код</a></li><li><details class="group" data-group="galleries.html" open><summary><a href="galleries.html">Кадры и картинки</a></summary><ul><li><a href="gallery-bugs.html">Кадры багов</a></li><li><a href="gallery-frames.html">Кадры игры</a></li><li><a href="gallery-ideas.html">Референсы идей</a></li><li><a href="gallery-palette-preview.html">Палитра</a></li><li><a href="gallery-refs.html">refs</a></li><li><a href="gallery-vfx.html">vfx</a></li><li><a href="gallery-vfx-reviews.html">vfx/reviews</a></li></ul></details></li><li><details class="group" data-group="docs.html" open><summary><a href="docs.html">Документы</a></summary><ul><li><a href="doc-architecture-summary.html">architecture/summary.md</a></li><li><a href="doc-held-items-audit.html">held-items-audit.md</a></li><li><a href="doc-mechanics-audit.html" aria-current="page">mechanics-audit.md</a></li><li><a href="doc-publish-places.html">publish-places.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-catalog-answers.html">superpowers/plans/2026-11-10-catalog-answers.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-client-actions.html">superpowers/plans/2026-11-10-client-actions.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-economy.html">superpowers/plans/2026-11-10-data-economy.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-held-items-audit.html">superpowers/plans/2026-11-10-held-items-audit.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-map-bake.html">superpowers/plans/2026-11-10-map-bake.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-packet-limits.html">superpowers/plans/2026-11-10-packet-limits.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-anchors.html">superpowers/plans/2026-11-10-place-anchors.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-role-world.html">superpowers/plans/2026-11-10-place-role-world.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-processor-intake.html">superpowers/plans/2026-11-10-processor-intake.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-processor-queue.html">superpowers/plans/2026-11-10-processor-queue.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-profile-store-core.html">superpowers/plans/2026-11-10-profile-store-core.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-receipt-ledger.html">superpowers/plans/2026-11-10-receipt-ledger.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-server-lifecycle.html">superpowers/plans/2026-11-10-server-lifecycle.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-break-burst.html">superpowers/plans/2026-11-10-snow-break-burst.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-cell-strength.html">superpowers/plans/2026-11-10-snow-cell-strength.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-clap.html">superpowers/plans/2026-11-10-snow-clap.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-response.html">superpowers/plans/2026-11-10-snow-response.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-starter-spoon.html">superpowers/plans/2026-11-10-starter-spoon.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-plan.html">superpowers/plans/2026-11-10-strike-plan.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-rules.html">superpowers/plans/2026-11-10-strike-rules.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-two-places.html">superpowers/plans/2026-11-10-two-places.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-wallet.html">superpowers/plans/2026-11-10-wallet.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-catalog-answers-design.html">superpowers/specs/2026-11-10-catalog-answers-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-client-actions-design.html">superpowers/specs/2026-11-10-client-actions-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-economy-design.html">superpowers/specs/2026-11-10-data-economy-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-held-items-audit-design.html">superpowers/specs/2026-11-10-held-items-audit-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-map-bake-design.html">superpowers/specs/2026-11-10-map-bake-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-packet-limits-design.html">superpowers/specs/2026-11-10-packet-limits-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-anchors-design.html">superpowers/specs/2026-11-10-place-anchors-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-role-world-design.html">superpowers/specs/2026-11-10-place-role-world-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-processor-intake-design.html">superpowers/specs/2026-11-10-processor-intake-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-processor-queue-design.html">superpowers/specs/2026-11-10-processor-queue-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-profile-store-core-design.html">superpowers/specs/2026-11-10-profile-store-core-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-receipt-ledger-design.html">superpowers/specs/2026-11-10-receipt-ledger-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-server-lifecycle-design.html">superpowers/specs/2026-11-10-server-lifecycle-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-break-burst-design.html">superpowers/specs/2026-11-10-snow-break-burst-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-cell-strength-design.html">superpowers/specs/2026-11-10-snow-cell-strength-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-puff-design.html">superpowers/specs/2026-11-10-snow-puff-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-response-design.html">superpowers/specs/2026-11-10-snow-response-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-starter-spoon-design.html">superpowers/specs/2026-11-10-starter-spoon-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-plan-design.html">superpowers/specs/2026-11-10-strike-plan-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-rules-design.html">superpowers/specs/2026-11-10-strike-rules-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-two-places-design.html">superpowers/specs/2026-11-10-two-places-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-wallet-design.html">superpowers/specs/2026-11-10-wallet-design.md</a></li></ul></details></li></ul></nav>
 <main>
-<section class="part with-toc"><h2>mechanics-audit.md</h2><nav class="toc" aria-label="На этой странице"><ul><li><a href="#вопросы-владельцу">Вопросы владельцу</a></li><li><a href="#итог-этапа-1">Итог этапа 1</a></li><li><a href="#главные-расхождения">Главные расхождения</a></li><li><a href="#механики-по-одной">Механики по одной</a></li><li><a href="#1-снег-становится-монетами-расходится">1. Снег становится монетами — расходится</a></li><li><a href="#2-удар-ломает-снег-расходится">2. Удар ломает снег — расходится</a></li><li><a href="#3-очередь-на-площадке-совпадает">3. Очередь на площадке — совпадает</a></li><li><a href="#4-магазин-расходится">4. Магазин — расходится</a></li><li><a href="#5-сумка-расходится">5. Сумка — расходится</a></li><li><a href="#6-кузов-совпадает">6. Кузов — совпадает</a></li><li><a href="#7-сад-расходится">7. Сад — расходится</a></li><li><a href="#8-питомцы-расходится-мелко">8. Питомцы — расходится (мелко)</a></li><li><a href="#9-лесные-звери-расходится-мелко">9. Лесные звери — расходится (мелко)</a></li><li><a href="#10-оружие-со-стойки-расходится">10. Оружие со стойки — расходится</a></li><li><a href="#11-гемы-за-чистую-зону-расходится">11. Гемы за чистую зону — расходится</a></li><li><a href="#12-награды-вне-забега-расходится">12. Награды вне забега — расходится</a></li><li><a href="#13-смерть-расходится-мелко">13. Смерть — расходится (мелко)</a></li><li><a href="#14-обучение-совпадает">14. Обучение — совпадает</a></li><li><a href="#15-окна-магазина-совпадает">15. Окна магазина — совпадает</a></li><li><a href="#16-погода-совпадает">16. Погода — совпадает</a></li><li><a href="#17-профиль-расходится-мелко">17. Профиль — расходится (мелко)</a></li><li><a href="#18-урок-остров-совпадает">18. Урок-остров — совпадает</a></li><li><a href="#19-езда-совпадает">19. Езда — совпадает</a></li><li><a href="#механики-в-коде-которых-нет-на-странице">Механики в коде, которых нет на странице</a></li><li><a href="#этап-2-разбор-по-одной">Этап 2. Разбор по одной</a></li><li><a href="#механика-1-снег-становится-монетами-переработчик">Механика 1. Снег становится монетами (переработчик)</a></li><li><a href="#механика-2-гемы-и-открытие-зон">Механика 2. Гемы и открытие зон</a></li><li><a href="#механика-3-награды-вне-забега">Механика 3. Награды вне забега</a></li><li><a href="#механика-4-удар">Механика 4. Удар</a></li><li><a href="#механика-5-магазин-и-оружие-со-стойки">Механика 5. Магазин и оружие со стойки</a></li><li><a href="#механика-6-сумка-смерть-и-выход">Механика 6. Сумка, смерть и выход</a></li><li><a href="#механика-7-сад">Механика 7. Сад</a></li><li><a href="#механика-8-остальные-кузов-и-езда-питомцы-и-звери-очередь-обучение-окна-магазина-профиль-погода-урок-остров">Механика 8. Остальные: кузов и езда, питомцы и звери, очередь, обучение, окна магазина, профиль, погода, урок-остров</a></li><li><a href="#итог-этапа-2">Итог этапа 2</a></li></ul></nav><div class="part-body"><article class="doc prose" id="doc-mechanics-audit"><p class="path">docs/mechanics-audit.md</p><h1>Аудит механик: страница против кода</h1>
+<section class="part with-toc"><h2>mechanics-audit.md</h2><nav class="toc" aria-label="На этой странице"><ul><li><a href="#вопросы-владельцу">Вопросы владельцу</a></li><li><a href="#итог-этапа-1">Итог этапа 1</a></li><li><a href="#главные-расхождения">Главные расхождения</a></li><li><a href="#механики-по-одной">Механики по одной</a></li><li><a href="#1-снег-становится-монетами-расходится">1. Снег становится монетами — расходится</a></li><li><a href="#2-удар-ломает-снег-расходится">2. Удар ломает снег — расходится</a></li><li><a href="#3-очередь-на-площадке-совпадает">3. Очередь на площадке — совпадает</a></li><li><a href="#4-магазин-расходится">4. Магазин — расходится</a></li><li><a href="#5-сумка-расходится">5. Сумка — расходится</a></li><li><a href="#6-кузов-совпадает">6. Кузов — совпадает</a></li><li><a href="#7-сад-расходится">7. Сад — расходится</a></li><li><a href="#8-питомцы-расходится-мелко">8. Питомцы — расходится (мелко)</a></li><li><a href="#9-лесные-звери-расходится-мелко">9. Лесные звери — расходится (мелко)</a></li><li><a href="#10-оружие-со-стойки-расходится">10. Оружие со стойки — расходится</a></li><li><a href="#11-гемы-за-чистую-зону-расходится">11. Гемы за чистую зону — расходится</a></li><li><a href="#12-награды-вне-забега-расходится">12. Награды вне забега — расходится</a></li><li><a href="#13-смерть-расходится-мелко">13. Смерть — расходится (мелко)</a></li><li><a href="#14-обучение-совпадает">14. Обучение — совпадает</a></li><li><a href="#15-окна-магазина-совпадает">15. Окна магазина — совпадает</a></li><li><a href="#16-погода-совпадает">16. Погода — совпадает</a></li><li><a href="#17-профиль-расходится-мелко">17. Профиль — расходится (мелко)</a></li><li><a href="#18-урок-остров-совпадает">18. Урок-остров — совпадает</a></li><li><a href="#19-езда-совпадает">19. Езда — совпадает</a></li><li><a href="#механики-в-коде-которых-нет-на-странице">Механики в коде, которых нет на странице</a></li><li><a href="#этап-2-разбор-по-одной">Этап 2. Разбор по одной</a></li><li><a href="#механика-1-снег-становится-монетами-переработчик">Механика 1. Снег становится монетами (переработчик)</a></li><li><a href="#механика-2-гемы-и-открытие-зон">Механика 2. Гемы и открытие зон</a></li><li><a href="#механика-3-награды-вне-забега">Механика 3. Награды вне забега</a></li><li><a href="#механика-4-удар">Механика 4. Удар</a></li><li><a href="#механика-5-магазин-и-оружие-со-стойки">Механика 5. Магазин и оружие со стойки</a></li><li><a href="#механика-6-сумка-смерть-и-выход">Механика 6. Сумка, смерть и выход</a></li><li><a href="#механика-7-сад">Механика 7. Сад</a></li><li><a href="#механика-8-остальные-кузов-и-езда-питомцы-и-звери-очередь-обучение-окна-магазина-профиль-погода-урок-остров">Механика 8. Остальные: кузов и езда, питомцы и звери, очередь, обучение, окна магазина, профиль, погода, урок-остров</a></li><li><a href="#итог-этапа-2">Итог этапа 2</a></li><li><a href="#этап-3-проверка-в-живой-игре">Этап 3. Проверка в живой игре</a></li><li><a href="#1-находки-аудита-в-play-10-11-2026">1. Находки аудита в Play — 10.11.2026</a></li><li><a href="#2-первый-час-новичка-10-11-2026">2. Первый час новичка — 10.11.2026</a></li><li><a href="#3-экономика-по-времени-10-11-2026">3. Экономика по времени — 10.11.2026</a></li><li><a href="#4-игра-отрядом-2-4-10-11-2026">4. Игра отрядом 2–4 — 10.11.2026</a></li><li><a href="#5-телефон-и-планшет-10-11-2026">5. Телефон и планшет — 10.11.2026</a></li><li><a href="#6-сохранение-в-опубликованной-копии-10-11-2026">6. Сохранение в опубликованной копии — 10.11.2026</a></li><li><a href="#7-читы-сводно-10-11-2026">7. Читы сводно — 10.11.2026</a></li><li><a href="#8-звук-и-монетизация-10-11-2026">8. Звук и монетизация — 10.11.2026</a></li><li><a href="#итог-этапа-3">Итог этапа 3</a></li></ul></nav><div class="part-body"><article class="doc prose" id="doc-mechanics-audit"><p class="path">docs/mechanics-audit.md</p><h1>Аудит механик: страница против кода</h1>
 <p>Страница: <code>docs/mechanics.md</code> (собранная — <code>guide/mechanics.html</code>). Код: <code>src/</code> на коммите <code>38d4175</code>, 10.11.2026.
 Этап 1 — сверка каждого утверждения страницы с кодом. Этап 2 — разбор механик по одной с решением владельца (ниже, раздел «Этап 2»).</p>
 <p>Текст <code>docs/mechanics.md</code> по итогам аудита не правился: правки ждут согласия владельца.</p>
@@ -291,6 +308,33 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <li><strong>Сад живёт в профиле (рекомендую).</strong> Грядки и растения сохраняются: вернулся в следующий забег — сад на месте и дорос. Игрок ничего не теряет.</li>
 <li><strong>Вернуть семя при выходе.</strong> Сад по-прежнему только в забеге, но неспелое растение возвращается семенем в инвентарь.</li>
 <li><strong>Оставить как есть, но предупредить.</strong> Перед выходом окно: «Посаженное пропадёт».</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>Вопрос 8. Лестница лопат (этап 3, п. 3).</strong> Ждёт созвона.</p>
+<p>Сейчас: каждая покупка должна быть заметно сильнее прошлой, но в зонах 1–3 Snow Pusher за 2 400 бьёт снег за столько же ударов, что Steel за 750, Frost за 12 000 в зоне 1 не быстрее Steel, а первая лопата за 20 почти не быстрее ложки.</p>
+<ul>
+<li><strong>Каждая лопата на ступень быстрее (рекомендую).</strong> Урон лопат подобрать под прочность снега зон: каждая следующая ломает снег своей зоны за удар меньше. Игрок сразу чувствует покупку.</li>
+<li><strong>Лопаты открывают зоны.</strong> Урон не трогаем, но твёрдый снег зоны берёт только лопата не ниже нужной. Покупка — ключ к новой зоне.</li>
+<li><strong>Оставить как есть.</strong> Часть покупок игрок не почувствует.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>Вопрос 9. Вернуться к друзьям в забег (этап 3, п. 4).</strong> Ждёт созвона.</p>
+<p>Сейчас: забег идёт на закрытом сервере. Кто вылетел или зашёл позже, попадает в лобби и к друзьям вернуться не может: «присоединиться к другу» в Roblox на закрытый сервер не пускает.</p>
+<ul>
+<li><strong>Вернуть вылетевшего (рекомендую).</strong> Кто был в отряде и вылетел, при входе в игру сразу попадает обратно в свой забег, пока тот идёт.</li>
+<li><strong>Вернуть и пустить друзей.</strong> Как первый вариант, плюс друг из лобби может войти в идущий забег, если в отряде меньше 4.</li>
+<li><strong>Оставить как есть.</strong> Вылетел — забег для тебя закончился.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>Вопрос 10. Монетизация (этап 3, п. 8).</strong> Ждёт созвона.</p>
+<p>Сейчас: покупок за Robux в игре нет совсем. В магазине на месте наборов — надпись «Robux purchases are unavailable in this build», Game Pass и продуктов за Robux нет.</p>
+<ul>
+<li><strong>Удобства без силы плюс наборы гемов (рекомендую).</strong> Game Pass: больше сумка, второй питомец, дверь в сад без ожидания; продукты: наборы гемов и монет. Сила лопат за Robux не продаётся, отряд играет на равных.</li>
+<li><strong>Только наборы монет и гемов.</strong> Без Game Pass, игрок докупает валюту, когда упёрся в цену.</li>
+<li><strong>Пока без доната.</strong> Сначала тест с игроками, монетизация — после.</li>
 </ul>
 </blockquote>
 <h2 id="итог-этапа-1">Итог этапа 1</h2>
@@ -623,6 +667,225 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <p>Карточки улучшений: очередь варки <code>dfd1d3</code>, гемы от размера зоны <code>0d0017</code>, оружие со стойки <code>f79ad4</code>; дописаны <code>db18c4</code> (телепорт машины) и <code>8955d9</code> (ключи наград).</p>
 <p>Открытые вопросы владельцу: 7 штук, раздел «Вопросы владельцу» в начале документа. Самые важные для игры — 1 (открытие зон), 4 (на что тратить монеты) и 6 (сад приносит больше снега).</p>
 <p>Текст <code>docs/mechanics.md</code> не правился: правки страницы — после ответов на вопросы.</p>
+<h2 id="этап-3-проверка-в-живой-игре">Этап 3. Проверка в живой игре</h2>
+<h3 id="1-находки-аудита-в-play-10-11-2026">1. Находки аудита в Play — 10.11.2026</h3>
+<p>Одиночный забег в Studio (сценарий <code>tools/studio-scenarios/deposit.json</code> и ручные шаги через Studio MCP).</p>
+<p><img src="../docs/mechanics-audit/live-hud-area.jpg" alt="HUD в начале забега: «Frozen Creek, AREA 3/6, 0.0 % cleared»"></p>
+<p><strong>Подтверждено: HUD показывает не ту зону.</strong> Игрок стоит в зоне 1 «Frostwood» (62 студа от центра, <code>SnowCells.areaAt</code>), снег под маркером — тоже зона 1. HUD пишет «Frozen Creek, AREA 3/6». После слома снега полоска так и стоит на 0.0 %: снег ломается в зоне 1, а считается зона 3. Это механика 2, пункт 5 и вопрос 1.</p>
+<p><img src="../docs/mechanics-audit/live-deposit.jpg" alt="Сдача: «Deposited 2 units · processing 24 coins»"></p>
+<p><strong>Совпадает: сдача.</strong> Сумка 2/5 → на поддоне «Deposited 2 units · processing 24 coins», через ~9 с монет 24.</p>
+<p><img src="../docs/mechanics-audit/live-two-tasks.jpg" alt="Две команды сразу: «Buy your first shovel» сверху и «BREAK THE SNOW 2/6» по центру"></p>
+<p><strong>Новое: две команды сразу.</strong> Сверху плашка обучения «FIRST RUN 5/5 · Buy your first shovel», по центру — «BREAK THE SNOW 2/6». Ребёнок не знает, что делать первым. Разберу в пункте 2 (первый час новичка).</p>
+<p><strong>Уточнено: клики «в пустоту».</strong> Из 14 кликов в сервер ушли 4, все приняты. Остальные 10 — удар по земле: клетка уже сломана, курсор на дорожке. Это не отказ сервера, клики не теряются.</p>
+<p><strong>Подтверждено: отказ без отклика.</strong> Удар по снегу в 60 студах сервер отклоняет с кодом <code>OutOfRange</code>, на экране ничего не появляется. Это механика 4, пункт 1 и вопрос 3.</p>
+<p><strong>Не проверено вживую.</strong> Рост цены удара (<code>BUG-20261110-010</code>) — его чинит другой чат, карточка <code>4f5142</code> в работе. Пропажа сада при выходе (вопрос 7) — нужен длинный сценарий с посадкой, отложено до пункта 2.</p>
+<h3 id="2-первый-час-новичка-10-11-2026">2. Первый час новичка — 10.11.2026</h3>
+<p>Новый профиль, одиночный забег в Studio, всё через кнопки игры: площадка, окно забега, клики по снегу, поддон, магазин в фермерском доме.</p>
+<p><img src="../docs/mechanics-audit/new-1-lobby.jpg" alt="Лобби: плашка «Start a snow run», на площадках «CREATE A PARTY»"></p>
+<p><strong>Лобби.</strong> Плашка зовёт на «START A RUN pad», а на площадках написано «CREATE A PARTY 0/4». Текст на щитах по краям обрезан («RESH TRACKS AWAI»).</p>
+<p><img src="../docs/mechanics-audit/new-2-party.jpg" alt="Окно забега: по умолчанию выбраны 4 игрока, зелёная кнопка — «UPDATE PARTY»"></p>
+<p><strong>Окно забега.</strong> Ребёнок один, а выбрано «4 PLAYERS». Самая яркая кнопка — «UPDATE PARTY»: нажмёт её — будет ждать трёх чужих игроков. Старт — коричневая «START NOW» рядом. После старта отсчёт 5 с виден только мелкой строкой «Countdown · Station01».</p>
+<p><img src="../docs/mechanics-audit/new-3-run.jpg" alt="Начало забега: «BREAK THE SNOW 0/6», стрелки к жёлтому снегу"></p>
+<p><strong>Первая задача.</strong> Стрелки и жёлтая подсветка ведут к снегу, задача «BREAK THE SNOW 0/6» понятна. 12 кликов ложкой — 3 из 6 за 37 с, сумка 3/5. Дальше золотой маркер висит над уже вскопанной ямой: клик по нему попадает в землю. Сумка на 5 кусков, а задача — 6 участков: сумка заполнится раньше конца задачи.</p>
+<p><img src="../docs/mechanics-audit/new-4-three-tasks.jpg" alt="После первой сдачи: три команды сразу"></p>
+<p><strong>Три команды сразу.</strong> После первой сдачи (48 монет): сверху «Buy your first shovel · go inside the farmhouse», по центру затемнение «OPEN UPGRADES» (купить «Hold» за 25), внизу всё ещё «BREAK THE SNOW 3/6». Ребёнок не знает, что делать.</p>
+<p><img src="../docs/mechanics-audit/new-5-shovel.jpg" alt="Магазин в фермерском доме: лопата куплена, тост «NEW TOOL · StarterShovel»"></p>
+<p><strong>Лопата.</strong> Магазин в доме открывается кнопкой SHOP, лопата за 20 покупается сразу. Тост пишет внутреннее имя «StarterShovel». Следующая лопата стоит 750 — в 37 раз дороже.</p>
+<p><img src="../docs/mechanics-audit/new-6-after.jpg" alt="После покупки: плашки обучения нет, висит «BREAK THE SNOW 3/6»"></p>
+<p><strong>После покупки.</strong> Плашка «FIRST RUN COMPLETE» не видна: её прячет задача «BREAK THE SNOW 3/6». Урок-остров («вырежи круг») начнётся только после 6/6. Новой цели нет: следующая лопата 750, сумка 175.</p>
+<p><strong>Что предлагаю.</strong> Одна команда за раз в порядке «сломай → сдай → купи лопату → урок-остров → Hold»; окно забега по умолчанию на 1 игрока с зелёным стартом и крупным отсчётом; после обучения — одна понятная ближайшая цель (например, сумка за 175). Карточка <code>b652d9</code>. Цены и темп — в пункте 3 (экономика по времени).</p>
+<h3 id="3-экономика-по-времени-10-11-2026">3. Экономика по времени — 10.11.2026</h3>
+<p>Модель «идеального ребёнка»: каждый клик попадает, один узел снега — одна единица, круг до поддона и обратно 160 студов, переработчик работает, пока игрок копает. Числа из <code>Data/economy.json</code> и <code>play.json</code>. Живой темп ниже (прицел, ходьба между участками) — его надо замерить на плейтесте, но соотношения ниже от этого не меняются.</p>
+<p><strong>Монет в минуту (идеально)</strong> — по сумкам 5 / 15 / 30 / 80:</p>
+<table>
+<thead>
+<tr>
+<th>Зона</th>
+<th>Ложка</th>
+<th>Первая лопата (20)</th>
+<th>Steel (750)</th>
+<th>Snow Pusher (2 400)</th>
+<th>Frost (12 000)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1 Frostwood</td>
+<td>221 / 374 / 452 / 520</td>
+<td>225 / 386 / 470 / 543</td>
+<td>277 / 568 / 771 / 993</td>
+<td>как Steel</td>
+<td>как Steel</td>
+</tr>
+<tr>
+<td>3 Frozen Creek</td>
+<td>291 / 378 / 408 / 430</td>
+<td>336 / 458 / 504 / 538</td>
+<td>442 / 681 / 788 / 873</td>
+<td>как Steel</td>
+<td>525 / 900 / 1 096 / 1 268</td>
+</tr>
+</tbody></table>
+<p><strong>Что видно.</strong></p>
+<ol>
+<li>Сумка — главный рычаг. Сумка за 175 даёт +70 % (с 5 до 15 мест), почти всё время с маленькой сумкой уходит на ходьбу к поддону. Первая лопата за 20 в зоне 1 даёт +2 %: ложка ломает узел за 3 × 0,42 с, лопата — за 2 × 0,6 с.</li>
+<li>Пустые ступени. Snow Pusher (урон 4) в зонах 1–3 ломает узел за столько же ударов, что Steel (урон 3): прочность 3, 6, 9 делится на 3 ровно. Frost за 12 000 в зоне 1 не быстрее Steel: узел и так ломается с одного удара. Без заточки 2 400 и 12 000 монет игрок не почувствует. Открытый вопрос 8.</li>
+<li>Темп покупок. Даже с поправкой «в 3–5 раз медленнее идеала» весь магазин (51 470 монет) закрывается за несколько часов игры в зонах 1–3; дальше монеты некуда тратить — вопрос 4. Ежедневные 50 монет и колесо (50/100) после первых минут почти ничего не значат.</li>
+<li>Гемы медленные: 10 гемов за всю зону 1 (634 узла, около 20 мин идеально с сумкой на 15), лиса стоит 20, помощник — 200, то есть 20 зачисток зоны 1. Это карточка <code>0d0017</code> (гемы от размера зоны).</li>
+</ol>
+<p><strong>Что предлагаю.</strong> Лестницу лопат подобрать под прочность снега зон (вопрос 8), ближайшей целью после первой лопаты показывать сумку за 175 (карточка <code>b652d9</code>), живой замер монет в минуту — в плейтест с ребёнком. Отдельной карточки до ответа на вопросы 4 и 8 не завожу.</p>
+<h3 id="4-игра-отрядом-2-4-10-11-2026">4. Игра отрядом 2–4 — 10.11.2026</h3>
+<p>Живого отряда в Studio не было: Studio MCP запускает только одиночную игру. Разбор по коду (<code>QueueService</code>, <code>MatchServer</code>, <code>SessionService</code>, <code>ProgressionService</code>, <code>InventoryService</code>, <code>SnowGuide</code>).</p>
+<p><strong>Как устроено.</strong> Отряд собирается на одной площадке, размер выбирает хозяин. Сервер забега ждёт отряд до 20 с, опоздавший догоняет уже начатый забег (<code>MatchServer.luau:4</code>, <code>:41</code>). Снег у отряда общий, сломанный узел идёт в сумку тому, кто ударил. Гемы за зону — каждому полной суммой. Переработчик один, но чеки у каждого свои. Кто ушёл — забег идёт дальше, последний ушедший закрывает его (<code>SessionService.luau:165-168</code>).</p>
+<p><strong>Что не так.</strong></p>
+<ol>
+<li>Первая задача общая. Все в отряде видят одни и те же 6 участков у старта (<code>SnowGuide.luau</code>, участки выбираются от <code>MatchSpawn</code>). Быстрый ребёнок ломает их сам — у остальных счётчик дошёл до 6/6 без их удара, а шаг «принеси на поддон» пропускается, если сумка пуста. Новичок в отряде пропускает половину обучения.</li>
+<li>Урок-остров тоже общий: вырезал один — урок засчитан всем (<code>MapSnowService.luau:386-392</code>). Остальные новички так и не узнают, что круг можно вырезать.</li>
+<li>Вылетел — к друзьям не вернуться. Забег на закрытом сервере, вход без данных отряда отправляет в лобби (<code>MatchServer.luau:29-35</code>). Друг из лобби в идущий забег тоже не войдёт. Открытый вопрос 9.</li>
+<li>Чужой на плите. В ожидании любой, кто встал на площадку, попадает в отряд без приглашения (<code>QueueService.luau:209</code>). Для детской игры нормально, но хозяин не может его убрать.</li>
+<li>Ничего не делал — получил. Гемы за зону получает каждый член отряда, даже если стоял в стороне. Это скорее плюс для кооператива, но фарм гемов «в гостях» возможен.</li>
+</ol>
+<p><strong>Что предлагаю.</strong> Первую задачу и урок-остров вести на каждого отдельно: у каждого свои 6 участков рядом со своей точкой появления, урок засчитывается тому, кто резал (входит в карточку <code>b652d9</code>). Возврат вылетевшего — после ответа на вопрос 9. Живую проверку отрядом сделать на опубликованной тестовой копии с 2 аккаунтами (пункт 6).</p>
+<h3 id="5-телефон-и-планшет-10-11-2026">5. Телефон и планшет — 10.11.2026</h3>
+<p>Кадров с телефона нет: эмулятор устройств Studio через MCP не включается. Числа ниже — расчёт по формулам масштаба игры (<code>InterfaceController.luau:929-953</code>) и размерам элементов, снятым в живом Play на компьютере. HUD: <code>clamp(min(X/1440, Y/820), 0.42, 1.15) × 0.73</code>; окна: <code>min(0.92, (X−32)/830, (Y−82)/602)</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Экран (точки)</th>
+<th>Масштаб HUD</th>
+<th>Кнопки справа (PETS, SHOP)</th>
+<th>Кнопка удара</th>
+<th>Слот хотбара</th>
+<th>Мелкий текст HUD</th>
+<th>Масштаб окон</th>
+<th>Магазин на экране</th>
+<th>Кнопка «BUY»</th>
+<th>Текст в окне</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Телефон 667×375</td>
+<td>0.33</td>
+<td>26</td>
+<td>37</td>
+<td>14</td>
+<td>4.0</td>
+<td>0.49</td>
+<td>61 % × 75 %</td>
+<td>18</td>
+<td>6.3</td>
+</tr>
+<tr>
+<td>Телефон 844×390</td>
+<td>0.35</td>
+<td>27</td>
+<td>39</td>
+<td>15</td>
+<td>4.2</td>
+<td>0.51</td>
+<td>50 % × 76 %</td>
+<td>18</td>
+<td>6.7</td>
+</tr>
+<tr>
+<td>Телефон 932×430</td>
+<td>0.38</td>
+<td>30</td>
+<td>43</td>
+<td>16</td>
+<td>4.6</td>
+<td>0.58</td>
+<td>51 % × 78 %</td>
+<td>21</td>
+<td>7.5</td>
+</tr>
+<tr>
+<td>Планшет 1024×768</td>
+<td>0.52</td>
+<td>41</td>
+<td>58</td>
+<td>22</td>
+<td>6.2</td>
+<td>0.92</td>
+<td>75 % × 69 %</td>
+<td>33</td>
+<td>12.0</td>
+</tr>
+<tr>
+<td>Компьютер 1920×1080</td>
+<td>0.84</td>
+<td>66</td>
+<td>94</td>
+<td>35</td>
+<td>10.1</td>
+<td>0.92</td>
+<td>40 % × 49 %</td>
+<td>33</td>
+<td>12.0</td>
+</tr>
+</tbody></table>
+<p>Размеры кнопок и текста — в точках экрана. Палец уверенно попадает в цель от 44 точек, текст читается от 11–12.</p>
+<p><strong>Что не так.</strong></p>
+<ol>
+<li>На телефоне всё мелкое. Кнопки справа 26–30 точек, слоты хотбара 14–16, кнопка удара 37–43 — меньше пальца. Подписи HUD («SPOON», «SNOW BLOCKS») 4–5 точек: их не прочитать. Причина — общий множитель 0.73 поверх нижней границы 0.42: на телефоне HUD сжимается до трети.</li>
+<li>Окна на телефоне в два раза меньше по ширине, чем на планшете. Магазин 830×580 упирается в высоту телефона: 50 % ширины против 75 % на планшете. Кнопка «BUY» 18 точек, текст карточек 6–7.</li>
+<li>На компьютере 1920×1080 окно занимает 40 % × 49 % — по правилу «Размер окна» (<code>RUBRICS.md</code>) это много пустого места (площадь меньше 33 %).</li>
+<li>Режим «касание» распознаётся (<code>TutorialController.luau:74</code>, кнопка удара видна только с касанием), подсказки «Tap PUNCH» есть — логика для телефона на месте, мешает только размер.</li>
+</ol>
+<p><strong>Что предлагаю.</strong> Для касаний — своя нижняя граница масштаба: кнопки не меньше 44 точек и текст не меньше 12 на любом экране, даже если HUD займёт больше места. Окна на телефоне — шире (до 90 % ширины), с прокруткой вместо уменьшения. Проверить кадрами в эмуляторе устройств Studio и таблицей «Размер окна» для критика <code>feature-design-critic</code>. Карточка <code>784561</code>.</p>
+<h3 id="6-сохранение-в-опубликованной-копии-10-11-2026">6. Сохранение в опубликованной копии — 10.11.2026</h3>
+<p>Опубликованной копии нет: публикация плейса — только со слова владельца, а Studio к рабочему DataStore не подключаем. Разбор по коду (<code>ProfileService</code>, <code>Storage/ProfileLease</code>, <code>Storage/DataStoreProfileStore</code>, <code>Bootstrap.server</code>) и сценарий ручной проверки <code>PLAY-20261110-002</code> в <code>tasks/playtest.md</code>.</p>
+<p><strong>Что сделано хорошо.</strong></p>
+<ul>
+<li>Профиль держит один сервер: аренда на 120 с с номером владельца, запись со старым номером отклоняется (<code>ProfileLease.luau</code>). Два сервера не затрут профиль друг другу.</li>
+<li>После телепорта новый сервер ждёт, пока старый отпустит профиль, до 130 с, каждые 3 с пробуя снова (<code>Bootstrap.server.luau:217-219</code>). Не дождался — честно кикает «profile is busy», а не начинает с пустого профиля.</li>
+<li>Ответ DataStore потерялся — запись помечается «неизвестно» и повторяется, а не считается удачной. Чек переработчика и его монеты пишутся одной записью: при сбое пропадут вместе и не заплатятся дважды.</li>
+<li>Автосохранение раз в 30 с, при закрытии сервера — до 25 с на выгрузку всех (<code>Bootstrap.server.luau:259-264</code>).</li>
+</ul>
+<p><strong>Что проверить вживую (риски).</strong></p>
+<ol>
+<li>Быстрые покупки. Каждая покупка сразу пишется в DataStore (<code>UpdateAsync</code>), а один ключ Roblox пишет не чаще раза в 6 с. Три покупки подряд за 5 с — третья может ждать около 12 с, а клиент через 8 с покажет «The server is taking longer than usual» (<code>Actions.luau:6</code>). Шаг 2 сценария.</li>
+<li>Ожидание после телепорта. Лобби отпускает профиль, когда игрок ушёл; если старый сервер упал, новый ждёт до 120 с, пока аренда истечёт. Ребёнок видит экран «Getting things ready…» с кнопкой пропуска (<code>LoadingController.luau</code>); ждёт ли этот экран профиль, по коду не ясно. Проверить, что после пропуска покупки и удары не отвечают отказом. Шаги 1 и 4.</li>
+<li>Рост записи. Чеки и ключи наград копятся (<code>BUG-20261110-007</code>, исправлен в <code>ba99621</code>); после исправления размер записи стоит проверить на долгом профиле.</li>
+</ol>
+<p><strong>Что предлагаю.</strong> Провести <code>PLAY-20261110-002</code> на тестовой копии, когда владелец разрешит публикацию. Если шаг 2 подтвердится — копить покупки в памяти и писать их автосохранением, как уже сделано для сдачи снега.</p>
+<h3 id="7-читы-сводно-10-11-2026">7. Читы сводно — 10.11.2026</h3>
+<p>Что может сделать игрок с читом (свой клиент, свои пакеты). Разбор по коду всех входов сервера: <code>ActionRequest</code> (<code>RemotesRouter</code>, <code>NetSchema</code>), <code>Sync</code> и <code>FistSync</code> (<code>MapSnowService.luau:961-966</code>), ввод машины (<code>VehicleDriving.server.luau:132</code>).</p>
+<p><strong>Закрыто.</strong></p>
+<ul>
+<li>Одна дверь для действий: каждый пакет сверяется со схемой (типы, числа, длины), у каждого вида свой лимит частоты и общий лимит 30 в секунду, повтор того же запроса отдаёт прежний ответ (<code>RemotesRouter.luau</code>).</li>
+<li>Деньги, гемы, покупки, награды, чеки решает сервер. Цена берётся с сервера, повтор покупки отклоняется по номеру версии профиля, чек не платится дважды.</li>
+<li>Удар: сервер проверяет, жив ли игрок, дистанцию (12 студов), направление взгляда, нет ли стены, и паузу между ударами по своему инструменту (<code>MapSnowService.luau:420-447</code>). Автокликер не быстрее честного игрока с улучшением «Hold».</li>
+<li>Сдача — только у поддона (10 студов), магазин — у прилавка, подбор — в радиусе.</li>
+<li>Тестовые 100 000 монет (<code>DevGrant</code>) — только в Studio, опубликованный сервер отвечает <code>DevOnly</code> (<code>DevWallet.luau:24</code>).</li>
+<li>Запросы снега (<code>Sync</code>, <code>FistSync</code>) ограничены по частоте и дистанции.</li>
+</ul>
+<p><strong>Открыто.</strong></p>
+<ol>
+<li>Телепорт и скорость персонажа. Позицию персонажа сервер берёт у клиента как есть. Вживую (этот разбор, п. 2) скрипт клиента сам переставлял персонажа к снегу — сервер принимал удары. Читер может телепортироваться к поддону с каждой полной сумкой и по всей карте за снегом: в разы быстрее монеты и гемы за зоны. Проверка — только «внутри карты и не под землёй» (<code>Bootstrap.server.luau</code>). Карточка <code>db18c4</code> (проверка движения) — главная защита, ещё не сделана.</li>
+<li>Машина. Сервер ловит слишком быструю езду только после трёх замеров подряд, одиночный рывок проходит; при выходе клиент может сдвинуть машину до 30 студов (<code>VehicleDriving.server.luau:14</code>, <code>:136</code>). Входит в <code>db18c4</code>.</li>
+<li>Гемы в гостях. Кто стоит в отряде без дела, получает гемы за зону полностью (п. 4). Не чит, но так можно фармить твинком.</li>
+</ol>
+<p><strong>Что предлагаю.</strong> Поднять <code>db18c4</code> в приоритете: без проверки движения остальные проверки обходятся телепортом. Новых карточек не завожу.</p>
+<h3 id="8-звук-и-монетизация-10-11-2026">8. Звук и монетизация — 10.11.2026</h3>
+<p>Разбор по коду и по плейсу (Studio, режим Edit): <code>WorldFxController.luau</code>, <code>SnowFeedbackConfig.luau</code>, <code>SnowRewardFeedback.luau</code>, <code>VehicleWorkAudio.luau</code>, <code>WeaponDefs.luau</code>, <code>InterfaceController.luau</code>, <code>SoundService</code> и <code>CleanSnowGardenAssets</code>.</p>
+<p><strong>Звук есть.</strong></p>
+<ul>
+<li>Удар, слом, подбор снега и полная сумка — свои звуки из <code>SoundService.SnowFeedbackSounds</code> (10 штук), высота тона меняется от зоны (<code>SnowFeedbackConfig.luau:22-27</code>).</li>
+<li>Машины (<code>VehicleWorkAudio.luau</code>), оружие со стоек (<code>WeaponDefs.luau</code>), лай собаки (<code>ForestAnimalController.luau:7</code>) — в основном встроенные звуки Roblox, удар по снегу дополнительно звучит <code>action_jump_land</code> и <code>impact_water</code> (<code>WorldFxController.luau:391-393</code>, <code>:671-672</code>).</li>
+<li>Переключатель «SOUND EFFECTS» в настройках глушит всё это (<code>WorldFxController.luau:346</code>).</li>
+</ul>
+<p><strong>Звука нет.</strong></p>
+<ol>
+<li>Музыки и фона (ветер, лес, лобби) нет. Строка «MUSIC» плейса переименована в «FALLING SNOW» и включает падающий снег (<code>InterfaceController.luau:251</code>) — это не ошибка, но музыки в настройках нет.</li>
+<li>Монеты звучат тихо и не как монеты: встроенный <code>volume_slider.ogg</code> на громкости .14–.16 (<code>WorldFxController.luau:707-735</code>), сама сдача — глухой <code>action_jump_land</code> на .13 (<code>:692</code>). Сдача снега — главная награда, а слышно её хуже удара.</li>
+<li>Нет звука покупки, открытия зоны, гемов, кнопок и окон, уровня и колеса.</li>
+<li>У вещей сада (капканы, грабли, Poof, огонь) объекты Sound есть, но <code>SoundId</code> пустой: они молчат.</li>
+</ol>
+<p><strong>Монетизация.</strong> Нет совсем: в коде нет <code>MarketplaceService</code> и <code>ProcessReceipt</code>, Game Pass не проверяются. Окно наборов в магазине — заглушка с надписью «Robux purchases are unavailable in this build» (<code>InterfaceController.luau:461</code>). Решение — открытый вопрос 10.</p>
+<p><strong>Что предлагаю.</strong> Звуки — карточка <code>abc629</code>: сначала монеты при сдаче и покупка (самые частые награды), потом открытие зоны и интерфейс, музыка последней. Каждый новый звук — через эффекты, как удар и слом. Монетизацию не начинать до ответа на вопрос 10: продавать удобства, не силу, сервер проверяет покупку (<code>ProcessReceipt</code>, повтор чека не платится).</p>
+<h2 id="итог-этапа-3">Итог этапа 3</h2>
+<p>Восемь проверок сделаны. Новые карточки: <code>b652d9</code> (первый забег — одна задача), <code>784561</code> (размеры на телефоне), <code>abc629</code> (звуки наград); плейтест <code>PLAY-20261110-002</code> (сохранение в опубликованной копии); в <code>db18c4</code> добавлена находка про телепорт. Новые вопросы владельцу — 8, 9 и 10. Самое важное по игре: проверка движения <code>db18c4</code> (без неё телепорт обходит остальную защиту), лестница лопат (вопрос 8) и первый забег новичка (<code>b652d9</code>).</p>
+<p>Что не проверено вживую: игра отрядом (Studio MCP запускает только одного игрока), настоящий телефон (эмулятора нет) и сохранение на опубликованной копии (копии нет).</p>
 </article></div></section>
 </main>
 </div>
@@ -682,7 +945,17 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
       }
     };
     for (const button of buttons) button.addEventListener("click", () => apply(button.dataset.personFilter));
+    // Ссылка на карточку (board.html#card-…) раскрывает её текст и показывает карточку.
+    const target = location.hash.startsWith("#card-") ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+    if (target) {
+      const text = target.querySelector("details");
+      if (text) text.open = true;
+      target.scrollIntoView({ block: "start" });
+    }
   }
+
+  // Кнопка текущей страницы в шапке видна и на узком экране, где шапка листается вбок.
+  document.querySelector(".topbar .top-link[aria-current]")?.scrollIntoView({ block: "nearest", inline: "center" });
 
   const menu = document.getElementById("menu");
   const sidebar = document.getElementById("sidebar");

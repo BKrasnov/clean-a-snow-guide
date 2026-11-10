@@ -183,10 +183,27 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 .bar-fill { display: block; height: 100%; background: var(--ice); }
 .bars-zone .bar-fill, .bars-tool .bar-fill { background: var(--wood); }
 .bar-value { font-weight: 700; white-space: nowrap; }
+/* Таймлайн: день — аккордеон, внутри темы со списком сделанного, ссылками и коммитами. */
+.day { margin: 12px 0; border: 2px solid rgba(29, 39, 64, .12); border-radius: 10px; background: rgba(255, 255, 255, .6); }
+.day > summary { cursor: pointer; padding: 12px 16px; font-size: 17px; }
+.day-date { font-weight: 700; font-size: 20px; margin-right: 6px; }
+.day-summary { color: var(--muted); }
+.day-body { padding: 0 16px 14px; }
+.day-topic { margin: 10px 0 0; padding: 10px 0 0; border-top: 1px solid rgba(29, 39, 64, .12); }
+.day-topic h3 { margin: 0 0 6px; font-size: 18px; }
+.day-done { margin: 0 0 8px; padding-left: 20px; }
+.day-links { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 8px; padding: 0; list-style: none; }
+.day-links li { margin: 0; }
+.day-links a { display: inline-block; padding: 3px 8px; background: var(--paper); border: 1px solid rgba(29, 39, 64, .16); border-radius: 6px; text-decoration: none; font-size: 14px; }
+.day-links a:hover { border-color: var(--ice-dark); }
+.day-commits { margin: 0; color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
+.board-card { scroll-margin-top: 70px; }
+.board-card:target { outline: 3px solid var(--gold); outline-offset: 2px; }
 
 @media (max-width: 860px) {
   #menu { display: inline-block; }
-  .topbar { gap: 10px; padding: 10px 12px; }
+  /* Кнопок больше, чем ширина телефона: шапка листается вбок, страница остаётся на месте. */
+  .topbar { gap: 10px; padding: 10px 12px; overflow-x: auto; scrollbar-width: thin; }
   .topbar .top-link { padding: 4px 8px; }
   /* На самых узких экранах сжимается название, кнопки остаются целыми. */
   .topbar .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
@@ -224,14 +241,14 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <p id="site-lock-error" class="site-lock-error" hidden>Пароль не подошёл.</p>
 </form>
 </div>
-<header class="topbar"><button id="menu" type="button" aria-expanded="false" aria-controls="sidebar">Разделы</button><a class="brand" href="index.html">Clean a Snow</a><a class="top-link" href="testing.html">Тестирование</a><a class="top-link" href="board.html" aria-current="page">Доска</a><a class="top-link" href="analysis.html">Анализ</a><a class="top-link" href="mechanics.html">Механики</a><a class="top-link" href="ideas.html">Идеи</a><a class="top-link" href="doc-mechanics-audit.html#вопросы-владельцу">Вопросы</a><a class="top-link" href="vfx.html">VFX</a><button id="site-close" class="top-link" type="button">Закрыть</button><span class="hint">Собрано из файлов репозитория: <code>node tools/guide/build.mjs</code></span></header>
+<header class="topbar"><button id="menu" type="button" aria-expanded="false" aria-controls="sidebar">Разделы</button><a class="brand" href="index.html">Clean a Snow</a><a class="top-link" href="testing.html">Тестирование</a><a class="top-link" href="board.html" aria-current="page">Доска</a><a class="top-link" href="analysis.html">Анализ</a><a class="top-link" href="mechanics.html">Механики</a><a class="top-link" href="ideas.html">Идеи</a><a class="top-link" href="doc-mechanics-audit.html#вопросы-владельцу">Вопросы</a><a class="top-link" href="vfx.html">VFX</a><a class="top-link" href="timeline.html">Таймлайн</a><button id="site-close" class="top-link" type="button">Закрыть</button><span class="hint">Собрано из файлов репозитория: <code>node tools/guide/build.mjs</code></span></header>
 <div class="layout">
-<nav id="sidebar" aria-label="Разделы"><ul><li><a href="index.html">Об игре</a></li><li><a href="place.html">Плейс и запуск</a></li><li><a href="style.html">Стиль</a></li><li><a href="economy.html">Экономика</a></li><li><a href="weapons.html">Оружие</a></li><li><a href="garden.html">Сад</a></li><li><a href="code.html">Код</a></li><li><details class="group" data-group="galleries.html" open><summary><a href="galleries.html">Кадры и картинки</a></summary><ul><li><a href="gallery-bugs.html">Кадры багов</a></li><li><a href="gallery-frames.html">Кадры игры</a></li><li><a href="gallery-ideas.html">Референсы идей</a></li><li><a href="gallery-palette-preview.html">Палитра</a></li><li><a href="gallery-refs.html">refs</a></li><li><a href="gallery-vfx-reviews.html">vfx/reviews</a></li><li><a href="gallery-vfx.html">vfx</a></li></ul></details></li><li><details class="group" data-group="docs.html" open><summary><a href="docs.html">Документы</a></summary><ul><li><a href="doc-architecture-summary.html">architecture/summary.md</a></li><li><a href="doc-held-items-audit.html">held-items-audit.md</a></li><li><a href="doc-mechanics-audit.html">mechanics-audit.md</a></li><li><a href="doc-publish-places.html">publish-places.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-catalog-answers.html">superpowers/plans/2026-11-10-catalog-answers.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-client-actions.html">superpowers/plans/2026-11-10-client-actions.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-economy.html">superpowers/plans/2026-11-10-data-economy.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-held-items-audit.html">superpowers/plans/2026-11-10-held-items-audit.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-map-bake.html">superpowers/plans/2026-11-10-map-bake.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-packet-limits.html">superpowers/plans/2026-11-10-packet-limits.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-anchors.html">superpowers/plans/2026-11-10-place-anchors.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-role-world.html">superpowers/plans/2026-11-10-place-role-world.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-profile-store-core.html">superpowers/plans/2026-11-10-profile-store-core.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-receipt-ledger.html">superpowers/plans/2026-11-10-receipt-ledger.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-server-lifecycle.html">superpowers/plans/2026-11-10-server-lifecycle.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-break-burst.html">superpowers/plans/2026-11-10-snow-break-burst.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-cell-strength.html">superpowers/plans/2026-11-10-snow-cell-strength.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-clap.html">superpowers/plans/2026-11-10-snow-clap.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-starter-spoon.html">superpowers/plans/2026-11-10-starter-spoon.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-rules.html">superpowers/plans/2026-11-10-strike-rules.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-two-places.html">superpowers/plans/2026-11-10-two-places.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-wallet.html">superpowers/plans/2026-11-10-wallet.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-catalog-answers-design.html">superpowers/specs/2026-11-10-catalog-answers-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-client-actions-design.html">superpowers/specs/2026-11-10-client-actions-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-economy-design.html">superpowers/specs/2026-11-10-data-economy-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-held-items-audit-design.html">superpowers/specs/2026-11-10-held-items-audit-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-map-bake-design.html">superpowers/specs/2026-11-10-map-bake-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-packet-limits-design.html">superpowers/specs/2026-11-10-packet-limits-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-anchors-design.html">superpowers/specs/2026-11-10-place-anchors-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-role-world-design.html">superpowers/specs/2026-11-10-place-role-world-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-profile-store-core-design.html">superpowers/specs/2026-11-10-profile-store-core-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-receipt-ledger-design.html">superpowers/specs/2026-11-10-receipt-ledger-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-server-lifecycle-design.html">superpowers/specs/2026-11-10-server-lifecycle-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-break-burst-design.html">superpowers/specs/2026-11-10-snow-break-burst-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-cell-strength-design.html">superpowers/specs/2026-11-10-snow-cell-strength-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-puff-design.html">superpowers/specs/2026-11-10-snow-puff-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-starter-spoon-design.html">superpowers/specs/2026-11-10-starter-spoon-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-rules-design.html">superpowers/specs/2026-11-10-strike-rules-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-two-places-design.html">superpowers/specs/2026-11-10-two-places-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-wallet-design.html">superpowers/specs/2026-11-10-wallet-design.md</a></li></ul></details></li></ul></nav>
+<nav id="sidebar" aria-label="Разделы"><ul><li><a href="index.html">Об игре</a></li><li><a href="place.html">Плейс и запуск</a></li><li><a href="style.html">Стиль</a></li><li><a href="economy.html">Экономика</a></li><li><a href="weapons.html">Оружие</a></li><li><a href="garden.html">Сад</a></li><li><a href="code.html">Код</a></li><li><details class="group" data-group="galleries.html" open><summary><a href="galleries.html">Кадры и картинки</a></summary><ul><li><a href="gallery-bugs.html">Кадры багов</a></li><li><a href="gallery-frames.html">Кадры игры</a></li><li><a href="gallery-ideas.html">Референсы идей</a></li><li><a href="gallery-palette-preview.html">Палитра</a></li><li><a href="gallery-refs.html">refs</a></li><li><a href="gallery-vfx.html">vfx</a></li><li><a href="gallery-vfx-reviews.html">vfx/reviews</a></li></ul></details></li><li><details class="group" data-group="docs.html" open><summary><a href="docs.html">Документы</a></summary><ul><li><a href="doc-architecture-summary.html">architecture/summary.md</a></li><li><a href="doc-held-items-audit.html">held-items-audit.md</a></li><li><a href="doc-mechanics-audit.html">mechanics-audit.md</a></li><li><a href="doc-publish-places.html">publish-places.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-catalog-answers.html">superpowers/plans/2026-11-10-catalog-answers.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-client-actions.html">superpowers/plans/2026-11-10-client-actions.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-economy.html">superpowers/plans/2026-11-10-data-economy.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-held-items-audit.html">superpowers/plans/2026-11-10-held-items-audit.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-map-bake.html">superpowers/plans/2026-11-10-map-bake.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-packet-limits.html">superpowers/plans/2026-11-10-packet-limits.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-anchors.html">superpowers/plans/2026-11-10-place-anchors.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-role-world.html">superpowers/plans/2026-11-10-place-role-world.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-processor-intake.html">superpowers/plans/2026-11-10-processor-intake.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-processor-queue.html">superpowers/plans/2026-11-10-processor-queue.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-profile-store-core.html">superpowers/plans/2026-11-10-profile-store-core.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-receipt-ledger.html">superpowers/plans/2026-11-10-receipt-ledger.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-server-lifecycle.html">superpowers/plans/2026-11-10-server-lifecycle.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-break-burst.html">superpowers/plans/2026-11-10-snow-break-burst.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-cell-strength.html">superpowers/plans/2026-11-10-snow-cell-strength.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-clap.html">superpowers/plans/2026-11-10-snow-clap.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-response.html">superpowers/plans/2026-11-10-snow-response.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-starter-spoon.html">superpowers/plans/2026-11-10-starter-spoon.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-plan.html">superpowers/plans/2026-11-10-strike-plan.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-rules.html">superpowers/plans/2026-11-10-strike-rules.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-two-places.html">superpowers/plans/2026-11-10-two-places.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-wallet.html">superpowers/plans/2026-11-10-wallet.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-catalog-answers-design.html">superpowers/specs/2026-11-10-catalog-answers-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-client-actions-design.html">superpowers/specs/2026-11-10-client-actions-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-economy-design.html">superpowers/specs/2026-11-10-data-economy-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-held-items-audit-design.html">superpowers/specs/2026-11-10-held-items-audit-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-map-bake-design.html">superpowers/specs/2026-11-10-map-bake-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-packet-limits-design.html">superpowers/specs/2026-11-10-packet-limits-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-anchors-design.html">superpowers/specs/2026-11-10-place-anchors-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-role-world-design.html">superpowers/specs/2026-11-10-place-role-world-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-processor-intake-design.html">superpowers/specs/2026-11-10-processor-intake-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-processor-queue-design.html">superpowers/specs/2026-11-10-processor-queue-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-profile-store-core-design.html">superpowers/specs/2026-11-10-profile-store-core-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-receipt-ledger-design.html">superpowers/specs/2026-11-10-receipt-ledger-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-server-lifecycle-design.html">superpowers/specs/2026-11-10-server-lifecycle-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-break-burst-design.html">superpowers/specs/2026-11-10-snow-break-burst-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-cell-strength-design.html">superpowers/specs/2026-11-10-snow-cell-strength-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-puff-design.html">superpowers/specs/2026-11-10-snow-puff-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-response-design.html">superpowers/specs/2026-11-10-snow-response-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-starter-spoon-design.html">superpowers/specs/2026-11-10-starter-spoon-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-plan-design.html">superpowers/specs/2026-11-10-strike-plan-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-rules-design.html">superpowers/specs/2026-11-10-strike-rules-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-two-places-design.html">superpowers/specs/2026-11-10-two-places-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-wallet-design.html">superpowers/specs/2026-11-10-wallet-design.md</a></li></ul></details></li></ul></nav>
 <main>
 <section class="part"><h2>Доска</h2><div class="board-filters" role="group" aria-label="Кто делает"><button type="button" data-person-filter="all" aria-pressed="true">Все</button><button type="button" data-person-filter="Богдан" aria-pressed="false">Богдан</button><button type="button" data-person-filter="Леонид" aria-pressed="false">Леонид</button><button type="button" data-person-filter="Георгий" aria-pressed="false">Георгий</button></div>
 <div class="board-columns"><section class="board-column" data-status="todo">
-  <h3>К выполнению <span class="board-count">23</span></h3>
-  <div class="board-cards"><article class="board-card" data-person="Богдан" data-status="todo">
+  <h3>К выполнению <span class="board-count">17</span></h3>
+  <div class="board-cards"><article class="board-card" id="card-0d0017" data-person="Богдан" data-status="todo">
   <h3>Гемы за чистую зону от её размера</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>0d0017</code> фича · economy</p>
   <p class="board-lead">Сейчас за чистую зону платят 10 / 20 / 30 / 40 / 50 / 60 гемов (`Catalog.luau:56`), а узлов в зонах 634 / 2 967 / 6 256 / 11 835 / 16 300 / 96 144. Гемов за узел в зоне 1 в 25 раз больше, чем в зоне 6: выгоднее всего чистить зону 1 и начинать забег заново.</p>
@@ -253,7 +270,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="todo">
+<article class="board-card" id="card-13a49d" data-person="Богдан" data-status="todo">
   <h3>Клиент: показ по одной форме и окна по одному</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>13a49d</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Клиент B и C (`7e9ffc`), №13–14 сводки.</p>
@@ -275,64 +292,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="todo">
-  <h3>Общая таблица лидеров показывает номера игроков вместо имён</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>21c3a1</code> баг · bug</p>
-  <p class="board-lead">Воспроизвести и исправить `BUG-20261110-008` из `tasks/bugs.md`.</p>
-  
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Воспроизвести и исправить <code>BUG-20261110-008</code> из <code>tasks/bugs.md</code>.</p>
-<h2>Готово когда</h2>
-<ul>
-<li><input disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
-<li><input disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
-</ul>
-<h2>Работа</h2>
-<h2>Заметки</h2>
-<ul>
-<li>Журнал: <code>BUG-20261110-008</code>.</li>
-</ul>
-</div></details>
-</article>
-<article class="board-card" data-person="Богдан" data-status="todo">
-  <h3>Куски снега забега не удаляются: каждый удар перебирает все куски с начала забега</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>4f5142</code> баг · bug</p>
-  <p class="board-lead">Воспроизвести и исправить `BUG-20261110-010` из `tasks/bugs.md`.</p>
-  
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Воспроизвести и исправить <code>BUG-20261110-010</code> из <code>tasks/bugs.md</code>.</p>
-<h2>Готово когда</h2>
-<ul>
-<li><input disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
-<li><input disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
-</ul>
-<h2>Работа</h2>
-<h2>Заметки</h2>
-<ul>
-<li>Журнал: <code>BUG-20261110-010</code>.</li>
-</ul>
-</div></details>
-</article>
-<article class="board-card" data-person="Богдан" data-status="todo">
-  <h3>Ежедневная награда не требует игры в этот день</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>51b915</code> баг · bug</p>
-  <p class="board-lead">Воспроизвести и исправить `BUG-20261110-009` из `tasks/bugs.md`.</p>
-  
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Воспроизвести и исправить <code>BUG-20261110-009</code> из <code>tasks/bugs.md</code>.</p>
-<h2>Готово когда</h2>
-<ul>
-<li><input disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
-<li><input disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
-</ul>
-<h2>Работа</h2>
-<h2>Заметки</h2>
-<ul>
-<li>Журнал: <code>BUG-20261110-009</code>.</li>
-</ul>
-</div></details>
-</article>
-<article class="board-card" data-person="Богдан" data-status="todo">
+<article class="board-card" id="card-52722c" data-person="Богдан" data-status="todo">
   <h3>Данные: клиент спрашивает дверь, а не держит копии</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>52722c</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Клиентская часть переноса по разбору `c4e3c6` (`docs/architecture/game-data.html`).</p>
@@ -352,7 +312,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <h2>Заметки</h2>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="todo">
+<article class="board-card" id="card-6356f6" data-person="Богдан" data-status="todo">
   <h3>Данные: сессия, очередь, интро, топ и серверные числа в JSON</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>6356f6</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Перенос чисел по разбору `c4e3c6` (`docs/architecture/game-data.html`).</p>
@@ -376,30 +336,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <h2>Заметки</h2>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="todo">
-  <h3>Сервер: переработчик — единственная приёмка снега</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>653e08</code> техработа · architecture</p>
-  <p class="board-lead">Исполнитель: Богдан. Сервер C (`e3afec`), №3 таблицы сводки.</p>
-  
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Исполнитель: Богдан. Сервер C (<code>e3afec</code>), №3 таблицы сводки.</p>
-<p>Одно правило зоны «рядом с переработчиком» и одна функция сдачи в <code>ProcessorService</code> для игрока, машины, грузовика, зверей и помощника. Авто-сдача уходит из <code>Bootstrap</code>.</p>
-<h2>Готово когда</h2>
-<ul>
-<li><input disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
-<li><input disabled="" type="checkbox"> Тест до кода: одна точка у переработчика принимается одинаково для игрока и машины.</li>
-<li><input disabled="" type="checkbox"> Play: сдача руками, машиной и грузовиком.</li>
-<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
-<li><input disabled="" type="checkbox"> Коммит и push.</li>
-</ul>
-<h2>Работа</h2>
-<h2>Заметки</h2>
-<ul>
-<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
-</ul>
-</div></details>
-</article>
-<article class="board-card" data-person="Богдан" data-status="todo">
+<article class="board-card" id="card-670e36" data-person="Богдан" data-status="todo">
   <h3>Мир: содержимое плейсов в репозитории</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>670e36</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Мир C (`ca1233`), №16 сводки.</p>
@@ -421,30 +358,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="todo">
-  <h3>Удар: общий план удара и главная кнопка</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>6d3652</code> техработа · architecture</p>
-  <p class="board-lead">Исполнитель: Богдан. Снег B (`189be8`) и клиент D (`7e9ffc`), №5–6 сводки.</p>
-  
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Исполнитель: Богдан. Снег B (<code>189be8</code>) и клиент D (<code>7e9ffc</code>), №5–6 сводки.</p>
-<p>Один модуль плана удара (точка, прицел, урон → клетки и стадии) с adapter-ами сервера и клиента. Затем одно место «что делает главная кнопка» на клиенте; паузы — из <code>StrikeRules</code>, у оружия тоже.</p>
-<h2>Готово когда</h2>
-<ul>
-<li><input disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
-<li><input disabled="" type="checkbox"> Тест до кода: один удар даёт одинаковый список клеток у сервера и прогноза.</li>
-<li><input disabled="" type="checkbox"> Play: удары руками, лопатой и оружием на участках 1 и 4.</li>
-<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
-<li><input disabled="" type="checkbox"> Коммит и push.</li>
-</ul>
-<h2>Работа</h2>
-<h2>Заметки</h2>
-<ul>
-<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
-</ul>
-</div></details>
-</article>
-<article class="board-card" data-person="Богдан" data-status="todo">
+<article class="board-card" id="card-71fdea" data-person="Богдан" data-status="todo">
   <h3>Данные: сад, звери и машины в JSON</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>71fdea</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Перенос чисел по разбору `c4e3c6` (`docs/architecture/game-data.html`).</p>
@@ -469,7 +383,28 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <h2>Заметки</h2>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="todo">
+<article class="board-card" id="card-784561" data-person="Богдан" data-status="todo">
+  <h3>Телефон: кнопки от 44 точек и читаемый текст</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>784561</code> фича · mobile</p>
+  <p class="board-lead">На телефоне HUD и окна читаются и нажимаются пальцем. Сейчас (расчёт 10.11.2026, `docs/mechanics-audit.md`, «Этап 3», п. 5) на телефоне 844×390 кнопки справа 27 точек, слоты хотбара 15, кнопка удара 39, подписи HUD 4 точки; магазин занимает 50 % ширины, кнопка «BUY» 18 точек.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>На телефоне HUD и окна читаются и нажимаются пальцем. Сейчас (расчёт 10.11.2026, <code>docs/mechanics-audit.md</code>, «Этап 3», п. 5) на телефоне 844×390 кнопки справа 27 точек, слоты хотбара 15, кнопка удара 39, подписи HUD 4 точки; магазин занимает 50 % ширины, кнопка «BUY» 18 точек.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> На телефонах 667×375 … 932×430 каждая кнопка HUD и окна не меньше 44 точек, текст не меньше 12.</li>
+<li><input disabled="" type="checkbox"> Большие окна на телефоне и планшете одной ширины с равными полями, по правилу «Размер окна» (<code>.agents/feature-team/RUBRICS.md</code>); таблица снята в живой игре.</li>
+<li><input disabled="" type="checkbox"> На компьютере 1920×1080 окно не меньше 33 % площади экрана.</li>
+<li><input disabled="" type="checkbox"> Кадры с эмулятора устройств Studio на телефоне, планшете и компьютере просмотрены; окна прошли <code>feature-design-critic</code>.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Формулы: <code>InterfaceController.luau:929-953</code> (HUD — <code>clamp(min(X/1440, Y/820), 0.42, 1.15) × ReferenceScale 0.73</code>, окна — <code>min(0.92, (X−32)/830, (Y−82)/602)</code>).</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-80094e" data-person="Богдан" data-status="todo">
   <h3>Страницы: числа только из JSON, без регулярок по коду</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>80094e</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Последняя карточка переноса по разбору `c4e3c6` (`docs/architecture/game-data.html`).</p>
@@ -487,7 +422,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <h2>Заметки</h2>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="todo">
+<article class="board-card" id="card-8770fb" data-person="Богдан" data-status="todo">
   <h3>Контракт: правило оружия отдельно от вида</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>8770fb</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Контракт C (`bae98a`), №11 сводки.</p>
@@ -507,10 +442,11 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <ul>
 <li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
 <li>По разбору <code>c4e3c6</code> (решение владельца 10.11.2026: числа игры в JSON) правило оружия кладётся сразу в <code>Data/weapons.json</code>, вид остаётся в Luau. Ложка сейчас с двумя наборами чисел: <code>SnowBlockWorld</code> (пауза .48/.40) и <code>Catalog</code> (урон 1) против <code>WeaponDefs.SnowSpoon</code> (.42, урон 2) — спросить владельца, какие верные. Добавлена зависимость от <code>34d5ff</code>.</li>
+<li>Из <code>6d3652</code> (10.11.2026): план удара <code>Shared/StrikePlan</code> читает у оружия только правило — <code>damage</code>, <code>targets</code>, <code>typeBonus</code>, <code>radius</code>, <code>coneCos</code>. Это готовый список полей для <code>Data/weapons.json</code>. Пауза оружия на клиенте переедет на <code>StrikeRules.interval(state, def)</code> во второй части <code>6d3652</code>.</li>
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="todo">
+<article class="board-card" id="card-9cd888" data-person="Богдан" data-status="todo">
   <h3>Снег: одна высота снега</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>9cd888</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Снег D (`189be8`), №8 сводки.</p>
@@ -530,10 +466,11 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <h2>Заметки</h2>
 <ul>
 <li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
+<li>Из <code>6d3652</code> (10.11.2026): высота снега входит в план удара портом <code>height(x, z)</code> (<code>StrikePlan</code>): у сервера — <code>height(r, x, z)</code> по полю, у прогноза — <code>heightAt</code> по слоям. Одна функция высоты встаёт в оба порта; формула «снег открыт» уже одна — <code>StrikePlan.exposed</code>.</li>
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="todo">
+<article class="board-card" id="card-a4c02e" data-person="Богдан" data-status="todo">
   <h3>Аудит кода: оружие, машины и способы уборки снега</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>a4c02e</code> техработа · clearing</p>
   <p class="board-lead">Исполнитель: Богдан. Разобрать в коде, как снег убирается разными способами. Код не менять.</p>
@@ -566,7 +503,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="todo">
+<article class="board-card" id="card-aadab7" data-person="Богдан" data-status="todo">
   <h3>На забеге нет кроликов и птиц</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>aadab7</code> баг · bug</p>
   <p class="board-lead">Вопрос владельцу (Q-20261110-004): вернуть на забег кроликов и птиц, всё вместе с дикими зверями, или оставить выключенным? Пока отложено.</p>
@@ -602,7 +539,54 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Леонид" data-status="todo">
+<article class="board-card" id="card-abc629" data-person="Богдан" data-status="todo">
+  <h3>Звуки наград: монеты при сдаче, покупка, открытие зоны</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>abc629</code> фича · sound</p>
+  <p class="board-lead">Игрок слышит награду. Сейчас сдача снега и монеты звучат тихим встроенным `volume_slider.ogg`, у покупки, открытия зоны, гемов и кнопок звука нет, музыки нет (аудит механик, этап 3, п. 8, `docs/mechanics-audit.md`).</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Игрок слышит награду. Сейчас сдача снега и монеты звучат тихим встроенным <code>volume_slider.ogg</code>, у покупки, открытия зоны, гемов и кнопок звука нет, музыки нет (аудит механик, этап 3, п. 8, <code>docs/mechanics-audit.md</code>).</p>
+<p>Порядок: монеты при сдаче и покупка, потом открытие зоны и гемы, потом кнопки и окна. Музыка и фон — отдельно, после.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Звуки выбраны и согласованы с владельцем (что слышит игрок в каждом событии).</li>
+<li><input disabled="" type="checkbox"> Сдача, покупка, открытие зоны и гемы звучат; громкость не тише удара.</li>
+<li><input disabled="" type="checkbox"> Переключатель «SOUND EFFECTS» глушит новые звуки.</li>
+<li><input disabled="" type="checkbox"> Эффект с новым звуком прошёл <code>feature-vfx-critic</code>; Play, кадры и Output без ошибок.</li>
+<li><input disabled="" type="checkbox"> Коммит и push.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Источник: аудит механик 10.11.2026, этап 3, п. 8.</li>
+<li>У вещей сада (капканы, грабли, Poof, огонь) <code>SoundId</code> пустой — проверить вместе.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-b652d9" data-person="Богдан" data-status="todo">
+  <h3>Первый забег: одна понятная команда за раз</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>b652d9</code> фича · onboarding</p>
+  <p class="board-lead">Новичок в первом забеге видит одну команду за раз и не застревает. Сейчас (живая проверка 10.11.2026, `docs/mechanics-audit.md`, «Этап 3», п. 2) после первой сдачи на экране сразу три команды: плашка «Buy your first shovel», затемнение «OPEN UPGRADES» и «BREAK THE SNOW 3/6».</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Новичок в первом забеге видит одну команду за раз и не застревает. Сейчас (живая проверка 10.11.2026, <code>docs/mechanics-audit.md</code>, «Этап 3», п. 2) после первой сдачи на экране сразу три команды: плашка «Buy your first shovel», затемнение «OPEN UPGRADES» и «BREAK THE SNOW 3/6».</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Порядок один: сломай снег → принеси на поддон → купи лопату → урок-остров → «Hold». Следующая подсказка появляется, только когда закрыта прошлая.</li>
+<li><input disabled="" type="checkbox"> Первая задача «BREAK THE SNOW x/6» не держит игрока: засчитывается сдачей или исчезает после первой сдачи; маркер не висит над уже вскопанной ямой.</li>
+<li><input disabled="" type="checkbox"> Окно старта забега у площадки по умолчанию выбирает 1 игрока, главная зелёная кнопка — старт; видно крупный отсчёт до начала.</li>
+<li><input disabled="" type="checkbox"> Плашка в лобби и надпись на площадке называют одно и то же («START A RUN» / «CREATE A PARTY»).</li>
+<li><input disabled="" type="checkbox"> Проверено в живой игре, кадры каждого шага просмотрены.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Мелочи с того же прохода: тост покупки пишет внутреннее имя «NEW TOOL · StarterShovel»; надпись «FIRST RUN COMPLETE» не видна, пока висит задача «BREAK THE SNOW»; текст на щитах лобби обрезан по краям («RESH TRACKS AWAI»).</li>
+<li>Источники: <code>TutorialController.luau</code>, <code>SnowGuide.luau</code> (<code>ZONE_SIZE=6</code>, урок-остров ждёт конца цепочки), <code>SnowUpgradeFocus.luau</code> (после первой платной сдачи), <code>QueueService.luau:79</code> (offer ставит <code>targetSize = partySize</code>).</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-c029ed" data-person="Леонид" data-status="todo">
   <h3>Новая система апгрейдов: бизнес-документ</h3>
   <p class="board-meta"><span class="person" data-person="Леонид">Леонид</span> <code>c029ed</code> фича · upgrades</p>
   <p class="board-lead">Исполнитель: Леонид. Написать бизнес-документ новой системы апгрейдов. Код не менять.</p>
@@ -634,7 +618,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="todo">
+<article class="board-card" id="card-c5759d" data-person="Богдан" data-status="todo">
   <h3>Глубже разобрать VFX</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>c5759d</code> техработа · guide</p>
   <p class="board-lead">Исполнитель: Claude. Страница `docs/vfx.md` — первый проход. Нужен более глубокий разбор, а не пересказ того, что уже написано.</p>
@@ -654,102 +638,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <h2>Заметки</h2>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="todo">
-  <h3>Сеть: проверка движения</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>db18c4</code> техработа · architecture</p>
-  <p class="board-lead">Исполнитель: Богдан. Сеть D (`faa32b`), №17 сводки.</p>
-  
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Исполнитель: Богдан. Сеть D (<code>faa32b</code>), №17 сводки.</p>
-<p>Модуль движения на шве <code>ctx.position</code>: следит за скоростью персонажа и машины и отдаёт только правдоподобную позицию. Делать последним, с замером ложных откатов.</p>
-<h2>Готово когда</h2>
-<ul>
-<li><input disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
-<li><input disabled="" type="checkbox"> Тест до кода: телепорт к переработчику не проходит, обычный бег с лагом проходит.</li>
-<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
-<li><input disabled="" type="checkbox"> Коммит и push.</li>
-</ul>
-<h2>Работа</h2>
-<h2>Заметки</h2>
-<ul>
-<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
-<li>Аудит механик 10.11.2026 (<code>docs/mechanics-audit.md</code>, механика 8): проверка скорости машины (<code>VehicleDriving.server.luau:152-163</code>) высаживает только после трёх замеров подряд; одиночные прыжки-телепорты с паузой между ними счёт сбрасывают, а <code>VehicleSnowService</code> собирает снег в месте прыжка (<code>SWEEP_MAX_GAP=30</code>). Учесть в модуле движения.</li>
-</ul>
-</div></details>
-</article>
-<article class="board-card" data-person="Богдан" data-status="todo">
-  <h3>Одна очередь варки в переработчике на игрока</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>dfd1d3</code> фича · economy</p>
-  <p class="board-lead">Сейчас каждая сдача снега варится своим таймером параллельно (`ProcessorService.luau:57`, `:88`): пять сдач по 16 кусков готовы за 16 с, одна сдача 80 кусков — за 80 с. Большая сумка наказывает игрока.</p>
-  
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Сейчас каждая сдача снега варится своим таймером параллельно (<code>ProcessorService.luau:57</code>, <code>:88</code>): пять сдач по 16 кусков готовы за 16 с, одна сдача 80 кусков — за 80 с. Большая сумка наказывает игрока.</p>
-<p>Сделать одну очередь варки на игрока: новая сдача встаёт за предыдущей, монеты за неё приходят, когда сварятся все куски до неё и её собственные. Полоска варки над машиной показывает общий остаток.</p>
-<h2>Готово когда</h2>
-<ul>
-<li><input disabled="" type="checkbox"> Время до монет зависит только от общего числа сданных кусков, а не от числа сдач (Luau-тест: 5×16 и 1×80 кусков получают последние монеты в одно время).</li>
-<li><input disabled="" type="checkbox"> Защита от двойного зачисления и восстановление при входе работают как раньше (существующие тесты переработчика зелёные).</li>
-<li><input disabled="" type="checkbox"> Проверено в Play: две сдачи подряд, полоска и монеты; кадр просмотрен.</li>
-<li><input disabled="" type="checkbox"> Страница «Механики» описывает очередь и автосдачу на лотке.</li>
-</ul>
-<h2>Работа</h2>
-<h2>Заметки</h2>
-<ul>
-<li>Решение владельца 10.11.2026 (аудит механик, <code>docs/mechanics-audit.md</code>, механика 1): «Сохранение + очередь».</li>
-<li>Делать вместе или после <code>8955d9</code> (чеки в профиле) и согласовать с <code>653e08</code> (одно правило сдачи).</li>
-</ul>
-</div></details>
-</article>
-<article class="board-card" data-person="Богдан" data-status="todo">
-  <h3>Снег: один ответ на удар и дешёвый снимок</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>ee323d</code> техработа · architecture</p>
-  <p class="board-lead">Исполнитель: Богдан. Снег C (`189be8`) = сеть C (`faa32b`), №7 сводки.</p>
-  
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Исполнитель: Богдан. Снег C (<code>189be8</code>) = сеть C (<code>faa32b</code>), №7 сводки.</p>
-<p>Один пакет ответа на удар с <code>requestId</code> и стадиями целей, приходит через <code>Actions.onResult</code> из <code>ca847e</code>. Снимок снега по чанкам рядом с игроком и кэш по версии, лимит как у <code>Sync</code>.</p>
-<h2>Готово когда</h2>
-<ul>
-<li><input disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
-<li><input disabled="" type="checkbox"> Тест до кода: прогноз выше ответа правится сразу; снимок не обходит удары вне чанков игрока.</li>
-<li><input disabled="" type="checkbox"> Play: удары и снимок после перезахода.</li>
-<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
-<li><input disabled="" type="checkbox"> Коммит и push.</li>
-</ul>
-<h2>Работа</h2>
-<h2>Заметки</h2>
-<ul>
-<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
-</ul>
-</div></details>
-</article>
-<article class="board-card" data-person="Богдан" data-status="todo">
-  <h3>Оружие со стойки: бросок, выход в лобби, цели снегоуборщика</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>f79ad4</code> техработа · weapons</p>
-  <p class="board-lead">Мелкие расхождения оружия со стойки, найденные аудитом механик (`docs/mechanics-audit.md`, механика 5):</p>
-  
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Мелкие расхождения оружия со стойки, найденные аудитом механик (<code>docs/mechanics-audit.md</code>, механика 5):</p>
-<ul>
-<li>Молотов бросается из машины и после смерти: <code>WeaponService.api.throw</code> не проверяет жизнь, сиденье и идущий забег (<code>WeaponService.luau:136-142</code>).</li>
-<li>Выход из забега в лобби не снимает оружие: у сервиса нет события выхода из забега (<code>RuntimeFactory.luau:32</code>).</li>
-<li>Снегоуборщик заявлен на 5 целей (<code>WeaponDefs.luau:37</code>), удар берёт не больше 3 (<code>SnowStrikeArea.luau:5</code>): либо честные 5, либо 5 убрать из описания.</li>
-</ul>
-<h2>Готово когда</h2>
-<ul>
-<li><input disabled="" type="checkbox"> Бросок из машины, мёртвым и вне забега отклоняется (Luau-тест на <code>throw</code>).</li>
-<li><input disabled="" type="checkbox"> После выхода в лобби оружия в руках нет (проверено в Play, кадр просмотрен).</li>
-<li><input disabled="" type="checkbox"> Число целей снегоуборщика в данных совпадает с тем, что делает удар.</li>
-</ul>
-<h2>Работа</h2>
-<h2>Заметки</h2>
-<ul>
-<li>Роль оружия со стойки относительно купленных лопат — открытый вопрос 5 аудита; эта карточка его не решает.</li>
-<li>Пересекается с аудитом предметов в руках <code>2722e3</code> (вид, а не правила).</li>
-</ul>
-</div></details>
-</article>
-<article class="board-card" data-person="Богдан" data-status="todo">
+<article class="board-card" id="card-fbae97" data-person="Богдан" data-status="todo">
   <h3>Данные: прочность, тип и кольца снега из areas.json</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>fbae97</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Перенос чисел снега по разбору `c4e3c6` (`docs/architecture/game-data.html`).</p>
@@ -770,19 +659,183 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <h2>Заметки</h2>
 <ul>
 <li>После <code>6d3652</code> (план удара), чтобы не править <code>SnowCells</code>/<code>Blocks</code> вдвоём.</li>
+<li>Из <code>6d3652</code> (10.11.2026): план удара берёт участок и тип снега только через порты <code>open</code> и <code>snowType</code> (сервер — <code>nodeFor</code>, клиент — <code>visualArea</code>/<code>SnowCells</code>). Переезд зон в <code>areas.json</code> план не трогает.</li>
 </ul>
 </div></details>
 </article></div>
   <p class="board-empty" hidden>Пусто.</p>
 </section>
 <section class="board-column" data-status="doing">
-  <h3>В работе <span class="board-count">0</span></h3>
-  <div class="board-cards"></div>
-  <p class="board-empty">Пусто.</p>
+  <h3>В работе <span class="board-count">4</span></h3>
+  <div class="board-cards"><article class="board-card" id="card-9d8916" data-person="Богдан" data-status="doing">
+  <h3>Слом снега без красивого отклика</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>9d8916</code> баг · bug</p>
+  <p class="board-lead">Воспроизвести и исправить `BUG-20261110-004` из `tasks/bugs.md`.</p>
+  <div class="board-shots"><img loading="lazy" src="../art/refs/snow-break-feedback.png" alt=""><img loading="lazy" src="../art/vfx/reviews/snow-break-round1.jpg" alt=""><img loading="lazy" src="../art/vfx/reviews/snow-break-round2.jpg" alt=""><img loading="lazy" src="../art/vfx/reviews/snow-break-round3.jpg" alt=""><img loading="lazy" src="../art/vfx/reviews/snow-break-round4.jpg" alt=""></div>
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Воспроизвести и исправить <code>BUG-20261110-004</code> из <code>tasks/bugs.md</code>.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
+<li><input checked="" disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Новый зримый эффект слома: вспышка, кубики и снежинки, новая текстура частиц.</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 16:00 →</li>
+</ul>
+<p><img src="../art/refs/snow-break-feedback.png" alt="Слом снега"></p>
+<h2>Заметки</h2>
+<ul>
+<li>Журнал: <code>BUG-20261110-004</code>.</li>
+<li>Правило владельца 10.11.2026: когда что-то ломается, всегда есть красивый зримый отзыв.</li>
+<li>Референс эффекта: <code>art/refs/snow-break-feedback.png</code>. Маленькая вспышка в точке удара — игровое решение, не ошибка сетки.</li>
+<li>Воспроизведено 10.11.2026 по коду: при сломе были только надпись, облачко и щепки; <code>SnowBreakSparkles</code> выключены (<code>SparklesEnabled=false</code>), вспышки слома нет.</li>
+<li>Решение владельца 10.11.2026: снежинки — картинкой ChatGPT Image. Готовой не нашлось, сгенерирована <code>art/vfx/snowflake.png</code> (попытка 1).</li>
+<li>Решение владельца 10.11.2026: снежинку в Roblox пока не грузим, «позже меня добавят в плейс и загрузим». Записано в <code>art/import.md</code>. До загрузки снежинок в игре нет, вспышка и кубики есть.</li>
+<li>Сделано: <code>SnowBreakRecipe</code> + <code>SnowBreakBurst</code>, вызов из <code>MapSnowFeedback.event</code>. Тест 4 из 4, <code>npm run check</code> чисто, Play и кадры показаны владельцу.</li>
+<li>В Studio плейс с текущим рабочим деревом не стартовал из-за чужой незакоммиченной правки (нет <code>BrrrMechanicsTemplate.SnowTruck</code>); проверял на коде из HEAD плюс свои файлы.</li>
+</ul>
+<h2>Критик эффектов, круг 1 (10.11.2026)</h2>
+<p><img src="../art/vfx/reviews/snow-break-round1.jpg" alt="Лист кадров, круг 1"></p>
+<ul>
+<li>Критик <code>feature-vfx-critic</code> по кадрам из живой игры (сценарий <code>tools/studio-scenarios/snow-break-frames.json</code>, manifest <code>art/vfx/reviews/snow-break-round1-manifest.md</code>). Вердикт: <strong>fail</strong>, понятность <strong>5/10</strong>, красота и стиль <strong>6/10</strong> (порог 9/10). Полный JSON — <code>art/vfx/reviews/snow-break-round1.json</code>.</li>
+<li>Главное: разлёт улетает в камеру и за верх экрана, у точки удара пусто; вспышки почти не видно; золотая подсветка цели обучения перекрашивает кубики и снежинки в оливковый. Мелочи: снежинки одного размера у большого и малого слома, слипаются в ком; кубики живут до 1,05 с.</li>
+<li>Хорошо: только цвета палитры, хвоста нет, «меньше движения» без полёта, пул без утечек (35 объектов до и после 6 сломов).</li>
+<li>Снежинка в кадрах временная: в игре её пока нет (<code>art/import.md</code>).</li>
+<li>План исправлений критика (по порядку): 1) разлёт вокруг точки удара, не в камеру; 2) на 0,2–0,3 с после слома гасить заливку подсветки цели; 3) яркая вспышка цветом Крем; 4) снежинки по масштабу слома и с разбросом; 5) кубики живут меньше секунды.</li>
+<li>Решение владельца 10.11.2026: «Всё по плану» — чинить все пять пунктов, включая короткое гашение подсветки цели обучения при сломе, затем второй круг критика.</li>
+</ul>
+<h2>Критик эффектов, круг 2 (10.11.2026)</h2>
+<p><img src="../art/vfx/reviews/snow-break-round2.jpg" alt="Лист кадров, круг 2"></p>
+<ul>
+<li>Исправлено по плану круга 1: разлёт веером вокруг точки удара, а не в камеру; подсветка цели обучения на 0,6 с после слома прозрачна (<code>SnowGuide</code>, атрибут игрока <code>SnowBreakAt</code>); вспышка с непрозрачным ядром и светом; снежинки по масштабу слома, из коробки над ударом; срок кубиков и снежинок 0,9 с (<code>SnowBreakRecipe.Life</code>, тест). Крупная вспышка давала засветку на весь экран — уменьшена.</li>
+<li>Вердикт: <strong>fail</strong>, понятность <strong>7/10</strong>, красота и стиль <strong>7/10</strong> (порог 9/10). JSON — <code>art/vfx/reviews/snow-break-round2.json</code>. Пункты 1, 2, 4, 5 круга 1 закрыты, 3 — частично.</li>
+<li>Новое: одна вспышка на все события — слом соседней клетки тем же ударом перехватывает вспышку главной (по коду, major); снежинки слипаются в белый ком и крупнее кубиков; кубики мелкие, без снежинок слом читается слабо; вспышка без яркого центра; в «меньше движения» вспышка — жёсткий диск; кубик может зависнуть у края клетки.</li>
+<li>План критика: 1) снежинки мельче и шире, без свечения; 2) кубики крупнее, у слоя на Low не меньше 4; 3) пул вспышек; 4) звёздочка с лучами цветом Крем (новая картинка, загрузка в Roblox — со слова владельца); 5) мягкая вспышка «меньше движения»; 6) кубик садится на землю под ним.</li>
+<li>Решение владельца 10.11.2026: «Всё, звёздочку позже» — чинить все пункты; звёздочку нарисовать картинкой и поставить в список загрузки, как снежинку.</li>
+</ul>
+<h2>Критик эффектов, круг 3 (10.11.2026)</h2>
+<p><img src="../art/vfx/reviews/snow-break-round3.jpg" alt="Лист кадров, круг 3"></p>
+<ul>
+<li>Исправлено по плану круга 2: снежинки 0,24 без свечения, шире и тремя порциями за 0,08 с; кубики 0,3–0,6, у слоя на Low четыре (тест); пул из трёх вспышек, свет только у главной; звёздочка с лучами <code>art/vfx/break-star.png</code> (ждёт загрузки, <code>art/import.md</code>, поле <code>SnowFeedbackConfig.BreakStarTexture</code>); мягкая вспышка «меньше движения» 0,05 с вверх и до 0,3 с вниз; кубик падает до земли под ним (луч вниз). Новые кадры: главная + соседняя клетка, слом над землёй, мягкая вспышка на 0,16 с, время живых кадров с двух сторон.</li>
+<li>Вердикт: <strong>fail</strong>, понятность <strong>8/10</strong>, красота и стиль <strong>8/10</strong> (порог 9/10). JSON — <code>art/vfx/reviews/snow-break-round3.json</code>. Пункты 1, 2, 4, 5, 6 круга 2 закрыты (5 — слабый по заметности), 3 — для шаров вспышки.</li>
+<li>Новое: звёздочка и снежинки — по одному общему эмиттеру, поэтому при двойном сломе частицы главной клетки уходят к соседу (major, кадр 17); ядро под звёздочкой — молочное пятно; вспышка «меньше движения» мелкая; кубики слоя на Low прячутся за ложкой под прицелом.</li>
+<li>План критика: 1) свой эмиттер звёздочки и снежинок у каждой из трёх ячеек вспышки; 2) ядро меньше и прозрачнее, когда есть звёздочка; 3) неподвижная звёздочка в «меньше движения»; 4) доля разлёта к камере 0,1; 5) кадры пика без текстур.</li>
+<li>Решение владельца 10.11.2026: «Всё по плану» — чинить все пять пунктов круга 3.</li>
+</ul>
+<h2>Критик эффектов, круг 4 (10.11.2026)</h2>
+<p><img src="../art/vfx/reviews/snow-break-round4.jpg" alt="Лист кадров, круг 4"></p>
+<ul>
+<li>Исправлено по плану круга 3: у каждой из трёх ячеек вспышки свои эмиттеры звёздочки и снежинок; ядро под звёздочкой меньше и прозрачнее (без текстуры — прежнее); в «меньше движения» неподвижная звёздочка, без текстуры — крупнее и мягче ядро; доля разлёта к камере 0,1; кадры без звёздочки и снежинок (как игра сейчас).</li>
+<li>Вердикт: <strong>fail</strong>, понятность <strong>9/10</strong> (порог пройден), красота и стиль <strong>8/10</strong>. JSON — <code>art/vfx/reviews/snow-break-round4.json</code>. План круга 3 закрыт целиком. Без загруженных текстур, как в игре сейчас, критик оценивает примерно 8 и 7.</li>
+<li>Осталось (всё minor): снежинки одного размера сбиваются в ком и к 0,7 с улетают к горам; звёздочка теряется среди кубиков и голубеет; ячейка отдаётся новому слому, пока её снежинки ещё летят (по коду); без текстуры мягкая вспышка — диск, похожий на снежок.</li>
+<li>Тонкие тёмно-синие звёздочки на живых кадрах — старые слои удара (запасная <code>sparkles_main.dds</code>), не слом снега.</li>
+<li>План критика: 1) снежинки разного размера и ниже; 2) ячейка занята, пока летят её снежинки; 3) звёздочка впереди кубиков, без подмешивания цвета; 4) мягче диск «меньше движения» без текстуры. Остался последний, пятый круг.</li>
+<li>Решение владельца 10.11.2026: «Хватит, принять как есть» — эффект принят в виде круга 4 (9/10 и 8/10), пятого круга нет. Звёздочка и снежинка ждут загрузки в Roblox (<code>art/import.md</code>).</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-db18c4" data-person="Богдан" data-status="doing">
+  <h3>Сеть: проверка движения</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>db18c4</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Сеть D (`faa32b`), №17 сводки.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Исполнитель: Богдан. Сеть D (<code>faa32b</code>), №17 сводки.</p>
+<p>Модуль движения на шве <code>ctx.position</code>: следит за скоростью персонажа и машины и отдаёт только правдоподобную позицию. Делать последним, с замером ложных откатов.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input disabled="" type="checkbox"> Тест до кода: телепорт к переработчику не проходит, обычный бег с лагом проходит.</li>
+<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input disabled="" type="checkbox"> Коммит и push.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Шов сети: новое поведение сервера, риск ложных отказов у честных игроков.</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 22:45 →</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
+<li>Аудит механик 10.11.2026 (<code>docs/mechanics-audit.md</code>, механика 8): проверка скорости машины (<code>VehicleDriving.server.luau:152-163</code>) высаживает только после трёх замеров подряд; одиночные прыжки-телепорты с паузой между ними счёт сбрасывают, а <code>VehicleSnowService</code> собирает снег в месте прыжка (<code>SWEEP_MAX_GAP=30</code>). Учесть в модуле движения.</li>
+<li>Аудит этап 3 (10.11.2026, <code>docs/mechanics-audit.md</code>, п. 7): в Play скрипт клиента сам переставлял персонажа к снегу — сервер принимал удары. Телепорт к поддону и за снегом — главный открытый чит.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-dfd1d3" data-person="Богдан" data-status="doing">
+  <h3>Одна очередь варки в переработчике на игрока</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>dfd1d3</code> фича · economy</p>
+  <p class="board-lead">Сейчас каждая сдача снега варится своим таймером параллельно (`ProcessorService.luau:57`, `:88`): пять сдач по 16 кусков готовы за 16 с, одна сдача 80 кусков — за 80 с. Большая сумка наказывает игрока.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Сейчас каждая сдача снега варится своим таймером параллельно (<code>ProcessorService.luau:57</code>, <code>:88</code>): пять сдач по 16 кусков готовы за 16 с, одна сдача 80 кусков — за 80 с. Большая сумка наказывает игрока.</p>
+<p>Сделать одну очередь варки на игрока: новая сдача встаёт за предыдущей, монеты за неё приходят, когда сварятся все куски до неё и её собственные. Полоска варки над машиной показывает общий остаток.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Время до монет зависит только от общего числа сданных кусков, а не от числа сдач (Luau-тест: 5×16 и 1×80 кусков получают последние монеты в одно время).</li>
+<li><input disabled="" type="checkbox"> Защита от двойного зачисления и восстановление при входе работают как раньше (существующие тесты переработчика зелёные).</li>
+<li><input disabled="" type="checkbox"> Проверено в Play: две сдачи подряд, полоска и монеты; кадр просмотрен.</li>
+<li><input disabled="" type="checkbox"> Страница «Механики» описывает очередь и автосдачу на лотке.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Новое поведение сервера, затрагивает время зачисления денег</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 22:42 →</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 10.11.2026 (аудит механик, <code>docs/mechanics-audit.md</code>, механика 1): «Сохранение + очередь».</li>
+<li>Делать вместе или после <code>8955d9</code> (чеки в профиле) и согласовать с <code>653e08</code> (одно правило сдачи).</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-ee323d" data-person="Богдан" data-status="doing">
+  <h3>Снег: один ответ на удар и дешёвый снимок</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>ee323d</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Снег C (`189be8`) = сеть C (`faa32b`), №7 сводки.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Исполнитель: Богдан. Снег C (<code>189be8</code>) = сеть C (<code>faa32b</code>), №7 сводки.</p>
+<p>Один пакет ответа на удар с <code>requestId</code> и стадиями целей, приходит через <code>Actions.onResult</code> из <code>ca847e</code>. Снимок снега по чанкам рядом с игроком и кэш по версии, лимит как у <code>Sync</code>.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input disabled="" type="checkbox"> Тест до кода: прогноз выше ответа правится сразу; снимок не обходит удары вне чанков игрока.</li>
+<li><input disabled="" type="checkbox"> Play: удары и снимок после перезахода.</li>
+<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input disabled="" type="checkbox"> Коммит и push.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Меняет сетевой ответ на удар, прогноз клиента и снимок снега на сервере.</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 22:45 →</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
+<li>Из <code>6d3652</code> (10.11.2026): <code>StrikePlan.aimed</code>/<code>cone</code> отдают <code>targets</code> (id, точка, расстояние) и <code>damage</code> — готовый список целей для пакета ответа с <code>requestId</code>; стадия цели — <code>SnowCells.after</code>.</li>
+</ul>
+</div></details>
+</article></div>
+  <p class="board-empty" hidden>Пусто.</p>
 </section>
 <section class="board-column" data-status="paused">
   <h3>Пауза <span class="board-count">1</span></h3>
-  <div class="board-cards"><article class="board-card" data-person="Богдан" data-status="paused">
+  <div class="board-cards"><article class="board-card" id="card-0205ff" data-person="Богдан" data-status="paused">
   <h3>Лобби и долина в одном плейсе, переход в забег грузит весь мир</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>0205ff</code> баг · bug</p>
   <p class="board-lead">Воспроизвести и исправить `BUG-20261110-001` из `tasks/bugs.md`.</p>
@@ -824,8 +877,8 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
   <p class="board-empty" hidden>Пусто.</p>
 </section>
 <section class="board-column" data-status="done">
-  <h3>Готово <span class="board-count">27</span></h3>
-  <div class="board-cards"><article class="board-card" data-person="Богдан" data-status="done">
+  <h3>Готово <span class="board-count">34</span></h3>
+  <div class="board-cards"><article class="board-card" id="card-026145" data-person="Богдан" data-status="done">
   <h3>Рядом с игроком нет снега: поверхность исчерпала память</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>026145</code> баг · bug</p>
   <p class="board-lead">Воспроизвести и исправить `BUG-20261110-003` из `tasks/bugs.md`.</p>
@@ -854,7 +907,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-189be8" data-person="Богдан" data-status="done">
   <h3>Снег: поле, удар и картинка</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>189be8</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Разобрать слой снега и не менять код игры.</p>
@@ -931,7 +984,35 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-21c3a1" data-person="Богдан" data-status="done">
+  <h3>Общая таблица лидеров показывает номера игроков вместо имён</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>21c3a1</code> баг · bug</p>
+  <p class="board-lead">Воспроизвести и исправить `BUG-20261110-008` из `tasks/bugs.md`.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Воспроизвести и исправить <code>BUG-20261110-008</code> из <code>tasks/bugs.md</code>.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
+<li><input checked="" disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Имена из кэша на сервере и поле rows на клиенте; новый маленький модуль имён</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 20:37 → 2026-11-10 20:59</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Журнал: <code>BUG-20261110-008</code>.</li>
+<li>Воспроизведено тестом <code>ExtrasService_Test</code> на старом коде; заодно найдено, что клиент читал <code>entries</code> вместо <code>rows</code> и таблица была пустой везде.</li>
+<li>Исправлено: модуль <code>PlayerNames</code> (пакетный запрос имён, кэш, «Player» при ошибке, повтор через 5 минут), <code>ExtrasService.refreshBoards</code>, клиент читает <code>rows</code>. Проверка — <code>tasks/bugs.md</code>, кадр <code>art/bugs/21c3a1-leaderboard-names.jpg</code>, сценарий <code>lobby-rewards</code>.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-2722e3" data-person="Богдан" data-status="done">
   <h3>Аудит предметов в руках: хват, удар, анимации</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>2722e3</code> техработа · held-items</p>
   <p class="board-lead">Исполнитель: Богдан. Проверить все предметы, которые бывают в руках персонажа: как он их держит, как ими пользуется и как это анимировано. Цель — чтобы всё выглядело красиво.</p>
@@ -963,7 +1044,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-272a6c" data-person="Богдан" data-status="done">
   <h3>По умолчанию кулаки, нужна ложка</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>272a6c</code> баг · bug</p>
   <p class="board-lead">Воспроизвести и исправить `BUG-20261110-005` из `tasks/bugs.md`.</p>
@@ -994,7 +1075,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-34d5ff" data-person="Богдан" data-status="done">
   <h3>Данные: экономика в JSON, Catalog и Balance читают JSON</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>34d5ff</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Первая карточка переноса чисел в данные по разбору `c4e3c6` (`docs/architecture/game-data.html`).</p>
@@ -1035,7 +1116,99 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-4cea2f" data-person="Богдан" data-status="done">
+  <h3>Ледоруб со стойки от первого лица: хват по референсу</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>4cea2f</code> фича · held-items</p>
+  <p class="board-lead">Реализовать доработку: Ледоруб со стойки от первого лица: хват по референсу.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Реализовать доработку: Ледоруб со стойки от первого лица: хват по референсу.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Референс <code>art/refs/iceaxe-hold.png</code> утверждён владельцем.</li>
+<li><input checked="" disabled="" type="checkbox"> От первого лица ледоруб в варежке справа внизу, как на референсе; середина экрана свободна.</li>
+<li><input checked="" disabled="" type="checkbox"> Замах вверх-назад, удар вперёд-вниз в снег; клик мыши запускает удар.</li>
+<li><input checked="" disabled="" type="checkbox"> Кадры до и после: <code>docs/held-items-audit/iceaxe-before-after.jpg</code>; Output без новых ошибок.</li>
+<li><input checked="" disabled="" type="checkbox"> Тест <code>WeaponHold_Test</code> пройден (2/2, 10.11.2026).</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Поза вида от первого лица по утверждённому референсу; вышли два маленьких модуля (<code>WeaponHold</code>, <code>MittenArt</code>)</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 20:27 → 2026-11-10 21:12</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Причина «оружия не видно» общая для всех восьми предметов со стоек: модели в <code>CleanSnowAssets.Weapons</code> импортированы уже уменьшенными (<code>GetScale</code> ≈ 0.006), а <code>WeaponController.buildView</code> ставил <code>ScaleTo(view.scale)</code> как абсолютный масштаб — оружие становилось в ~100 раз больше и закрывало экран. Исправлено: масштаб относительно модели (<code>GetScale() * view.scale</code>), как у ложки магазина. После правки ледоруб, пылесос, термопушка, коктейль и молоток видны; ложка и лопата со стоек всё ещё почти за краем экрана.</li>
+<li>Решение владельца 10.11.2026: референс <code>art/refs/iceaxe-hold.png</code> — «Да, так».</li>
+<li>Поза — <code>ReplicatedStorage/CleanSnow/Shared/WeaponHold.luau</code>: задаётся в пространстве камеры (где кулак, куда черенок, куда кирка, откуда предплечье), замах и удар — поворот вокруг локтя. <code>WeaponDefs.IceAxe.view = WeaponHold.IceAxe</code>.</li>
+<li>Варежка — та же, что у лопат магазина: сборка вынесена из <code>ExperienceController</code> в <code>Shared/MittenArt.luau</code>. Рукав у модели варежки стоит под прямым углом к черенку, поэтому запястье сгибает его к предплечью (<code>wrist</code>). Оружие без позы в <code>WeaponHold</code> пока держит старый брусок руки.</li>
+<li>Найден и исправлен <code>BUG-20261110-011</code>: на компьютере оружие со стоек не било по клику мыши (клик забирало действие <code>CleanSnowPrimary</code>). Теперь у оружия своё действие <code>WeaponPrimary</code> выше; клик по кнопкам интерфейса пропускается (<code>PointerOverInterface</code>).</li>
+<li>Вид со стороны не менялся: рука по-прежнему просто поднята (отдельный пункт аудита).</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-4f5142" data-person="Богдан" data-status="done">
+  <h3>Куски снега забега не удаляются: каждый удар перебирает все куски с начала забега</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>4f5142</code> баг · bug</p>
+  <p class="board-lead">Воспроизвести и исправить `BUG-20261110-010` из `tasks/bugs.md`.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Воспроизвести и исправить <code>BUG-20261110-010</code> из <code>tasks/bugs.md</code>.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
+<li><input checked="" disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Удаление сданных и пустых кусков из session.drops в InventoryService; новых модулей нет</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 20:36 → 2026-11-10 21:01</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Журнал: <code>BUG-20261110-010</code>.</li>
+<li>Причина: <code>session.drops</code> был и живым списком, и историей забега: сданные куски (<code>Consumed</code>) не удалялись, а удар копировал id всех кусков для отката. Лишний снег при полной сумке каждый раз ложился новой моделью.</li>
+<li>Исправление: чистка сданных кусков раз в секунду в <code>InventoryService.tick</code>, кучка лишнего снега в 4 стадах, журнал сумки для отката удара. Тест <code>InventoryService_Test</code> (на старом коде 0/3), сценарий <code>npm run play -- snow-pile</code> (4 кучки → 2), кадр <code>art/bugs/4f5142-pile-before-after.jpg</code>.</li>
+<li>Для <code>6d3652</code> и <code>ee323d</code>: откат удара в <code>MapSnowService.apply</code> теперь через <code>ctx.inventory.begin/commit/rollback</code>.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-51b915" data-person="Богдан" data-status="done">
+  <h3>Ежедневная награда не требует игры в этот день</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>51b915</code> баг · bug</p>
+  <p class="board-lead">Воспроизвести и исправить `BUG-20261110-009` из `tasks/bugs.md`.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Воспроизвести и исправить <code>BUG-20261110-009</code> из <code>tasks/bugs.md</code>.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
+<li><input checked="" disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Счётчик минуты за сутки в профиле; правило уже записано на странице Механики</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 20:39 → 2026-11-10 20:59</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Журнал: <code>BUG-20261110-009</code>.</li>
+<li>Правило взято со страницы «Механики»: минута живым в идущем забеге в эти сутки UTC — вопрос владельцу не нужен.</li>
+<li>Исправлено: <code>activeDay</code> + <code>dayActiveSeconds</code> в профиле, проверка награды по ним; текст отказа <code>NeedActivity</code> на клиенте. Проверка — <code>tasks/bugs.md</code>, кадры <code>art/bugs/51b915-daily-*.jpg</code>, сценарий <code>lobby-rewards</code>.</li>
+<li>Не входит: ключи наград <code>profile.claims</code> (<code>Daily:&lt;сутки&gt;</code> и другие) копятся без предела — предложено владельцу отдельной задачей.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-624075" data-person="Богдан" data-status="done">
   <h3>Сервер: одно ядро хранилища профиля</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>624075</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Сервер D (`e3afec`), №15 сводки.</p>
@@ -1067,7 +1240,80 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-653e08" data-person="Богдан" data-status="done">
+  <h3>Сервер: переработчик — единственная приёмка снега</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>653e08</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Сервер C (`e3afec`), №3 таблицы сводки.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Исполнитель: Богдан. Сервер C (<code>e3afec</code>), №3 таблицы сводки.</p>
+<p>Одно правило зоны «рядом с переработчиком» и одна функция сдачи в <code>ProcessorService</code> для игрока, машины, грузовика, зверей и помощника. Авто-сдача уходит из <code>Bootstrap</code>.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input checked="" disabled="" type="checkbox"> Тест до кода: одна точка у переработчика принимается одинаково для игрока и машины.</li>
+<li><input checked="" disabled="" type="checkbox"> Play: сдача руками, машиной и грузовиком (грузовик из магазина — только тестом кода, см. заметки).</li>
+<li><input checked="" disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input checked="" disabled="" type="checkbox"> Коммит и push.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Шесть путей сдачи в пяти сервисах сводятся в одну функцию ProcessorService</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 20:48 → 2026-11-10 21:58</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
+<li>Решение владельца 10.11.2026: зона — лоток и полоса 10 стадов вокруг его края, одна для игрока, машины, грузовика, зверя и помощника.</li>
+<li>Решение владельца 10.11.2026: автосдача во всей зоне, кнопка остаётся.</li>
+<li>Решение владельца 10.11.2026: <code>dfd1d3</code> (очередь варки) — после этой карточки, следующей.</li>
+<li>Сделано: <code>ProcessorService.near</code> — одно правило зоны (лоток + 10 стадов от края, для тела машины — его ближайшая точка), <code>ProcessorService.accept</code> — единственная приёмка (игрок, автосдача, помощник, ездовая машина, грузовик, зверь), автосдача переехала из <code>Bootstrap</code> в <code>ProcessorService.tick</code>, снимок берёт <code>ProcessorService.progress</code>. <code>acceptLots</code>, <code>UNLOAD_RANGE = 28</code>, «грузовик до 20», рамка зверя и ветка <code>Processor</code> в <code>ctx.inRange</code> удалены.</li>
+<li>Проверка 10.11.2026: <code>npm run check</code> без новых; Luau — Processor 4/4, Profile 17/17, Lifecycle 10/10, ExtrasService 4/4, InventoryService 3/3, PlaceAnchors 15/15, Wallet 9/9; <code>node --test</code> guide 38/38, data 8/8. Тест <code>InventoryService_Test</code> подменял <code>ctx.inRange</code> — теперь у него настоящий лоток.</li>
+<li>Play (<code>tools/studio-scenarios/processor-intake.json</code>, своё окно): игрок в 7 стадах перед лотком, не на нём — сумка ушла сама, +24 монеты; пикап с водителем в 13 стадах от края держит 8 кусков, в 2 стадах сдаёт их, +96 монет. Output без ошибок скриптов.</li>
+<li>Грузовик из магазина в Play не проверен (нужна покупка и поездка); его разгрузка идёт через тот же <code>near</code> + <code>accept</code>, что проверены тестом и пикапом.</li>
+<li>В сценарии: первый перенос машины сервером откатывает клиент водителя (сеть и сторож скорости <code>VehicleDriving</code>), поэтому парковка дважды и с закреплённым <code>DriveRoot</code>.</li>
+<li>Прогон тестов ждал правила «раз в час» ~15 мин (окно 21:09).</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-6d3652" data-person="Богдан" data-status="done">
+  <h3>Удар: общий план удара и главная кнопка</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>6d3652</code> техработа · architecture</p>
+  <p class="board-lead">Исполнитель: Богдан. Снег B (`189be8`) и клиент D (`7e9ffc`), №5–6 сводки.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Исполнитель: Богдан. Снег B (<code>189be8</code>) и клиент D (<code>7e9ffc</code>), №5–6 сводки.</p>
+<p>Один модуль плана удара (точка, прицел, урон → клетки и стадии) с adapter-ами сервера и клиента. Затем одно место «что делает главная кнопка» на клиенте; паузы — из <code>StrikeRules</code>, у оружия тоже.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input checked="" disabled="" type="checkbox"> Тест до кода: один удар даёт одинаковый список клеток у сервера и прогноза.</li>
+<li><input checked="" disabled="" type="checkbox"> Play: удары руками, лопатой и оружием на участках 1 и 4.</li>
+<li><input checked="" disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input checked="" disabled="" type="checkbox"> Коммит и push.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Новый общий модуль плана удара, адаптеры сервера и клиента, модуль главной кнопки</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 21:17 → 2026-11-10 21:42</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 10.11.2026: обе части — сначала план удара, главная кнопка сразу после коммита чата предметов в руках (<code>4cea2f</code>), поверх его правки.</li>
+<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
+<li>Часть 1 готова: <code>Shared/StrikePlan</code> (<code>aimed</code>, <code>cone</code>, <code>exposed</code>), адаптеры <code>MapSnowService.hit/vacuum</code> и <code>MapSnowController.predict/predictVacuum</code>, лимит целей доходит до <code>SnowStrikeArea.Targets</code>. Тест <code>StrikePlan_Test</code> 4/4, <code>SnowHitValidation</code>, <code>StrikeRules</code>, <code>SnowCells</code> зелёные. Play <code>npm run play -- strike-plan</code>: ложка, лопата, ледоруб — без отказов; участок 4 закрыт — сервер отказывает, прогноз не рисует скол. Отказы пылесоса <code>NoTarget</code> у стенки ямы были и на старом коде (тот же сценарий).</li>
+<li>Часть 1 — коммит <code>082be17</code>.</li>
+<li>Часть 2 готова: <code>Shared/PrimaryAction</code> (<code>choose</code>, <code>press</code>, <code>setHeld</code>) — клик, тач, кнопка удара и R2 решаются в одном месте; <code>ExperienceController.primary</code> без проверки <code>HeldWeapon</code>, своё действие кнопки у <code>WeaponController</code> убрано; паузы оружия и пылесоса-инструмента — <code>StrikeRules.interval</code>. Тест <code>PrimaryAction_Test</code> 3/3, <code>StrikeRules</code>, <code>WeaponHold</code>, <code>StrikePlan</code> зелёные. Play <code>strike-plan</code>: у ледоруба и пылесоса клик шлёт только <code>WeaponUse</code>, без удара ложкой; счёт ответов тот же, что до правки; участок 4 — <code>AreaLocked</code>, скол не рисуется. Лист кадров: <code>docs/strike-plan/strike-plan-play.jpg</code>. Тач-кнопка удара в Play не нажималась (тот же <code>setHeld</code>, покрыт тестом).</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-70ff28" data-person="Богдан" data-status="done">
   <h3>Мир: скрипт запекания данных карты</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>70ff28</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Мир D (`ca1233`), №9 сводки.</p>
@@ -1102,7 +1348,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-7cab5c" data-person="Богдан" data-status="done">
   <h3>Лопата магазина от первого лица: хват по референсу</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>7cab5c</code> фича · held-items</p>
   <p class="board-lead">Исполнитель: Богдан. Лопаты магазина (`StarterShovel`, `SteelShovel`, `SnowPusher`, `IceShovel`) от первого лица держатся так, как на референсе `art/refs/shovel-hold.png`: правая варежка на D-ручке у правого нижнего угла, левая на середине черенка, лезвие внизу слева в снегу рабочей стороной вперёд, середина экрана свободна. Удар — замах назад и толчок лезвием вперёд в снег, руки не отрываются от черенка.</p>
@@ -1135,7 +1381,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-7d4287" data-person="Богдан" data-status="done">
   <h3>Мир: список якорей и проверка плейса</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>7d4287</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Мир B из `docs/architecture/place-world.html` (`ca1233`), №3 сводки.</p>
@@ -1169,7 +1415,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-7e9ffc" data-person="Богдан" data-status="done">
   <h3>Клиент: показ и ввод</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>7e9ffc</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Разобрать клиентский слой и не менять код игры.</p>
@@ -1234,7 +1480,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-8925d1" data-person="Богдан" data-status="done">
   <h3>Одно правило удара на сервере</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>8925d1</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Исправление по разбору общего контракта `bae98a` (кандидат A, `docs/architecture/shared-contract.html`).</p>
@@ -1279,7 +1525,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-8955d9" data-person="Богдан" data-status="done">
   <h3>Чеки переработчика копятся в профиле навсегда: профиль перестанет сохраняться</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>8955d9</code> баг · bug</p>
   <p class="board-lead">Воспроизвести и исправить `BUG-20261110-007` из `tasks/bugs.md`.</p>
@@ -1312,59 +1558,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
-  <h3>Слом снега без красивого отклика</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>9d8916</code> баг · bug</p>
-  <p class="board-lead">Воспроизвести и исправить `BUG-20261110-004` из `tasks/bugs.md`.</p>
-  <div class="board-shots"><img loading="lazy" src="../art/refs/snow-break-feedback.png" alt=""><img loading="lazy" src="../art/vfx/reviews/snow-break-round1.jpg" alt=""><img loading="lazy" src="../art/vfx/reviews/snow-break-round2.jpg" alt=""></div>
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Воспроизвести и исправить <code>BUG-20261110-004</code> из <code>tasks/bugs.md</code>.</p>
-<h2>Готово когда</h2>
-<ul>
-<li><input checked="" disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
-<li><input checked="" disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
-</ul>
-<h2>Оценка</h2>
-<ul>
-<li>Новый зримый эффект слома: вспышка, кубики и снежинки, новая текстура частиц.</li>
-</ul>
-<h2>Работа</h2>
-<ul>
-<li>2026-11-10 16:00 → 2026-11-10 16:54</li>
-</ul>
-<p><img src="../art/refs/snow-break-feedback.png" alt="Слом снега"></p>
-<h2>Заметки</h2>
-<ul>
-<li>Журнал: <code>BUG-20261110-004</code>.</li>
-<li>Правило владельца 10.11.2026: когда что-то ломается, всегда есть красивый зримый отзыв.</li>
-<li>Референс эффекта: <code>art/refs/snow-break-feedback.png</code>. Маленькая вспышка в точке удара — игровое решение, не ошибка сетки.</li>
-<li>Воспроизведено 10.11.2026 по коду: при сломе были только надпись, облачко и щепки; <code>SnowBreakSparkles</code> выключены (<code>SparklesEnabled=false</code>), вспышки слома нет.</li>
-<li>Решение владельца 10.11.2026: снежинки — картинкой ChatGPT Image. Готовой не нашлось, сгенерирована <code>art/vfx/snowflake.png</code> (попытка 1).</li>
-<li>Решение владельца 10.11.2026: снежинку в Roblox пока не грузим, «позже меня добавят в плейс и загрузим». Записано в <code>art/import.md</code>. До загрузки снежинок в игре нет, вспышка и кубики есть.</li>
-<li>Сделано: <code>SnowBreakRecipe</code> + <code>SnowBreakBurst</code>, вызов из <code>MapSnowFeedback.event</code>. Тест 4 из 4, <code>npm run check</code> чисто, Play и кадры показаны владельцу.</li>
-<li>В Studio плейс с текущим рабочим деревом не стартовал из-за чужой незакоммиченной правки (нет <code>BrrrMechanicsTemplate.SnowTruck</code>); проверял на коде из HEAD плюс свои файлы.</li>
-</ul>
-<h2>Критик эффектов, круг 1 (10.11.2026)</h2>
-<p><img src="../art/vfx/reviews/snow-break-round1.jpg" alt="Лист кадров, круг 1"></p>
-<ul>
-<li>Критик <code>feature-vfx-critic</code> по кадрам из живой игры (сценарий <code>tools/studio-scenarios/snow-break-frames.json</code>, manifest <code>art/vfx/reviews/snow-break-round1-manifest.md</code>). Вердикт: <strong>fail</strong>, понятность <strong>5/10</strong>, красота и стиль <strong>6/10</strong> (порог 9/10). Полный JSON — <code>art/vfx/reviews/snow-break-round1.json</code>.</li>
-<li>Главное: разлёт улетает в камеру и за верх экрана, у точки удара пусто; вспышки почти не видно; золотая подсветка цели обучения перекрашивает кубики и снежинки в оливковый. Мелочи: снежинки одного размера у большого и малого слома, слипаются в ком; кубики живут до 1,05 с.</li>
-<li>Хорошо: только цвета палитры, хвоста нет, «меньше движения» без полёта, пул без утечек (35 объектов до и после 6 сломов).</li>
-<li>Снежинка в кадрах временная: в игре её пока нет (<code>art/import.md</code>).</li>
-<li>План исправлений критика (по порядку): 1) разлёт вокруг точки удара, не в камеру; 2) на 0,2–0,3 с после слома гасить заливку подсветки цели; 3) яркая вспышка цветом Крем; 4) снежинки по масштабу слома и с разбросом; 5) кубики живут меньше секунды.</li>
-<li>Решение владельца 10.11.2026: «Всё по плану» — чинить все пять пунктов, включая короткое гашение подсветки цели обучения при сломе, затем второй круг критика.</li>
-</ul>
-<h2>Критик эффектов, круг 2 (10.11.2026)</h2>
-<p><img src="../art/vfx/reviews/snow-break-round2.jpg" alt="Лист кадров, круг 2"></p>
-<ul>
-<li>Исправлено по плану круга 1: разлёт веером вокруг точки удара, а не в камеру; подсветка цели обучения на 0,6 с после слома прозрачна (<code>SnowGuide</code>, атрибут игрока <code>SnowBreakAt</code>); вспышка с непрозрачным ядром и светом; снежинки по масштабу слома, из коробки над ударом; срок кубиков и снежинок 0,9 с (<code>SnowBreakRecipe.Life</code>, тест). Крупная вспышка давала засветку на весь экран — уменьшена.</li>
-<li>Вердикт: <strong>fail</strong>, понятность <strong>7/10</strong>, красота и стиль <strong>7/10</strong> (порог 9/10). JSON — <code>art/vfx/reviews/snow-break-round2.json</code>. Пункты 1, 2, 4, 5 круга 1 закрыты, 3 — частично.</li>
-<li>Новое: одна вспышка на все события — слом соседней клетки тем же ударом перехватывает вспышку главной (по коду, major); снежинки слипаются в белый ком и крупнее кубиков; кубики мелкие, без снежинок слом читается слабо; вспышка без яркого центра; в «меньше движения» вспышка — жёсткий диск; кубик может зависнуть у края клетки.</li>
-<li>План критика: 1) снежинки мельче и шире, без свечения; 2) кубики крупнее, у слоя на Low не меньше 4; 3) пул вспышек; 4) звёздочка с лучами цветом Крем (новая картинка, загрузка в Roblox — со слова владельца); 5) мягкая вспышка «меньше движения»; 6) кубик садится на землю под ним. Ждёт решения владельца.</li>
-</ul>
-</div></details>
-</article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-ab64ef" data-person="Богдан" data-status="done">
   <h3>Снег: прочность клетки в одном модуле</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>ab64ef</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Исправление по разбору снега `189be8` (кандидат A, `docs/architecture/snow-field.html`).</p>
@@ -1405,7 +1599,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-bae98a" data-person="Богдан" data-status="done">
   <h3>Общий контракт каталога, цен и баланса</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>bae98a</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Разобрать общий контракт и не менять код игры.</p>
@@ -1470,7 +1664,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-c02288" data-person="Богдан" data-status="done">
   <h3>Мир: сервер строит только своё место по роли</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>c02288</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Исправление по разбору мира `ca1233` (кандидат A, `docs/architecture/place-world.html`). Готовит баг `0205ff` (два плейса), но его не закрывает: второй плейс и `MatchPlaceId` — по слову владельца.</p>
@@ -1505,7 +1699,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-c0a127" data-person="Богдан" data-status="done">
   <h3>Сервер: жизненный цикл игрока и забега</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>c0a127</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Сервер B из `docs/architecture/server-rules.html` (`e3afec`), №2 сводки.</p>
@@ -1541,7 +1735,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-c4e3c6" data-person="Богдан" data-status="done">
   <h3>Разбор: один источник правды для чисел игры</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>c4e3c6</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Разбор по `improve-codebase-architecture`: где живут все числа игры (экономика, прочность снега, урон, темп и дальность оружия, машины, питомцы, сад, звери, время, радиусы, лимиты сети) и как сделать для них один источник правды в данных, который читают и игра, и страницы `guide/`. Код `src/` не менять.</p>
@@ -1575,7 +1769,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-c687b8" data-person="Богдан" data-status="done">
   <h3>Лимит в схеме пакета</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>c687b8</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Исправление по разбору сети `faa32b` (кандидат A, `docs/architecture/network-seam.html`).</p>
@@ -1620,7 +1814,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-ca1233" data-person="Богдан" data-status="done">
   <h3>Мир: лобби, долина и содержимое плейса</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>ca1233</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Разобрать слой мира и не менять код игры.</p>
@@ -1690,7 +1884,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-ca847e" data-person="Богдан" data-status="done">
   <h3>Клиент: одна дверь к серверу</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>ca847e</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Исправление по разбору клиента `7e9ffc` (кандидат A, `docs/architecture/client-view.html`). Клиентская половина кандидата B разбора сети (сад через `ActionRequest`): серверную часть делать вместе или после неё.</p>
@@ -1730,7 +1924,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-cf3522" data-person="Богдан" data-status="done">
   <h3>Кошелёк: одно место для денег и наград</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>cf3522</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Исправление по разбору сервера `e3afec` (кандидат A, `docs/architecture/server-rules.html`).</p>
@@ -1785,7 +1979,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-d91075" data-person="Богдан" data-status="done">
   <h3>Прицел показывает снег, а удар молча не проходит (NotExposed)</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>d91075</code> баг · bug</p>
   <p class="board-lead">Воспроизвести и исправить `BUG-20261110-006` из `tasks/bugs.md`.</p>
@@ -1813,7 +2007,36 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-da6f62" data-person="Богдан" data-status="done">
+  <h3>Таймлайн на страницах игры: день за днём</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>da6f62</code> фича · guide</p>
+  <p class="board-lead">Новый раздел «Таймлайн» на страницах игры: что сделано по дням. День — аккордеон с датой и строкой о дне, внутри темы, карточки и баги со ссылками на доску, документы и короткие хеши коммитов. Данные — файл `docs/timeline/ГГГГ-ММ-ДД.json`, следующий день добавляется одним файлом.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Новый раздел «Таймлайн» на страницах игры: что сделано по дням. День — аккордеон с датой и строкой о дне, внутри темы, карточки и баги со ссылками на доску, документы и короткие хеши коммитов. Данные — файл <code>docs/timeline/ГГГГ-ММ-ДД.json</code>, следующий день добавляется одним файлом.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Кнопка «Таймлайн» в шапке всех страниц, страница <code>guide/timeline.html</code>.</li>
+<li><input checked="" disabled="" type="checkbox"> День из <code>docs/timeline/2026-11-10.json</code>: 13 тем, все 179 коммитов дня, свежий день сверху и раскрыт.</li>
+<li><input checked="" disabled="" type="checkbox"> Ссылки на карточки ведут на <code>board.html#card-&lt;id&gt;</code>, карточка раскрывается; неизвестная карточка, баг или документ останавливают сборку.</li>
+<li><input checked="" disabled="" type="checkbox"> Тесты <code>node --test tools/guide/build.test.mjs</code> (41 из 41), кадры на ширине компьютера и телефона.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Одна новая страница в сборщике и один файл данных</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 22:42 → 2026-11-10 22:49</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Шапка на телефоне теперь листается вбок: раньше кнопки уходили за край и тянули страницу вширь.</li>
+<li>Баг без своей карточки (BUG-20261110-011) ведёт на карточку задачи из поля «Эпик/задача».</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-dc68a4" data-person="Богдан" data-status="done">
   <h3>Сводка шести разборов архитектуры и порядок работ</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>dc68a4</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Свести шесть разборов слоёв в одну картину и не менять код игры.</p>
@@ -1860,7 +2083,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-e3afec" data-person="Богдан" data-status="done">
   <h3>Сервер: правила игры и профиль</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>e3afec</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Разобрать серверный слой и не менять код игры.</p>
@@ -1936,7 +2159,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-f7143c" data-person="Богдан" data-status="done">
   <h3>Контракт: каталог отвечает на вопросы, уборка мёртвого кода</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>f7143c</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Контракт B и D (`bae98a`) и мёртвый код из сводки.</p>
@@ -1970,7 +2193,44 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" data-person="Богдан" data-status="done">
+<article class="board-card" id="card-f79ad4" data-person="Богдан" data-status="done">
+  <h3>Оружие со стойки: бросок, выход в лобби, цели снегоуборщика</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>f79ad4</code> техработа · weapons</p>
+  <p class="board-lead">Мелкие расхождения оружия со стойки, найденные аудитом механик (`docs/mechanics-audit.md`, механика 5):</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Мелкие расхождения оружия со стойки, найденные аудитом механик (<code>docs/mechanics-audit.md</code>, механика 5):</p>
+<ul>
+<li>Молотов бросается из машины и после смерти: <code>WeaponService.api.throw</code> не проверяет жизнь, сиденье и идущий забег (<code>WeaponService.luau:136-142</code>).</li>
+<li>Выход из забега в лобби не снимает оружие: у сервиса нет события выхода из забега (<code>RuntimeFactory.luau:32</code>).</li>
+<li>Снегоуборщик заявлен на 5 целей (<code>WeaponDefs.luau:37</code>), удар берёт не больше 3 (<code>SnowStrikeArea.luau:5</code>): либо честные 5, либо 5 убрать из описания.</li>
+</ul>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Бросок из машины, мёртвым и вне забега отклоняется (Luau-тест на <code>throw</code>).</li>
+<li><input checked="" disabled="" type="checkbox"> После выхода в лобби оружия в руках нет (проверено в Play, кадр просмотрен).</li>
+<li><input checked="" disabled="" type="checkbox"> Число целей снегоуборщика в данных совпадает с тем, что делает удар.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>три локальные правки правил оружия на сервере, решение по целям получено</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-10 22:44 → 2026-11-10 22:55</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Роль оружия со стойки относительно купленных лопат — открытый вопрос 5 аудита; эта карточка его не решает.</li>
+<li>Пересекается с аудитом предметов в руках <code>2722e3</code> (вид, а не правила).</li>
+<li>Решение владельца 10.11.2026: снегоуборщику записать 3 цели (в игре ничего не меняется, страница оружия показывает 3), честные 5 не делать — оружие со стойки и так сильнее лопат (вопрос 5 аудита).</li>
+<li>Сделано: бросок проверяет идущий забег, жизнь и сиденье, как удар <code>MapSnowService.hit</code> (коды <code>NoActiveSession</code>, <code>NotAlive</code>, <code>Seated</code>; отказ не тратит перезарядку). <code>WeaponService</code> слышит <code>leftRun</code> (<code>onPlayerLeave</code> снимает оружие) и <code>playerLeft</code> (<code>forget</code> чистит его таблицы) через <code>Lifecycle</code>, свой <code>PlayerRemoving</code> убран. Раньше при выходе последнего игрока <code>runEnded</code> получал уже пустой отряд и оружие оставалось в руках.</li>
+<li>Тесты: <code>WeaponService_Test</code> (5), на старом коде падали 4 из 5. <code>-- Weapon</code> 7/7, <code>-- Lifecycle</code> 10/10, <code>npm run check</code> без новых замечаний.</li>
+<li>Play: сценарий <code>tools/studio-scenarios/weapon-rules.json</code> — из машины <code>Seated</code>, пешком <code>OK</code> (горит), после смерти <code>NotAlive</code>, после <code>ReturnLobby</code> в лобби <code>HeldWeapon</code> нет и модели в руке нет (клиент и сервер). Кадры <code>build/studio-play/weapon-rules-20261110-155343/</code>, Output без ошибок игры.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-faa32b" data-person="Богдан" data-status="done">
   <h3>Сеть: пакеты между клиентом и сервером</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>faa32b</code> техработа · architecture</p>
   <p class="board-lead">Исполнитель: Богдан. Разобрать шов сети и не менять код игры.</p>
@@ -2112,7 +2372,17 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
       }
     };
     for (const button of buttons) button.addEventListener("click", () => apply(button.dataset.personFilter));
+    // Ссылка на карточку (board.html#card-…) раскрывает её текст и показывает карточку.
+    const target = location.hash.startsWith("#card-") ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+    if (target) {
+      const text = target.querySelector("details");
+      if (text) text.open = true;
+      target.scrollIntoView({ block: "start" });
+    }
   }
+
+  // Кнопка текущей страницы в шапке видна и на узком экране, где шапка листается вбок.
+  document.querySelector(".topbar .top-link[aria-current]")?.scrollIntoView({ block: "nearest", inline: "center" });
 
   const menu = document.getElementById("menu");
   const sidebar = document.getElementById("sidebar");
