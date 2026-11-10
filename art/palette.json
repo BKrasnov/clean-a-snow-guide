@@ -1,0 +1,332 @@
+{
+  "game": "Clean a Snow",
+  "status": "утверждена владельцем 10.11.2026",
+  "source": "Цвета сняты 09.11.2026 с плейса place/NaLovi.rbxl: свойства Color деталей Workspace по площади, цвета материалов Terrain и цвета интерфейса StarterGui.CleanSnowUI; «Снег на экране» — с кадра art/frames/02-snow-run.jpeg; цвета редкостей — из GardenService.rarityColors. Стиль — как сейчас в игре (решение владельца 09.11.2026). Стайлгайд — docs/style.md.",
+  "scheme": "Холодная снежная основа с тёплым деревом: белый и сиреневый снег, пастельные горы и бирюзовые ели — фон; тёплое дерево построек и интерфейса — середина; красный амбар, золото монет, голубые гемы и зелёная кнопка — малые акценты.",
+  "balance": {
+    "cool": 18,
+    "warm": 10,
+    "neutral": 3
+  },
+  "tolerance": 2,
+  "variation": {
+    "brightness": 0.1,
+    "rule": "Освещение Roblox и время суток меняют видимый цвет (на закате снег розовый). В свойствах Color, текстурах и картинках стоят точные цвета палитры. Новых оттенков сверх палитры не вводить."
+  },
+  "areas": "По площади кадра: снег и тень снега — основа, горы, ели и небо — дальний фон, дерево, земля и постройки — середина, золото, кристалл, красный и зелёная кнопка — малые акценты. Цвета редкостей — только рамки, плашки и надписи редкости.",
+  "existing": "Модели, которые уже стоят в плейсе коллег, сохраняют свои цвета (у елей и гор их десятки оттенков). Палитра — контракт для новых моделей, картинок и окон.",
+  "approved": "2026-11-10",
+  "colors": [
+    {
+      "name": "Снег",
+      "hex": "#F3F6F5",
+      "temperature": "neutral",
+      "role": "основной",
+      "group": "снег и лёд",
+      "shades": [],
+      "used_by": [],
+      "reason": "Снег под ногами: SnowGround лобби. Самая большая площадь кадра."
+    },
+    {
+      "name": "Тень снега",
+      "hex": "#CDCDED",
+      "temperature": "cool",
+      "role": "тень",
+      "group": "снег и лёд",
+      "shades": [],
+      "used_by": [],
+      "reason": "Сиреневый дальний снег (SnowFarSlabs, материал Snow) и тени сугробов."
+    },
+    {
+      "name": "Снег на экране",
+      "hex": "#B3C2D4",
+      "temperature": "cool",
+      "role": "тень",
+      "group": "снег и лёд",
+      "shades": [],
+      "used_by": [],
+      "reason": "Так снежное поле забега выглядит на экране при свете игры (середина поля на кадре 02-snow-run). Для картинок и референсов со снегом в тени."
+    },
+    {
+      "name": "Лёд",
+      "hex": "#A8DEE7",
+      "temperature": "cool",
+      "role": "основной",
+      "group": "снег и лёд",
+      "shades": [],
+      "used_by": [],
+      "reason": "Лёд замёрзшего ручья: цвет материала Ice у Terrain."
+    },
+    {
+      "name": "Лавандовая гора",
+      "hex": "#A096DE",
+      "temperature": "cool",
+      "role": "основной",
+      "group": "горы",
+      "shades": [],
+      "used_by": [],
+      "reason": "Дальние низкополигональные горы (Low Poly Mountain)."
+    },
+    {
+      "name": "Розовая гора",
+      "hex": "#CE9ED2",
+      "temperature": "cool",
+      "role": "свет",
+      "group": "горы",
+      "shades": [],
+      "used_by": [],
+      "reason": "Освещённые склоны гор."
+    },
+    {
+      "name": "Синяя гора",
+      "hex": "#80A0E6",
+      "temperature": "cool",
+      "role": "тень",
+      "group": "горы",
+      "shades": [],
+      "used_by": [],
+      "reason": "Теневые склоны гор и предгорья."
+    },
+    {
+      "name": "Хвоя",
+      "hex": "#54A577",
+      "temperature": "cool",
+      "role": "основной",
+      "group": "зелень",
+      "shades": [],
+      "used_by": [],
+      "reason": "Низкополигональные ели (LowPolyPine) — средний из их оттенков."
+    },
+    {
+      "name": "Тень хвои",
+      "hex": "#3C8E63",
+      "temperature": "cool",
+      "role": "тень",
+      "group": "зелень",
+      "shades": [],
+      "used_by": [],
+      "reason": "Тёмные грани елей."
+    },
+    {
+      "name": "Светлая хвоя",
+      "hex": "#77C98D",
+      "temperature": "cool",
+      "role": "свет",
+      "group": "зелень",
+      "shades": [],
+      "used_by": [],
+      "reason": "Светлые грани елей."
+    },
+    {
+      "name": "Трава",
+      "hex": "#96DC6A",
+      "temperature": "cool",
+      "role": "основной",
+      "group": "зелень",
+      "shades": [],
+      "used_by": [],
+      "reason": "Трава и листва: материал Grass у Terrain, кроны лиственных деревьев."
+    },
+    {
+      "name": "Дерево",
+      "hex": "#CD925C",
+      "temperature": "warm",
+      "role": "основной",
+      "group": "дерево и земля",
+      "shades": [],
+      "used_by": [],
+      "reason": "Светлое дерево построек и ворот (GateArch), брёвна домиков."
+    },
+    {
+      "name": "Тёмное дерево",
+      "hex": "#80401B",
+      "temperature": "warm",
+      "role": "тень",
+      "group": "дерево и земля",
+      "shades": [],
+      "used_by": [],
+      "reason": "Тёмные доски, стволы, тёмная доска кнопок интерфейса."
+    },
+    {
+      "name": "Земля",
+      "hex": "#966240",
+      "temperature": "warm",
+      "role": "основной",
+      "group": "дерево и земля",
+      "shades": [],
+      "used_by": [],
+      "reason": "Почва грядок сада (Field Soil)."
+    },
+    {
+      "name": "Солома",
+      "hex": "#FAD66E",
+      "temperature": "warm",
+      "role": "свет",
+      "group": "дерево и земля",
+      "shades": [],
+      "used_by": [],
+      "reason": "Пшеница и солома фермы."
+    },
+    {
+      "name": "Красный амбар",
+      "hex": "#D6392B",
+      "temperature": "warm",
+      "role": "акцент",
+      "group": "постройки",
+      "shades": [],
+      "used_by": [],
+      "reason": "Красный амбар фермы и красные сигналы интерфейса."
+    },
+    {
+      "name": "Металл",
+      "hex": "#A0B0C4",
+      "temperature": "cool",
+      "role": "основной",
+      "group": "постройки",
+      "shades": [],
+      "used_by": [],
+      "reason": "Зернохранилища и металлические части машин."
+    },
+    {
+      "name": "Камень",
+      "hex": "#909282",
+      "temperature": "neutral",
+      "role": "тень",
+      "group": "постройки",
+      "shades": [],
+      "used_by": [],
+      "reason": "Камень острова лобби (материал Slate) и дорожки."
+    },
+    {
+      "name": "Контур",
+      "hex": "#2B1A11",
+      "temperature": "warm",
+      "role": "тень",
+      "group": "интерфейс",
+      "shades": [],
+      "used_by": [],
+      "reason": "Тёмно-коричневый контур кнопок и надписей интерфейса (UIStroke)."
+    },
+    {
+      "name": "Крем",
+      "hex": "#FFFDF5",
+      "temperature": "neutral",
+      "role": "свет",
+      "group": "интерфейс",
+      "shades": [],
+      "used_by": [],
+      "reason": "Кремовый текст интерфейса."
+    },
+    {
+      "name": "Доска",
+      "hex": "#C28E49",
+      "temperature": "warm",
+      "role": "основной",
+      "group": "интерфейс",
+      "shades": [],
+      "used_by": [],
+      "reason": "Светлая деревянная плашка кнопок и окон интерфейса."
+    },
+    {
+      "name": "Зелёная кнопка",
+      "hex": "#5BB830",
+      "temperature": "cool",
+      "role": "акцент",
+      "group": "интерфейс",
+      "shades": [],
+      "used_by": [],
+      "reason": "Кнопки «можно» и «купить»."
+    },
+    {
+      "name": "Золото",
+      "hex": "#FFCE43",
+      "temperature": "warm",
+      "role": "акцент",
+      "group": "добыча",
+      "shades": [],
+      "used_by": [],
+      "reason": "Монеты и золотые надписи."
+    },
+    {
+      "name": "Кристалл",
+      "hex": "#8BE0FF",
+      "temperature": "cool",
+      "role": "акцент",
+      "group": "добыча",
+      "shades": [],
+      "used_by": [],
+      "reason": "Гемы и голубые надписи о них."
+    },
+    {
+      "name": "Обычный",
+      "hex": "#C3EBC5",
+      "temperature": "cool",
+      "role": "акцент",
+      "group": "редкость",
+      "shades": [],
+      "used_by": [],
+      "reason": "Редкость Common: семена и растения сада (GardenService, rarityColors)."
+    },
+    {
+      "name": "Необычный",
+      "hex": "#5BE66D",
+      "temperature": "cool",
+      "role": "акцент",
+      "group": "редкость",
+      "shades": [],
+      "used_by": [],
+      "reason": "Редкость Uncommon (GardenService, rarityColors)."
+    },
+    {
+      "name": "Редкий",
+      "hex": "#40A5FF",
+      "temperature": "cool",
+      "role": "акцент",
+      "group": "редкость",
+      "shades": [],
+      "used_by": [],
+      "reason": "Редкость Rare (GardenService, rarityColors)."
+    },
+    {
+      "name": "Эпический",
+      "hex": "#BE63FF",
+      "temperature": "cool",
+      "role": "акцент",
+      "group": "редкость",
+      "shades": [],
+      "used_by": [],
+      "reason": "Редкость Epic (GardenService, rarityColors)."
+    },
+    {
+      "name": "Легендарный",
+      "hex": "#FFC13F",
+      "temperature": "warm",
+      "role": "акцент",
+      "group": "редкость",
+      "shades": [],
+      "used_by": [],
+      "reason": "Редкость Legendary (GardenService, rarityColors)."
+    },
+    {
+      "name": "Мифический",
+      "hex": "#FF5192",
+      "temperature": "warm",
+      "role": "акцент",
+      "group": "редкость",
+      "shades": [],
+      "used_by": [],
+      "reason": "Редкость Mythic (GardenService, rarityColors)."
+    },
+    {
+      "name": "Супер",
+      "hex": "#4AFFE7",
+      "temperature": "cool",
+      "role": "акцент",
+      "group": "редкость",
+      "shades": [],
+      "used_by": [],
+      "reason": "Редкость Super (GardenService, rarityColors)."
+    }
+  ],
+  "legacy": []
+}
