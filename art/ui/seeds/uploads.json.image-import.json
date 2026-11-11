@@ -1,0 +1,247 @@
+{
+  "version": 1,
+  "profile": "studio-image-me-v1",
+  "game": "clean-a-snow",
+  "entries": {
+    "seed-common-256.png": {
+      "file": "C:\\Users\\User\\development\\slime_studio\\games\\clean-a-snow\\art\\ui\\seeds\\seed-common-256.png",
+      "originalFile": "C:\\Users\\User\\development\\slime_studio\\games\\clean-a-snow\\art\\ui\\seeds\\seed-common-256.png",
+      "sha256": "c2f5c5231238407de06811865dc693a94914779e0a2cf82797c271d5e9a1879b",
+      "bytes": 67181,
+      "sourceSize": [
+        256,
+        256
+      ],
+      "state": "complete",
+      "artifactDirectory": "C:\\Users\\User\\development\\slime_studio\\roblox\\build\\image-import\\6f88d76a-7d73-4acc-8807-671892456722",
+      "startedAt": "2026-11-11T10:08:10.573Z",
+      "sourceUrl": "http://127.0.0.1:49744/c8cd9afc-aa50-497f-af47-9824c2fef211/seed-common-256.png",
+      "submittedAt": "2026-11-11T10:08:27.314Z",
+      "id": "rbxassetid://90669983421009",
+      "uploadedAt": "2026-11-11T10:08:29.716Z",
+      "observed": {
+        "assetTypeId": 1,
+        "creatorId": "6054024552",
+        "assetName": "Assistant_4b4d1d3456107772871a2761c01c0664.png",
+        "id": "rbxassetid://90669983421009",
+        "created": "2026-11-11T10:08:29.324Z",
+        "userId": "6054024552",
+        "storedSize": [
+          256,
+          256
+        ]
+      },
+      "completedAt": "2026-11-11T10:08:31.701Z"
+    },
+    "seed-uncommon-256.png": {
+      "file": "C:\\Users\\User\\development\\slime_studio\\games\\clean-a-snow\\art\\ui\\seeds\\seed-uncommon-256.png",
+      "originalFile": "C:\\Users\\User\\development\\slime_studio\\games\\clean-a-snow\\art\\ui\\seeds\\seed-uncommon-256.png",
+      "sha256": "41dc257a071af0bb12cf41a4be4dbc8e79307a3b2f06bcafd76870fd7410c9eb",
+      "bytes": 67808,
+      "sourceSize": [
+        256,
+        256
+      ],
+      "state": "complete",
+      "artifactDirectory": "C:\\Users\\User\\development\\slime_studio\\roblox\\build\\image-import\\6f88d76a-7d73-4acc-8807-671892456722",
+      "startedAt": "2026-11-11T10:08:10.573Z",
+      "sourceUrl": "http://127.0.0.1:63569/7956f734-8b6a-419f-8a83-3eb86d256eff/seed-uncommon-256.png",
+      "submittedAt": "2026-11-11T10:08:32.247Z",
+      "id": "rbxassetid://102791839676488",
+      "uploadedAt": "2026-11-11T10:08:34.564Z",
+      "observed": {
+        "assetTypeId": 1,
+        "creatorId": "6054024552",
+        "assetName": "Assistant_d3b8deff9865925a11534395e63bacc4.png",
+        "id": "rbxassetid://102791839676488",
+        "created": "2026-11-11T10:08:34.161Z",
+        "userId": "6054024552",
+        "storedSize": [
+          256,
+          256
+        ]
+      },
+      "completedAt": "2026-11-11T10:08:36.584Z"
+    },
+    "seed-rare-256.png": {
+      "file": "C:\\Users\\User\\development\\slime_studio\\games\\clean-a-snow\\art\\ui\\seeds\\seed-rare-256.png",
+      "originalFile": "C:\\Users\\User\\development\\slime_studio\\games\\clean-a-snow\\art\\ui\\seeds\\seed-rare-256.png",
+      "sha256": "6a19554402a3539820458ccd6e4672276af84ce5e12f014751bed3a3feaf3b97",
+      "bytes": 70221,
+      "sourceSize": [
+        256,
+        256
+      ],
+      "state": "complete",
+      "artifactDirectory": "C:\\Users\\User\\development\\slime_studio\\roblox\\build\\image-import\\6f88d76a-7d73-4acc-8807-671892456722",
+      "startedAt": "2026-11-11T10:08:10.573Z",
+      "sourceUrl": "http://127.0.0.1:63611/4a79b30b-ebe4-4e26-9b62-39416201cfbc/seed-rare-256.png",
+      "submittedAt": "2026-11-11T10:08:37.147Z",
+      "id": "rbxassetid://129364493501318",
+      "uploadedAt": "2026-11-11T10:08:39.481Z",
+      "observed": {
+        "assetTypeId": 1,
+        "creatorId": "6054024552",
+        "assetName": "Assistant_ffe0046686fc9c9c6b1f2bccedc2e494.png",
+        "id": "rbxassetid://129364493501318",
+        "created": "2026-11-11T10:08:39.178Z",
+        "userId": "6054024552",
+        "storedSize": [
+          256,
+          256
+        ]
+      },
+      "completedAt": "2026-11-11T10:08:41.635Z"
+    },
+    "seed-epic-256.png": {
+      "file": "C:\\Users\\User\\development\\slime_studio\\games\\clean-a-snow\\art\\ui\\seeds\\seed-epic-256.png",
+      "originalFile": "C:\\Users\\User\\development\\slime_studio\\games\\clean-a-snow\\art\\ui\\seeds\\seed-epic-256.png",
+      "sha256": "9c7c5a82cbcb03f57153fde72da565a36c8ef9b03def3d9bf2e1adf5929adc33",
+      "bytes": 75082,
+      "sourceSize": [
+        256,
+        256
+      ],
+      "state": "complete",
+      "artifactDirectory": "C:\\Users\\User\\development\\slime_studio\\roblox\\build\\image-import\\6f88d76a-7d73-4acc-8807-671892456722",
+      "startedAt": "2026-11-11T10:08:10.573Z",
+      "sourceUrl": "http://127.0.0.1:63733/eaec272f-182a-43e6-8f1f-591ea8f5037f/seed-epic-256.png",
+      "submittedAt": "2026-11-11T10:08:42.213Z",
+      "id": "rbxassetid://93616812422289",
+      "uploadedAt": "2026-11-11T10:08:44.398Z",
+      "observed": {
+        "assetTypeId": 1,
+        "creatorId": "6054024552",
+        "assetName": "Assistant_f63933fd0378c1533c391e7224b079e6.png",
+        "id": "rbxassetid://93616812422289",
+        "created": "2026-11-11T10:08:44.04Z",
+        "userId": "6054024552",
+        "storedSize": [
+          256,
+          256
+        ]
+      },
+      "completedAt": "2026-11-11T10:08:47.150Z"
+    },
+    "seed-legendary-256.png": {
+      "file": "C:\\Users\\User\\development\\slime_studio\\games\\clean-a-snow\\art\\ui\\seeds\\seed-legendary-256.png",
+      "originalFile": "C:\\Users\\User\\development\\slime_studio\\games\\clean-a-snow\\art\\ui\\seeds\\seed-legendary-256.png",
+      "sha256": "aa50f3c0164934a70ee80c633c4ea4de82a9855cf7b9d7f33b93529dd4a355f7",
+      "bytes": 73530,
+      "sourceSize": [
+        256,
+        256
+      ],
+      "state": "complete",
+      "artifactDirectory": "C:\\Users\\User\\development\\slime_studio\\roblox\\build\\image-import\\6f88d76a-7d73-4acc-8807-671892456722",
+      "startedAt": "2026-11-11T10:08:10.573Z",
+      "sourceUrl": "http://127.0.0.1:63808/f7a41217-7a86-4987-ba18-24ff0bfe8eef/seed-legendary-256.png",
+      "submittedAt": "2026-11-11T10:08:47.713Z",
+      "id": "rbxassetid://128688864810059",
+      "uploadedAt": "2026-11-11T10:08:49.898Z",
+      "observed": {
+        "assetTypeId": 1,
+        "creatorId": "6054024552",
+        "assetName": "Assistant_b32d11c5e697f1624e5c54eea9598632.png",
+        "id": "rbxassetid://128688864810059",
+        "created": "2026-11-11T10:08:49.472Z",
+        "userId": "6054024552",
+        "storedSize": [
+          256,
+          256
+        ]
+      },
+      "completedAt": "2026-11-11T10:08:52.333Z"
+    },
+    "seed-mythic-256.png": {
+      "file": "C:\\Users\\User\\development\\slime_studio\\games\\clean-a-snow\\art\\ui\\seeds\\seed-mythic-256.png",
+      "originalFile": "C:\\Users\\User\\development\\slime_studio\\games\\clean-a-snow\\art\\ui\\seeds\\seed-mythic-256.png",
+      "sha256": "724134cab3758bf10a065abe9404a55f18769d00119b7ac94478061dfa0aab7d",
+      "bytes": 76001,
+      "sourceSize": [
+        256,
+        256
+      ],
+      "state": "complete",
+      "artifactDirectory": "C:\\Users\\User\\development\\slime_studio\\roblox\\build\\image-import\\6f88d76a-7d73-4acc-8807-671892456722",
+      "startedAt": "2026-11-11T10:08:10.573Z",
+      "sourceUrl": "http://127.0.0.1:63928/1d19b87b-0416-46d2-b19f-f3ad0cbd2660/seed-mythic-256.png",
+      "submittedAt": "2026-11-11T10:08:52.897Z",
+      "id": "rbxassetid://106709704229070",
+      "uploadedAt": "2026-11-11T10:08:55.147Z",
+      "observed": {
+        "assetTypeId": 1,
+        "creatorId": "6054024552",
+        "assetName": "##############################################",
+        "id": "rbxassetid://106709704229070",
+        "created": "2026-11-11T10:08:54.704Z",
+        "userId": "6054024552",
+        "storedSize": [
+          256,
+          256
+        ]
+      },
+      "completedAt": "2026-11-11T10:08:57.317Z"
+    },
+    "seed-super-256.png": {
+      "file": "C:\\Users\\User\\development\\slime_studio\\games\\clean-a-snow\\art\\ui\\seeds\\seed-super-256.png",
+      "originalFile": "C:\\Users\\User\\development\\slime_studio\\games\\clean-a-snow\\art\\ui\\seeds\\seed-super-256.png",
+      "sha256": "230b9e0c9a2a9a6374caef4b4badb4d9b37f2c24668e89faab649271100ff093",
+      "bytes": 83084,
+      "sourceSize": [
+        256,
+        256
+      ],
+      "state": "complete",
+      "artifactDirectory": "C:\\Users\\User\\development\\slime_studio\\roblox\\build\\image-import\\6f88d76a-7d73-4acc-8807-671892456722",
+      "startedAt": "2026-11-11T10:08:10.573Z",
+      "sourceUrl": "http://127.0.0.1:63975/e05cbb94-0f0c-4d23-842d-0c7fae0c07d4/seed-super-256.png",
+      "submittedAt": "2026-11-11T10:08:57.880Z",
+      "id": "rbxassetid://76840722037599",
+      "uploadedAt": "2026-11-11T10:08:59.980Z",
+      "observed": {
+        "assetTypeId": 1,
+        "creatorId": "6054024552",
+        "assetName": "Assistant_337509f9352afff929776ecfe7b40895.png",
+        "id": "rbxassetid://76840722037599",
+        "created": "2026-11-11T10:08:59.628Z",
+        "userId": "6054024552",
+        "storedSize": [
+          256,
+          256
+        ]
+      },
+      "completedAt": "2026-11-11T10:09:02.117Z"
+    },
+    "seed-find-rays-512.png": {
+      "file": "C:\\Users\\User\\development\\slime_studio\\games\\clean-a-snow\\art\\ui\\seeds\\seed-find-rays-512.png",
+      "originalFile": "C:\\Users\\User\\development\\slime_studio\\games\\clean-a-snow\\art\\ui\\seeds\\seed-find-rays-512.png",
+      "sha256": "6ef0aba69a5db9658ab18dfb4d7d4eba1bf2f905a89995458e7921e421f2ad17",
+      "bytes": 105184,
+      "sourceSize": [
+        512,
+        512
+      ],
+      "state": "complete",
+      "artifactDirectory": "C:\\Users\\User\\development\\slime_studio\\roblox\\build\\image-import\\6f88d76a-7d73-4acc-8807-671892456722",
+      "startedAt": "2026-11-11T10:08:10.573Z",
+      "sourceUrl": "http://127.0.0.1:64016/3716eef1-25e6-4ca2-8fd1-8440d3794832/seed-find-rays-512.png",
+      "submittedAt": "2026-11-11T10:09:02.679Z",
+      "id": "rbxassetid://78787386589918",
+      "uploadedAt": "2026-11-11T10:09:06.281Z",
+      "observed": {
+        "assetTypeId": 1,
+        "creatorId": "6054024552",
+        "assetName": "Assistant_7fde3e5607f79dee9c2eae8364bbd537.png",
+        "id": "rbxassetid://78787386589918",
+        "created": "2026-11-11T10:09:05.551Z",
+        "userId": "6054024552",
+        "storedSize": [
+          512,
+          512
+        ]
+      },
+      "completedAt": "2026-11-11T10:09:08.783Z"
+    }
+  }
+}
