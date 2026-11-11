@@ -257,7 +257,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <main>
 <section class="part"><h2>Доска</h2><div class="board-filters" role="group" aria-label="Кто делает"><button type="button" data-person-filter="all" aria-pressed="true">Все</button><button type="button" data-person-filter="Богдан" aria-pressed="false">Богдан</button><button type="button" data-person-filter="Леонид" aria-pressed="false">Леонид</button><button type="button" data-person-filter="Георгий" aria-pressed="false">Георгий</button></div>
 <div class="board-columns"><section class="board-column" data-status="todo">
-  <h3>К выполнению <span class="board-count">20</span></h3>
+  <h3>К выполнению <span class="board-count">21</span></h3>
   <div class="board-cards"><article class="board-card" id="card-074003" data-person="Богдан" data-status="todo">
   <h3>Панель иконок в забеге: инструмент первым, донат последним</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>074003</code> фича · held-items</p>
@@ -270,7 +270,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <ol>
 <li>Иконка 1 — всегда инструмент в руках, которым ломают снег. Новый забег всегда начинается с ложки. Купил новый инструмент или взял купленный через «E Carry» — он встаёт сюда вместо прежнего. Купленное оружие (ледоруб, отбойный молоток, снегоуборщик, термопушка, ложка и лопата со стоек) тоже встаёт сюда.</li>
 <li>Дальше — особые предметы, по иконке на каждый, в порядке покупки. Пока такой один — коктейль Молотова (карточка <code>ca84fc</code>). Куплены навсегда: иконки есть с начала каждого забега.</li>
-<li>Садовые иконки (грабли, предметы) — после особых, когда они есть.</li>
+<li>Садовых иконок нет: сад убирается целиком (карточка <code>5797f3</code>, решение владельца 10.11.2026).</li>
 <li>Справа, всегда последняя — донатный инструмент. Пока серая заглушка с замком, нажатие ничего не делает. Донатную систему не делать.</li>
 </ol>
 <ul>
@@ -401,6 +401,52 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <li>Решение владельца 10.11.2026: купить инструмент можно только в фермерском доме, окна магазина не должно быть; «E Carry» — только если инструмент куплен.</li>
 <li>Риски: клавиша E уже занята (стойки, выход из машины, кабина грузовика, «передать снег» зверям); слово Carry в игре уже значит «нести снег» (цель «Clear · carry · process»).</li>
 <li>Владелец заметил, что модели на стендах похожи не на те инструменты, — пока не трогать.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-5797f3" data-person="Богдан" data-status="todo">
+  <h3>Убрать сад целиком: садовник, грядки, семена, грабли</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>5797f3</code> техработа · garden</p>
+  <p class="board-lead">Убрать механику сада из игры целиком: садовника, грядки, семена, грабли, урожай и пятна с семенами.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Убрать механику сада из игры целиком: садовника, грядки, семена, грабли, урожай и пятна с семенами.</p>
+<p>Сейчас сад — это:</p>
+<ul>
+<li>открытие: 20 кусков снега во второй зоне — приходит садовник, даёт грабли и 5 морковок; подсказка «20 snow drops!»;</li>
+<li>сервер <code>GardenService.luau</code>, клиент <code>GardenController.client.luau</code> и <code>GardenWeatherController.client.luau</code> (дождь ускорял рост), данные <code>Data/garden.json</code>, модели растений <code>CleanSnowGardenAssets</code> (157 модулей в <code>PlantGenerationModules</code>);</li>
+<li>садовник с подсказкой «Seeds», 12 пятен с бесплатными семенами, продажа урожая;</li>
+<li>в панели иконок грабли и предметы сада (клавиши 3 и 4, кнопка INVENTORY; <code>InterfaceController.luau</code>, <code>ExperienceController.luau</code>);</li>
+<li>поле <code>garden</code> в профиле игрока (<code>ProfileService.luau</code>: открыт ли сад, счётчик, семена, урожай);</li>
+<li>упоминания в общем коде: <code>Catalog</code>, <code>Balance</code>, <code>Actions</code>, <code>NetSchema</code>, <code>PlaceAnchors</code>, <code>RuntimeFactory</code>, <code>MapSnowService</code>, <code>SnowService</code>, <code>WeaponController</code>, <code>WeatherController</code>;</li>
+<li>страница «Сад» на сайте и раздел «Сад» на «Механиках» (<code>tools/guide/build.mjs</code>, <code>docs/mechanics.md</code>), тесты <code>tools/data/data.test.mjs</code>, <code>tools/guide/build.test.mjs</code>, сценарии Studio <code>data-garden-animals-vehicles</code> и <code>held-items</code>, <code>tools/check/baseline.json</code>.</li>
+</ul>
+<p>Как должно быть:</p>
+<ul>
+<li>В игре нет садовника, грядок, семян, грабель, урожая, пятен с семенами и подсказки об открытии сада — ни в лобби, ни в забеге.</li>
+<li>Старые профили с полем <code>garden</code> загружаются без ошибок: поле просто не читается и больше не пишется.</li>
+<li>Погода остаётся, только без влияния на сад.</li>
+<li>Животные и машины из сценария <code>data-garden-animals-vehicles</code> остаются — убрать только сад.</li>
+<li>На сайте нет страницы «Сад», на «Механиках» нет раздела «Сад».</li>
+</ul>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Play: сада нет ни в лобби, ни в забеге; кадры просмотрены.</li>
+<li><input disabled="" type="checkbox"> Старый профиль с полем <code>garden</code> загружается без ошибок (Luau-тест).</li>
+<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний, <code>node --test tools/data/data.test.mjs</code> и <code>node --test tools/guide/build.test.mjs</code> проходят, сценарии Studio без шагов сада.</li>
+<li><input disabled="" type="checkbox"> Страницы пересобраны: нет «Сада», «Механики» без сада.</li>
+<li><input disabled="" type="checkbox"> Модели сада убраны из мира плейса, правка выгружена в <code>models/</code> (если они там есть).</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Удаление большой механики: сервер, клиент, данные, профиль, 157 модулей растений, страницы и тесты</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 10.11.2026 (вопросы 6 и 7 аудита механик, <code>docs/mechanics-audit.md</code>): садовник не нужен, сад убрать целиком. Игра остаётся про снег.</li>
+<li>После удаления в задаче <code>074003</code> (панель иконок) садовых иконок нет, а в <code>abc629</code> (звуки наград) не нужны звуки вещей сада.</li>
+<li>Проверить, не нужна ли «зелёная земля второй зоны» (место под грядки) чему-то ещё.</li>
 </ul>
 </div></details>
 </article>
