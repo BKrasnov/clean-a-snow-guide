@@ -257,7 +257,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <main>
 <section class="part"><h2>Доска</h2><div class="board-filters" role="group" aria-label="Кто делает"><button type="button" data-person-filter="all" aria-pressed="true">Все</button><button type="button" data-person-filter="Богдан" aria-pressed="false">Богдан</button><button type="button" data-person-filter="Леонид" aria-pressed="false">Леонид</button><button type="button" data-person-filter="Георгий" aria-pressed="false">Георгий</button></div>
 <div class="board-columns"><section class="board-column" data-status="todo">
-  <h3>К выполнению <span class="board-count">19</span></h3>
+  <h3>К выполнению <span class="board-count">21</span></h3>
   <div class="board-cards"><article class="board-card" id="card-074003" data-person="Богдан" data-status="todo">
   <h3>Панель иконок в забеге: инструмент первым, донат последним</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>074003</code> фича · held-items</p>
@@ -441,6 +441,42 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 <h2>Работа</h2>
 <h2>Заметки</h2>
+</div></details>
+</article>
+<article class="board-card" id="card-831a90" data-person="Богдан" data-status="todo">
+  <h3>Снег: скруглённые участки со слоями белый, сиреневый, ледяной</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>831a90</code> фича · clearing</p>
+  <p class="board-lead">Переделать вид снежных участков по референсам ChatGPT Image, чтобы ломать снег было приятнее, но игра оставалась лёгкой для телефонов.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Переделать вид снежных участков по референсам ChatGPT Image, чтобы ломать снег было приятнее, но игра оставалась лёгкой для телефонов.</p>
+<ul>
+<li>Сейчас участки — плоские серо-голубые террасы с прямыми стенками («одни квадратики»).</li>
+<li>Нужно: скруглённые плиты-«подушки» с фаской по краю. Сбоку видны три цветных слоя: верх «Снег» <code>#F3F6F5</code> с кремовой кромкой «Крем» <code>#FFFDF5</code>, середина «Тень снега» <code>#CDCDED</code>, низ «Лёд» <code>#A8DEE7</code>. Каждый удар, снимающий слой, открывает новый цвет.</li>
+<li>Сверху немного комков и ледяных кристаллов «Кристалл» <code>#8BE0FF</code>. Между участками мягкие сиреневые тени.</li>
+<li>Частицы слома — по <code>art/refs/snow-look/snow-particles.png</code>: скруглённые снежные кубики, ледяные осколки с бликом, снежинки, низкие облачка пыли.</li>
+</ul>
+<p>Референсы (ChatGPT Image, 10.11.2026):</p>
+<ul>
+<li><code>art/refs/snow-look/snow-field.png</code> — поле, главный вид;</li>
+<li><code>snow-break.png</code> — момент слома;</li>
+<li><code>snow-shapes.png</code> — четыре формы, выбрана первая;</li>
+<li><code>snow-particles.png</code> — частицы.</li>
+</ul>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Разбор по <code>improve-codebase-architecture</code>: где рисуется участок (<code>SnowChunkRenderer</code>, <code>NearSnow</code>, <code>SnowFar</code>, <code>SnowSkinnedPresenter</code>), как добавить фаску и цвета слоёв без текстур и без лишних мешей. Решение и бюджет треугольников и памяти EditableMesh — в спеке.</li>
+<li><input disabled="" type="checkbox"> Спека и план по <code>brainstorming</code> / <code>writing-plans</code>, вопросы владельцу (если будут) — с вариантами и рекомендацией.</li>
+<li><input disabled="" type="checkbox"> Участки на кадрах из живой игры похожи на <code>snow-field.png</code>: скруглённые края, видны три слоя, слом слоя открывает новый цвет; на телефоне (Low) кадр не тормозит сильнее, чем сейчас (замер времени кадра до и после).</li>
+<li><input disabled="" type="checkbox"> Частицы слома по <code>snow-particles.png</code> в рецепте <code>SnowBreakRecipe</code>. Снежинка и меши — только после загрузки владельцем (<code>art/import.md</code>).</li>
+<li><input disabled="" type="checkbox"> Критик <code>feature-vfx-critic</code> (эффект слома) и стилевая проверка кадров — не ниже 9/10.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 10.11.2026: «Подушка со слоями (Рекомендую)» из четырёх форм на <code>snow-shapes.png</code>: скруглённые плиты с тремя цветными слоями, как на <code>snow-field.png</code>. Просьба владельца: «как можно улучшить снег в плане цвета, снежинок, форм, чтобы дофаминово было ломать, но оптимизированно; ничего не вноси пока». Пока только карточка, в игру ничего не вносили.</li>
+<li>Связано с <code>9be892</code> (новый слом: вспышка участка и кубики) — частицы этой карточки заменят его кубики.</li>
+</ul>
 </div></details>
 </article>
 <article class="board-card" id="card-aadab7" data-person="Богдан" data-status="todo">
@@ -650,6 +686,42 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <ul>
 <li>Решение владельца 10.11.2026: всё оружие со стоек платное за монеты, цены пока временные и небольшие; Молотов и подобное оружие — внутри фермерского дома, не там, где ряд лопат, а на другой стороне дома и по бокам; Молотов покупается один раз навсегда, своя иконка.</li>
 <li>Временные цены ниже Steel Shovel (750), а снегоуборщик и термопушка сильнее Frost Shovel (12 000): лестница покупок пока ломается. Пересмотреть вместе с вопросами аудита 4 (цены магазина), 5 (оружие сильнее лопат) и 8 (лестница лопат).</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-ccc5d0" data-person="Богдан" data-status="todo">
+  <h3>Закрытая зона: короткий текст «Unlock Area N first»</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>ccc5d0</code> фича · clearing</p>
+  <p class="board-lead">Когда игрок бьёт снег закрытой зоны, показать короткий текст на английском с номером зоны вместо общего.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Когда игрок бьёт снег закрытой зоны, показать короткий текст на английском с номером зоны вместо общего.</p>
+<p>Сейчас: сервер отказывает кодом <code>AreaLocked</code> (<code>MapSnowService.luau</code>, <code>StrikePlan.luau</code> для оружия), клиент показывает внизу общий текст «Clear the current area to unlock this snow.» без номера (<code>InterfaceController.luau</code>, таблица <code>messages</code>). Остальные отказы удара (далеко, стена, частый клик, снег накрыт сверху) молчат — так и должно остаться.</p>
+<p>Как должно быть:</p>
+<ul>
+<li>Удар любым инструментом по снегу закрытой зоны — внизу на пару секунд текст «Unlock Area N first». N — зона, в которой игрок сейчас стоит (зоны — кольца вокруг центра, <code>SnowCells.areaAt</code>; учесть сдвиг мира забега).</li>
+<li>Только английский, без значков.</li>
+<li>Частые клики не плодят надписи (повтор той же надписи уже глушится на 3,8 с в <code>api.notify</code>).</li>
+<li>Далеко, стена, частый клик, снег накрыт сверху — по-прежнему без текста: замах есть, снег не реагирует.</li>
+</ul>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Удар по закрытой зоне показывает «Unlock Area N first» с верным номером; через пару секунд надпись пропадает.</li>
+<li><input disabled="" type="checkbox"> Остальные отказы удара без текста.</li>
+<li><input disabled="" type="checkbox"> Luau-тест: номер зоны в тексте по позиции игрока; <code>npm run check</code> без новых замечаний.</li>
+<li><input disabled="" type="checkbox"> Play: кадр надписи у закрытой зоны и кадр без надписи далеко от снега, PNG просмотрены.</li>
+<li><input disabled="" type="checkbox"> Страница «Механики» (раздел про удар) описывает новый текст.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Одна правка текста отказа на клиенте с номером зоны, тест и кадр</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 10.11.2026 (вопрос 3 аудита механик, <code>docs/mechanics-audit.md</code>): отказ удара без текста и значков, как в похожей игре; только для закрытой зоны — короткий временный текст на английском «сначала разблокируй зону N», N — зона, где стоит игрок.</li>
+<li>Уточнить у владельца до кода: если игрок стоит в открытой зоне и бьёт закрытую соседнюю через границу, какой номер показывать — зоны, где он стоит, или зоны снега.</li>
+<li>Связано с вопросом 1 (зоны открываются на 90 % и сохраняются, HUD показывает зону под ногами).</li>
 </ul>
 </div></details>
 </article>
