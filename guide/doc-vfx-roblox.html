@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>vfx-roblox.md — Clean a Snow</title>
+<style>/* Цвета взяты с кадров игры: снег, тёмно-синие плашки HUD, дерево домиков, золото монет. */
+:root {
+  --snow: #EEF3F8;
+  --ink: #1D2740;
+  --wood: #9A5A2C;
+  --wood-dark: #5E3417;
+  --gold: #F2C230;
+  --ice: #4A90C8;
+  --ice-dark: #234E78;
+  --muted: #7C8798;
+  --paper: #FFFFFF;
+}
+* { box-sizing: border-box; }
+/* Своё display у блока не должно отменять атрибут hidden. */
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+body { margin: 0; background: var(--snow); color: var(--ink); font: 16px/1.55 "Segoe UI", system-ui, sans-serif; }
+a { color: var(--ice-dark); }
+code { font-family: Consolas, "Cascadia Mono", monospace; font-size: .9em; background: rgba(29, 39, 64, .07); padding: 0 .3em; border-radius: 4px; overflow-wrap: anywhere; }
+pre { white-space: pre-wrap; word-break: break-word; background: rgba(29, 39, 64, .06); padding: 12px; border-radius: 8px; font-size: 13px; }
+pre code { background: none; padding: 0; }
+
+.topbar { position: sticky; top: 0; z-index: 5; display: flex; gap: 16px; align-items: center; padding: 10px 20px; background: var(--ink); color: var(--snow); }
+.topbar .brand { color: var(--snow); font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap; }
+.topbar .top-link, #menu { white-space: nowrap; }
+.topbar .hint { margin-left: auto; font-size: 13px; color: var(--gold); }
+.topbar .hint code { background: rgba(238, 243, 248, .12); color: var(--snow); }
+.topbar .top-link { color: var(--snow); text-decoration: none; font-weight: 600; padding: 5px 12px; border: 2px solid var(--gold); border-radius: 6px; background: transparent; font: inherit; cursor: pointer; }
+.topbar .top-link:hover, .topbar .top-link[aria-current="page"] { background: var(--gold); color: var(--ink); }
+#menu { display: none; background: var(--wood); color: var(--snow); border: 0; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+
+/* Тестирование: группы сворачиваются, у пункта — галочка, у группы — счётчик отмеченных. */
+.test-total { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 15px; }
+#test-reset { background: transparent; color: var(--wood); border: 2px solid var(--wood); border-radius: 6px; padding: 4px 12px; font: inherit; font-weight: 600; cursor: pointer; }
+#test-reset:hover { background: var(--wood); color: var(--snow); }
+.test-group { margin: 14px 0; border: 2px solid rgba(29, 39, 64, .12); border-radius: 8px; background: rgba(255, 255, 255, .5); }
+.test-group > summary { cursor: pointer; padding: 10px 14px; font-weight: 700; font-size: 18px; }
+.test-group .test-count { margin-left: 8px; font-size: 13px; font-weight: 600; color: var(--wood); }
+.test-group.test-finished .test-count { color: var(--ice); }
+.test-task { padding: 4px 16px 12px; border-top: 1px solid rgba(29, 39, 64, .08); }
+.test-task h4 { margin: 10px 0 6px; }
+.test-item { display: flex; gap: 10px; align-items: flex-start; padding: 5px 4px; border-radius: 6px; line-height: 1.4; cursor: pointer; }
+.test-item:hover { background: rgba(154, 90, 44, .08); }
+.test-item input { width: 18px; height: 18px; margin-top: 2px; flex: none; accent-color: var(--wood); }
+.test-item:has(input:checked) > span:first-of-type { color: rgba(29, 39, 64, .55); text-decoration: line-through; }
+.test-people { margin-left: auto; flex: none; font-size: 12px; font-weight: 700; color: var(--wood); white-space: nowrap; }
+
+/* Вопросы: карточка вопроса, общая галочка «Ответ дан»; отвеченный вопрос бледнеет. */
+.question { margin: 14px 0; padding: 4px 16px 10px; border: 2px solid rgba(29, 39, 64, .12); border-radius: 8px; background: rgba(255, 255, 255, .5); }
+.question h3 { margin: 10px 0 6px; }
+.question-status { margin: 4px 0; font-size: 13px; font-weight: 600; color: var(--wood); }
+.answer-mark { display: inline-flex; gap: 8px; align-items: center; padding: 4px 10px; border: 2px solid var(--wood); border-radius: 6px; font-weight: 700; color: var(--wood); cursor: pointer; }
+.answer-mark input { width: 18px; height: 18px; margin: 0; accent-color: var(--ice); }
+.question-answered { border-color: var(--ice); }
+.question-answered .answer-mark { border-color: var(--ice); color: var(--ice-dark); }
+.question-answered > .prose { opacity: .55; }
+
+html:not(.site-open) .topbar,
+html:not(.site-open) .layout,
+html:not(.site-open) #viewer { display: none !important; }
+.site-lock { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; padding: 24px; background: var(--snow); }
+html.site-open .site-lock { display: none !important; }
+.site-lock-card { display: grid; gap: 10px; width: min(420px, 100%); padding: 16px; background: var(--paper); border: 2px solid var(--ink); border-radius: 10px; }
+.site-lock-card p { margin: 0; }
+.site-lock-card label { display: grid; gap: 4px; font-weight: 700; }
+.site-lock-card input { font: inherit; padding: 8px 10px; border: 2px solid var(--ink); border-radius: 6px; }
+.site-lock-card button, .board-filters button { font: inherit; font-weight: 700; padding: 6px 14px; border: 2px solid var(--ink); border-radius: 6px; background: var(--paper); color: var(--ink); cursor: pointer; }
+.site-lock-card button { justify-self: start; background: var(--gold); }
+.site-lock-error { color: var(--wood-dark); font-weight: 700; }
+.board-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 14px; }
+.board-filters button[aria-pressed="true"] { background: var(--ink); color: var(--snow); }
+.board-columns { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; align-items: start; }
+.board-column { background: rgba(255, 255, 255, .55); border: 1px solid rgba(29, 39, 64, .1); border-radius: 10px; padding: 10px; }
+.board-column > h3 { margin: 0 0 8px; font-size: 15px; }
+.board-count { display: inline-block; min-width: 1.4em; padding: 0 6px; border-radius: 999px; background: var(--ink); color: var(--snow); font-size: 12px; text-align: center; }
+.board-card { margin: 0 0 8px; padding: 10px 12px; background: var(--paper); border: 1px solid rgba(29, 39, 64, .12); border-radius: 8px; }
+.board-card h3 { margin: 0 0 6px; font-size: 16px; }
+.board-meta, .board-lead, .board-empty { margin: 0 0 6px; }
+.board-empty { color: var(--muted); }
+.board-origin { margin: 0 0 6px; color: var(--muted); font-size: 13px; }
+.board-author { font-weight: 700; color: var(--ink); }
+.board-archive { color: var(--muted); font-size: 12px; }
+.person { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+.person[data-person="Богдан"] { background: var(--gold); }
+.person[data-person="Леонид"] { background: var(--ice); color: var(--snow); }
+.person[data-person="Георгий"] { background: var(--wood); color: var(--snow); }
+.board-shots { display: grid; gap: 8px; margin: 0 0 8px; }
+.board-shots img { width: 100%; height: auto; border-radius: 6px; }
+.board-card details { margin-top: 4px; }
+.board-card summary { cursor: pointer; font-weight: 600; }
+@media (max-width: 1100px) {
+  .board-columns { grid-template-columns: 1fr 1fr; }
+}
+
+.layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); }
+#sidebar { position: sticky; top: 52px; align-self: start; height: calc(100vh - 52px); overflow-y: auto; padding: 16px 12px; border-right: 2px solid rgba(29, 39, 64, .1); }
+#sidebar ul { list-style: none; margin: 0; padding: 0; }
+#sidebar li a { display: block; padding: 6px 10px; border-radius: 6px; color: var(--ink); text-decoration: none; font-weight: 600; }
+#sidebar li a:hover, #sidebar li a[aria-current="page"] { background: var(--ice-dark); color: var(--snow); }
+#sidebar ul ul a { font-weight: 400; font-size: 14px; padding-left: 22px; }
+/* Сворачиваемый раздел: стрелка браузера слева сворачивает, ссылка рядом открывает страницу раздела. */
+#sidebar summary { cursor: pointer; color: var(--ice-dark); font-size: 15px; padding: 0 0 0 6px; border-radius: 6px; }
+#sidebar summary:hover { background: rgba(74, 144, 200, .14); }
+#sidebar summary a { display: inline-block; width: calc(100% - 22px); vertical-align: middle; }
+
+main { padding: 8px 32px 64px; max-width: 1280px; }
+.part { padding-top: 16px; padding-bottom: 24px; }
+.part > h2 { font-size: 28px; margin: 12px 0 16px; color: var(--wood-dark); }
+.toc { margin: 0 0 18px; }
+.toc ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { display: inline-block; padding: 4px 10px; border-radius: 999px; background: var(--paper); color: var(--ice-dark); text-decoration: none; font-weight: 600; font-size: 14px; }
+.toc a:hover { background: var(--ice-dark); color: var(--snow); }
+h3 { color: var(--ice-dark); margin-top: 28px; }
+.prose { max-width: 900px; }
+.prose table { border-collapse: collapse; margin: 12px 0; display: block; overflow-x: auto; }
+.prose th, .prose td { border: 1px solid rgba(29, 39, 64, .2); padding: 6px 10px; text-align: left; vertical-align: top; }
+.prose th { background: rgba(74, 144, 200, .14); }
+.prose img { max-width: 100%; border-radius: 8px; }
+.prose.small, .small { font-size: 14px; }
+.doc { background: var(--paper); border-radius: 12px; padding: 4px 24px 16px; margin: 0 0 20px; box-shadow: 0 1px 0 rgba(29, 39, 64, .1); }
+.doc .path { margin: 12px 0 0; font-size: 13px; color: var(--muted); }
+.lead { font-size: 17px; max-width: 900px; }
+.source { font-size: 13px; color: var(--muted); }
+
+.gallery { margin: 8px 0 28px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.shot { margin: 0; background: var(--paper); border-radius: 10px; padding: 8px; }
+.shot img { width: 100%; height: 190px; object-fit: cover; border-radius: 6px; cursor: zoom-in; display: block; }
+.shot figcaption { font-size: 14px; padding: 6px 2px 0; }
+.shot details { font-size: 13px; }
+.shot summary { cursor: pointer; color: var(--ice-dark); }
+.tag { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 999px; background: rgba(74, 144, 200, .15); color: var(--ice-dark); }
+.hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin: 0 0 20px; }
+.hero img { width: 100%; border-radius: 10px; cursor: zoom-in; display: block; }
+
+/* Таблицы данных из кода игры. */
+.table-wrap { overflow-x: auto; margin: 12px 0; }
+.data { border-collapse: collapse; background: var(--paper); border-radius: 8px; min-width: 420px; }
+.data th, .data td { padding: 7px 12px; border-bottom: 1px solid rgba(29, 39, 64, .1); text-align: left; vertical-align: top; }
+.data thead th { background: rgba(74, 144, 200, .14); font-size: 14px; white-space: nowrap; }
+.data tbody th { white-space: nowrap; }
+.data td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.data .sub { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
+.coin { color: #B8860B; font-weight: 600; }
+.gem { color: #2E7FB8; font-weight: 600; }
+.rar { display: inline-block; padding: 1px 8px 1px 6px; border-radius: 6px; background: var(--paper); border-left: 6px solid var(--rar); font-weight: 600; font-size: 13px; white-space: nowrap; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.chips code { background: var(--paper); border: 1px solid rgba(29, 39, 64, .12); padding: 2px 8px; }
+
+/* Раздел «Стиль»: образцы цветов палитры. */
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 8px 0 16px; }
+.swatch { margin: 0; background: var(--paper); border-radius: 10px; overflow: hidden; box-shadow: 0 1px 0 rgba(29, 39, 64, .1); }
+.swatch .chip { display: block; height: 72px; border-bottom: 1px solid rgba(29, 39, 64, .12); }
+.swatch figcaption { padding: 8px 10px 10px; font-size: 14px; }
+.swatch figcaption .small { display: block; margin-top: 4px; font-size: 13px; color: var(--muted); }
+
+/* Раздел «Код»: модуль, вид и его первая строка-комментарий. */
+.modules { list-style: none; padding: 0; margin: 8px 0 20px; display: grid; gap: 6px; }
+.modules li { background: var(--paper); border-radius: 8px; padding: 6px 12px; display: grid; grid-template-columns: minmax(180px, 280px) 90px 60px minmax(0, 1fr); gap: 10px; align-items: baseline; }
+.modules .kind { font-size: 12px; color: var(--muted); }
+.modules .lines { font-size: 12px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+.modules .note { font-size: 14px; }
+.modules .note.empty { color: var(--muted); }
+
+#viewer { border: 0; padding: 0; max-width: 96vw; max-height: 96vh; background: var(--ink); color: var(--snow); border-radius: 10px; }
+#viewer::backdrop { background: rgba(29, 39, 64, .8); }
+.viewer-bar { display: flex; gap: 12px; align-items: center; padding: 8px 12px; }
+.viewer-bar p { margin: 0; flex: 1; font-size: 14px; word-break: break-all; }
+.viewer-bar a { color: var(--gold); }
+.viewer-bar button { background: var(--wood); color: var(--snow); border: 0; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+#viewer img { display: block; max-width: 94vw; max-height: calc(96vh - 52px); }
+
+.pages { list-style: none; padding: 0; display: grid; gap: 10px; }
+.pages > li { background: rgba(255, 255, 255, .6); border: 1px solid rgba(29, 39, 64, .1); border-radius: 10px; padding: 10px 14px; }
+.pages > li > a { font-weight: 700; font-size: 18px; }
+
+.mechanic { margin: 12px 0; border: 2px solid rgba(29, 39, 64, .12); border-radius: 10px; background: rgba(255, 255, 255, .6); }
+.mechanic > summary { cursor: pointer; padding: 12px 16px; font-weight: 700; font-size: 20px; }
+.mechanic-body { padding: 0 16px 14px; }
+.mechanic-body .facts { margin: 8px 0 12px; }
+.flow { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 14px; padding: 0; list-style: none; }
+.flow li { display: flex; flex-direction: column; gap: 2px; flex: 1 1 140px; margin: 0; padding: 8px 10px; background: var(--paper); border: 2px solid var(--ink); border-radius: 8px; }
+.flow b { font-size: 15px; }
+.flow span { color: var(--muted); font-size: 13px; }
+.bars { margin: 8px 0 14px; }
+.bars-title { margin: 0 0 8px; font-weight: 700; }
+.bar { display: grid; grid-template-columns: minmax(7em, 11em) minmax(0, 1fr) auto; gap: 8px; align-items: center; margin: 6px 0; }
+.bar-track { height: 14px; background: rgba(29, 39, 64, .08); border-radius: 7px; overflow: hidden; }
+.bar-fill { display: block; height: 100%; background: var(--ice); }
+.bars-zone .bar-fill, .bars-tool .bar-fill { background: var(--wood); }
+.bar-value { font-weight: 700; white-space: nowrap; }
+/* Таймлайн: день — аккордеон, внутри темы со списком сделанного, ссылками и коммитами. */
+.day { margin: 12px 0; border: 2px solid rgba(29, 39, 64, .12); border-radius: 10px; background: rgba(255, 255, 255, .6); }
+.day > summary { cursor: pointer; padding: 12px 16px; font-size: 17px; }
+.day-date { font-weight: 700; font-size: 20px; margin-right: 6px; }
+.day-summary { color: var(--muted); }
+.day-body { padding: 0 16px 14px; }
+.day-topic { margin: 10px 0 0; padding: 10px 0 0; border-top: 1px solid rgba(29, 39, 64, .12); }
+.day-topic h3 { margin: 0 0 6px; font-size: 18px; }
+.day-done { margin: 0 0 8px; padding-left: 20px; }
+.day-links { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 8px; padding: 0; list-style: none; }
+.day-links li { margin: 0; }
+.day-links a { display: inline-block; padding: 3px 8px; background: var(--paper); border: 1px solid rgba(29, 39, 64, .16); border-radius: 6px; text-decoration: none; font-size: 14px; }
+.day-links a:hover { border-color: var(--ice-dark); }
+.day-commits { margin: 0; color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
+.board-card { scroll-margin-top: 70px; }
+.board-card:target { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+@media (max-width: 860px) {
+  #menu { display: inline-block; }
+  /* Кнопок больше, чем ширина телефона: шапка листается вбок, страница остаётся на месте. */
+  .topbar { gap: 10px; padding: 10px 12px; overflow-x: auto; scrollbar-width: thin; }
+  .topbar .top-link { padding: 4px 8px; }
+  /* На самых узких экранах сжимается название, кнопки остаются целыми. */
+  .topbar .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .topbar .top-link, #menu { flex: none; }
+  .topbar .hint { display: none; }
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  #sidebar { display: none; position: fixed; top: 52px; left: 0; right: 0; height: auto; max-height: 70vh; background: var(--snow); z-index: 4; border-bottom: 2px solid var(--ink); }
+  #sidebar.open { display: block; }
+  main { padding: 8px 16px 48px; }
+  .doc { padding: 4px 14px 12px; }
+  .modules li { grid-template-columns: minmax(0, 1fr) auto; }
+  .modules .note { grid-column: 1 / -1; }
+  .modules .lines { display: none; }
+  .board-columns { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 1100px) {
+  .part.with-toc { display: grid; grid-template-columns: minmax(0, 1fr) 230px; column-gap: 28px; align-items: start; }
+  .part.with-toc > h2, .part.with-toc > .part-body { grid-column: 1; }
+  .part.with-toc > .toc { grid-column: 2; grid-row: 1 / span 2; position: sticky; top: 68px; max-height: calc(100vh - 84px); overflow: auto; margin: 18px 0 0; }
+  .part.with-toc > .toc ul { display: grid; gap: 2px; }
+  .part.with-toc > .toc a { display: block; border-radius: 6px; background: transparent; padding: 5px 8px; }
+}
+/* Подсвеченный блок в документе: открытый вопрос владельцу и другие важные пометки. */
+.doc blockquote { margin: 14px 0; padding: 6px 16px; background: rgba(242, 194, 48, .16); border-left: 4px solid var(--gold); border-radius: 8px; }
+</style>
+<script>try{if(localStorage.getItem("clean-a-snow-guide-open")==="1")document.documentElement.classList.add("site-open")}catch(e){}</script>
+</head>
+<body>
+<div id="site-lock" class="site-lock" role="dialog" aria-modal="true" aria-labelledby="site-lock-title">
+<form id="site-lock-form" class="site-lock-card">
+<p id="site-lock-title">Введите пароль, чтобы открыть страницы.</p>
+<label>Пароль <input name="password" type="password" autocomplete="current-password" required autofocus></label>
+<button type="submit">Открыть</button>
+<p id="site-lock-error" class="site-lock-error" hidden>Пароль не подошёл.</p>
+</form>
+</div>
+<header class="topbar"><button id="menu" type="button" aria-expanded="false" aria-controls="sidebar">Разделы</button><a class="brand" href="index.html">Clean a Snow</a><a class="top-link" href="testing.html">Тестирование</a><a class="top-link" href="board.html">Доска</a><a class="top-link" href="analysis.html">Анализ</a><a class="top-link" href="mechanics.html">Механики</a><a class="top-link" href="ideas.html">Идеи</a><a class="top-link" href="questions.html">Вопросы</a><a class="top-link" href="vfx.html">VFX</a><a class="top-link" href="timeline.html">Таймлайн</a><button id="site-close" class="top-link" type="button">Закрыть</button><span class="hint">Собрано из файлов репозитория: <code>node tools/guide/build.mjs</code></span></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Разделы"><ul><li><a href="index.html">Об игре</a></li><li><a href="place.html">Плейс и запуск</a></li><li><a href="style.html">Стиль</a></li><li><a href="economy.html">Экономика</a></li><li><a href="weapons.html">Оружие</a></li><li><a href="code.html">Код</a></li><li><details class="group" data-group="galleries.html" open><summary><a href="galleries.html">Кадры и картинки</a></summary><ul><li><a href="gallery-bugs.html">Кадры багов</a></li><li><a href="gallery-frames.html">Кадры игры</a></li><li><a href="gallery-ideas.html">Референсы идей</a></li><li><a href="gallery-palette-preview.html">Палитра</a></li><li><a href="gallery-refs.html">refs</a></li><li><a href="gallery-refs-farmhouse-walls.html">Стены фермерского дома</a></li><li><a href="gallery-refs-run-hotbar.html">refs/run-hotbar</a></li><li><a href="gallery-refs-snow-clear.html">refs/snow-clear</a></li><li><a href="gallery-refs-snow-look.html">refs/snow-look</a></li><li><a href="gallery-refs-snow-smooth.html">refs/snow-smooth</a></li><li><a href="gallery-vfx.html">vfx</a></li><li><a href="gallery-vfx-reviews.html">vfx/reviews</a></li></ul></details></li><li><details class="group" data-group="docs.html" open><summary><a href="docs.html">Документы</a></summary><ul><li><a href="doc-architecture-summary.html">architecture/summary.md</a></li><li><a href="doc-checks-server.html">checks-server.md</a></li><li><a href="doc-clearing-audit.html">clearing-audit.md</a></li><li><a href="doc-held-items-audit.html">held-items-audit.md</a></li><li><a href="doc-mechanics-audit.html">mechanics-audit.md</a></li><li><a href="doc-publish-places.html">publish-places.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-catalog-answers.html">superpowers/plans/2026-11-10-catalog-answers.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-client-actions.html">superpowers/plans/2026-11-10-client-actions.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-economy.html">superpowers/plans/2026-11-10-data-economy.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-garden-animals-vehicles.html">superpowers/plans/2026-11-10-data-garden-animals-vehicles.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-session-server.html">superpowers/plans/2026-11-10-data-session-server.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-held-items-audit.html">superpowers/plans/2026-11-10-held-items-audit.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-map-bake.html">superpowers/plans/2026-11-10-map-bake.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-movement-check.html">superpowers/plans/2026-11-10-movement-check.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-packet-limits.html">superpowers/plans/2026-11-10-packet-limits.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-anchors.html">superpowers/plans/2026-11-10-place-anchors.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-role-world.html">superpowers/plans/2026-11-10-place-role-world.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-processor-intake.html">superpowers/plans/2026-11-10-processor-intake.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-processor-queue.html">superpowers/plans/2026-11-10-processor-queue.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-profile-store-core.html">superpowers/plans/2026-11-10-profile-store-core.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-receipt-ledger.html">superpowers/plans/2026-11-10-receipt-ledger.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-server-lifecycle.html">superpowers/plans/2026-11-10-server-lifecycle.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-areas.html">superpowers/plans/2026-11-10-snow-areas.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-break-burst.html">superpowers/plans/2026-11-10-snow-break-burst.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-break-like-reference.html">superpowers/plans/2026-11-10-snow-break-like-reference.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-cell-strength.html">superpowers/plans/2026-11-10-snow-cell-strength.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-clap.html">superpowers/plans/2026-11-10-snow-clap.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-pillow-layers.html">superpowers/plans/2026-11-10-snow-pillow-layers.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-response.html">superpowers/plans/2026-11-10-snow-response.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-starter-spoon.html">superpowers/plans/2026-11-10-starter-spoon.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-plan.html">superpowers/plans/2026-11-10-strike-plan.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-rules.html">superpowers/plans/2026-11-10-strike-rules.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-two-places.html">superpowers/plans/2026-11-10-two-places.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-wallet.html">superpowers/plans/2026-11-10-wallet.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-data-client-copies.html">superpowers/plans/2026-11-11-data-client-copies.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-farmhouse-shop-stands.html">superpowers/plans/2026-11-11-farmhouse-shop-stands.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-guide-json-only.html">superpowers/plans/2026-11-11-guide-json-only.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-one-snow-strength.html">superpowers/plans/2026-11-11-one-snow-strength.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-place-sources.html">superpowers/plans/2026-11-11-place-sources.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-remove-garden.html">superpowers/plans/2026-11-11-remove-garden.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-run-hotbar.html">superpowers/plans/2026-11-11-run-hotbar.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-snow-clear-wave-flakes.html">superpowers/plans/2026-11-11-snow-clear-wave-flakes.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-weapon-rule.html">superpowers/plans/2026-11-11-weapon-rule.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-catalog-answers-design.html">superpowers/specs/2026-11-10-catalog-answers-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-client-actions-design.html">superpowers/specs/2026-11-10-client-actions-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-economy-design.html">superpowers/specs/2026-11-10-data-economy-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-garden-animals-vehicles-design.html">superpowers/specs/2026-11-10-data-garden-animals-vehicles-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-session-server-design.html">superpowers/specs/2026-11-10-data-session-server-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-held-items-audit-design.html">superpowers/specs/2026-11-10-held-items-audit-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-map-bake-design.html">superpowers/specs/2026-11-10-map-bake-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-movement-check-design.html">superpowers/specs/2026-11-10-movement-check-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-packet-limits-design.html">superpowers/specs/2026-11-10-packet-limits-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-anchors-design.html">superpowers/specs/2026-11-10-place-anchors-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-role-world-design.html">superpowers/specs/2026-11-10-place-role-world-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-processor-intake-design.html">superpowers/specs/2026-11-10-processor-intake-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-processor-queue-design.html">superpowers/specs/2026-11-10-processor-queue-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-profile-store-core-design.html">superpowers/specs/2026-11-10-profile-store-core-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-receipt-ledger-design.html">superpowers/specs/2026-11-10-receipt-ledger-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-server-lifecycle-design.html">superpowers/specs/2026-11-10-server-lifecycle-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-areas-design.html">superpowers/specs/2026-11-10-snow-areas-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-break-burst-design.html">superpowers/specs/2026-11-10-snow-break-burst-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-break-like-reference-design.html">superpowers/specs/2026-11-10-snow-break-like-reference-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-cell-strength-design.html">superpowers/specs/2026-11-10-snow-cell-strength-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-pillow-layers-design.html">superpowers/specs/2026-11-10-snow-pillow-layers-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-puff-design.html">superpowers/specs/2026-11-10-snow-puff-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-response-design.html">superpowers/specs/2026-11-10-snow-response-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-starter-spoon-design.html">superpowers/specs/2026-11-10-starter-spoon-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-plan-design.html">superpowers/specs/2026-11-10-strike-plan-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-rules-design.html">superpowers/specs/2026-11-10-strike-rules-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-two-places-design.html">superpowers/specs/2026-11-10-two-places-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-wallet-design.html">superpowers/specs/2026-11-10-wallet-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-bag-full-design.html">superpowers/specs/2026-11-11-bag-full-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-data-client-copies-design.html">superpowers/specs/2026-11-11-data-client-copies-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-farmhouse-shop-stands-design.html">superpowers/specs/2026-11-11-farmhouse-shop-stands-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-guide-json-only-design.html">superpowers/specs/2026-11-11-guide-json-only-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-one-snow-strength-design.html">superpowers/specs/2026-11-11-one-snow-strength-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-place-sources-design.html">superpowers/specs/2026-11-11-place-sources-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-remove-garden-design.html">superpowers/specs/2026-11-11-remove-garden-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-run-hotbar-design.html">superpowers/specs/2026-11-11-run-hotbar-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-shared-question-marks-design.html">superpowers/specs/2026-11-11-shared-question-marks-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-snow-clear-wave-flakes-design.html">superpowers/specs/2026-11-11-snow-clear-wave-flakes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-snow-garden-design.html">superpowers/specs/2026-11-11-snow-garden-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-weapon-rule-design.html">superpowers/specs/2026-11-11-weapon-rule-design.md</a></li><li><a href="doc-vfx-roblox.html" aria-current="page">vfx-roblox.md</a></li></ul></details></li></ul></nav>
+<main>
+<section class="part with-toc"><h2>vfx-roblox.md</h2><nav class="toc" aria-label="На этой странице"><ul><li><a href="#particleemitter">ParticleEmitter</a></li><li><a href="#beam-и-trail">Beam и Trail</a></li><li><a href="#attachment">Attachment</a></li><li><a href="#highlight">Highlight</a></li><li><a href="#billboardgui-и-surfacegui-как-спрайты">BillboardGui и SurfaceGui как спрайты</a></li><li><a href="#decal-и-texture">Decal и Texture</a></li><li><a href="#meshpart-для-осколков">MeshPart для осколков</a></li><li><a href="#tweenservice-и-lerp">TweenService и Lerp</a></li><li><a href="#пулы-объектов">Пулы объектов</a></li><li><a href="#лимиты-и-цена">Лимиты и цена</a></li><li><a href="#качество-графики-и-меньше-движения">Качество графики и «меньше движения»</a></li><li><a href="#вспышка-разлёт-затухание">Вспышка — разлёт — затухание</a></li><li><a href="#текстуры">Текстуры</a></li></ul></nav><div class="part-body"><article class="doc prose" id="doc-vfx-roblox"><p class="path">docs/vfx-roblox.md</p><h1>Инструменты эффектов в Roblox</h1>
+<p>Как устроены и чем ограничены средства Roblox для эффектов и где каждое пригодится в Clean a Snow. Разбор к странице <a href="vfx.html">VFX</a>, карточка <code>c5759d</code>, 11.11.2026.</p>
+<p>Как читать: «Документация» — то, что прямо написано на create.roblox.com (ссылка в конце пункта). «Мнение» — пост разработчика на DevForum: проверенным фактом это не считается. Чего на страницах документации нет, так и помечено. Свойства, которых нет в справочнике, здесь не приводятся.</p>
+<h2 id="particleemitter">ParticleEmitter</h2>
+<p>Документация (<a href="https://create.roblox.com/docs/effects/particle-emitters">руководство</a>, <a href="https://create.roblox.com/docs/reference/engine/classes/ParticleEmitter">справочник</a>):</p>
+<ul>
+<li>Рождение. На части частицы рождаются внутри её объёма или формы, на <code>Attachment</code> — из точки крепления. Формы <code>Sphere</code> и <code>Cylinder</code> на креплении рисуются неверно, их ставят только на часть. Формы: <code>Box</code>, <code>Sphere</code>, <code>Cylinder</code>, <code>Disc</code>; <code>ShapeStyle</code> — объём или поверхность; <code>ShapeInOut</code> — наружу, внутрь или в обе стороны.</li>
+<li>Поток. <code>Rate</code> — частиц в секунду, пока эмиттер включён. Один эмиттер даёт до 400 частиц в секунду, на телефоне до 100. <code>Lifetime</code> не длиннее 20 секунд. Живых частиц примерно <code>Rate × Lifetime</code>. Смена <code>Rate</code> и <code>Lifetime</code> не трогает уже живые частицы.</li>
+<li>Разовый выброс. <code>Emit(n)</code> сразу выпускает <code>n</code> частиц, без числа — 16. Для удара <code>Rate = 0</code>, а число задаёт код. <code>Clear()</code> мгновенно стирает живые частицы. Выключенный <code>Enabled</code> не рождает новые, старые доживают свой срок.</li>
+<li>Движение. <code>Speed</code> и <code>SpreadAngle</code> задаются при рождении. <code>Acceleration</code> — ускорение в стадах за секунду в квадрате по осям мира, действует и на живые частицы. <code>Drag</code> — за сколько секунд частица теряет половину скорости (экспоненциально); отрицательный разгоняет. <code>WindAffectsDrag</code> — частицы слушают <code>Workspace.GlobalWind</code>, только если <code>Drag &gt; 0</code>. <code>VelocityInheritance</code> от 0 до 1 — сколько скорости родительской части частица унаследует. <code>LockedToPart</code> — живые частицы едут вместе с частью.</li>
+<li>Время. <code>TimeScale</code> от 0 до 1 — скорость всего эффекта; 0 замораживает. Так снимают кадры эффекта в остановке.</li>
+<li>Вид. <code>Size</code>, <code>Transparency</code>, <code>Color</code> — кривые по жизни частицы. <code>Squash</code> сжимает по одной оси и растягивает по другой: капля, искра, полоса от удара. <code>Orientation</code>: к камере (обычно), к камере с вертикалью мира, вдоль скорости, поперёк скорости. <code>ZOffset</code> сдвигает частицы к камере или от неё в стадах, не меняя размера на экране: так облако не проваливается в снег, а дым ложится позади огня.</li>
+<li>Свет. <code>LightEmission</code> 0 — обычное смешение, 1 — сложение с фоном (светится даже в тени). <code>LightInfluence</code> от 0 до 1 — насколько свет сцены красит частицу; у созданного кодом эмиттера по умолчанию 0, у вставленного в Studio — 1. <code>Brightness</code> работает, только когда <code>LightInfluence = 0</code>.</li>
+<li>Flipbook. <code>FlipbookLayout</code>: <code>None</code>, <code>Grid2x2</code> (4 кадра), <code>Grid4x4</code> (16), <code>Grid8x8</code> (64), <code>Custom</code> с <code>FlipbookSizeX</code> и <code>FlipbookSizeY</code> (допустимый диапазон в документации не указан). <code>FlipbookMode</code>: <code>Loop</code>, <code>OneShot</code> (один проход за жизнь частицы), <code>PingPong</code>, <code>Random</code>. <code>FlipbookFramerate</code> не больше 30 кадров в секунду. <code>FlipbookStartRandom</code> — каждая частица со случайного кадра. Между кадрами нужен прозрачный зазор, для мип-фильтрации — шире. Пример в документации — атлас 1024×1024 с сеткой 8×8. На слабой памяти клиент сам выключает flipbook, особенно на старых телефонах.</li>
+<li>Цена. Размер бьёт по заполнению экрана, число частиц — по перерисовке одних пикселей, особенно когда частицы перекрываются. Одна текстура на много эмиттеров дешевле разных. Вид частиц меняется с качеством графики; проверять на самом низком и самом высоком уровне редактора.</li>
+</ul>
+<p>Мнение: Питер Макнилл (Fruit Ninja, Jetpack Joyride, Candy Crush; консультирует команды Roblox) пишет, что каждый эмиттер на экране — один вызов отрисовки, сколько бы частиц в нём ни было, и луч тоже (<a href="https://devforum.roblox.com/t/real-world-building-and-scripting-optimization-for-roblox/3127146">пост, приложение C</a>). В ветке <a href="https://devforum.roblox.com/t/improve-the-performance-of-particleemitters/3547121">о производительности частиц</a> Hexcede намерил, что 200–300 неподвижных частиц на его машине роняют кадр ниже 10 в секунду, а YuNoGuy123 на другой машине держал около 20 000 частиц на 120 кадрах. Вывод из спора: дорого заполнение экрана крупными перекрытыми частицами, а не само число частиц. В ветке <a href="https://devforum.roblox.com/t/how-to-optimize-vfx-and-retain-quality-at-low-graphics/2804870">о VFX на низкой графике</a> спорят, режет ли движок <code>Emit(n)</code> на низком качестве; замера там нет.</p>
+<p>Где у нас:</p>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Как применить</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Удар</td>
+<td>Уже так: облачко, облачка помельче и две струи брызг на пуле из 6 якорей, <code>Rate = 0</code>, <code>Emit</code> по числу (<code>MapSnowFeedback</code>, <code>SnowPunchParticles</code>). У брызг <code>Drag</code> и <code>Acceleration</code> вниз — дуга и торможение. <code>Squash</code> для брызг ещё не пробовали: штрих скорости без новой текстуры</td>
+</tr>
+<tr>
+<td>Слом снега</td>
+<td>Пыль слома куска — новый эмиттер на каждый слом, <code>Emit(14)</code> без учёта качества (<code>SnowIslandFx</code>). Перевести на пул и число по профилю</td>
+</tr>
+<tr>
+<td>Сдача</td>
+<td>Сейчас летят части с твином (<code>WorldFxController</code>). Короткий <code>Emit</code> облачка у приёмника читается дешевле и без новых частей</td>
+</tr>
+<tr>
+<td>Награды</td>
+<td>Монеты — части по дуге. Блеск у счётчика монет можно сделать <code>Emit</code> из крепления на кнопке HUD, если нужен 3D-блеск</td>
+</tr>
+<tr>
+<td>Полная сумка, дорожка к продаже</td>
+<td>Частицы тут не главное: лучше <code>Beam</code> и картинка (ниже)</td>
+</tr>
+<tr>
+<td>Снегопад</td>
+<td>Два объёма за камерой, <code>Rate</code> по ветру (<code>WeatherController</code>). Живых частиц много: около 790 в дальнем слое на компьютере (замер на странице VFX)</td>
+</tr>
+</tbody></table>
+<h2 id="beam-и-trail">Beam и Trail</h2>
+<p>Документация (<a href="https://create.roblox.com/docs/effects/beams">лучи</a>, <a href="https://create.roblox.com/docs/reference/engine/classes/Beam">Beam</a>, <a href="https://create.roblox.com/docs/effects/trails">следы</a>, <a href="https://create.roblox.com/docs/reference/engine/classes/Trail">Trail</a>):</p>
+<ul>
+<li><code>Beam</code> рисуется между <code>Attachment0</code> и <code>Attachment1</code>; луч и оба крепления должны лежать в <code>Workspace</code>. Без одного крепления текстура не рисуется. Кривая — кубическая Безье: <code>CurveSize0</code> уводит вторую точку по оси X первого крепления, <code>CurveSize1</code> — по оси −X второго. <code>Segments</code> по умолчанию 10, максимум не указан; для <code>n</code> точек цвета и прозрачности нужно не меньше <code>n − 1</code> сегментов. <code>FaceCamera</code> поворачивает плоскую ленту к камере. <code>Width0</code>/<code>Width1</code> — ширина на концах. <code>TextureMode</code> <code>Wrap</code>/<code>Static</code> повторяет текстуру через каждые <code>TextureLength</code> стадов, <code>Stretch</code> — ровно <code>TextureLength</code> раз; <code>TextureSpeed</code> двигает её. <code>LightEmission</code> и <code>LightInfluence</code> от 0 до 1, <code>Brightness</code> до 10 000 при <code>LightInfluence &lt; 1</code>. <code>ZOffset</code> разводит лучи на одних креплениях.</li>
+<li>Качество графики. Справочник лучей говорит, что вид зависит от настроек устройства. Страница <a href="https://create.roblox.com/docs/performance-optimization/design">Design for performance</a> говорит, что лучи держат число сегментов на всех уровнях качества. Макнилл (мнение, 2024) писал о «простых лучах» на низком качестве. Расходятся; важный силуэт не стоит строить только на большом числе сегментов.</li>
+<li><code>Trail</code> тоже держат два крепления: расстояние между ними — ширина. <code>Lifetime</code> сегмента от 0,01 до 20 с, по умолчанию 2. <code>MinLength</code> — без движения на это расстояние новый сегмент не рождается. <code>MaxLength</code> 0 — без предела. <code>WidthScale</code> от 0 до 1 по длине. Смена любого крепления во время рисования стирает нарисованное. <code>Enabled = false</code> останавливает новые сегменты, старые доживают; <code>Clear()</code> стирает сразу, но рисование не останавливает. Про телепорт в документации ничего нет; длинную «спицу» после переноса персонажа убирают выключением и <code>Clear()</code>.</li>
+</ul>
+<p>Где у нас:</p>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Как применить</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Удар</td>
+<td>Уже есть: короткий кремовый след лопаты, <code>Lifetime 0,08</code>, <code>MaxLength 3</code> (<code>ExperienceController</code>)</td>
+</tr>
+<tr>
+<td>Дорожка к продаже</td>
+<td><code>Beam</code> с бегущей текстурой стрелок (<code>TextureSpeed</code>, <code>TextureMode = Wrap</code>) от игрока до приёмника — один объект вместо ряда частей. Ленту класть на землю (<code>FaceCamera = false</code>)</td>
+</tr>
+<tr>
+<td>Полная сумка</td>
+<td>Луч от сумки к приёмнику — та же дорожка</td>
+</tr>
+<tr>
+<td>Награды</td>
+<td>След монеты, летящей к счётчику, если монета — часть в мире</td>
+</tr>
+<tr>
+<td>Снегопад</td>
+<td>Уже есть: порывы ветра — 2 ленты <code>Beam</code> с <code>FaceCamera</code>, не больше двух порывов сразу (<code>WeatherController</code>)</td>
+</tr>
+</tbody></table>
+<h2 id="attachment">Attachment</h2>
+<p>Документация (<a href="https://create.roblox.com/docs/reference/engine/classes/Attachment">Attachment</a>): у крепления есть <code>Position</code>, <code>Orientation</code>, <code>Axis</code>, <code>SecondaryAxis</code>, <code>WorldCFrame</code>. Описаний свойств на странице справочника нет. Что известно из страниц эффектов: эмиттер на креплении рождает из точки; <code>Beam</code> и <code>Trail</code> без двух креплений не рисуются; ось X крепления задаёт изгиб луча; <code>BillboardGui</code> может держаться за крепление (<code>Adornee</code>).</p>
+<p>Где у нас: дешёвый способ двигать точку эффекта — переставлять крепление внутри одной невидимой заякоренной части вместо новой части. Так сделаны снежинки (24 крепления на одном якоре, <code>SnowFlakes</code>) и струи брызг. Для дорожки к продаже крепления луча ставят на игрока и на приёмник.</p>
+<h2 id="highlight">Highlight</h2>
+<p>Документация (<a href="https://create.roblox.com/docs/effects/highlighting">подсветка</a>, <a href="https://create.roblox.com/docs/reference/engine/classes/Highlight">Highlight</a>):</p>
+<ul>
+<li>На клиенте рисуется не больше 255 подсветок одновременно, лишние молча пропускаются. Выключенная подсветка не рисуется, но место из 255 занимает — постоянно выключенные удаляют.</li>
+<li><code>DepthMode</code>: <code>AlwaysOnTop</code> — видна сквозь стены, <code>Occluded</code> — только не загороженная. <code>FillTransparency</code> и <code>OutlineTransparency</code> от 0 до 1.</li>
+<li>Цена. Первая видимая подсветка на экране стоит больше всего — до 1 мс работы видеокарты на телефоне. На телефоне дороже подсветка, которая закрывает больше экрана. Невидимая (выключенная или полностью прозрачная) не стоит ничего. Добавить или удалить подсветку — перестройка геометрии; менять свойства — дёшево.</li>
+<li>Обведённые объекты не вкладывают друг в друга: подсветки рисуются от дальней к ближней, вложенные спорят.</li>
+</ul>
+<p>Где у нас:</p>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Как применить</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Подсказка цели</td>
+<td>Уже так: золотая заливка первой цели и лотка (<code>SnowGuide</code>) и стенд лопаты (<code>SnowShopGuide</code>), <code>AlwaysOnTop</code></td>
+</tr>
+<tr>
+<td>Удар</td>
+<td><code>WorldFxController</code> создаёт новую подсветку на каждый удар по старым узлам снега и удаляет через 0,2 с. По документации это перестройка геометрии на каждый удар. У карты снега этот путь не срабатывает; если вернётся — держать одну подсветку и менять <code>Adornee</code></td>
+</tr>
+<tr>
+<td>Полная сумка</td>
+<td>Подсветка приёмника, пока сумка полна: одна, создаётся заранее, включается прозрачностью</td>
+</tr>
+</tbody></table>
+<h2 id="billboardgui-и-surfacegui-как-спрайты">BillboardGui и SurfaceGui как спрайты</h2>
+<p>Документация (<a href="https://create.roblox.com/docs/reference/engine/classes/BillboardGui">BillboardGui</a>, <a href="https://create.roblox.com/docs/reference/engine/classes/SurfaceGui">SurfaceGui</a>):</p>
+<ul>
+<li><code>BillboardGui</code> всегда смотрит в камеру. <code>Size</code> в масштабе — размер в стадах, в пикселях — на экране. <code>Adornee</code> — часть или крепление. <code>StudsOffset</code> — сдвиг в стадах, <code>ExtentsOffset</code> — в половинах размера объекта. <code>MaxDistance</code> 0 или бесконечность — без предела. <code>AlwaysOnTop</code> рисует поверх мира и обнуляет влияние света. <code>LightInfluence</code> от 0 до 1, <code>Brightness</code> до 1000.</li>
+<li><code>SurfaceGui</code> лежит на грани части. <code>SizingMode</code>: по <code>PixelsPerStud</code> или фиксированный <code>CanvasSize</code>. Большой <code>PixelsPerStud</code> на большой грани дорог. <code>MaxDistance</code> по умолчанию 1000.</li>
+<li>Мнение. В ветке <a href="https://devforum.roblox.com/t/improve-the-performance-of-particleemitters/3547121">о частицах</a> одни пишут, что билборды в сотни раз дешевле частиц, другие — что 12–15 тысяч билбордов неиграбельны из-за растеризации интерфейса. Вывод: десятки — нормально, тысячи — нет.</li>
+</ul>
+<p>Где у нас: снежинки — пул из 24 <code>BillboardGui</code> с картинкой из <code>EditableImage</code>, шаг на <code>Heartbeat</code> (<code>SnowFlakes</code>). Плюс против частиц: каждая снежинка живёт по своей траектории и крутится, а картинку рисует код. Минус: каждый кадр код двигает каждый билборд. «+N» награды, надпись «полная сумка» над игроком и цифры над приёмником — тоже <code>BillboardGui</code>. Плоское кольцо или пятно на земле удобно делать <code>SurfaceGui</code> на тонкой части: одна картинка, размер задаёт часть (так была сделана белая волна до решения владельца 11.11.2026 заменить её эффектом куска).</p>
+<h2 id="decal-и-texture">Decal и Texture</h2>
+<p>Документация (<a href="https://create.roblox.com/docs/reference/engine/classes/Decal">Decal</a>, <a href="https://create.roblox.com/docs/reference/engine/classes/Texture">Texture</a>, <a href="https://create.roblox.com/docs/performance-optimization/improve">производительность</a>):</p>
+<ul>
+<li><code>Decal</code> растягивает картинку на грань; <code>Texture</code> повторяет её плиткой: <code>StudsPerTileU</code>/<code>StudsPerTileV</code> — размер плитки в стадах, <code>OffsetStudsU</code>/<code>OffsetStudsV</code> — сдвиг (им можно двигать текстуру по грани). <code>Color3</code> только красит: свободно менять цвет можно у белой картинки. <code>ZIndex</code> — порядок наклеек на одной грани.</li>
+<li>Цена: наклейки и текстуры плохо объединяются в пакеты и добавляют вызовы отрисовки.</li>
+</ul>
+<p>Где у нас: след от лопаты или пятно на снегу — <code>Decal</code> на тонкой части, но частые пятна лучше пулом. Бегущие стрелки дорожки к продаже можно сделать <code>Texture</code> на плоской ленте со сдвигом <code>OffsetStudsV</code> каждый кадр — альтернатива лучу.</p>
+<h2 id="meshpart-для-осколков">MeshPart для осколков</h2>
+<p>Документация (<a href="https://create.roblox.com/docs/performance-optimization/improve">производительность</a>, <a href="https://create.roblox.com/docs/reference/engine/classes/EditableImage">EditableImage</a>, <a href="https://create.roblox.com/docs/reference/engine/classes/AssetService">AssetService</a>):</p>
+<ul>
+<li>Одинаковые сетки (тот же меш, тот же вид поверхности или материал) движок рисует одним пакетом. Поэтому осколки одной сетки и одного материала дешевле разных.</li>
+<li><code>EditableMesh</code> и <code>EditableImage</code> создаются кодом через <code>AssetService</code>. У клиента строгий бюджет памяти на них; когда он исчерпан, создание возвращает <code>nil</code>. <code>EditableImage</code> не больше 1024×1024. В опубликованной игре они по умолчанию не работают: нужен переключатель «Enable Mesh / Image APIs» в Creator Dashboard (или «Allow Mesh / Image APIs» в настройках игры в Studio). Неизменяемую картинку или сетку дешевле перевести в обычный контент (<code>CreateDataModelContentAsync</code>) и держать её копии.</li>
+</ul>
+<p>Где у нас: кубики, комки и облачка слома — сетки, построенные кодом (<code>SnowBitMeshes</code>), один шаблон <code>MeshPart</code> на вид, пулы клонов. До готовности сеток — простые <code>Part</code>. Снег поля и снежинки тоже строит код, так что переключатель Mesh / Image API в опубликованной игре обязателен: без него нет ни снега, ни снежинок.</p>
+<h2 id="tweenservice-и-lerp">TweenService и Lerp</h2>
+<p>Документация (<a href="https://create.roblox.com/docs/reference/engine/classes/TweenService">TweenService</a>, <a href="https://create.roblox.com/docs/ui/animation">анимация UI</a>, <a href="https://create.roblox.com/docs/performance-optimization/improve">производительность</a>):</p>
+<ul>
+<li><code>TweenService:Create(объект, TweenInfo, цели)</code> плавно меняет свойства: положение, размер, цвет, прозрачность. <code>TweenInfo</code>: время, вид кривой (по умолчанию <code>Quad</code>), направление (по умолчанию <code>Out</code>), повторы (меньше нуля — бесконечно), туда-обратно, задержка. Событие <code>Completed</code>.</li>
+<li>Твин на сервере шлёт свойство всем клиентам каждый кадр — эффекты твинят на клиенте.</li>
+<li>Код на <code>Heartbeat</code> и других событиях кадра — экономно.</li>
+</ul>
+<p>Lerp — ручная формула в шаге кадра: <code>a + (b − a) × t</code>, у <code>Vector3</code>, <code>CFrame</code> и <code>Color3</code> есть свой <code>:Lerp</code>. Твин удобен для одного объекта с простой кривой. Шаг пула с формулой — когда объектов много, у них общий шаг или нужна своя физика (подлёт, падение, отскок).</p>
+<p>Где у нас: кубики, снежинки, трещины и кольцо слома двигает один шаг <code>Heartbeat</code> по формулам, без твинов. Твины — у экрана (вспышка, лучи, «+N» в <code>SnowIslandFx</code>) и у летящего снега сдачи (<code>WorldFxController</code>). Для HUD награды и надписи «полная сумка» твин — правильный выбор.</p>
+<h2 id="пулы-объектов">Пулы объектов</h2>
+<p>Документация Roblox отдельного правила про пулы эффектов не даёт. У Epic в <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/scalability-and-best-practices-for-niagara">Niagara</a>: пул компонентов переиспользует их вместо создания и сборки мусора, но возврат в работу тоже стоит, а большой пакет частиц в одном кадре даёт рывок — его растягивают на несколько кадров.</p>
+<p>Где у нас пул уже есть: якоря удара (6), клинья вспышки (256), кубики (36 частей, затем 24 на слой), облачка (24), трещины (200 частей), снежинки (24), щепки (24). Пула нет у эффекта куска (<code>SnowIslandFx</code>): каждый слом участка создаёт 40 неоновых частей кольца, часть с эмиттером пыли, рамки вспышки и лучей на экране. У пула всегда есть потолок: кончились места — старый уступает новому.</p>
+<h2 id="лимиты-и-цена">Лимиты и цена</h2>
+<table>
+<thead>
+<tr>
+<th>Что</th>
+<th>Предел</th>
+<th>Источник</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Частиц от одного эмиттера</td>
+<td>400/с, на телефоне 100/с</td>
+<td><a href="https://create.roblox.com/docs/effects/particle-emitters">документация</a></td>
+</tr>
+<tr>
+<td>Жизнь частицы</td>
+<td>20 с</td>
+<td>там же</td>
+</tr>
+<tr>
+<td>Подсветок на клиенте</td>
+<td>255, лишние пропускаются</td>
+<td><a href="https://create.roblox.com/docs/effects/highlighting">документация</a></td>
+</tr>
+<tr>
+<td>Сегмент следа</td>
+<td>0,01–20 с</td>
+<td><a href="https://create.roblox.com/docs/reference/engine/classes/Trail">справочник</a></td>
+</tr>
+<tr>
+<td>EditableImage</td>
+<td>1024×1024, бюджет памяти клиента</td>
+<td><a href="https://create.roblox.com/docs/reference/engine/classes/EditableImage">справочник</a></td>
+</tr>
+<tr>
+<td>Кадр на 60 FPS</td>
+<td>16,67 мс</td>
+<td><a href="https://create.roblox.com/docs/performance-optimization/design">документация</a></td>
+</tr>
+<tr>
+<td>Вызовы отрисовки</td>
+<td>пример: до 1000 вызовов и 1 000 000 треугольников на базовом устройстве</td>
+<td>там же</td>
+</tr>
+<tr>
+<td>Вызовы отрисовки</td>
+<td>мнение: 500 на сцену, из них ~200 на игроков, монеты и эффекты, 60 FPS на большинстве телефонов при качестве 10</td>
+<td><a href="https://devforum.roblox.com/t/real-world-building-and-scripting-optimization-for-roblox/3127146">Макнилл, 2024</a></td>
+</tr>
+</tbody></table>
+<p>Как смотреть самому: статистика отрисовки — Shift+F2 в клиенте (так в документации; Макнилл пишет Ctrl+F2, в Studio Ctrl+Shift+F2) со строками «Draw (scene)», «Draw (UI)»; Ctrl+F6 — MicroProfiler; F9 — консоль с памятью (<a href="https://create.roblox.com/docs/performance-optimization/identify">поиск проблем</a>, <a href="https://create.roblox.com/docs/performance-optimization/microprofiler">MicroProfiler</a>). Скрипт число вызовов отрисовки прочитать не может: у сервиса <code>Stats</code> такого свойства нет (проверено 11.11.2026).</p>
+<p>Прозрачность. Документация советует избегать прозрачности, кроме 0 и 1, а при частичной — следить за перерисовкой (<a href="https://create.roblox.com/docs/performance-optimization/design">Design for performance</a>). У эффектов затухание прозрачностью неизбежно, поэтому оно короткое, а крупных полупрозрачных пятен мало.</p>
+<h2 id="качество-графики-и-меньше-движения">Качество графики и «меньше движения»</h2>
+<p>Документация:</p>
+<ul>
+<li><code>UserGameSettings.SavedQualityLevel</code>: <code>Automatic</code> (0) и уровни 1–10 (<a href="https://create.roblox.com/docs/reference/engine/enums/SavedQualitySetting">перечисление</a>). Что именно меняет каждый уровень, справочник не пишет. Страница <a href="https://create.roblox.com/docs/performance-optimization/design">Design for performance</a> прямо советует не менять эффекты в скриптах по <code>SavedQualityLevel</code>: так движку труднее масштабировать картинку автоматически. На низком качестве движок сам режет дальность прорисовки (не меньше 500 стадов), а тени слабеют и ниже уровня 4 выключаются совсем (<a href="https://create.roblox.com/docs/performance-optimization/improve">производительность</a>). Макнилл (мнение, 2024) добавляет к этому упрощённые частицы и лучи.</li>
+<li>«Меньше движения»: системный переключатель Roblox Reduce Motion — свойство <code>GuiService.ReducedMotionEnabled</code> (<a href="https://create.roblox.com/docs/production/publishing/accessibility">доступность</a>). Пример документации — время твина 0, когда оно включено, или вместо сдвига плавное появление.</li>
+</ul>
+<p>У нас иначе:</p>
+<ul>
+<li>Профиль частиц (High / Medium / Low) выбирается по <code>SavedQualityLevel</code>, а телефон без клавиатуры всегда Low (<code>SnowFeedbackConfig</code>). Это расходится с советом Roblox. Смягчает то, что у большинства игроков стоит <code>Automatic</code> (0), и для него берётся High. Снегопад на качество не смотрит, только на сенсорный экран.</li>
+<li>«Меньше движения» — своя настройка игры (<code>settings.reducedMotion</code>) и атрибуты игрока. Системный <code>GuiService.ReducedMotionEnabled</code> игра не читает: ребёнок, у которого он включён в Roblox, всё равно увидит вспышки и тряску, пока не найдёт переключатель в нашей игре.</li>
+</ul>
+<h2 id="вспышка-разлёт-затухание">Вспышка — разлёт — затухание</h2>
+<p>Не правило документации, а общий приём (так разобраны удары в разделах выше и у критика эффектов: рубрика «Vfx-score»). Три фазы:</p>
+<ol>
+<li>Вспышка, 1–3 кадра: самое яркое и крупное, без движения. Игрок понимает «попал». У нас: белая копия участка 0,033 с плюс 0,06–0,08 с угасания (<code>SnowBreakRecipe.Flash</code>), золотая вспышка экрана 0,32 с у своего слома куска.</li>
+<li>Разлёт, 0,1–0,5 с: куски, облачка, снежинки летят от точки удара и от игрока, тормозят (<code>Drag</code>, тяготение). У нас: кубики (подскок 4–7 стад/с), снежинки (подлёт 2–4,5), облачка у кромки.</li>
+<li>Затухание: уменьшение и прозрачность до нуля, а не исчезновение рывком. У нас: кубики сжимаются за 0,15–0,2 с в конце жизни 0,4–0,85 с, снежинки — на последних 40 % жизни, кольцо куска гаснет по квадрату времени.</li>
+</ol>
+<p>Частота: белые вспышки не чаще трёх в секунду (<code>FlashGap 0,34</code>), эффект куска тоже (<code>IslandGap 0,34</code>). Опоздавшую вспышку не играют.</p>
+<h2 id="текстуры">Текстуры</h2>
+<p>Документация (<a href="https://create.roblox.com/docs/projects/assets/privacy">приватность ассетов</a>, <a href="https://create.roblox.com/docs/art/modeling/texture-specifications">текстуры</a>, <a href="https://create.roblox.com/docs/performance-optimization/improve">производительность</a>, <a href="https://create.roblox.com/docs/effects/particle-emitters">частицы</a>):</p>
+<ul>
+<li>Форматы: PNG, JPG, TGA, BMP. Текстура до 4096×4096; движок сначала грузит упрощённые версии и поднимает качество по ресурсам устройства. Ориентир документации: 256×256 для предмета в 5 стадов, 512×512 — 10, 1024×1024 — 20. Картинка интерфейса — обычно не больше 512×512, мелкая — меньше 256×256. 1024×1024 занимает в 4 раза больше видеопамяти, чем 512×512. Убрать альфа-канал память не экономит.</li>
+<li>Белая текстура плюс <code>Color</code> у эмиттера или луча — одна картинка на много цветов. Цвет из палитры игры.</li>
+<li>Атласы: flipbook — сетка кадров в одной картинке с зазором между кадрами.</li>
+<li>Кто владеет картинкой. Картинка бывает «Open Use» (может брать любой) или «Restricted» (только с разрешения владельца). Новые картинки, наклейки и сетки по умолчанию «Open Use»; приватность включают отдельно. Без разрешения ассет не грузится в Studio, а в Output появляется ошибка. Разрешение дают другу или группе и конкретной игре; разрешение игре отозвать нельзя.</li>
+<li>Почему у нас чужие не грузятся: <code>SparkleTexture</code> и <code>CloudTexture</code> (<code>SnowFeedbackConfig</code>) загружены аккаунтом коллеги, и на чужом аккаунте Studio они не видны. Код проверяет загрузку крошечным <code>ImageLabel</code> и подставляет встроенные <code>sparkles_main.dds</code> и <code>smoke_main.dds</code>. Свои картинки игры надёжнее загружать от группы, которой принадлежит игра; загрузка — только по слову владельца (<code>art/import.md</code>). Снежинку код рисует сам (<code>SnowSprites</code>) — загрузки нет вовсе.</li>
+</ul>
+</article></div></section>
+</main>
+</div>
+<dialog id="viewer" aria-label="Просмотр картинки"><div class="viewer-bar"><p id="viewer-caption"></p><a id="viewer-open" target="_blank" rel="noopener">Открыть файл</a><button id="viewer-close" type="button">Закрыть</button></div><img id="viewer-image" alt=""></dialog>
+<script>// Поведение страницы: пароль на весь сайт, меню на узком экране и просмотр картинки.
+// Текущую страницу в меню отмечает сборщик.
+(() => {
+  const SITE_KEY = "clean-a-snow-guide-open";
+  const SITE_PASSWORD = "91-23sdf-123dsf213-gfdf";
+  const lock = document.getElementById("site-lock-form");
+  if (lock) {
+    lock.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const error = document.getElementById("site-lock-error");
+      if (new FormData(lock).get("password") === SITE_PASSWORD) {
+        try {
+          localStorage.setItem(SITE_KEY, "1");
+        } catch {
+          // Без хранилища сайт откроется только до закрытия вкладки.
+        }
+        document.documentElement.classList.add("site-open");
+      } else if (error) error.hidden = false;
+    });
+  }
+
+  const close = document.getElementById("site-close");
+  if (close) {
+    close.addEventListener("click", () => {
+      try {
+        localStorage.removeItem(SITE_KEY);
+      } catch {
+        // Без хранилища достаточно убрать класс: следующая страница снова спросит пароль.
+      }
+      const error = document.getElementById("site-lock-error");
+      if (error) error.hidden = true;
+      const input = lock?.querySelector("input");
+      if (input) input.value = "";
+      document.documentElement.classList.remove("site-open");
+      input?.focus();
+    });
+  }
+
+  const board = document.querySelector(".board-columns");
+  if (board) {
+    const buttons = [...document.querySelectorAll("[data-person-filter]")];
+    const apply = (person) => {
+      for (const button of buttons) button.setAttribute("aria-pressed", String(button.dataset.personFilter === person));
+      for (const column of board.querySelectorAll(".board-column")) {
+        let visible = 0;
+        for (const card of column.querySelectorAll(".board-card")) {
+          const show = person === "all" || card.dataset.person === person;
+          card.hidden = !show;
+          if (show) visible += 1;
+        }
+        column.querySelector(".board-count").textContent = String(visible);
+        column.querySelector(".board-empty").hidden = visible !== 0;
+      }
+    };
+    for (const button of buttons) button.addEventListener("click", () => apply(button.dataset.personFilter));
+    // Время коммита — в часовом поясе того, кто смотрит доску (в HTML оно в поясе автора коммита).
+    const two = (n) => String(n).padStart(2, "0");
+    for (const time of board.querySelectorAll(".board-origin time[datetime*='T']")) {
+      const at = new Date(time.getAttribute("datetime"));
+      if (!Number.isNaN(at.getTime())) time.textContent = `${two(at.getDate())}.${two(at.getMonth() + 1)} ${two(at.getHours())}:${two(at.getMinutes())}`;
+    }
+    // Порядок карточек: «Сначала новые» (по дате и времени коммита) или «Как раньше». Выбор помнит браузер.
+    const sortButtons = [...document.querySelectorAll("[data-board-sort]")];
+    const sortKey = "clean-a-snow-board-sort";
+    const sort = (order) => {
+      const rank = order === "old" ? "oldRank" : "newRank";
+      for (const button of sortButtons) button.setAttribute("aria-pressed", String(button.dataset.boardSort === order));
+      for (const list of board.querySelectorAll(".board-cards")) {
+        const cards = [...list.querySelectorAll(":scope > .board-card")];
+        cards.sort((a, b) => Number(a.dataset[rank]) - Number(b.dataset[rank]));
+        for (const card of cards) list.appendChild(card);
+      }
+      try {
+        localStorage.setItem(sortKey, order);
+      } catch (e) {}
+    };
+    for (const button of sortButtons) button.addEventListener("click", () => sort(button.dataset.boardSort));
+    let savedSort = null;
+    try {
+      savedSort = localStorage.getItem(sortKey);
+    } catch (e) {}
+    if (savedSort === "old") sort("old");
+    // Ссылка на карточку (board.html#card-…) раскрывает её текст и показывает карточку.
+    const target = location.hash.startsWith("#card-") ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+    if (target) {
+      const text = target.querySelector("details");
+      if (text) text.open = true;
+      target.scrollIntoView({ block: "start" });
+    }
+  }
+
+  // Кнопка текущей страницы в шапке видна и на узком экране, где шапка листается вбок.
+  document.querySelector(".topbar .top-link[aria-current]")?.scrollIntoView({ block: "nearest", inline: "center" });
+
+  const menu = document.getElementById("menu");
+  const sidebar = document.getElementById("sidebar");
+  menu.addEventListener("click", () => {
+    const open = sidebar.classList.toggle("open");
+    menu.setAttribute("aria-expanded", String(open));
+  });
+  sidebar.addEventListener("click", (e) => {
+    if (e.target.closest("a")) {
+      sidebar.classList.remove("open");
+      menu.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  // Свёрнутые разделы меню. Выбор читателя помнит браузер; без него открыт только раздел текущей страницы.
+  const KEY = "clean-a-snow-guide-nav-folds";
+  let folds = {};
+  try {
+    folds = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+  } catch {
+    folds = {};
+  }
+  for (const group of sidebar.querySelectorAll("details.group")) {
+    const id = group.dataset.group;
+    group.open = id in folds ? folds[id] : group.querySelector('[aria-current="page"]') !== null;
+    group.addEventListener("toggle", () => {
+      folds[id] = group.open;
+      try {
+        localStorage.setItem(KEY, JSON.stringify(folds));
+      } catch {
+        // Без хранилища выбор живёт до перехода на другую страницу.
+      }
+    });
+  }
+  // Общие галочки: файл на сервере, браузер держит копию. Сервер недоступен — остаётся копия в браузере.
+  // Пользуются чеклист «Тестирование» и отметки «Ответ дан» страницы «Вопросы».
+  // reset() снимает все отметки у всех. onPaint вызывается после каждой смены галочек.
+  const sharedChecks = ({ boxes, keyOf, storageKey, url, onPaint }) => {
+    let done = {};
+    let revision = null;
+    let sending = false;
+    let dirty = false;
+    let resetPending = false;
+    const touched = new Set();
+    try {
+      done = JSON.parse(localStorage.getItem(storageKey) || "{}") || {};
+    } catch {
+      done = {};
+    }
+    const save = () => {
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(done));
+      } catch {
+        // Без хранилища отметки живут до ухода со страницы.
+      }
+    };
+    const paint = () => {
+      for (const box of boxes) box.checked = done[keyOf(box)] === true;
+      onPaint();
+    };
+    const mergeTouched = (serverChecks, localChecks, keys) => {
+      const merged = { ...serverChecks };
+      for (const key of keys) {
+        if (localChecks[key] === true) merged[key] = true;
+        else delete merged[key];
+      }
+      return merged;
+    };
+    const push = () => {
+      if (revision === null || sending) {
+        dirty = true;
+        return;
+      }
+      sending = true;
+      dirty = false;
+      const sentChecks = { ...done };
+      const sentTouched = [...touched];
+      const wasReset = resetPending;
+      resetPending = false;
+      touched.clear();
+      fetch(url, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ revision, checks: sentChecks }),
+      })
+        .then((res) => res.json().then((doc) => ({ status: res.status, doc })))
+        .then(({ status, doc }) => {
+          if (!doc || !doc.checks || !Number.isInteger(doc.revision)) return;
+          revision = doc.revision;
+          if (status === 409) {
+            const newerTouched = [...touched];
+            const newerChecks = { ...done };
+            if (wasReset && newerTouched.length === 0) done = {};
+            else done = mergeTouched(mergeTouched(doc.checks, sentChecks, sentTouched), newerChecks, newerTouched);
+            dirty = true;
+          } else if (status === 200) {
+            if (dirty || touched.size) done = { ...done };
+            else done = doc.checks;
+          }
+          save();
+          paint();
+        })
+        .catch(() => {
+          // Сервер недоступен: копия в браузере уже сохранена.
+        })
+        .finally(() => {
+          sending = false;
+          if (dirty || touched.size || resetPending) push();
+        });
+    };
+    const pull = () => {
+      fetch(url)
+        .then((res) => (res.ok ? res.json() : null))
+        .then((doc) => {
+          if (!doc || !doc.checks || !Number.isInteger(doc.revision)) return;
+          if (revision === null) {
+            revision = doc.revision;
+            if (touched.size || resetPending) {
+              if (!resetPending) done = mergeTouched(doc.checks, done, touched);
+              push();
+            } else {
+              done = doc.checks;
+              save();
+              paint();
+            }
+            return;
+          }
+          if (sending || touched.size || resetPending) return;
+          if (revision === doc.revision) return;
+          revision = doc.revision;
+          done = doc.checks;
+          save();
+          paint();
+        })
+        .catch(() => {
+          // Без сервера страница остаётся на копии в браузере.
+        });
+    };
+    for (const box of boxes) {
+      box.addEventListener("change", () => {
+        if (box.checked) done[keyOf(box)] = true;
+        else delete done[keyOf(box)];
+        touched.add(keyOf(box));
+        resetPending = false;
+        save();
+        onPaint();
+        push();
+      });
+    }
+    paint();
+    pull();
+    setInterval(pull, 2000);
+    return {
+      reset() {
+        done = {};
+        touched.clear();
+        resetPending = true;
+        save();
+        paint();
+        push();
+      },
+    };
+  };
+  const CHECKS_SERVER = "https://atlas.31-58-209-99.sslip.io/clean-snow-checks/";
+
+  // Галочки чеклиста «Тестирование». «Сбросить» начинает новый круг у всех.
+  const checks = document.querySelectorAll("input[data-check]");
+  if (checks.length) {
+    const visibleBoxes = (root) => [...root.querySelectorAll("input[data-check]")].filter((box) => !box.closest(".test-item")?.hidden);
+    const count = () => {
+      for (const group of document.querySelectorAll("details.test-group")) {
+        const boxes = visibleBoxes(group);
+        const ticked = boxes.filter((b) => b.checked).length;
+        group.querySelector(".test-count").textContent = `${ticked} из ${boxes.length}`;
+        group.classList.toggle("test-finished", boxes.length > 0 && ticked === boxes.length);
+      }
+      document.getElementById("test-done").textContent = String(visibleBoxes(document).filter((b) => b.checked).length);
+    };
+    const filterButtons = [...document.querySelectorAll("[data-test-filter]")];
+    const applyPerson = (person) => {
+      for (const button of filterButtons) button.setAttribute("aria-pressed", String(button.dataset.testFilter === person));
+      for (const item of document.querySelectorAll(".test-item")) {
+        const people = (item.dataset.people || "").split(/\s+/).filter(Boolean);
+        item.hidden = person !== "all" && people.length > 0 && !people.includes(person);
+      }
+      for (const task of document.querySelectorAll(".test-task")) {
+        task.hidden = ![...task.querySelectorAll(".test-item")].some((item) => !item.hidden);
+      }
+      for (const group of document.querySelectorAll("details.test-group")) {
+        group.hidden = ![...group.querySelectorAll(".test-item")].some((item) => !item.hidden);
+      }
+      const shown = visibleBoxes(document);
+      for (const node of document.querySelector(".test-total").childNodes) {
+        if (node.nodeType === Node.TEXT_NODE && node.textContent.includes(" из ")) node.textContent = ` из ${shown.length} `;
+      }
+      count();
+    };
+    for (const button of filterButtons) button.addEventListener("click", () => applyPerson(button.dataset.testFilter));
+    const testing = sharedChecks({
+      boxes: checks,
+      keyOf: (box) => box.dataset.check,
+      storageKey: "clean-a-snow-guide-testing-checks",
+      url: CHECKS_SERVER,
+      onPaint: count,
+    });
+    document.getElementById("test-reset").addEventListener("click", () => {
+      if (!confirm("Снять все отметки и начать проверку заново?")) return;
+      testing.reset();
+    });
+  }
+
+  // Отметки «Ответ дан» страницы «Вопросы»: свой файл того же сервера.
+  const answers = document.querySelectorAll("input[data-answer]");
+  if (answers.length) {
+    sharedChecks({
+      boxes: answers,
+      keyOf: (box) => box.dataset.answer,
+      storageKey: "clean-a-snow-guide-question-answers",
+      url: "https://atlas.31-58-209-99.sslip.io/clean-snow-checks/questions",
+      onPaint: () => {
+        for (const box of answers) box.closest(".question")?.classList.toggle("question-answered", box.checked);
+        document.getElementById("answer-done").textContent = String([...answers].filter((b) => b.checked).length);
+      },
+    });
+  }
+
+  const current = sidebar.querySelector('[aria-current="page"]');
+  if (current) current.scrollIntoView({ block: "nearest" });
+
+  const viewer = document.getElementById("viewer");
+  const image = document.getElementById("viewer-image");
+  const caption = document.getElementById("viewer-caption");
+  const open = document.getElementById("viewer-open");
+  document.addEventListener("click", (e) => {
+    const img = e.target.closest("main img");
+    if (!img) return;
+    image.src = img.src;
+    image.alt = img.alt;
+    caption.textContent = img.dataset.caption || img.alt;
+    open.href = img.src;
+    viewer.showModal();
+  });
+  document.getElementById("viewer-close").addEventListener("click", () => viewer.close());
+  viewer.addEventListener("click", (e) => {
+    if (e.target === viewer) viewer.close();
+  });
+})();
+</script>
+</body>
+</html>
