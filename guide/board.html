@@ -456,39 +456,9 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
   <p class="board-empty" hidden>Пусто.</p>
 </section>
 <section class="board-column" data-status="doing">
-  <h3>В работе <span class="board-count">1</span></h3>
-  <div class="board-cards"><article class="board-card" id="card-4a5024" data-person="Богдан" data-status="doing" data-new-rank="4" data-old-rank="78">
-  <h3>Полоска HP снега видна, а удар текущим инструментом не доходит</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>4a5024</code> баг · bug</p>
-  <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-11T22:55:47+07:00">11.11 22:55</time></p>
-  <p class="board-lead">Воспроизвести и исправить `BUG-20261111-010` из `tasks/bugs.md`.</p>
-  
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Воспроизвести и исправить <code>BUG-20261111-010</code> из <code>tasks/bugs.md</code>.</p>
-<h2>Готово когда</h2>
-<ul>
-<li><input disabled="" type="checkbox"> Дефект воспроизведён до исправления: замер дальности показа HP и удара у каждого инструмента в Studio.</li>
-<li><input disabled="" type="checkbox"> Одно правило «можно ударить» для показа HP и для сервера; регрессия покрыта Luau-тестом.</li>
-<li><input disabled="" type="checkbox"> На границе показа HP удар снимает HP у каждого инструмента. Кадры из живой игры.</li>
-<li><input disabled="" type="checkbox"> Пункт для Леонида в <code>docs/testing-checklist.md</code>, страницы пересобраны.</li>
-<li><input disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
-</ul>
-<h2>Оценка</h2>
-<ul>
-<li>известный дефект: показ HP берёт дальность рук, а инструмент бьёт своей; правка — показ HP через то же правило удара</li>
-</ul>
-<h2>Работа</h2>
-<ul>
-<li>2026-11-11 22:55 →</li>
-</ul>
-<h2>Заметки</h2>
-<ul>
-<li>Журнал: <code>BUG-20261111-010</code>.</li>
-<li>Связь: прицел и NotExposed <code>d91075</code>, одна проверка работы по снегу <code>3ca642</code>, план удара <code>6d3652</code>, дальность оружия <code>8770fb</code>.</li>
-</ul>
-</div></details>
-</article></div>
-  <p class="board-empty" hidden>Пусто.</p>
+  <h3>В работе <span class="board-count">0</span></h3>
+  <div class="board-cards"></div>
+  <p class="board-empty">Пусто.</p>
 </section>
 <section class="board-column" data-status="paused">
   <h3>Пауза <span class="board-count">7</span></h3>
@@ -729,7 +699,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
   <p class="board-empty" hidden>Пусто.</p>
 </section>
 <section class="board-column" data-status="done">
-  <h3>Готово <span class="board-count">84</span></h3>
+  <h3>Готово <span class="board-count">85</span></h3>
   <div class="board-cards"><article class="board-card" id="card-7c797c" data-person="Богдан" data-status="done" data-new-rank="2" data-old-rank="86">
   <h3>Ложка в правой руке, боком справа</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>7c797c</code> фича · clearing</p>
@@ -795,6 +765,41 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <li>Данные: <code>Data/garden.json</code> <code>Plots</code> — огород 16 × 12, дорожка 5, отступ 2,5, участок 42 × 34; забор <code>FenceHeight</code> 2,8, <code>PostStep</code> 4,5, калитка 5; табличка <code>Sign</code> 7 × 2,6, верх 4,8; грядка 3 × 4,5, растение 2,7 × 3,8. Огород проверен в Studio: внутри 1–2 участка снега, контур 5–10 (было 3–6 и 8–14), каждый падает своим островом.</li>
 <li>Находка в игре: персонаж ходит по земле внутри снега, снег у участков 3,1–3,9 — по плечи. Забор 2,8 от земли тонет, поэтому столбы идут от земли, а верх не ниже 1,1 над снегом (<code>FenceAboveSnow</code>), табличка на 0,4 над снегом (<code>Sign.AboveSnow</code>). Владелец ответит на созвоне: <code>Q-20261111-009</code>, карточка <code>74e808</code>.</li>
 <li>Проверки: <code>node --test tools/data/data.test.mjs</code> 29/29, <code>npm run test:game -- GardenPlot</code> 6/6, <code>npm run check</code> без новых замечаний, кадры <code>garden-scale</code> после правки. Сценарии <code>garden-plots</code> и <code>garden-growth</code> переведены на новый огород (контур 7), не прогонялись.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-4a5024" data-person="Богдан" data-status="done" data-new-rank="4" data-old-rank="78">
+  <h3>Полоска HP снега видна, а удар текущим инструментом не доходит</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>4a5024</code> баг · bug</p>
+  <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-11T22:55:47+07:00">11.11 22:55</time></p>
+  <p class="board-lead">Воспроизвести и исправить `BUG-20261111-010` из `tasks/bugs.md`.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Воспроизвести и исправить <code>BUG-20261111-010</code> из <code>tasks/bugs.md</code>.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Дефект воспроизведён до исправления: замер дальности показа HP и удара у каждого инструмента в Studio.</li>
+<li><input checked="" disabled="" type="checkbox"> Одно правило «можно ударить» для показа HP и для сервера; регрессия покрыта Luau-тестом.</li>
+<li><input checked="" disabled="" type="checkbox"> На границе показа HP удар снимает HP у каждого инструмента. Кадры из живой игры.</li>
+<li><input checked="" disabled="" type="checkbox"> Пункт для Леонида в <code>docs/testing-checklist.md</code>, страницы пересобраны.</li>
+<li><input checked="" disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>известный дефект: показ HP берёт дальность рук, а инструмент бьёт своей; правка — показ HP через то же правило удара</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-11 22:55 → 2026-11-11 23:46</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Журнал: <code>BUG-20261111-010</code>.</li>
+<li>Связь: прицел и NotExposed <code>d91075</code>, одна проверка работы по снегу <code>3ca642</code>, план удара <code>6d3652</code>, дальность оружия <code>8770fb</code>.</li>
+<li>Причина: полоска HP брала дальность рук (12.3 стада от игрока) для любого инструмента. Отбойник бьёт на 11.3, пылесос и термопушка — конусом 9–10 стадов по центрам кусков, снегоуборщик — снег перед ногами. Ещё середина островка урока показывала HP, а удар лопатой туда сервер отказывает.</li>
+<li>Исправление: общий модуль <code>StrikeTarget</code> — тот же <code>StrikePlan</code> и числа сервера (<code>StrikeRules.reach</code>, <code>StrikeRules.cone</code>), остров — <code>SnowIsland.Strikes</code>. Полоска HP и подсветка куска показываются только при «да». Дальность ударов не менялась, вопрос владельцу не нужен.</li>
+<li>Кадры: <code>build/hp-reach/sheet.png</code> (граница полоски → после удара, 9 инструментов), <code>build/hp-reach/island.png</code>. Сценарии: <code>hp-reach</code> (магазин), <code>hp-reach-&lt;оружие&gt;</code>, <code>hp-reach-island</code>; генератор <code>tools/studio-scenarios/_gen-hp-reach.mjs</code>. Оружие — по прогону на каждое: после некоторых стендов в Studio остаётся окно и камера не в первом лице.</li>
+<li>Проверки: <code>StrikeTarget_Test</code> 3/3 и соседние наборы зелёные, <code>npm run check</code> без новых замечаний.</li>
 </ul>
 </div></details>
 </article>
