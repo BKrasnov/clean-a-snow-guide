@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>superpowers/plans/2026-11-10-snow-pillow-layers.md — Clean a Snow</title>
+<style>/* Цвета взяты с кадров игры: снег, тёмно-синие плашки HUD, дерево домиков, золото монет. */
+:root {
+  --snow: #EEF3F8;
+  --ink: #1D2740;
+  --wood: #9A5A2C;
+  --wood-dark: #5E3417;
+  --gold: #F2C230;
+  --ice: #4A90C8;
+  --ice-dark: #234E78;
+  --muted: #7C8798;
+  --paper: #FFFFFF;
+}
+* { box-sizing: border-box; }
+/* Своё display у блока не должно отменять атрибут hidden. */
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+body { margin: 0; background: var(--snow); color: var(--ink); font: 16px/1.55 "Segoe UI", system-ui, sans-serif; }
+a { color: var(--ice-dark); }
+code { font-family: Consolas, "Cascadia Mono", monospace; font-size: .9em; background: rgba(29, 39, 64, .07); padding: 0 .3em; border-radius: 4px; overflow-wrap: anywhere; }
+pre { white-space: pre-wrap; word-break: break-word; background: rgba(29, 39, 64, .06); padding: 12px; border-radius: 8px; font-size: 13px; }
+pre code { background: none; padding: 0; }
+
+.topbar { position: sticky; top: 0; z-index: 5; display: flex; gap: 16px; align-items: center; padding: 10px 20px; background: var(--ink); color: var(--snow); }
+.topbar .brand { color: var(--snow); font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap; }
+.topbar .top-link, #menu { white-space: nowrap; }
+.topbar .hint { margin-left: auto; font-size: 13px; color: var(--gold); }
+.topbar .hint code { background: rgba(238, 243, 248, .12); color: var(--snow); }
+.topbar .top-link { color: var(--snow); text-decoration: none; font-weight: 600; padding: 5px 12px; border: 2px solid var(--gold); border-radius: 6px; background: transparent; font: inherit; cursor: pointer; }
+.topbar .top-link:hover, .topbar .top-link[aria-current="page"] { background: var(--gold); color: var(--ink); }
+#menu { display: none; background: var(--wood); color: var(--snow); border: 0; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+
+/* Тестирование: группы сворачиваются, у пункта — галочка, у группы — счётчик отмеченных. */
+.test-total { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 15px; }
+#test-reset { background: transparent; color: var(--wood); border: 2px solid var(--wood); border-radius: 6px; padding: 4px 12px; font: inherit; font-weight: 600; cursor: pointer; }
+#test-reset:hover { background: var(--wood); color: var(--snow); }
+.test-group { margin: 14px 0; border: 2px solid rgba(29, 39, 64, .12); border-radius: 8px; background: rgba(255, 255, 255, .5); }
+.test-group > summary { cursor: pointer; padding: 10px 14px; font-weight: 700; font-size: 18px; }
+.test-group .test-count { margin-left: 8px; font-size: 13px; font-weight: 600; color: var(--wood); }
+.test-group.test-finished .test-count { color: var(--ice); }
+.test-task { padding: 4px 16px 12px; border-top: 1px solid rgba(29, 39, 64, .08); }
+.test-task h4 { margin: 10px 0 6px; }
+.test-item { display: flex; gap: 10px; align-items: flex-start; padding: 5px 4px; border-radius: 6px; line-height: 1.4; cursor: pointer; }
+.test-item:hover { background: rgba(154, 90, 44, .08); }
+.test-item input { width: 18px; height: 18px; margin-top: 2px; flex: none; accent-color: var(--wood); }
+.test-item:has(input:checked) > span:first-of-type { color: rgba(29, 39, 64, .55); text-decoration: line-through; }
+.test-people { margin-left: auto; flex: none; font-size: 12px; font-weight: 700; color: var(--wood); white-space: nowrap; }
+
+/* Вопросы: карточка вопроса, общая галочка «Ответ дан»; отвеченный вопрос бледнеет. */
+.question { margin: 14px 0; padding: 4px 16px 10px; border: 2px solid rgba(29, 39, 64, .12); border-radius: 8px; background: rgba(255, 255, 255, .5); }
+.question h3 { margin: 10px 0 6px; }
+.question-status { margin: 4px 0; font-size: 13px; font-weight: 600; color: var(--wood); }
+.answer-mark { display: inline-flex; gap: 8px; align-items: center; padding: 4px 10px; border: 2px solid var(--wood); border-radius: 6px; font-weight: 700; color: var(--wood); cursor: pointer; }
+.answer-mark input { width: 18px; height: 18px; margin: 0; accent-color: var(--ice); }
+.question-answered { border-color: var(--ice); }
+.question-answered .answer-mark { border-color: var(--ice); color: var(--ice-dark); }
+.question-answered > .prose { opacity: .55; }
+
+html:not(.site-open) .topbar,
+html:not(.site-open) .layout,
+html:not(.site-open) #viewer { display: none !important; }
+.site-lock { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; padding: 24px; background: var(--snow); }
+html.site-open .site-lock { display: none !important; }
+.site-lock-card { display: grid; gap: 10px; width: min(420px, 100%); padding: 16px; background: var(--paper); border: 2px solid var(--ink); border-radius: 10px; }
+.site-lock-card p { margin: 0; }
+.site-lock-card label { display: grid; gap: 4px; font-weight: 700; }
+.site-lock-card input { font: inherit; padding: 8px 10px; border: 2px solid var(--ink); border-radius: 6px; }
+.site-lock-card button, .board-filters button { font: inherit; font-weight: 700; padding: 6px 14px; border: 2px solid var(--ink); border-radius: 6px; background: var(--paper); color: var(--ink); cursor: pointer; }
+.site-lock-card button { justify-self: start; background: var(--gold); }
+.site-lock-error { color: var(--wood-dark); font-weight: 700; }
+.board-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 14px; }
+.board-filters button[aria-pressed="true"] { background: var(--ink); color: var(--snow); }
+.board-columns { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; align-items: start; }
+.board-column { background: rgba(255, 255, 255, .55); border: 1px solid rgba(29, 39, 64, .1); border-radius: 10px; padding: 10px; }
+.board-column > h3 { margin: 0 0 8px; font-size: 15px; }
+.board-count { display: inline-block; min-width: 1.4em; padding: 0 6px; border-radius: 999px; background: var(--ink); color: var(--snow); font-size: 12px; text-align: center; }
+.board-card { margin: 0 0 8px; padding: 10px 12px; background: var(--paper); border: 1px solid rgba(29, 39, 64, .12); border-radius: 8px; }
+.board-card h3 { margin: 0 0 6px; font-size: 16px; }
+.board-meta, .board-lead, .board-empty { margin: 0 0 6px; }
+.board-empty { color: var(--muted); }
+.board-archive { color: var(--muted); font-size: 12px; }
+.person { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+.person[data-person="Богдан"] { background: var(--gold); }
+.person[data-person="Леонид"] { background: var(--ice); color: var(--snow); }
+.person[data-person="Георгий"] { background: var(--wood); color: var(--snow); }
+.board-shots { display: grid; gap: 8px; margin: 0 0 8px; }
+.board-shots img { width: 100%; height: auto; border-radius: 6px; }
+.board-card details { margin-top: 4px; }
+.board-card summary { cursor: pointer; font-weight: 600; }
+@media (max-width: 1100px) {
+  .board-columns { grid-template-columns: 1fr 1fr; }
+}
+
+.layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); }
+#sidebar { position: sticky; top: 52px; align-self: start; height: calc(100vh - 52px); overflow-y: auto; padding: 16px 12px; border-right: 2px solid rgba(29, 39, 64, .1); }
+#sidebar ul { list-style: none; margin: 0; padding: 0; }
+#sidebar li a { display: block; padding: 6px 10px; border-radius: 6px; color: var(--ink); text-decoration: none; font-weight: 600; }
+#sidebar li a:hover, #sidebar li a[aria-current="page"] { background: var(--ice-dark); color: var(--snow); }
+#sidebar ul ul a { font-weight: 400; font-size: 14px; padding-left: 22px; }
+/* Сворачиваемый раздел: стрелка браузера слева сворачивает, ссылка рядом открывает страницу раздела. */
+#sidebar summary { cursor: pointer; color: var(--ice-dark); font-size: 15px; padding: 0 0 0 6px; border-radius: 6px; }
+#sidebar summary:hover { background: rgba(74, 144, 200, .14); }
+#sidebar summary a { display: inline-block; width: calc(100% - 22px); vertical-align: middle; }
+
+main { padding: 8px 32px 64px; max-width: 1280px; }
+.part { padding-top: 16px; padding-bottom: 24px; }
+.part > h2 { font-size: 28px; margin: 12px 0 16px; color: var(--wood-dark); }
+.toc { margin: 0 0 18px; }
+.toc ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { display: inline-block; padding: 4px 10px; border-radius: 999px; background: var(--paper); color: var(--ice-dark); text-decoration: none; font-weight: 600; font-size: 14px; }
+.toc a:hover { background: var(--ice-dark); color: var(--snow); }
+h3 { color: var(--ice-dark); margin-top: 28px; }
+.prose { max-width: 900px; }
+.prose table { border-collapse: collapse; margin: 12px 0; display: block; overflow-x: auto; }
+.prose th, .prose td { border: 1px solid rgba(29, 39, 64, .2); padding: 6px 10px; text-align: left; vertical-align: top; }
+.prose th { background: rgba(74, 144, 200, .14); }
+.prose img { max-width: 100%; border-radius: 8px; }
+.prose.small, .small { font-size: 14px; }
+.doc { background: var(--paper); border-radius: 12px; padding: 4px 24px 16px; margin: 0 0 20px; box-shadow: 0 1px 0 rgba(29, 39, 64, .1); }
+.doc .path { margin: 12px 0 0; font-size: 13px; color: var(--muted); }
+.lead { font-size: 17px; max-width: 900px; }
+.source { font-size: 13px; color: var(--muted); }
+
+.gallery { margin: 8px 0 28px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.shot { margin: 0; background: var(--paper); border-radius: 10px; padding: 8px; }
+.shot img { width: 100%; height: 190px; object-fit: cover; border-radius: 6px; cursor: zoom-in; display: block; }
+.shot figcaption { font-size: 14px; padding: 6px 2px 0; }
+.shot details { font-size: 13px; }
+.shot summary { cursor: pointer; color: var(--ice-dark); }
+.tag { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 999px; background: rgba(74, 144, 200, .15); color: var(--ice-dark); }
+.hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin: 0 0 20px; }
+.hero img { width: 100%; border-radius: 10px; cursor: zoom-in; display: block; }
+
+/* Таблицы данных из кода игры. */
+.table-wrap { overflow-x: auto; margin: 12px 0; }
+.data { border-collapse: collapse; background: var(--paper); border-radius: 8px; min-width: 420px; }
+.data th, .data td { padding: 7px 12px; border-bottom: 1px solid rgba(29, 39, 64, .1); text-align: left; vertical-align: top; }
+.data thead th { background: rgba(74, 144, 200, .14); font-size: 14px; white-space: nowrap; }
+.data tbody th { white-space: nowrap; }
+.data td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.data .sub { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
+.coin { color: #B8860B; font-weight: 600; }
+.gem { color: #2E7FB8; font-weight: 600; }
+.rar { display: inline-block; padding: 1px 8px 1px 6px; border-radius: 6px; background: var(--paper); border-left: 6px solid var(--rar); font-weight: 600; font-size: 13px; white-space: nowrap; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.chips code { background: var(--paper); border: 1px solid rgba(29, 39, 64, .12); padding: 2px 8px; }
+
+/* Раздел «Стиль»: образцы цветов палитры. */
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 8px 0 16px; }
+.swatch { margin: 0; background: var(--paper); border-radius: 10px; overflow: hidden; box-shadow: 0 1px 0 rgba(29, 39, 64, .1); }
+.swatch .chip { display: block; height: 72px; border-bottom: 1px solid rgba(29, 39, 64, .12); }
+.swatch figcaption { padding: 8px 10px 10px; font-size: 14px; }
+.swatch figcaption .small { display: block; margin-top: 4px; font-size: 13px; color: var(--muted); }
+
+/* Раздел «Код»: модуль, вид и его первая строка-комментарий. */
+.modules { list-style: none; padding: 0; margin: 8px 0 20px; display: grid; gap: 6px; }
+.modules li { background: var(--paper); border-radius: 8px; padding: 6px 12px; display: grid; grid-template-columns: minmax(180px, 280px) 90px 60px minmax(0, 1fr); gap: 10px; align-items: baseline; }
+.modules .kind { font-size: 12px; color: var(--muted); }
+.modules .lines { font-size: 12px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+.modules .note { font-size: 14px; }
+.modules .note.empty { color: var(--muted); }
+
+#viewer { border: 0; padding: 0; max-width: 96vw; max-height: 96vh; background: var(--ink); color: var(--snow); border-radius: 10px; }
+#viewer::backdrop { background: rgba(29, 39, 64, .8); }
+.viewer-bar { display: flex; gap: 12px; align-items: center; padding: 8px 12px; }
+.viewer-bar p { margin: 0; flex: 1; font-size: 14px; word-break: break-all; }
+.viewer-bar a { color: var(--gold); }
+.viewer-bar button { background: var(--wood); color: var(--snow); border: 0; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+#viewer img { display: block; max-width: 94vw; max-height: calc(96vh - 52px); }
+
+.pages { list-style: none; padding: 0; display: grid; gap: 10px; }
+.pages > li { background: rgba(255, 255, 255, .6); border: 1px solid rgba(29, 39, 64, .1); border-radius: 10px; padding: 10px 14px; }
+.pages > li > a { font-weight: 700; font-size: 18px; }
+
+.mechanic { margin: 12px 0; border: 2px solid rgba(29, 39, 64, .12); border-radius: 10px; background: rgba(255, 255, 255, .6); }
+.mechanic > summary { cursor: pointer; padding: 12px 16px; font-weight: 700; font-size: 20px; }
+.mechanic-body { padding: 0 16px 14px; }
+.mechanic-body .facts { margin: 8px 0 12px; }
+.flow { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 14px; padding: 0; list-style: none; }
+.flow li { display: flex; flex-direction: column; gap: 2px; flex: 1 1 140px; margin: 0; padding: 8px 10px; background: var(--paper); border: 2px solid var(--ink); border-radius: 8px; }
+.flow b { font-size: 15px; }
+.flow span { color: var(--muted); font-size: 13px; }
+.bars { margin: 8px 0 14px; }
+.bars-title { margin: 0 0 8px; font-weight: 700; }
+.bar { display: grid; grid-template-columns: minmax(7em, 11em) minmax(0, 1fr) auto; gap: 8px; align-items: center; margin: 6px 0; }
+.bar-track { height: 14px; background: rgba(29, 39, 64, .08); border-radius: 7px; overflow: hidden; }
+.bar-fill { display: block; height: 100%; background: var(--ice); }
+.bars-zone .bar-fill, .bars-tool .bar-fill { background: var(--wood); }
+.bar-value { font-weight: 700; white-space: nowrap; }
+/* Таймлайн: день — аккордеон, внутри темы со списком сделанного, ссылками и коммитами. */
+.day { margin: 12px 0; border: 2px solid rgba(29, 39, 64, .12); border-radius: 10px; background: rgba(255, 255, 255, .6); }
+.day > summary { cursor: pointer; padding: 12px 16px; font-size: 17px; }
+.day-date { font-weight: 700; font-size: 20px; margin-right: 6px; }
+.day-summary { color: var(--muted); }
+.day-body { padding: 0 16px 14px; }
+.day-topic { margin: 10px 0 0; padding: 10px 0 0; border-top: 1px solid rgba(29, 39, 64, .12); }
+.day-topic h3 { margin: 0 0 6px; font-size: 18px; }
+.day-done { margin: 0 0 8px; padding-left: 20px; }
+.day-links { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 8px; padding: 0; list-style: none; }
+.day-links li { margin: 0; }
+.day-links a { display: inline-block; padding: 3px 8px; background: var(--paper); border: 1px solid rgba(29, 39, 64, .16); border-radius: 6px; text-decoration: none; font-size: 14px; }
+.day-links a:hover { border-color: var(--ice-dark); }
+.day-commits { margin: 0; color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
+.board-card { scroll-margin-top: 70px; }
+.board-card:target { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+@media (max-width: 860px) {
+  #menu { display: inline-block; }
+  /* Кнопок больше, чем ширина телефона: шапка листается вбок, страница остаётся на месте. */
+  .topbar { gap: 10px; padding: 10px 12px; overflow-x: auto; scrollbar-width: thin; }
+  .topbar .top-link { padding: 4px 8px; }
+  /* На самых узких экранах сжимается название, кнопки остаются целыми. */
+  .topbar .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .topbar .top-link, #menu { flex: none; }
+  .topbar .hint { display: none; }
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  #sidebar { display: none; position: fixed; top: 52px; left: 0; right: 0; height: auto; max-height: 70vh; background: var(--snow); z-index: 4; border-bottom: 2px solid var(--ink); }
+  #sidebar.open { display: block; }
+  main { padding: 8px 16px 48px; }
+  .doc { padding: 4px 14px 12px; }
+  .modules li { grid-template-columns: minmax(0, 1fr) auto; }
+  .modules .note { grid-column: 1 / -1; }
+  .modules .lines { display: none; }
+  .board-columns { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 1100px) {
+  .part.with-toc { display: grid; grid-template-columns: minmax(0, 1fr) 230px; column-gap: 28px; align-items: start; }
+  .part.with-toc > h2, .part.with-toc > .part-body { grid-column: 1; }
+  .part.with-toc > .toc { grid-column: 2; grid-row: 1 / span 2; position: sticky; top: 68px; max-height: calc(100vh - 84px); overflow: auto; margin: 18px 0 0; }
+  .part.with-toc > .toc ul { display: grid; gap: 2px; }
+  .part.with-toc > .toc a { display: block; border-radius: 6px; background: transparent; padding: 5px 8px; }
+}
+/* Подсвеченный блок в документе: открытый вопрос владельцу и другие важные пометки. */
+.doc blockquote { margin: 14px 0; padding: 6px 16px; background: rgba(242, 194, 48, .16); border-left: 4px solid var(--gold); border-radius: 8px; }
+</style>
+<script>try{if(localStorage.getItem("clean-a-snow-guide-open")==="1")document.documentElement.classList.add("site-open")}catch(e){}</script>
+</head>
+<body>
+<div id="site-lock" class="site-lock" role="dialog" aria-modal="true" aria-labelledby="site-lock-title">
+<form id="site-lock-form" class="site-lock-card">
+<p id="site-lock-title">Введите пароль, чтобы открыть страницы.</p>
+<label>Пароль <input name="password" type="password" autocomplete="current-password" required autofocus></label>
+<button type="submit">Открыть</button>
+<p id="site-lock-error" class="site-lock-error" hidden>Пароль не подошёл.</p>
+</form>
+</div>
+<header class="topbar"><button id="menu" type="button" aria-expanded="false" aria-controls="sidebar">Разделы</button><a class="brand" href="index.html">Clean a Snow</a><a class="top-link" href="testing.html">Тестирование</a><a class="top-link" href="board.html">Доска</a><a class="top-link" href="analysis.html">Анализ</a><a class="top-link" href="mechanics.html">Механики</a><a class="top-link" href="ideas.html">Идеи</a><a class="top-link" href="questions.html">Вопросы</a><a class="top-link" href="vfx.html">VFX</a><a class="top-link" href="timeline.html">Таймлайн</a><button id="site-close" class="top-link" type="button">Закрыть</button><span class="hint">Собрано из файлов репозитория: <code>node tools/guide/build.mjs</code></span></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Разделы"><ul><li><a href="index.html">Об игре</a></li><li><a href="place.html">Плейс и запуск</a></li><li><a href="style.html">Стиль</a></li><li><a href="economy.html">Экономика</a></li><li><a href="weapons.html">Оружие</a></li><li><a href="garden.html">Сад</a></li><li><a href="code.html">Код</a></li><li><details class="group" data-group="galleries.html" open><summary><a href="galleries.html">Кадры и картинки</a></summary><ul><li><a href="gallery-bugs.html">Кадры багов</a></li><li><a href="gallery-frames.html">Кадры игры</a></li><li><a href="gallery-ideas.html">Референсы идей</a></li><li><a href="gallery-palette-preview.html">Палитра</a></li><li><a href="gallery-refs.html">refs</a></li><li><a href="gallery-refs-snow-look.html">refs/snow-look</a></li><li><a href="gallery-vfx.html">vfx</a></li><li><a href="gallery-vfx-reviews.html">vfx/reviews</a></li></ul></details></li><li><details class="group" data-group="docs.html" open><summary><a href="docs.html">Документы</a></summary><ul><li><a href="doc-architecture-summary.html">architecture/summary.md</a></li><li><a href="doc-checks-server.html">checks-server.md</a></li><li><a href="doc-clearing-audit.html">clearing-audit.md</a></li><li><a href="doc-held-items-audit.html">held-items-audit.md</a></li><li><a href="doc-mechanics-audit.html">mechanics-audit.md</a></li><li><a href="doc-publish-places.html">publish-places.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-catalog-answers.html">superpowers/plans/2026-11-10-catalog-answers.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-client-actions.html">superpowers/plans/2026-11-10-client-actions.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-economy.html">superpowers/plans/2026-11-10-data-economy.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-garden-animals-vehicles.html">superpowers/plans/2026-11-10-data-garden-animals-vehicles.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-session-server.html">superpowers/plans/2026-11-10-data-session-server.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-held-items-audit.html">superpowers/plans/2026-11-10-held-items-audit.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-map-bake.html">superpowers/plans/2026-11-10-map-bake.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-movement-check.html">superpowers/plans/2026-11-10-movement-check.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-packet-limits.html">superpowers/plans/2026-11-10-packet-limits.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-anchors.html">superpowers/plans/2026-11-10-place-anchors.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-role-world.html">superpowers/plans/2026-11-10-place-role-world.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-processor-intake.html">superpowers/plans/2026-11-10-processor-intake.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-processor-queue.html">superpowers/plans/2026-11-10-processor-queue.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-profile-store-core.html">superpowers/plans/2026-11-10-profile-store-core.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-receipt-ledger.html">superpowers/plans/2026-11-10-receipt-ledger.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-server-lifecycle.html">superpowers/plans/2026-11-10-server-lifecycle.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-areas.html">superpowers/plans/2026-11-10-snow-areas.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-break-burst.html">superpowers/plans/2026-11-10-snow-break-burst.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-break-like-reference.html">superpowers/plans/2026-11-10-snow-break-like-reference.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-cell-strength.html">superpowers/plans/2026-11-10-snow-cell-strength.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-clap.html">superpowers/plans/2026-11-10-snow-clap.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-pillow-layers.html" aria-current="page">superpowers/plans/2026-11-10-snow-pillow-layers.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-response.html">superpowers/plans/2026-11-10-snow-response.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-starter-spoon.html">superpowers/plans/2026-11-10-starter-spoon.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-plan.html">superpowers/plans/2026-11-10-strike-plan.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-rules.html">superpowers/plans/2026-11-10-strike-rules.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-two-places.html">superpowers/plans/2026-11-10-two-places.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-wallet.html">superpowers/plans/2026-11-10-wallet.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-data-client-copies.html">superpowers/plans/2026-11-11-data-client-copies.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-place-sources.html">superpowers/plans/2026-11-11-place-sources.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-weapon-rule.html">superpowers/plans/2026-11-11-weapon-rule.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-catalog-answers-design.html">superpowers/specs/2026-11-10-catalog-answers-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-client-actions-design.html">superpowers/specs/2026-11-10-client-actions-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-economy-design.html">superpowers/specs/2026-11-10-data-economy-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-garden-animals-vehicles-design.html">superpowers/specs/2026-11-10-data-garden-animals-vehicles-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-session-server-design.html">superpowers/specs/2026-11-10-data-session-server-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-held-items-audit-design.html">superpowers/specs/2026-11-10-held-items-audit-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-map-bake-design.html">superpowers/specs/2026-11-10-map-bake-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-movement-check-design.html">superpowers/specs/2026-11-10-movement-check-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-packet-limits-design.html">superpowers/specs/2026-11-10-packet-limits-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-anchors-design.html">superpowers/specs/2026-11-10-place-anchors-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-role-world-design.html">superpowers/specs/2026-11-10-place-role-world-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-processor-intake-design.html">superpowers/specs/2026-11-10-processor-intake-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-processor-queue-design.html">superpowers/specs/2026-11-10-processor-queue-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-profile-store-core-design.html">superpowers/specs/2026-11-10-profile-store-core-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-receipt-ledger-design.html">superpowers/specs/2026-11-10-receipt-ledger-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-server-lifecycle-design.html">superpowers/specs/2026-11-10-server-lifecycle-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-areas-design.html">superpowers/specs/2026-11-10-snow-areas-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-break-burst-design.html">superpowers/specs/2026-11-10-snow-break-burst-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-break-like-reference-design.html">superpowers/specs/2026-11-10-snow-break-like-reference-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-cell-strength-design.html">superpowers/specs/2026-11-10-snow-cell-strength-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-pillow-layers-design.html">superpowers/specs/2026-11-10-snow-pillow-layers-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-puff-design.html">superpowers/specs/2026-11-10-snow-puff-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-response-design.html">superpowers/specs/2026-11-10-snow-response-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-starter-spoon-design.html">superpowers/specs/2026-11-10-starter-spoon-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-plan-design.html">superpowers/specs/2026-11-10-strike-plan-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-rules-design.html">superpowers/specs/2026-11-10-strike-rules-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-two-places-design.html">superpowers/specs/2026-11-10-two-places-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-wallet-design.html">superpowers/specs/2026-11-10-wallet-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-data-client-copies-design.html">superpowers/specs/2026-11-11-data-client-copies-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-place-sources-design.html">superpowers/specs/2026-11-11-place-sources-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-shared-question-marks-design.html">superpowers/specs/2026-11-11-shared-question-marks-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-weapon-rule-design.html">superpowers/specs/2026-11-11-weapon-rule-design.md</a></li></ul></details></li></ul></nav>
+<main>
+<section class="part with-toc"><h2>superpowers/plans/2026-11-10-snow-pillow-layers.md</h2><nav class="toc" aria-label="На этой странице"><ul><li><a href="#global-constraints">Global Constraints</a></li><li><a href="#review-focus">Review Focus</a></li><li><a href="#task-1-snowpillow-форма-и-цвета-подушки">Task 1: SnowPillow — форма и цвета подушки</a></li><li><a href="#task-2-snowsurface-изменяемый-ближний-чанк-подушка">Task 2: SnowSurface — изменяемый ближний чанк-подушка</a></li><li><a href="#task-3-компактный-чанк-запасные-part-дальний-снег">Task 3: компактный чанк, запасные Part, дальний снег</a></li><li><a href="#task-4-snowbitmeshes-кубики-осколки-купола-кристаллы-кодом">Task 4: SnowBitMeshes — кубики, осколки, купола, кристаллы кодом</a></li><li><a href="#task-5-snowbreakrecipe-кубики-по-слоям-осколки-облачка">Task 5: SnowBreakRecipe — кубики по слоям, осколки, облачка</a></li><li><a href="#task-6-snowbreakburst-и-mapsnowfeedback-новые-частицы-в-игре">Task 6: SnowBreakBurst и MapSnowFeedback — новые частицы в игре</a></li><li><a href="#task-7-украшения-сверху">Task 7: украшения сверху</a></li><li><a href="#task-8-кадры-замер-критик-карточка">Task 8: кадры, замер, критик, карточка</a></li></ul></nav><div class="part-body"><article class="doc prose" id="doc-superpowers-plans-2026-11-10-snow-pillow-layers"><p class="path">docs/superpowers/plans/2026-11-10-snow-pillow-layers.md</p><h1>Снег-подушки со слоями — план</h1>
+<blockquote>
+<p><strong>For agentic workers:</strong> REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (<code>- [ ]</code>) syntax for tracking.</p>
+</blockquote>
+<p><strong>Goal:</strong> Участки снега в забеге — скруглённые подушки с тремя цветными слоями, слом слоя открывает новый цвет; частицы слома — скруглённые кубики, ледяные осколки и кремовые облачка; кадр на Low не тяжелее, чем сейчас.</p>
+<p><strong>Architecture:</strong> Новый чистый модуль <code>SnowPillow</code> знает форму подушки (какой угол сетки опустить), цвета слоёв и полосы стенки. <code>SnowSurface</code> (изменяемый и компактный меш) пишет это в <code>EditableMesh</code> цветами вершин. Частицы и украшения — крошечные меши <code>SnowBitMeshes</code>, построенные кодом один раз; числа частиц — в <code>SnowBreakRecipe</code>.</p>
+<p><strong>Tech Stack:</strong> Luau <code>--!strict</code>, Rojo, <code>EditableMesh</code> / <code>AssetService</code>, свой раннер <code>ServerStorage.UnitTest</code>.</p>
+<p><strong>Spec:</strong> <code>docs/superpowers/specs/2026-11-10-snow-pillow-layers-design.md</code></p>
+<p><strong>Исполнение:</strong> в этой сессии (executing-plans), без субагентов.</p>
+<h2 id="global-constraints">Global Constraints</h2>
+<ul>
+<li>Цвета только из <code>art/palette.json</code>: «Снег» <code>#F3F6F5</code>, «Тень снега» <code>#CDCDED</code>, «Лёд» <code>#A8DEE7</code>, «Крем» <code>#FFFDF5</code>, «Кристалл» <code>#8BE0FF</code>.</li>
+<li>Без текстур и картинок; материал SmoothPlastic; загрузок в Roblox нет.</li>
+<li>Кромка: <code>SnowPillow.Drop = 0.45</code> студа на ширине клетки 1,5 студа.</li>
+<li>Бюджет ближнего чанка: не больше 1900 вершин и 2400 треугольников (было 1313 и 1600).</li>
+<li>Новый модуль начинается с <code>--!strict</code>. Функции <code>crack</code> и <code>crackSegment</code> в <code>MapSnowFeedback.luau</code> не трогать (карточка <code>ffee11</code>).</li>
+<li>Вспышку <code>SnowBreakFlash</code> не менять. «Меньше движения» — без частиц.</li>
+<li>Всё от удара исчезает быстрее 1 с.</li>
+</ul>
+<h2 id="review-focus">Review Focus</h2>
+<ol>
+<li>Стенка по краю чанка, у которой один угол опущен, а другой нет: полосы не должны оставлять щель — тест <code>BandEdges</code> на несовпадающих углах (Task 1).</li>
+<li>Клетка рядом с местом без снега (стоянка, постройка) — кромка «Lip», не «Hollow» (Task 1).</li>
+<li>Срез машины внутри участка: стенка внутри участка остаётся двумя треугольниками и закрывается при восстановлении (Task 2, тест <code>Update</code> туда и обратно).</li>
+<li>Нет памяти на меш частиц — кубики и осколки рисуются деталями Part, игра не падает (Task 4, <code>SnowBitMeshes.get</code> возвращает nil).</li>
+<li>Удар, снявший два слоя сразу, — кубики двух цветов (Task 5).</li>
+</ol>
+<hr>
+<h3 id="task-1-snowpillow-форма-и-цвета-подушки">Task 1: <code>SnowPillow</code> — форма и цвета подушки</h3>
+<p><strong>Files:</strong></p>
+<ul>
+<li>Create: <code>src/ReplicatedStorage/SnowCleaningDemo/SnowPillow.luau</code> (+ <code>SnowPillow.meta.json</code> как у соседей, если они есть у каждого модуля)</li>
+<li>Test: <code>tests/ServerStorage/UnitTest/Cases/SnowPillow_Test.luau</code></li>
+</ul>
+<p><strong>Interfaces:</strong></p>
+<ul>
+<li><p>Produces:</p>
+<ul>
+<li><code>SnowPillow.Drop: number</code> = 0.45</li>
+<li><code>SnowPillow.Colors: { Snow: Color3, Shadow: Color3, Ice: Color3, Cream: Color3, Crystal: Color3 }</code></li>
+<li><code>SnowPillow.TopColor(layers: number): Color3</code> — 3 Snow, 2 Shadow, 1 Ice</li>
+<li><code>SnowPillow.LipColor(layers: number): Color3</code> — 3 Cream, 2 Snow, 1 Snow</li>
+<li><code>SnowPillow.HollowColor(layers: number): Color3</code> — 3 Shadow, 2 Shadow, 1 Ice</li>
+<li><code>SnowPillow.BandColor(band: number): Color3</code> — 3 Snow, 2 Shadow, 1 Ice</li>
+<li><code>export type Cell = { Node: string?, Layers: number }</code> (Node nil или Layers 0 — снега нет)</li>
+<li><code>SnowPillow.Corner(cell: Cell, around: { Cell }): &quot;Flat&quot; | &quot;Lip&quot; | &quot;Hollow&quot;</code> — <code>around</code> без самой клетки; опущен, если в <code>around</code> есть клетка другого участка или с меньшим числом слоёв; «Lip», если среди них есть более низкая, иначе «Hollow».</li>
+<li><code>export type Edge = &quot;Top&quot; | &quot;Bottom&quot; | number</code> (число 1 или 2 — граница полос на высоте <code>n/3·depth</code>)</li>
+<li><code>SnowPillow.BandEdges(band: number, top: number, bottom: number, depth: number): (Edge, Edge)</code> — верх и низ полосы <code>band</code> в одном углу стенки от <code>top</code> до <code>bottom</code> (высоты над землёй). Полоса <code>k</code> — <code>[(k-1)/3·depth, k/3·depth]</code>, у полосы 3 нет верхней границы, у полосы 1 — нижней. Если полоса в этом углу целиком выше верха — <code>(&quot;Top&quot;,&quot;Top&quot;)</code>, целиком ниже низа — <code>(&quot;Bottom&quot;,&quot;Bottom&quot;)</code>.</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 1: Тесты</strong> <code>SnowPillow_Test</code>:</p>
+<ul>
+<li>«colors come from the palette»: каждый цвет <code>Colors</code> равен hex из Global Constraints; <code>TopColor(3/2/1)</code>, <code>LipColor</code>, <code>HollowColor</code>, <code>BandColor</code> — как в Interfaces.</li>
+<li>«an inside cell stays flat»: <code>Corner({Node=&quot;a&quot;,Layers=3}, {a3,a3,a3})</code> = &quot;Flat&quot;; сосед того же участка выше (<code>a3</code> у клетки <code>a2</code>) — тоже &quot;Flat&quot;.</li>
+<li>«a corner on a patch border is a hollow when the neighbour is as high»: <code>{b3}</code> среди <code>around</code> → &quot;Hollow&quot;; <code>{b3}</code> при <code>Layers=2</code> у клетки → &quot;Hollow&quot;.</li>
+<li>«a corner over lower snow is a lip»: <code>{b2}</code> у клетки <code>a3</code> → &quot;Lip&quot;; <code>{a1}</code> (тот же участок, ниже, срез машины) → &quot;Lip&quot;; <code>{Node=nil, Layers=0}</code> → &quot;Lip&quot;.</li>
+<li>«bands of a whole wall»: <code>depth=3.8</code>, <code>top=3.8-0.45</code>, <code>bottom=-0.6</code>: полоса 3 = (&quot;Top&quot;,2), полоса 2 = (2,1), полоса 1 = (1,&quot;Bottom&quot;).</li>
+<li>«a lowered wall shows only its layers»: <code>top=2/3·3.8-0.45</code>: полоса 3 = (&quot;Top&quot;,&quot;Top&quot;), полоса 2 = (&quot;Top&quot;,1), полоса 1 = (1,&quot;Bottom&quot;); стенка над соседом на 1-м слое (<code>bottom=1/3·3.8-0.45</code>): полоса 1 = (1,&quot;Bottom&quot;).</li>
+<li>«neighbouring bands share their edge at every corner, so no gap opens» (Review Focus 1): для сетки <code>top</code> и <code>bottom</code> от -0.6 до 3.8 шагом 0.05 (<code>top&gt;bottom</code>): низ полосы <code>k</code> и верх полосы <code>k-1</code> в одном углу — одна и та же граница или оба &quot;Top&quot;/&quot;Bottom&quot;; высота верха полосы 3 = <code>top</code>, низа полосы 1 = <code>bottom</code>.</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 2:</strong> Прогон <code>require(ServerStorage.UnitTest.RunUnitTest)(&quot;SnowPillow&quot;)</code> на сервере Play — FAIL (модуля нет).</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 3:</strong> Модуль <code>SnowPillow</code> по Interfaces.</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 4:</strong> Прогон — PASS.</p>
+</li>
+</ul>
+<h3 id="task-2-snowsurface-изменяемый-ближний-чанк-подушка">Task 2: <code>SnowSurface</code> — изменяемый ближний чанк-подушка</h3>
+<p><strong>Files:</strong></p>
+<ul>
+<li>Modify: <code>src/ReplicatedStorage/SnowCleaningDemo/SnowSurface.luau</code> (функции <code>build</code>, <code>result:Update</code>, создание MeshPart)</li>
+<li>Test: <code>tests/ServerStorage/UnitTest/Cases/SnowSurface_Test.luau</code></li>
+</ul>
+<p><strong>Interfaces:</strong></p>
+<ul>
+<li><p>Consumes: Task 1 целиком.</p>
+</li>
+<li><p>Produces: <code>S.new(cx, cz, depths, isCurrent, checkpoint, compact)</code> и <code>result:Update(depths)</code> — без изменений сигнатуры. <code>S.Layers(depth: number): number</code> — <code>math.round(depth / (C.Depth / B.LayerCount))</code>. Участок клетки — <code>B.NodeKey(Vector3.new(центр клетки))</code>, считается один раз в <code>build</code>, для клеток за краем чанка — так же по координате (снег за краем считается равным своему).</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 1: Тесты</strong> в <code>SnowSurface_Test</code> (чанк поля <code>CX, CZ = -2, 13</code>, как сейчас):</p>
+<ul>
+<li>«the near chunk fits its budget»: <code>#surface.Mesh:GetVertices() &lt;= 1900</code>, <code>#surface.Mesh:GetFaces() &lt;= 2400</code>; записать оба числа в вывод (<code>print</code>) для спеки.</li>
+<li>«a whole patch is white, its border dips into a shadow hollow»: найти грань верха клетки внутри участка — все её цвета <code>TopColor(3)</code>; у клетки на границе двух участков опущенный угол на <code>Drop</code> ниже соседнего и цвета <code>HollowColor(3)</code>.</li>
+<li>«breaking a layer turns the top lavender and opens snow, shadow and ice bands»: <code>Update</code> с глубиной <code>C.Depth*2/3</code> у всех клеток одного участка → цвета его верха <code>TopColor(2)</code>; у соседней клетки на краю — угол цвета <code>LipColor(3)</code>; стенка между ними — видимые грани с цветами <code>BandColor(3)</code> и <code>BandColor(2)</code>, грани <code>BandColor(1)</code> вырождены.</li>
+<li>«a cut and its return leave no wall» (Review Focus 3): <code>Update</code> с одной клеткой без снега, потом снова целиком — все грани стенок вырождены, цвета верха как до среза.</li>
+<li>Тест «the near chunk stays editable» остаётся.</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 2:</strong> Прогон <code>(&quot;SnowSurface&quot;)</code> — FAIL.</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 3:</strong> <code>build</code>: вершины полос (2 на угол сетки, высоты <code>ground + n/3·C.Depth</code>); у стенки границы участков и края чанка — 3 пары граней с постоянным цветом <code>BandColor</code>, у стенки внутри участка — 2 грани; цвета — общие id на чанк (8 цветов); у каждой клетки верха — своя нормаль (для клеток с опущенным углом). <code>Update</code>: для изменившихся клеток и соседей — высоты углов (<code>Drop</code> по <code>Corner</code>), цвета углов (<code>TopColor</code> / <code>LipColor</code> / <code>HollowColor</code>), полосы по <code>BandEdges</code>, нормаль клетки (среднее двух треугольников) только у клеток с опущенным углом, иначе общая нормаль угла. MeshPart: <code>Material = SmoothPlastic</code>, <code>Color</code> белый, <code>CastShadow = true</code>.</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 4:</strong> Прогон — PASS.</p>
+</li>
+</ul>
+<h3 id="task-3-компактный-чанк-запасные-part-дальний-снег">Task 3: компактный чанк, запасные Part, дальний снег</h3>
+<p><strong>Files:</strong></p>
+<ul>
+<li>Modify: <code>src/ReplicatedStorage/SnowCleaningDemo/SnowSurface.luau</code> (<code>buildCompact</code>)</li>
+<li>Modify: <code>src/StarterPlayer/StarterPlayerScripts/CleanSnow/NearSnow.luau</code> (<code>prepare</code>, <code>merge</code>, <code>rebuild</code>, <code>fade</code>, <code>makePart</code>: цвет по слоям, SmoothPlastic)</li>
+<li>Modify: <code>src/ReplicatedStorage/SnowCleaningDemo/SnowLook.luau</code> (<code>Base</code> «Снег», <code>Shadow</code> «Тень снега», <code>Deep</code> «Лёд», <code>Frost</code> «Крем»)</li>
+<li>Modify: <code>src/ReplicatedStorage/SnowCleaningDemo/SnowInterior.luau</code> (вид <code>Soft</code>: полосы палитры, <code>Grain</code>, <code>Bedding</code>, <code>VeinStrength</code> 0, <code>Shadow</code> «Тень снега»)</li>
+<li>Modify: <code>src/ReplicatedStorage/SnowCleaningDemo/SnowFar.luau</code>, <code>src/StarterPlayer/StarterPlayerScripts/CleanSnow/MapSnowController.luau</code> (<code>matchFlatCover</code>: SmoothPlastic)</li>
+<li>Test: <code>tests/ServerStorage/UnitTest/Cases/SnowSurface_Test.luau</code></li>
+</ul>
+<p><strong>Interfaces:</strong></p>
+<ul>
+<li><p>Consumes: Task 1, <code>S.Layers</code> из Task 2.</p>
+</li>
+<li><p>Produces: <code>part:SetAttribute(&quot;SnowFaces&quot;, n)</code> и <code>(&quot;SnowVertices&quot;, n)</code> у MeshPart обоих видов чанка (компактный меш непрозрачен, иначе счёт не прочитать).</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 1: Тест</strong> «a distant compact chunk keeps no editable mesh» дополнить: <code>SnowFaces</code> есть и не больше 2400, <code>Material</code> SmoothPlastic.</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 2:</strong> Прогон — FAIL.</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 3:</strong> <code>buildCompact</code>: клетка с опущенным углом не сливается; опущенные углы, цвета углов и стенки с полосами — те же функции, что в Task 2 (общий помощник внутри <code>SnowSurface</code>, не копия). Атрибуты счёта у обоих видов. <code>NearSnow</code>: <code>ch.Colors</code> по числу слоёв (<code>SnowPillow.TopColor</code>), SmoothPlastic. <code>SnowLook</code>, <code>SnowInterior</code>, <code>SnowFar</code>, <code>matchFlatCover</code> — по Files.</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 4:</strong> Прогон <code>(&quot;SnowSurface&quot;)</code> и <code>(&quot;SnowPillow&quot;)</code> — PASS. <code>npm run check</code> (с <code>PATH=&quot;$HOME/cas-check-tools/bin:$PATH&quot;</code>) — без новых замечаний.</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 5:</strong> Коммит (локально): <code>831a90: снег-подушки — форма, слои и цвета участков</code>.</p>
+</li>
+</ul>
+<h3 id="task-4-snowbitmeshes-кубики-осколки-купола-кристаллы-кодом">Task 4: <code>SnowBitMeshes</code> — кубики, осколки, купола, кристаллы кодом</h3>
+<p><strong>Files:</strong></p>
+<ul>
+<li>Create: <code>src/ReplicatedStorage/SnowCleaningDemo/SnowBitMeshes.luau</code></li>
+<li>Test: <code>tests/ServerStorage/UnitTest/Cases/SnowBitMeshes_Test.luau</code></li>
+</ul>
+<p><strong>Interfaces:</strong></p>
+<ul>
+<li><p>Consumes: <code>SnowPillow.Colors</code>, <code>TopColor</code>, <code>LipColor</code>.</p>
+</li>
+<li><p>Produces:</p>
+<ul>
+<li><code>export type Kind = &quot;Cube3&quot; | &quot;Cube2&quot; | &quot;Cube1&quot; | &quot;Shard&quot; | &quot;Lump&quot; | &quot;Puff&quot; | &quot;Crystal&quot;</code></li>
+<li><code>SnowBitMeshes.build(kind: Kind): EditableMesh</code> — меш размером 1×1×1 студ вокруг нуля (осколок и кристалл вытянуты по Y: 0,35×1×0,35). Кубик: куб с фаской 0,22 ребра — верх <code>TopColor(n)</code>, фаска верха <code>LipColor(n)</code>, бока и низ: Cube3 «Тень снега», Cube2 «Тень снега», Cube1 «Лёд». Осколок: вытянутая шестигранная бипирамида со смещённым поясом, грани по очереди «Кристалл» и «Лёд», одна грань «Снег». Кристалл: то же, ровнее. Купол комка: 6-гранный низкий купол, верх «Снег», нижний пояс «Тень снега». Купол облачка: тот же, все грани «Крем». Нормали — по грани (видны грани).</li>
+<li><code>SnowBitMeshes.get(kind: Kind): MeshPart?</code> — шаблон для <code>Clone()</code>: меш один раз переводится в непрозрачный контент (<code>CreateDataModelContentAsync</code>), <code>CreateMeshPartAsync</code>, SmoothPlastic, Anchored, без столкновений и запросов. Кэш; уступает поток при первом вызове; nil при ошибке (Review Focus 4).</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 1: Тесты</strong> <code>SnowBitMeshes_Test</code>: для каждого вида — треугольников не больше 60 (кубик 44), размер в пределах 1 студа (кубик) / 0,35×1×0,35 (осколок, кристалл); все цвета граней — из <code>SnowPillow.Colors</code>; у Cube3 есть грани «Крем»; у Shard ровно одна грань «Снег». <code>get(&quot;Cube3&quot;)</code> возвращает MeshPart с <code>MeshContent.SourceType == Opaque</code>, два вызова — один и тот же шаблон.</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 2:</strong> Прогон <code>(&quot;SnowBitMeshes&quot;)</code> — FAIL.</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 3:</strong> Модуль по Interfaces.</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 4:</strong> Прогон — PASS.</p>
+</li>
+</ul>
+<h3 id="task-5-snowbreakrecipe-кубики-по-слоям-осколки-облачка">Task 5: <code>SnowBreakRecipe</code> — кубики по слоям, осколки, облачка</h3>
+<p><strong>Files:</strong></p>
+<ul>
+<li>Modify: <code>src/ReplicatedStorage/SnowCleaningDemo/SnowBreakRecipe.luau</code></li>
+<li>Test: <code>tests/ServerStorage/UnitTest/Cases/SnowBreakRecipe_Test.luau</code></li>
+</ul>
+<p><strong>Interfaces:</strong></p>
+<ul>
+<li><p>Produces:</p>
+<ul>
+<li><code>Recipe.get(kind, quality, reduced, primary, zone, layers: { number }?): Burst</code> — <code>layers</code> по умолчанию <code>{3}</code>.</li>
+<li><code>Cubes.Pieces: { number }</code> — номера слоёв для вариантов кубиков (из <code>layers</code>).</li>
+<li><code>Burst.Shards: Bits</code>, <code>Burst.Puffs: Puffs</code>, где <code>export type Bits = { Count, Size: Range, Length: Range, Up, Out, Spin, Roll, Shrink, Life: Range }</code> (как у <code>Cubes</code>, без <code>RollSpeed</code>/<code>RollSpin</code>/<code>Delay</code>/<code>FromPoint</code> — их берут у кубиков) и <code>export type Puffs = { Count, Size: Range, Height: number, Grow: number, Out: Range, Rise: number, Life: Range }</code>.</li>
+<li><code>Burst.Colors</code> — цвета верха вариантов <code>Pieces</code> (<code>SnowPillow.TopColor</code>), для запасных Part.</li>
+</ul>
+</li>
+<li><p>Числа — из спеки, раздел «Частицы».</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 1: Тесты</strong> (старые про цвета «три к одному» заменить):</p>
+<ul>
+<li>«cubes take the colour of the layer the strike broke»: <code>layers={3}</code> → <code>Pieces={3}</code>, <code>Colors={Снег}</code>; <code>{2}</code> → «Тень снега»; <code>{1}</code> → «Лёд»; <code>{3,2}</code> → <code>Pieces</code> содержит 3 и 2 (Review Focus 5); без <code>layers</code> → <code>{3}</code>.</li>
+<li>«ice shards fly only when the whole patch breaks»: <code>Clear</code> High/Medium/Low основной — 4/3/2, сосед — <code>max(1, round(n/2))</code>; <code>Layer</code>, <code>Hit</code> — 0; размеры и движение — из спеки.</li>
+<li>«low cream puffs at the rim of a broken layer»: <code>Clear</code> и <code>Layer</code> основной — 5/4/2, сосед — половина, <code>Hit</code> — 0; <code>Size</code> 0,6–1, <code>Height</code> 0,45, <code>Grow</code> 0,1, <code>Life</code> 0,45–0,6.</li>
+<li>«reduced motion throws nothing»: кубиков, осколков, облачков 0.</li>
+<li>«every piece of a strike is gone in under a second» — дополнить осколками и облачками (<code>Delay + Life.Max &lt; 1</code>).</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 2:</strong> Прогон <code>(&quot;SnowBreakRecipe&quot;)</code> — FAIL.</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 3:</strong> Рецепт по Interfaces.</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 4:</strong> Прогон — PASS.</p>
+</li>
+</ul>
+<h3 id="task-6-snowbreakburst-и-mapsnowfeedback-новые-частицы-в-игре">Task 6: <code>SnowBreakBurst</code> и <code>MapSnowFeedback</code> — новые частицы в игре</h3>
+<p><strong>Files:</strong></p>
+<ul>
+<li>Modify: <code>src/ReplicatedStorage/SnowCleaningDemo/SnowBreakBurst.luau</code></li>
+<li>Modify: <code>src/StarterPlayer/StarterPlayerScripts/CleanSnow/MapSnowFeedback.luau</code> (только <code>showStrike</code>: передать <code>layers</code> = номера снятых слоёв от <code>before</code> до <code>after+1</code>, у обычного удара <code>{before}</code>)</li>
+</ul>
+<p><strong>Interfaces:</strong></p>
+<ul>
+<li><p>Consumes: Task 4 <code>SnowBitMeshes.get</code>, Task 5 рецепт.</p>
+</li>
+<li><p>Produces: атрибуты папки <code>SnowBreakBurst</code>: <code>ActiveCubes</code>, <code>ActiveShards</code>, <code>ActivePuffs</code>, <code>MeshBits</code> (true, когда пулы на мешах).</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 1:</strong> Пулы: кубики 36, осколки 12, облачка 16. Сразу — запасные Part (как сейчас; осколок — Part «Кристалл» 0,3×1×0,3, облачко — шар «Крем»). В <code>task.spawn</code> после <code>SnowBitMeshes.get</code> каждый свободный слот меняет деталь на клон меша (занятый — когда освободится). Кубик берёт вариант <code>Cube&lt;n&gt;</code> по <code>Pieces</code> по кругу. Осколки летят по тем же правилам, что кубики (рождение по площади, посадка, сжатие). Облачко: точка — самая дальняя от центра из 4 выборок <code>Flash.sample</code>, высота — снег после удара, растёт от 0,3 до 1 за <code>Grow</code>, сжимается к концу жизни, едет наружу и чуть вверх. Ничего не создаётся на удар.</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 2:</strong> <code>showStrike</code> передаёт <code>layers</code>.</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 3:</strong> <code>npm run check</code> — без новых замечаний; Play: удар слоя и участка, атрибуты <code>MeshBits=true</code>, <code>ActiveShards&gt;0</code> на сломе участка, число деталей папки <code>SnowBreakBurst</code> после 10 ударов не растёт.</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 4:</strong> Коммит (локально): <code>831a90: частицы слома — скруглённые кубики, осколки, облачка</code>.</p>
+</li>
+</ul>
+<h3 id="task-7-украшения-сверху">Task 7: украшения сверху</h3>
+<p><strong>Files:</strong></p>
+<ul>
+<li>Modify: <code>src/ReplicatedStorage/SnowCleaningDemo/SnowSurfaceClumps.luau</code></li>
+</ul>
+<p><strong>Interfaces:</strong></p>
+<ul>
+<li><p>Consumes: <code>SnowBitMeshes.get(&quot;Lump&quot;)</code>, <code>get(&quot;Crystal&quot;)</code>.</p>
+</li>
+<li><p>Produces: атрибут <code>VisibleSurfaceClumps</code> (как сейчас) и <code>VisibleSurfaceCrystals</code>.</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 1:</strong> Слоты: 24 комка, 12 кристаллов (запасные Part до готовности мешей, как в Task 6). Комок: участок с <code>hash % 3 == 0</code>, только пока целы все 3 слоя, ширина 0,5–0,8, высота ×0,55. Кристалл: участок с <code>hash % 6 == 1</code>, на любом слое, высота 0,8–1,1, наклон до 20°, при <code>hash % 12 == 1</code> — второй, ×0,6, рядом. Высота — <code>C.Ground + C.Depth × слои / 3</code> (как <code>NearSnow</code>), точка — <code>B.Site</code>, сдвиг до 1 студа по хэшу. <code>Scatter(id)</code> прячет и комки, и кристаллы участка.</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 2:</strong> Play: кадр поля — комки и кристаллы стоят на верху подушек, не висят и не тонут.</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 3:</strong> Коммит (локально): <code>831a90: комки и кристаллы на снегу</code>.</p>
+</li>
+</ul>
+<h3 id="task-8-кадры-замер-критик-карточка">Task 8: кадры, замер, критик, карточка</h3>
+<p><strong>Files:</strong></p>
+<ul>
+<li><p>Modify: <code>tasks/active/clearing-831a90-snow-pillow-layers.md</code>, спека (бюджет, замер, вердикт), <code>docs/vfx.md</code> (если там описан слом), гайд (<code>node tools/guide/build.mjs</code>)</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 1:</strong> Play: кадры поля и сломанных участков в той же точке, что «до» (<code>build/snow-pillow/</code>), рядом с <code>snow-field.png</code>; кадры слома слоя и участка по времени (вспышка, +67, +200, +400, +700 мс, после), High, Low (<code>SnowQuality=Low</code>), «меньше движения». <code>Lighting.GardenWeatherGrade</code> выключен на время съёмки.</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 2:</strong> Замер Level01 в точке «до»: CPU и GPU рендера, треугольники, draw call — не больше «до» с допуском 5 %. Числа — в спеку.</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 3:</strong> Критик <code>feature-vfx-critic</code> + стилевая проверка кадров: обе оценки не ниже 9/10, не больше 5 кругов. Вердикт — в карточку и спеку.</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 4:</strong> Полный прогон Luau-тестов один раз в конце (<code>RunUnitTest()</code> без фильтра), <code>npm run check</code>, <code>node --test tools/guide/build.test.mjs</code>.</p>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Step 5:</strong> Карточка: «Готово когда» отмечены, <code>board.sh done</code>, гайд пересобран, коммит, <code>git pull --rebase</code>, push в <code>main</code>. Временную папку <code>src/ServerStorage/UnitTest</code> удалить.</p>
+</li>
+</ul>
+</article></div></section>
+</main>
+</div>
+<dialog id="viewer" aria-label="Просмотр картинки"><div class="viewer-bar"><p id="viewer-caption"></p><a id="viewer-open" target="_blank" rel="noopener">Открыть файл</a><button id="viewer-close" type="button">Закрыть</button></div><img id="viewer-image" alt=""></dialog>
+<script>// Поведение страницы: пароль на весь сайт, меню на узком экране и просмотр картинки.
+// Текущую страницу в меню отмечает сборщик.
+(() => {
+  const SITE_KEY = "clean-a-snow-guide-open";
+  const SITE_PASSWORD = "91-23sdf-123dsf213-gfdf";
+  const lock = document.getElementById("site-lock-form");
+  if (lock) {
+    lock.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const error = document.getElementById("site-lock-error");
+      if (new FormData(lock).get("password") === SITE_PASSWORD) {
+        try {
+          localStorage.setItem(SITE_KEY, "1");
+        } catch {
+          // Без хранилища сайт откроется только до закрытия вкладки.
+        }
+        document.documentElement.classList.add("site-open");
+      } else if (error) error.hidden = false;
+    });
+  }
+
+  const close = document.getElementById("site-close");
+  if (close) {
+    close.addEventListener("click", () => {
+      try {
+        localStorage.removeItem(SITE_KEY);
+      } catch {
+        // Без хранилища достаточно убрать класс: следующая страница снова спросит пароль.
+      }
+      const error = document.getElementById("site-lock-error");
+      if (error) error.hidden = true;
+      const input = lock?.querySelector("input");
+      if (input) input.value = "";
+      document.documentElement.classList.remove("site-open");
+      input?.focus();
+    });
+  }
+
+  const board = document.querySelector(".board-columns");
+  if (board) {
+    const buttons = [...document.querySelectorAll("[data-person-filter]")];
+    const apply = (person) => {
+      for (const button of buttons) button.setAttribute("aria-pressed", String(button.dataset.personFilter === person));
+      for (const column of board.querySelectorAll(".board-column")) {
+        let visible = 0;
+        for (const card of column.querySelectorAll(".board-card")) {
+          const show = person === "all" || card.dataset.person === person;
+          card.hidden = !show;
+          if (show) visible += 1;
+        }
+        column.querySelector(".board-count").textContent = String(visible);
+        column.querySelector(".board-empty").hidden = visible !== 0;
+      }
+    };
+    for (const button of buttons) button.addEventListener("click", () => apply(button.dataset.personFilter));
+    // Ссылка на карточку (board.html#card-…) раскрывает её текст и показывает карточку.
+    const target = location.hash.startsWith("#card-") ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+    if (target) {
+      const text = target.querySelector("details");
+      if (text) text.open = true;
+      target.scrollIntoView({ block: "start" });
+    }
+  }
+
+  // Кнопка текущей страницы в шапке видна и на узком экране, где шапка листается вбок.
+  document.querySelector(".topbar .top-link[aria-current]")?.scrollIntoView({ block: "nearest", inline: "center" });
+
+  const menu = document.getElementById("menu");
+  const sidebar = document.getElementById("sidebar");
+  menu.addEventListener("click", () => {
+    const open = sidebar.classList.toggle("open");
+    menu.setAttribute("aria-expanded", String(open));
+  });
+  sidebar.addEventListener("click", (e) => {
+    if (e.target.closest("a")) {
+      sidebar.classList.remove("open");
+      menu.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  // Свёрнутые разделы меню. Выбор читателя помнит браузер; без него открыт только раздел текущей страницы.
+  const KEY = "clean-a-snow-guide-nav-folds";
+  let folds = {};
+  try {
+    folds = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+  } catch {
+    folds = {};
+  }
+  for (const group of sidebar.querySelectorAll("details.group")) {
+    const id = group.dataset.group;
+    group.open = id in folds ? folds[id] : group.querySelector('[aria-current="page"]') !== null;
+    group.addEventListener("toggle", () => {
+      folds[id] = group.open;
+      try {
+        localStorage.setItem(KEY, JSON.stringify(folds));
+      } catch {
+        // Без хранилища выбор живёт до перехода на другую страницу.
+      }
+    });
+  }
+  // Общие галочки: файл на сервере, браузер держит копию. Сервер недоступен — остаётся копия в браузере.
+  // Пользуются чеклист «Тестирование» и отметки «Ответ дан» страницы «Вопросы».
+  // reset() снимает все отметки у всех. onPaint вызывается после каждой смены галочек.
+  const sharedChecks = ({ boxes, keyOf, storageKey, url, onPaint }) => {
+    let done = {};
+    let revision = null;
+    let sending = false;
+    let dirty = false;
+    let resetPending = false;
+    const touched = new Set();
+    try {
+      done = JSON.parse(localStorage.getItem(storageKey) || "{}") || {};
+    } catch {
+      done = {};
+    }
+    const save = () => {
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(done));
+      } catch {
+        // Без хранилища отметки живут до ухода со страницы.
+      }
+    };
+    const paint = () => {
+      for (const box of boxes) box.checked = done[keyOf(box)] === true;
+      onPaint();
+    };
+    const mergeTouched = (serverChecks, localChecks, keys) => {
+      const merged = { ...serverChecks };
+      for (const key of keys) {
+        if (localChecks[key] === true) merged[key] = true;
+        else delete merged[key];
+      }
+      return merged;
+    };
+    const push = () => {
+      if (revision === null || sending) {
+        dirty = true;
+        return;
+      }
+      sending = true;
+      dirty = false;
+      const sentChecks = { ...done };
+      const sentTouched = [...touched];
+      const wasReset = resetPending;
+      resetPending = false;
+      touched.clear();
+      fetch(url, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ revision, checks: sentChecks }),
+      })
+        .then((res) => res.json().then((doc) => ({ status: res.status, doc })))
+        .then(({ status, doc }) => {
+          if (!doc || !doc.checks || !Number.isInteger(doc.revision)) return;
+          revision = doc.revision;
+          if (status === 409) {
+            const newerTouched = [...touched];
+            const newerChecks = { ...done };
+            if (wasReset && newerTouched.length === 0) done = {};
+            else done = mergeTouched(mergeTouched(doc.checks, sentChecks, sentTouched), newerChecks, newerTouched);
+            dirty = true;
+          } else if (status === 200) {
+            if (dirty || touched.size) done = { ...done };
+            else done = doc.checks;
+          }
+          save();
+          paint();
+        })
+        .catch(() => {
+          // Сервер недоступен: копия в браузере уже сохранена.
+        })
+        .finally(() => {
+          sending = false;
+          if (dirty || touched.size || resetPending) push();
+        });
+    };
+    const pull = () => {
+      fetch(url)
+        .then((res) => (res.ok ? res.json() : null))
+        .then((doc) => {
+          if (!doc || !doc.checks || !Number.isInteger(doc.revision)) return;
+          if (revision === null) {
+            revision = doc.revision;
+            if (touched.size || resetPending) {
+              if (!resetPending) done = mergeTouched(doc.checks, done, touched);
+              push();
+            } else {
+              done = doc.checks;
+              save();
+              paint();
+            }
+            return;
+          }
+          if (sending || touched.size || resetPending) return;
+          if (revision === doc.revision) return;
+          revision = doc.revision;
+          done = doc.checks;
+          save();
+          paint();
+        })
+        .catch(() => {
+          // Без сервера страница остаётся на копии в браузере.
+        });
+    };
+    for (const box of boxes) {
+      box.addEventListener("change", () => {
+        if (box.checked) done[keyOf(box)] = true;
+        else delete done[keyOf(box)];
+        touched.add(keyOf(box));
+        resetPending = false;
+        save();
+        onPaint();
+        push();
+      });
+    }
+    paint();
+    pull();
+    setInterval(pull, 2000);
+    return {
+      reset() {
+        done = {};
+        touched.clear();
+        resetPending = true;
+        save();
+        paint();
+        push();
+      },
+    };
+  };
+  const CHECKS_SERVER = "https://atlas.31-58-209-99.sslip.io/clean-snow-checks/";
+
+  // Галочки чеклиста «Тестирование». «Сбросить» начинает новый круг у всех.
+  const checks = document.querySelectorAll("input[data-check]");
+  if (checks.length) {
+    const visibleBoxes = (root) => [...root.querySelectorAll("input[data-check]")].filter((box) => !box.closest(".test-item")?.hidden);
+    const count = () => {
+      for (const group of document.querySelectorAll("details.test-group")) {
+        const boxes = visibleBoxes(group);
+        const ticked = boxes.filter((b) => b.checked).length;
+        group.querySelector(".test-count").textContent = `${ticked} из ${boxes.length}`;
+        group.classList.toggle("test-finished", boxes.length > 0 && ticked === boxes.length);
+      }
+      document.getElementById("test-done").textContent = String(visibleBoxes(document).filter((b) => b.checked).length);
+    };
+    const filterButtons = [...document.querySelectorAll("[data-test-filter]")];
+    const applyPerson = (person) => {
+      for (const button of filterButtons) button.setAttribute("aria-pressed", String(button.dataset.testFilter === person));
+      for (const item of document.querySelectorAll(".test-item")) {
+        const people = (item.dataset.people || "").split(/\s+/).filter(Boolean);
+        item.hidden = person !== "all" && people.length > 0 && !people.includes(person);
+      }
+      for (const task of document.querySelectorAll(".test-task")) {
+        task.hidden = ![...task.querySelectorAll(".test-item")].some((item) => !item.hidden);
+      }
+      for (const group of document.querySelectorAll("details.test-group")) {
+        group.hidden = ![...group.querySelectorAll(".test-item")].some((item) => !item.hidden);
+      }
+      const shown = visibleBoxes(document);
+      for (const node of document.querySelector(".test-total").childNodes) {
+        if (node.nodeType === Node.TEXT_NODE && node.textContent.includes(" из ")) node.textContent = ` из ${shown.length} `;
+      }
+      count();
+    };
+    for (const button of filterButtons) button.addEventListener("click", () => applyPerson(button.dataset.testFilter));
+    const testing = sharedChecks({
+      boxes: checks,
+      keyOf: (box) => box.dataset.check,
+      storageKey: "clean-a-snow-guide-testing-checks",
+      url: CHECKS_SERVER,
+      onPaint: count,
+    });
+    document.getElementById("test-reset").addEventListener("click", () => {
+      if (!confirm("Снять все отметки и начать проверку заново?")) return;
+      testing.reset();
+    });
+  }
+
+  // Отметки «Ответ дан» страницы «Вопросы»: свой файл того же сервера.
+  const answers = document.querySelectorAll("input[data-answer]");
+  if (answers.length) {
+    sharedChecks({
+      boxes: answers,
+      keyOf: (box) => box.dataset.answer,
+      storageKey: "clean-a-snow-guide-question-answers",
+      url: "https://atlas.31-58-209-99.sslip.io/clean-snow-checks/questions",
+      onPaint: () => {
+        for (const box of answers) box.closest(".question")?.classList.toggle("question-answered", box.checked);
+        document.getElementById("answer-done").textContent = String([...answers].filter((b) => b.checked).length);
+      },
+    });
+  }
+
+  const current = sidebar.querySelector('[aria-current="page"]');
+  if (current) current.scrollIntoView({ block: "nearest" });
+
+  const viewer = document.getElementById("viewer");
+  const image = document.getElementById("viewer-image");
+  const caption = document.getElementById("viewer-caption");
+  const open = document.getElementById("viewer-open");
+  document.addEventListener("click", (e) => {
+    const img = e.target.closest("main img");
+    if (!img) return;
+    image.src = img.src;
+    image.alt = img.alt;
+    caption.textContent = img.dataset.caption || img.alt;
+    open.href = img.src;
+    viewer.showModal();
+  });
+  document.getElementById("viewer-close").addEventListener("click", () => viewer.close());
+  viewer.addEventListener("click", (e) => {
+    if (e.target === viewer) viewer.close();
+  });
+})();
+</script>
+</body>
+</html>
