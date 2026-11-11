@@ -268,7 +268,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <ul>
 <li>Цвета только из <code>art/palette.json</code>: «Снег» <code>#F3F6F5</code>, «Тень снега» <code>#CDCDED</code>, «Лёд» <code>#A8DEE7</code>, «Крем» <code>#FFFDF5</code>, «Кристалл» <code>#8BE0FF</code>.</li>
 <li>Без текстур и картинок; материал SmoothPlastic; загрузок в Roblox нет.</li>
-<li>Кромка: <code>SnowPillow.Drop = 0.45</code> студа на ширине клетки 1,5 студа.</li>
+<li>Кромка: <code>SnowPillow.Dip</code> — 1,1 в ложбинку, 0,8 над более низким снегом, плечо 0,3 (было <code>Drop</code> 0,45, изменено по кадрам и критику — см. спеку).</li>
 <li>Бюджет ближнего чанка: не больше 1900 вершин и 2400 треугольников (было 1313 и 1600).</li>
 <li>Новый модуль начинается с <code>--!strict</code>. Функции <code>crack</code> и <code>crackSegment</code> в <code>MapSnowFeedback.luau</code> не трогать (карточка <code>ffee11</code>).</li>
 <li>Вспышку <code>SnowBreakFlash</code> не менять. «Меньше движения» — без частиц.</li>
@@ -293,7 +293,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <ul>
 <li><p>Produces:</p>
 <ul>
-<li><code>SnowPillow.Drop: number</code> = 0.45</li>
+<li><code>SnowPillow.Drop: number</code> = 0.7 (было 0.45)</li>
 <li><code>SnowPillow.Colors: { Snow: Color3, Shadow: Color3, Ice: Color3, Cream: Color3, Crystal: Color3 }</code></li>
 <li><code>SnowPillow.TopColor(layers: number): Color3</code> — 3 Snow, 2 Shadow, 1 Ice</li>
 <li><code>SnowPillow.LipColor(layers: number): Color3</code> — 3 Cream, 2 Snow, 1 Snow</li>
