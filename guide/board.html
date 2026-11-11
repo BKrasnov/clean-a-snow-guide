@@ -257,7 +257,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <main>
 <section class="part"><h2>Доска</h2><div class="board-filters" role="group" aria-label="Кто делает"><button type="button" data-person-filter="all" aria-pressed="true">Все</button><button type="button" data-person-filter="Богдан" aria-pressed="false">Богдан</button><button type="button" data-person-filter="Леонид" aria-pressed="false">Леонид</button><button type="button" data-person-filter="Георгий" aria-pressed="false">Георгий</button></div>
 <div class="board-columns"><section class="board-column" data-status="todo">
-  <h3>К выполнению <span class="board-count">21</span></h3>
+  <h3>К выполнению <span class="board-count">22</span></h3>
   <div class="board-cards"><article class="board-card" id="card-074003" data-person="Богдан" data-status="todo">
   <h3>Панель иконок в забеге: инструмент первым, донат последним</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>074003</code> фича · held-items</p>
@@ -321,6 +321,43 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <h2>Заметки</h2>
 <ul>
 <li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-1b74ef" data-person="Богдан" data-status="todo">
+  <h3>Снег одной прочности на всей карте (12)</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>1b74ef</code> фича · clearing</p>
+  <p class="board-lead">Сделать снег одной прочности на всей карте.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Сделать снег одной прочности на всей карте.</p>
+<p>Сейчас прочность участка растёт по зонам: 3 / 6 / 9 / 12 / 18 / 24 (<code>Data/areas.json</code>, поле <code>maxHealth</code>). Сервер берёт её по зоне участка (<code>MapSnowService.nodeFor</code>, <code>WorldRegistry</code>, <code>MapAdapter</code>, <code>SessionService</code>), клиент — <code>SnowCells</code>. Из-за этого в зонах 1–3 лопаты почти не отличаются: Snow Pusher бьёт как Steel, Frost в зоне 1 — как Steel (вопрос 8 аудита механик).</p>
+<p>Как должно быть:</p>
+<ul>
+<li>Прочность 12 у всех зон, одно место числа в данных.</li>
+<li>Ударов на участок: ложка 12, Starter Shovel 6, Steel Shovel 4, Snow Pusher 3, Frost Shovel 2 — каждая лопата на удар быстрее предыдущей.</li>
+<li>Оттенки и типы снега по зонам остаются (<code>SnowLook</code>, <code>snowType</code>), цена куска по зонам остаётся (12–72 монеты), ледоруб по-прежнему бьёт вдвое сильнее по насту и льду.</li>
+<li>Урок-остров первого забега работает как раньше (защита слоёв считается от новой прочности).</li>
+</ul>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> В данных у всех зон прочность 12, <code>node --test tools/data/data.test.mjs</code> проходит.</li>
+<li><input disabled="" type="checkbox"> Удары по зонам: ложка 12, Starter 6, Steel 4, Snow Pusher 3, Frost 2 (Luau-тест).</li>
+<li><input disabled="" type="checkbox"> Оттенки снега и цена куска по зонам не изменились.</li>
+<li><input disabled="" type="checkbox"> Play: одна лопата ломает участок в зоне 1 и зоне 4 за одинаковое число ударов; первый забег (задание «BREAK THE SNOW») проходится без затяжки; кадры просмотрены.</li>
+<li><input disabled="" type="checkbox"> Страницы «Механики» и «Экономика» пересобраны и показывают одну прочность; <code>npm run check</code> без новых замечаний.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Одно число в данных и проверка мест, где прочность считается по зоне, урок-остров, темп первого забега</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 10.11.2026 (вопрос 8 аудита механик, <code>docs/mechanics-audit.md</code>): одна прочность снега на всю карту, оттенки пока оставить. Прочность 12 — так каждая лопата ломает участок на удар быстрее предыдущей. Цену куска не меняли.</li>
+<li>Ложкой участок теперь около 5 секунд (12 ударов). Проверить вместе с <code>b652d9</code> (первый забег), не нужно ли подсказать первую лопату раньше.</li>
+<li>Урон лопат и оружия не меняется, поэтому цены оружия по силе (<code>ca84fc</code>) пересчитывать не нужно.</li>
+<li>Не путать с <code>Q-20261111-001</code> («одна высота снега»): там речь о высоте снега для прицела и удара, а не о прочности.</li>
 </ul>
 </div></details>
 </article>
