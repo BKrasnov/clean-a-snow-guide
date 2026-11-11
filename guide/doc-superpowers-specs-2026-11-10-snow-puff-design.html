@@ -83,6 +83,8 @@ html.site-open .site-lock { display: none !important; }
 .board-card h3 { margin: 0 0 6px; font-size: 16px; }
 .board-meta, .board-lead, .board-empty { margin: 0 0 6px; }
 .board-empty { color: var(--muted); }
+.board-origin { margin: 0 0 6px; color: var(--muted); font-size: 13px; }
+.board-author { font-weight: 700; color: var(--ink); }
 .board-archive { color: var(--muted); font-size: 12px; }
 .person { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 13px; font-weight: 700; }
 .person[data-person="Богдан"] { background: var(--gold); }
@@ -392,6 +394,33 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
       }
     };
     for (const button of buttons) button.addEventListener("click", () => apply(button.dataset.personFilter));
+    // Время коммита — в часовом поясе того, кто смотрит доску (в HTML оно в поясе автора коммита).
+    const two = (n) => String(n).padStart(2, "0");
+    for (const time of board.querySelectorAll(".board-origin time[datetime*='T']")) {
+      const at = new Date(time.getAttribute("datetime"));
+      if (!Number.isNaN(at.getTime())) time.textContent = `${two(at.getDate())}.${two(at.getMonth() + 1)} ${two(at.getHours())}:${two(at.getMinutes())}`;
+    }
+    // Порядок карточек: «Сначала новые» (по дате и времени коммита) или «Как раньше». Выбор помнит браузер.
+    const sortButtons = [...document.querySelectorAll("[data-board-sort]")];
+    const sortKey = "clean-a-snow-board-sort";
+    const sort = (order) => {
+      const rank = order === "old" ? "oldRank" : "newRank";
+      for (const button of sortButtons) button.setAttribute("aria-pressed", String(button.dataset.boardSort === order));
+      for (const list of board.querySelectorAll(".board-cards")) {
+        const cards = [...list.querySelectorAll(":scope > .board-card")];
+        cards.sort((a, b) => Number(a.dataset[rank]) - Number(b.dataset[rank]));
+        for (const card of cards) list.appendChild(card);
+      }
+      try {
+        localStorage.setItem(sortKey, order);
+      } catch (e) {}
+    };
+    for (const button of sortButtons) button.addEventListener("click", () => sort(button.dataset.boardSort));
+    let savedSort = null;
+    try {
+      savedSort = localStorage.getItem(sortKey);
+    } catch (e) {}
+    if (savedSort === "old") sort("old");
     // Ссылка на карточку (board.html#card-…) раскрывает её текст и показывает карточку.
     const target = location.hash.startsWith("#card-") ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
     if (target) {
