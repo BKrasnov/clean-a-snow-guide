@@ -269,7 +269,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <main>
 <section class="part"><h2>Обсудить</h2><div class="prose"><p>Темы, которые владелец отложил «обсудить позже», по людям: с кем какую тему обсудить. У каждой темы: в чём вопрос, что уже известно, варианты (рекомендуемый первым) и где тема записана. Решённая тема отсюда убирается и записывается туда, где ей место: в спеку, карточку или аудит механик.</p>
 <p>Новая тема — заголовок третьего уровня (<code>###</code>) под нужным человеком. Тема на двоих — у того, кто будет делать основную часть; второго упомянуть в теме.</p>
-</div><div class="board-filters" role="group" aria-label="С кем обсудить"><button type="button" data-discuss-person="Богдан" aria-pressed="true">Богдан · 3 темы</button><button type="button" data-discuss-person="Леонид" aria-pressed="false">Леонид · 4 темы</button><button type="button" data-discuss-person="Георгий" aria-pressed="false">Георгий · 1 тема</button></div>
+</div><div class="board-filters" role="group" aria-label="С кем обсудить"><button type="button" data-discuss-person="Богдан" aria-pressed="true">Богдан · 3 темы</button><button type="button" data-discuss-person="Леонид" aria-pressed="false">Леонид · 5 тем</button><button type="button" data-discuss-person="Георгий" aria-pressed="false">Георгий · 1 тема</button></div>
 <section class="discuss-person" data-discuss-panel="Богдан"><div class="prose"><p>Код, системы игры, данные и сохранение, сеть и отряд.</p>
 </div><details class="mechanic discuss-topic"><summary>Сохранение игры: Continue и New Game</summary><div class="mechanic-body"><div class="prose"><p><strong>В чём вопрос.</strong> Как устроить прогресс игрока, игру с друзьями и рекорды прохождения. Почти всё решено в чате 11.11.2026, спека ещё не написана. Открыт один вопрос — покупки гостя в чужом мире (это экономика — обсудить вместе с Леонидом).</p>
 <p><strong>Что уже решено владельцем 11.11.2026.</strong></p>
@@ -330,15 +330,6 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <li><strong>Убрать донатную иконку,</strong> если донатные вещи всё равно встают в иконку 1 или в иконки особых предметов.</li>
 </ul>
 </div></div></details>
-<details class="mechanic discuss-topic"><summary>Пылесосы или вёдра</summary><div class="mechanic-body"><div class="prose"><p><strong>В чём вопрос.</strong> В игре два разных пылесоса: магазинный за 1 000 монет и на стойке. Владелец не решил, нужны ли они: в будущем планируются вёдра. Модели вёдер — потом с Георгием.</p>
-<p><strong>Варианты.</strong></p>
-<ul>
-<li><strong>Один пылесос,</strong> платный, на стенде в фермерском доме.</li>
-<li><strong>Оба,</strong> платные за монеты.</li>
-<li><strong>Убрать оба,</strong> когда появятся вёдра.</li>
-</ul>
-<p><strong>Где записано.</strong> Вопрос <code>Q-20261110-005</code> в <code>tasks/questions.md</code>, карточка <code>2e0b1f</code> на паузе.</p>
-</div></div></details>
 <details class="mechanic discuss-topic"><summary>Классы: цена Master в Robux</summary><div class="mechanic-body"><div class="prose"><p><strong>Что решено 11.11.2026.</strong> Шесть классов, от дешёвого к дорогому:</p>
 <ul>
 <li>Runner — ходьба быстрее на 10 %, 50 гемов;</li>
@@ -351,6 +342,39 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <p>Работает один выбранный класс, сменить можно в лобби бесплатно. Класс навсегда и в любом мире.</p>
 <p><strong>В чём вопрос.</strong> Сколько Robux стоит Master и как его продавать: Game Pass или покупка в игре. Это часть монетизации (вопрос 10). Пока цены нет, Master стоит с замком.</p>
 <p><strong>Где записано.</strong> Спека <code>docs/superpowers/specs/2026-11-11-classes-design.md</code>.</p>
+</div></div></details>
+<details class="mechanic discuss-topic"><summary>Какие инструменты останутся</summary><div class="mechanic-body"><div class="prose"><p><strong>В чём вопрос.</strong> Не все модели инструментов останутся в игре, часть уберут. Какие оставить и по какой цене.</p>
+<p><strong>Что известно.</strong> Инструментов для снега 13, от слабого к сильному (снега в секунду, когда вокруг много снега, без улучшений):</p>
+<ul>
+<li>ложка — 2,1, есть с начала;</li>
+<li>Starter Shovel — 3,3, 20 монет;</li>
+<li>Big Spoon (стена) — 4,8, 10 монет;</li>
+<li>Steel Shovel — 5, 750 монет;</li>
+<li>Ice Axe (стена) — 6,7, по льду и насту 13,3, 150 монет;</li>
+<li>Jackhammer (стена) — 8,6, ходишь медленнее, 50 монет;</li>
+<li>Snow Vacuum — 9, 1 000 монет;</li>
+<li>второй пылесос — 10,9, будет 3 000 монет;</li>
+<li>Snow Pusher — 13,3, 2 400 монет;</li>
+<li>Big Shovel (стена) — 16, 750 монет;</li>
+<li>Frost Shovel — 30, 12 000 монет;</li>
+<li>Snowblower (стена) — 30, ходишь медленнее, 12 000 монет;</li>
+<li>Thermal Gun (стена) — 46,7, перегревается, снег от неё даёт полцены монет, 2 400 монет.</li>
+</ul>
+<p>Молотов в этот ряд не входит: у него своя иконка. Вещи со стен намного дешевле лопат той же силы: Big Shovel за 750 сильнее Snow Pusher за 2 400, Jackhammer за 50 сильнее Steel Shovel за 750.</p>
+<p>Решено 11.11.2026: купленное за монеты живёт в своём мире — Continue, и оно на месте; New Game — покупать заново. Купленное за Robux — навсегда, но покупок за Robux пока нет.</p>
+<p><strong>Ещё решить.</strong> Что считать «самым сильным» инструментом, с которого начинается забег (карточка <code>11461b</code>): по силе среди всего купленного или только лопаты из цепочки.</p>
+<p><strong>Где записано.</strong> Механика «Оружие со стойки», карточки <code>11461b</code> и <code>2e0b1f</code> (пылесосы).</p>
+</div></div></details>
+<details class="mechanic discuss-topic"><summary>Питомцы: сова, бонусы, потолок</summary><div class="mechanic-body"><div class="prose"><p><strong>В чём вопрос.</strong> Лис, заяц и сова покупаются за гемы (20, 35 и 60), надеть можно двоих. Что в них поменять.</p>
+<p><strong>Что известно.</strong> Лис ускоряет переработку на 5 %, сова усиливает удар на 5 %, заяц подбирает снег дальше на полшага (0,5 стада). У каждого бонуса потолок 15 %.</p>
+<p><strong>Решить.</strong></p>
+<ol>
+<li><strong>Сова работает только с ложкой и лопатами.</strong> С пылесосом, оружием со стойки и Молотовым она ничего не даёт, а игрок этого не знает. Варианты: сова усиливает любой удар игрока (рекомендую); оставить только лопаты и написать в описании «урон лопатой»; усиливать вообще всё, даже машины и помощника.</li>
+<li><strong>Бонусы маленькие.</strong> 5 % и полшага игрок почти не заметит. Увеличить или оставить.</li>
+<li><strong>Потолок 15 %.</strong> На один бонус работает один питомец, больше 5 % никто не получит. Убрать потолок или оставить на будущее.</li>
+<li><strong>Надеть двоих из трёх.</strong> Так и оставить?</li>
+</ol>
+<p><strong>Где записано.</strong> Механика «Питомцы»; сова — вопрос 13 в <code>docs/mechanics-audit.md</code>, <code>Q-20261111-003</code>, карточка <code>b81273</code>.</p>
 </div></div></details></section>
 <section class="discuss-person" data-discuss-panel="Георгий" hidden><div class="prose"><p>Модели, интерфейс (GUI) и всё визуальное.</p>
 </div><details class="mechanic discuss-topic"><summary>Фермерский дом: где стоит, как выглядит, как расставлены инструменты</summary><div class="mechanic-body"><div class="prose"><p><strong>В чём вопрос.</strong> Дом — главный магазин игры, а сейчас он далеко от начала забега, тесный и собран из готовой модели. Нужно решить, где дома стоят, сколько в них помещается и как они выглядят. Тему владелец хочет обсудить с Георгием (Гошей), вместе с Леонидом.</p>
