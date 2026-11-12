@@ -269,7 +269,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <main>
 <section class="part"><h2>Обсудить</h2><div class="prose"><p>Темы, которые владелец отложил «обсудить позже», по людям: с кем какую тему обсудить. У каждой темы: в чём вопрос, что уже известно, варианты (рекомендуемый первым) и где тема записана. Решённая тема отсюда убирается и записывается туда, где ей место: в спеку, карточку или аудит механик.</p>
 <p>Новая тема — заголовок третьего уровня (<code>###</code>) под нужным человеком. Тема на двоих — у того, кто будет делать основную часть; второго упомянуть в теме.</p>
-</div><div class="board-filters" role="group" aria-label="С кем обсудить"><button type="button" data-discuss-person="Богдан" aria-pressed="true">Богдан · 3 темы</button><button type="button" data-discuss-person="Леонид" aria-pressed="false">Леонид · 5 тем</button><button type="button" data-discuss-person="Георгий" aria-pressed="false">Георгий · 1 тема</button></div>
+</div><div class="board-filters" role="group" aria-label="С кем обсудить"><button type="button" data-discuss-person="Богдан" aria-pressed="true">Богдан · 3 темы</button><button type="button" data-discuss-person="Леонид" aria-pressed="false">Леонид · 6 тем</button><button type="button" data-discuss-person="Георгий" aria-pressed="false">Георгий · 2 темы</button></div>
 <section class="discuss-person" data-discuss-panel="Богдан"><div class="prose"><p>Код, системы игры, данные и сохранение, сеть и отряд.</p>
 </div><details class="mechanic discuss-topic"><summary>Сохранение игры: Continue и New Game</summary><div class="mechanic-body"><div class="prose"><p><strong>В чём вопрос.</strong> Как устроить прогресс игрока, игру с друзьями и рекорды прохождения. Почти всё решено в чате 11.11.2026, спека ещё не написана. Открыт один вопрос — покупки гостя в чужом мире (это экономика — обсудить вместе с Леонидом).</p>
 <p><strong>Что уже решено владельцем 11.11.2026.</strong></p>
@@ -379,10 +379,20 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </li>
 <li><p><strong>Надеть двоих из трёх.</strong> Так и оставить?</p>
 </li>
-<li><p><strong>Цены.</strong> Лис 20, заяц 35, сова 60, помощник 200 гемов. Доход теперь около 100 гемов за игру (1,5 часа): пересмотреть или оставить.</p>
+<li><p><strong>Цены.</strong> Лис 20, заяц 35, сова 60 гемов. Доход теперь около 100 гемов за игру (1,5 часа): пересмотреть или оставить.</p>
 </li>
 </ol>
 <p><strong>Где записано.</strong> Механика «Питомцы»; сова — вопрос 13 в <code>docs/mechanics-audit.md</code>, <code>Q-20261111-003</code>, карточка <code>b81273</code>.</p>
+</div></div></details>
+<details class="mechanic discuss-topic"><summary>Погодные события: какие будут</summary><div class="mechanic-body"><div class="prose"><p><strong>В чём вопрос.</strong> Погодные события в игре будут, но не те, что были раньше. Какие и как часто.</p>
+<p><strong>Что известно.</strong> Сейчас всё время идёт лёгкий снег (карточка <code>e5330f</code>). Старые события — дождь, гроза, радуга, снегопад, кровавая луна, звездопад, сияние — выключены в данных, код остался. В механике есть ошибки: возможно, её придётся переделать. Код не удалять.</p>
+<p><strong>Решить.</strong></p>
+<ol>
+<li>Какие события будут.</li>
+<li>Меняют ли они игру (снег, монеты) или только вид.</li>
+<li>Как часто и сколько длятся.</li>
+</ol>
+<p><strong>Где записано.</strong> Механика «Погода», карточка <code>e5330f</code>.</p>
 </div></div></details></section>
 <section class="discuss-person" data-discuss-panel="Георгий" hidden><div class="prose"><p>Модели, интерфейс (GUI) и всё визуальное.</p>
 </div><details class="mechanic discuss-topic"><summary>Фермерский дом: где стоит, как выглядит, как расставлены инструменты</summary><div class="mechanic-body"><div class="prose"><p><strong>В чём вопрос.</strong> Дом — главный магазин игры, а сейчас он далеко от начала забега, тесный и собран из готовой модели. Нужно решить, где дома стоят, сколько в них помещается и как они выглядят. Тему владелец хочет обсудить с Георгием (Гошей), вместе с Леонидом.</p>
@@ -397,6 +407,16 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ol>
 <p><strong>С кем.</strong> Георгий — модель и вид дома; Леонид — что и в каком порядке продаётся.</p>
 <p><strong>Где записано.</strong> Пока только здесь.</p>
+</div></div></details>
+<details class="mechanic discuss-topic"><summary>Помощник: модель, где стоит, как работает</summary><div class="mechanic-body"><div class="prose"><p><strong>В чём вопрос.</strong> Помощника (Snow Helper) пока убрали из игры (карточка <code>0948b1</code>), механику оставили. Нужны другая модель и новая механика.</p>
+<p><strong>Что известно.</strong> Было так: покупается у прилавка за 200 гемов; в начале забега сам ломает снег и носит его к переработчику по 15 кусков; после смерти игрока сам не включается. Решено 11.11.2026: помощник покупается не навсегда; будет вариант купить за Robux.</p>
+<p><strong>Решить.</strong></p>
+<ol>
+<li>Как выглядит — новая модель (Георгий).</li>
+<li>Где стоит — скорее всего в фермерском доме (Георгий).</li>
+<li>Как работает, сколько стоит за гемы и за Robux, на сколько покупается — вместе с Леонидом.</li>
+</ol>
+<p><strong>Где записано.</strong> Механики «Питомцы» и «Окна магазина», карточка <code>0948b1</code>.</p>
 </div></div></details></section>
 <p class="source">Источник: <code>docs/discuss.md</code>.</p></section>
 </main>
