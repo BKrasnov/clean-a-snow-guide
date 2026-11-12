@@ -269,7 +269,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <main>
 <section class="part"><h2>Обсудить</h2><div class="prose"><p>Темы, которые владелец отложил «обсудить позже», по людям: с кем какую тему обсудить. У каждой темы: в чём вопрос, что уже известно, варианты (рекомендуемый первым) и где тема записана. Решённая тема отсюда убирается и записывается туда, где ей место: в спеку, карточку или аудит механик.</p>
 <p>Новая тема — заголовок третьего уровня (<code>###</code>) под нужным человеком. Тема на двоих — у того, кто будет делать основную часть; второго упомянуть в теме.</p>
-</div><div class="board-filters" role="group" aria-label="С кем обсудить"><button type="button" data-discuss-person="Богдан" aria-pressed="true">Богдан · 3 темы</button><button type="button" data-discuss-person="Леонид" aria-pressed="false">Леонид · 6 тем</button><button type="button" data-discuss-person="Георгий" aria-pressed="false">Георгий · 2 темы</button></div>
+</div><div class="board-filters" role="group" aria-label="С кем обсудить"><button type="button" data-discuss-person="Богдан" aria-pressed="true">Богдан · 3 темы</button><button type="button" data-discuss-person="Леонид" aria-pressed="false">Леонид · 7 тем</button><button type="button" data-discuss-person="Георгий" aria-pressed="false">Георгий · 2 темы</button></div>
 <section class="discuss-person" data-discuss-panel="Богдан"><div class="prose"><p>Код, системы игры, данные и сохранение, сеть и отряд.</p>
 </div><details class="mechanic discuss-topic"><summary>Сохранение игры: Continue и New Game</summary><div class="mechanic-body"><div class="prose"><p><strong>В чём вопрос.</strong> Как устроить прогресс игрока, игру с друзьями и рекорды прохождения. Почти всё решено в чате 11.11.2026, спека ещё не написана. Открыт один вопрос — покупки гостя в чужом мире (это экономика — обсудить вместе с Леонидом).</p>
 <p><strong>Что уже решено владельцем 11.11.2026.</strong></p>
@@ -394,6 +394,19 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <li>Как часто и сколько длятся.</li>
 </ol>
 <p><strong>Где записано.</strong> Механика «Погода», карточка <code>e5330f</code>.</p>
+</div></div></details>
+<details class="mechanic discuss-topic"><summary>События по таймеру: Санта, Гринч и другие</summary><div class="mechanic-body"><div class="prose"><p><strong>В чём вопрос.</strong> Новая механика: в забеге каждые N минут срабатывает событие. Какие события, что они делают и как часто.</p>
+<p><strong>Примеры владельца (только примеры, не решение).</strong> Появляется Санта-Клаус и раздаёт подарки. На 15-й минуте приходит Гринч, который что-то забирает или прячет.</p>
+<p><strong>Решить.</strong></p>
+<ol>
+<li>Какие события и что каждое делает.</li>
+<li>Как часто: каждые N минут или на определённой минуте забега.</li>
+<li>Что дают игроку: монеты, гемы, подарки, что-то ещё.</li>
+<li>Для кого: для отряда в забеге или для всего сервера.</li>
+<li>Делать ли одну общую систему вместе с погодными событиями. У погоды уже есть таймер: первое событие через минуту, дальше каждые 10 минут (<code>Data/weather.json</code>).</li>
+<li>Модели персонажей — с Георгием.</li>
+</ol>
+<p><strong>Где записано.</strong> Здесь и карточка <code>752bac</code> на «Доске».</p>
 </div></div></details></section>
 <section class="discuss-person" data-discuss-panel="Георгий" hidden><div class="prose"><p>Модели, интерфейс (GUI) и всё визуальное.</p>
 </div><details class="mechanic discuss-topic"><summary>Фермерский дом: где стоит, как выглядит, как расставлены инструменты</summary><div class="mechanic-body"><div class="prose"><p><strong>В чём вопрос.</strong> Дом — главный магазин игры, а сейчас он далеко от начала забега, тесный и собран из готовой модели. Нужно решить, где дома стоят, сколько в них помещается и как они выглядят. Тему владелец хочет обсудить с Георгием (Гошей), вместе с Леонидом.</p>
