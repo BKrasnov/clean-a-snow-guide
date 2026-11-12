@@ -270,7 +270,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <section class="part"><h2>Доска</h2><div class="board-filters" role="group" aria-label="Кто делает"><button type="button" data-person-filter="all" aria-pressed="true">Все</button><button type="button" data-person-filter="Богдан" aria-pressed="false">Богдан</button><button type="button" data-person-filter="Леонид" aria-pressed="false">Леонид</button><button type="button" data-person-filter="Георгий" aria-pressed="false">Георгий</button></div>
 <div class="board-filters" role="group" aria-label="Порядок карточек"><button type="button" data-board-sort="new" aria-pressed="true">Сначала новые</button><button type="button" data-board-sort="old" aria-pressed="false">Как раньше</button></div>
 <div class="board-columns"><section class="board-column" data-status="todo">
-  <h3>К выполнению <span class="board-count">25</span></h3>
+  <h3>К выполнению <span class="board-count">26</span></h3>
   <div class="board-cards"><article class="board-card" id="card-752bac" data-person="Леонид" data-status="todo" data-new-rank="0" data-old-rank="97">
   <h3>События по таймеру: придумать и описать (Санта, Гринч — примеры)</h3>
   <p class="board-meta"><span class="person" data-person="Леонид">Леонид</span> <code>752bac</code> фича · events</p>
@@ -459,6 +459,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <h2>Работа</h2>
 <h2>Заметки</h2>
 <ul>
+<li>Решение владельца 12.11.2026: сумок в игре не будет, будут вёдра. Сумки целиком заменяются вёдрами: в данных, текстах, стендах и HUD слова «bag» для игрока не остаётся.</li>
 <li>Обсуждение 11.11.2026: «вёдра нужны: пылесосы не выполняют функцию увеличения ёмкости, а вёдра имеют — чем лучше ведро, тем больше ёмкость. Но у машины отдельная ёмкость своя, не надо прибавлять ёмкость ведра к машине». Ответ на «вместо сумок или вместе с сумкой» — «вместо сумок».</li>
 </ul>
 </div></details>
@@ -585,23 +586,23 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </div></details>
 </article>
 <article class="board-card" id="card-b4cb0b" data-person="Богдан" data-status="todo" data-new-rank="10" data-old-rank="111">
-  <h3>Пятая сумка Glacier Bag: 500 снега за 9 000</h3>
+  <h3>Пятое ведро Glacier Bucket: 500 снега за 9 000</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>b4cb0b</code> фича · economy</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-11T19:26:12-05:00">11.11 19:26</time></p>
-  <p class="board-lead">Решение владельца 11.11.2026 в чате: пятая сумка на 500 снега за 9 000 монет. Название — Glacier Bag. Покупается после Hauler Bag (240).</p>
+  <p class="board-lead">Решение владельца 11.11.2026 в чате: пятая ёмкость на 500 снега за 9 000 монет, после четвёртой (240). Решение владельца 12.11.2026: сумок в игре не будет, будут вёдра. Поэтому это пятое ведро Glacier Bucket, делать после `12c42d` (вёдра вместо сумок).</p>
   
   <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Решение владельца 11.11.2026 в чате: пятая сумка на 500 снега за 9 000 монет. Название — Glacier Bag. Покупается после Hauler Bag (240).</p>
+<p>Решение владельца 11.11.2026 в чате: пятая ёмкость на 500 снега за 9 000 монет, после четвёртой (240). Решение владельца 12.11.2026: сумок в игре не будет, будут вёдра. Поэтому это пятое ведро Glacier Bucket, делать после <code>12c42d</code> (вёдра вместо сумок).</p>
 <ul>
 <li><code>Data/economy.json</code>: <code>Items.GlacierBag</code> (<code>bagCapacity</code> 500, цена 9 000 монет, <code>prerequisite</code> <code>HaulerBag</code>) и в конец <code>BagOrder</code>.</li>
-<li>Стойка в фермерском доме рядом с остальными сумками: <code>ShopStands.Bags</code> (<code>Shared/ShopStands.luau:10</code>) и место на стене в плейсе. Модель стойки — как у других сумок; свою модель — потом с Георгием.</li>
-<li>500 не делится на 3 (с участка 3 снега), владелец оставил 500. Сумка заполняется до 500/500: последний удар кладёт столько снега, сколько влезает.</li>
+<li>Стойка в фермерском доме рядом с остальными вёдрами: <code>ShopStands.Bags</code> (<code>Shared/ShopStands.luau:10</code>) и место на стене в плейсе. Модель стойки — как у других вёдер; свою модель — потом с Георгием.</li>
+<li>500 не делится на 3 (с участка 3 снега), владелец оставил 500. Ведро заполняется до 500/500: последний удар кладёт столько снега, сколько влезает.</li>
 </ul>
 <h2>Готово когда</h2>
 <ul>
-<li><input disabled="" type="checkbox"> <code>node --test tools/data/data.test.mjs</code> и Luau-тесты (<code>ShopStands_Test</code>, <code>ShopService_Test</code>): новая сумка в данных, на стойке, покупается только после Hauler Bag.</li>
-<li><input disabled="" type="checkbox"> В Play: купил Glacier Bag — сумка заполняется до 500/500, при 500 появляется «BAG FULL! GO SELL!».</li>
-<li><input disabled="" type="checkbox"> Страницы «Механики» и «Экономика» показывают пятую сумку (числа из данных).</li>
+<li><input disabled="" type="checkbox"> <code>node --test tools/data/data.test.mjs</code> и Luau-тесты (<code>ShopStands_Test</code>, <code>ShopService_Test</code>): новое ведро в данных, на стойке, покупается только после Hauler Bucket.</li>
+<li><input disabled="" type="checkbox"> В Play: купил Glacier Bucket — ведро заполняется до 500/500, при 500 появляется «BUCKET FULL! GO SELL!».</li>
+<li><input disabled="" type="checkbox"> Страницы «Механики» и «Экономика» показывают пятое ведро (числа из данных).</li>
 </ul>
 <h2>Работа</h2>
 <h2>Заметки</h2>
@@ -723,7 +724,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </div></details>
 </article>
 <article class="board-card" id="card-6b849e" data-person="Богдан" data-status="todo" data-new-rank="15" data-old-rank="93">
-  <h3>Runner и Packer: ходьба +10 %, рюкзак +50 %</h3>
+  <h3>Runner и Packer: ходьба +10 %, ведро +50 %</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>6b849e</code> фича · classes</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-11T18:28:22-05:00">11.11 18:28</time></p>
   <p class="board-lead">Бонусы Runner и Packer (спека `docs/superpowers/specs/2026-11-11-classes-design.md`). Runner и Master умножают скорость ходьбы на 1,1. Packer и Master умножают вместимость сумки на 1,5, дробь отбрасывается. Бонус от текущего: с улучшением Walk Speed 24 → 26,4; сумка 240 → 360.</p>
@@ -744,6 +745,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <h2>Работа</h2>
 <h2>Заметки</h2>
 <ul>
+<li>Решение владельца 12.11.2026: сумок в игре не будет, будут вёдра. Packer увеличивает ведро (карточка <code>12c42d</code>).</li>
 <li>Просьба владельца 11.11.2026 в чате: завести задачи по спеке классов.</li>
 <li>11.11.2026: сумки становятся вёдрами (карточка <code>12c42d</code>) — Packer увеличивает ведро.</li>
 </ul>
@@ -828,27 +830,6 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-74e808" data-person="Богдан" data-status="todo" data-new-rank="29" data-old-rank="96">
-  <h3>Забор участка в глубоком снегу: торчит из снега или по пояс под снегом</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>74e808</code> фича · garden</p>
-  <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T23:25:58+07:00">11.11 23:25</time></p>
-  <p class="board-lead">Применить ответ владельца на `Q-20261111-009`: как стоит забор участка сада, если снег персонажу по плечи. Связь: масштаб участка `bbd669`, участки `3272f9`.</p>
-  
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Применить ответ владельца на <code>Q-20261111-009</code>: как стоит забор участка сада, если снег персонажу по плечи. Связь: масштаб участка <code>bbd669</code>, участки <code>3272f9</code>.</p>
-<h2>Готово когда</h2>
-<ul>
-<li><input disabled="" type="checkbox"> Ответ владельца записан в <code>tasks/questions.md</code> и в спеку <code>docs/superpowers/specs/2026-11-11-snow-garden-design.md</code>.</li>
-<li><input disabled="" type="checkbox"> Высота забора и таблички по ответу (<code>Data/garden.json</code> <code>Plots</code>: <code>FenceHeight</code>, <code>FenceAboveSnow</code>, <code>Sign.AboveSnow</code>), тест данных.</li>
-<li><input disabled="" type="checkbox"> Кадры из живой игры сценарием <code>garden-scale</code>: в снегу и после раскопки у забора.</li>
-</ul>
-<h2>Работа</h2>
-<h2>Заметки</h2>
-<ul>
-<li>С <code>bbd669</code> забор стоит на земле, верх не ниже 1,1 стада над снегом (<code>FenceAboveSnow</code>), табличка на 0,4 над снегом.</li>
-</ul>
-</div></details>
-</article>
 <article class="board-card" id="card-7852ff" data-person="Богдан" data-status="todo" data-new-rank="45" data-old-rank="99">
   <h3>Вид панели иконок по референсу и донатная заглушка</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>7852ff</code> фича · held-items</p>
@@ -896,6 +877,38 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
+<article class="board-card" id="card-2e0b1f" data-person="Богдан" data-status="todo" data-new-rank="65" data-old-rank="10">
+  <h3>Два пылесоса за монеты в фермерском доме, без стойки во дворе</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>2e0b1f</code> фича · held-items</p>
+  <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-10T20:27:06-05:00">10.11 20:27</time></p>
+  <p class="board-lead">Сделать пылесосы по ответу владельца 11.11.2026 (Q-20261110-005, ниже в заметках): два пылесоса — инструменты за монеты в фермерском доме, как лопаты; Snow Vacuum 1 000, второй 3 000 после первого; бесплатную стойку во дворе убрать.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Сделать пылесосы по ответу владельца 11.11.2026 (Q-20261110-005, ниже в заметках): два пылесоса — инструменты за монеты в фермерском доме, как лопаты; Snow Vacuum 1 000, второй 3 000 после первого; бесплатную стойку во дворе убрать.</p>
+<p>Сейчас пылесосов два, и это разные вещи:</p>
+<ul>
+<li>магазинный «Snow Vacuum»: 1 000 монет (сначала нужна Starter Shovel), стенда нет — покупка кнопкой «BUY VACUUM» в MORE ACTIONS; удар 3 раз в 1 с, виден только самому игроку;</li>
+<li>со стойки во дворе «Пылесос»: бесплатный, удар 2 раз в 0,55 с (около 3,6 урона в секунду против 3 у магазинного), синяя модель в руке видна всем.</li>
+</ul>
+<p>Вёдра — не замена пылесосам, а замена сумкам (<code>12c42d</code>).</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Владелец ответил на вопрос Q-20261110-005 в <code>tasks/questions.md</code>.</li>
+<li><input disabled="" type="checkbox"> Пылесосы приведены к решению (платные за монеты, если остаются).</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Ответ получен 11.11.2026, снято с паузы 12.11.2026</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Пауза 2026-11-10 20:26: Ждёт ответа владельца Q-20261110-005: оставить пылесосы или заменить вёдрами</li>
+<li>Решение владельца 10.11.2026: если пылесосы остаются, оба должны быть платными за монеты.</li>
+<li>Ответ владельца 11.11.2026 (Q-20261110-005): пылесосы остаются как инструменты, вроде лопат, оба за монеты в фермерском доме: магазинный Snow Vacuum 1 000, второй (бывший со стойки во дворе, около 3,6 урона в секунду) 3 000 и продаётся после первого. Бесплатную стойку во дворе убрать. Выбор пылесоса в иконку 1 — как у лопат (карточка <code>11461b</code>). Вёдра — вместо сумок, отдельная карточка <code>12c42d</code>.</li>
+</ul>
+</div></details>
+</article>
 <article class="board-card" id="card-784561" data-person="Богдан" data-status="todo" data-new-rank="74" data-old-rank="26">
   <h3>Телефон: кнопки от 44 точек и читаемый текст</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>784561</code> фича · mobile</p>
@@ -915,6 +928,63 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <h2>Заметки</h2>
 <ul>
 <li>Формулы: <code>InterfaceController.luau:929-953</code> (HUD — <code>clamp(min(X/1440, Y/820), 0.42, 1.15) × ReferenceScale 0.73</code>, окна — <code>min(0.92, (X−32)/830, (Y−82)/602)</code>).</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-0d0017" data-person="Богдан" data-status="todo" data-new-rank="80" data-old-rank="3">
+  <h3>Гемы за чистую зону от её размера</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>0d0017</code> фича · economy</p>
+  <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T18:40:58+07:00">10.11 18:40</time></p>
+  <p class="board-lead">Сейчас за чистую зону платят 10 / 20 / 30 / 40 / 50 / 60 гемов (`Catalog.luau:56`), а узлов в зонах 634 / 2 967 / 6 256 / 11 835 / 16 300 / 96 144. Гемов за узел в зоне 1 в 25 раз больше, чем в зоне 6: выгоднее всего чистить зону 1 и начинать забег заново.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Сейчас за чистую зону платят 10 / 20 / 30 / 40 / 50 / 60 гемов (<code>Catalog.luau:56</code>), а узлов в зонах 634 / 2 967 / 6 256 / 11 835 / 16 300 / 96 144. Гемов за узел в зоне 1 в 25 раз больше, чем в зоне 6: выгоднее всего чистить зону 1 и начинать забег заново.</p>
+<p>Пересчитать награду от размера зоны (или платить за каждую часть зоны), чтобы дальняя зона давала заметно больше ближней. Цифры согласовать в разборе экономики <code>34d5ff</code>.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Новые цифры гемов за зону согласованы с владельцем и лежат в одном источнике чисел.</li>
+<li><input disabled="" type="checkbox"> Тест на таблицу наград: 5 / 10 / 15 / 20 / 20 / 30, сумма 100 (решение владельца 11.11.2026 заменило правило «за узел в дальней зоне не меньше»).</li>
+<li><input disabled="" type="checkbox"> Страница «Механики» и графики экономики показывают новые цифры.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>12.11.2026: снято с паузы — ответ на Q-20261111-002 получен, <code>34d5ff</code> готова. Сейчас делается таблица 5 / 10 / 15 / 20 / 20 / 30 из <code>Data/economy.json</code> за 90 % зоны; «раз за игру» и доля гостя — вместе с сохранением игры (вкладка «Обсудить»).</li>
+<li>Пауза 2026-11-11 00:16: Ждёт ответа владельца Q-20261111-002: цифры гемов за зону</li>
+<li>Решение владельца 10.11.2026 (аудит механик, <code>docs/mechanics-audit.md</code>, механика 2): «От размера зоны».</li>
+<li>Зависит от открытого вопроса 1 аудита (открытие зон 4–6): если открытые зоны станут сохраняться, награду, возможно, платить один раз в жизни за зону — решить вместе.</li>
+<li>Вопрос 1 аудита решён 10.11.2026: открытые зоны сохраняются навсегда, следующая открывается на 90 % текущей (<code>docs/mechanics-audit.md</code>). Платить гемы один раз за зону или каждый забег — решить в Q-20261111-002.</li>
+<li>Ответ владельца 11.11.2026 (Q-20261111-002): за 90 % зоны, один раз за игру — 5 / 10 / 15 / 20 / 20 / 30, вся игра около 1,5 часа — 100 гемов; после New Game снова. Хозяин — полностью, гость — по проценту карты в момент прихода. Вопрос закрыт, карточку можно снимать с паузы; «раз за игру» и доля гостя заработают вместе с сохранением игры.</li>
+<li>11.11.2026: владелец оставил числа гемов пока временными — потом поменяет. Брать их только из <code>Data/economy.json</code>, чтобы менять одной правкой.</li>
+<li>11.11.2026: правило для гостя (доля по проценту карты при входе, жетон — до 10 %) пока оставлено, но владелец склоняется к полным наградам гостям. Не делать долю гостя, пока не решено (вкладка «Обсудить», тема «Сохранение игры», «Открыто: награды гостя»).</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-9cd888" data-person="Богдан" data-status="todo" data-new-rank="96" data-old-rank="36">
+  <h3>Снег: одна высота снега</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>9cd888</code> техработа · architecture</p>
+  <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T15:53:12+07:00">10.11 15:53</time></p>
+  <p class="board-lead">Исполнитель: Богдан. Снег D (`189be8`), №8 сводки.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Исполнитель: Богдан. Снег D (<code>189be8</code>), №8 сводки.</p>
+<p>Одна функция высоты снега с одним округлением для удара, прицела, грузовика и картинки. Ответ владельца 11.11.2026 (Q-20261111-001): следы ног на удар не влияют, см. заметки.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
+<li><input disabled="" type="checkbox"> Тест до кода: высота сервера и клиента в одной точке совпадает.</li>
+<li><input disabled="" type="checkbox"> Play: удары по краю следа.</li>
+<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
+<li><input disabled="" type="checkbox"> Коммит и push.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Пауза 2026-11-11 00:16: Ждёт ответа владельца Q-20261111-001: нужна ли одна высота снега</li>
+<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
+<li>Из <code>6d3652</code> (10.11.2026): высота снега входит в план удара портом <code>height(x, z)</code> (<code>StrikePlan</code>): у сервера — <code>height(r, x, z)</code> по полю, у прогноза — <code>heightAt</code> по слоям. Одна функция высоты встаёт в оба порта; формула «снег открыт» уже одна — <code>StrikePlan.exposed</code>.</li>
+<li>12.11.2026: снято с паузы, ответ получен, зависимости <code>70ff28</code> и <code>6d3652</code> готовы.</li>
+<li>Решение владельца 11.11.2026 (Q-20261111-001 answered, вопрос 11 аудита механик): одна высота для удара и прицела. Удар и прицел считают высоту снега одинаково; вмятины от шагов игроков остаются только картинкой и на удар не влияют (сервер при проверке удара их не учитывает). Грузовик и картинка — как сейчас; следы машин уже общие (<code>ea16cb</code>). Ответ получен — карточку можно снимать с паузы.</li>
 </ul>
 </div></details>
 </article>
@@ -948,44 +1018,6 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <ul>
 <li>Исполнитель: Леонид.</li>
 <li>После документа отдельная карточка на сборку, если владелец документ примет.</li>
-</ul>
-</div></details>
-</article>
-<article class="board-card" id="card-aadab7" data-person="Богдан" data-status="todo" data-new-rank="119" data-old-rank="39">
-  <h3>На забеге нет кроликов и птиц</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>aadab7</code> баг · bug</p>
-  <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T11:53:20+07:00">10.11 11:53</time></p>
-  <p class="board-lead">Вопрос владельцу (Q-20261110-004): вернуть на забег кроликов и птиц, всё вместе с дикими зверями, или оставить выключенным? Пока отложено.</p>
-  <div class="board-shots"><img loading="lazy" src="../art/bugs/aadab7-run-no-rabbits.jpg" alt=""></div>
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Вопрос владельцу (Q-20261110-004): вернуть на забег кроликов и птиц, всё вместе с дикими зверями, или оставить выключенным? Пока отложено.</p>
-<p>Воспроизвести и исправить <code>BUG-20261110-002</code> из <code>tasks/bugs.md</code> после ответа владельца.</p>
-<p>Варианты:</p>
-<ol>
-<li>Кролики и птицы (рекомендация). 5 кроликов на поляне у фермы, ловятся за 10 монет. Птицы сидят в открытых зонах, купленный зверь ловит их за 3 монеты. Никто не нападает.</li>
-<li>Всё, вместе с дикими зверями. Плюс пёс, морозный волк, медведь и кот в зонах: если задеть, 15 секунд нападают (урон 8), за победу 8 монет.</li>
-<li>Оставить выключенным. Кроликов и птиц убрать из <code>docs/README.md</code> и чеклиста, баг закрыть как <code>wont_fix</code>.</li>
-</ol>
-<p><img src="../art/bugs/aadab7-run-no-rabbits.jpg" alt="Забег сейчас: поляна у фермы пустая"></p>
-<h2>Готово когда</h2>
-<ul>
-<li><input disabled="" type="checkbox"> Владелец выбрал вариант.</li>
-<li><input checked="" disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
-<li><input disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
-</ul>
-<h2>Работа</h2>
-<ul>
-<li>2026-11-10: воспроизведено в Play сценарием <code>wildlife</code>: соло-забег, на сервере <code>rabbits=0 birds=0 wild=0</code>, у клиента 0 кроликов. Output без ошибок по зверям.</li>
-</ul>
-<h2>Заметки</h2>
-<ul>
-<li>Журнал: <code>BUG-20261110-002</code>, вопрос <code>Q-20261110-004</code> в <code>tasks/questions.md</code>.</li>
-<li>Причина: два выключателя из старого плейса коллеги, есть уже в импорте <code>fdfbfc8</code>. <code>WildlifeService.luau:5</code> <code>COUNT=0</code> («5 is the original count»). <code>ForestAnimalService.luau:6</code> <code>WildAnimalsEnabled=false</code>: им же выключены птицы (строки 354 и 363). Сервисы забега подключены в <code>RuntimeFactory.luau:28-29</code>, клиент рисует кроликов и птиц.</li>
-<li>Решение владельца 10.11.2026: пока ничего не включать, вопрос записать на страницу, чтобы не забыть.</li>
-<li>Для варианта 1 птиц надо отделить от диких зверей своим флагом.</li>
-<li>Условие включения из сводки архитектуры: награды платит кошелёк <code>Wallet.grant</code>. Сейчас кролик (<code>WildlifeService.catch</code>), птицы (<code>flushBirdCoins</code>) и звери (награда за победу) пишут монеты в профиль сами.</li>
-<li>Сценарий проверки: <code>npm run play -- wildlife</code> (<code>tools/studio-scenarios/wildlife.json</code>): число кроликов, птиц и диких зверей забега, кадры поляны и ближней птицы.</li>
-<li>11.11.2026: владелец решил убрать лесных зверей совсем, кроликов и птиц не возвращать (Q-20261110-004, карточка <code>7e4fb7</code>). Эту карточку делать не нужно: закрыть с записью бага <code>wont_fix</code> и этой причиной.</li>
 </ul>
 </div></details>
 </article></div>
@@ -1037,8 +1069,30 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
   <p class="board-empty" hidden>Пусто.</p>
 </section>
 <section class="board-column" data-status="paused">
-  <h3>Пауза <span class="board-count">7</span></h3>
-  <div class="board-cards"><article class="board-card" id="card-59efc0" data-person="Богдан" data-status="paused" data-new-rank="34" data-old-rank="89">
+  <h3>Пауза <span class="board-count">5</span></h3>
+  <div class="board-cards"><article class="board-card" id="card-74e808" data-person="Богдан" data-status="paused" data-new-rank="29" data-old-rank="96">
+  <h3>Забор участка в глубоком снегу: торчит из снега или по пояс под снегом</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>74e808</code> фича · garden</p>
+  <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T23:25:58+07:00">11.11 23:25</time></p>
+  <p class="board-lead">Применить ответ владельца на `Q-20261111-009`: как стоит забор участка сада, если снег персонажу по плечи. Связь: масштаб участка `bbd669`, участки `3272f9`.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Применить ответ владельца на <code>Q-20261111-009</code>: как стоит забор участка сада, если снег персонажу по плечи. Связь: масштаб участка <code>bbd669</code>, участки <code>3272f9</code>.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Ответ владельца записан в <code>tasks/questions.md</code> и в спеку <code>docs/superpowers/specs/2026-11-11-snow-garden-design.md</code>.</li>
+<li><input disabled="" type="checkbox"> Высота забора и таблички по ответу (<code>Data/garden.json</code> <code>Plots</code>: <code>FenceHeight</code>, <code>FenceAboveSnow</code>, <code>Sign.AboveSnow</code>), тест данных.</li>
+<li><input disabled="" type="checkbox"> Кадры из живой игры сценарием <code>garden-scale</code>: в снегу и после раскопки у забора.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Пауза 2026-11-12 12:13: ждёт ответа владельца Q-20261111-009: забор торчит из снега или по пояс под снегом</li>
+<li>С <code>bbd669</code> забор стоит на земле, верх не ниже 1,1 стада над снегом (<code>FenceAboveSnow</code>), табличка на 0,4 над снегом.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-59efc0" data-person="Богдан" data-status="paused" data-new-rank="34" data-old-rank="89">
   <h3>Отрезанный остров не падает, когда сумка полная</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>59efc0</code> баг · garden</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T22:47:04+07:00">11.11 22:47</time></p>
@@ -1123,38 +1177,6 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-2e0b1f" data-person="Богдан" data-status="paused" data-new-rank="65" data-old-rank="10">
-  <h3>Пылесосы или вёдра: решить, что оставить</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>2e0b1f</code> фича · held-items</p>
-  <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-10T20:27:06-05:00">10.11 20:27</time></p>
-  <p class="board-lead">Решить судьбу двух пылесосов, когда владелец ответит, и сделать по решению.</p>
-  
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Решить судьбу двух пылесосов, когда владелец ответит, и сделать по решению.</p>
-<p>Сейчас пылесосов два, и это разные вещи:</p>
-<ul>
-<li>магазинный «Snow Vacuum»: 1 000 монет (сначала нужна Starter Shovel), стенда нет — покупка кнопкой «BUY VACUUM» в MORE ACTIONS; удар 3 раз в 1 с, виден только самому игроку;</li>
-<li>со стойки во дворе «Пылесос»: бесплатный, удар 2 раз в 0,55 с (около 3,6 урона в секунду против 3 у магазинного), синяя модель в руке видна всем.</li>
-</ul>
-<p>Владелец ещё не решил, нужны ли пылесосы: в будущем планируются вёдра.</p>
-<h2>Готово когда</h2>
-<ul>
-<li><input checked="" disabled="" type="checkbox"> Владелец ответил на вопрос Q-20261110-005 в <code>tasks/questions.md</code>.</li>
-<li><input disabled="" type="checkbox"> Пылесосы приведены к решению (платные за монеты, если остаются).</li>
-</ul>
-<h2>Оценка</h2>
-<ul>
-<li>Ждёт решения владельца</li>
-</ul>
-<h2>Работа</h2>
-<h2>Заметки</h2>
-<ul>
-<li>Пауза 2026-11-10 20:26: Ждёт ответа владельца Q-20261110-005: оставить пылесосы или заменить вёдрами</li>
-<li>Решение владельца 10.11.2026: если пылесосы остаются, оба должны быть платными за монеты.</li>
-<li>Ответ владельца 11.11.2026 (Q-20261110-005): пылесосы остаются как инструменты, вроде лопат, оба за монеты в фермерском доме: магазинный Snow Vacuum 1 000, второй (бывший со стойки во дворе, около 3,6 урона в секунду) 3 000 и продаётся после первого. Бесплатную стойку во дворе убрать. Выбор пылесоса в иконку 1 — как у лопат (карточка <code>11461b</code>). Вёдра — вместо сумок, отдельная карточка <code>12c42d</code>.</li>
-</ul>
-</div></details>
-</article>
 <article class="board-card" id="card-b652d9" data-person="Богдан" data-status="paused" data-new-rank="75" data-old-rank="42">
   <h3>Первый забег: одна понятная команда за раз</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>b652d9</code> фича · onboarding</p>
@@ -1182,61 +1204,6 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <li>Мелочи с того же прохода: тост покупки пишет внутреннее имя «NEW TOOL · StarterShovel»; надпись «FIRST RUN COMPLETE» не видна, пока висит задача «BREAK THE SNOW»; текст на щитах лобби обрезан по краям («RESH TRACKS AWAI»).</li>
 <li>Источники: <code>TutorialController.luau</code>, <code>SnowGuide.luau</code> (<code>ZONE_SIZE=6</code>, урок-остров ждёт конца цепочки), <code>SnowUpgradeFocus.luau</code> (после первой платной сдачи), <code>QueueService.luau:79</code> (offer ставит <code>targetSize = partySize</code>).</li>
 <li>Ответ владельца 11.11.2026 на Q-20261111-005 и Q-20261111-006: порядок — стрелка к снегу → сломал снег → стрелка к переработчику, продал → сразу улучшение «Hold» → копай дальше, на экране видно, сколько монет осталось до лопаты → накопил — стрелка к стенду лопаты → купил — стрелка к урок-острову (сломать снег вокруг участка). «Hold» — сразу после первой продажи, одной подсказкой. Каждый раз, когда сумка полная — и в обучении, и потом, — стрелка ведёт к переработчику, чтобы игрок понял, что сумка заполнена. Карточка ещё ждёт Q-20261111-007 (окно старта забега).</li>
-</ul>
-</div></details>
-</article>
-<article class="board-card" id="card-0d0017" data-person="Богдан" data-status="paused" data-new-rank="80" data-old-rank="3">
-  <h3>Гемы за чистую зону от её размера</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>0d0017</code> фича · economy</p>
-  <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T18:40:58+07:00">10.11 18:40</time></p>
-  <p class="board-lead">Сейчас за чистую зону платят 10 / 20 / 30 / 40 / 50 / 60 гемов (`Catalog.luau:56`), а узлов в зонах 634 / 2 967 / 6 256 / 11 835 / 16 300 / 96 144. Гемов за узел в зоне 1 в 25 раз больше, чем в зоне 6: выгоднее всего чистить зону 1 и начинать забег заново.</p>
-  
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Сейчас за чистую зону платят 10 / 20 / 30 / 40 / 50 / 60 гемов (<code>Catalog.luau:56</code>), а узлов в зонах 634 / 2 967 / 6 256 / 11 835 / 16 300 / 96 144. Гемов за узел в зоне 1 в 25 раз больше, чем в зоне 6: выгоднее всего чистить зону 1 и начинать забег заново.</p>
-<p>Пересчитать награду от размера зоны (или платить за каждую часть зоны), чтобы дальняя зона давала заметно больше ближней. Цифры согласовать в разборе экономики <code>34d5ff</code>.</p>
-<h2>Готово когда</h2>
-<ul>
-<li><input disabled="" type="checkbox"> Новые цифры гемов за зону согласованы с владельцем и лежат в одном источнике чисел.</li>
-<li><input disabled="" type="checkbox"> Тест на таблицу наград: 5 / 10 / 15 / 20 / 20 / 30, сумма 100 (решение владельца 11.11.2026 заменило правило «за узел в дальней зоне не меньше»).</li>
-<li><input disabled="" type="checkbox"> Страница «Механики» и графики экономики показывают новые цифры.</li>
-</ul>
-<h2>Работа</h2>
-<h2>Заметки</h2>
-<ul>
-<li>Пауза 2026-11-11 00:16: Ждёт ответа владельца Q-20261111-002: цифры гемов за зону</li>
-<li>Решение владельца 10.11.2026 (аудит механик, <code>docs/mechanics-audit.md</code>, механика 2): «От размера зоны».</li>
-<li>Зависит от открытого вопроса 1 аудита (открытие зон 4–6): если открытые зоны станут сохраняться, награду, возможно, платить один раз в жизни за зону — решить вместе.</li>
-<li>Вопрос 1 аудита решён 10.11.2026: открытые зоны сохраняются навсегда, следующая открывается на 90 % текущей (<code>docs/mechanics-audit.md</code>). Платить гемы один раз за зону или каждый забег — решить в Q-20261111-002.</li>
-<li>Ответ владельца 11.11.2026 (Q-20261111-002): за 90 % зоны, один раз за игру — 5 / 10 / 15 / 20 / 20 / 30, вся игра около 1,5 часа — 100 гемов; после New Game снова. Хозяин — полностью, гость — по проценту карты в момент прихода. Вопрос закрыт, карточку можно снимать с паузы; «раз за игру» и доля гостя заработают вместе с сохранением игры.</li>
-<li>11.11.2026: владелец оставил числа гемов пока временными — потом поменяет. Брать их только из <code>Data/economy.json</code>, чтобы менять одной правкой.</li>
-<li>11.11.2026: правило для гостя (доля по проценту карты при входе, жетон — до 10 %) пока оставлено, но владелец склоняется к полным наградам гостям. Не делать долю гостя, пока не решено (вкладка «Обсудить», тема «Сохранение игры», «Открыто: награды гостя»).</li>
-</ul>
-</div></details>
-</article>
-<article class="board-card" id="card-9cd888" data-person="Богдан" data-status="paused" data-new-rank="96" data-old-rank="36">
-  <h3>Снег: одна высота снега</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>9cd888</code> техработа · architecture</p>
-  <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T15:53:12+07:00">10.11 15:53</time></p>
-  <p class="board-lead">Исполнитель: Богдан. Снег D (`189be8`), №8 сводки.</p>
-  
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Исполнитель: Богдан. Снег D (<code>189be8</code>), №8 сводки.</p>
-<p>Одна функция высоты снега с одним округлением для удара, прицела, грузовика и картинки. Сначала спросить владельца, влияют ли следы ног на удар.</p>
-<h2>Готово когда</h2>
-<ul>
-<li><input disabled="" type="checkbox"> Спека и план согласованы с владельцем.</li>
-<li><input disabled="" type="checkbox"> Тест до кода: высота сервера и клиента в одной точке совпадает.</li>
-<li><input disabled="" type="checkbox"> Play: удары по краю следа.</li>
-<li><input disabled="" type="checkbox"> <code>npm run check</code> без новых замечаний.</li>
-<li><input disabled="" type="checkbox"> Коммит и push.</li>
-</ul>
-<h2>Работа</h2>
-<h2>Заметки</h2>
-<ul>
-<li>Пауза 2026-11-11 00:16: Ждёт ответа владельца Q-20261111-001: нужна ли одна высота снега</li>
-<li>Решение владельца 10.11.2026: порядок «надёжность, потом два плейса» из сводки <code>dc68a4</code> (<code>docs/architecture/summary.md</code>).</li>
-<li>Из <code>6d3652</code> (10.11.2026): высота снега входит в план удара портом <code>height(x, z)</code> (<code>StrikePlan</code>): у сервера — <code>height(r, x, z)</code> по полю, у прогноза — <code>heightAt</code> по слоям. Одна функция высоты встаёт в оба порта; формула «снег открыт» уже одна — <code>StrikePlan.exposed</code>.</li>
-<li>Решение владельца 11.11.2026 (Q-20261111-001 answered, вопрос 11 аудита механик): одна высота для удара и прицела. Удар и прицел считают высоту снега одинаково; вмятины от шагов игроков остаются только картинкой и на удар не влияют (сервер при проверке удара их не учитывает). Грузовик и картинка — как сейчас; следы машин уже общие (<code>ea16cb</code>). Ответ получен — карточку можно снимать с паузы.</li>
 </ul>
 </div></details>
 </article>
@@ -1283,7 +1250,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
   <p class="board-empty" hidden>Пусто.</p>
 </section>
 <section class="board-column" data-status="done">
-  <h3>Готово <span class="board-count">94</span></h3>
+  <h3>Готово <span class="board-count">95</span></h3>
   <div class="board-cards"><article class="board-card" id="card-52f8ad" data-person="Богдан" data-status="done" data-new-rank="18" data-old-rank="86">
   <h3>«Механики»: метки «Обсудили» и «Обсудить ещё»</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>52f8ad</code> фича · guide</p>
@@ -4926,6 +4893,50 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <li>10.11.2026, владелец: зелёная земля — ферма под снегом, так и задумано. Дефект карточки, если он останется, только про белый покров, который не собрался из-за памяти сетки.</li>
 <li>10.11.2026: вопросы <code>Q-20261110-002</code> и <code>Q-20261110-003</code> отвечены. Чиним расход памяти EditableMesh: ошибок бюджета в Output быть не должно, при нехватке снег у ног деградирует до брусков. Удар и сдача не дефект.</li>
 <li>10.11.2026: причина — уходящие чанки держали сетки, пока строилось новое окно. Исправлено в <code>SnowSurface</code>, <code>NearSnow</code>, новом <code>SnowSurfaceBudget</code> и повторах <code>MapSnowController</code>; тесты <code>SnowSurface_Test</code>, <code>SnowSurfaceBudget_Test</code> 4/4, <code>npm run check</code> чисто, Play без строк про память. Кадры: заметки сессии, <code>near-snow-026145/03_fix_pressure.jpg</code>, <code>04_fix_after_tour.jpg</code>. Код ждёт слова владельца на коммит.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-aadab7" data-person="Богдан" data-status="done" data-new-rank="119" data-old-rank="39">
+  <h3>На забеге нет кроликов и птиц</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>aadab7</code> баг · bug</p>
+  <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T11:53:20+07:00">10.11 11:53</time></p>
+  <p class="board-lead">Вопрос владельцу (Q-20261110-004): вернуть на забег кроликов и птиц, всё вместе с дикими зверями, или оставить выключенным? Пока отложено.</p>
+  <div class="board-shots"><img loading="lazy" src="../art/bugs/aadab7-run-no-rabbits.jpg" alt=""></div>
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Вопрос владельцу (Q-20261110-004): вернуть на забег кроликов и птиц, всё вместе с дикими зверями, или оставить выключенным? Пока отложено.</p>
+<p>Воспроизвести и исправить <code>BUG-20261110-002</code> из <code>tasks/bugs.md</code> после ответа владельца.</p>
+<p>Варианты:</p>
+<ol>
+<li>Кролики и птицы (рекомендация). 5 кроликов на поляне у фермы, ловятся за 10 монет. Птицы сидят в открытых зонах, купленный зверь ловит их за 3 монеты. Никто не нападает.</li>
+<li>Всё, вместе с дикими зверями. Плюс пёс, морозный волк, медведь и кот в зонах: если задеть, 15 секунд нападают (урон 8), за победу 8 монет.</li>
+<li>Оставить выключенным. Кроликов и птиц убрать из <code>docs/README.md</code> и чеклиста, баг закрыть как <code>wont_fix</code>.</li>
+</ol>
+<p><img src="../art/bugs/aadab7-run-no-rabbits.jpg" alt="Забег сейчас: поляна у фермы пустая"></p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Владелец выбрал вариант.</li>
+<li><input checked="" disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
+<li><input checked="" disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>закрыть wont_fix по решению владельца</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-12 12:13 → 2026-11-12 12:13</li>
+<li>2026-11-12: закрыто <code>wont_fix</code> по решению владельца 11.11.2026: лесных зверей убирают совсем, кроликов и птиц не возвращают (<code>7e4fb7</code>).</li>
+<li>2026-11-10: воспроизведено в Play сценарием <code>wildlife</code>: соло-забег, на сервере <code>rabbits=0 birds=0 wild=0</code>, у клиента 0 кроликов. Output без ошибок по зверям.</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Журнал: <code>BUG-20261110-002</code>, вопрос <code>Q-20261110-004</code> в <code>tasks/questions.md</code>.</li>
+<li>Причина: два выключателя из старого плейса коллеги, есть уже в импорте <code>fdfbfc8</code>. <code>WildlifeService.luau:5</code> <code>COUNT=0</code> («5 is the original count»). <code>ForestAnimalService.luau:6</code> <code>WildAnimalsEnabled=false</code>: им же выключены птицы (строки 354 и 363). Сервисы забега подключены в <code>RuntimeFactory.luau:28-29</code>, клиент рисует кроликов и птиц.</li>
+<li>Решение владельца 10.11.2026: пока ничего не включать, вопрос записать на страницу, чтобы не забыть.</li>
+<li>Для варианта 1 птиц надо отделить от диких зверей своим флагом.</li>
+<li>Условие включения из сводки архитектуры: награды платит кошелёк <code>Wallet.grant</code>. Сейчас кролик (<code>WildlifeService.catch</code>), птицы (<code>flushBirdCoins</code>) и звери (награда за победу) пишут монеты в профиль сами.</li>
+<li>Сценарий проверки: <code>npm run play -- wildlife</code> (<code>tools/studio-scenarios/wildlife.json</code>): число кроликов, птиц и диких зверей забега, кадры поляны и ближней птицы.</li>
+<li>11.11.2026: владелец решил убрать лесных зверей совсем, кроликов и птиц не возвращать (Q-20261110-004, карточка <code>7e4fb7</code>). Эту карточку делать не нужно: закрыть с записью бага <code>wont_fix</code> и этой причиной.</li>
 </ul>
 </div></details>
 </article>
