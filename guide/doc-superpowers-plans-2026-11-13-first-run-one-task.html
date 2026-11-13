@@ -280,7 +280,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <li><code>SnowMatchHud</code> отдаёт <code>carriedWorth()</code> для шага <code>Save</code>.</li>
 </ul>
 </li>
-<li><strong>Окно старта забега.</strong> <code>QueueService.offer</code> — <code>targetSize = 1</code>. <code>Windows/Queue.luau</code>: одна большая зелёная START A RUN (или JOIN PARTY у гостя), START NOW скрыта, LEAVE маленькая. Крупный отсчёт посреди экрана — <code>QueueCountdown.luau</code>. Табличка площадок — правка мира лобби в Studio и <code>export.mjs Lobby</code>.</li>
+<li><strong>Окно старта забега.</strong> <code>QueueService.offer</code> — <code>targetSize = 1</code>. <code>Windows/Queue.luau</code>: одна большая зелёная START A RUN (у вступившего друга — серая WAITING FOR HOST), START NOW скрыта, LEAVE маленькая. Крупный отсчёт посреди экрана — <code>QueueCountdown.luau</code>. Табличка площадок — правка мира лобби в Studio и <code>export.mjs Lobby</code>.</li>
 <li><strong>Тост покупки</strong> — имя из каталога.</li>
 <li><strong>Проверка.</strong> <code>npm run check</code>; Luau-тесты <code>FirstRunSteps</code>, <code>QueueService</code> (по хуку TEST-ROUND); своё окно Studio, первый забег новым профилем, кадр каждого шага; таблица размера окна и <code>feature-design-critic</code> для окна старта.</li>
 <li><strong>Документы.</strong> <code>docs/mechanics.md</code> («Обучение», «Очередь на площадке»), <code>docs/testing-checklist.md</code> (пункты на ＠Леонид), <code>node tools/guide/build.mjs</code>.</li>
