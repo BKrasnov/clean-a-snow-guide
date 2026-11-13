@@ -270,8 +270,66 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <section class="part"><h2>Доска</h2><div class="board-filters" role="group" aria-label="Кто делает"><button type="button" data-person-filter="all" aria-pressed="true">Все</button><button type="button" data-person-filter="Богдан" aria-pressed="false">Богдан</button><button type="button" data-person-filter="Леонид" aria-pressed="false">Леонид</button><button type="button" data-person-filter="Георгий" aria-pressed="false">Георгий</button></div>
 <div class="board-filters" role="group" aria-label="Порядок карточек"><button type="button" data-board-sort="new" aria-pressed="true">Сначала новые</button><button type="button" data-board-sort="old" aria-pressed="false">Как раньше</button></div>
 <div class="board-columns"><section class="board-column" data-status="todo">
-  <h3>К выполнению <span class="board-count">13</span></h3>
-  <div class="board-cards"><article class="board-card" id="card-f8b296" data-person="Богдан" data-status="todo" data-new-rank="0" data-old-rank="149">
+  <h3>К выполнению <span class="board-count">15</span></h3>
+  <div class="board-cards"><article class="board-card" id="card-b3c852" data-person="Богдан" data-status="todo" data-new-rank="0" data-old-rank="149">
+  <h3>Аркада «Гринч в сугробах»</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>b3c852</code> фича · activities</p>
+  <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-13T01:35:54-05:00">13.11 01:35</time></p>
+  <p class="board-lead">Аркада «Гринч в сугробах» в автомате игрового зала (карточка `c2662e`, решение владельца 13.11.2026). Своя игра, чужие не копировать.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Аркада «Гринч в сугробах» в автомате игрового зала (карточка <code>c2662e</code>, решение владельца 13.11.2026). Своя игра, чужие не копировать.</p>
+<ul>
+<li>Гринч выглядывает из сугробов на экране. Нажал на него (клик или касание) — попал снежком, плюс очко.</li>
+<li>Иногда выглядывают эльфы: по ним бить нельзя, попал — минус очко.</li>
+<li>Раунд 30–60 секунд, к концу Гринч выглядывает чаще.</li>
+<li>Картинки игры — только через <code>codex-imagegen</code>, в стиле игры.</li>
+</ul>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Референс экрана игры утверждён владельцем.</li>
+<li><input disabled="" type="checkbox"> Игра открывается из автомата по E: раунд, счёт, конец игры, выход обратно в зал.</li>
+<li><input disabled="" type="checkbox"> Награду решает сервер: очков за раунд не больше, чем можно набрать за его время, и лимит в день. Клиентскому счёту не верить.</li>
+<li><input disabled="" type="checkbox"> Luau-тесты на проверку счёта сервером.</li>
+<li><input disabled="" type="checkbox"> Живой Play на ПК и в эмуляции телефона, кадры.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Что даёт игра (билетики, призы, лимит в день) решает Леонид, тема «Дополнительные активности». До решения — временные числа.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-06c0b3" data-person="Богдан" data-status="todo" data-new-rank="1" data-old-rank="138">
+  <h3>Аркада «Поймай подарки»</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>06c0b3</code> фича · activities</p>
+  <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-13T01:35:54-05:00">13.11 01:35</time></p>
+  <p class="board-lead">Аркада «Поймай подарки» в автомате игрового зала (карточка `c2662e`, решение владельца 13.11.2026). Своя игра, чужие не копировать.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Аркада «Поймай подарки» в автомате игрового зала (карточка <code>c2662e</code>, решение владельца 13.11.2026). Своя игра, чужие не копировать.</p>
+<ul>
+<li>Санта пролетает на санях вверху экрана и роняет подарки. Игрок ловит их мешком, двигая его влево и вправо: клавиши или мышь, на телефоне — касание.</li>
+<li>Гринч кидает угольки: пойманный уголёк — минус жизнь. Три жизни (временное число).</li>
+<li>Раунд 30–60 секунд, счёт — пойманные подарки.</li>
+<li>Картинки игры — только через <code>codex-imagegen</code>, в стиле игры.</li>
+</ul>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Референс экрана игры утверждён владельцем.</li>
+<li><input disabled="" type="checkbox"> Игра открывается из автомата по E: раунд, счёт, конец игры, выход обратно в зал.</li>
+<li><input disabled="" type="checkbox"> Награду решает сервер: очков за раунд не больше, чем можно поймать за его время, и лимит в день. Клиентскому счёту не верить.</li>
+<li><input disabled="" type="checkbox"> Luau-тесты на проверку счёта сервером.</li>
+<li><input disabled="" type="checkbox"> Живой Play на ПК и в эмуляции телефона, кадры.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Что даёт игра (билетики, призы, лимит в день) решает Леонид, тема «Дополнительные активности». До решения — временные числа.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-f8b296" data-person="Богдан" data-status="todo" data-new-rank="2" data-old-rank="151">
   <h3>Конвейер: две ленты, покупка по зонам</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>f8b296</code> фича · economy</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-13T01:33:01-05:00">13.11 01:33</time></p>
@@ -304,47 +362,38 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-c2662e" data-person="Богдан" data-status="todo" data-new-rank="1" data-old-rank="148">
-  <h3>Игровой зал с аркадами: «Гринч в сугробах» и «Поймай подарки»</h3>
+<article class="board-card" id="card-c2662e" data-person="Богдан" data-status="todo" data-new-rank="3" data-old-rank="150">
+  <h3>Игровой зал: здание, катсцена, автоматы по E</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>c2662e</code> фича · activities</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-13T01:33:01-05:00">13.11 01:33</time></p>
-  <p class="board-lead">Описать и подготовить игровой зал с аркадными автоматами, потом разбить на карточки.</p>
+  <p class="board-lead">Сделать небольшой игровой зал с аркадными автоматами (решение владельца 13.11.2026). Игры в автоматах — отдельные карточки: «Поймай подарки» (`06c0b3`) и «Гринч в сугробах» (`b3c852`).</p>
   
   <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Описать и подготовить игровой зал с аркадными автоматами, потом разбить на карточки.</p>
-<p>Решение владельца 13.11.2026:</p>
+<p>Сделать небольшой игровой зал с аркадными автоматами (решение владельца 13.11.2026). Игры в автоматах — отдельные карточки: «Поймай подарки» (<code>06c0b3</code>) и «Гринч в сугробах» (<code>b3c852</code>).</p>
 <ul>
-<li>Небольшое игровое здание — зал, как с автоматами в торговом центре. Размер — примерно вдвое меньше фермерского дома.</li>
+<li>Здание — игровой зал, как с автоматами в торговом центре. Размер — примерно вдвое меньше фермерского дома (измерить дом в игре).</li>
 <li>Здание появляется с катсценой: камера показывает, как оно встаёт из снега.</li>
-<li>Внутри аркадные автоматы. Подошёл, нажал E (на телефоне — кнопка на экране) — начинается игра: камера подъезжает к экрану автомата, игра открывается на весь экран. Вышел — снова стоишь в зале.</li>
-<li>Только две игры, про Санту и Гринча, свои (чужие игры не копировать):<ul>
-<li>«Гринч в сугробах»: Гринч выглядывает из сугробов, нажал — попал в него снежком. Иногда выглядывают эльфы, по ним бить нельзя.</li>
-<li>«Поймай подарки»: Санта пролетает на санях и роняет подарки, игрок ловит их мешком, двигая его влево и вправо. Гринч кидает угольки: пойманный уголёк — минус жизнь.</li>
-</ul>
-</li>
-<li>Здание делает ИИ. По правилам проекта сначала референс ChatGPT Image (<code>codex-imagegen</code>), владелец утверждает, потом модель (<code>game-model-workflow</code> или генератор Roblox Studio). Платные генераторы — только с разрешения владельца.</li>
-</ul>
-<p>Предложено, ещё не решено:</p>
-<ul>
-<li>Где зал: в лобби, катсцена один раз после первого полного забега (рекомендация: аркады не отвлекают от снега в забеге, есть чем заняться, пока ждёшь друзей) или появляется посреди забега.</li>
-<li>Что дают игры: билетики и стойка обмена на призы, лимит в день — решает Леонид.</li>
+<li>Внутри два автомата, по одному на игру. Отряд из 2–4 игроков проходит свободно, у автоматов не застревает.</li>
+<li>У автомата кнопка E (на телефоне — кнопка на экране). Нажал — камера подъезжает к экрану автомата, игра открывается на весь экран. Вышел — камера возвращается, игрок стоит в зале.</li>
+<li>Здание и автоматы делает ИИ. По правилам проекта сначала референс ChatGPT Image (<code>codex-imagegen</code>), владелец утверждает, потом модель (<code>game-model-workflow</code> или генератор Roblox Studio). Платные генераторы — только с разрешения владельца.</li>
 </ul>
 <h2>Готово когда</h2>
 <ul>
-<li><input disabled="" type="checkbox"> Решено, где стоит зал и когда идёт катсцена.</li>
-<li><input disabled="" type="checkbox"> Решено, что дают игры и сколько (Леонид, тема «Дополнительные активности»).</li>
-<li><input disabled="" type="checkbox"> Референсы ChatGPT Image утверждены владельцем: зал снаружи и внутри, автомат, экраны двух игр.</li>
-<li><input disabled="" type="checkbox"> Спека в <code>docs/superpowers/specs/</code>, после неё карточки: зал и катсцена, «Поймай подарки», «Гринч в сугробах», награды. Модели — с Георгием.</li>
+<li><input disabled="" type="checkbox"> До начала спросить владельца, где зал: в лобби с катсценой один раз после первого полного забега (рекомендация: аркады не отвлекают от снега в забеге, есть чем заняться, пока ждёшь друзей) или посреди забега. Записать «Решение владельца …» сюда.</li>
+<li><input disabled="" type="checkbox"> Референсы ChatGPT Image утверждены владельцем: зал снаружи и внутри, автомат.</li>
+<li><input disabled="" type="checkbox"> Зал стоит в игре, примерно вдвое меньше фермерского дома; катсцена проигрывается. Кадры из живой игры.</li>
+<li><input disabled="" type="checkbox"> У автомата E открывает и закрывает экран игры (до карточек игр — заглушка), на телефоне — кнопка. Проверено в Play, кадры на ПК и телефоне.</li>
+<li><input disabled="" type="checkbox"> Механика описана в <code>docs/mechanics.md</code>.</li>
 </ul>
 <h2>Работа</h2>
 <h2>Заметки</h2>
 <ul>
-<li>Счёт игры считает клиент, поэтому награду решает сервер: очков за раунд не больше, чем можно набрать за его время, и дневной лимит.</li>
+<li>Что дают игры (билетики, призы, лимит в день) решает Леонид, тема «Дополнительные активности». До решения — без наград или временные числа.</li>
 <li>Связано: тема «События по таймеру» (карточка <code>752bac</code>), где Санта и Гринч — примеры событий.</li>
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-9f9dce" data-person="Богдан" data-status="todo" data-new-rank="3" data-old-rank="145">
+<article class="board-card" id="card-9f9dce" data-person="Богдан" data-status="todo" data-new-rank="5" data-old-rank="146">
   <h3>Снег мира сохраняется: Continue с того же снега</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>9f9dce</code> фича · progression</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-13T11:48:59+07:00">13.11 11:48</time></p>
@@ -366,7 +415,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-95e547" data-person="Богдан" data-status="todo" data-new-rank="4" data-old-rank="143">
+<article class="board-card" id="card-95e547" data-person="Богдан" data-status="todo" data-new-rank="6" data-old-rank="144">
   <h3>Монеты и покупки фермерского дома живут в мире</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>95e547</code> фича · progression</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-13T11:48:59+07:00">13.11 11:48</time></p>
@@ -385,7 +434,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <h2>Заметки</h2>
 </div></details>
 </article>
-<article class="board-card" id="card-8071d3" data-person="Богдан" data-status="todo" data-new-rank="5" data-old-rank="142">
+<article class="board-card" id="card-8071d3" data-person="Богдан" data-status="todo" data-new-rank="7" data-old-rank="143">
   <h3>Снег в сумке, кузове и у помощника ждёт хозяина</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>8071d3</code> фича · progression</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-13T11:48:59+07:00">13.11 11:48</time></p>
@@ -403,7 +452,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <h2>Заметки</h2>
 </div></details>
 </article>
-<article class="board-card" id="card-3b8a43" data-person="Богдан" data-status="todo" data-new-rank="7" data-old-rank="140">
+<article class="board-card" id="card-3b8a43" data-person="Богдан" data-status="todo" data-new-rank="9" data-old-rank="141">
   <h3>Награды и время за игру, отметка Solo</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>3b8a43</code> фича · progression</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-13T11:48:59+07:00">13.11 11:48</time></p>
@@ -424,7 +473,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-14044b" data-person="Богдан" data-status="todo" data-new-rank="8" data-old-rank="139">
+<article class="board-card" id="card-14044b" data-person="Богдан" data-status="todo" data-new-rank="10" data-old-rank="140">
   <h3>Окно отряда: CONTINUE · N % и NEW GAME</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>14044b</code> фича · progression</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-13T11:48:59+07:00">13.11 11:48</time></p>
@@ -443,7 +492,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <h2>Заметки</h2>
 </div></details>
 </article>
-<article class="board-card" id="card-08db01" data-person="Георгий" data-status="todo" data-new-rank="12" data-old-rank="138">
+<article class="board-card" id="card-08db01" data-person="Георгий" data-status="todo" data-new-rank="14" data-old-rank="139">
   <h3>Помощник-эльф: референс и модель</h3>
   <p class="board-meta"><span class="person" data-person="Георгий">Георгий</span> <code>08db01</code> фича · art</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-13T10:49:35+07:00">13.11 10:49</time></p>
@@ -466,7 +515,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-752bac" data-person="Леонид" data-status="todo" data-new-rank="24" data-old-rank="97">
+<article class="board-card" id="card-752bac" data-person="Леонид" data-status="todo" data-new-rank="26" data-old-rank="97">
   <h3>События по таймеру: придумать и описать (Санта, Гринч — примеры)</h3>
   <p class="board-meta"><span class="person" data-person="Леонид">Леонид</span> <code>752bac</code> фича · events</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-12T00:10:38-05:00">12.11 00:10</time></p>
@@ -489,7 +538,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-55be02" data-person="Богдан" data-status="todo" data-new-rank="52" data-old-rank="87">
+<article class="board-card" id="card-55be02" data-person="Богдан" data-status="todo" data-new-rank="54" data-old-rank="87">
   <h3>Колодец: красивая 3D-модель в Blender в стиле игры</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>55be02</code> фича · art</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-11T23:38:19+07:00">11.11 23:38</time></p>
@@ -521,7 +570,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-b81273" data-person="Богдан" data-status="todo" data-new-rank="77" data-old-rank="112">
+<article class="board-card" id="card-b81273" data-person="Богдан" data-status="todo" data-new-rank="79" data-old-rank="112">
   <h3>Одна формула урона игрока</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>b81273</code> техработа · clearing</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-11T00:27:21+07:00">11.11 00:27</time></p>
@@ -545,7 +594,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-784561" data-person="Богдан" data-status="todo" data-new-rank="98" data-old-rank="26">
+<article class="board-card" id="card-784561" data-person="Богдан" data-status="todo" data-new-rank="100" data-old-rank="26">
   <h3>Телефон: кнопки от 44 точек и читаемый текст</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>784561</code> фича · mobile</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T21:02:29+07:00">10.11 21:02</time></p>
@@ -569,7 +618,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-c029ed" data-person="Леонид" data-status="todo" data-new-rank="139" data-old-rank="45">
+<article class="board-card" id="card-c029ed" data-person="Леонид" data-status="todo" data-new-rank="141" data-old-rank="45">
   <h3>Новая система апгрейдов: бизнес-документ</h3>
   <p class="board-meta"><span class="person" data-person="Леонид">Леонид</span> <code>c029ed</code> фича · upgrades</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T12:14:18+07:00">10.11 12:14</time></p>
@@ -606,7 +655,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </section>
 <section class="board-column" data-status="doing">
   <h3>В работе <span class="board-count">3</span></h3>
-  <div class="board-cards"><article class="board-card" id="card-03c06a" data-person="Богдан" data-status="doing" data-new-rank="17" data-old-rank="127">
+  <div class="board-cards"><article class="board-card" id="card-03c06a" data-person="Богдан" data-status="doing" data-new-rank="19" data-old-rank="127">
   <h3>После закрытия окна или меню Roblox (Esc) камера резко смотрит вверх</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>03c06a</code> баг · upgrades</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-12T12:42:48-05:00">12.11 12:42</time></p>
@@ -636,7 +685,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-18b59b" data-person="Богдан" data-status="doing" data-new-rank="46" data-old-rank="76">
+<article class="board-card" id="card-18b59b" data-person="Богдан" data-status="doing" data-new-rank="48" data-old-rank="76">
   <h3>Эффекты машин: трак — куски в кузов и пар, вертолёт — луч, танк — огонь и пар</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>18b59b</code> фича · vehicles</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-11T14:06:27-05:00">11.11 14:06</time></p>
@@ -677,7 +726,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-b652d9" data-person="Богдан" data-status="doing" data-new-rank="99" data-old-rank="42">
+<article class="board-card" id="card-b652d9" data-person="Богдан" data-status="doing" data-new-rank="101" data-old-rank="42">
   <h3>Первый забег: одна понятная команда за раз</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>b652d9</code> фича · onboarding</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T20:56:29+07:00">10.11 20:56</time></p>
@@ -719,7 +768,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </section>
 <section class="board-column" data-status="paused">
   <h3>Пауза <span class="board-count">5</span></h3>
-  <div class="board-cards"><article class="board-card" id="card-b0bf2e" data-person="Богдан" data-status="paused" data-new-rank="9" data-old-rank="147">
+  <div class="board-cards"><article class="board-card" id="card-b0bf2e" data-person="Богдан" data-status="paused" data-new-rank="11" data-old-rank="148">
   <h3>На телефоне кнопка прыжка выкидывает из машины</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>b0bf2e</code> баг · bug</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-13T10:49:35+07:00">13.11 10:49</time></p>
@@ -752,7 +801,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-b4cb0b" data-person="Богдан" data-status="paused" data-new-rank="34" data-old-rank="111">
+<article class="board-card" id="card-b4cb0b" data-person="Богдан" data-status="paused" data-new-rank="36" data-old-rank="111">
   <h3>Пятое ведро Glacier Bucket: 500 снега за 9 000</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>b4cb0b</code> фича · economy</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-11T19:26:12-05:00">11.11 19:26</time></p>
@@ -792,7 +841,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-74e808" data-person="Богдан" data-status="paused" data-new-rank="53" data-old-rank="96">
+<article class="board-card" id="card-74e808" data-person="Богдан" data-status="paused" data-new-rank="55" data-old-rank="96">
   <h3>Забор участка в глубоком снегу: торчит из снега или по пояс под снегом</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>74e808</code> фича · garden</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T23:25:58+07:00">11.11 23:25</time></p>
@@ -815,7 +864,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-ccc5d0" data-person="Богдан" data-status="paused" data-new-rank="85" data-old-rank="53">
+<article class="board-card" id="card-ccc5d0" data-person="Богдан" data-status="paused" data-new-rank="87" data-old-rank="53">
   <h3>Закрытая зона: удар через границу, стена видна только вблизи</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>ccc5d0</code> фича · clearing</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-10T20:45:50-05:00">10.11 20:45</time></p>
@@ -877,7 +926,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-0205ff" data-person="Богдан" data-status="paused" data-new-rank="150" data-old-rank="0">
+<article class="board-card" id="card-0205ff" data-person="Богдан" data-status="paused" data-new-rank="152" data-old-rank="0">
   <h3>Лобби и долина в одном плейсе, переход в забег грузит весь мир</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>0205ff</code> баг · bug</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T11:34:17+07:00">10.11 11:34</time></p>
@@ -921,7 +970,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </section>
 <section class="board-column" data-status="done">
   <h3>Готово <span class="board-count">130</span></h3>
-  <div class="board-cards"><article class="board-card" id="card-f8e555" data-person="Богдан" data-status="done" data-new-rank="2" data-old-rank="150">
+  <div class="board-cards"><article class="board-card" id="card-f8e555" data-person="Богдан" data-status="done" data-new-rank="4" data-old-rank="152">
   <h3>Забег в мире хозяина: зоны и машины из мира</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>f8e555</code> фича · progression</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-13T11:48:59+07:00">13.11 11:48</time></p>
@@ -959,7 +1008,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-75d4dc" data-person="Богдан" data-status="done" data-new-rank="6" data-old-rank="141">
+<article class="board-card" id="card-75d4dc" data-person="Богдан" data-status="done" data-new-rank="8" data-old-rank="142">
   <h3>Запись мира хозяина с арендой</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>75d4dc</code> фича · progression</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-13T11:48:59+07:00">13.11 11:48</time></p>
@@ -991,7 +1040,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-a384d2" data-person="Богдан" data-status="done" data-new-rank="10" data-old-rank="146">
+<article class="board-card" id="card-a384d2" data-person="Богдан" data-status="done" data-new-rank="12" data-old-rank="147">
   <h3>Грузовик из магазина едет медленно, около 4 стадов в секунду</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>a384d2</code> баг · vehicles</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-13T10:49:35+07:00">13.11 10:49</time></p>
@@ -1019,7 +1068,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-964dab" data-person="Богдан" data-status="done" data-new-rank="11" data-old-rank="144">
+<article class="board-card" id="card-964dab" data-person="Богдан" data-status="done" data-new-rank="13" data-old-rank="145">
   <h3>Continue и New Game: спека и первая волна карточек</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>964dab</code> фича · progression</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-13T10:49:35+07:00">13.11 10:49</time></p>
@@ -1063,7 +1112,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-991fcc" data-person="Богдан" data-status="done" data-new-rank="13" data-old-rank="133">
+<article class="board-card" id="card-991fcc" data-person="Богдан" data-status="done" data-new-rank="15" data-old-rank="133">
   <h3>Урок-остров: светится сам остров, задание — срезать снег вокруг</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>991fcc</code> фича · garden</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-12T17:12:45-05:00">12.11 17:12</time></p>
@@ -1091,7 +1140,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-e706ee" data-person="Богдан" data-status="done" data-new-rank="14" data-old-rank="137">
+<article class="board-card" id="card-e706ee" data-person="Богдан" data-status="done" data-new-rank="16" data-old-rank="137">
   <h3>При сломе слоя на миг появляется блок над снегом</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>e706ee</code> баг · clearing</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-12T15:53:32-05:00">12.11 15:53</time></p>
@@ -1122,7 +1171,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-ad1a86" data-person="Богдан" data-status="done" data-new-rank="15" data-old-rank="135">
+<article class="board-card" id="card-ad1a86" data-person="Богдан" data-status="done" data-new-rank="17" data-old-rank="135">
   <h3>Жёлтый контур задания выходит за границу снега</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>ad1a86</code> баг · bug</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-12T14:09:46-05:00">12.11 14:09</time></p>
@@ -1152,7 +1201,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-283414" data-person="Богдан" data-status="done" data-new-rank="16" data-old-rank="128">
+<article class="board-card" id="card-283414" data-person="Богдан" data-status="done" data-new-rank="18" data-old-rank="128">
   <h3>Вокруг снега под прицелом видна странная голубая обводка</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>283414</code> баг · bug</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-12T13:19:25-05:00">12.11 13:19</time></p>
@@ -1181,7 +1230,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-682cde" data-person="Богдан" data-status="done" data-new-rank="18" data-old-rank="130">
+<article class="board-card" id="card-682cde" data-person="Богдан" data-status="done" data-new-rank="20" data-old-rank="130">
   <h3>Танк: огонь включается одним нажатием</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>682cde</code> фича · vehicles</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-12T01:22:20-05:00">12.11 01:22</time></p>
@@ -1221,7 +1270,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-55e401" data-person="Богдан" data-status="done" data-new-rank="19" data-old-rank="129">
+<article class="board-card" id="card-55e401" data-person="Богдан" data-status="done" data-new-rank="21" data-old-rank="129">
   <h3>Вертолёт летит на одной высоте и всегда берёт снег под собой</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>55e401</code> фича · vehicles</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-12T01:05:15-05:00">12.11 01:05</time></p>
@@ -1263,7 +1312,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-c34e67" data-person="Богдан" data-status="done" data-new-rank="20" data-old-rank="136">
+<article class="board-card" id="card-c34e67" data-person="Богдан" data-status="done" data-new-rank="22" data-old-rank="136">
   <h3>Лобби из присланного плейса</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>c34e67</code> фича · lobby</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-12T13:00:49+07:00">12.11 13:00</time></p>
@@ -1312,7 +1361,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-a63ec9" data-person="Богдан" data-status="done" data-new-rank="21" data-old-rank="134">
+<article class="board-card" id="card-a63ec9" data-person="Богдан" data-status="done" data-new-rank="23" data-old-rank="134">
   <h3>Редкий снег: пять пятен особого снега</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>a63ec9</code> фича · clearing</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-12T13:00:49+07:00">12.11 13:00</time></p>
@@ -1371,7 +1420,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-92fbca" data-person="Богдан" data-status="done" data-new-rank="22" data-old-rank="132">
+<article class="board-card" id="card-92fbca" data-person="Богдан" data-status="done" data-new-rank="24" data-old-rank="132">
   <h3>Конвейер к переработчику</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>92fbca</code> фича · economy</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-12T13:00:49+07:00">12.11 13:00</time></p>
@@ -1416,7 +1465,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-703f44" data-person="Богдан" data-status="done" data-new-rank="23" data-old-rank="131">
+<article class="board-card" id="card-703f44" data-person="Богдан" data-status="done" data-new-rank="25" data-old-rank="131">
   <h3>Окна улучшений, мастерской и переработчика из присланного плейса</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>703f44</code> фича · upgrades</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-12T13:00:49+07:00">12.11 13:00</time></p>
@@ -1473,7 +1522,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-16cd69" data-person="Богдан" data-status="done" data-new-rank="25" data-old-rank="75">
+<article class="board-card" id="card-16cd69" data-person="Богдан" data-status="done" data-new-rank="27" data-old-rank="75">
   <h3>Убрать окно новостей в первом забеге</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>16cd69</code> фича · onboarding</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-11T23:01:53-05:00">11.11 23:01</time></p>
@@ -1511,7 +1560,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-0948b1" data-person="Богдан" data-status="done" data-new-rank="26" data-old-rank="69">
+<article class="board-card" id="card-0948b1" data-person="Богдан" data-status="done" data-new-rank="28" data-old-rank="69">
   <h3>Помощник: убрать из игры, механику оставить</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>0948b1</code> фича · economy</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-11T23:01:53-05:00">11.11 23:01</time></p>
@@ -1548,7 +1597,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-fef9e4" data-person="Богдан" data-status="done" data-new-rank="27" data-old-rank="126">
+<article class="board-card" id="card-fef9e4" data-person="Богдан" data-status="done" data-new-rank="29" data-old-rank="126">
   <h3>Ежедневная награда: серия 7 дней в гемах</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>fef9e4</code> фича · economy</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-11T22:44:37-05:00">11.11 22:44</time></p>
@@ -1587,7 +1636,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-d7c843" data-person="Богдан" data-status="done" data-new-rank="28" data-old-rank="118">
+<article class="board-card" id="card-d7c843" data-person="Богдан" data-status="done" data-new-rank="30" data-old-rank="118">
   <h3>Колесо: жетон раз в день и за пройденную игру, призы в гемах</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>d7c843</code> фича · economy</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-11T22:44:37-05:00">11.11 22:44</time></p>
@@ -1627,7 +1676,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-7e4fb7" data-person="Богдан" data-status="done" data-new-rank="29" data-old-rank="101">
+<article class="board-card" id="card-7e4fb7" data-person="Богдан" data-status="done" data-new-rank="31" data-old-rank="101">
   <h3>Убрать лесных зверей</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>7e4fb7</code> фича · animals</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-11T20:14:13-05:00">11.11 20:14</time></p>
@@ -1665,7 +1714,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-12c42d" data-person="Богдан" data-status="done" data-new-rank="30" data-old-rank="73">
+<article class="board-card" id="card-12c42d" data-person="Богдан" data-status="done" data-new-rank="32" data-old-rank="73">
   <h3>Вёдра вместо сумок</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>12c42d</code> фича · economy</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-11T20:14:13-05:00">11.11 20:14</time></p>
@@ -1707,7 +1756,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-11461b" data-person="Богдан" data-status="done" data-new-rank="31" data-old-rank="72">
+<article class="board-card" id="card-11461b" data-person="Богдан" data-status="done" data-new-rank="33" data-old-rank="72">
   <h3>Забег начинается с самого сильного купленного инструмента</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>11461b</code> фича · held-items</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-11T20:14:13-05:00">11.11 20:14</time></p>
@@ -1745,7 +1794,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-93449c" data-person="Богдан" data-status="done" data-new-rank="32" data-old-rank="105">
+<article class="board-card" id="card-93449c" data-person="Богдан" data-status="done" data-new-rank="34" data-old-rank="105">
   <h3>За рулём счётчик показывает кузов, а не сумку</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>93449c</code> фича · vehicles</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-11T19:30:07-05:00">11.11 19:30</time></p>
@@ -1788,7 +1837,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-ef53d8" data-person="Богдан" data-status="done" data-new-rank="33" data-old-rank="124">
+<article class="board-card" id="card-ef53d8" data-person="Богдан" data-status="done" data-new-rank="35" data-old-rank="124">
   <h3>Кузова машин больше сумок: 800–2 000</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>ef53d8</code> фича · vehicles</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-11T19:26:12-05:00">11.11 19:26</time></p>
@@ -1866,7 +1915,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-6b860b" data-person="Богдан" data-status="done" data-new-rank="35" data-old-rank="94">
+<article class="board-card" id="card-6b860b" data-person="Богдан" data-status="done" data-new-rank="37" data-old-rank="94">
   <h3>Грузовик из магазина сам собирает и сдаёт снег</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>6b860b</code> фича · vehicles</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-11T19:26:12-05:00">11.11 19:26</time></p>
@@ -1911,7 +1960,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-ad4e1c" data-person="Богдан" data-status="done" data-new-rank="36" data-old-rank="109">
+<article class="board-card" id="card-ad4e1c" data-person="Богдан" data-status="done" data-new-rank="38" data-old-rank="109">
   <h3>Смерть и выход не высыпают снег</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>ad4e1c</code> фича · clearing</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T19:08:06-05:00">11.11 19:08</time></p>
@@ -1951,7 +2000,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-e99fb8" data-person="Богдан" data-status="done" data-new-rank="37" data-old-rank="122">
+<article class="board-card" id="card-e99fb8" data-person="Богдан" data-status="done" data-new-rank="39" data-old-rank="122">
   <h3>Классы: данные, покупка за гемы и выбор</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>e99fb8</code> фича · classes</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-11T18:28:22-05:00">11.11 18:28</time></p>
@@ -1991,7 +2040,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-be1f7a" data-person="Богдан" data-status="done" data-new-rank="38" data-old-rank="114">
+<article class="board-card" id="card-be1f7a" data-person="Богдан" data-status="done" data-new-rank="40" data-old-rank="114">
   <h3>Trader и Farmer: снег +15 %, огороды +50 %</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>be1f7a</code> фича · classes</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-11T18:28:22-05:00">11.11 18:28</time></p>
@@ -2024,7 +2073,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-6b849e" data-person="Богдан" data-status="done" data-new-rank="39" data-old-rank="93">
+<article class="board-card" id="card-6b849e" data-person="Богдан" data-status="done" data-new-rank="41" data-old-rank="93">
   <h3>Runner и Packer: ходьба +10 %, ведро +50 %</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>6b849e</code> фича · classes</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-11T18:28:22-05:00">11.11 18:28</time></p>
@@ -2062,7 +2111,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-65d1d1" data-person="Богдан" data-status="done" data-new-rank="40" data-old-rank="91">
+<article class="board-card" id="card-65d1d1" data-person="Богдан" data-status="done" data-new-rank="42" data-old-rank="91">
   <h3>Окно классов в лобби</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>65d1d1</code> фича · classes</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-11T18:28:22-05:00">11.11 18:28</time></p>
@@ -2096,7 +2145,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-25a603" data-person="Богдан" data-status="done" data-new-rank="41" data-old-rank="78">
+<article class="board-card" id="card-25a603" data-person="Богдан" data-status="done" data-new-rank="43" data-old-rank="78">
   <h3>Driver: техника +20 %, когда игрок за рулём</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>25a603</code> фича · classes</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-11T18:28:22-05:00">11.11 18:28</time></p>
@@ -2131,7 +2180,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-52f8ad" data-person="Богдан" data-status="done" data-new-rank="42" data-old-rank="86">
+<article class="board-card" id="card-52f8ad" data-person="Богдан" data-status="done" data-new-rank="44" data-old-rank="86">
   <h3>«Механики»: метки «Обсудили» и «Обсудить ещё»</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>52f8ad</code> фича · guide</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T15:58:31-05:00">11.11 15:58</time></p>
@@ -2166,7 +2215,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-e5330f" data-person="Богдан" data-status="done" data-new-rank="43" data-old-rank="120">
+<article class="board-card" id="card-e5330f" data-person="Богдан" data-status="done" data-new-rank="45" data-old-rank="120">
   <h3>Погода: только обычный лёгкий снег, без событий</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>e5330f</code> техработа · clearing</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-11T15:08:39-05:00">11.11 15:08</time></p>
@@ -2197,7 +2246,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-307791" data-person="Богдан" data-status="done" data-new-rank="44" data-old-rank="80">
+<article class="board-card" id="card-307791" data-person="Богдан" data-status="done" data-new-rank="46" data-old-rank="80">
   <h3>«Механики»: монеты за зону по настоящему числу участков, устаревшие строки</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>307791</code> техработа · guide</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T15:05:57-05:00">11.11 15:05</time></p>
@@ -2232,7 +2281,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-911c96" data-person="Богдан" data-status="done" data-new-rank="45" data-old-rank="104">
+<article class="board-card" id="card-911c96" data-person="Богдан" data-status="done" data-new-rank="47" data-old-rank="104">
   <h3>«Обсудить»: кнопки-вкладки Богдан, Леонид, Георгий</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>911c96</code> фича · guide</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T14:41:13-05:00">11.11 14:41</time></p>
@@ -2265,7 +2314,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-6b2460" data-person="Богдан" data-status="done" data-new-rank="47" data-old-rank="92">
+<article class="board-card" id="card-6b2460" data-person="Богдан" data-status="done" data-new-rank="49" data-old-rank="92">
   <h3>«Обсудить»: разделы по людям — Богдан, Леонид, Георгий</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>6b2460</code> фича · guide</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T14:05:05-05:00">11.11 14:05</time></p>
@@ -2299,7 +2348,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-a08067" data-person="Богдан" data-status="done" data-new-rank="48" data-old-rank="107">
+<article class="board-card" id="card-a08067" data-person="Богдан" data-status="done" data-new-rank="50" data-old-rank="107">
   <h3>Ложка снимает слой за удар, слой — один снег</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>a08067</code> фича · clearing</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T13:43:16-05:00">11.11 13:43</time></p>
@@ -2336,7 +2385,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-b396d2" data-person="Богдан" data-status="done" data-new-rank="49" data-old-rank="110">
+<article class="board-card" id="card-b396d2" data-person="Богдан" data-status="done" data-new-rank="51" data-old-rank="110">
   <h3>Вкладка «Обсудить» на сайте игры</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>b396d2</code> фича · guide</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T13:24:16-05:00">11.11 13:24</time></p>
@@ -2371,7 +2420,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-7147f4" data-person="Богдан" data-status="done" data-new-rank="50" data-old-rank="95">
+<article class="board-card" id="card-7147f4" data-person="Богдан" data-status="done" data-new-rank="52" data-old-rank="95">
   <h3>Гладкий слом снега: скруглённые рёбра ступенек и без синих швов вдали</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>7147f4</code> фича · clearing</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T12:56:20-05:00">11.11 12:56</time></p>
@@ -2418,7 +2467,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-cac118" data-person="Богдан" data-status="done" data-new-rank="51" data-old-rank="117">
+<article class="board-card" id="card-cac118" data-person="Богдан" data-status="done" data-new-rank="53" data-old-rank="117">
   <h3>Гладкий снег: пухлые подушки со светлыми мелкими швами (V1)</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>cac118</code> фича · clearing</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T12:20:31-05:00">11.11 12:20</time></p>
@@ -2462,7 +2511,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-7c797c" data-person="Богдан" data-status="done" data-new-rank="54" data-old-rank="100">
+<article class="board-card" id="card-7c797c" data-person="Богдан" data-status="done" data-new-rank="56" data-old-rank="100">
   <h3>Ложка в правой руке, боком справа</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>7c797c</code> фича · clearing</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-11T22:59:14+07:00">11.11 22:59</time></p>
@@ -2494,7 +2543,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-bbd669" data-person="Богдан" data-status="done" data-new-rank="55" data-old-rank="113">
+<article class="board-card" id="card-bbd669" data-person="Богдан" data-status="done" data-new-rank="57" data-old-rank="113">
   <h3>Масштаб участка сада: забор, табличка и огороды под рост персонажа</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>bbd669</code> фича · garden</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-11T22:57:50+07:00">11.11 22:57</time></p>
@@ -2530,7 +2579,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-4a5024" data-person="Богдан" data-status="done" data-new-rank="56" data-old-rank="85">
+<article class="board-card" id="card-4a5024" data-person="Богдан" data-status="done" data-new-rank="58" data-old-rank="85">
   <h3>Полоска HP снега видна, а удар текущим инструментом не доходит</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>4a5024</code> баг · bug</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-11T22:55:47+07:00">11.11 22:55</time></p>
@@ -2565,7 +2614,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-267de4" data-person="Богдан" data-status="done" data-new-rank="57" data-old-rank="79">
+<article class="board-card" id="card-267de4" data-person="Богдан" data-status="done" data-new-rank="59" data-old-rank="79">
   <h3>Сумку у стенда в доме не купить: «Buy it at its stand in the farmhouse»</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>267de4</code> баг · held-items</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-11T22:48:39+07:00">11.11 22:48</time></p>
@@ -2600,7 +2649,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-59efc0" data-person="Богдан" data-status="done" data-new-rank="58" data-old-rank="89">
+<article class="board-card" id="card-59efc0" data-person="Богдан" data-status="done" data-new-rank="60" data-old-rank="89">
   <h3>Отрезанный остров не падает, когда сумка полная</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>59efc0</code> баг · garden</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T22:47:04+07:00">11.11 22:47</time></p>
@@ -2631,7 +2680,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-e30ce8" data-person="Богдан" data-status="done" data-new-rank="59" data-old-rank="119">
+<article class="board-card" id="card-e30ce8" data-person="Богдан" data-status="done" data-new-rank="61" data-old-rank="119">
   <h3>Лопата бьёт по снегу, а снег не убирается</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>e30ce8</code> баг · garden</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-11T22:35:16+07:00">11.11 22:35</time></p>
@@ -2665,7 +2714,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-e7cac7" data-person="Богдан" data-status="done" data-new-rank="60" data-old-rank="121">
+<article class="board-card" id="card-e7cac7" data-person="Богдан" data-status="done" data-new-rank="62" data-old-rank="121">
   <h3>Счётчик семян скрыт, пока игрок не нашёл первое семя</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>e7cac7</code> фича · garden</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-11T22:32:45+07:00">11.11 22:32</time></p>
@@ -2699,7 +2748,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-a3d6ec" data-person="Богдан" data-status="done" data-new-rank="61" data-old-rank="108">
+<article class="board-card" id="card-a3d6ec" data-person="Богдан" data-status="done" data-new-rank="63" data-old-rank="108">
   <h3>Ложка всё равно бьёт сверху вниз, а не черпает снизу вверх</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>a3d6ec</code> баг · bug</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-11T22:30:13+07:00">11.11 22:30</time></p>
@@ -2736,7 +2785,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-c6d180" data-person="Богдан" data-status="done" data-new-rank="62" data-old-rank="116">
+<article class="board-card" id="card-c6d180" data-person="Богдан" data-status="done" data-new-rank="64" data-old-rank="116">
   <h3>Клик ложкой выглядит как удар, а не копание</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>c6d180</code> баг · bug</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-11T18:57:06+07:00">11.11 18:57</time></p>
@@ -2773,7 +2822,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-0bd80d" data-person="Богдан" data-status="done" data-new-rank="63" data-old-rank="70">
+<article class="board-card" id="card-0bd80d" data-person="Богдан" data-status="done" data-new-rank="65" data-old-rank="70">
   <h3>Машины открываются за убранный снег, закрытые — чёрные</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>0bd80d</code> фича · vehicles</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-11T16:35:53+07:00">11.11 16:35</time></p>
@@ -2819,7 +2868,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-c3c3e1" data-person="Богдан" data-status="done" data-new-rank="64" data-old-rank="115">
+<article class="board-card" id="card-c3c3e1" data-person="Богдан" data-status="done" data-new-rank="66" data-old-rank="115">
   <h3>Зона открывается на 90 % и остаётся открытой навсегда</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>c3c3e1</code> фича · progression</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T15:40:16+07:00">11.11 15:40</time></p>
@@ -2865,7 +2914,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-8c4904" data-person="Богдан" data-status="done" data-new-rank="65" data-old-rank="102">
+<article class="board-card" id="card-8c4904" data-person="Богдан" data-status="done" data-new-rank="67" data-old-rank="102">
   <h3>Помощник в забеге не доходит до снега и не бьёт его</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>8c4904</code> баг · bug</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T15:12:21+07:00">11.11 15:12</time></p>
@@ -2893,7 +2942,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-f1be1e" data-person="Богдан" data-status="done" data-new-rank="66" data-old-rank="125">
+<article class="board-card" id="card-f1be1e" data-person="Богдан" data-status="done" data-new-rank="68" data-old-rank="125">
   <h3>Эффекты на низком качестве: вызовы отрисовки и профиль</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>f1be1e</code> техработа · clearing</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T14:32:03+07:00">11.11 14:32</time></p>
@@ -2929,7 +2978,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-969bd3" data-person="Богдан" data-status="done" data-new-rank="67" data-old-rank="106">
+<article class="board-card" id="card-969bd3" data-person="Богдан" data-status="done" data-new-rank="69" data-old-rank="106">
   <h3>Эффект куска из пула, пыль по качеству</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>969bd3</code> техработа · clearing</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T14:32:03+07:00">11.11 14:32</time></p>
@@ -2967,7 +3016,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <p>Заведена по разбору VFX, карточка <code>c5759d</code> (<code>docs/vfx-roblox.md</code>, <code>docs/vfx.md</code>).</p>
 </div></details>
 </article>
-<article class="board-card" id="card-5c9eae" data-person="Богдан" data-status="done" data-new-rank="68" data-old-rank="90">
+<article class="board-card" id="card-5c9eae" data-person="Богдан" data-status="done" data-new-rank="70" data-old-rank="90">
   <h3>Учесть системное «Reduce Motion» Roblox</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>5c9eae</code> фича · clearing</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T14:32:03+07:00">11.11 14:32</time></p>
@@ -3004,7 +3053,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <p>Заведена по разбору VFX, карточка <code>c5759d</code> (<code>docs/vfx-roblox.md</code>, <code>docs/vfx.md</code>).</p>
 </div></details>
 </article>
-<article class="board-card" id="card-7852ff" data-person="Богдан" data-status="done" data-new-rank="69" data-old-rank="99">
+<article class="board-card" id="card-7852ff" data-person="Богдан" data-status="done" data-new-rank="71" data-old-rank="99">
   <h3>Вид панели иконок по референсу и донатная заглушка</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>7852ff</code> фича · held-items</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T13:28:13+07:00">11.11 13:28</time></p>
@@ -3039,7 +3088,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-584563" data-person="Богдан" data-status="done" data-new-rank="70" data-old-rank="88">
+<article class="board-card" id="card-584563" data-person="Богдан" data-status="done" data-new-rank="72" data-old-rank="88">
   <h3>Сад в снегу: посадка, рост и доход в забеге, сад в профиле</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>584563</code> фича · garden</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T01:06:31-05:00">11.11 01:06</time></p>
@@ -3089,7 +3138,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-3272f9" data-person="Богдан" data-status="done" data-new-rank="71" data-old-rank="81">
+<article class="board-card" id="card-3272f9" data-person="Богдан" data-status="done" data-new-rank="73" data-old-rank="81">
   <h3>Сад в снегу: участки у фермерского дома и откапывание по контуру</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>3272f9</code> фича · garden</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T01:06:31-05:00">11.11 01:06</time></p>
@@ -3136,7 +3185,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-1690f3" data-person="Богдан" data-status="done" data-new-rank="72" data-old-rank="74">
+<article class="board-card" id="card-1690f3" data-person="Богдан" data-status="done" data-new-rank="74" data-old-rank="74">
   <h3>Сад в снегу: семена в снегу, находка и счётчик</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>1690f3</code> фича · garden</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T01:06:31-05:00">11.11 01:06</time></p>
@@ -3188,7 +3237,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-0ce562" data-person="Богдан" data-status="done" data-new-rank="73" data-old-rank="71">
+<article class="board-card" id="card-0ce562" data-person="Богдан" data-status="done" data-new-rank="75" data-old-rank="71">
   <h3>Снег приходится собирать отдельно, хотя сумка не полна</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>0ce562</code> баг · bug</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-11T12:58:17+07:00">11.11 12:58</time></p>
@@ -3218,7 +3267,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-40cbaf" data-person="Богдан" data-status="done" data-new-rank="74" data-old-rank="84">
+<article class="board-card" id="card-40cbaf" data-person="Богдан" data-status="done" data-new-rank="76" data-old-rank="84">
   <h3>Слом снега: белая волна, снежинки на каждом ударе, без синего</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>40cbaf</code> фича · clearing</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-10T23:20:20-05:00">10.11 23:20</time></p>
@@ -3303,7 +3352,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-8d37a2" data-person="Богдан" data-status="done" data-new-rank="75" data-old-rank="103">
+<article class="board-card" id="card-8d37a2" data-person="Богдан" data-status="done" data-new-rank="77" data-old-rank="103">
   <h3>Страница «Вопросы»: общие отметки «Ответ дан»</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>8d37a2</code> фича · guide</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-11T00:51:28+07:00">11.11 00:51</time></p>
@@ -3334,7 +3383,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <p>Владелец дал «апрув везде»: отдельная страница и второй путь того же сервера выбраны по рекомендации, решения записаны в спеку.</p>
 </div></details>
 </article>
-<article class="board-card" id="card-ea16cb" data-person="Богдан" data-status="done" data-new-rank="76" data-old-rank="123">
+<article class="board-card" id="card-ea16cb" data-person="Богдан" data-status="done" data-new-rank="78" data-old-rank="123">
   <h3>Машины: один след для сервера и клиента</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>ea16cb</code> техработа · clearing</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-11T00:27:21+07:00">11.11 00:27</time></p>
@@ -3383,7 +3432,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-754194" data-person="Богдан" data-status="done" data-new-rank="78" data-old-rank="98">
+<article class="board-card" id="card-754194" data-person="Богдан" data-status="done" data-new-rank="80" data-old-rank="98">
   <h3>Убрать старый удар SnowService и пакет Hit</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>754194</code> техработа · clearing</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-11T00:27:21+07:00">11.11 00:27</time></p>
@@ -3426,7 +3475,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-3ca642" data-person="Богдан" data-status="done" data-new-rank="79" data-old-rank="83">
+<article class="board-card" id="card-3ca642" data-person="Богдан" data-status="done" data-new-rank="81" data-old-rank="83">
   <h3>Одна проверка работы по снегу для всех способов</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>3ca642</code> техработа · clearing</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-11T00:27:21+07:00">11.11 00:27</time></p>
@@ -3469,7 +3518,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-3893bc" data-person="Богдан" data-status="done" data-new-rank="80" data-old-rank="82">
+<article class="board-card" id="card-3893bc" data-person="Богдан" data-status="done" data-new-rank="82" data-old-rank="82">
   <h3>Кузов ездовой машины показывает исчезнувший или чужой снег</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>3893bc</code> баг · bug</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-11T00:27:21+07:00">11.11 00:27</time></p>
@@ -3502,7 +3551,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-23da01" data-person="Богдан" data-status="done" data-new-rank="81" data-old-rank="77">
+<article class="board-card" id="card-23da01" data-person="Богдан" data-status="done" data-new-rank="83" data-old-rank="77">
   <h3>Страница об игре показывает урон пылесоса 1, в игре 3</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>23da01</code> баг · bug</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-11T00:27:21+07:00">11.11 00:27</time></p>
@@ -3531,7 +3580,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-d4d626" data-person="Богдан" data-status="done" data-new-rank="82" data-old-rank="55">
+<article class="board-card" id="card-d4d626" data-person="Богдан" data-status="done" data-new-rank="84" data-old-rank="55">
   <h3>Трещина своего удара — из предсказания, в момент касания</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>d4d626</code> фича · clearing</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-10T22:56:27-05:00">10.11 22:56</time></p>
@@ -3596,7 +3645,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-1b74ef" data-person="Богдан" data-status="done" data-new-rank="83" data-old-rank="6">
+<article class="board-card" id="card-1b74ef" data-person="Богдан" data-status="done" data-new-rank="85" data-old-rank="6">
   <h3>Снег одной прочности на всей карте (12)</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>1b74ef</code> фича · clearing</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-10T22:47:26-05:00">10.11 22:47</time></p>
@@ -3641,7 +3690,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-5797f3" data-person="Богдан" data-status="done" data-new-rank="84" data-old-rank="18">
+<article class="board-card" id="card-5797f3" data-person="Богдан" data-status="done" data-new-rank="86" data-old-rank="18">
   <h3>Убрать сад целиком: садовник, грядки, семена, грабли</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>5797f3</code> техработа · garden</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-10T21:48:16-05:00">10.11 21:48</time></p>
@@ -3696,7 +3745,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-831a90" data-person="Богдан" data-status="done" data-new-rank="86" data-old-rank="31">
+<article class="board-card" id="card-831a90" data-person="Богдан" data-status="done" data-new-rank="88" data-old-rank="31">
   <h3>Снег: скруглённые участки со слоями белый, сиреневый, ледяной</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>831a90</code> фича · clearing</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-10T20:42:50-05:00">10.11 20:42</time></p>
@@ -3762,7 +3811,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-ca84fc" data-person="Богдан" data-status="done" data-new-rank="87" data-old-rank="52">
+<article class="board-card" id="card-ca84fc" data-person="Богдан" data-status="done" data-new-rank="89" data-old-rank="52">
   <h3>Оружие в фермерском доме за монеты, Молотов своей иконкой</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>ca84fc</code> фича · held-items</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-10T20:27:06-05:00">10.11 20:27</time></p>
@@ -3856,7 +3905,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-51a4ef" data-person="Богдан" data-status="done" data-new-rank="88" data-old-rank="15">
+<article class="board-card" id="card-51a4ef" data-person="Богдан" data-status="done" data-new-rank="90" data-old-rank="15">
   <h3>Магазин в фермерском доме без окна: E Buy и E Carry у стендов</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>51a4ef</code> фича · held-items</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-10T20:27:06-05:00">10.11 20:27</time></p>
@@ -3907,7 +3956,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-2e0b1f" data-person="Богдан" data-status="done" data-new-rank="89" data-old-rank="10">
+<article class="board-card" id="card-2e0b1f" data-person="Богдан" data-status="done" data-new-rank="91" data-old-rank="10">
   <h3>Два пылесоса за монеты в фермерском доме, без стойки во дворе</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>2e0b1f</code> фича · held-items</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-10T20:27:06-05:00">10.11 20:27</time></p>
@@ -3944,7 +3993,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-074003" data-person="Богдан" data-status="done" data-new-rank="90" data-old-rank="2">
+<article class="board-card" id="card-074003" data-person="Богдан" data-status="done" data-new-rank="92" data-old-rank="2">
   <h3>Панель иконок в забеге: инструмент первым, донат последним</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>074003</code> фича · held-items</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-10T20:27:06-05:00">10.11 20:27</time></p>
@@ -3996,7 +4045,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-ffee11" data-person="Богдан" data-status="done" data-new-rank="91" data-old-rank="68">
+<article class="board-card" id="card-ffee11" data-person="Богдан" data-status="done" data-new-rank="93" data-old-rank="68">
   <h3>Трещины удара: цвет из палитры и детали из пула</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>ffee11</code> фича · clearing</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-10T20:11:25-05:00">10.11 20:11</time></p>
@@ -4068,7 +4117,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-9be892" data-person="Богдан" data-status="done" data-new-rank="92" data-old-rank="35">
+<article class="board-card" id="card-9be892" data-person="Богдан" data-status="done" data-new-rank="94" data-old-rank="35">
   <h3>Слом снега как в референсе: белая вспышка участка и крупные кубики</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>9be892</code> фича · clearing</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-10T16:30:00-05:00">10.11 16:30</time></p>
@@ -4168,7 +4217,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-3513bc" data-person="Богдан" data-status="done" data-new-rank="93" data-old-rank="12">
+<article class="board-card" id="card-3513bc" data-person="Богдан" data-status="done" data-new-rank="95" data-old-rank="12">
   <h3>Экран загрузки при входе в плейс</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>3513bc</code> фича · onboarding</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-10T13:19:43-05:00">10.11 13:19</time></p>
@@ -4220,7 +4269,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-d64b9d" data-person="Богдан" data-status="done" data-new-rank="94" data-old-rank="56">
+<article class="board-card" id="card-d64b9d" data-person="Богдан" data-status="done" data-new-rank="96" data-old-rank="56">
   <h3>Полоска варки у переработчика видна без грузовика</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>d64b9d</code> фича · economy</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-10T23:24:52+07:00">10.11 23:24</time></p>
@@ -4257,7 +4306,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-da6f62" data-person="Богдан" data-status="done" data-new-rank="95" data-old-rank="58">
+<article class="board-card" id="card-da6f62" data-person="Богдан" data-status="done" data-new-rank="97" data-old-rank="58">
   <h3>Таймлайн на страницах игры: день за днём</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>da6f62</code> фича · guide</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-10T22:49:44+07:00">10.11 22:49</time></p>
@@ -4288,7 +4337,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-4cea2f" data-person="Богдан" data-status="done" data-new-rank="96" data-old-rank="13">
+<article class="board-card" id="card-4cea2f" data-person="Богдан" data-status="done" data-new-rank="98" data-old-rank="13">
   <h3>Ледоруб со стойки от первого лица: хват по референсу</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>4cea2f</code> фича · held-items</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T21:10:58+07:00">10.11 21:10</time></p>
@@ -4323,7 +4372,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-abc629" data-person="Богдан" data-status="done" data-new-rank="97" data-old-rank="41">
+<article class="board-card" id="card-abc629" data-person="Богдан" data-status="done" data-new-rank="99" data-old-rank="41">
   <h3>Звуки наград: монеты при сдаче, покупка, открытие зоны</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>abc629</code> фича · sound</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T21:09:10+07:00">10.11 21:09</time></p>
@@ -4364,7 +4413,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-4f5142" data-person="Богдан" data-status="done" data-new-rank="100" data-old-rank="14">
+<article class="board-card" id="card-4f5142" data-person="Богдан" data-status="done" data-new-rank="102" data-old-rank="14">
   <h3>Куски снега забега не удаляются: каждый удар перебирает все куски с начала забега</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>4f5142</code> баг · bug</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T18:46:28+07:00">10.11 18:46</time></p>
@@ -4394,7 +4443,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-f79ad4" data-person="Богдан" data-status="done" data-new-rank="101" data-old-rank="65">
+<article class="board-card" id="card-f79ad4" data-person="Богдан" data-status="done" data-new-rank="103" data-old-rank="65">
   <h3>Оружие со стойки: бросок, выход в лобби, цели снегоуборщика</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>f79ad4</code> техработа · weapons</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T18:45:20+07:00">10.11 18:45</time></p>
@@ -4432,7 +4481,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-51b915" data-person="Богдан" data-status="done" data-new-rank="102" data-old-rank="16">
+<article class="board-card" id="card-51b915" data-person="Богдан" data-status="done" data-new-rank="104" data-old-rank="16">
   <h3>Ежедневная награда не требует игры в этот день</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>51b915</code> баг · bug</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T18:42:33+07:00">10.11 18:42</time></p>
@@ -4462,7 +4511,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-21c3a1" data-person="Богдан" data-status="done" data-new-rank="103" data-old-rank="7">
+<article class="board-card" id="card-21c3a1" data-person="Богдан" data-status="done" data-new-rank="105" data-old-rank="7">
   <h3>Общая таблица лидеров показывает номера игроков вместо имён</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>21c3a1</code> баг · bug</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T18:42:33+07:00">10.11 18:42</time></p>
@@ -4491,7 +4540,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-0d0017" data-person="Богдан" data-status="done" data-new-rank="104" data-old-rank="3">
+<article class="board-card" id="card-0d0017" data-person="Богдан" data-status="done" data-new-rank="106" data-old-rank="3">
   <h3>Гемы за чистую зону от её размера</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>0d0017</code> фича · economy</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T18:40:58+07:00">10.11 18:40</time></p>
@@ -4529,7 +4578,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-dfd1d3" data-person="Богдан" data-status="done" data-new-rank="105" data-old-rank="61">
+<article class="board-card" id="card-dfd1d3" data-person="Богдан" data-status="done" data-new-rank="107" data-old-rank="61">
   <h3>Одна очередь варки в переработчике на игрока</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>dfd1d3</code> фича · economy</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T18:35:40+07:00">10.11 18:35</time></p>
@@ -4564,7 +4613,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-7cab5c" data-person="Богдан" data-status="done" data-new-rank="106" data-old-rank="27">
+<article class="board-card" id="card-7cab5c" data-person="Богдан" data-status="done" data-new-rank="108" data-old-rank="27">
   <h3>Лопата магазина от первого лица: хват по референсу</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>7cab5c</code> фича · held-items</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-10T18:34:40+07:00">10.11 18:34</time></p>
@@ -4598,7 +4647,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-8955d9" data-person="Богдан" data-status="done" data-new-rank="107" data-old-rank="34">
+<article class="board-card" id="card-8955d9" data-person="Богдан" data-status="done" data-new-rank="109" data-old-rank="34">
   <h3>Чеки переработчика копятся в профиле навсегда: профиль перестанет сохраняться</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>8955d9</code> баг · bug</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-10T18:34:14+07:00">10.11 18:34</time></p>
@@ -4632,7 +4681,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-2722e3" data-person="Богдан" data-status="done" data-new-rank="108" data-old-rank="8">
+<article class="board-card" id="card-2722e3" data-person="Богдан" data-status="done" data-new-rank="110" data-old-rank="8">
   <h3>Аудит предметов в руках: хват, удар, анимации</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>2722e3</code> техработа · held-items</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-10T18:19:47+07:00">10.11 18:19</time></p>
@@ -4665,7 +4714,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-fbae97" data-person="Богдан" data-status="done" data-new-rank="109" data-old-rank="67">
+<article class="board-card" id="card-fbae97" data-person="Богдан" data-status="done" data-new-rank="111" data-old-rank="67">
   <h3>Данные: прочность, тип и кольца снега из areas.json</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>fbae97</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T18:13:59+07:00">10.11 18:13</time></p>
@@ -4704,7 +4753,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-80094e" data-person="Богдан" data-status="done" data-new-rank="110" data-old-rank="30">
+<article class="board-card" id="card-80094e" data-person="Богдан" data-status="done" data-new-rank="112" data-old-rank="30">
   <h3>Страницы: числа только из JSON, без регулярок по коду</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>80094e</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T18:13:59+07:00">10.11 18:13</time></p>
@@ -4736,7 +4785,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-71fdea" data-person="Богдан" data-status="done" data-new-rank="111" data-old-rank="25">
+<article class="board-card" id="card-71fdea" data-person="Богдан" data-status="done" data-new-rank="113" data-old-rank="25">
   <h3>Данные: сад, звери и машины в JSON</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>71fdea</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T18:13:59+07:00">10.11 18:13</time></p>
@@ -4776,7 +4825,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-6356f6" data-person="Богдан" data-status="done" data-new-rank="112" data-old-rank="20">
+<article class="board-card" id="card-6356f6" data-person="Богдан" data-status="done" data-new-rank="114" data-old-rank="20">
   <h3>Данные: сессия, очередь, интро, топ и серверные числа в JSON</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>6356f6</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T18:13:59+07:00">10.11 18:13</time></p>
@@ -4814,7 +4863,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-52722c" data-person="Богдан" data-status="done" data-new-rank="113" data-old-rank="17">
+<article class="board-card" id="card-52722c" data-person="Богдан" data-status="done" data-new-rank="115" data-old-rank="17">
   <h3>Данные: клиент спрашивает дверь, а не держит копии</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>52722c</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T18:13:59+07:00">10.11 18:13</time></p>
@@ -4849,7 +4898,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-34d5ff" data-person="Богдан" data-status="done" data-new-rank="114" data-old-rank="11">
+<article class="board-card" id="card-34d5ff" data-person="Богдан" data-status="done" data-new-rank="116" data-old-rank="11">
   <h3>Данные: экономика в JSON, Catalog и Balance читают JSON</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>34d5ff</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T18:13:59+07:00">10.11 18:13</time></p>
@@ -4891,7 +4940,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-c4e3c6" data-person="Богдан" data-status="done" data-new-rank="115" data-old-rank="47">
+<article class="board-card" id="card-c4e3c6" data-person="Богдан" data-status="done" data-new-rank="117" data-old-rank="47">
   <h3>Разбор: один источник правды для чисел игры</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>c4e3c6</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-10T18:03:38+07:00">10.11 18:03</time></p>
@@ -4926,7 +4975,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-f7143c" data-person="Богдан" data-status="done" data-new-rank="116" data-old-rank="64">
+<article class="board-card" id="card-f7143c" data-person="Богдан" data-status="done" data-new-rank="118" data-old-rank="64">
   <h3>Контракт: каталог отвечает на вопросы, уборка мёртвого кода</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>f7143c</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T15:53:12+07:00">10.11 15:53</time></p>
@@ -4961,7 +5010,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-ee323d" data-person="Богдан" data-status="done" data-new-rank="117" data-old-rank="63">
+<article class="board-card" id="card-ee323d" data-person="Богдан" data-status="done" data-new-rank="119" data-old-rank="63">
   <h3>Снег: один ответ на удар и дешёвый снимок</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>ee323d</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T15:53:12+07:00">10.11 15:53</time></p>
@@ -4998,7 +5047,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-db18c4" data-person="Богдан" data-status="done" data-new-rank="118" data-old-rank="59">
+<article class="board-card" id="card-db18c4" data-person="Богдан" data-status="done" data-new-rank="120" data-old-rank="59">
   <h3>Сеть: проверка движения</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>db18c4</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T15:53:12+07:00">10.11 15:53</time></p>
@@ -5036,7 +5085,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-c0a127" data-person="Богдан" data-status="done" data-new-rank="119" data-old-rank="46">
+<article class="board-card" id="card-c0a127" data-person="Богдан" data-status="done" data-new-rank="121" data-old-rank="46">
   <h3>Сервер: жизненный цикл игрока и забега</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>c0a127</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T15:53:12+07:00">10.11 15:53</time></p>
@@ -5073,7 +5122,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-9cd888" data-person="Богдан" data-status="done" data-new-rank="120" data-old-rank="36">
+<article class="board-card" id="card-9cd888" data-person="Богдан" data-status="done" data-new-rank="122" data-old-rank="36">
   <h3>Снег: одна высота снега</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>9cd888</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T15:53:12+07:00">10.11 15:53</time></p>
@@ -5113,7 +5162,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-8770fb" data-person="Богдан" data-status="done" data-new-rank="121" data-old-rank="32">
+<article class="board-card" id="card-8770fb" data-person="Богдан" data-status="done" data-new-rank="123" data-old-rank="32">
   <h3>Контракт: правило оружия отдельно от вида</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>8770fb</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T15:53:12+07:00">10.11 15:53</time></p>
@@ -5152,7 +5201,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-7d4287" data-person="Богдан" data-status="done" data-new-rank="122" data-old-rank="28">
+<article class="board-card" id="card-7d4287" data-person="Богдан" data-status="done" data-new-rank="124" data-old-rank="28">
   <h3>Мир: список якорей и проверка плейса</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>7d4287</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T15:53:12+07:00">10.11 15:53</time></p>
@@ -5187,7 +5236,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-70ff28" data-person="Богдан" data-status="done" data-new-rank="123" data-old-rank="24">
+<article class="board-card" id="card-70ff28" data-person="Богдан" data-status="done" data-new-rank="125" data-old-rank="24">
   <h3>Мир: скрипт запекания данных карты</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>70ff28</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T15:53:12+07:00">10.11 15:53</time></p>
@@ -5223,7 +5272,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-6d3652" data-person="Богдан" data-status="done" data-new-rank="124" data-old-rank="23">
+<article class="board-card" id="card-6d3652" data-person="Богдан" data-status="done" data-new-rank="126" data-old-rank="23">
   <h3>Удар: общий план удара и главная кнопка</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>6d3652</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T15:53:12+07:00">10.11 15:53</time></p>
@@ -5258,7 +5307,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-670e36" data-person="Богдан" data-status="done" data-new-rank="125" data-old-rank="22">
+<article class="board-card" id="card-670e36" data-person="Богдан" data-status="done" data-new-rank="127" data-old-rank="22">
   <h3>Мир: содержимое плейсов в репозитории</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>670e36</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T15:53:12+07:00">10.11 15:53</time></p>
@@ -5295,7 +5344,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-653e08" data-person="Богдан" data-status="done" data-new-rank="126" data-old-rank="21">
+<article class="board-card" id="card-653e08" data-person="Богдан" data-status="done" data-new-rank="128" data-old-rank="21">
   <h3>Сервер: переработчик — единственная приёмка снега</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>653e08</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T15:53:12+07:00">10.11 15:53</time></p>
@@ -5335,7 +5384,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-624075" data-person="Богдан" data-status="done" data-new-rank="127" data-old-rank="19">
+<article class="board-card" id="card-624075" data-person="Богдан" data-status="done" data-new-rank="129" data-old-rank="19">
   <h3>Сервер: одно ядро хранилища профиля</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>624075</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T15:53:12+07:00">10.11 15:53</time></p>
@@ -5368,7 +5417,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-13a49d" data-person="Богдан" data-status="done" data-new-rank="128" data-old-rank="4">
+<article class="board-card" id="card-13a49d" data-person="Богдан" data-status="done" data-new-rank="130" data-old-rank="4">
   <h3>Клиент: показ по одной форме и окна по одному</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>13a49d</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T15:53:12+07:00">10.11 15:53</time></p>
@@ -5404,7 +5453,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-ca847e" data-person="Богдан" data-status="done" data-new-rank="129" data-old-rank="51">
+<article class="board-card" id="card-ca847e" data-person="Богдан" data-status="done" data-new-rank="131" data-old-rank="51">
   <h3>Клиент: одна дверь к серверу</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>ca847e</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T15:49:33+07:00">10.11 15:49</time></p>
@@ -5445,7 +5494,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-c02288" data-person="Богдан" data-status="done" data-new-rank="130" data-old-rank="44">
+<article class="board-card" id="card-c02288" data-person="Богдан" data-status="done" data-new-rank="132" data-old-rank="44">
   <h3>Мир: сервер строит только своё место по роли</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>c02288</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T15:16:37+07:00">10.11 15:16</time></p>
@@ -5481,7 +5530,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-ab64ef" data-person="Богдан" data-status="done" data-new-rank="131" data-old-rank="40">
+<article class="board-card" id="card-ab64ef" data-person="Богдан" data-status="done" data-new-rank="133" data-old-rank="40">
   <h3>Снег: прочность клетки в одном модуле</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>ab64ef</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T14:49:02+07:00">10.11 14:49</time></p>
@@ -5523,7 +5572,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-c5759d" data-person="Богдан" data-status="done" data-new-rank="132" data-old-rank="48">
+<article class="board-card" id="card-c5759d" data-person="Богдан" data-status="done" data-new-rank="134" data-old-rank="48">
   <h3>Глубже разобрать VFX</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>c5759d</code> техработа · guide</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T13:52:11+07:00">10.11 13:52</time></p>
@@ -5558,7 +5607,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-cf3522" data-person="Богдан" data-status="done" data-new-rank="133" data-old-rank="54">
+<article class="board-card" id="card-cf3522" data-person="Богдан" data-status="done" data-new-rank="135" data-old-rank="54">
   <h3>Кошелёк: одно место для денег и наград</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>cf3522</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T13:47:47+07:00">10.11 13:47</time></p>
@@ -5614,7 +5663,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-c687b8" data-person="Богдан" data-status="done" data-new-rank="134" data-old-rank="49">
+<article class="board-card" id="card-c687b8" data-person="Богдан" data-status="done" data-new-rank="136" data-old-rank="49">
   <h3>Лимит в схеме пакета</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>c687b8</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T13:31:47+07:00">10.11 13:31</time></p>
@@ -5660,7 +5709,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-d91075" data-person="Богдан" data-status="done" data-new-rank="135" data-old-rank="57">
+<article class="board-card" id="card-d91075" data-person="Богдан" data-status="done" data-new-rank="137" data-old-rank="57">
   <h3>Прицел показывает снег, а удар молча не проходит (NotExposed)</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>d91075</code> баг · bug</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-10T13:13:19+07:00">10.11 13:13</time></p>
@@ -5689,7 +5738,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-8925d1" data-person="Богдан" data-status="done" data-new-rank="136" data-old-rank="33">
+<article class="board-card" id="card-8925d1" data-person="Богдан" data-status="done" data-new-rank="138" data-old-rank="33">
   <h3>Одно правило удара на сервере</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>8925d1</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T13:05:18+07:00">10.11 13:05</time></p>
@@ -5735,7 +5784,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-dc68a4" data-person="Богдан" data-status="done" data-new-rank="137" data-old-rank="60">
+<article class="board-card" id="card-dc68a4" data-person="Богдан" data-status="done" data-new-rank="139" data-old-rank="60">
   <h3>Сводка шести разборов архитектуры и порядок работ</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>dc68a4</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T12:49:32+07:00">10.11 12:49</time></p>
@@ -5783,7 +5832,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-a4c02e" data-person="Богдан" data-status="done" data-new-rank="138" data-old-rank="38">
+<article class="board-card" id="card-a4c02e" data-person="Богдан" data-status="done" data-new-rank="140" data-old-rank="38">
   <h3>Аудит кода: оружие, машины и способы уборки снега</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>a4c02e</code> техработа · clearing</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T12:28:06+07:00">10.11 12:28</time></p>
@@ -5825,7 +5874,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-272a6c" data-person="Богдан" data-status="done" data-new-rank="140" data-old-rank="9">
+<article class="board-card" id="card-272a6c" data-person="Богдан" data-status="done" data-new-rank="142" data-old-rank="9">
   <h3>По умолчанию кулаки, нужна ложка</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>272a6c</code> баг · bug</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T12:10:11+07:00">10.11 12:10</time></p>
@@ -5857,7 +5906,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-9d8916" data-person="Богдан" data-status="done" data-new-rank="141" data-old-rank="37">
+<article class="board-card" id="card-9d8916" data-person="Богдан" data-status="done" data-new-rank="143" data-old-rank="37">
   <h3>Слом снега без красивого отклика</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>9d8916</code> баг · bug</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T12:08:17+07:00">10.11 12:08</time></p>
@@ -5930,7 +5979,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-026145" data-person="Богдан" data-status="done" data-new-rank="142" data-old-rank="1">
+<article class="board-card" id="card-026145" data-person="Богдан" data-status="done" data-new-rank="144" data-old-rank="1">
   <h3>Рядом с игроком нет снега: поверхность исчерпала память</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>026145</code> баг · bug</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T12:00:31+07:00">10.11 12:00</time></p>
@@ -5960,7 +6009,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-aadab7" data-person="Богдан" data-status="done" data-new-rank="143" data-old-rank="39">
+<article class="board-card" id="card-aadab7" data-person="Богдан" data-status="done" data-new-rank="145" data-old-rank="39">
   <h3>На забеге нет кроликов и птиц</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>aadab7</code> баг · bug</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T11:53:20+07:00">10.11 11:53</time></p>
@@ -6004,7 +6053,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-faa32b" data-person="Богдан" data-status="done" data-new-rank="144" data-old-rank="66">
+<article class="board-card" id="card-faa32b" data-person="Богдан" data-status="done" data-new-rank="146" data-old-rank="66">
   <h3>Сеть: пакеты между клиентом и сервером</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>faa32b</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T11:51:14+07:00">10.11 11:51</time></p>
@@ -6086,7 +6135,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-e3afec" data-person="Богдан" data-status="done" data-new-rank="145" data-old-rank="62">
+<article class="board-card" id="card-e3afec" data-person="Богдан" data-status="done" data-new-rank="147" data-old-rank="62">
   <h3>Сервер: правила игры и профиль</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>e3afec</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T11:51:14+07:00">10.11 11:51</time></p>
@@ -6163,7 +6212,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-ca1233" data-person="Богдан" data-status="done" data-new-rank="146" data-old-rank="50">
+<article class="board-card" id="card-ca1233" data-person="Богдан" data-status="done" data-new-rank="148" data-old-rank="50">
   <h3>Мир: лобби, долина и содержимое плейса</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>ca1233</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T11:51:14+07:00">10.11 11:51</time></p>
@@ -6234,7 +6283,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-bae98a" data-person="Богдан" data-status="done" data-new-rank="147" data-old-rank="43">
+<article class="board-card" id="card-bae98a" data-person="Богдан" data-status="done" data-new-rank="149" data-old-rank="43">
   <h3>Общий контракт каталога, цен и баланса</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>bae98a</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T11:51:14+07:00">10.11 11:51</time></p>
@@ -6300,7 +6349,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-7e9ffc" data-person="Богдан" data-status="done" data-new-rank="148" data-old-rank="29">
+<article class="board-card" id="card-7e9ffc" data-person="Богдан" data-status="done" data-new-rank="150" data-old-rank="29">
   <h3>Клиент: показ и ввод</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>7e9ffc</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T11:51:14+07:00">10.11 11:51</time></p>
@@ -6366,7 +6415,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-189be8" data-person="Богдан" data-status="done" data-new-rank="149" data-old-rank="5">
+<article class="board-card" id="card-189be8" data-person="Богдан" data-status="done" data-new-rank="151" data-old-rank="5">
   <h3>Снег: поле, удар и картинка</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>189be8</code> техработа · architecture</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-10T11:51:14+07:00">10.11 11:51</time></p>
