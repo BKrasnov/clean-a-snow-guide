@@ -284,8 +284,8 @@
       "role": "акцент",
       "group": "редкость",
       "shades": [],
-      "used_by": [],
-      "reason": "Редкость Rare (GardenService, rarityColors)."
+      "used_by": ["HockeyTeamsPanel", "HockeyRinkModel"],
+      "reason": "Редкость Rare (GardenService, rarityColors). Синий команды хоккея — решение владельца 15.11.2026 (референс art/refs/hockey/start-gui.png)."
     },
     {
       "name": "Эпический",
