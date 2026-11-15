@@ -1,0 +1,171 @@
+{
+  "model": "Grinch",
+  "note": "Пределы суставов Гринча (rig_grinch.JOINT_LIMITS): градусы вокруг осей T-позы, как в rom_clip.py, левая сторона; правая зеркалится.",
+  "limits": {
+    "joints": {
+      "mixamorig:Neck": {
+        "x": [
+          -12.5,
+          10
+        ],
+        "y": [
+          -10,
+          10
+        ],
+        "z": [
+          -35,
+          35
+        ]
+      },
+      "mixamorig:Head": {
+        "x": [
+          -12.5,
+          10
+        ],
+        "y": [
+          -10,
+          10
+        ],
+        "z": [
+          -35,
+          35
+        ]
+      },
+      "mixamorig:Spine": {
+        "x": [
+          -10,
+          10
+        ],
+        "y": [
+          -8.3,
+          8.3
+        ],
+        "z": [
+          -15,
+          15
+        ]
+      },
+      "mixamorig:Spine1": {
+        "x": [
+          -10,
+          10
+        ],
+        "y": [
+          -8.3,
+          8.3
+        ],
+        "z": [
+          -15,
+          15
+        ]
+      },
+      "mixamorig:Spine2": {
+        "x": [
+          -10,
+          10
+        ],
+        "y": [
+          -8.3,
+          8.3
+        ],
+        "z": [
+          -15,
+          15
+        ]
+      },
+      "mixamorig:LeftShoulder": {
+        "y": [
+          -25,
+          10
+        ]
+      },
+      "mixamorig:LeftArm": {
+        "x": [
+          -70,
+          70
+        ],
+        "y": [
+          -50,
+          45
+        ],
+        "z": [
+          -90,
+          40
+        ]
+      },
+      "mixamorig:LeftForeArm": {
+        "z": [
+          -145,
+          0
+        ]
+      },
+      "mixamorig:LeftHand": {
+        "y": [
+          -60,
+          70
+        ],
+        "z": [
+          -30,
+          30
+        ]
+      },
+      "mixamorig:LeftUpLeg": {
+        "x": [
+          -100,
+          30
+        ],
+        "y": [
+          -45,
+          3
+        ],
+        "z": [
+          -40,
+          40
+        ]
+      },
+      "mixamorig:LeftLeg": {
+        "x": [
+          0,
+          140
+        ]
+      },
+      "mixamorig:LeftFoot": {
+        "x": [
+          -35,
+          45
+        ],
+        "y": [
+          -20,
+          20
+        ]
+      },
+      "mixamorig:LeftToeBase": {
+        "x": [
+          -30,
+          30
+        ]
+      }
+    }
+  },
+  "clips": {
+    "Idle": {
+      "mode": "in_place"
+    },
+    "Walk": {
+      "mode": "in_place"
+    },
+    "Attack": {
+      "mode": "once",
+      "from": "Idle",
+      "to": "Idle"
+    },
+    "Hit": {
+      "mode": "once",
+      "from": "Idle",
+      "to": "Idle"
+    },
+    "Stunned": {
+      "mode": "in_place"
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "file": "/Users/leo/Roblox GameDev/clean-a-snow/art/models/elf/source/Elf_master.blend",
+  "sha256": "ebc5defcdc5016dd4901586c8fb4d5707c3b5f338a01e01df69c7ec80552a425",
+  "blender": "5.2.3 LTS",
+  "collection": "Elf",
+  "export": [
+    "Elf_Body"
+  ],
+  "dimensions": {
+    "width": 1.172,
+    "depth": 0.573367,
+    "height": 1.39943,
+    "min_z": 0.0,
+    "center": [
+      0.0,
+      0.039615,
+      0.699715
+    ]
+  },
+  "totals": {
+    "tris": 1960,
+    "verts": 1056,
+    "meshes": 1,
+    "touching_verts": 0,
+    "materials": [
+      "M_Elf_Palette"
+    ],
+    "bones": 0,
+    "textures": [
+      {
+        "name": "Elf_Palette",
+        "size": [
+          64,
+          64
+        ]
+      }
+    ]
+  },
+  "objects": [
+    {
+      "name": "Elf_Body",
+      "tris": 1960,
+      "verts": 1056,
+      "parts": 39,
+      "touching_verts": 0,
+      "materials": [
+        "M_Elf_Palette"
+      ],
+      "modifiers": []
+    }
+  ],
+  "issues": [],
+  "ok": true,
+  "eyes": {
+    "found": false,
+    "objects": [],
+    "issues": []
+  },
+  "palette": {
+    "file": "/Users/leo/Roblox GameDev/clean-a-snow/art/palette.json",
+    "materials": [
+      {
+        "name": "M_Elf_Palette",
+        "hex": null,
+        "texture": "Elf_Palette",
+        "match": null,
+        "checked": true,
+        "off": [],
+        "legacy": []
+      }
+    ]
+  },
+  "budget": {
+    "class": "pet",
+    "rows": [
+      {
+        "key": "tris",
+        "value": 1960,
+        "limit": 3000,
+        "ok": true
+      },
+      {
+        "key": "materials",
+        "value": 1,
+        "limit": 1,
+        "ok": true
+      },
+      {
+        "key": "bones",
+        "value": 0,
+        "limit": 30,
+        "ok": true
+      },
+      {
+        "key": "textureSize",
+        "value": 64,
+        "limit": 256,
+        "ok": true
+      }
+    ]
+  },
+  "naming": {
+    "model": "Elf",
+    "source": "argument",
+    "objects": [],
+    "materials": []
+  },
+  "export_copies": {
+    "duplicates": [],
+    "skipped": "файл вне проекта Unity и без --assets: папка движка неизвестна"
+  },
+  "renders": {
+    "front": "/Users/leo/Roblox GameDev/clean-a-snow/art/models/elf/preview/iterations/07/front.png",
+    "side": "/Users/leo/Roblox GameDev/clean-a-snow/art/models/elf/preview/iterations/07/side.png",
+    "back": "/Users/leo/Roblox GameDev/clean-a-snow/art/models/elf/preview/iterations/07/back.png",
+    "top": "/Users/leo/Roblox GameDev/clean-a-snow/art/models/elf/preview/iterations/07/top.png",
+    "three-quarter": "/Users/leo/Roblox GameDev/clean-a-snow/art/models/elf/preview/iterations/07/three-quarter.png"
+  },
+  "render_settings": {
+    "engine": "BLENDER_EEVEE",
+    "clay": false,
+    "backface_culling": true,
+    "film_transparent": false,
+    "player": true,
+    "grid": {
+      "minor": 0.1,
+      "major": 1.0
+    }
+  }
+}

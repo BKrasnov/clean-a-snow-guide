@@ -1,0 +1,130 @@
+{
+  "file": "/Users/leo/Roblox GameDev/clean-a-snow/art/models/well/source/Well_master.blend",
+  "sha256": "051b2f59ba1539cb01921af1059c0911c32c3a2ac8acd9b01d17efda4867ce7a",
+  "blender": "5.2.3 LTS",
+  "collection": "Well",
+  "export": [
+    "Well_Body"
+  ],
+  "dimensions": {
+    "width": 2.789962,
+    "depth": 2.495034,
+    "height": 3.243181,
+    "min_z": 0.0,
+    "center": [
+      0.095019,
+      -0.020635,
+      1.621591
+    ]
+  },
+  "totals": {
+    "tris": 2538,
+    "verts": 1337,
+    "meshes": 1,
+    "touching_verts": 3,
+    "materials": [
+      "M_Well_Palette"
+    ],
+    "bones": 0,
+    "textures": [
+      {
+        "name": "Well_Palette",
+        "size": [
+          64,
+          64
+        ]
+      }
+    ]
+  },
+  "objects": [
+    {
+      "name": "Well_Body",
+      "tris": 2538,
+      "verts": 1337,
+      "parts": 38,
+      "touching_verts": 3,
+      "materials": [
+        "M_Well_Palette"
+      ],
+      "modifiers": []
+    }
+  ],
+  "issues": [],
+  "ok": true,
+  "eyes": {
+    "found": false,
+    "objects": [],
+    "issues": []
+  },
+  "palette": {
+    "file": "/Users/leo/Roblox GameDev/clean-a-snow/art/palette.json",
+    "materials": [
+      {
+        "name": "M_Well_Palette",
+        "hex": null,
+        "texture": "Well_Palette",
+        "match": null,
+        "checked": true,
+        "off": [],
+        "legacy": []
+      }
+    ]
+  },
+  "budget": {
+    "class": "big_prop",
+    "rows": [
+      {
+        "key": "tris",
+        "value": 2538,
+        "limit": 3000,
+        "ok": true
+      },
+      {
+        "key": "materials",
+        "value": 1,
+        "limit": 2,
+        "ok": true
+      },
+      {
+        "key": "bones",
+        "value": 0,
+        "limit": 0,
+        "ok": true
+      },
+      {
+        "key": "textureSize",
+        "value": 64,
+        "limit": 256,
+        "ok": true
+      }
+    ]
+  },
+  "naming": {
+    "model": "Well",
+    "source": "argument",
+    "objects": [],
+    "materials": []
+  },
+  "export_copies": {
+    "duplicates": [],
+    "skipped": "файл вне проекта Unity и без --assets: папка движка неизвестна"
+  },
+  "renders": {
+    "front": "/Users/leo/Roblox GameDev/clean-a-snow/art/models/well/preview/iterations/05/front.png",
+    "side": "/Users/leo/Roblox GameDev/clean-a-snow/art/models/well/preview/iterations/05/side.png",
+    "back": "/Users/leo/Roblox GameDev/clean-a-snow/art/models/well/preview/iterations/05/back.png",
+    "top": "/Users/leo/Roblox GameDev/clean-a-snow/art/models/well/preview/iterations/05/top.png",
+    "three-quarter": "/Users/leo/Roblox GameDev/clean-a-snow/art/models/well/preview/iterations/05/three-quarter.png"
+  },
+  "render_settings": {
+    "engine": "BLENDER_EEVEE",
+    "clay": false,
+    "backface_culling": true,
+    "film_transparent": false,
+    "player": true,
+    "grid": {
+      "minor": 0.1,
+      "major": 1.0
+    }
+  }
+}

@@ -1,0 +1,3329 @@
+{
+  "file": "/Users/leo/Roblox GameDev/clean-a-snow/art/models/grinch-v3/source/Grinch_master.blend",
+  "sha256": "a7f3e5211866482086650bfd045daf6e682d8ae0aacf059799c2cdf65794d311",
+  "blender": "5.2.3 LTS",
+  "rig": "Grinch_Rig",
+  "mesh": [
+    "Grinch_Body"
+  ],
+  "props": [],
+  "skeleton": "biped",
+  "floor": -0.0,
+  "weights": {
+    "unweighted": 0,
+    "max_influences": 3,
+    "sum_error": 0.0,
+    "rigid_share": 0.694,
+    "hard_seams": 16,
+    "edges": 5707,
+    "vertices": 2585
+  },
+  "thresholds": {
+    "contact": 0.02339953330354156,
+    "slide": 0.050075001269578936,
+    "below_floor": 0.025037500634789468,
+    "seam_deg": 2.0,
+    "pop": [
+      6.0,
+      6.0
+    ],
+    "drift": 0.10015000253915787,
+    "frozen_deg": 0.5,
+    "size": {
+      "leg": 1.0015,
+      "source": "legs"
+    },
+    "shares": {
+      "contact": 0.023364485981308414,
+      "slide": 0.05,
+      "below_floor": 0.025,
+      "drift": 0.1,
+      "lift_min": 0.05,
+      "step": 0.1,
+      "seam_mesh": 0.005,
+      "transition_move": 0.05,
+      "seam_move_min": 0.002
+    },
+    "lift_min": 0.050075001269578936,
+    "step": 0.10015000253915787,
+    "reach": 0.9995,
+    "rest_margin": 0.002,
+    "seam_mesh": 0.005007500126957894,
+    "seam_velocity": {
+      "ratio": 2.0,
+      "turn_min": 2.0,
+      "move_min": 0.002003000050783157
+    },
+    "transition": {
+      "deg": 15.0,
+      "move": 0.050075001269578936
+    }
+  },
+  "profile": {
+    "file": "/Users/leo/Roblox GameDev/clean-a-snow/art/models/grinch-v3/source/motion-profile.json",
+    "sha256": "6d92904779c534d894c418a1420dad8ef11fa0e0e907230456a01e5a0b8b9842"
+  },
+  "joint_limits": {
+    "mixamorig:Neck": {
+      "x": [
+        -12.5,
+        10
+      ],
+      "y": [
+        -10,
+        10
+      ],
+      "z": [
+        -35,
+        35
+      ]
+    },
+    "mixamorig:Head": {
+      "x": [
+        -12.5,
+        10
+      ],
+      "y": [
+        -10,
+        10
+      ],
+      "z": [
+        -35,
+        35
+      ]
+    },
+    "mixamorig:Spine": {
+      "x": [
+        -10,
+        10
+      ],
+      "y": [
+        -8.3,
+        8.3
+      ],
+      "z": [
+        -15,
+        15
+      ]
+    },
+    "mixamorig:Spine1": {
+      "x": [
+        -10,
+        10
+      ],
+      "y": [
+        -8.3,
+        8.3
+      ],
+      "z": [
+        -15,
+        15
+      ]
+    },
+    "mixamorig:Spine2": {
+      "x": [
+        -10,
+        10
+      ],
+      "y": [
+        -8.3,
+        8.3
+      ],
+      "z": [
+        -15,
+        15
+      ]
+    },
+    "mixamorig:LeftShoulder": {
+      "y": [
+        -25,
+        10
+      ]
+    },
+    "mixamorig:LeftArm": {
+      "x": [
+        -70,
+        70
+      ],
+      "y": [
+        -50,
+        45
+      ],
+      "z": [
+        -90,
+        40
+      ]
+    },
+    "mixamorig:LeftForeArm": {
+      "z": [
+        -145,
+        0
+      ]
+    },
+    "mixamorig:LeftHand": {
+      "y": [
+        -60,
+        70
+      ],
+      "z": [
+        -30,
+        30
+      ]
+    },
+    "mixamorig:LeftUpLeg": {
+      "x": [
+        -100,
+        30
+      ],
+      "y": [
+        -45,
+        3
+      ],
+      "z": [
+        -40,
+        40
+      ]
+    },
+    "mixamorig:LeftLeg": {
+      "x": [
+        0,
+        140
+      ]
+    },
+    "mixamorig:LeftFoot": {
+      "x": [
+        -35,
+        45
+      ],
+      "y": [
+        -20,
+        20
+      ]
+    },
+    "mixamorig:LeftToeBase": {
+      "x": [
+        -30,
+        30
+      ]
+    },
+    "mixamorig:RightShoulder": {
+      "y": [
+        -10,
+        25
+      ]
+    },
+    "mixamorig:RightArm": {
+      "x": [
+        -70,
+        70
+      ],
+      "y": [
+        -45,
+        50
+      ],
+      "z": [
+        -40,
+        90
+      ]
+    },
+    "mixamorig:RightForeArm": {
+      "z": [
+        0,
+        145
+      ]
+    },
+    "mixamorig:RightHand": {
+      "y": [
+        -70,
+        60
+      ],
+      "z": [
+        -30,
+        30
+      ]
+    },
+    "mixamorig:RightUpLeg": {
+      "x": [
+        -100,
+        30
+      ],
+      "y": [
+        -3,
+        45
+      ],
+      "z": [
+        -40,
+        40
+      ]
+    },
+    "mixamorig:RightLeg": {
+      "x": [
+        0,
+        140
+      ]
+    },
+    "mixamorig:RightFoot": {
+      "x": [
+        -35,
+        45
+      ],
+      "y": [
+        -20,
+        20
+      ]
+    },
+    "mixamorig:RightToeBase": {
+      "x": [
+        -30,
+        30
+      ]
+    }
+  },
+  "clips": {
+    "Idle": {
+      "frames": [
+        1,
+        299
+      ],
+      "seconds": 9.933,
+      "fps": 30,
+      "loop": true,
+      "flags": [],
+      "feet": {
+        "per_foot": {
+          "mixamorig:LeftFoot": {
+            "stance": 1.0,
+            "slide": 0.0381,
+            "lift_max": -0.0005,
+            "centre": [
+              0.2509,
+              -0.1326
+            ],
+            "extension_max": 0.9645,
+            "swings": []
+          },
+          "mixamorig:RightFoot": {
+            "stance": 1.0,
+            "slide": 0.0428,
+            "lift_max": -0.0008,
+            "centre": [
+              -0.3567,
+              -0.1577
+            ],
+            "extension_max": 0.96675,
+            "swings": []
+          }
+        },
+        "slide_max": 0.0428,
+        "ground_speed": 0.0001
+      },
+      "lowest": -0.0053,
+      "below_floor": 0.0053,
+      "seam": {
+        "pose_deg": 0.0,
+        "velocity_deg": 0.091,
+        "mesh_m": 0.0,
+        "velocity": {
+          "bone": "mixamorig:Head",
+          "value": 0.0907,
+          "peak_elsewhere": 0.1486,
+          "ratio": 0.61,
+          "limit": 2.0
+        }
+      },
+      "pops": [],
+      "root_drift": 0.035,
+      "frozen": [
+        "mixamorig:RightToeBase"
+      ],
+      "liveliness": {
+        "amplitude_deg": {
+          "head": 10.59,
+          "neck": 5.6,
+          "chest": 7.15,
+          "tail": 0.0,
+          "ears": 0.0,
+          "hips_bob_cm": 3.7
+        },
+        "head_lag": -0.087,
+        "tail_lag": null,
+        "tail_wave": null
+      },
+      "deformation": {
+        "frame": 37,
+        "stretch_max": 1.4538,
+        "compress_min": 0.7292,
+        "collapsed": 0,
+        "volume_ratio": 0.995,
+        "intersections": 2964,
+        "extra_intersections": 292
+      },
+      "sheet": {
+        "frames": [
+          1,
+          38,
+          75,
+          113,
+          150,
+          187,
+          225,
+          262
+        ],
+        "rows": [
+          "side",
+          "three-quarter"
+        ]
+      },
+      "trails": {
+        "paths": [
+          "head",
+          "hips",
+          "mixamorig:LeftFoot",
+          "mixamorig:RightFoot"
+        ],
+        "colours": {
+          "mixamorig:LeftFoot": [
+            0.85,
+            0.2,
+            0.15
+          ],
+          "mixamorig:RightFoot": [
+            0.15,
+            0.45,
+            0.85
+          ],
+          "head": [
+            0.95,
+            0.6,
+            0.1
+          ],
+          "hips": [
+            0.2,
+            0.65,
+            0.3
+          ]
+        }
+      },
+      "mode": {
+        "mode": "in_place",
+        "from": null,
+        "to": null
+      },
+      "findings": [],
+      "joints": {
+        "mixamorig:Neck": {
+          "x": [
+            -3.44,
+            2.4
+          ],
+          "y": [
+            -1.68,
+            3.96
+          ],
+          "z": [
+            -0.1,
+            3.0
+          ],
+          "total": 5.49
+        },
+        "mixamorig:Head": {
+          "x": [
+            -1.2,
+            6.32
+          ],
+          "y": [
+            -1.62,
+            -0.47
+          ],
+          "z": [
+            -1.27,
+            0.08
+          ],
+          "total": 6.4
+        },
+        "mixamorig:Spine": {
+          "x": [
+            -0.15,
+            1.85
+          ],
+          "y": [
+            -0.67,
+            0.25
+          ],
+          "z": [
+            -0.63,
+            0.29
+          ],
+          "total": 1.88
+        },
+        "mixamorig:Spine1": {
+          "x": [
+            -0.51,
+            2.37
+          ],
+          "y": [
+            -1.57,
+            0.69
+          ],
+          "z": [
+            -4.09,
+            -1.93
+          ],
+          "total": 4.65
+        },
+        "mixamorig:Spine2": {
+          "x": [
+            -0.52,
+            2.34
+          ],
+          "y": [
+            -1.79,
+            0.56
+          ],
+          "z": [
+            -3.99,
+            -1.94
+          ],
+          "total": 4.62
+        },
+        "mixamorig:LeftShoulder": {
+          "x": [
+            -3.1,
+            0.65
+          ],
+          "y": [
+            -7.63,
+            7.33
+          ],
+          "z": [
+            -0.74,
+            12.11
+          ],
+          "total": 12.51
+        },
+        "mixamorig:LeftArm": {
+          "x": [
+            31.72,
+            40.16
+          ],
+          "y": [
+            27.42,
+            44.0
+          ],
+          "z": [
+            -26.76,
+            -10.41
+          ],
+          "total": 56.7
+        },
+        "mixamorig:LeftForeArm": {
+          "x": [
+            -0.0,
+            0.0
+          ],
+          "y": [
+            -0.0,
+            0.0
+          ],
+          "z": [
+            -31.52,
+            -27.84
+          ],
+          "total": 31.52
+        },
+        "mixamorig:LeftHand": {
+          "x": [
+            -1.65,
+            7.97
+          ],
+          "y": [
+            11.71,
+            16.42
+          ],
+          "z": [
+            12.69,
+            15.76
+          ],
+          "total": 22.9
+        },
+        "mixamorig:LeftUpLeg": {
+          "x": [
+            -35.7,
+            -28.34
+          ],
+          "y": [
+            -7.92,
+            -2.97
+          ],
+          "z": [
+            0.01,
+            5.15
+          ],
+          "total": 36.62
+        },
+        "mixamorig:LeftLeg": {
+          "x": [
+            53.37,
+            69.5
+          ],
+          "y": [
+            -5.15,
+            -2.62
+          ],
+          "z": [
+            7.74,
+            11.4
+          ],
+          "total": 70.42
+        },
+        "mixamorig:LeftFoot": {
+          "x": [
+            -30.77,
+            -21.46
+          ],
+          "y": [
+            5.99,
+            10.01
+          ],
+          "z": [
+            -7.28,
+            1.39
+          ],
+          "total": 32.09
+        },
+        "mixamorig:LeftToeBase": {
+          "x": [
+            -1.2,
+            -0.0
+          ],
+          "y": [
+            -0.0,
+            0.0
+          ],
+          "z": [
+            -0.0,
+            0.0
+          ],
+          "total": 1.2
+        },
+        "mixamorig:RightShoulder": {
+          "x": [
+            -2.3,
+            5.02
+          ],
+          "y": [
+            -1.83,
+            8.27
+          ],
+          "z": [
+            -4.06,
+            11.85
+          ],
+          "total": 13.0
+        },
+        "mixamorig:RightArm": {
+          "x": [
+            32.02,
+            37.2
+          ],
+          "y": [
+            -44.0,
+            -33.12
+          ],
+          "z": [
+            16.2,
+            28.54
+          ],
+          "total": 61.72
+        },
+        "mixamorig:RightForeArm": {
+          "x": [
+            -0.0,
+            0.0
+          ],
+          "y": [
+            -0.0,
+            0.0
+          ],
+          "z": [
+            25.21,
+            31.04
+          ],
+          "total": 31.04
+        },
+        "mixamorig:RightHand": {
+          "x": [
+            -5.66,
+            1.11
+          ],
+          "y": [
+            -1.74,
+            1.99
+          ],
+          "z": [
+            -15.69,
+            -12.35
+          ],
+          "total": 15.89
+        },
+        "mixamorig:RightUpLeg": {
+          "x": [
+            -37.29,
+            -30.84
+          ],
+          "y": [
+            2.94,
+            7.59
+          ],
+          "z": [
+            -12.87,
+            -6.66
+          ],
+          "total": 38.71
+        },
+        "mixamorig:RightLeg": {
+          "x": [
+            52.44,
+            68.7
+          ],
+          "y": [
+            0.5,
+            4.46
+          ],
+          "z": [
+            -8.35,
+            -3.45
+          ],
+          "total": 69.03
+        },
+        "mixamorig:RightFoot": {
+          "x": [
+            -30.27,
+            -21.17
+          ],
+          "y": [
+            -5.28,
+            -0.78
+          ],
+          "z": [
+            -5.92,
+            1.58
+          ],
+          "total": 31.07
+        },
+        "mixamorig:RightToeBase": {
+          "x": [
+            -0.25,
+            0.0
+          ],
+          "y": [
+            -0.0,
+            0.0
+          ],
+          "z": [
+            -0.0,
+            0.0
+          ],
+          "total": 0.25
+        }
+      },
+      "transition": null,
+      "root_motion": null
+    },
+    "Walk": {
+      "frames": [
+        1,
+        32
+      ],
+      "seconds": 1.033,
+      "fps": 30,
+      "loop": true,
+      "flags": [],
+      "feet": {
+        "per_foot": {
+          "mixamorig:LeftFoot": {
+            "stance": 0.484,
+            "slide": 0.0473,
+            "lift_max": 0.107,
+            "centre": [
+              0.2382,
+              0.0594
+            ],
+            "extension_max": 0.96727,
+            "swings": [
+              {
+                "frames": [
+                  27,
+                  11
+                ],
+                "through_seam": true,
+                "lift": 0.107,
+                "travel": 1.245
+              }
+            ]
+          },
+          "mixamorig:RightFoot": {
+            "stance": 0.452,
+            "slide": 0.0282,
+            "lift_max": 0.1031,
+            "centre": [
+              -0.174,
+              0.0469
+            ],
+            "extension_max": 0.96345,
+            "swings": [
+              {
+                "frames": [
+                  11,
+                  27
+                ],
+                "lift": 0.1031,
+                "travel": 1.1708
+              }
+            ]
+          }
+        },
+        "slide_max": 0.0473,
+        "ground_speed": 2.3663
+      },
+      "lowest": -0.008,
+      "below_floor": 0.008,
+      "seam": {
+        "pose_deg": 0.0,
+        "velocity_deg": 1.601,
+        "mesh_m": 0.0,
+        "velocity": {
+          "bone": "mixamorig:LeftFoot",
+          "value": 1.1764,
+          "peak_elsewhere": 4.269,
+          "ratio": 0.276,
+          "limit": 8.5379
+        }
+      },
+      "pops": [],
+      "root_drift": 0.027,
+      "frozen": [],
+      "liveliness": {
+        "amplitude_deg": {
+          "head": 5.26,
+          "neck": 4.93,
+          "chest": 5.16,
+          "tail": 0.0,
+          "ears": 0.0,
+          "hips_bob_cm": 10.08
+        },
+        "head_lag": -0.161,
+        "tail_lag": null,
+        "tail_wave": null
+      },
+      "deformation": {
+        "frame": 10,
+        "stretch_max": 1.4725,
+        "compress_min": 0.4347,
+        "collapsed": 0,
+        "volume_ratio": 0.9881,
+        "intersections": 2790,
+        "extra_intersections": 118
+      },
+      "sheet": {
+        "frames": [
+          1,
+          5,
+          9,
+          13,
+          17,
+          20,
+          24,
+          28
+        ],
+        "rows": [
+          "side",
+          "three-quarter"
+        ]
+      },
+      "trails": {
+        "paths": [
+          "head",
+          "hips",
+          "mixamorig:LeftFoot",
+          "mixamorig:RightFoot"
+        ],
+        "colours": {
+          "mixamorig:LeftFoot": [
+            0.85,
+            0.2,
+            0.15
+          ],
+          "mixamorig:RightFoot": [
+            0.15,
+            0.45,
+            0.85
+          ],
+          "head": [
+            0.95,
+            0.6,
+            0.1
+          ],
+          "hips": [
+            0.2,
+            0.65,
+            0.3
+          ]
+        }
+      },
+      "mode": {
+        "mode": "in_place",
+        "from": null,
+        "to": null
+      },
+      "findings": [],
+      "joints": {
+        "mixamorig:Neck": {
+          "x": [
+            -1.91,
+            3.32
+          ],
+          "y": [
+            -4.87,
+            3.05
+          ],
+          "z": [
+            -2.31,
+            1.4
+          ],
+          "total": 5.61
+        },
+        "mixamorig:Head": {
+          "x": [
+            -4.31,
+            7.61
+          ],
+          "y": [
+            -6.88,
+            1.41
+          ],
+          "z": [
+            -4.74,
+            1.06
+          ],
+          "total": 8.46
+        },
+        "mixamorig:Spine": {
+          "x": [
+            -0.33,
+            0.47
+          ],
+          "y": [
+            -1.11,
+            0.54
+          ],
+          "z": [
+            -1.82,
+            2.32
+          ],
+          "total": 2.37
+        },
+        "mixamorig:Spine1": {
+          "x": [
+            -0.67,
+            0.94
+          ],
+          "y": [
+            -1.47,
+            1.72
+          ],
+          "z": [
+            -3.53,
+            4.75
+          ],
+          "total": 4.87
+        },
+        "mixamorig:Spine2": {
+          "x": [
+            -0.67,
+            0.94
+          ],
+          "y": [
+            -1.56,
+            1.86
+          ],
+          "z": [
+            -3.51,
+            4.71
+          ],
+          "total": 4.87
+        },
+        "mixamorig:LeftShoulder": {
+          "x": [
+            7.0,
+            8.3
+          ],
+          "y": [
+            4.88,
+            9.0
+          ],
+          "z": [
+            -17.23,
+            -10.55
+          ],
+          "total": 20.33
+        },
+        "mixamorig:LeftArm": {
+          "x": [
+            3.57,
+            16.22
+          ],
+          "y": [
+            29.89,
+            44.0
+          ],
+          "z": [
+            -4.44,
+            32.92
+          ],
+          "total": 55.53
+        },
+        "mixamorig:LeftForeArm": {
+          "x": [
+            11.16,
+            19.02
+          ],
+          "y": [
+            9.12,
+            14.59
+          ],
+          "z": [
+            -58.28,
+            -24.13
+          ],
+          "total": 60.15
+        },
+        "mixamorig:LeftHand": {
+          "x": [
+            10.74,
+            25.46
+          ],
+          "y": [
+            -13.73,
+            9.53
+          ],
+          "z": [
+            -15.06,
+            12.6
+          ],
+          "total": 28.57
+        },
+        "mixamorig:LeftUpLeg": {
+          "x": [
+            -66.82,
+            -9.12
+          ],
+          "y": [
+            -8.41,
+            -0.24
+          ],
+          "z": [
+            2.23,
+            11.45
+          ],
+          "total": 67.01
+        },
+        "mixamorig:LeftLeg": {
+          "x": [
+            52.21,
+            99.92
+          ],
+          "y": [
+            -2.28,
+            8.45
+          ],
+          "z": [
+            -19.95,
+            4.52
+          ],
+          "total": 99.92
+        },
+        "mixamorig:LeftFoot": {
+          "x": [
+            -33.82,
+            -9.14
+          ],
+          "y": [
+            -17.5,
+            -1.25
+          ],
+          "z": [
+            -0.27,
+            4.83
+          ],
+          "total": 37.7
+        },
+        "mixamorig:LeftToeBase": {
+          "x": [
+            -22.8,
+            -3.88
+          ],
+          "y": [
+            2.54,
+            5.09
+          ],
+          "z": [
+            0.72,
+            3.92
+          ],
+          "total": 23.53
+        },
+        "mixamorig:RightShoulder": {
+          "x": [
+            5.82,
+            7.37
+          ],
+          "y": [
+            -9.0,
+            0.55
+          ],
+          "z": [
+            1.38,
+            9.89
+          ],
+          "total": 12.46
+        },
+        "mixamorig:RightArm": {
+          "x": [
+            -2.76,
+            24.22
+          ],
+          "y": [
+            -44.0,
+            -36.03
+          ],
+          "z": [
+            -30.0,
+            10.76
+          ],
+          "total": 52.73
+        },
+        "mixamorig:RightForeArm": {
+          "x": [
+            4.88,
+            21.06
+          ],
+          "y": [
+            -17.47,
+            1.5
+          ],
+          "z": [
+            14.84,
+            54.77
+          ],
+          "total": 55.76
+        },
+        "mixamorig:RightHand": {
+          "x": [
+            7.72,
+            24.33
+          ],
+          "y": [
+            -5.6,
+            17.26
+          ],
+          "z": [
+            -8.9,
+            17.2
+          ],
+          "total": 29.58
+        },
+        "mixamorig:RightUpLeg": {
+          "x": [
+            -70.51,
+            -6.59
+          ],
+          "y": [
+            -1.97,
+            5.55
+          ],
+          "z": [
+            -11.81,
+            -2.44
+          ],
+          "total": 70.67
+        },
+        "mixamorig:RightLeg": {
+          "x": [
+            53.75,
+            100.3
+          ],
+          "y": [
+            -9.63,
+            4.2
+          ],
+          "z": [
+            -4.84,
+            13.53
+          ],
+          "total": 100.36
+        },
+        "mixamorig:RightFoot": {
+          "x": [
+            -30.71,
+            1.58
+          ],
+          "y": [
+            -1.06,
+            15.14
+          ],
+          "z": [
+            -5.09,
+            2.69
+          ],
+          "total": 34.06
+        },
+        "mixamorig:RightToeBase": {
+          "x": [
+            -28.79,
+            -5.58
+          ],
+          "y": [
+            -3.37,
+            -0.37
+          ],
+          "z": [
+            -2.73,
+            -0.42
+          ],
+          "total": 28.95
+        }
+      },
+      "transition": null,
+      "root_motion": null
+    },
+    "Attack": {
+      "frames": [
+        1,
+        66
+      ],
+      "seconds": 2.167,
+      "fps": 30,
+      "loop": false,
+      "flags": [
+        "pop"
+      ],
+      "feet": {
+        "per_foot": {
+          "mixamorig:LeftFoot": {
+            "stance": 1.0,
+            "slide": 0.0037,
+            "lift_max": -0.0009,
+            "centre": [
+              0.2506,
+              -0.1337
+            ],
+            "extension_max": 0.95362,
+            "swings": []
+          },
+          "mixamorig:RightFoot": {
+            "stance": 0.439,
+            "slide": 0.0033,
+            "lift_max": 0.1307,
+            "centre": [
+              -0.3583,
+              -0.2101
+            ],
+            "extension_max": 0.95714,
+            "swings": [
+              {
+                "frames": [
+                  1,
+                  10
+                ],
+                "lift": 0.0972,
+                "travel": 0.1914
+              },
+              {
+                "frames": [
+                  19,
+                  32
+                ],
+                "lift": 0.1307,
+                "travel": 0.4698
+              },
+              {
+                "frames": [
+                  44,
+                  56
+                ],
+                "lift": 0.0837,
+                "travel": 0.276
+              }
+            ]
+          }
+        },
+        "slide_max": 0.0037,
+        "ground_speed": 0.0
+      },
+      "lowest": -0.0045,
+      "below_floor": 0.0045,
+      "seam": null,
+      "pops": [
+        {
+          "bone": "mixamorig:RightFoot",
+          "frame": 22,
+          "accel": 13.75
+        },
+        {
+          "bone": "mixamorig:RightFoot",
+          "frame": 20,
+          "accel": 9.36
+        },
+        {
+          "bone": "mixamorig:RightHand",
+          "frame": 10,
+          "accel": 9.1
+        },
+        {
+          "bone": "mixamorig:RightFoot",
+          "frame": 21,
+          "accel": 8.57
+        },
+        {
+          "bone": "mixamorig:RightHand",
+          "frame": 11,
+          "accel": 8.45
+        },
+        {
+          "bone": "mixamorig:RightForeArm",
+          "frame": 9,
+          "accel": 7.04
+        },
+        {
+          "bone": "mixamorig:RightHand",
+          "frame": 16,
+          "accel": 6.8
+        },
+        {
+          "bone": "mixamorig:RightHand",
+          "frame": 17,
+          "accel": 6.73
+        }
+      ],
+      "root_drift": 0.1,
+      "frozen": [
+        "mixamorig:LeftToeBase",
+        "mixamorig:RightToeBase"
+      ],
+      "liveliness": {
+        "amplitude_deg": {
+          "head": 24.68,
+          "neck": 30.22,
+          "chest": 32.69,
+          "tail": 0.0,
+          "ears": 0.0,
+          "hips_bob_cm": 9.44
+        },
+        "head_lag": null,
+        "tail_lag": null,
+        "tail_wave": null
+      },
+      "deformation": {
+        "frame": 34,
+        "stretch_max": 1.9965,
+        "compress_min": 0.3191,
+        "collapsed": 2,
+        "volume_ratio": 0.977,
+        "intersections": 3220,
+        "extra_intersections": 548
+      },
+      "sheet": {
+        "frames": [
+          1,
+          10,
+          20,
+          29,
+          38,
+          47,
+          57,
+          66
+        ],
+        "rows": [
+          "side",
+          "three-quarter"
+        ]
+      },
+      "trails": {
+        "paths": [
+          "head",
+          "hips",
+          "mixamorig:LeftFoot",
+          "mixamorig:RightFoot"
+        ],
+        "colours": {
+          "mixamorig:LeftFoot": [
+            0.85,
+            0.2,
+            0.15
+          ],
+          "mixamorig:RightFoot": [
+            0.15,
+            0.45,
+            0.85
+          ],
+          "head": [
+            0.95,
+            0.6,
+            0.1
+          ],
+          "hips": [
+            0.2,
+            0.65,
+            0.3
+          ]
+        }
+      },
+      "mode": {
+        "mode": "once",
+        "from": "Idle",
+        "to": "Idle"
+      },
+      "findings": [
+        {
+          "flag": "pop",
+          "bone": "mixamorig:RightFoot",
+          "frames": [
+            22,
+            22
+          ],
+          "value": 13.75,
+          "limit": 8.38
+        },
+        {
+          "flag": "pop",
+          "bone": "mixamorig:RightFoot",
+          "frames": [
+            20,
+            20
+          ],
+          "value": 9.36,
+          "limit": 8.38
+        },
+        {
+          "flag": "pop",
+          "bone": "mixamorig:RightHand",
+          "frames": [
+            10,
+            10
+          ],
+          "value": 9.1,
+          "limit": 6.58
+        },
+        {
+          "flag": "pop",
+          "bone": "mixamorig:RightFoot",
+          "frames": [
+            21,
+            21
+          ],
+          "value": 8.57,
+          "limit": 8.38
+        },
+        {
+          "flag": "pop",
+          "bone": "mixamorig:RightHand",
+          "frames": [
+            11,
+            11
+          ],
+          "value": 8.45,
+          "limit": 6.58
+        },
+        {
+          "flag": "pop",
+          "bone": "mixamorig:RightForeArm",
+          "frames": [
+            9,
+            9
+          ],
+          "value": 7.04,
+          "limit": 6.12
+        },
+        {
+          "flag": "pop",
+          "bone": "mixamorig:RightHand",
+          "frames": [
+            16,
+            16
+          ],
+          "value": 6.8,
+          "limit": 6.58
+        },
+        {
+          "flag": "pop",
+          "bone": "mixamorig:RightHand",
+          "frames": [
+            17,
+            17
+          ],
+          "value": 6.73,
+          "limit": 6.58
+        }
+      ],
+      "joints": {
+        "mixamorig:Neck": {
+          "x": [
+            -12.23,
+            -3.24
+          ],
+          "y": [
+            -9.67,
+            4.44
+          ],
+          "z": [
+            -30.93,
+            20.52
+          ],
+          "total": 34.59
+        },
+        "mixamorig:Head": {
+          "x": [
+            -11.57,
+            -0.82
+          ],
+          "y": [
+            -8.64,
+            8.34
+          ],
+          "z": [
+            -32.92,
+            32.89
+          ],
+          "total": 35.92
+        },
+        "mixamorig:Spine": {
+          "x": [
+            -4.06,
+            9.0
+          ],
+          "y": [
+            -5.95,
+            7.94
+          ],
+          "z": [
+            -6.99,
+            9.25
+          ],
+          "total": 14.02
+        },
+        "mixamorig:Spine1": {
+          "x": [
+            -1.44,
+            9.0
+          ],
+          "y": [
+            -4.45,
+            7.26
+          ],
+          "z": [
+            -5.32,
+            5.92
+          ],
+          "total": 11.5
+        },
+        "mixamorig:Spine2": {
+          "x": [
+            -0.58,
+            8.68
+          ],
+          "y": [
+            -4.04,
+            6.1
+          ],
+          "z": [
+            -5.12,
+            5.25
+          ],
+          "total": 10.92
+        },
+        "mixamorig:LeftShoulder": {
+          "x": [
+            -1.2,
+            2.21
+          ],
+          "y": [
+            -8.51,
+            6.65
+          ],
+          "z": [
+            -11.61,
+            7.3
+          ],
+          "total": 14.13
+        },
+        "mixamorig:LeftArm": {
+          "x": [
+            -2.01,
+            43.73
+          ],
+          "y": [
+            -13.21,
+            37.78
+          ],
+          "z": [
+            -40.3,
+            32.06
+          ],
+          "total": 57.5
+        },
+        "mixamorig:LeftForeArm": {
+          "x": [
+            -0.0,
+            0.0
+          ],
+          "y": [
+            -0.0,
+            0.0
+          ],
+          "z": [
+            -117.4,
+            -29.27
+          ],
+          "total": 117.4
+        },
+        "mixamorig:LeftHand": {
+          "x": [
+            2.98,
+            75.38
+          ],
+          "y": [
+            -39.83,
+            13.66
+          ],
+          "z": [
+            -19.41,
+            14.64
+          ],
+          "total": 78.78
+        },
+        "mixamorig:LeftUpLeg": {
+          "x": [
+            -51.47,
+            -31.85
+          ],
+          "y": [
+            -10.12,
+            -0.31
+          ],
+          "z": [
+            -7.39,
+            25.56
+          ],
+          "total": 52.88
+        },
+        "mixamorig:LeftLeg": {
+          "x": [
+            56.98,
+            87.56
+          ],
+          "y": [
+            -20.87,
+            11.05
+          ],
+          "z": [
+            -9.94,
+            9.64
+          ],
+          "total": 88.29
+        },
+        "mixamorig:LeftFoot": {
+          "x": [
+            -33.99,
+            -24.47
+          ],
+          "y": [
+            5.1,
+            12.56
+          ],
+          "z": [
+            -6.97,
+            18.48
+          ],
+          "total": 37.82
+        },
+        "mixamorig:LeftToeBase": {
+          "x": [
+            -0.49,
+            -0.49
+          ],
+          "y": [
+            0.0,
+            0.0
+          ],
+          "z": [
+            0.0,
+            0.0
+          ],
+          "total": 0.49
+        },
+        "mixamorig:RightShoulder": {
+          "x": [
+            -1.55,
+            9.43
+          ],
+          "y": [
+            -8.43,
+            16.0
+          ],
+          "z": [
+            -8.46,
+            51.32
+          ],
+          "total": 54.43
+        },
+        "mixamorig:RightArm": {
+          "x": [
+            -58.17,
+            33.31
+          ],
+          "y": [
+            -41.91,
+            10.57
+          ],
+          "z": [
+            -38.29,
+            52.22
+          ],
+          "total": 70.67
+        },
+        "mixamorig:RightForeArm": {
+          "x": [
+            -0.0,
+            0.0
+          ],
+          "y": [
+            -0.0,
+            0.0
+          ],
+          "z": [
+            8.48,
+            80.3
+          ],
+          "total": 80.3
+        },
+        "mixamorig:RightHand": {
+          "x": [
+            -52.73,
+            20.47
+          ],
+          "y": [
+            -3.48,
+            18.38
+          ],
+          "z": [
+            -14.75,
+            6.16
+          ],
+          "total": 55.85
+        },
+        "mixamorig:RightUpLeg": {
+          "x": [
+            -61.41,
+            -30.85
+          ],
+          "y": [
+            4.75,
+            15.32
+          ],
+          "z": [
+            -12.79,
+            17.25
+          ],
+          "total": 61.98
+        },
+        "mixamorig:RightLeg": {
+          "x": [
+            56.5,
+            101.85
+          ],
+          "y": [
+            -29.44,
+            2.93
+          ],
+          "z": [
+            -12.28,
+            5.94
+          ],
+          "total": 102.83
+        },
+        "mixamorig:RightFoot": {
+          "x": [
+            -34.71,
+            -19.94
+          ],
+          "y": [
+            -5.7,
+            0.44
+          ],
+          "z": [
+            -42.93,
+            -2.24
+          ],
+          "total": 48.14
+        },
+        "mixamorig:RightToeBase": {
+          "x": [
+            -0.0,
+            -0.0
+          ],
+          "y": [
+            -0.0,
+            -0.0
+          ],
+          "z": [
+            -0.0,
+            -0.0
+          ],
+          "total": 0.0
+        }
+      },
+      "transition": {
+        "start": {
+          "clip": "Idle",
+          "nearest": 14,
+          "deg": 5.2,
+          "bone": "mixamorig:LeftLeg",
+          "move_m": 0.0132
+        },
+        "end": {
+          "clip": "Idle",
+          "nearest": 1,
+          "deg": 0.36,
+          "bone": "mixamorig:RightLeg",
+          "move_m": 0.0
+        }
+      },
+      "root_motion": null
+    },
+    "Hit": {
+      "frames": [
+        1,
+        41
+      ],
+      "seconds": 1.333,
+      "fps": 30,
+      "loop": false,
+      "flags": [
+        "pop"
+      ],
+      "feet": {
+        "per_foot": {
+          "mixamorig:LeftFoot": {
+            "stance": 1.0,
+            "slide": 0.0002,
+            "lift_max": -0.003,
+            "centre": [
+              0.2505,
+              -0.1335
+            ],
+            "extension_max": 0.97655,
+            "swings": []
+          },
+          "mixamorig:RightFoot": {
+            "stance": 1.0,
+            "slide": 0.0,
+            "lift_max": -0.0012,
+            "centre": [
+              -0.3583,
+              -0.157
+            ],
+            "extension_max": 0.98519,
+            "swings": []
+          }
+        },
+        "slide_max": 0.0002,
+        "ground_speed": 0.0
+      },
+      "lowest": -0.0033,
+      "below_floor": 0.0033,
+      "seam": null,
+      "pops": [
+        {
+          "bone": "mixamorig:RightForeArm",
+          "frame": 7,
+          "accel": 10.82
+        }
+      ],
+      "root_drift": 0.0935,
+      "frozen": [
+        "mixamorig:LeftToeBase",
+        "mixamorig:RightToeBase"
+      ],
+      "liveliness": {
+        "amplitude_deg": {
+          "head": 48.94,
+          "neck": 45.97,
+          "chest": 32.43,
+          "tail": 0.0,
+          "ears": 0.0,
+          "hips_bob_cm": 7.22
+        },
+        "head_lag": null,
+        "tail_lag": null,
+        "tail_wave": null
+      },
+      "deformation": {
+        "frame": 14,
+        "stretch_max": 1.4262,
+        "compress_min": 0.3092,
+        "collapsed": 0,
+        "volume_ratio": 0.9863,
+        "intersections": 2858,
+        "extra_intersections": 186
+      },
+      "sheet": {
+        "frames": [
+          1,
+          7,
+          12,
+          18,
+          24,
+          30,
+          35,
+          41
+        ],
+        "rows": [
+          "side",
+          "three-quarter"
+        ]
+      },
+      "trails": {
+        "paths": [
+          "head",
+          "hips",
+          "mixamorig:LeftFoot",
+          "mixamorig:RightFoot"
+        ],
+        "colours": {
+          "mixamorig:LeftFoot": [
+            0.85,
+            0.2,
+            0.15
+          ],
+          "mixamorig:RightFoot": [
+            0.15,
+            0.45,
+            0.85
+          ],
+          "head": [
+            0.95,
+            0.6,
+            0.1
+          ],
+          "hips": [
+            0.2,
+            0.65,
+            0.3
+          ]
+        }
+      },
+      "mode": {
+        "mode": "once",
+        "from": "Idle",
+        "to": "Idle"
+      },
+      "findings": [
+        {
+          "flag": "pop",
+          "bone": "mixamorig:RightForeArm",
+          "frames": [
+            7,
+            7
+          ],
+          "value": 10.82,
+          "limit": 10.47
+        }
+      ],
+      "joints": {
+        "mixamorig:Neck": {
+          "x": [
+            -11.87,
+            9.24
+          ],
+          "y": [
+            -8.88,
+            7.28
+          ],
+          "z": [
+            0.73,
+            4.75
+          ],
+          "total": 12.07
+        },
+        "mixamorig:Head": {
+          "x": [
+            -10.98,
+            6.59
+          ],
+          "y": [
+            -0.97,
+            8.97
+          ],
+          "z": [
+            -0.56,
+            24.89
+          ],
+          "total": 26.76
+        },
+        "mixamorig:Spine": {
+          "x": [
+            -0.13,
+            8.3
+          ],
+          "y": [
+            -4.53,
+            4.48
+          ],
+          "z": [
+            -5.23,
+            6.09
+          ],
+          "total": 9.98
+        },
+        "mixamorig:Spine1": {
+          "x": [
+            0.98,
+            8.93
+          ],
+          "y": [
+            -4.36,
+            3.29
+          ],
+          "z": [
+            -3.8,
+            4.53
+          ],
+          "total": 10.05
+        },
+        "mixamorig:Spine2": {
+          "x": [
+            0.98,
+            8.57
+          ],
+          "y": [
+            -4.36,
+            2.73
+          ],
+          "z": [
+            -3.2,
+            4.19
+          ],
+          "total": 9.77
+        },
+        "mixamorig:LeftShoulder": {
+          "x": [
+            -1.2,
+            9.29
+          ],
+          "y": [
+            0.43,
+            9.05
+          ],
+          "z": [
+            -16.75,
+            7.3
+          ],
+          "total": 20.87
+        },
+        "mixamorig:LeftArm": {
+          "x": [
+            -41.98,
+            35.08
+          ],
+          "y": [
+            -17.94,
+            39.98
+          ],
+          "z": [
+            -64.75,
+            11.25
+          ],
+          "total": 77.57
+        },
+        "mixamorig:LeftForeArm": {
+          "x": [
+            -0.0,
+            0.0
+          ],
+          "y": [
+            -0.0,
+            0.0
+          ],
+          "z": [
+            -80.94,
+            -29.27
+          ],
+          "total": 80.94
+        },
+        "mixamorig:LeftHand": {
+          "x": [
+            -21.93,
+            36.64
+          ],
+          "y": [
+            -14.08,
+            22.17
+          ],
+          "z": [
+            14.64,
+            29.73
+          ],
+          "total": 47.83
+        },
+        "mixamorig:LeftUpLeg": {
+          "x": [
+            -44.35,
+            -31.8
+          ],
+          "y": [
+            -8.23,
+            -1.64
+          ],
+          "z": [
+            1.46,
+            8.14
+          ],
+          "total": 44.56
+        },
+        "mixamorig:LeftLeg": {
+          "x": [
+            47.34,
+            73.72
+          ],
+          "y": [
+            -9.72,
+            -0.75
+          ],
+          "z": [
+            -4.09,
+            16.44
+          ],
+          "total": 75.85
+        },
+        "mixamorig:LeftFoot": {
+          "x": [
+            -29.13,
+            -16.89
+          ],
+          "y": [
+            7.62,
+            11.93
+          ],
+          "z": [
+            -1.87,
+            18.83
+          ],
+          "total": 33.74
+        },
+        "mixamorig:LeftToeBase": {
+          "x": [
+            -0.49,
+            -0.49
+          ],
+          "y": [
+            0.0,
+            0.0
+          ],
+          "z": [
+            0.0,
+            0.0
+          ],
+          "total": 0.49
+        },
+        "mixamorig:RightShoulder": {
+          "x": [
+            0.35,
+            9.91
+          ],
+          "y": [
+            -8.73,
+            3.94
+          ],
+          "z": [
+            2.21,
+            22.61
+          ],
+          "total": 25.85
+        },
+        "mixamorig:RightArm": {
+          "x": [
+            -32.38,
+            33.29
+          ],
+          "y": [
+            -41.26,
+            12.82
+          ],
+          "z": [
+            5.47,
+            83.66
+          ],
+          "total": 86.73
+        },
+        "mixamorig:RightForeArm": {
+          "x": [
+            -0.0,
+            0.0
+          ],
+          "y": [
+            0.0,
+            0.0
+          ],
+          "z": [
+            2.73,
+            104.81
+          ],
+          "total": 104.81
+        },
+        "mixamorig:RightHand": {
+          "x": [
+            -2.54,
+            58.29
+          ],
+          "y": [
+            -37.29,
+            4.39
+          ],
+          "z": [
+            -17.96,
+            22.84
+          ],
+          "total": 72.45
+        },
+        "mixamorig:RightUpLeg": {
+          "x": [
+            -49.27,
+            -28.41
+          ],
+          "y": [
+            0.63,
+            10.18
+          ],
+          "z": [
+            -11.04,
+            6.99
+          ],
+          "total": 50.68
+        },
+        "mixamorig:RightLeg": {
+          "x": [
+            42.18,
+            70.47
+          ],
+          "y": [
+            -14.32,
+            2.21
+          ],
+          "z": [
+            -6.3,
+            7.35
+          ],
+          "total": 71.81
+        },
+        "mixamorig:RightFoot": {
+          "x": [
+            -24.74,
+            -9.68
+          ],
+          "y": [
+            -3.23,
+            1.37
+          ],
+          "z": [
+            -17.86,
+            -3.22
+          ],
+          "total": 29.68
+        },
+        "mixamorig:RightToeBase": {
+          "x": [
+            -0.0,
+            -0.0
+          ],
+          "y": [
+            -0.0,
+            -0.0
+          ],
+          "z": [
+            -0.0,
+            -0.0
+          ],
+          "total": 0.0
+        }
+      },
+      "transition": {
+        "start": {
+          "clip": "Idle",
+          "nearest": 1,
+          "deg": 0.16,
+          "bone": "mixamorig:RightLeg",
+          "move_m": 0.0004
+        },
+        "end": {
+          "clip": "Idle",
+          "nearest": 6,
+          "deg": 1.06,
+          "bone": "mixamorig:RightLeg",
+          "move_m": 0.003
+        }
+      },
+      "root_motion": null
+    },
+    "Stunned": {
+      "frames": [
+        1,
+        251
+      ],
+      "seconds": 8.333,
+      "fps": 30,
+      "loop": true,
+      "flags": [],
+      "feet": {
+        "per_foot": {
+          "mixamorig:LeftFoot": {
+            "stance": 0.0,
+            "slide": 0.0,
+            "lift_max": 0.1878,
+            "centre": [
+              0.9033,
+              -0.9357
+            ],
+            "extension_max": 0.99919,
+            "swings": []
+          },
+          "mixamorig:RightFoot": {
+            "stance": 0.0,
+            "slide": 0.0,
+            "lift_max": 0.1296,
+            "centre": [
+              -0.7754,
+              -0.9372
+            ],
+            "extension_max": 0.99802,
+            "swings": []
+          }
+        },
+        "slide_max": 0.0,
+        "ground_speed": 0.0
+      },
+      "lowest": -0.004,
+      "below_floor": 0.004,
+      "seam": {
+        "pose_deg": 0.0,
+        "velocity_deg": 0.074,
+        "mesh_m": 0.0,
+        "velocity": {
+          "bone": "mixamorig:RightLeg",
+          "value": 0.0737,
+          "peak_elsewhere": 1.0583,
+          "ratio": 0.07,
+          "limit": 2.1166
+        }
+      },
+      "pops": [],
+      "root_drift": 0.02,
+      "frozen": [],
+      "liveliness": {
+        "amplitude_deg": {
+          "head": 54.69,
+          "neck": 35.37,
+          "chest": 19.07,
+          "tail": 0.0,
+          "ears": 0.0,
+          "hips_bob_cm": 0.89
+        },
+        "head_lag": -0.06,
+        "tail_lag": null,
+        "tail_wave": null
+      },
+      "deformation": {
+        "frame": 123,
+        "stretch_max": 1.8831,
+        "compress_min": 0.3695,
+        "collapsed": 1,
+        "volume_ratio": 0.9814,
+        "intersections": 3170,
+        "extra_intersections": 498
+      },
+      "sheet": {
+        "frames": [
+          1,
+          32,
+          63,
+          95,
+          126,
+          157,
+          189,
+          220
+        ],
+        "rows": [
+          "side",
+          "three-quarter"
+        ]
+      },
+      "trails": {
+        "paths": [
+          "head",
+          "hips",
+          "mixamorig:LeftFoot",
+          "mixamorig:RightFoot"
+        ],
+        "colours": {
+          "mixamorig:LeftFoot": [
+            0.85,
+            0.2,
+            0.15
+          ],
+          "mixamorig:RightFoot": [
+            0.15,
+            0.45,
+            0.85
+          ],
+          "head": [
+            0.95,
+            0.6,
+            0.1
+          ],
+          "hips": [
+            0.2,
+            0.65,
+            0.3
+          ]
+        }
+      },
+      "mode": {
+        "mode": "in_place",
+        "from": null,
+        "to": null
+      },
+      "findings": [],
+      "joints": {
+        "mixamorig:Neck": {
+          "x": [
+            1.69,
+            9.7
+          ],
+          "y": [
+            -9.33,
+            9.66
+          ],
+          "z": [
+            0.2,
+            4.63
+          ],
+          "total": 14.42
+        },
+        "mixamorig:Head": {
+          "x": [
+            5.95,
+            9.0
+          ],
+          "y": [
+            -8.63,
+            8.63
+          ],
+          "z": [
+            -8.4,
+            27.61
+          ],
+          "total": 30.29
+        },
+        "mixamorig:Spine": {
+          "x": [
+            -0.49,
+            6.07
+          ],
+          "y": [
+            -4.58,
+            7.3
+          ],
+          "z": [
+            -6.33,
+            14.0
+          ],
+          "total": 14.32
+        },
+        "mixamorig:Spine1": {
+          "x": [
+            6.23,
+            9.0
+          ],
+          "y": [
+            -0.03,
+            5.74
+          ],
+          "z": [
+            -3.38,
+            2.71
+          ],
+          "total": 10.79
+        },
+        "mixamorig:Spine2": {
+          "x": [
+            5.73,
+            9.0
+          ],
+          "y": [
+            0.89,
+            7.52
+          ],
+          "z": [
+            -3.23,
+            1.25
+          ],
+          "total": 11.62
+        },
+        "mixamorig:LeftShoulder": {
+          "x": [
+            12.88,
+            17.11
+          ],
+          "y": [
+            -0.36,
+            9.0
+          ],
+          "z": [
+            5.68,
+            11.87
+          ],
+          "total": 21.06
+        },
+        "mixamorig:LeftArm": {
+          "x": [
+            4.25,
+            20.58
+          ],
+          "y": [
+            11.78,
+            43.84
+          ],
+          "z": [
+            -39.54,
+            -21.95
+          ],
+          "total": 55.41
+        },
+        "mixamorig:LeftForeArm": {
+          "x": [
+            -0.0,
+            0.0
+          ],
+          "y": [
+            -0.0,
+            0.0
+          ],
+          "z": [
+            -55.14,
+            -2.83
+          ],
+          "total": 55.14
+        },
+        "mixamorig:LeftHand": {
+          "x": [
+            37.51,
+            54.16
+          ],
+          "y": [
+            -52.87,
+            -38.78
+          ],
+          "z": [
+            -27.73,
+            0.79
+          ],
+          "total": 70.87
+        },
+        "mixamorig:LeftUpLeg": {
+          "x": [
+            -61.64,
+            -46.92
+          ],
+          "y": [
+            -41.88,
+            -30.03
+          ],
+          "z": [
+            26.17,
+            32.06
+          ],
+          "total": 77.89
+        },
+        "mixamorig:LeftLeg": {
+          "x": [
+            20.84,
+            33.56
+          ],
+          "y": [
+            -8.51,
+            -4.83
+          ],
+          "z": [
+            -11.31,
+            8.41
+          ],
+          "total": 36.03
+        },
+        "mixamorig:LeftFoot": {
+          "x": [
+            -8.32,
+            7.18
+          ],
+          "y": [
+            -14.52,
+            -6.4
+          ],
+          "z": [
+            -15.34,
+            -1.98
+          ],
+          "total": 18.19
+        },
+        "mixamorig:LeftToeBase": {
+          "x": [
+            5.45,
+            24.41
+          ],
+          "y": [
+            -0.0,
+            0.0
+          ],
+          "z": [
+            -0.0,
+            0.0
+          ],
+          "total": 24.41
+        },
+        "mixamorig:RightShoulder": {
+          "x": [
+            1.82,
+            2.76
+          ],
+          "y": [
+            -9.0,
+            8.54
+          ],
+          "z": [
+            27.12,
+            42.25
+          ],
+          "total": 43.14
+        },
+        "mixamorig:RightArm": {
+          "x": [
+            -31.56,
+            -1.9
+          ],
+          "y": [
+            -44.0,
+            -16.79
+          ],
+          "z": [
+            -34.23,
+            -15.56
+          ],
+          "total": 54.42
+        },
+        "mixamorig:RightForeArm": {
+          "x": [
+            -0.0,
+            0.0
+          ],
+          "y": [
+            -0.0,
+            0.0
+          ],
+          "z": [
+            18.33,
+            50.02
+          ],
+          "total": 50.02
+        },
+        "mixamorig:RightHand": {
+          "x": [
+            40.49,
+            67.05
+          ],
+          "y": [
+            -4.5,
+            35.07
+          ],
+          "z": [
+            3.73,
+            29.69
+          ],
+          "total": 74.46
+        },
+        "mixamorig:RightUpLeg": {
+          "x": [
+            -61.76,
+            -53.08
+          ],
+          "y": [
+            10.43,
+            22.64
+          ],
+          "z": [
+            -3.98,
+            -0.5
+          ],
+          "total": 62.67
+        },
+        "mixamorig:RightLeg": {
+          "x": [
+            16.28,
+            23.21
+          ],
+          "y": [
+            7.12,
+            10.02
+          ],
+          "z": [
+            -3.44,
+            9.4
+          ],
+          "total": 25.37
+        },
+        "mixamorig:RightFoot": {
+          "x": [
+            -0.14,
+            17.08
+          ],
+          "y": [
+            -9.6,
+            -5.6
+          ],
+          "z": [
+            5.31,
+            19.71
+          ],
+          "total": 24.4
+        },
+        "mixamorig:RightToeBase": {
+          "x": [
+            -17.35,
+            -3.47
+          ],
+          "y": [
+            -0.0,
+            0.0
+          ],
+          "z": [
+            -0.0,
+            0.0
+          ],
+          "total": 17.35
+        }
+      },
+      "transition": null,
+      "root_motion": null
+    }
+  },
+  "deformation": {
+    "poses": [
+      {
+        "label": "голова кивок min",
+        "frame": 16,
+        "stretch_max": 1.1581,
+        "compress_min": 0.8834,
+        "collapsed": 0,
+        "volume_ratio": 1.0005,
+        "intersections": 2846,
+        "extra_intersections": 174
+      },
+      {
+        "label": "голова кивок max",
+        "frame": 46,
+        "stretch_max": 1.3032,
+        "compress_min": 0.93,
+        "collapsed": 0,
+        "volume_ratio": 0.9989,
+        "intersections": 2906,
+        "extra_intersections": 234
+      },
+      {
+        "label": "голова поворот min",
+        "frame": 76,
+        "stretch_max": 1.4239,
+        "compress_min": 0.8056,
+        "collapsed": 0,
+        "volume_ratio": 0.999,
+        "intersections": 2727,
+        "extra_intersections": 55
+      },
+      {
+        "label": "голова поворот max",
+        "frame": 106,
+        "stretch_max": 1.4239,
+        "compress_min": 0.8056,
+        "collapsed": 0,
+        "volume_ratio": 0.9986,
+        "intersections": 2733,
+        "extra_intersections": 61
+      },
+      {
+        "label": "голова наклон min",
+        "frame": 136,
+        "stretch_max": 1.2622,
+        "compress_min": 0.8873,
+        "collapsed": 0,
+        "volume_ratio": 0.9998,
+        "intersections": 2894,
+        "extra_intersections": 222
+      },
+      {
+        "label": "голова наклон max",
+        "frame": 166,
+        "stretch_max": 1.2622,
+        "compress_min": 0.8873,
+        "collapsed": 0,
+        "volume_ratio": 0.9998,
+        "intersections": 3001,
+        "extra_intersections": 329
+      },
+      {
+        "label": "корпус вперёд-назад min",
+        "frame": 200,
+        "stretch_max": 1.5067,
+        "compress_min": 0.5693,
+        "collapsed": 0,
+        "volume_ratio": 1.0101,
+        "intersections": 2651,
+        "extra_intersections": 0
+      },
+      {
+        "label": "корпус вперёд-назад max",
+        "frame": 237,
+        "stretch_max": 2.1031,
+        "compress_min": 0.059,
+        "collapsed": 21,
+        "volume_ratio": 0.9568,
+        "intersections": 3182,
+        "extra_intersections": 510
+      },
+      {
+        "label": "корпус вбок min",
+        "frame": 275,
+        "stretch_max": 1.7283,
+        "compress_min": 0.3642,
+        "collapsed": 0,
+        "volume_ratio": 0.9975,
+        "intersections": 2764,
+        "extra_intersections": 92
+      },
+      {
+        "label": "корпус вбок max",
+        "frame": 312,
+        "stretch_max": 1.7283,
+        "compress_min": 0.3642,
+        "collapsed": 0,
+        "volume_ratio": 0.9976,
+        "intersections": 2886,
+        "extra_intersections": 214
+      },
+      {
+        "label": "корпус поворот min",
+        "frame": 350,
+        "stretch_max": 1.5415,
+        "compress_min": 0.4564,
+        "collapsed": 0,
+        "volume_ratio": 0.9952,
+        "intersections": 2667,
+        "extra_intersections": 0
+      },
+      {
+        "label": "корпус поворот max",
+        "frame": 387,
+        "stretch_max": 1.5657,
+        "compress_min": 0.5102,
+        "collapsed": 0,
+        "volume_ratio": 0.9936,
+        "intersections": 2657,
+        "extra_intersections": 0
+      },
+      {
+        "label": "плечи вверх-вниз min",
+        "frame": 421,
+        "stretch_max": 1.5086,
+        "compress_min": 0.6945,
+        "collapsed": 0,
+        "volume_ratio": 1.0049,
+        "intersections": 2909,
+        "extra_intersections": 237
+      },
+      {
+        "label": "плечи вверх-вниз max",
+        "frame": 451,
+        "stretch_max": 1.1185,
+        "compress_min": 0.8203,
+        "collapsed": 0,
+        "volume_ratio": 0.9963,
+        "intersections": 2684,
+        "extra_intersections": 12
+      },
+      {
+        "label": "руки вверх-вниз min",
+        "frame": 485,
+        "stretch_max": 1.1541,
+        "compress_min": 0.4861,
+        "collapsed": 0,
+        "volume_ratio": 0.995,
+        "intersections": 3548,
+        "extra_intersections": 876
+      },
+      {
+        "label": "руки вверх-вниз max",
+        "frame": 522,
+        "stretch_max": 1.1421,
+        "compress_min": 0.5604,
+        "collapsed": 0,
+        "volume_ratio": 0.9959,
+        "intersections": 2937,
+        "extra_intersections": 265
+      },
+      {
+        "label": "руки вперёд-назад min",
+        "frame": 560,
+        "stretch_max": 1.1591,
+        "compress_min": 0.4486,
+        "collapsed": 0,
+        "volume_ratio": 0.9946,
+        "intersections": 2781,
+        "extra_intersections": 109
+      },
+      {
+        "label": "руки вперёд-назад max",
+        "frame": 597,
+        "stretch_max": 1.0749,
+        "compress_min": 0.8244,
+        "collapsed": 0,
+        "volume_ratio": 0.9988,
+        "intersections": 2700,
+        "extra_intersections": 28
+      },
+      {
+        "label": "руки кручение min",
+        "frame": 631,
+        "stretch_max": 1.0179,
+        "compress_min": 0.8192,
+        "collapsed": 0,
+        "volume_ratio": 0.9964,
+        "intersections": 2667,
+        "extra_intersections": 0
+      },
+      {
+        "label": "руки кручение max",
+        "frame": 661,
+        "stretch_max": 1.0179,
+        "compress_min": 0.8192,
+        "collapsed": 0,
+        "volume_ratio": 0.9964,
+        "intersections": 2665,
+        "extra_intersections": 0
+      },
+      {
+        "label": "локти min",
+        "frame": 691,
+        "stretch_max": 1.4774,
+        "compress_min": 0.2985,
+        "collapsed": 0,
+        "volume_ratio": 0.9962,
+        "intersections": 3041,
+        "extra_intersections": 369
+      },
+      {
+        "label": "локти max",
+        "frame": 721,
+        "stretch_max": 1.0,
+        "compress_min": 1.0,
+        "collapsed": 0,
+        "volume_ratio": 1.0,
+        "intersections": 2672,
+        "extra_intersections": 0
+      },
+      {
+        "label": "кисти вверх-вниз min",
+        "frame": 751,
+        "stretch_max": 1.1731,
+        "compress_min": 0.6946,
+        "collapsed": 0,
+        "volume_ratio": 0.9993,
+        "intersections": 2666,
+        "extra_intersections": 0
+      },
+      {
+        "label": "кисти вверх-вниз max",
+        "frame": 781,
+        "stretch_max": 1.1925,
+        "compress_min": 0.6275,
+        "collapsed": 0,
+        "volume_ratio": 0.999,
+        "intersections": 2667,
+        "extra_intersections": 0
+      },
+      {
+        "label": "кисти вбок min",
+        "frame": 811,
+        "stretch_max": 1.0947,
+        "compress_min": 0.8723,
+        "collapsed": 0,
+        "volume_ratio": 0.9998,
+        "intersections": 2671,
+        "extra_intersections": 0
+      },
+      {
+        "label": "кисти вбок max",
+        "frame": 841,
+        "stretch_max": 1.0947,
+        "compress_min": 0.8723,
+        "collapsed": 0,
+        "volume_ratio": 0.9998,
+        "intersections": 2673,
+        "extra_intersections": 1
+      },
+      {
+        "label": "ноги вперёд-назад min",
+        "frame": 875,
+        "stretch_max": 1.0,
+        "compress_min": 1.0,
+        "collapsed": 0,
+        "volume_ratio": 1.0,
+        "intersections": 2808,
+        "extra_intersections": 136
+      },
+      {
+        "label": "ноги вперёд-назад max",
+        "frame": 912,
+        "stretch_max": 1.0,
+        "compress_min": 1.0,
+        "collapsed": 0,
+        "volume_ratio": 1.0,
+        "intersections": 2677,
+        "extra_intersections": 5
+      },
+      {
+        "label": "ноги в стороны min",
+        "frame": 950,
+        "stretch_max": 1.0,
+        "compress_min": 1.0,
+        "collapsed": 0,
+        "volume_ratio": 1.0,
+        "intersections": 2656,
+        "extra_intersections": 0
+      },
+      {
+        "label": "ноги в стороны max",
+        "frame": 987,
+        "stretch_max": 1.0,
+        "compress_min": 1.0,
+        "collapsed": 0,
+        "volume_ratio": 1.0,
+        "intersections": 3094,
+        "extra_intersections": 422
+      },
+      {
+        "label": "ноги кручение min",
+        "frame": 1021,
+        "stretch_max": 1.0,
+        "compress_min": 1.0,
+        "collapsed": 0,
+        "volume_ratio": 1.0,
+        "intersections": 2745,
+        "extra_intersections": 73
+      },
+      {
+        "label": "ноги кручение max",
+        "frame": 1051,
+        "stretch_max": 1.0,
+        "compress_min": 1.0,
+        "collapsed": 0,
+        "volume_ratio": 1.0,
+        "intersections": 2656,
+        "extra_intersections": 0
+      },
+      {
+        "label": "колени min",
+        "frame": 1081,
+        "stretch_max": 1.0,
+        "compress_min": 1.0,
+        "collapsed": 0,
+        "volume_ratio": 1.0,
+        "intersections": 2672,
+        "extra_intersections": 0
+      },
+      {
+        "label": "колени max",
+        "frame": 1111,
+        "stretch_max": 1.3844,
+        "compress_min": 0.4036,
+        "collapsed": 0,
+        "volume_ratio": 0.9938,
+        "intersections": 2697,
+        "extra_intersections": 25
+      },
+      {
+        "label": "стопы вверх-вниз min",
+        "frame": 1141,
+        "stretch_max": 1.0527,
+        "compress_min": 0.9697,
+        "collapsed": 0,
+        "volume_ratio": 0.9999,
+        "intersections": 2693,
+        "extra_intersections": 21
+      },
+      {
+        "label": "стопы вверх-вниз max",
+        "frame": 1171,
+        "stretch_max": 1.1363,
+        "compress_min": 0.9239,
+        "collapsed": 0,
+        "volume_ratio": 0.9994,
+        "intersections": 2658,
+        "extra_intersections": 0
+      },
+      {
+        "label": "стопы вбок min",
+        "frame": 1201,
+        "stretch_max": 1.0523,
+        "compress_min": 0.9692,
+        "collapsed": 0,
+        "volume_ratio": 0.9999,
+        "intersections": 2686,
+        "extra_intersections": 14
+      },
+      {
+        "label": "стопы вбок max",
+        "frame": 1231,
+        "stretch_max": 1.053,
+        "compress_min": 0.9703,
+        "collapsed": 0,
+        "volume_ratio": 0.9999,
+        "intersections": 2678,
+        "extra_intersections": 6
+      },
+      {
+        "label": "пальцы ног min",
+        "frame": 1257,
+        "stretch_max": 1.1243,
+        "compress_min": 0.4074,
+        "collapsed": 0,
+        "volume_ratio": 0.991,
+        "intersections": 2676,
+        "extra_intersections": 4
+      },
+      {
+        "label": "пальцы ног max",
+        "frame": 1280,
+        "stretch_max": 1.5471,
+        "compress_min": 0.8292,
+        "collapsed": 0,
+        "volume_ratio": 1.0061,
+        "intersections": 2667,
+        "extra_intersections": 0
+      },
+      {
+        "label": "присед min",
+        "frame": 1321,
+        "stretch_max": 1.0,
+        "compress_min": 1.0,
+        "collapsed": 0,
+        "volume_ratio": 1.0,
+        "intersections": 2672,
+        "extra_intersections": 0
+      },
+      {
+        "label": "присед max",
+        "frame": 1381,
+        "stretch_max": 1.4729,
+        "compress_min": 0.4867,
+        "collapsed": 0,
+        "volume_ratio": 0.9819,
+        "intersections": 2772,
+        "extra_intersections": 100
+      }
+    ],
+    "worst": {
+      "label": "корпус вперёд-назад max",
+      "frame": 237,
+      "stretch_max": 2.1031,
+      "compress_min": 0.059,
+      "collapsed": 21,
+      "volume_ratio": 0.9568,
+      "intersections": 3182,
+      "extra_intersections": 510
+    },
+    "rest_intersections": 2672,
+    "sheets": [
+      {
+        "file": "rom-sheet-01.png",
+        "columns": [
+          "front min",
+          "side min",
+          "three-quarter min",
+          "back min",
+          "front max",
+          "side max",
+          "three-quarter max",
+          "back max"
+        ],
+        "rows": [
+          {
+            "label": "голова кивок",
+            "min": 16,
+            "max": 46
+          },
+          {
+            "label": "голова поворот",
+            "min": 76,
+            "max": 106
+          },
+          {
+            "label": "голова наклон",
+            "min": 136,
+            "max": 166
+          },
+          {
+            "label": "корпус вперёд-назад",
+            "min": 200,
+            "max": 237
+          },
+          {
+            "label": "корпус вбок",
+            "min": 275,
+            "max": 312
+          },
+          {
+            "label": "корпус поворот",
+            "min": 350,
+            "max": 387
+          }
+        ]
+      },
+      {
+        "file": "rom-sheet-02.png",
+        "columns": [
+          "front min",
+          "side min",
+          "three-quarter min",
+          "back min",
+          "front max",
+          "side max",
+          "three-quarter max",
+          "back max"
+        ],
+        "rows": [
+          {
+            "label": "плечи вверх-вниз",
+            "min": 421,
+            "max": 451
+          },
+          {
+            "label": "руки вверх-вниз",
+            "min": 485,
+            "max": 522
+          },
+          {
+            "label": "руки вперёд-назад",
+            "min": 560,
+            "max": 597
+          },
+          {
+            "label": "руки кручение",
+            "min": 631,
+            "max": 661
+          },
+          {
+            "label": "локти",
+            "min": 691,
+            "max": 721
+          },
+          {
+            "label": "кисти вверх-вниз",
+            "min": 751,
+            "max": 781
+          }
+        ]
+      },
+      {
+        "file": "rom-sheet-03.png",
+        "columns": [
+          "front min",
+          "side min",
+          "three-quarter min",
+          "back min",
+          "front max",
+          "side max",
+          "three-quarter max",
+          "back max"
+        ],
+        "rows": [
+          {
+            "label": "кисти вбок",
+            "min": 811,
+            "max": 841
+          },
+          {
+            "label": "ноги вперёд-назад",
+            "min": 875,
+            "max": 912
+          },
+          {
+            "label": "ноги в стороны",
+            "min": 950,
+            "max": 987
+          },
+          {
+            "label": "ноги кручение",
+            "min": 1021,
+            "max": 1051
+          },
+          {
+            "label": "колени",
+            "min": 1081,
+            "max": 1111
+          },
+          {
+            "label": "стопы вверх-вниз",
+            "min": 1141,
+            "max": 1171
+          }
+        ]
+      },
+      {
+        "file": "rom-sheet-04.png",
+        "columns": [
+          "front min",
+          "side min",
+          "three-quarter min",
+          "back min",
+          "front max",
+          "side max",
+          "three-quarter max",
+          "back max"
+        ],
+        "rows": [
+          {
+            "label": "стопы вбок",
+            "min": 1201,
+            "max": 1231
+          },
+          {
+            "label": "пальцы ног",
+            "min": 1257,
+            "max": 1280
+          },
+          {
+            "label": "присед",
+            "min": 1321,
+            "max": 1381
+          }
+        ]
+      }
+    ]
+  }
+}

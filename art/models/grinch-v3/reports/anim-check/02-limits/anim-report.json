@@ -1,0 +1,885 @@
+{
+  "file": "/Users/leo/Roblox GameDev/clean-a-snow/art/models/grinch-v3/source/Grinch_master.blend",
+  "sha256": "2fb2183a2b835740e44178deaa68e9ee79923b8a178fc094eb9926dfc57ebf11",
+  "blender": "5.2.3 LTS",
+  "rig": "Grinch_Rig",
+  "mesh": [
+    "Grinch_Body"
+  ],
+  "props": [],
+  "skeleton": "biped",
+  "floor": -0.0,
+  "weights": {
+    "unweighted": 0,
+    "max_influences": 3,
+    "sum_error": 0.0,
+    "rigid_share": 0.694,
+    "hard_seams": 16,
+    "edges": 5707,
+    "vertices": 2585
+  },
+  "thresholds": {
+    "contact": 0.02339953330354156,
+    "slide": 0.050075001269578936,
+    "below_floor": 0.025037500634789468,
+    "seam_deg": 2.0,
+    "pop": [
+      6.0,
+      6.0
+    ],
+    "drift": 0.10015000253915787,
+    "frozen_deg": 0.5,
+    "size": {
+      "leg": 1.0015,
+      "source": "legs"
+    },
+    "shares": {
+      "contact": 0.023364485981308414,
+      "slide": 0.05,
+      "below_floor": 0.025,
+      "drift": 0.1,
+      "lift_min": 0.05,
+      "step": 0.1,
+      "seam_mesh": 0.005,
+      "transition_move": 0.05,
+      "seam_move_min": 0.002
+    },
+    "lift_min": 0.050075001269578936,
+    "step": 0.10015000253915787,
+    "reach": 0.9995,
+    "rest_margin": 0.002,
+    "seam_mesh": 0.005007500126957894,
+    "seam_velocity": {
+      "ratio": 2.0,
+      "turn_min": 2.0,
+      "move_min": 0.002003000050783157
+    },
+    "transition": {
+      "deg": 15.0,
+      "move": 0.050075001269578936
+    }
+  },
+  "profile": {
+    "file": "/Users/leo/Roblox GameDev/clean-a-snow/art/models/grinch-v3/source/motion-profile.json",
+    "sha256": "06cc17d7de9e003c8d28f61de9bc2dc3a8cacb3139b63dba83089fbc5359cfe8"
+  },
+  "joint_limits": {
+    "mixamorig:Neck": {
+      "x": [
+        -12.5,
+        10
+      ],
+      "y": [
+        -10,
+        10
+      ],
+      "z": [
+        -35,
+        35
+      ]
+    },
+    "mixamorig:Head": {
+      "x": [
+        -12.5,
+        10
+      ],
+      "y": [
+        -10,
+        10
+      ],
+      "z": [
+        -35,
+        35
+      ]
+    },
+    "mixamorig:Spine": {
+      "x": [
+        -10,
+        10
+      ],
+      "y": [
+        -8.3,
+        8.3
+      ],
+      "z": [
+        -15,
+        15
+      ]
+    },
+    "mixamorig:Spine1": {
+      "x": [
+        -10,
+        10
+      ],
+      "y": [
+        -8.3,
+        8.3
+      ],
+      "z": [
+        -15,
+        15
+      ]
+    },
+    "mixamorig:Spine2": {
+      "x": [
+        -10,
+        10
+      ],
+      "y": [
+        -8.3,
+        8.3
+      ],
+      "z": [
+        -15,
+        15
+      ]
+    },
+    "mixamorig:LeftShoulder": {
+      "y": [
+        -25,
+        10
+      ]
+    },
+    "mixamorig:LeftArm": {
+      "x": [
+        -70,
+        70
+      ],
+      "y": [
+        -50,
+        45
+      ],
+      "z": [
+        -90,
+        40
+      ]
+    },
+    "mixamorig:LeftForeArm": {
+      "z": [
+        -145,
+        0
+      ]
+    },
+    "mixamorig:LeftHand": {
+      "y": [
+        -60,
+        70
+      ],
+      "z": [
+        -30,
+        30
+      ]
+    },
+    "mixamorig:LeftUpLeg": {
+      "x": [
+        -100,
+        30
+      ],
+      "y": [
+        -45,
+        3
+      ],
+      "z": [
+        -40,
+        40
+      ]
+    },
+    "mixamorig:LeftLeg": {
+      "x": [
+        0,
+        140
+      ]
+    },
+    "mixamorig:LeftFoot": {
+      "x": [
+        -20,
+        45
+      ],
+      "y": [
+        -20,
+        20
+      ]
+    },
+    "mixamorig:LeftToeBase": {
+      "x": [
+        -30,
+        30
+      ]
+    },
+    "mixamorig:RightShoulder": {
+      "y": [
+        -10,
+        25
+      ]
+    },
+    "mixamorig:RightArm": {
+      "x": [
+        -70,
+        70
+      ],
+      "y": [
+        -45,
+        50
+      ],
+      "z": [
+        -40,
+        90
+      ]
+    },
+    "mixamorig:RightForeArm": {
+      "z": [
+        0,
+        145
+      ]
+    },
+    "mixamorig:RightHand": {
+      "y": [
+        -70,
+        60
+      ],
+      "z": [
+        -30,
+        30
+      ]
+    },
+    "mixamorig:RightUpLeg": {
+      "x": [
+        -100,
+        30
+      ],
+      "y": [
+        -3,
+        45
+      ],
+      "z": [
+        -40,
+        40
+      ]
+    },
+    "mixamorig:RightLeg": {
+      "x": [
+        0,
+        140
+      ]
+    },
+    "mixamorig:RightFoot": {
+      "x": [
+        -20,
+        45
+      ],
+      "y": [
+        -20,
+        20
+      ]
+    },
+    "mixamorig:RightToeBase": {
+      "x": [
+        -30,
+        30
+      ]
+    }
+  },
+  "clips": {},
+  "deformation": {
+    "poses": [
+      {
+        "label": "голова кивок min",
+        "frame": 13,
+        "stretch_max": 1.1581,
+        "compress_min": 0.8834,
+        "collapsed": 0,
+        "volume_ratio": 1.0005,
+        "intersections": 2846,
+        "extra_intersections": 174
+      },
+      {
+        "label": "голова кивок max",
+        "frame": 37,
+        "stretch_max": 1.1602,
+        "compress_min": 0.9366,
+        "collapsed": 0,
+        "volume_ratio": 0.9994,
+        "intersections": 2853,
+        "extra_intersections": 181
+      },
+      {
+        "label": "голова поворот min",
+        "frame": 61,
+        "stretch_max": 1.4239,
+        "compress_min": 0.8056,
+        "collapsed": 0,
+        "volume_ratio": 0.999,
+        "intersections": 2727,
+        "extra_intersections": 55
+      },
+      {
+        "label": "голова поворот max",
+        "frame": 85,
+        "stretch_max": 1.4239,
+        "compress_min": 0.8056,
+        "collapsed": 0,
+        "volume_ratio": 0.9986,
+        "intersections": 2733,
+        "extra_intersections": 61
+      },
+      {
+        "label": "голова наклон min",
+        "frame": 109,
+        "stretch_max": 1.1374,
+        "compress_min": 0.9138,
+        "collapsed": 0,
+        "volume_ratio": 0.9999,
+        "intersections": 2837,
+        "extra_intersections": 165
+      },
+      {
+        "label": "голова наклон max",
+        "frame": 133,
+        "stretch_max": 1.1374,
+        "compress_min": 0.9138,
+        "collapsed": 0,
+        "volume_ratio": 0.9999,
+        "intersections": 2861,
+        "extra_intersections": 189
+      },
+      {
+        "label": "корпус вперёд-назад min",
+        "frame": 160,
+        "stretch_max": 1.5067,
+        "compress_min": 0.5693,
+        "collapsed": 0,
+        "volume_ratio": 1.0101,
+        "intersections": 2651,
+        "extra_intersections": 0
+      },
+      {
+        "label": "корпус вперёд-назад max",
+        "frame": 190,
+        "stretch_max": 1.4232,
+        "compress_min": 0.4867,
+        "collapsed": 0,
+        "volume_ratio": 0.9863,
+        "intersections": 2725,
+        "extra_intersections": 53
+      },
+      {
+        "label": "корпус вбок min",
+        "frame": 220,
+        "stretch_max": 1.5192,
+        "compress_min": 0.5186,
+        "collapsed": 0,
+        "volume_ratio": 0.9987,
+        "intersections": 2713,
+        "extra_intersections": 41
+      },
+      {
+        "label": "корпус вбок max",
+        "frame": 250,
+        "stretch_max": 1.5192,
+        "compress_min": 0.5186,
+        "collapsed": 0,
+        "volume_ratio": 0.9988,
+        "intersections": 2783,
+        "extra_intersections": 111
+      },
+      {
+        "label": "корпус поворот min",
+        "frame": 280,
+        "stretch_max": 1.5415,
+        "compress_min": 0.4564,
+        "collapsed": 0,
+        "volume_ratio": 0.9952,
+        "intersections": 2667,
+        "extra_intersections": 0
+      },
+      {
+        "label": "корпус поворот max",
+        "frame": 310,
+        "stretch_max": 1.5657,
+        "compress_min": 0.5102,
+        "collapsed": 0,
+        "volume_ratio": 0.9936,
+        "intersections": 2657,
+        "extra_intersections": 0
+      },
+      {
+        "label": "плечи вверх-вниз min",
+        "frame": 337,
+        "stretch_max": 1.5086,
+        "compress_min": 0.6945,
+        "collapsed": 0,
+        "volume_ratio": 1.0049,
+        "intersections": 2909,
+        "extra_intersections": 237
+      },
+      {
+        "label": "плечи вверх-вниз max",
+        "frame": 361,
+        "stretch_max": 1.1185,
+        "compress_min": 0.8203,
+        "collapsed": 0,
+        "volume_ratio": 0.9963,
+        "intersections": 2684,
+        "extra_intersections": 12
+      },
+      {
+        "label": "руки вверх-вниз min",
+        "frame": 388,
+        "stretch_max": 1.0937,
+        "compress_min": 0.7652,
+        "collapsed": 0,
+        "volume_ratio": 0.9982,
+        "intersections": 2943,
+        "extra_intersections": 271
+      },
+      {
+        "label": "руки вверх-вниз max",
+        "frame": 418,
+        "stretch_max": 1.0844,
+        "compress_min": 0.7955,
+        "collapsed": 0,
+        "volume_ratio": 0.9985,
+        "intersections": 2868,
+        "extra_intersections": 196
+      },
+      {
+        "label": "руки вперёд-назад min",
+        "frame": 448,
+        "stretch_max": 1.1541,
+        "compress_min": 0.4861,
+        "collapsed": 0,
+        "volume_ratio": 0.995,
+        "intersections": 2780,
+        "extra_intersections": 108
+      },
+      {
+        "label": "руки вперёд-назад max",
+        "frame": 478,
+        "stretch_max": 1.0749,
+        "compress_min": 0.8244,
+        "collapsed": 0,
+        "volume_ratio": 0.9988,
+        "intersections": 2700,
+        "extra_intersections": 28
+      },
+      {
+        "label": "руки кручение min",
+        "frame": 505,
+        "stretch_max": 1.0179,
+        "compress_min": 0.8192,
+        "collapsed": 0,
+        "volume_ratio": 0.9964,
+        "intersections": 2667,
+        "extra_intersections": 0
+      },
+      {
+        "label": "руки кручение max",
+        "frame": 529,
+        "stretch_max": 1.0179,
+        "compress_min": 0.8192,
+        "collapsed": 0,
+        "volume_ratio": 0.9964,
+        "intersections": 2665,
+        "extra_intersections": 0
+      },
+      {
+        "label": "локти min",
+        "frame": 553,
+        "stretch_max": 1.4774,
+        "compress_min": 0.2985,
+        "collapsed": 0,
+        "volume_ratio": 0.9962,
+        "intersections": 3041,
+        "extra_intersections": 369
+      },
+      {
+        "label": "локти max",
+        "frame": 577,
+        "stretch_max": 1.0,
+        "compress_min": 1.0,
+        "collapsed": 0,
+        "volume_ratio": 1.0,
+        "intersections": 2672,
+        "extra_intersections": 0
+      },
+      {
+        "label": "кисти вверх-вниз min",
+        "frame": 601,
+        "stretch_max": 1.1731,
+        "compress_min": 0.6946,
+        "collapsed": 0,
+        "volume_ratio": 0.9993,
+        "intersections": 2666,
+        "extra_intersections": 0
+      },
+      {
+        "label": "кисти вверх-вниз max",
+        "frame": 625,
+        "stretch_max": 1.1925,
+        "compress_min": 0.6275,
+        "collapsed": 0,
+        "volume_ratio": 0.999,
+        "intersections": 2667,
+        "extra_intersections": 0
+      },
+      {
+        "label": "кисти вбок min",
+        "frame": 649,
+        "stretch_max": 1.0947,
+        "compress_min": 0.8723,
+        "collapsed": 0,
+        "volume_ratio": 0.9998,
+        "intersections": 2671,
+        "extra_intersections": 0
+      },
+      {
+        "label": "кисти вбок max",
+        "frame": 673,
+        "stretch_max": 1.0947,
+        "compress_min": 0.8723,
+        "collapsed": 0,
+        "volume_ratio": 0.9998,
+        "intersections": 2673,
+        "extra_intersections": 1
+      },
+      {
+        "label": "ноги вперёд-назад min",
+        "frame": 700,
+        "stretch_max": 1.0,
+        "compress_min": 1.0,
+        "collapsed": 0,
+        "volume_ratio": 1.0,
+        "intersections": 2808,
+        "extra_intersections": 136
+      },
+      {
+        "label": "ноги вперёд-назад max",
+        "frame": 730,
+        "stretch_max": 1.0,
+        "compress_min": 1.0,
+        "collapsed": 0,
+        "volume_ratio": 1.0,
+        "intersections": 2677,
+        "extra_intersections": 5
+      },
+      {
+        "label": "ноги в стороны min",
+        "frame": 760,
+        "stretch_max": 1.0,
+        "compress_min": 1.0,
+        "collapsed": 0,
+        "volume_ratio": 1.0,
+        "intersections": 2656,
+        "extra_intersections": 0
+      },
+      {
+        "label": "ноги в стороны max",
+        "frame": 790,
+        "stretch_max": 1.0,
+        "compress_min": 1.0,
+        "collapsed": 0,
+        "volume_ratio": 1.0,
+        "intersections": 2746,
+        "extra_intersections": 74
+      },
+      {
+        "label": "ноги кручение min",
+        "frame": 817,
+        "stretch_max": 1.0,
+        "compress_min": 1.0,
+        "collapsed": 0,
+        "volume_ratio": 1.0,
+        "intersections": 2745,
+        "extra_intersections": 73
+      },
+      {
+        "label": "ноги кручение max",
+        "frame": 841,
+        "stretch_max": 1.0,
+        "compress_min": 1.0,
+        "collapsed": 0,
+        "volume_ratio": 1.0,
+        "intersections": 2656,
+        "extra_intersections": 0
+      },
+      {
+        "label": "колени min",
+        "frame": 865,
+        "stretch_max": 1.0,
+        "compress_min": 1.0,
+        "collapsed": 0,
+        "volume_ratio": 1.0,
+        "intersections": 2672,
+        "extra_intersections": 0
+      },
+      {
+        "label": "колени max",
+        "frame": 889,
+        "stretch_max": 1.3844,
+        "compress_min": 0.4036,
+        "collapsed": 0,
+        "volume_ratio": 0.9938,
+        "intersections": 2697,
+        "extra_intersections": 25
+      },
+      {
+        "label": "стопы вверх-вниз min",
+        "frame": 913,
+        "stretch_max": 1.0527,
+        "compress_min": 0.9697,
+        "collapsed": 0,
+        "volume_ratio": 0.9999,
+        "intersections": 2693,
+        "extra_intersections": 21
+      },
+      {
+        "label": "стопы вверх-вниз max",
+        "frame": 937,
+        "stretch_max": 1.1363,
+        "compress_min": 0.9239,
+        "collapsed": 0,
+        "volume_ratio": 0.9994,
+        "intersections": 2658,
+        "extra_intersections": 0
+      },
+      {
+        "label": "стопы вбок min",
+        "frame": 961,
+        "stretch_max": 1.0523,
+        "compress_min": 0.9692,
+        "collapsed": 0,
+        "volume_ratio": 0.9999,
+        "intersections": 2686,
+        "extra_intersections": 14
+      },
+      {
+        "label": "стопы вбок max",
+        "frame": 985,
+        "stretch_max": 1.053,
+        "compress_min": 0.9703,
+        "collapsed": 0,
+        "volume_ratio": 0.9999,
+        "intersections": 2678,
+        "extra_intersections": 6
+      },
+      {
+        "label": "пальцы ног min",
+        "frame": 1006,
+        "stretch_max": 1.1243,
+        "compress_min": 0.4074,
+        "collapsed": 0,
+        "volume_ratio": 0.991,
+        "intersections": 2676,
+        "extra_intersections": 4
+      },
+      {
+        "label": "пальцы ног max",
+        "frame": 1024,
+        "stretch_max": 1.5471,
+        "compress_min": 0.8292,
+        "collapsed": 0,
+        "volume_ratio": 1.0061,
+        "intersections": 2667,
+        "extra_intersections": 0
+      },
+      {
+        "label": "присед min",
+        "frame": 1057,
+        "stretch_max": 1.0,
+        "compress_min": 1.0,
+        "collapsed": 0,
+        "volume_ratio": 1.0,
+        "intersections": 2672,
+        "extra_intersections": 0
+      },
+      {
+        "label": "присед max",
+        "frame": 1105,
+        "stretch_max": 1.4729,
+        "compress_min": 0.4867,
+        "collapsed": 0,
+        "volume_ratio": 0.9819,
+        "intersections": 2772,
+        "extra_intersections": 100
+      }
+    ],
+    "worst": {
+      "label": "локти min",
+      "frame": 553,
+      "stretch_max": 1.4774,
+      "compress_min": 0.2985,
+      "collapsed": 0,
+      "volume_ratio": 0.9962,
+      "intersections": 3041,
+      "extra_intersections": 369
+    },
+    "rest_intersections": 2672,
+    "sheets": [
+      {
+        "file": "rom-sheet-01.png",
+        "columns": [
+          "front min",
+          "side min",
+          "three-quarter min",
+          "back min",
+          "front max",
+          "side max",
+          "three-quarter max",
+          "back max"
+        ],
+        "rows": [
+          {
+            "label": "голова кивок",
+            "min": 13,
+            "max": 37
+          },
+          {
+            "label": "голова поворот",
+            "min": 61,
+            "max": 85
+          },
+          {
+            "label": "голова наклон",
+            "min": 109,
+            "max": 133
+          },
+          {
+            "label": "корпус вперёд-назад",
+            "min": 160,
+            "max": 190
+          },
+          {
+            "label": "корпус вбок",
+            "min": 220,
+            "max": 250
+          },
+          {
+            "label": "корпус поворот",
+            "min": 280,
+            "max": 310
+          }
+        ]
+      },
+      {
+        "file": "rom-sheet-02.png",
+        "columns": [
+          "front min",
+          "side min",
+          "three-quarter min",
+          "back min",
+          "front max",
+          "side max",
+          "three-quarter max",
+          "back max"
+        ],
+        "rows": [
+          {
+            "label": "плечи вверх-вниз",
+            "min": 337,
+            "max": 361
+          },
+          {
+            "label": "руки вверх-вниз",
+            "min": 388,
+            "max": 418
+          },
+          {
+            "label": "руки вперёд-назад",
+            "min": 448,
+            "max": 478
+          },
+          {
+            "label": "руки кручение",
+            "min": 505,
+            "max": 529
+          },
+          {
+            "label": "локти",
+            "min": 553,
+            "max": 577
+          },
+          {
+            "label": "кисти вверх-вниз",
+            "min": 601,
+            "max": 625
+          }
+        ]
+      },
+      {
+        "file": "rom-sheet-03.png",
+        "columns": [
+          "front min",
+          "side min",
+          "three-quarter min",
+          "back min",
+          "front max",
+          "side max",
+          "three-quarter max",
+          "back max"
+        ],
+        "rows": [
+          {
+            "label": "кисти вбок",
+            "min": 649,
+            "max": 673
+          },
+          {
+            "label": "ноги вперёд-назад",
+            "min": 700,
+            "max": 730
+          },
+          {
+            "label": "ноги в стороны",
+            "min": 760,
+            "max": 790
+          },
+          {
+            "label": "ноги кручение",
+            "min": 817,
+            "max": 841
+          },
+          {
+            "label": "колени",
+            "min": 865,
+            "max": 889
+          },
+          {
+            "label": "стопы вверх-вниз",
+            "min": 913,
+            "max": 937
+          }
+        ]
+      },
+      {
+        "file": "rom-sheet-04.png",
+        "columns": [
+          "front min",
+          "side min",
+          "three-quarter min",
+          "back min",
+          "front max",
+          "side max",
+          "three-quarter max",
+          "back max"
+        ],
+        "rows": [
+          {
+            "label": "стопы вбок",
+            "min": 961,
+            "max": 985
+          },
+          {
+            "label": "пальцы ног",
+            "min": 1006,
+            "max": 1024
+          },
+          {
+            "label": "присед",
+            "min": 1057,
+            "max": 1105
+          }
+        ]
+      }
+    ]
+  }
+}

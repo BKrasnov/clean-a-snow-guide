@@ -1,0 +1,130 @@
+{
+  "file": "/Users/leo/Roblox GameDev/clean-a-snow/art/models/grinch-v2/source/Grinch_master.blend",
+  "sha256": "7452b9cb89777f64a698b39e3753df747c8c2bae1a97223942029fbf06aa6653",
+  "blender": "5.2.3 LTS",
+  "collection": "Grinch",
+  "export": [
+    "Grinch_Body"
+  ],
+  "dimensions": {
+    "width": 3.35186,
+    "depth": 1.217831,
+    "height": 3.140273,
+    "min_z": 0.0,
+    "center": [
+      0.0,
+      -0.143005,
+      1.570137
+    ]
+  },
+  "totals": {
+    "tris": 2992,
+    "verts": 1586,
+    "meshes": 1,
+    "touching_verts": 2,
+    "materials": [
+      "M_Grinch_Palette"
+    ],
+    "bones": 0,
+    "textures": [
+      {
+        "name": "Grinch_Palette",
+        "size": [
+          64,
+          64
+        ]
+      }
+    ]
+  },
+  "objects": [
+    {
+      "name": "Grinch_Body",
+      "tris": 2992,
+      "verts": 1586,
+      "parts": 46,
+      "touching_verts": 2,
+      "materials": [
+        "M_Grinch_Palette"
+      ],
+      "modifiers": []
+    }
+  ],
+  "issues": [],
+  "ok": true,
+  "eyes": {
+    "found": false,
+    "objects": [],
+    "issues": []
+  },
+  "palette": {
+    "file": "/Users/leo/Roblox GameDev/clean-a-snow/art/palette.json",
+    "materials": [
+      {
+        "name": "M_Grinch_Palette",
+        "hex": null,
+        "texture": "Grinch_Palette",
+        "match": null,
+        "checked": true,
+        "off": [],
+        "legacy": []
+      }
+    ]
+  },
+  "budget": {
+    "class": "pet",
+    "rows": [
+      {
+        "key": "tris",
+        "value": 2992,
+        "limit": 3000,
+        "ok": true
+      },
+      {
+        "key": "materials",
+        "value": 1,
+        "limit": 1,
+        "ok": true
+      },
+      {
+        "key": "bones",
+        "value": 0,
+        "limit": 30,
+        "ok": true
+      },
+      {
+        "key": "textureSize",
+        "value": 64,
+        "limit": 256,
+        "ok": true
+      }
+    ]
+  },
+  "naming": {
+    "model": "Grinch",
+    "source": "argument",
+    "objects": [],
+    "materials": []
+  },
+  "export_copies": {
+    "duplicates": [],
+    "skipped": "файл вне проекта Unity и без --assets: папка движка неизвестна"
+  },
+  "renders": {
+    "front": "/Users/leo/Roblox GameDev/clean-a-snow/art/models/grinch-v2/preview/iterations/05/front.png",
+    "side": "/Users/leo/Roblox GameDev/clean-a-snow/art/models/grinch-v2/preview/iterations/05/side.png",
+    "back": "/Users/leo/Roblox GameDev/clean-a-snow/art/models/grinch-v2/preview/iterations/05/back.png",
+    "top": "/Users/leo/Roblox GameDev/clean-a-snow/art/models/grinch-v2/preview/iterations/05/top.png",
+    "three-quarter": "/Users/leo/Roblox GameDev/clean-a-snow/art/models/grinch-v2/preview/iterations/05/three-quarter.png"
+  },
+  "render_settings": {
+    "engine": "BLENDER_EEVEE",
+    "clay": false,
+    "backface_culling": true,
+    "film_transparent": false,
+    "player": true,
+    "grid": {
+      "minor": 0.1,
+      "major": 1.0
+    }
+  }
+}

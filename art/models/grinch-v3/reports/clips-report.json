@@ -1,0 +1,831 @@
+{
+  "fps": 30,
+  "clips": {
+    "Idle": {
+      "source": "Idle_BreathingIdle.fbx",
+      "hips_scale": 1.273,
+      "turn_limits": {
+        "mixamorig:LeftArm": {
+          "y": [
+            "shift -29.0",
+            [
+              56.4,
+              73.0
+            ],
+            [
+              27.4,
+              44.0
+            ]
+          ]
+        },
+        "mixamorig:RightArm": {
+          "y": [
+            "shift 25.5",
+            [
+              -69.5,
+              -58.6
+            ],
+            [
+              -44.0,
+              -33.1
+            ]
+          ]
+        }
+      },
+      "sway": 0.254,
+      "ankle_fix": 0.1609,
+      "foot_drop": {
+        "Left": 0.0,
+        "Right": 0.0025
+      },
+      "head_delay": 19,
+      "neck_delay": 30,
+      "floor_fix": 0.0,
+      "removed_curves": 429,
+      "pass_on": {},
+      "floor_fix_after_limits": 0.0,
+      "frames": [
+        1,
+        299
+      ],
+      "seconds": 9.933,
+      "cyclic": true,
+      "mode": {
+        "mode": "in_place"
+      }
+    },
+    "Walk": {
+      "source": "Walk_WalkingWithASwagger_InPlace.fbx",
+      "hips_scale": 1.273,
+      "turn_limits": {
+        "mixamorig:LeftShoulder": {
+          "y": [
+            "shift -8.5",
+            [
+              13.3,
+              17.5
+            ],
+            [
+              4.9,
+              9.0
+            ]
+          ]
+        },
+        "mixamorig:LeftArm": {
+          "y": [
+            "shift -14.5",
+            [
+              44.3,
+              58.5
+            ],
+            [
+              29.9,
+              44.0
+            ]
+          ]
+        },
+        "mixamorig:RightShoulder": {
+          "y": [
+            "shift 10.6",
+            [
+              -19.6,
+              -10.1
+            ],
+            [
+              -9.0,
+              0.6
+            ]
+          ]
+        },
+        "mixamorig:RightArm": {
+          "y": [
+            "shift 17.0",
+            [
+              -61.0,
+              -53.0
+            ],
+            [
+              -44.0,
+              -36.0
+            ]
+          ]
+        },
+        "mixamorig:RightToeBase": {
+          "x": [
+            "soft",
+            [
+              -32.9,
+              -5.6
+            ],
+            [
+              -28.8,
+              -5.6
+            ]
+          ]
+        }
+      },
+      "sway": 0.868,
+      "ankle_fix": 0.2038,
+      "foot_drop": {
+        "Left": 0.0097,
+        "Right": 0.0
+      },
+      "head_delay": 2,
+      "neck_delay": 0,
+      "floor_fix": 0.0116,
+      "settle": {
+        "drop": 0.025,
+        "ankle_fix": 0.0371,
+        "floor_fix": 0.0121
+      },
+      "pin_soles": {
+        "ground_speed": [
+          0.027,
+          2.375
+        ],
+        "largest_move": 0.0761
+      },
+      "removed_curves": 429,
+      "pass_on": {},
+      "floor_fix_after_limits": 0.0001,
+      "frames": [
+        1,
+        32
+      ],
+      "seconds": 1.033,
+      "cyclic": true,
+      "mode": {
+        "mode": "in_place"
+      }
+    },
+    "Attack": {
+      "source": "Attack_ZombiePunching.fbx",
+      "removed_curves": 429,
+      "hips_scale": 1.273,
+      "pass_on": {
+        "mixamorig:Head": {
+          "x": 44.0,
+          "y": 12.2,
+          "z": 31.1
+        }
+      },
+      "turn_limits": {
+        "mixamorig:Neck": {
+          "x": [
+            "soft",
+            [
+              -52.7,
+              -4.5
+            ],
+            [
+              -12.2,
+              -4.5
+            ]
+          ],
+          "y": [
+            "soft",
+            [
+              -19.9,
+              12.1
+            ],
+            [
+              -9.7,
+              9.2
+            ]
+          ],
+          "z": [
+            "shift 10.3",
+            [
+              -44.3,
+              11.6
+            ],
+            [
+              -34.0,
+              21.9
+            ]
+          ]
+        },
+        "mixamorig:Head": {
+          "x": [
+            "shift 1.0",
+            [
+              -12.5,
+              -12.5
+            ],
+            [
+              -11.5,
+              -11.5
+            ]
+          ],
+          "y": [
+            "soft",
+            [
+              -10.0,
+              10.0
+            ],
+            [
+              -8.6,
+              8.6
+            ]
+          ],
+          "z": [
+            "soft",
+            [
+              -35.0,
+              35.0
+            ],
+            [
+              -32.9,
+              32.9
+            ]
+          ]
+        },
+        "mixamorig:Spine": {
+          "x": [
+            "shift -4.8",
+            [
+              0.7,
+              13.8
+            ],
+            [
+              -4.1,
+              9.0
+            ]
+          ],
+          "y": [
+            "soft",
+            [
+              -6.2,
+              14.2
+            ],
+            [
+              -6.0,
+              7.9
+            ]
+          ]
+        },
+        "mixamorig:Spine1": {
+          "x": [
+            "shift -2.9",
+            [
+              1.4,
+              11.9
+            ],
+            [
+              -1.4,
+              9.0
+            ]
+          ]
+        },
+        "mixamorig:Spine2": {
+          "x": [
+            "shift -2.8",
+            [
+              1.4,
+              11.8
+            ],
+            [
+              -1.4,
+              9.0
+            ]
+          ]
+        },
+        "mixamorig:LeftShoulder": {
+          "y": [
+            "shift -2.6",
+            [
+              -8.9,
+              11.6
+            ],
+            [
+              -11.5,
+              9.0
+            ]
+          ]
+        },
+        "mixamorig:LeftArm": {
+          "y": [
+            "shift -1.7",
+            [
+              -22.9,
+              45.7
+            ],
+            [
+              -24.6,
+              44.0
+            ]
+          ],
+          "z": [
+            "shift -10.0",
+            [
+              -48.6,
+              49.0
+            ],
+            [
+              -58.6,
+              39.0
+            ]
+          ]
+        },
+        "mixamorig:LeftFoot": {
+          "y": [
+            "soft",
+            [
+              10.8,
+              21.5
+            ],
+            [
+              10.8,
+              18.4
+            ]
+          ]
+        },
+        "mixamorig:RightShoulder": {
+          "y": [
+            "soft",
+            [
+              -11.9,
+              27.6
+            ],
+            [
+              -8.5,
+              23.7
+            ]
+          ]
+        },
+        "mixamorig:RightArm": {
+          "x": [
+            "shift 18.3",
+            [
+              -87.3,
+              24.0
+            ],
+            [
+              -69.0,
+              42.3
+            ]
+          ],
+          "y": [
+            "shift 35.5",
+            [
+              -79.5,
+              -16.2
+            ],
+            [
+              -44.0,
+              19.3
+            ]
+          ],
+          "z": [
+            "soft",
+            [
+              -69.0,
+              67.0
+            ],
+            [
+              -39.7,
+              67.0
+            ]
+          ]
+        },
+        "mixamorig:RightFoot": {
+          "y": [
+            "soft",
+            [
+              -31.7,
+              32.1
+            ],
+            [
+              -19.6,
+              19.6
+            ]
+          ]
+        }
+      },
+      "timing": {
+        "anchors": [
+          [
+            8,
+            1
+          ],
+          [
+            35,
+            25
+          ],
+          [
+            43,
+            33
+          ],
+          [
+            70,
+            60
+          ],
+          [
+            78,
+            66
+          ]
+        ],
+        "frames": 66,
+        "seconds": 2.167
+      },
+      "hips_travel": {
+        "source_m": 0.482,
+        "kept": 0.208,
+        "rise_kept": 0.3,
+        "sideways_kept": 0.2
+      },
+      "hips_drop": 0.0,
+      "ankle_fix": 0.726,
+      "turn_limits_after_ik": {},
+      "floor_fix": 0.0,
+      "frames": [
+        1,
+        66
+      ],
+      "seconds": 2.167,
+      "cyclic": false,
+      "mode": {
+        "mode": "once",
+        "from": "Idle",
+        "to": "Idle"
+      }
+    },
+    "Hit": {
+      "source": "Hit_ZombieReactionHitStumbleBack.fbx",
+      "removed_curves": 429,
+      "hips_scale": 1.273,
+      "pass_on": {
+        "mixamorig:Head": {
+          "x": 22.6,
+          "y": 10.7
+        }
+      },
+      "turn_limits": {
+        "mixamorig:Neck": {
+          "x": [
+            "soft",
+            [
+              -38.5,
+              35.6
+            ],
+            [
+              -12.2,
+              9.7
+            ]
+          ],
+          "y": [
+            "soft",
+            [
+              -13.9,
+              11.9
+            ],
+            [
+              -9.5,
+              9.2
+            ]
+          ]
+        },
+        "mixamorig:Head": {
+          "x": [
+            "soft",
+            [
+              -12.5,
+              10.0
+            ],
+            [
+              -11.0,
+              8.5
+            ]
+          ],
+          "y": [
+            "shift -1.0",
+            [
+              0.6,
+              10.0
+            ],
+            [
+              -0.4,
+              9.0
+            ]
+          ]
+        },
+        "mixamorig:Spine": {
+          "x": [
+            "shift -7.2",
+            [
+              7.1,
+              16.2
+            ],
+            [
+              -0.1,
+              9.0
+            ]
+          ]
+        },
+        "mixamorig:Spine1": {
+          "x": [
+            "shift -3.0",
+            [
+              5.4,
+              12.0
+            ],
+            [
+              2.4,
+              9.0
+            ]
+          ]
+        },
+        "mixamorig:Spine2": {
+          "x": [
+            "shift -3.0",
+            [
+              5.3,
+              12.0
+            ],
+            [
+              2.3,
+              9.0
+            ]
+          ]
+        },
+        "mixamorig:LeftArm": {
+          "y": [
+            "shift -26.2",
+            [
+              -1.4,
+              70.2
+            ],
+            [
+              -27.6,
+              44.0
+            ]
+          ]
+        },
+        "mixamorig:LeftHand": {
+          "z": [
+            "soft",
+            [
+              14.3,
+              54.1
+            ],
+            [
+              14.3,
+              29.7
+            ]
+          ]
+        },
+        "mixamorig:LeftFoot": {
+          "y": [
+            "soft",
+            [
+              4.1,
+              21.1
+            ],
+            [
+              4.1,
+              18.3
+            ]
+          ]
+        },
+        "mixamorig:RightArm": {
+          "z": [
+            "shift -3.7",
+            [
+              0.2,
+              92.7
+            ],
+            [
+              -3.5,
+              89.0
+            ]
+          ]
+        }
+      },
+      "timing": {
+        "anchors": [
+          [
+            10,
+            1
+          ],
+          [
+            46,
+            31
+          ],
+          [
+            58,
+            41
+          ]
+        ],
+        "frames": 41,
+        "seconds": 1.333
+      },
+      "hips_travel": {
+        "source_m": 0.911,
+        "kept": 0.11,
+        "rise_kept": 1.0,
+        "sideways_kept": 1.0
+      },
+      "hips_drop": 0.0776,
+      "ankle_fix": 0.6297,
+      "turn_limits_after_ik": {},
+      "floor_fix": 0.0,
+      "frames": [
+        1,
+        41
+      ],
+      "seconds": 1.333,
+      "cyclic": false,
+      "mode": {
+        "mode": "once",
+        "from": "Idle",
+        "to": "Idle"
+      }
+    },
+    "Stunned": {
+      "source": "Stunned_SittingDazed.fbx",
+      "removed_curves": 429,
+      "hips_scale": 1.273,
+      "pass_on": {
+        "mixamorig:Head": {
+          "x": 33.7,
+          "y": 14.3
+        }
+      },
+      "turn_limits": {
+        "mixamorig:Neck": {
+          "x": [
+            "soft",
+            [
+              1.7,
+              42.1
+            ],
+            [
+              1.7,
+              9.7
+            ]
+          ],
+          "y": [
+            "soft",
+            [
+              -12.8,
+              18.8
+            ],
+            [
+              -9.3,
+              9.7
+            ]
+          ]
+        },
+        "mixamorig:Head": {
+          "x": [
+            "shift -1.0",
+            [
+              7.0,
+              10.0
+            ],
+            [
+              6.0,
+              9.0
+            ]
+          ],
+          "y": [
+            "soft",
+            [
+              -10.0,
+              10.0
+            ],
+            [
+              -8.6,
+              8.6
+            ]
+          ]
+        },
+        "mixamorig:Spine": {
+          "y": [
+            "shift -3.7",
+            [
+              -0.8,
+              11.0
+            ],
+            [
+              -4.6,
+              7.3
+            ]
+          ],
+          "z": [
+            "shift -6.8",
+            [
+              0.4,
+              20.8
+            ],
+            [
+              -6.4,
+              14.0
+            ]
+          ]
+        },
+        "mixamorig:Spine1": {
+          "x": [
+            "shift -21.6",
+            [
+              27.8,
+              30.6
+            ],
+            [
+              6.2,
+              9.0
+            ]
+          ]
+        },
+        "mixamorig:Spine2": {
+          "x": [
+            "shift -22.1",
+            [
+              27.8,
+              31.1
+            ],
+            [
+              5.7,
+              9.0
+            ]
+          ]
+        },
+        "mixamorig:LeftShoulder": {
+          "y": [
+            "shift -9.8",
+            [
+              9.4,
+              18.8
+            ],
+            [
+              -0.4,
+              9.0
+            ]
+          ]
+        },
+        "mixamorig:LeftArm": {
+          "y": [
+            "shift -13.4",
+            [
+              25.2,
+              57.4
+            ],
+            [
+              11.8,
+              44.0
+            ]
+          ]
+        },
+        "mixamorig:RightShoulder": {
+          "y": [
+            "shift 11.4",
+            [
+              -20.4,
+              -2.9
+            ],
+            [
+              -9.0,
+              8.5
+            ]
+          ]
+        },
+        "mixamorig:RightArm": {
+          "y": [
+            "shift 42.4",
+            [
+              -86.4,
+              -59.1
+            ],
+            [
+              -44.0,
+              -16.8
+            ]
+          ]
+        },
+        "mixamorig:RightHand": {
+          "z": [
+            "soft",
+            [
+              3.7,
+              50.2
+            ],
+            [
+              3.7,
+              29.7
+            ]
+          ]
+        }
+      },
+      "floor_shift": 0.2124,
+      "frames": [
+        1,
+        251
+      ],
+      "seconds": 8.333,
+      "cyclic": true,
+      "mode": {
+        "mode": "in_place"
+      }
+    }
+  }
+}
