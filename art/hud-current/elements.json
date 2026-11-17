@@ -1,0 +1,3293 @@
+[
+ {
+  "frame": "frames/01-lobby-pc.jpg",
+  "element": "CleanSnowUI.HUD.Currency",
+  "text": "0",
+  "rect": [
+   20,
+   306,
+   133,
+   82
+  ],
+  "file": "elements/01-lobby-pc--Currency.png",
+  "frames": [
+   "01-lobby-pc",
+   "02-lobby-more-actions-pc",
+   "03-queue-countdown-pc",
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-pc.jpg",
+  "element": "CleanSnowUI.HUD.Currency.CoinIcon",
+  "text": "",
+  "rect": [
+   19,
+   306,
+   45,
+   45
+  ],
+  "file": "elements/01-lobby-pc--Currency.CoinIcon.png",
+  "frames": [
+   "01-lobby-pc",
+   "02-lobby-more-actions-pc",
+   "03-queue-countdown-pc",
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-pc.jpg",
+  "element": "CleanSnowUI.HUD.Currency.CoinsValue",
+  "text": "0",
+  "rect": [
+   66,
+   309,
+   82,
+   40
+  ],
+  "file": "elements/01-lobby-pc--Currency.CoinsValue.png",
+  "frames": [
+   "01-lobby-pc",
+   "02-lobby-more-actions-pc",
+   "03-queue-countdown-pc",
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-pc.jpg",
+  "element": "CleanSnowUI.HUD.Currency.CrystalIcon",
+  "text": "",
+  "rect": [
+   20,
+   349,
+   42,
+   38
+  ],
+  "file": "elements/01-lobby-pc--Currency.CrystalIcon.png",
+  "frames": [
+   "01-lobby-pc",
+   "02-lobby-more-actions-pc",
+   "03-queue-countdown-pc",
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-pc.jpg",
+  "element": "CleanSnowUI.HUD.Currency.CrystalsValue",
+  "text": "0",
+  "rect": [
+   66,
+   350,
+   82,
+   34
+  ],
+  "file": "elements/01-lobby-pc--Currency.CrystalsValue.png",
+  "frames": [
+   "01-lobby-pc",
+   "02-lobby-more-actions-pc",
+   "03-queue-countdown-pc",
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-pc.jpg",
+  "element": "CleanSnowUI.HUD.SideMenu",
+  "text": "PETS",
+  "rect": [
+   1932,
+   254,
+   68,
+   246
+  ],
+  "file": "elements/01-lobby-pc--SideMenu.png",
+  "frames": [
+   "01-lobby-pc",
+   "02-lobby-more-actions-pc",
+   "03-queue-countdown-pc",
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-pc.jpg",
+  "element": "CleanSnowUI.HUD.SideMenu.PetsButton",
+  "text": "",
+  "rect": [
+   1940,
+   254,
+   53,
+   50
+  ],
+  "file": "elements/01-lobby-pc--SideMenu.PetsButton.png",
+  "frames": [
+   "01-lobby-pc",
+   "02-lobby-more-actions-pc",
+   "03-queue-countdown-pc",
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-pc.jpg",
+  "element": "CleanSnowUI.HUD.SideMenu.UpgradesButton",
+  "text": "",
+  "rect": [
+   1940,
+   376,
+   53,
+   50
+  ],
+  "file": "elements/01-lobby-pc--SideMenu.UpgradesButton.png",
+  "frames": [
+   "01-lobby-pc",
+   "02-lobby-more-actions-pc",
+   "03-queue-countdown-pc",
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-pc.jpg",
+  "element": "CleanSnowUI.HUD.SideMenu.IndexButton",
+  "text": "",
+  "rect": [
+   1940,
+   437,
+   53,
+   50
+  ],
+  "file": "elements/01-lobby-pc--SideMenu.IndexButton.png",
+  "frames": [
+   "01-lobby-pc",
+   "02-lobby-more-actions-pc",
+   "03-queue-countdown-pc",
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-pc.jpg",
+  "element": "CleanSnowUI.HUD.QuickMenu",
+  "text": "",
+  "rect": [
+   23,
+   68,
+   125,
+   36
+  ],
+  "file": "elements/01-lobby-pc--QuickMenu.png",
+  "frames": [
+   "01-lobby-pc",
+   "02-lobby-more-actions-pc",
+   "03-queue-countdown-pc",
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-pc.jpg",
+  "element": "CleanSnowUI.HUD.QuickMenu.StatsButton",
+  "text": "",
+  "rect": [
+   23,
+   68,
+   31,
+   31
+  ],
+  "file": "elements/01-lobby-pc--QuickMenu.StatsButton.png",
+  "frames": [
+   "01-lobby-pc",
+   "02-lobby-more-actions-pc",
+   "03-queue-countdown-pc",
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-pc.jpg",
+  "element": "CleanSnowUI.HUD.QuickMenu.NewsButton",
+  "text": "",
+  "rect": [
+   64,
+   68,
+   31,
+   31
+  ],
+  "file": "elements/01-lobby-pc--QuickMenu.NewsButton.png",
+  "frames": [
+   "01-lobby-pc",
+   "02-lobby-more-actions-pc",
+   "03-queue-countdown-pc",
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-pc.jpg",
+  "element": "CleanSnowUI.HUD.QuickMenu.SettingsButton",
+  "text": "",
+  "rect": [
+   105,
+   68,
+   31,
+   31
+  ],
+  "file": "elements/01-lobby-pc--QuickMenu.SettingsButton.png",
+  "frames": [
+   "01-lobby-pc",
+   "02-lobby-more-actions-pc",
+   "03-queue-countdown-pc",
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-pc.jpg",
+  "element": "CleanSnowUI.HUD.ExpeditionActions",
+  "text": "",
+  "rect": [
+   18,
+   405,
+   138,
+   181
+  ],
+  "file": "elements/01-lobby-pc--ExpeditionActions.png",
+  "frames": [
+   "01-lobby-pc",
+   "02-lobby-more-actions-pc",
+   "03-queue-countdown-pc",
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-pc.jpg",
+  "element": "CleanSnowUI.HUD.ExpeditionActions.Toggle",
+  "text": "MORE ACTIONS",
+  "rect": [
+   18,
+   405,
+   124,
+   19
+  ],
+  "file": "elements/01-lobby-pc--ExpeditionActions.Toggle.png",
+  "frames": [
+   "01-lobby-pc",
+   "02-lobby-more-actions-pc",
+   "03-queue-countdown-pc",
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-pc.jpg",
+  "element": "CleanSnowUI.HUD.TutorialGuide",
+  "text": "FIRST RUN",
+  "rect": [
+   774,
+   76,
+   470,
+   78
+  ],
+  "file": "elements/01-lobby-pc--TutorialGuide.png",
+  "frames": [
+   "01-lobby-pc",
+   "02-lobby-more-actions-pc"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-phone.jpg",
+  "element": "CleanSnowUI.HUD.Currency",
+  "text": "0",
+  "rect": [
+   20,
+   184,
+   115,
+   71
+  ],
+  "file": "elements/01-lobby-phone--Currency.png",
+  "frames": [
+   "01-lobby-phone",
+   "02-lobby-more-actions-phone",
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-phone.jpg",
+  "element": "CleanSnowUI.HUD.Currency.CoinIcon",
+  "text": "",
+  "rect": [
+   20,
+   184,
+   39,
+   39
+  ],
+  "file": "elements/01-lobby-phone--Currency.CoinIcon.png",
+  "frames": [
+   "01-lobby-phone",
+   "02-lobby-more-actions-phone",
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-phone.jpg",
+  "element": "CleanSnowUI.HUD.Currency.CoinsValue",
+  "text": "0",
+  "rect": [
+   60,
+   186,
+   71,
+   35
+  ],
+  "file": "elements/01-lobby-phone--Currency.CoinsValue.png",
+  "frames": [
+   "01-lobby-phone",
+   "02-lobby-more-actions-phone",
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-phone.jpg",
+  "element": "CleanSnowUI.HUD.Currency.CrystalIcon",
+  "text": "",
+  "rect": [
+   20,
+   221,
+   36,
+   33
+  ],
+  "file": "elements/01-lobby-phone--Currency.CrystalIcon.png",
+  "frames": [
+   "01-lobby-phone",
+   "02-lobby-more-actions-phone",
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-phone.jpg",
+  "element": "CleanSnowUI.HUD.Currency.CrystalsValue",
+  "text": "0",
+  "rect": [
+   60,
+   222,
+   71,
+   30
+  ],
+  "file": "elements/01-lobby-phone--Currency.CrystalsValue.png",
+  "frames": [
+   "01-lobby-phone",
+   "02-lobby-more-actions-phone",
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-phone.jpg",
+  "element": "CleanSnowUI.HUD.SideMenu",
+  "text": "PETS",
+  "rect": [
+   766,
+   157,
+   59,
+   213
+  ],
+  "file": "elements/01-lobby-phone--SideMenu.png",
+  "frames": [
+   "01-lobby-phone",
+   "02-lobby-more-actions-phone",
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-phone.jpg",
+  "element": "CleanSnowUI.HUD.SideMenu.PetsButton",
+  "text": "",
+  "rect": [
+   773,
+   157,
+   46,
+   43
+  ],
+  "file": "elements/01-lobby-phone--SideMenu.PetsButton.png",
+  "frames": [
+   "01-lobby-phone",
+   "02-lobby-more-actions-phone",
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-phone.jpg",
+  "element": "CleanSnowUI.HUD.SideMenu.UpgradesButton",
+  "text": "",
+  "rect": [
+   773,
+   263,
+   46,
+   43
+  ],
+  "file": "elements/01-lobby-phone--SideMenu.UpgradesButton.png",
+  "frames": [
+   "01-lobby-phone",
+   "02-lobby-more-actions-phone",
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-phone.jpg",
+  "element": "CleanSnowUI.HUD.SideMenu.IndexButton",
+  "text": "",
+  "rect": [
+   773,
+   316,
+   46,
+   43
+  ],
+  "file": "elements/01-lobby-phone--SideMenu.IndexButton.png",
+  "frames": [
+   "01-lobby-phone",
+   "02-lobby-more-actions-phone",
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-phone.jpg",
+  "element": "CleanSnowUI.HUD.QuickMenu",
+  "text": "",
+  "rect": [
+   22,
+   68,
+   108,
+   31
+  ],
+  "file": "elements/01-lobby-phone--QuickMenu.png",
+  "frames": [
+   "01-lobby-phone",
+   "02-lobby-more-actions-phone",
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-phone.jpg",
+  "element": "CleanSnowUI.HUD.QuickMenu.StatsButton",
+  "text": "",
+  "rect": [
+   22,
+   68,
+   27,
+   26
+  ],
+  "file": "elements/01-lobby-phone--QuickMenu.StatsButton.png",
+  "frames": [
+   "01-lobby-phone",
+   "02-lobby-more-actions-phone",
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-phone.jpg",
+  "element": "CleanSnowUI.HUD.QuickMenu.NewsButton",
+  "text": "",
+  "rect": [
+   58,
+   68,
+   27,
+   26
+  ],
+  "file": "elements/01-lobby-phone--QuickMenu.NewsButton.png",
+  "frames": [
+   "01-lobby-phone",
+   "02-lobby-more-actions-phone",
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-phone.jpg",
+  "element": "CleanSnowUI.HUD.QuickMenu.SettingsButton",
+  "text": "",
+  "rect": [
+   94,
+   68,
+   27,
+   26
+  ],
+  "file": "elements/01-lobby-phone--QuickMenu.SettingsButton.png",
+  "frames": [
+   "01-lobby-phone",
+   "02-lobby-more-actions-phone",
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-phone.jpg",
+  "element": "CleanSnowUI.HUD.ExpeditionActions",
+  "text": "",
+  "rect": [
+   17,
+   261,
+   119,
+   157
+  ],
+  "file": "elements/01-lobby-phone--ExpeditionActions.png",
+  "frames": [
+   "01-lobby-phone",
+   "02-lobby-more-actions-phone",
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ],
+  "offPhoneScreen": true
+ },
+ {
+  "frame": "frames/01-lobby-phone.jpg",
+  "element": "CleanSnowUI.HUD.ExpeditionActions.Toggle",
+  "text": "MORE ACTIONS",
+  "rect": [
+   17,
+   261,
+   107,
+   17
+  ],
+  "file": "elements/01-lobby-phone--ExpeditionActions.Toggle.png",
+  "frames": [
+   "01-lobby-phone",
+   "02-lobby-more-actions-phone",
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/01-lobby-phone.jpg",
+  "element": "CleanSnowUI.HUD.TutorialGuide",
+  "text": "FIRST RUN",
+  "rect": [
+   187,
+   76,
+   470,
+   78
+  ],
+  "file": "elements/01-lobby-phone--TutorialGuide.png",
+  "frames": [
+   "01-lobby-phone",
+   "02-lobby-more-actions-phone"
+  ]
+ },
+ {
+  "frame": "frames/02-lobby-more-actions-pc.jpg",
+  "element": "CleanSnowUI.HUD.ExpeditionActions.Truck",
+  "text": "SNOW TRUCK    2,500 COINS",
+  "rect": [
+   18,
+   427,
+   124,
+   17
+  ],
+  "file": "elements/02-lobby-more-actions-pc--ExpeditionActions.Truck.png",
+  "frames": [
+   "02-lobby-more-actions-pc",
+   "14-run-more-actions-pc"
+  ]
+ },
+ {
+  "frame": "frames/02-lobby-more-actions-pc.jpg",
+  "element": "CleanSnowUI.HUD.ExpeditionActions.Reward",
+  "text": "DAILY GEMS",
+  "rect": [
+   18,
+   446,
+   124,
+   17
+  ],
+  "file": "elements/02-lobby-more-actions-pc--ExpeditionActions.Reward.png",
+  "frames": [
+   "02-lobby-more-actions-pc",
+   "14-run-more-actions-pc"
+  ]
+ },
+ {
+  "frame": "frames/02-lobby-more-actions-pc.jpg",
+  "element": "CleanSnowUI.HUD.ExpeditionActions.Wheel",
+  "text": "GEM WHEEL    0 TOKENS",
+  "rect": [
+   18,
+   466,
+   124,
+   17
+  ],
+  "file": "elements/02-lobby-more-actions-pc--ExpeditionActions.Wheel.png",
+  "frames": [
+   "02-lobby-more-actions-pc",
+   "14-run-more-actions-pc"
+  ]
+ },
+ {
+  "frame": "frames/02-lobby-more-actions-pc.jpg",
+  "element": "CleanSnowUI.HUD.ExpeditionActions.Lobby",
+  "text": "RETURN TO LOBBY",
+  "rect": [
+   18,
+   486,
+   124,
+   17
+  ],
+  "file": "elements/02-lobby-more-actions-pc--ExpeditionActions.Lobby.png",
+  "frames": [
+   "02-lobby-more-actions-pc",
+   "14-run-more-actions-pc"
+  ]
+ },
+ {
+  "frame": "frames/02-lobby-more-actions-phone.jpg",
+  "element": "CleanSnowUI.HUD.ExpeditionActions.Truck",
+  "text": "SNOW TRUCK    2,500 COINS",
+  "rect": [
+   17,
+   281,
+   107,
+   14
+  ],
+  "file": "elements/02-lobby-more-actions-phone--ExpeditionActions.Truck.png",
+  "frames": [
+   "02-lobby-more-actions-phone",
+   "14-run-more-actions-phone"
+  ]
+ },
+ {
+  "frame": "frames/02-lobby-more-actions-phone.jpg",
+  "element": "CleanSnowUI.HUD.ExpeditionActions.Reward",
+  "text": "DAILY GEMS",
+  "rect": [
+   17,
+   298,
+   107,
+   14
+  ],
+  "file": "elements/02-lobby-more-actions-phone--ExpeditionActions.Reward.png",
+  "frames": [
+   "02-lobby-more-actions-phone",
+   "14-run-more-actions-phone"
+  ]
+ },
+ {
+  "frame": "frames/02-lobby-more-actions-phone.jpg",
+  "element": "CleanSnowUI.HUD.ExpeditionActions.Wheel",
+  "text": "GEM WHEEL    0 TOKENS",
+  "rect": [
+   17,
+   315,
+   107,
+   14
+  ],
+  "file": "elements/02-lobby-more-actions-phone--ExpeditionActions.Wheel.png",
+  "frames": [
+   "02-lobby-more-actions-phone",
+   "14-run-more-actions-phone"
+  ]
+ },
+ {
+  "frame": "frames/02-lobby-more-actions-phone.jpg",
+  "element": "CleanSnowUI.HUD.ExpeditionActions.Lobby",
+  "text": "RETURN TO LOBBY",
+  "rect": [
+   17,
+   332,
+   107,
+   14
+  ],
+  "file": "elements/02-lobby-more-actions-phone--ExpeditionActions.Lobby.png",
+  "frames": [
+   "02-lobby-more-actions-phone",
+   "14-run-more-actions-phone"
+  ]
+ },
+ {
+  "frame": "frames/03-queue-countdown-pc.jpg",
+  "element": "QueueCountdown.Line",
+  "text": "SOLO RUN",
+  "rect": [
+   795,
+   474,
+   427,
+   213
+  ],
+  "file": "elements/03-queue-countdown-pc--QueueCountdown.Line.png",
+  "frames": [
+   "03-queue-countdown-pc"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-pc.jpg",
+  "element": "CleanSnowUI.HUD.RoundStatus",
+  "text": "0:16",
+  "rect": [
+   1785,
+   62,
+   215,
+   97
+  ],
+  "file": "elements/04-run-start-pc--RoundStatus.png",
+  "frames": [
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-pc.jpg",
+  "element": "CleanSnowUI.HUD.RoundStatus.ClockIcon",
+  "text": "",
+  "rect": [
+   1900,
+   62,
+   29,
+   30
+  ],
+  "file": "elements/04-run-start-pc--RoundStatus.ClockIcon.png",
+  "frames": [
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-pc.jpg",
+  "element": "CleanSnowUI.HUD.RoundStatus.TimerValue",
+  "text": "0:16",
+  "rect": [
+   1930,
+   62,
+   71,
+   34
+  ],
+  "file": "elements/04-run-start-pc--RoundStatus.TimerValue.png",
+  "frames": [
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-pc.jpg",
+  "element": "CleanSnowUI.HUD.RoundStatus.AreaName",
+  "text": "Frostwood",
+  "rect": [
+   1794,
+   93,
+   206,
+   28
+  ],
+  "file": "elements/04-run-start-pc--RoundStatus.AreaName.png",
+  "frames": [
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-pc.jpg",
+  "element": "CleanSnowUI.HUD.RoundStatus.AreaNumber",
+  "text": "AREA 1/6",
+  "rect": [
+   1874,
+   117,
+   126,
+   18
+  ],
+  "file": "elements/04-run-start-pc--RoundStatus.AreaNumber.png",
+  "frames": [
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-pc.jpg",
+  "element": "CleanSnowUI.HUD.RoundStatus.ClearBar",
+  "text": "",
+  "rect": [
+   1848,
+   140,
+   152,
+   7
+  ],
+  "file": "elements/04-run-start-pc--RoundStatus.ClearBar.png",
+  "frames": [
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-pc.jpg",
+  "element": "CleanSnowUI.HUD.RoundStatus.ClearValue",
+  "text": "0% cleared",
+  "rect": [
+   1785,
+   132,
+   215,
+   20
+  ],
+  "file": "elements/04-run-start-pc--RoundStatus.ClearValue.png",
+  "frames": [
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-pc.jpg",
+  "element": "CleanSnowUI.HUD.RoundStatus.Objective",
+  "text": "Area 2 opens: 91% left in Area 1",
+  "rect": [
+   1785,
+   152,
+   215,
+   20
+  ],
+  "file": "elements/04-run-start-pc--RoundStatus.Objective.png",
+  "frames": [
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-pc.jpg",
+  "element": "CleanSnowUI.HUD.Bag",
+  "text": "0/15",
+  "rect": [
+   18,
+   644,
+   145,
+   55
+  ],
+  "file": "elements/04-run-start-pc--Bag.png",
+  "frames": [
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-pc.jpg",
+  "element": "CleanSnowUI.HUD.Hotbar",
+  "text": "1",
+  "rect": [
+   944,
+   642,
+   130,
+   62
+  ],
+  "file": "elements/04-run-start-pc--Hotbar.png",
+  "frames": [
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-pc.jpg",
+  "element": "CleanSnowUI.HUD.Hotbar.HandsSlot",
+  "text": "",
+  "rect": [
+   944,
+   642,
+   54,
+   54
+  ],
+  "file": "elements/04-run-start-pc--Hotbar.HandsSlot.png",
+  "frames": [
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-pc.jpg",
+  "element": "CleanSnowUI.HUD.Hotbar.DonateSlot",
+  "text": "",
+  "rect": [
+   1013,
+   642,
+   54,
+   54
+  ],
+  "file": "elements/04-run-start-pc--Hotbar.DonateSlot.png",
+  "frames": [
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "08-run-hold-focus-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-pc.jpg",
+  "element": "CleanSnowUI.HUD.Reticle",
+  "text": "",
+  "rect": [
+   1005,
+   381,
+   8,
+   8
+  ],
+  "file": "elements/04-run-start-pc--Reticle.png",
+  "frames": [
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "31-hockey-team-panel-pc",
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-pc.jpg",
+  "element": "CleanSnowUI.HUD.SnowTask",
+  "text": "BREAK THE SNOW 0/3",
+  "rect": [
+   749,
+   500,
+   520,
+   84
+  ],
+  "file": "elements/04-run-start-pc--SnowTask.png",
+  "frames": [
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "21-vehicle-locked-pc",
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-pc.jpg",
+  "element": "FirstPersonBucket.Bucket",
+  "text": "",
+  "rect": [
+   171,
+   387,
+   463,
+   463
+  ],
+  "file": "elements/04-run-start-pc--FirstPersonBucket.Bucket.png",
+  "frames": [
+   "04-run-start-pc",
+   "05-run-strike-pc",
+   "06-run-bring-snow-pc",
+   "07-run-selling-pc",
+   "09-run-shovel-count-pc",
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc",
+   "21-vehicle-locked-pc",
+   "31-hockey-team-panel-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-phone.jpg",
+  "element": "CleanSnowUI.HUD.RoundStatus",
+  "text": "0:18",
+  "rect": [
+   639,
+   62,
+   187,
+   84
+  ],
+  "file": "elements/04-run-start-phone--RoundStatus.png",
+  "frames": [
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-phone.jpg",
+  "element": "CleanSnowUI.HUD.RoundStatus.ClockIcon",
+  "text": "",
+  "rect": [
+   739,
+   62,
+   25,
+   26
+  ],
+  "file": "elements/04-run-start-phone--RoundStatus.ClockIcon.png",
+  "frames": [
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-phone.jpg",
+  "element": "CleanSnowUI.HUD.RoundStatus.TimerValue",
+  "text": "0:18",
+  "rect": [
+   764,
+   62,
+   61,
+   29
+  ],
+  "file": "elements/04-run-start-phone--RoundStatus.TimerValue.png",
+  "frames": [
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-phone.jpg",
+  "element": "CleanSnowUI.HUD.RoundStatus.AreaName",
+  "text": "Frostwood",
+  "rect": [
+   647,
+   88,
+   178,
+   24
+  ],
+  "file": "elements/04-run-start-phone--RoundStatus.AreaName.png",
+  "frames": [
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-phone.jpg",
+  "element": "CleanSnowUI.HUD.RoundStatus.AreaNumber",
+  "text": "AREA 1/6",
+  "rect": [
+   716,
+   109,
+   110,
+   15
+  ],
+  "file": "elements/04-run-start-phone--RoundStatus.AreaNumber.png",
+  "frames": [
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-phone.jpg",
+  "element": "CleanSnowUI.HUD.RoundStatus.ClearBar",
+  "text": "",
+  "rect": [
+   694,
+   130,
+   132,
+   6
+  ],
+  "file": "elements/04-run-start-phone--RoundStatus.ClearBar.png",
+  "frames": [
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-phone.jpg",
+  "element": "CleanSnowUI.HUD.RoundStatus.ClearValue",
+  "text": "0% cleared",
+  "rect": [
+   639,
+   123,
+   187,
+   17
+  ],
+  "file": "elements/04-run-start-phone--RoundStatus.ClearValue.png",
+  "frames": [
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-phone.jpg",
+  "element": "CleanSnowUI.HUD.RoundStatus.Objective",
+  "text": "Area 2 opens: 91% left in Area 1",
+  "rect": [
+   639,
+   140,
+   187,
+   17
+  ],
+  "file": "elements/04-run-start-phone--RoundStatus.Objective.png",
+  "frames": [
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-phone.jpg",
+  "element": "CleanSnowUI.HUD.Bag",
+  "text": "0/15",
+  "rect": [
+   18,
+   329,
+   126,
+   48
+  ],
+  "file": "elements/04-run-start-phone--Bag.png",
+  "frames": [
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-phone.jpg",
+  "element": "CleanSnowUI.HUD.Hotbar",
+  "text": "1",
+  "rect": [
+   359,
+   322,
+   124,
+   59
+  ],
+  "file": "elements/04-run-start-phone--Hotbar.png",
+  "frames": [
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-phone.jpg",
+  "element": "CleanSnowUI.HUD.Hotbar.HandsSlot",
+  "text": "",
+  "rect": [
+   359,
+   322,
+   52,
+   52
+  ],
+  "file": "elements/04-run-start-phone--Hotbar.HandsSlot.png",
+  "frames": [
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-phone.jpg",
+  "element": "CleanSnowUI.HUD.Hotbar.DonateSlot",
+  "text": "",
+  "rect": [
+   425,
+   322,
+   52,
+   52
+  ],
+  "file": "elements/04-run-start-phone--Hotbar.DonateSlot.png",
+  "frames": [
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-phone.jpg",
+  "element": "CleanSnowUI.HUD.ActionButton",
+  "text": "",
+  "rect": [
+   652,
+   303,
+   61,
+   61
+  ],
+  "file": "elements/04-run-start-phone--ActionButton.png",
+  "frames": [
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "08-run-hold-focus-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-phone.jpg",
+  "element": "CleanSnowUI.HUD.Reticle",
+  "text": "",
+  "rect": [
+   418,
+   220,
+   8,
+   8
+  ],
+  "file": "elements/04-run-start-phone--Reticle.png",
+  "frames": [
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "31-hockey-team-panel-phone",
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-phone.jpg",
+  "element": "CleanSnowUI.HUD.SnowTask",
+  "text": "BREAK THE SNOW 0/3",
+  "rect": [
+   162,
+   261,
+   520,
+   84
+  ],
+  "file": "elements/04-run-start-phone--SnowTask.png",
+  "frames": [
+   "04-run-start-phone",
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/04-run-start-phone.jpg",
+  "element": "FirstPersonBucket.Bucket",
+  "text": "",
+  "rect": [
+   171,
+   387,
+   463,
+   463
+  ],
+  "file": "elements/04-run-start-phone--FirstPersonBucket.Bucket.png",
+  "frames": [
+   "04-run-start-phone",
+   "06-run-bring-snow-phone",
+   "09-run-shovel-count-phone",
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone",
+   "31-hockey-team-panel-phone",
+   "33-hockey-end-phone"
+  ],
+  "offPhoneScreen": true
+ },
+ {
+  "frame": "frames/06-run-bring-snow-pc.jpg",
+  "element": "CleanSnowUI.HUD.SnowTask",
+  "text": "BRING SNOW TO THE TRAY",
+  "rect": [
+   749,
+   500,
+   520,
+   84
+  ],
+  "file": "elements/06-run-bring-snow-pc--SnowTask.png",
+  "frames": [
+   "06-run-bring-snow-pc"
+  ]
+ },
+ {
+  "frame": "frames/06-run-bring-snow-phone.jpg",
+  "element": "CleanSnowUI.HUD.SnowTask",
+  "text": "BRING SNOW TO THE TRAY",
+  "rect": [
+   162,
+   261,
+   520,
+   84
+  ],
+  "file": "elements/06-run-bring-snow-phone--SnowTask.png",
+  "frames": [
+   "06-run-bring-snow-phone"
+  ]
+ },
+ {
+  "frame": "frames/07-run-selling-pc.jpg",
+  "element": "CleanSnowUI.HUD.SnowTask",
+  "text": "SELLING YOUR SNOW... 0 / 25 COINS",
+  "rect": [
+   749,
+   500,
+   520,
+   84
+  ],
+  "file": "elements/07-run-selling-pc--SnowTask.png",
+  "frames": [
+   "07-run-selling-pc"
+  ]
+ },
+ {
+  "frame": "frames/07-run-selling-pc.jpg",
+  "element": "CleanSnowUI.Toast",
+  "text": "Deposited 9 units    processing 36 coins",
+  "rect": [
+   766,
+   442,
+   486,
+   52
+  ],
+  "file": "elements/07-run-selling-pc--Toast.png",
+  "frames": [
+   "07-run-selling-pc"
+  ]
+ },
+ {
+  "frame": "frames/08-run-hold-focus-pc.jpg",
+  "element": "CleanSnowUI.Toast",
+  "text": "Processed 9 snow    +36 coins",
+  "rect": [
+   766,
+   536,
+   486,
+   52
+  ],
+  "file": "elements/08-run-hold-focus-pc--Toast.png",
+  "frames": [
+   "08-run-hold-focus-pc"
+  ]
+ },
+ {
+  "frame": "frames/08-run-hold-focus-pc.jpg",
+  "element": "SnowUpgradeFocus.Hint",
+  "text": "OPEN UPGRADES",
+  "rect": [
+   629,
+   120,
+   760,
+   44
+  ],
+  "file": "elements/08-run-hold-focus-pc--SnowUpgradeFocus.Hint.png",
+  "frames": [
+   "08-run-hold-focus-pc"
+  ]
+ },
+ {
+  "frame": "frames/08-run-hold-focus-pc.jpg",
+  "element": "SnowUpgradeFocus.Later",
+  "text": "LATER",
+  "rect": [
+   954,
+   175,
+   110,
+   34
+  ],
+  "file": "elements/08-run-hold-focus-pc--SnowUpgradeFocus.Later.png",
+  "frames": [
+   "08-run-hold-focus-pc"
+  ]
+ },
+ {
+  "frame": "frames/08-run-hold-focus-phone.jpg",
+  "element": "CleanSnowUI.Toast",
+  "text": "Processed 9 snow    +36 coins",
+  "rect": [
+   855,
+   555,
+   308,
+   33
+  ],
+  "file": "elements/08-run-hold-focus-phone--Toast.png",
+  "frames": [
+   "08-run-hold-focus-phone"
+  ],
+  "offPhoneScreen": true
+ },
+ {
+  "frame": "frames/08-run-hold-focus-phone.jpg",
+  "element": "SnowUpgradeFocus.Hint",
+  "text": "OPEN UPGRADES",
+  "rect": [
+   629,
+   120,
+   760,
+   44
+  ],
+  "file": "elements/08-run-hold-focus-phone--SnowUpgradeFocus.Hint.png",
+  "frames": [
+   "08-run-hold-focus-phone"
+  ],
+  "offPhoneScreen": true
+ },
+ {
+  "frame": "frames/08-run-hold-focus-phone.jpg",
+  "element": "SnowUpgradeFocus.Later",
+  "text": "LATER",
+  "rect": [
+   954,
+   175,
+   110,
+   34
+  ],
+  "file": "elements/08-run-hold-focus-phone--SnowUpgradeFocus.Later.png",
+  "frames": [
+   "08-run-hold-focus-phone"
+  ],
+  "offPhoneScreen": true
+ },
+ {
+  "frame": "frames/09-run-shovel-count-pc.jpg",
+  "element": "CleanSnowUI.HUD.SnowTask",
+  "text": "BREAK SNOW FOR A SHOVEL 11 / 20 COINS",
+  "rect": [
+   749,
+   500,
+   520,
+   84
+  ],
+  "file": "elements/09-run-shovel-count-pc--SnowTask.png",
+  "frames": [
+   "09-run-shovel-count-pc"
+  ]
+ },
+ {
+  "frame": "frames/09-run-shovel-count-pc.jpg",
+  "element": "CleanSnowUI.Toast",
+  "text": "Now hold the button to keep breaking sno",
+  "rect": [
+   766,
+   436,
+   486,
+   52
+  ],
+  "file": "elements/09-run-shovel-count-pc--Toast.png",
+  "frames": [
+   "09-run-shovel-count-pc"
+  ]
+ },
+ {
+  "frame": "frames/09-run-shovel-count-phone.jpg",
+  "element": "CleanSnowUI.HUD.SnowTask",
+  "text": "BREAK SNOW FOR A SHOVEL 11 / 20 COINS",
+  "rect": [
+   162,
+   261,
+   520,
+   84
+  ],
+  "file": "elements/09-run-shovel-count-phone--SnowTask.png",
+  "frames": [
+   "09-run-shovel-count-phone"
+  ]
+ },
+ {
+  "frame": "frames/10-run-bucket-full-pc.jpg",
+  "element": "CleanSnowUI.HUD.BagFullText",
+  "text": "BUCKET FULL! GO SELL!",
+  "rect": [
+   729,
+   122,
+   560,
+   124
+  ],
+  "file": "elements/10-run-bucket-full-pc--BagFullText.png",
+  "frames": [
+   "10-run-bucket-full-pc",
+   "11-run-toast-pc",
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc",
+   "11b-run-target-pc"
+  ]
+ },
+ {
+  "frame": "frames/10-run-bucket-full-phone.jpg",
+  "element": "CleanSnowUI.HUD.BagFullText",
+  "text": "BUCKET FULL! GO SELL!",
+  "rect": [
+   142,
+   122,
+   560,
+   124
+  ],
+  "file": "elements/10-run-bucket-full-phone--BagFullText.png",
+  "frames": [
+   "10-run-bucket-full-phone",
+   "11-run-toast-phone",
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone"
+  ]
+ },
+ {
+  "frame": "frames/11-run-toast-pc.jpg",
+  "element": "CleanSnowUI.Toast",
+  "text": "Deposited 9 units - processing 36 coins",
+  "rect": [
+   766,
+   536,
+   486,
+   52
+  ],
+  "file": "elements/11-run-toast-pc--Toast.png",
+  "frames": [
+   "11-run-toast-pc",
+   "11b-run-target-pc"
+  ]
+ },
+ {
+  "frame": "frames/11-run-toast-phone.jpg",
+  "element": "CleanSnowUI.Toast",
+  "text": "Not enough coins",
+  "rect": [
+   855,
+   555,
+   308,
+   33
+  ],
+  "file": "elements/11-run-toast-phone--Toast.png",
+  "frames": [
+   "11-run-toast-phone"
+  ],
+  "offPhoneScreen": true
+ },
+ {
+  "frame": "frames/12-run-seed-found-pc.jpg",
+  "element": "CleanSnowUI.HUD.SeedFind",
+  "text": "You found:",
+  "rect": [
+   766,
+   2,
+   486,
+   382
+  ],
+  "file": "elements/12-run-seed-found-pc--SeedFind.png",
+  "frames": [
+   "12-run-seed-found-pc"
+  ]
+ },
+ {
+  "frame": "frames/12-run-seed-found-pc.jpg",
+  "element": "CleanSnowUI.HUD.SeedCounter",
+  "text": "Seeds 1/7",
+  "rect": [
+   928,
+   68,
+   161,
+   38
+  ],
+  "file": "elements/12-run-seed-found-pc--SeedCounter.png",
+  "frames": [
+   "12-run-seed-found-pc",
+   "13-run-seed-counter-pc",
+   "14-run-more-actions-pc",
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc"
+  ]
+ },
+ {
+  "frame": "frames/13-run-seed-counter-phone.jpg",
+  "element": "CleanSnowUI.HUD.SeedCounter",
+  "text": "Seeds 1/7",
+  "rect": [
+   370,
+   68,
+   102,
+   24
+  ],
+  "file": "elements/13-run-seed-counter-phone--SeedCounter.png",
+  "frames": [
+   "13-run-seed-counter-phone",
+   "14-run-more-actions-phone",
+   "15-run-weapon-heat-phone"
+  ]
+ },
+ {
+  "frame": "frames/15-run-weapon-heat-pc.jpg",
+  "element": "CleanSnowUI.HUD.Hotbar",
+  "text": "1",
+  "rect": [
+   789,
+   642,
+   441,
+   62
+  ],
+  "file": "elements/15-run-weapon-heat-pc--Hotbar.png",
+  "frames": [
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc"
+  ]
+ },
+ {
+  "frame": "frames/15-run-weapon-heat-pc.jpg",
+  "element": "CleanSnowUI.HUD.Hotbar.SpecialSlot2",
+  "text": "",
+  "rect": [
+   851,
+   642,
+   54,
+   54
+  ],
+  "file": "elements/15-run-weapon-heat-pc--Hotbar.SpecialSlot2.png",
+  "frames": [
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc"
+  ]
+ },
+ {
+  "frame": "frames/15-run-weapon-heat-pc.jpg",
+  "element": "CleanSnowUI.HUD.Hotbar.SpecialSlot3",
+  "text": "",
+  "rect": [
+   913,
+   642,
+   54,
+   54
+  ],
+  "file": "elements/15-run-weapon-heat-pc--Hotbar.SpecialSlot3.png",
+  "frames": [
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc"
+  ]
+ },
+ {
+  "frame": "frames/15-run-weapon-heat-pc.jpg",
+  "element": "CleanSnowUI.HUD.Hotbar.SpecialSlot4",
+  "text": "",
+  "rect": [
+   975,
+   642,
+   54,
+   54
+  ],
+  "file": "elements/15-run-weapon-heat-pc--Hotbar.SpecialSlot4.png",
+  "frames": [
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc"
+  ]
+ },
+ {
+  "frame": "frames/15-run-weapon-heat-pc.jpg",
+  "element": "CleanSnowUI.HUD.Hotbar.SpecialSlot5",
+  "text": "",
+  "rect": [
+   1037,
+   642,
+   54,
+   54
+  ],
+  "file": "elements/15-run-weapon-heat-pc--Hotbar.SpecialSlot5.png",
+  "frames": [
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc"
+  ]
+ },
+ {
+  "frame": "frames/15-run-weapon-heat-pc.jpg",
+  "element": "CleanSnowUI.HUD.Hotbar.SpecialSlot6",
+  "text": "",
+  "rect": [
+   1099,
+   642,
+   54,
+   54
+  ],
+  "file": "elements/15-run-weapon-heat-pc--Hotbar.SpecialSlot6.png",
+  "frames": [
+   "15-run-weapon-heat-pc",
+   "16-run-weapon-overheat-pc",
+   "17-run-molotov-wait-pc",
+   "18-run-save-note-pc",
+   "19-run-shop-stand-pc"
+  ]
+ },
+ {
+  "frame": "frames/15-run-weapon-heat-pc.jpg",
+  "element": "WeaponStatus.Frame",
+  "text": "",
+  "rect": [
+   919,
+   590,
+   180,
+   12
+  ],
+  "file": "elements/15-run-weapon-heat-pc--WeaponStatus.Frame.png",
+  "frames": [
+   "15-run-weapon-heat-pc"
+  ]
+ },
+ {
+  "frame": "frames/15-run-weapon-heat-phone.jpg",
+  "element": "CleanSnowUI.HUD.Hotbar.SpecialSlot2",
+  "text": "",
+  "rect": [
+   271,
+   322,
+   52,
+   52
+  ],
+  "file": "elements/15-run-weapon-heat-phone--Hotbar.SpecialSlot2.png",
+  "frames": [
+   "15-run-weapon-heat-phone"
+  ]
+ },
+ {
+  "frame": "frames/15-run-weapon-heat-phone.jpg",
+  "element": "CleanSnowUI.HUD.Hotbar.SpecialSlot3",
+  "text": "",
+  "rect": [
+   330,
+   322,
+   52,
+   52
+  ],
+  "file": "elements/15-run-weapon-heat-phone--Hotbar.SpecialSlot3.png",
+  "frames": [
+   "15-run-weapon-heat-phone"
+  ]
+ },
+ {
+  "frame": "frames/15-run-weapon-heat-phone.jpg",
+  "element": "CleanSnowUI.HUD.Hotbar.SpecialSlot4",
+  "text": "",
+  "rect": [
+   389,
+   322,
+   52,
+   52
+  ],
+  "file": "elements/15-run-weapon-heat-phone--Hotbar.SpecialSlot4.png",
+  "frames": [
+   "15-run-weapon-heat-phone"
+  ]
+ },
+ {
+  "frame": "frames/15-run-weapon-heat-phone.jpg",
+  "element": "CleanSnowUI.HUD.Hotbar.SpecialSlot5",
+  "text": "",
+  "rect": [
+   448,
+   322,
+   52,
+   52
+  ],
+  "file": "elements/15-run-weapon-heat-phone--Hotbar.SpecialSlot5.png",
+  "frames": [
+   "15-run-weapon-heat-phone"
+  ]
+ },
+ {
+  "frame": "frames/15-run-weapon-heat-phone.jpg",
+  "element": "CleanSnowUI.HUD.Hotbar.SpecialSlot6",
+  "text": "",
+  "rect": [
+   507,
+   322,
+   52,
+   52
+  ],
+  "file": "elements/15-run-weapon-heat-phone--Hotbar.SpecialSlot6.png",
+  "frames": [
+   "15-run-weapon-heat-phone"
+  ]
+ },
+ {
+  "frame": "frames/15-run-weapon-heat-phone.jpg",
+  "element": "WeaponStatus.Frame",
+  "text": "",
+  "rect": [
+   919,
+   590,
+   180,
+   12
+  ],
+  "file": "elements/15-run-weapon-heat-phone--WeaponStatus.Frame.png",
+  "frames": [
+   "15-run-weapon-heat-phone"
+  ],
+  "offPhoneScreen": true
+ },
+ {
+  "frame": "frames/16-run-weapon-overheat-pc.jpg",
+  "element": "WeaponStatus.Frame",
+  "text": "",
+  "rect": [
+   919,
+   590,
+   180,
+   12
+  ],
+  "file": "elements/16-run-weapon-overheat-pc--WeaponStatus.Frame.png",
+  "frames": [
+   "16-run-weapon-overheat-pc"
+  ]
+ },
+ {
+  "frame": "frames/17-run-molotov-wait-pc.jpg",
+  "element": "WeaponStatus.Frame",
+  "text": "",
+  "rect": [
+   919,
+   590,
+   180,
+   12
+  ],
+  "file": "elements/17-run-molotov-wait-pc--WeaponStatus.Frame.png",
+  "frames": [
+   "17-run-molotov-wait-pc"
+  ]
+ },
+ {
+  "frame": "frames/18-run-save-note-pc.jpg",
+  "element": "SnowSaveReminder.Reminder",
+  "text": "YOUR PROGRESS SAVES",
+  "rect": [
+   0,
+   23,
+   2019,
+   60
+  ],
+  "file": "elements/18-run-save-note-pc--SnowSaveReminder.Reminder.png",
+  "frames": [
+   "18-run-save-note-pc"
+  ]
+ },
+ {
+  "frame": "frames/11b-run-target-pc.jpg",
+  "element": "CleanSnowUI.HUD.TargetInfo",
+  "text": "Powder Snow",
+  "rect": [
+   923,
+   427,
+   171,
+   41
+  ],
+  "file": "elements/11b-run-target-pc--TargetInfo.png",
+  "frames": [
+   "11b-run-target-pc"
+  ]
+ },
+ {
+  "frame": "frames/21-vehicle-locked-pc.jpg",
+  "element": "CleanSnowUI.HUD.RoundStatus.AreaName",
+  "text": "Birch Hollow",
+  "rect": [
+   1794,
+   93,
+   206,
+   28
+  ],
+  "file": "elements/21-vehicle-locked-pc--RoundStatus.AreaName.png",
+  "frames": [
+   "21-vehicle-locked-pc"
+  ]
+ },
+ {
+  "frame": "frames/21-vehicle-locked-pc.jpg",
+  "element": "CleanSnowUI.HUD.RoundStatus.ClearValue",
+  "text": "Locked",
+  "rect": [
+   1785,
+   132,
+   215,
+   20
+  ],
+  "file": "elements/21-vehicle-locked-pc--RoundStatus.ClearValue.png",
+  "frames": [
+   "21-vehicle-locked-pc"
+  ]
+ },
+ {
+  "frame": "frames/22-vehicle-drive-truck-pc.jpg",
+  "element": "CleanSnowUI.HUD.ZoneWallText",
+  "text": "Clear Area 1 first to go further! (90% l",
+  "rect": [
+   100,
+   122,
+   1817,
+   44
+  ],
+  "file": "elements/22-vehicle-drive-truck-pc--ZoneWallText.png",
+  "frames": [
+   "22-vehicle-drive-truck-pc",
+   "23-vehicle-drive-tank-pc",
+   "24-vehicle-cargo-full-pc"
+  ]
+ },
+ {
+  "frame": "frames/22-vehicle-drive-truck-phone.jpg",
+  "element": "CleanSnowUI.HUD.ZoneWallText",
+  "text": "Clear Area 1 first to go further! (90% l",
+  "rect": [
+   42,
+   122,
+   759,
+   44
+  ],
+  "file": "elements/22-vehicle-drive-truck-phone--ZoneWallText.png",
+  "frames": [
+   "22-vehicle-drive-truck-phone",
+   "24-vehicle-cargo-full-phone"
+  ]
+ },
+ {
+  "frame": "frames/24-vehicle-cargo-full-pc.jpg",
+  "element": "CleanSnowUI.HUD.BagFullText",
+  "text": "CARGO FULL! GO SELL!",
+  "rect": [
+   729,
+   122,
+   560,
+   124
+  ],
+  "file": "elements/24-vehicle-cargo-full-pc--BagFullText.png",
+  "frames": [
+   "24-vehicle-cargo-full-pc"
+  ]
+ },
+ {
+  "frame": "frames/24-vehicle-cargo-full-phone.jpg",
+  "element": "CleanSnowUI.HUD.BagFullText",
+  "text": "CARGO FULL! GO SELL!",
+  "rect": [
+   142,
+   122,
+   560,
+   124
+  ],
+  "file": "elements/24-vehicle-cargo-full-phone--BagFullText.png",
+  "frames": [
+   "24-vehicle-cargo-full-phone"
+  ]
+ },
+ {
+  "frame": "frames/31-hockey-team-panel-pc.jpg",
+  "element": "HockeyTeams.Panel",
+  "text": "VS",
+  "rect": [
+   824,
+   502,
+   369,
+   129
+  ],
+  "file": "elements/31-hockey-team-panel-pc--HockeyTeams.Panel.png",
+  "frames": [
+   "31-hockey-team-panel-pc"
+  ]
+ },
+ {
+  "frame": "frames/31-hockey-team-panel-phone.jpg",
+  "element": "HockeyTeams.Panel",
+  "text": "VS",
+  "rect": [
+   248,
+   190,
+   347,
+   121
+  ],
+  "file": "elements/31-hockey-team-panel-phone--HockeyTeams.Panel.png",
+  "frames": [
+   "31-hockey-team-panel-phone"
+  ]
+ },
+ {
+  "frame": "frames/32-hockey-match-pc.jpg",
+  "element": "HockeyMatch.Top",
+  "text": "0",
+  "rect": [
+   853,
+   68,
+   310,
+   73
+  ],
+  "file": "elements/32-hockey-match-pc--HockeyMatch.Top.png",
+  "frames": [
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/32-hockey-match-pc.jpg",
+  "element": "HockeyMatch.Top.RedScore",
+  "text": "0",
+  "rect": [
+   853,
+   77,
+   68,
+   60
+  ],
+  "file": "elements/32-hockey-match-pc--HockeyMatch.Top.RedScore.png",
+  "frames": [
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/32-hockey-match-pc.jpg",
+  "element": "HockeyMatch.Top.BlueScore",
+  "text": "0",
+  "rect": [
+   1095,
+   77,
+   68,
+   60
+  ],
+  "file": "elements/32-hockey-match-pc--HockeyMatch.Top.BlueScore.png",
+  "frames": [
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/32-hockey-match-pc.jpg",
+  "element": "HockeyMatch.Top.Stopwatch",
+  "text": "0:23",
+  "rect": [
+   935,
+   77,
+   146,
+   63
+  ],
+  "file": "elements/32-hockey-match-pc--HockeyMatch.Top.Stopwatch.png",
+  "frames": [
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/32-hockey-match-pc.jpg",
+  "element": "HockeyMatch.Top.Ear1",
+  "text": "",
+  "rect": [
+   955,
+   74,
+   19,
+   10
+  ],
+  "file": "elements/32-hockey-match-pc--HockeyMatch.Top.Ear1.png",
+  "frames": [
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/32-hockey-match-pc.jpg",
+  "element": "HockeyMatch.Top.Ear2",
+  "text": "",
+  "rect": [
+   1042,
+   74,
+   19,
+   10
+  ],
+  "file": "elements/32-hockey-match-pc--HockeyMatch.Top.Ear2.png",
+  "frames": [
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/32-hockey-match-pc.jpg",
+  "element": "HockeyMatch.Top.Stem",
+  "text": "",
+  "rect": [
+   1003,
+   71,
+   11,
+   9
+  ],
+  "file": "elements/32-hockey-match-pc--HockeyMatch.Top.Stem.png",
+  "frames": [
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/32-hockey-match-pc.jpg",
+  "element": "HockeyMatch.Top.Crown",
+  "text": "",
+  "rect": [
+   995,
+   66,
+   26,
+   9
+  ],
+  "file": "elements/32-hockey-match-pc--HockeyMatch.Top.Crown.png",
+  "frames": [
+   "32-hockey-match-pc",
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/32-hockey-match-pc.jpg",
+  "element": "HockeyMatch.Top.Exit",
+  "text": "",
+  "rect": [
+   1173,
+   86,
+   87,
+   42
+  ],
+  "file": "elements/32-hockey-match-pc--HockeyMatch.Top.Exit.png",
+  "frames": [
+   "32-hockey-match-pc"
+  ]
+ },
+ {
+  "frame": "frames/32-hockey-match-pc.jpg",
+  "element": "HockeyMatch.Shoot",
+  "text": "",
+  "rect": [
+   1893,
+   573,
+   98,
+   98
+  ],
+  "file": "elements/32-hockey-match-pc--HockeyMatch.Shoot.png",
+  "frames": [
+   "32-hockey-match-pc"
+  ]
+ },
+ {
+  "frame": "frames/32-hockey-match-phone.jpg",
+  "element": "HockeyMatch.Top",
+  "text": "0",
+  "rect": [
+   304,
+   66,
+   235,
+   56
+  ],
+  "file": "elements/32-hockey-match-phone--HockeyMatch.Top.png",
+  "frames": [
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/32-hockey-match-phone.jpg",
+  "element": "HockeyMatch.Top.RedScore",
+  "text": "0",
+  "rect": [
+   304,
+   73,
+   52,
+   46
+  ],
+  "file": "elements/32-hockey-match-phone--HockeyMatch.Top.RedScore.png",
+  "frames": [
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/32-hockey-match-phone.jpg",
+  "element": "HockeyMatch.Top.BlueScore",
+  "text": "0",
+  "rect": [
+   487,
+   73,
+   52,
+   46
+  ],
+  "file": "elements/32-hockey-match-phone--HockeyMatch.Top.BlueScore.png",
+  "frames": [
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/32-hockey-match-phone.jpg",
+  "element": "HockeyMatch.Top.Stopwatch",
+  "text": "0:21",
+  "rect": [
+   366,
+   73,
+   111,
+   48
+  ],
+  "file": "elements/32-hockey-match-phone--HockeyMatch.Top.Stopwatch.png",
+  "frames": [
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/32-hockey-match-phone.jpg",
+  "element": "HockeyMatch.Top.Ear1",
+  "text": "",
+  "rect": [
+   381,
+   71,
+   15,
+   8
+  ],
+  "file": "elements/32-hockey-match-phone--HockeyMatch.Top.Ear1.png",
+  "frames": [
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/32-hockey-match-phone.jpg",
+  "element": "HockeyMatch.Top.Ear2",
+  "text": "",
+  "rect": [
+   447,
+   71,
+   15,
+   8
+  ],
+  "file": "elements/32-hockey-match-phone--HockeyMatch.Top.Ear2.png",
+  "frames": [
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/32-hockey-match-phone.jpg",
+  "element": "HockeyMatch.Top.Stem",
+  "text": "",
+  "rect": [
+   417,
+   68,
+   9,
+   7
+  ],
+  "file": "elements/32-hockey-match-phone--HockeyMatch.Top.Stem.png",
+  "frames": [
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/32-hockey-match-phone.jpg",
+  "element": "HockeyMatch.Top.Crown",
+  "text": "",
+  "rect": [
+   412,
+   64,
+   20,
+   7
+  ],
+  "file": "elements/32-hockey-match-phone--HockeyMatch.Top.Crown.png",
+  "frames": [
+   "32-hockey-match-phone",
+   "33-hockey-end-phone"
+  ]
+ },
+ {
+  "frame": "frames/32-hockey-match-phone.jpg",
+  "element": "HockeyMatch.Top.Exit",
+  "text": "",
+  "rect": [
+   546,
+   80,
+   66,
+   32
+  ],
+  "file": "elements/32-hockey-match-phone--HockeyMatch.Top.Exit.png",
+  "frames": [
+   "32-hockey-match-phone"
+  ]
+ },
+ {
+  "frame": "frames/32-hockey-match-phone.jpg",
+  "element": "HockeyMatch.Shoot",
+  "text": "",
+  "rect": [
+   636,
+   287,
+   93,
+   93
+  ],
+  "file": "elements/32-hockey-match-phone--HockeyMatch.Shoot.png",
+  "frames": [
+   "32-hockey-match-phone"
+  ]
+ },
+ {
+  "frame": "frames/33-hockey-end-pc.jpg",
+  "element": "HockeyMatch.Result",
+  "text": "DRAW",
+  "rect": [
+   870,
+   217,
+   277,
+   98
+  ],
+  "file": "elements/33-hockey-end-pc--HockeyMatch.Result.png",
+  "frames": [
+   "33-hockey-end-pc"
+  ]
+ },
+ {
+  "frame": "frames/33-hockey-end-phone.jpg",
+  "element": "HockeyMatch.Result",
+  "text": "DRAW",
+  "rect": [
+   296,
+   119,
+   252,
+   90
+  ],
+  "file": "elements/33-hockey-end-phone--HockeyMatch.Result.png",
+  "frames": [
+   "33-hockey-end-phone"
+  ]
+ }
+]

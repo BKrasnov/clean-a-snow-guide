@@ -32,4 +32,4 @@ Readable at small phone size, no extra objects, no watermark. Colours only from:
 
 - Попыток: 1. Лист разрезан на девять иконок `hotbar-<предмет>-256.png`: spoon, starter-shovel, steel-shovel, snow-pusher, ice-shovel, snow-vacuum (инструмент Snow Vacuum), turbo-vacuum (оружие `SnowVacuum`, Turbo Vacuum), molotov, donate-lock. Нарезка — сетка 3×3, в клетке самый большой кусок по альфе, квадрат с полем 12 px, альфа ниже 40 обнулена, 256×256.
 - Проверено: в середине предмета альфа 253–254, в углу 0; на тёмном дереве #80401B все девять читаются.
-- В Roblox не загружены (карточка `7852ff`): загрузка — только со слова владельца, до неё в игре 3D-модели. Загруженные id вписываются в `ICON_IMAGES` в `RunHotbarView.luau`.
+- В Roblox не загружены (карточка `7852ff`): загрузка — только со слова владельца, до неё в игре 3D-модели. Загруженные id вписываются в общую таблицу картинок `src/ReplicatedStorage/CleanSnow/Shared/ItemPictures.luau` (поле `id`, карточка `fbac38`).

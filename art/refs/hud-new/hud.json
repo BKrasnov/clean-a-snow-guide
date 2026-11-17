@@ -1,0 +1,271 @@
+{
+ "screens": [
+  {
+   "id": "run-pc",
+   "title": "Забег, компьютер (ключевой экран)",
+   "states": "образец вида для всех остальных референсов",
+   "current": [
+    "art/hud-current/frames/15-run-weapon-heat-pc.jpg"
+   ],
+   "reference": "art/refs/hud-new/key/run-pc.png"
+  },
+  {
+   "id": "lobby-pc",
+   "title": "Лобби, компьютер",
+   "states": "новый игрок до первого забега",
+   "current": [
+    "art/hud-current/frames/01-lobby-pc.jpg"
+   ],
+   "reference": "art/refs/hud-new/screens/lobby-pc.png"
+  },
+  {
+   "id": "lobby-phone",
+   "title": "Лобби, телефон",
+   "states": "экран 844x390, касание",
+   "current": [
+    "art/hud-current/frames/01-lobby-phone.jpg"
+   ],
+   "reference": "art/refs/hud-new/screens/lobby-phone.png"
+  },
+  {
+   "id": "run-phone",
+   "title": "Забег, телефон",
+   "states": "экран 844x390, касание, без наложений",
+   "current": [
+    "art/hud-current/frames/15-run-weapon-heat-phone.jpg"
+   ],
+   "reference": "art/refs/hud-new/screens/run-phone.png"
+  },
+  {
+   "id": "vehicle-pc",
+   "title": "Машина, компьютер",
+   "states": "в грузовике, надпись у стены участка",
+   "current": [
+    "art/hud-current/frames/22-vehicle-drive-truck-pc.jpg"
+   ],
+   "reference": "art/refs/hud-new/screens/vehicle-pc.png"
+  },
+  {
+   "id": "vehicle-phone",
+   "title": "Машина, телефон",
+   "states": "экран 844x390, касание",
+   "current": [
+    "art/hud-current/frames/22-vehicle-drive-truck-phone.jpg"
+   ],
+   "reference": "art/refs/hud-new/screens/vehicle-phone.png"
+  },
+  {
+   "id": "hockey-pc",
+   "title": "Хоккей, компьютер",
+   "states": "матч идёт",
+   "current": [
+    "art/hud-current/frames/32-hockey-match-pc.jpg"
+   ],
+   "reference": "art/refs/hud-new/screens/hockey-pc.png"
+  },
+  {
+   "id": "hockey-phone",
+   "title": "Хоккей, телефон",
+   "states": "экран 844x390, касание",
+   "current": [
+    "art/hud-current/frames/32-hockey-match-phone.jpg"
+   ],
+   "reference": "art/refs/hud-new/screens/hockey-phone.png"
+  }
+ ],
+ "elements": [
+  {
+   "id": "01-wallet-quick-menu",
+   "title": "Монеты, кристаллы и кнопки слева сверху",
+   "states": "обычное, число растёт",
+   "current": [
+    "art/hud-current/elements/01-lobby-pc--QuickMenu.png",
+    "art/hud-current/elements/01-lobby-pc--Currency.png"
+   ],
+   "reference": "art/refs/hud-new/elements/01-wallet-quick-menu.png"
+  },
+  {
+   "id": "02-side-menu",
+   "title": "Кнопки справа PETS, UPGR, INDEX",
+   "states": "обычное, UPGR подсвечен",
+   "current": [
+    "art/hud-current/elements/01-lobby-pc--SideMenu.png"
+   ],
+   "reference": "art/refs/hud-new/elements/02-side-menu.png"
+  },
+  {
+   "id": "03-more-actions",
+   "title": "MORE ACTIONS",
+   "states": "закрыто, открыто в лобби, открыто в забеге",
+   "current": [
+    "art/hud-current/elements/01-lobby-pc--ExpeditionActions.Toggle.png",
+    "art/hud-current/elements/02-lobby-more-actions-pc--ExpeditionActions.Truck.png",
+    "art/hud-current/elements/02-lobby-more-actions-pc--ExpeditionActions.Reward.png",
+    "art/hud-current/elements/02-lobby-more-actions-pc--ExpeditionActions.Wheel.png",
+    "art/hud-current/elements/02-lobby-more-actions-pc--ExpeditionActions.Lobby.png"
+   ],
+   "reference": "art/refs/hud-new/elements/03-more-actions.png"
+  },
+  {
+   "id": "04-first-run-plate",
+   "title": "Плашка первого забега",
+   "states": "только в лобби до первого забега",
+   "current": [
+    "art/hud-current/elements/01-lobby-pc--TutorialGuide.png"
+   ],
+   "reference": "art/refs/hud-new/elements/04-first-run-plate.png"
+  },
+  {
+   "id": "05-queue-countdown",
+   "title": "Отсчёт старта SOLO RUN",
+   "states": "на площадке старта",
+   "current": [
+    "art/hud-current/elements/03-queue-countdown-pc--QueueCountdown.Line.png"
+   ],
+   "reference": "art/refs/hud-new/elements/05-queue-countdown.png"
+  },
+  {
+   "id": "06-round-status",
+   "title": "Таймер, участок, полоса расчистки",
+   "states": "открытый участок, мало времени, Locked",
+   "current": [
+    "art/hud-current/elements/04-run-start-pc--RoundStatus.png"
+   ],
+   "reference": "art/refs/hud-new/elements/06-round-status.png"
+  },
+  {
+   "id": "07-bucket-counter",
+   "title": "Ведро и кузов, BUCKET FULL / CARGO FULL",
+   "states": "пустое, с ценой, полное; кузов машины",
+   "current": [
+    "art/hud-current/elements/04-run-start-pc--Bag.png",
+    "art/hud-current/elements/10-run-bucket-full-pc--BagFullText.png",
+    "art/hud-current/elements/24-vehicle-cargo-full-pc--BagFullText.png"
+   ],
+   "reference": "art/refs/hud-new/elements/07-bucket-counter.png"
+  },
+  {
+   "id": "08-tool-bar",
+   "title": "Панель инструментов и полоса оружия",
+   "states": "2 ячейки, 7 ячеек; нагрев, перегрев, ожидание Молотова",
+   "current": [
+    "art/hud-current/elements/04-run-start-pc--Hotbar.png",
+    "art/hud-current/elements/15-run-weapon-heat-pc--Hotbar.png",
+    "art/hud-current/elements/15-run-weapon-heat-pc--WeaponStatus.Frame.png",
+    "art/hud-current/elements/16-run-weapon-overheat-pc--WeaponStatus.Frame.png",
+    "art/hud-current/elements/17-run-molotov-wait-pc--WeaponStatus.Frame.png"
+   ],
+   "reference": "art/refs/hud-new/elements/08-tool-bar.png"
+  },
+  {
+   "id": "09-aim-target",
+   "title": "Прицел и имя снега под ним",
+   "states": "без цели, на снегу, редкий снег",
+   "current": [
+    "art/hud-current/elements/04-run-start-pc--Reticle.png",
+    "art/hud-current/elements/11b-run-target-pc--TargetInfo.png"
+   ],
+   "reference": "art/refs/hud-new/elements/09-aim-target.png"
+  },
+  {
+   "id": "10-task-line",
+   "title": "Задание по центру внизу",
+   "states": "четыре шага первого забега",
+   "current": [
+    "art/hud-current/elements/04-run-start-pc--SnowTask.png",
+    "art/hud-current/elements/06-run-bring-snow-pc--SnowTask.png",
+    "art/hud-current/elements/07-run-selling-pc--SnowTask.png",
+    "art/hud-current/elements/09-run-shovel-count-pc--SnowTask.png"
+   ],
+   "reference": "art/refs/hud-new/elements/10-task-line.png"
+  },
+  {
+   "id": "11-toast",
+   "title": "Всплывающие плашки",
+   "states": "сдача, переработка, отказ",
+   "current": [
+    "art/hud-current/elements/07-run-selling-pc--Toast.png",
+    "art/hud-current/elements/11-run-toast-pc--Toast.png",
+    "art/hud-current/elements/09-run-shovel-count-pc--Toast.png"
+   ],
+   "reference": "art/refs/hud-new/elements/11-toast.png"
+  },
+  {
+   "id": "12-upgrade-hint",
+   "title": "Подсказка OPEN UPGRADES / LATER",
+   "states": "после первых монет",
+   "current": [
+    "art/hud-current/elements/08-run-hold-focus-pc--SnowUpgradeFocus.Hint.png",
+    "art/hud-current/elements/08-run-hold-focus-pc--SnowUpgradeFocus.Later.png"
+   ],
+   "reference": "art/refs/hud-new/elements/12-upgrade-hint.png"
+  },
+  {
+   "id": "13-seed-find",
+   "title": "Найденное семечко и счётчик семян",
+   "states": "находка обычная и редкая, счётчик",
+   "current": [
+    "art/hud-current/elements/12-run-seed-found-pc--SeedFind.png",
+    "art/hud-current/elements/12-run-seed-found-pc--SeedCounter.png"
+   ],
+   "reference": "art/refs/hud-new/elements/13-seed-find.png"
+  },
+  {
+   "id": "14-save-note",
+   "title": "YOUR PROGRESS SAVES",
+   "states": "пока открыто меню Roblox",
+   "current": [
+    "art/hud-current/elements/18-run-save-note-pc--SnowSaveReminder.Reminder.png"
+   ],
+   "reference": "art/refs/hud-new/elements/14-save-note.png"
+  },
+  {
+   "id": "15-zone-notice",
+   "title": "Надпись у стены участка",
+   "states": "у закрытого участка",
+   "current": [
+    "art/hud-current/elements/22-vehicle-drive-truck-pc--ZoneWallText.png"
+   ],
+   "reference": "art/refs/hud-new/elements/15-zone-notice.png"
+  },
+  {
+   "id": "16-hockey-teams",
+   "title": "Панель команд хоккея",
+   "states": "у катка после E",
+   "current": [
+    "art/hud-current/elements/31-hockey-team-panel-pc--HockeyTeams.Panel.png"
+   ],
+   "reference": "art/refs/hud-new/elements/16-hockey-teams.png"
+  },
+  {
+   "id": "17-hockey-match",
+   "title": "Матч хоккея: счёт, клюшка, табло",
+   "states": "матч, победа, ничья",
+   "current": [
+    "art/hud-current/elements/32-hockey-match-pc--HockeyMatch.Top.png",
+    "art/hud-current/elements/32-hockey-match-pc--HockeyMatch.Shoot.png",
+    "art/hud-current/elements/33-hockey-end-pc--HockeyMatch.Result.png"
+   ],
+   "reference": "art/refs/hud-new/elements/17-hockey-match.png"
+  },
+  {
+   "id": "18-action-button",
+   "title": "Кнопка действия для пальца",
+   "states": "SCOOP, нажата, TAP; только телефон",
+   "current": [
+    "art/hud-current/elements/04-run-start-phone--ActionButton.png"
+   ],
+   "reference": "art/refs/hud-new/elements/18-action-button.png"
+  },
+  {
+   "id": "19-prompts",
+   "title": "Подсказки E и табличка SELL",
+   "states": "сейчас их рисует сам Roblox",
+   "current": [
+    "art/hud-current/frames/prompt-queue-plate.jpg",
+    "art/hud-current/frames/prompt-bucket-full-sell.jpg"
+   ],
+   "reference": "art/refs/hud-new/elements/19-prompts.png"
+  }
+ ]
+}

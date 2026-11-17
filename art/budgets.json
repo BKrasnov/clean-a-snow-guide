@@ -71,5 +71,10 @@
   },
   "models": {
     "grinch*": "boss"
+  },
+  "vfx": {
+    "status": "предложено карточкой d53b16 15.11.2026, не утверждено владельцем",
+    "note": "Пик видимых деталей эффекта на один удар по одному участку, пробник CASLOAD: папки SnowBreakFlash, SnowBreakBurst, SnowIslandRing и видимые точки SnowCollectFlight. Спека docs/superpowers/specs/2026-11-15-snow-removal-vfx-design.md.",
+    "snowStrike": { "High": 300, "Low": 170, "ReducedMotion": 170, "LowShareOfHighForBreaks": 0.6 }
   }
 }
