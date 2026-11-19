@@ -293,8 +293,73 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <section class="part"><h2>Доска</h2><div class="board-filters" role="group" aria-label="Кто делает"><button type="button" data-person-filter="all" aria-pressed="true">Все</button><button type="button" data-person-filter="Богдан" aria-pressed="false">Богдан</button><button type="button" data-person-filter="Леонид" aria-pressed="false">Леонид</button><button type="button" data-person-filter="Георгий" aria-pressed="false">Георгий</button></div>
 <div class="board-filters" role="group" aria-label="Порядок карточек"><button type="button" data-board-sort="new" aria-pressed="true">Сначала новые</button><button type="button" data-board-sort="old" aria-pressed="false">Как раньше</button></div>
 <div class="board-columns"><section class="board-column" data-status="todo">
-  <h3>К выполнению <span class="board-count">5</span></h3>
-  <div class="board-cards"><article class="board-card" id="card-37c370" data-person="Богдан" data-status="todo" data-new-rank="2" data-old-rank="214">
+  <h3>К выполнению <span class="board-count">8</span></h3>
+  <div class="board-cards"><article class="board-card" id="card-c20fa0" data-person="Богдан" data-status="todo" data-new-rank="-3" data-old-rank="221">
+  <h3>Сильная просадка FPS при сломе снега</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>c20fa0</code> баг · bug</p>
+  <p class="board-origin">Автор: <span class="board-author" data-author="Пользователь">Пользователь</span> <time datetime="2026-11-19T21:27:24+03:00">19.11 21:27</time></p>
+  <p class="board-lead">Воспроизвести и исправить `BUG-20261119-004` из `tasks/bugs.md`.</p>
+
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Воспроизвести и исправить <code>BUG-20261119-004</code> из <code>tasks/bugs.md</code>.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> В Studio воспроизведён слом уже прогруженного снега. В журнале указаны версия плейса, инструмент, качество графики и замер времени кадра.</li>
+<li><input disabled="" type="checkbox"> Повтор того же сценария после исправления подтверждает, что одиночный слом и несколько сломов подряд проходят без заметного рывка. Замеры до и после приложены.</li>
+<li><input disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Журнал: <code>BUG-20261119-004</code>.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-b9145a" data-person="Богдан" data-status="todo" data-new-rank="-2" data-old-rank="220">
+  <h3>Сильные лаги при повторной подгрузке снега</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>b9145a</code> баг · bug</p>
+  <p class="board-origin">Автор: <span class="board-author" data-author="Пользователь">Пользователь</span> <time datetime="2026-11-19T21:27:24+03:00">19.11 21:27</time></p>
+  <p class="board-lead">Воспроизвести и исправить `BUG-20261119-005` из `tasks/bugs.md`.</p>
+
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Воспроизвести и исправить <code>BUG-20261119-005</code> из <code>tasks/bugs.md</code>.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> В Studio воспроизведён маршрут с выгрузкой снега и возвращением. В журнале указаны версия плейса, качество графики и замер времени кадра.</li>
+<li><input disabled="" type="checkbox"> На том же маршруте снег повторно появляется без заметного рывка, а расчищенные места остаются чистыми. Замеры до и после приложены.</li>
+<li><input disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Журнал: <code>BUG-20261119-005</code>.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-7fdc78" data-person="Богдан" data-status="todo" data-new-rank="-1" data-old-rank="219">
+  <h3>Автоматически собирать небольшие отрезанные куски снега</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>7fdc78</code> фича · clearing</p>
+  <p class="board-origin">Автор: <span class="board-author" data-author="Пользователь">Пользователь</span> <time datetime="2026-11-19T21:27:24+03:00">19.11 21:27</time></p>
+  <p class="board-lead">Когда игрок уборкой полностью отделяет небольшой кусок от остального снега, кусок сразу исчезает с земли, а оставшийся в нём снег зачисляется в инвентарь этого игрока.</p>
+
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Когда игрок уборкой полностью отделяет небольшой кусок от остального снега, кусок сразу исчезает с земли, а оставшийся в нём снег зачисляется в инвентарь этого игрока.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> После последнего прохода по перемычке небольшой кусок исчезает сам, и его объём зачисляется в инвентарь ровно один раз.</li>
+<li><input disabled="" type="checkbox"> Кусок, который ещё соединён со снежным полем, и отрезанный кусок больше согласованного порога остаются на земле.</li>
+<li><input disabled="" type="checkbox"> Поведение при полном инвентаре согласовано и проверено. Снег учитывается ровно один раз даже при одновременной уборке двумя игроками.</li>
+<li><input disabled="" type="checkbox"> В Studio проверен сценарий с отрезанием куска, снят и просмотрен кадр результата.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 19.11.2026: небольшие отрезанные куски автоматически убираются и зачисляются в инвентарь.</li>
+<li>При реализации уточнить порог размера и поведение при нехватке места. В спеке нового снега обновить правило, по которому отрезанный снег сейчас остаётся лежать.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-37c370" data-person="Богдан" data-status="todo" data-new-rank="2" data-old-rank="214">
   <h3>Rejoin: вернуться к отряду после вылета</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>37c370</code> фича · progression</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Богдан">Богдан</span> <time datetime="2026-11-17T15:46:01+07:00">17.11 15:46</time></p>
