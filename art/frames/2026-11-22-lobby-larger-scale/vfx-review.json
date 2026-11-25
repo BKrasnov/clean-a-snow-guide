@@ -1,0 +1,31 @@
+{
+  "verdict": "pass",
+  "blocked": false,
+  "round": 1,
+  "version": "1ade52979f3543bced0b51788648210e0015b9e99d666cf0698910c5c8ad1e1f",
+  "scores": { "clarity": 9, "style": 9 },
+  "reviewer": "/root/start_light_vfx_review",
+  "checks": [
+    { "id": "clarity", "result": "pass", "frames": ["gate.png", "services.png", "low.png", "reduced.png"], "note": "От входа различимы шесть зон в двух рядах у оград и широкий центральный проход. Отдельный ракурс показывает свободный подход к стендам. С уровня игрока внутри контура виден общий настил." },
+    { "id": "style", "result": "pass", "frames": ["gate.png", "reduced.png", "space-and-glow.png"], "note": "Широкий белый контур и прозрачный свет, растворяющийся вверх, сохраняют характер утверждённого референса. Фактура настила видна внутри зон. Цвет унаследован от предыдущей версии эффекта и соответствует снежному #F3F6F5." },
+    { "id": "timing", "result": "n/a", "frames": ["gate.png", "low.png", "reduced.png"], "note": "По спеке свечение постоянно. Фазы вспышки, разлёта и затухания во времени не применяются." },
+    { "id": "low", "result": "pass", "frames": ["low.png"], "note": "При игровом SnowQuality=Low различимы все шесть увеличенных контуров. Свет оставляет центральный проход визуально свободным." },
+    { "id": "reduced_motion", "result": "pass", "frames": ["reduced.png"], "note": "При активном уменьшении движения видны яркий край, настил внутри и просвечивающая кайма над границей." },
+    { "id": "target", "result": "pass", "frames": ["gate.png", "services.png", "player.png", "reduced.png"], "note": "Эффект остаётся у пола. Контуры отделены от витрин, а подсказка старта полностью читается." },
+    { "id": "load", "result": "pass", "frames": [], "note": "До и после шести запусков журнал фиксирует по 102 Beam, 108 Attachment, 6 скрытых маркеров и 234 потомка. Частиц и видимых деталей нет. Лимиты в 120 лучей и 120 точек крепления соблюдены." }
+  ],
+  "issues": [
+    { "severity": "minor", "frame": "player.png", "where": "Левая треть кадра на высоте игрока", "problem": "Объект на переднем плане закрывает часть зон в этом ракурсе. Читаемость эффекта на высоте игрока подтверждает открытый ракурс reduced.png." }
+  ],
+  "plan": [],
+  "missing": [],
+  "frames_viewed": [
+    "C:/Users/Антон/Documents/ChatGPT/Clean a snow/art/frames/2026-11-22-lobby-larger-scale/gate.png",
+    "C:/Users/Антон/Documents/ChatGPT/Clean a snow/art/frames/2026-11-22-lobby-larger-scale/services.png",
+    "C:/Users/Антон/Documents/ChatGPT/Clean a snow/art/frames/2026-11-22-lobby-larger-scale/player.png",
+    "C:/Users/Антон/Documents/ChatGPT/Clean a snow/art/frames/2026-11-22-lobby-larger-scale/low.png",
+    "C:/Users/Антон/Documents/ChatGPT/Clean a snow/art/frames/2026-11-22-lobby-larger-scale/reduced.png",
+    "C:/Users/Антон/Documents/ChatGPT/Clean a snow/art/refs/winter-lobby/space-and-glow.png"
+  ],
+  "limits": "Low подтверждён для игрового SnowQuality при уровне графики Roblox 10. Кадры сняты на настольном экране 1618 × 801. Физические телефоны и планшеты не проверялись. Размеры и шесть успешных запусков подтверждены переданными замерами и журналом."
+}

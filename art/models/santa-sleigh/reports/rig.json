@@ -1,0 +1,39 @@
+{
+  "triangles_budget": 4000,
+  "bones": 49,
+  "maximum_weights_per_vertex": 2,
+  "probe_poses": [
+    {
+      "bones_rotated": [
+        "Santa_Head",
+        "Santa_Forearm_R",
+        "Santa_Hand_L",
+        "Deer_R_ForeUpper_R",
+        "Deer_R_ForeLower_R",
+        "Deer_L_Head",
+        "Deer_L_HindUpper_L",
+        "Deer_R_Neck"
+      ],
+      "max_displacement_m": 0.3,
+      "overlapping_face_pairs": 0
+    },
+    {
+      "bones_rotated": [
+        "Sleigh",
+        "Santa_Spine",
+        "Santa_Forearm_L",
+        "Deer_L_ForeUpper_L",
+        "Deer_R_HindUpper_R",
+        "Deer_L_Tail"
+      ],
+      "max_displacement_m": 0.322,
+      "overlapping_face_pairs": 0
+    }
+  ],
+  "fbx_roundtrip": {
+    "vertices": 2070,
+    "bones": 49,
+    "triangles": 3528,
+    "embedded_palette": true
+  }
+}

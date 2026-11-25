@@ -1,0 +1,153 @@
+{
+  "dimensions": {
+    "width": 2.6684,
+    "depth": 3.4496,
+    "height": 2.926,
+    "min_z": 0.0,
+    "center": [
+      0.0686,
+      0.0,
+      1.463
+    ]
+  },
+  "totals": {
+    "tris": 2960,
+    "verts": 1690,
+    "meshes": 5,
+    "touching_verts": 0,
+    "materials": [
+      "M_ProcessorTower"
+    ],
+    "bones": 0,
+    "textures": [
+      {
+        "name": "ProcessorTower_Palette",
+        "size": [
+          32,
+          8
+        ]
+      }
+    ]
+  },
+  "objects": [
+    {
+      "name": "ProcessorTower",
+      "tris": 1920,
+      "verts": 1066,
+      "parts": 61,
+      "touching_verts": 0,
+      "materials": [
+        "M_ProcessorTower"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Front_Lower",
+      "tris": 260,
+      "verts": 156,
+      "parts": 13,
+      "touching_verts": 0,
+      "materials": [
+        "M_ProcessorTower"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Front_Upper",
+      "tris": 260,
+      "verts": 156,
+      "parts": 13,
+      "touching_verts": 0,
+      "materials": [
+        "M_ProcessorTower"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Rear_Lower",
+      "tris": 260,
+      "verts": 156,
+      "parts": 13,
+      "touching_verts": 0,
+      "materials": [
+        "M_ProcessorTower"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Rear_Upper",
+      "tris": 260,
+      "verts": 156,
+      "parts": 13,
+      "touching_verts": 0,
+      "materials": [
+        "M_ProcessorTower"
+      ],
+      "modifiers": []
+    }
+  ],
+  "issues": [],
+  "ok": true,
+  "budget": {
+    "class": "big_prop",
+    "rows": [
+      {
+        "key": "tris",
+        "value": 2960,
+        "limit": 3000,
+        "ok": true
+      },
+      {
+        "key": "materials",
+        "value": 1,
+        "limit": 2,
+        "ok": true
+      },
+      {
+        "key": "bones",
+        "value": 0,
+        "limit": 0,
+        "ok": true
+      },
+      {
+        "key": "textureSize",
+        "value": 32,
+        "limit": 256,
+        "ok": true
+      }
+    ]
+  },
+  "assembly": {
+    "mesh_triangles": {
+      "ProcessorTower": 1920,
+      "Front_Lower": 260,
+      "Front_Upper": 260,
+      "Rear_Lower": 260,
+      "Rear_Upper": 260
+    },
+    "dimensions_studs": [
+      9.53,
+      12.32,
+      10.45
+    ],
+    "materials": 1,
+    "texture": [
+      32,
+      8
+    ],
+    "class_limits": {
+      "big_prop": 3000
+    },
+    "coplanar_overlaps": [],
+    "scale_player_studs": 5.1
+  },
+  "rotation": {
+    "local_axis": "X",
+    "steps_per_revolution": 360,
+    "rotor_housing_contacts": 0,
+    "minimum_inter_rotor_clearance_studs": {
+      "Front": 0.2851,
+      "Rear": 0.2851
+    }
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "assets": {
+    "Classes": {
+      "stud_bounds": [
+        [
+          -4.71,
+          4.7
+        ],
+        [
+          -3.23,
+          2.64
+        ],
+        [
+          0.0,
+          9.593
+        ]
+      ],
+      "triangles": 5172,
+      "material_slots": 1,
+      "close_coplanar_pairs": [],
+      "nonmanifold_edges_after_position_weld": 0
+    },
+    "Leaderboard01": {
+      "stud_bounds": [
+        [
+          -3.02,
+          3.02
+        ],
+        [
+          -0.505,
+          0.56
+        ],
+        [
+          0.0,
+          8.72
+        ]
+      ],
+      "triangles": 2736,
+      "material_slots": 1,
+      "close_coplanar_pairs": [],
+      "nonmanifold_edges_after_position_weld": 0
+    },
+    "Leaderboard02": {
+      "stud_bounds": [
+        [
+          -3.02,
+          3.02
+        ],
+        [
+          -0.505,
+          0.56
+        ],
+        [
+          0.0,
+          9.6
+        ]
+      ],
+      "triangles": 2736,
+      "material_slots": 1,
+      "close_coplanar_pairs": [],
+      "nonmanifold_edges_after_position_weld": 0
+    },
+    "Leaderboard03": {
+      "stud_bounds": [
+        [
+          -3.02,
+          3.02
+        ],
+        [
+          -0.505,
+          0.56
+        ],
+        [
+          0.0,
+          8.72
+        ]
+      ],
+      "triangles": 2736,
+      "material_slots": 1,
+      "close_coplanar_pairs": [],
+      "nonmanifold_edges_after_position_weld": 0
+    },
+    "PrizeWheel": {
+      "stud_bounds": [
+        [
+          -2.8,
+          2.954
+        ],
+        [
+          -1.927,
+          1.927
+        ],
+        [
+          0.0,
+          6.51
+        ]
+      ],
+      "triangles": 1396,
+      "material_slots": 1,
+      "close_coplanar_pairs": [],
+      "nonmanifold_edges_after_position_weld": 0
+    },
+    "Rewards": {
+      "stud_bounds": [
+        [
+          -4.71,
+          4.7
+        ],
+        [
+          -3.23,
+          2.636
+        ],
+        [
+          0.0,
+          9.622
+        ]
+      ],
+      "triangles": 4352,
+      "material_slots": 1,
+      "close_coplanar_pairs": [],
+      "nonmanifold_edges_after_position_weld": 0
+    },
+    "Upgrades": {
+      "stud_bounds": [
+        [
+          -4.71,
+          4.7
+        ],
+        [
+          -3.23,
+          2.614
+        ],
+        [
+          0.0,
+          9.596
+        ]
+      ],
+      "triangles": 4108,
+      "material_slots": 1,
+      "close_coplanar_pairs": [],
+      "nonmanifold_edges_after_position_weld": 0
+    }
+  },
+  "intersecting_model_pairs": {},
+  "avatar_height_studs": 5.1
+}

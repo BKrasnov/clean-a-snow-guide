@@ -1,0 +1,69 @@
+{
+  "reviewer": "feature-vfx-critic",
+  "verdict": "pass",
+  "blocked": false,
+  "round": 1,
+  "version": "B192351368CB9480FC0BD4E591CA5D0808C0EE89265D7DA5F7FF5EC053FF9425",
+  "scores": {
+    "clarity": 9,
+    "style": 9
+  },
+  "checks": [
+    {
+      "id": "clarity",
+      "result": "pass",
+      "frames": [
+        "gate.png",
+        "player.png"
+      ],
+      "note": "От ворот читаются шесть зон и центральный проход, на уровне игрока виден непрерывный настил."
+    },
+    {
+      "id": "style",
+      "result": "pass",
+      "frames": [
+        "gate.png",
+        "reduced.png"
+      ],
+      "note": "Белая линия и мягкое голубое свечение сохраняют световой рисунок референса."
+    },
+    {
+      "id": "timing",
+      "result": "n/a",
+      "note": "Контуры постоянно видимы по спеке."
+    },
+    {
+      "id": "low",
+      "result": "pass",
+      "frames": [
+        "low.png"
+      ]
+    },
+    {
+      "id": "reduced_motion",
+      "result": "pass",
+      "frames": [
+        "reduced.png"
+      ]
+    },
+    {
+      "id": "target",
+      "result": "pass",
+      "frames": [
+        "gate.png",
+        "player.png",
+        "reduced.png"
+      ],
+      "note": "Проход и подсказка START A RUN остаются различимы."
+    },
+    {
+      "id": "load",
+      "result": "pass",
+      "note": "До и после шести запусков показатели одинаковы. 72 Beam, 48 Attachment, 6 невидимых маркеров, 0 частиц, 144 потомка."
+    }
+  ],
+  "issues": [],
+  "plan": [],
+  "missing": [],
+  "limits": "Low подтверждён для игровой настройки SnowQuality. Общий уровень графики Roblox оставался 10. Телефоны и планшеты в материалах не представлены."
+}

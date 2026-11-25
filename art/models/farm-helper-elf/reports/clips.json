@@ -1,0 +1,22 @@
+{
+  "actions": {
+    "Idle": {
+      "frames": 64,
+      "closure": 0.0,
+      "overlaps": {}
+    },
+    "Walk": {
+      "frames": 32,
+      "closure": 0.0,
+      "overlaps": {}
+    },
+    "Dig": {
+      "frames": 80,
+      "closure": 0.0,
+      "overlaps": {}
+    }
+  },
+  "dig_max_wrist_target_error_m": 3.0555738491955507e-08,
+  "tris": 1104,
+  "bones": 17
+}

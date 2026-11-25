@@ -1,0 +1,935 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>superpowers/specs/2026-11-22-snow-flow-review.md — Clean a Snow</title>
+<style>/* Цвета взяты с кадров игры: снег, тёмно-синие плашки HUD, дерево домиков, золото монет. */
+:root {
+  --snow: #EEF3F8;
+  --ink: #1D2740;
+  --wood: #9A5A2C;
+  --wood-dark: #5E3417;
+  --gold: #F2C230;
+  --ice: #4A90C8;
+  --ice-dark: #234E78;
+  --muted: #7C8798;
+  --paper: #FFFFFF;
+}
+* { box-sizing: border-box; }
+/* Своё display у блока не должно отменять атрибут hidden. */
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+body { margin: 0; background: var(--snow); color: var(--ink); font: 16px/1.55 "Segoe UI", system-ui, sans-serif; }
+a { color: var(--ice-dark); }
+code { font-family: Consolas, "Cascadia Mono", monospace; font-size: .9em; background: rgba(29, 39, 64, .07); padding: 0 .3em; border-radius: 4px; overflow-wrap: anywhere; }
+pre { white-space: pre-wrap; word-break: break-word; background: rgba(29, 39, 64, .06); padding: 12px; border-radius: 8px; font-size: 13px; }
+pre code { background: none; padding: 0; }
+
+.topbar { position: sticky; top: 0; z-index: 5; display: flex; gap: 16px; align-items: center; padding: 10px 20px; background: var(--ink); color: var(--snow); }
+.topbar .brand { color: var(--snow); font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap; }
+.topbar .top-link, #menu { white-space: nowrap; }
+.topbar .hint { margin-left: auto; font-size: 13px; color: var(--gold); }
+.topbar .hint code { background: rgba(238, 243, 248, .12); color: var(--snow); }
+.topbar .top-link { color: var(--snow); text-decoration: none; font-weight: 600; padding: 5px 12px; border: 2px solid var(--gold); border-radius: 6px; background: transparent; font: inherit; cursor: pointer; }
+.topbar .top-link:hover, .topbar .top-link[aria-current="page"] { background: var(--gold); color: var(--ink); }
+#menu { display: none; background: var(--wood); color: var(--snow); border: 0; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+
+/* Тестирование: группы сворачиваются, у пункта — галочка, у группы — счётчик отмеченных. */
+.test-total { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 15px; }
+#test-reset { background: transparent; color: var(--wood); border: 2px solid var(--wood); border-radius: 6px; padding: 4px 12px; font: inherit; font-weight: 600; cursor: pointer; }
+#test-reset:hover { background: var(--wood); color: var(--snow); }
+.test-group { margin: 14px 0; border: 2px solid rgba(29, 39, 64, .12); border-radius: 8px; background: rgba(255, 255, 255, .5); }
+.test-group > summary { cursor: pointer; padding: 10px 14px; font-weight: 700; font-size: 18px; }
+.test-group .test-count { margin-left: 8px; font-size: 13px; font-weight: 600; color: var(--wood); }
+.test-group.test-finished .test-count { color: var(--ice); }
+.test-task { padding: 4px 16px 12px; border-top: 1px solid rgba(29, 39, 64, .08); }
+.test-task h4 { margin: 10px 0 6px; }
+.test-item { display: flex; gap: 10px; align-items: flex-start; padding: 5px 4px; border-radius: 6px; line-height: 1.4; cursor: pointer; }
+.test-item:hover { background: rgba(154, 90, 44, .08); }
+.test-item input { width: 18px; height: 18px; margin-top: 2px; flex: none; accent-color: var(--wood); }
+.test-item:has(input:checked) > span:first-of-type { color: rgba(29, 39, 64, .55); text-decoration: line-through; }
+.test-people { margin-left: auto; flex: none; font-size: 12px; font-weight: 700; color: var(--wood); white-space: nowrap; }
+
+/* Вопросы: карточка вопроса, общая галочка «Ответ дан»; отвеченный вопрос бледнеет. */
+.question { margin: 14px 0; padding: 4px 16px 10px; border: 2px solid rgba(29, 39, 64, .12); border-radius: 8px; background: rgba(255, 255, 255, .5); }
+.question h3 { margin: 10px 0 6px; }
+.question-status { margin: 4px 0; font-size: 13px; font-weight: 600; color: var(--wood); }
+.answer-mark { display: inline-flex; gap: 8px; align-items: center; padding: 4px 10px; border: 2px solid var(--wood); border-radius: 6px; font-weight: 700; color: var(--wood); cursor: pointer; }
+.answer-mark input { width: 18px; height: 18px; margin: 0; accent-color: var(--ice); }
+.question-answered { border-color: var(--ice); }
+.question-answered .answer-mark { border-color: var(--ice); color: var(--ice-dark); }
+.question-answered > .prose { opacity: .55; }
+/* HUD: слева как сейчас, справа референс, отметка Approved под парой; на узком экране пара в столбик. */
+.hud-row { margin: 14px 0; padding: 4px 16px 12px; border: 2px solid rgba(29, 39, 64, .12); border-radius: 8px; background: rgba(255, 255, 255, .5); }
+.hud-row h4 { margin: 10px 0 2px; color: var(--ice-dark); font-size: 17px; }
+.hud-states { margin: 0 0 8px; font-size: 13px; color: var(--muted); }
+.hud-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 10px; }
+.hud-pair figure { margin: 0; min-width: 0; }
+.hud-pair figcaption { margin-bottom: 4px; font-size: 13px; font-weight: 700; color: var(--wood); }
+.hud-now, .hud-ref { display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-start; }
+.hud-now img { max-width: 100%; max-height: 260px; object-fit: contain; border-radius: 6px; cursor: zoom-in; }
+.hud-ref img { width: 100%; border-radius: 6px; cursor: zoom-in; }
+.hud-approved { border-color: var(--ice); }
+.hud-approved .answer-mark { border-color: var(--ice); color: var(--ice-dark); }
+@media (max-width: 700px) { .hud-pair { grid-template-columns: 1fr; } }
+
+html:not(.site-open) .topbar,
+html:not(.site-open) .layout,
+html:not(.site-open) #viewer { display: none !important; }
+.site-lock { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; padding: 24px; background: var(--snow); }
+html.site-open .site-lock { display: none !important; }
+.site-lock-card { display: grid; gap: 10px; width: min(420px, 100%); padding: 16px; background: var(--paper); border: 2px solid var(--ink); border-radius: 10px; }
+.site-lock-card p { margin: 0; }
+.site-lock-card label { display: grid; gap: 4px; font-weight: 700; }
+.site-lock-card input { font: inherit; padding: 8px 10px; border: 2px solid var(--ink); border-radius: 6px; }
+.site-lock-card button, .board-filters button { font: inherit; font-weight: 700; padding: 6px 14px; border: 2px solid var(--ink); border-radius: 6px; background: var(--paper); color: var(--ink); cursor: pointer; }
+.site-lock-card button { justify-self: start; background: var(--gold); }
+.site-lock-error { color: var(--wood-dark); font-weight: 700; }
+.board-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 14px; }
+.board-filters button[aria-pressed="true"] { background: var(--ink); color: var(--snow); }
+.board-columns { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; align-items: start; }
+.board-column { background: rgba(255, 255, 255, .55); border: 1px solid rgba(29, 39, 64, .1); border-radius: 10px; padding: 10px; }
+.board-column > h3 { margin: 0 0 8px; font-size: 15px; }
+.board-count { display: inline-block; min-width: 1.4em; padding: 0 6px; border-radius: 999px; background: var(--ink); color: var(--snow); font-size: 12px; text-align: center; }
+.board-card { margin: 0 0 8px; padding: 10px 12px; background: var(--paper); border: 1px solid rgba(29, 39, 64, .12); border-radius: 8px; }
+.board-card h3 { margin: 0 0 6px; font-size: 16px; }
+.board-meta, .board-lead, .board-empty { margin: 0 0 6px; }
+.board-empty { color: var(--muted); }
+.board-origin { margin: 0 0 6px; color: var(--muted); font-size: 13px; }
+.board-author { font-weight: 700; color: var(--ink); }
+.board-archive { color: var(--muted); font-size: 12px; }
+.person { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+.person[data-person="Богдан"] { background: var(--gold); }
+.person[data-person="Леонид"] { background: var(--ice); color: var(--snow); }
+.person[data-person="Георгий"] { background: var(--wood); color: var(--snow); }
+.board-shots { display: grid; gap: 8px; margin: 0 0 8px; }
+.board-shots img { width: 100%; height: auto; border-radius: 6px; }
+.board-card details { margin-top: 4px; }
+.board-card summary { cursor: pointer; font-weight: 600; }
+@media (max-width: 1100px) {
+  .board-columns { grid-template-columns: 1fr 1fr; }
+}
+
+.layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); }
+#sidebar { position: sticky; top: 52px; align-self: start; height: calc(100vh - 52px); overflow-y: auto; padding: 16px 12px; border-right: 2px solid rgba(29, 39, 64, .1); }
+#sidebar ul { list-style: none; margin: 0; padding: 0; }
+#sidebar li a { display: block; padding: 6px 10px; border-radius: 6px; color: var(--ink); text-decoration: none; font-weight: 600; }
+#sidebar li a:hover, #sidebar li a[aria-current="page"] { background: var(--ice-dark); color: var(--snow); }
+#sidebar ul ul a { font-weight: 400; font-size: 14px; padding-left: 22px; }
+/* Сворачиваемый раздел: стрелка браузера слева сворачивает, ссылка рядом открывает страницу раздела. */
+#sidebar summary { cursor: pointer; color: var(--ice-dark); font-size: 15px; padding: 0 0 0 6px; border-radius: 6px; }
+#sidebar summary:hover { background: rgba(74, 144, 200, .14); }
+#sidebar summary a { display: inline-block; width: calc(100% - 22px); vertical-align: middle; }
+
+main { padding: 8px 32px 64px; max-width: 1280px; }
+.part { padding-top: 16px; padding-bottom: 24px; }
+.part > h2 { font-size: 28px; margin: 12px 0 16px; color: var(--wood-dark); }
+.toc { margin: 0 0 18px; }
+.toc ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { display: inline-block; padding: 4px 10px; border-radius: 999px; background: var(--paper); color: var(--ice-dark); text-decoration: none; font-weight: 600; font-size: 14px; }
+.toc a:hover { background: var(--ice-dark); color: var(--snow); }
+h3 { color: var(--ice-dark); margin-top: 28px; }
+.prose { max-width: 900px; }
+.prose table { border-collapse: collapse; margin: 12px 0; display: block; overflow-x: auto; }
+.prose th, .prose td { border: 1px solid rgba(29, 39, 64, .2); padding: 6px 10px; text-align: left; vertical-align: top; }
+.prose th { background: rgba(74, 144, 200, .14); }
+.prose img { max-width: 100%; border-radius: 8px; }
+.prose.small, .small { font-size: 14px; }
+.doc { background: var(--paper); border-radius: 12px; padding: 4px 24px 16px; margin: 0 0 20px; box-shadow: 0 1px 0 rgba(29, 39, 64, .1); }
+.doc .path { margin: 12px 0 0; font-size: 13px; color: var(--muted); }
+.lead { font-size: 17px; max-width: 900px; }
+.source { font-size: 13px; color: var(--muted); }
+
+.gallery { margin: 8px 0 28px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.shot { margin: 0; background: var(--paper); border-radius: 10px; padding: 8px; }
+.shot img { width: 100%; height: 190px; object-fit: cover; border-radius: 6px; cursor: zoom-in; display: block; }
+.shot figcaption { font-size: 14px; padding: 6px 2px 0; }
+.shot details { font-size: 13px; }
+.shot summary { cursor: pointer; color: var(--ice-dark); }
+.tag { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 999px; background: rgba(74, 144, 200, .15); color: var(--ice-dark); }
+.hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin: 0 0 20px; }
+.hero img { width: 100%; border-radius: 10px; cursor: zoom-in; display: block; }
+
+/* Таблицы данных из кода игры. */
+.table-wrap { overflow-x: auto; margin: 12px 0; }
+.data { border-collapse: collapse; background: var(--paper); border-radius: 8px; min-width: 420px; }
+.data th, .data td { padding: 7px 12px; border-bottom: 1px solid rgba(29, 39, 64, .1); text-align: left; vertical-align: top; }
+.data thead th { background: rgba(74, 144, 200, .14); font-size: 14px; white-space: nowrap; }
+.data tbody th { white-space: nowrap; }
+.data td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.data .sub { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
+.coin { color: #B8860B; font-weight: 600; }
+.gem { color: #2E7FB8; font-weight: 600; }
+.rar { display: inline-block; padding: 1px 8px 1px 6px; border-radius: 6px; background: var(--paper); border-left: 6px solid var(--rar); font-weight: 600; font-size: 13px; white-space: nowrap; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.chips code { background: var(--paper); border: 1px solid rgba(29, 39, 64, .12); padding: 2px 8px; }
+
+/* Раздел «Стиль»: образцы цветов палитры. */
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 8px 0 16px; }
+.swatch { margin: 0; background: var(--paper); border-radius: 10px; overflow: hidden; box-shadow: 0 1px 0 rgba(29, 39, 64, .1); }
+.swatch .chip { display: block; height: 72px; border-bottom: 1px solid rgba(29, 39, 64, .12); }
+.swatch figcaption { padding: 8px 10px 10px; font-size: 14px; }
+.swatch figcaption .small { display: block; margin-top: 4px; font-size: 13px; color: var(--muted); }
+
+/* Раздел «Код»: модуль, вид и его первая строка-комментарий. */
+.modules { list-style: none; padding: 0; margin: 8px 0 20px; display: grid; gap: 6px; }
+.modules li { background: var(--paper); border-radius: 8px; padding: 6px 12px; display: grid; grid-template-columns: minmax(180px, 280px) 90px 60px minmax(0, 1fr); gap: 10px; align-items: baseline; }
+.modules .kind { font-size: 12px; color: var(--muted); }
+.modules .lines { font-size: 12px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+.modules .note { font-size: 14px; }
+.modules .note.empty { color: var(--muted); }
+
+#viewer { border: 0; padding: 0; max-width: 96vw; max-height: 96vh; background: var(--ink); color: var(--snow); border-radius: 10px; }
+#viewer::backdrop { background: rgba(29, 39, 64, .8); }
+.viewer-bar { display: flex; gap: 12px; align-items: center; padding: 8px 12px; }
+.viewer-bar p { margin: 0; flex: 1; font-size: 14px; word-break: break-all; }
+.viewer-bar a { color: var(--gold); }
+.viewer-bar button { background: var(--wood); color: var(--snow); border: 0; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+#viewer img { display: block; max-width: 94vw; max-height: calc(96vh - 52px); }
+
+.pages { list-style: none; padding: 0; display: grid; gap: 10px; }
+.pages > li { background: rgba(255, 255, 255, .6); border: 1px solid rgba(29, 39, 64, .1); border-radius: 10px; padding: 10px 14px; }
+.pages > li > a { font-weight: 700; font-size: 18px; }
+
+.mechanic { margin: 12px 0; border: 2px solid rgba(29, 39, 64, .12); border-radius: 10px; background: rgba(255, 255, 255, .6); }
+.mechanic > summary { cursor: pointer; padding: 12px 16px; font-weight: 700; font-size: 20px; }
+.mechanic-body { padding: 0 16px 14px; }
+/* «Обсудить»: темы внутри раздела человека — блоки поменьше. */
+.mechanic.discuss-topic { margin: 8px 0; background: rgba(255, 255, 255, .85); }
+.mechanic.discuss-topic > summary { font-size: 17px; padding: 10px 14px; }
+/* «Механики»: метки разбора — зелёная «Обсудили», жёлтая «Обсудить ещё» (карточка 52f8ad). Плашки текстом, без значков. */
+.discussed { display: inline-block; margin-left: 10px; padding: 2px 10px; border-radius: 999px; font-size: 13px; font-weight: 700; vertical-align: middle; white-space: nowrap; }
+.discussed.done { background: #2E8B57; color: #FFFFFF; }
+.discussed.open { background: #FFCE43; color: var(--ink); }
+.discussed-legend .discussed { margin: 0 4px 0 0; }
+.discussed-legend { color: var(--muted); font-size: 14px; margin: 8px 0 4px; }
+.discussed-note { margin: 4px 0 12px; padding: 8px 12px; border-left: 4px solid #FFCE43; border-radius: 6px; background: rgba(255, 206, 67, .18); font-weight: 600; }
+.mechanic-body .facts { margin: 8px 0 12px; }
+.flow { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 14px; padding: 0; list-style: none; }
+.flow li { display: flex; flex-direction: column; gap: 2px; flex: 1 1 140px; margin: 0; padding: 8px 10px; background: var(--paper); border: 2px solid var(--ink); border-radius: 8px; }
+.flow b { font-size: 15px; }
+.flow span { color: var(--muted); font-size: 13px; }
+.bars { margin: 8px 0 14px; }
+.bars-title { margin: 0 0 8px; font-weight: 700; }
+.bar { display: grid; grid-template-columns: minmax(7em, 11em) minmax(0, 1fr) auto; gap: 8px; align-items: center; margin: 6px 0; }
+.bar-track { height: 14px; background: rgba(29, 39, 64, .08); border-radius: 7px; overflow: hidden; }
+.bar-fill { display: block; height: 100%; background: var(--ice); }
+.bars-zone .bar-fill, .bars-tool .bar-fill { background: var(--wood); }
+.bar-value { font-weight: 700; white-space: nowrap; }
+/* Таймлайн: день — аккордеон, внутри темы со списком сделанного, ссылками и коммитами. */
+.day { margin: 12px 0; border: 2px solid rgba(29, 39, 64, .12); border-radius: 10px; background: rgba(255, 255, 255, .6); }
+.day > summary { cursor: pointer; padding: 12px 16px; font-size: 17px; }
+.day-date { font-weight: 700; font-size: 20px; margin-right: 6px; }
+.day-summary { color: var(--muted); }
+.day-body { padding: 0 16px 14px; }
+.day-topic { margin: 10px 0 0; padding: 10px 0 0; border-top: 1px solid rgba(29, 39, 64, .12); }
+.day-topic h3 { margin: 0 0 6px; font-size: 18px; }
+.day-done { margin: 0 0 8px; padding-left: 20px; }
+.day-links { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 8px; padding: 0; list-style: none; }
+.day-links li { margin: 0; }
+.day-links a { display: inline-block; padding: 3px 8px; background: var(--paper); border: 1px solid rgba(29, 39, 64, .16); border-radius: 6px; text-decoration: none; font-size: 14px; }
+.day-links a:hover { border-color: var(--ice-dark); }
+.day-commits { margin: 0; color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
+.board-card { scroll-margin-top: 70px; }
+.board-card:target { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+@media (max-width: 860px) {
+  #menu { display: inline-block; }
+  /* Кнопок больше, чем ширина телефона: шапка листается вбок, страница остаётся на месте. */
+  .topbar { gap: 10px; padding: 10px 12px; overflow-x: auto; scrollbar-width: thin; }
+  .topbar .top-link { padding: 4px 8px; }
+  /* На самых узких экранах сжимается название, кнопки остаются целыми. */
+  .topbar .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .topbar .top-link, #menu { flex: none; }
+  .topbar .hint { display: none; }
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  #sidebar { display: none; position: fixed; top: 52px; left: 0; right: 0; height: auto; max-height: 70vh; background: var(--snow); z-index: 4; border-bottom: 2px solid var(--ink); }
+  #sidebar.open { display: block; }
+  main { padding: 8px 16px 48px; }
+  .doc { padding: 4px 14px 12px; }
+  .modules li { grid-template-columns: minmax(0, 1fr) auto; }
+  .modules .note { grid-column: 1 / -1; }
+  .modules .lines { display: none; }
+  .board-columns { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 1100px) {
+  .part.with-toc { display: grid; grid-template-columns: minmax(0, 1fr) 230px; column-gap: 28px; align-items: start; }
+  .part.with-toc > h2, .part.with-toc > .part-body { grid-column: 1; }
+  .part.with-toc > .toc { grid-column: 2; grid-row: 1 / span 2; position: sticky; top: 68px; max-height: calc(100vh - 84px); overflow: auto; margin: 18px 0 0; }
+  .part.with-toc > .toc ul { display: grid; gap: 2px; }
+  .part.with-toc > .toc a { display: block; border-radius: 6px; background: transparent; padding: 5px 8px; }
+}
+/* Подсвеченный блок в документе: открытый вопрос владельцу и другие важные пометки. */
+.doc blockquote { margin: 14px 0; padding: 6px 16px; background: rgba(242, 194, 48, .16); border-left: 4px solid var(--gold); border-radius: 8px; }
+/* Референсы моделей: картинка с трёх сторон сверху, под ней название, статус и поля. */
+.model-refs { display: grid; gap: 16px; }
+.model-ref { padding: 12px; border: 2px solid rgba(29, 39, 64, .12); border-radius: 8px; background: var(--paper); }
+.model-ref img { display: block; width: 100%; height: auto; border-radius: 6px; background: var(--snow); cursor: zoom-in; }
+.model-ref h3 { margin: 10px 0 6px; }
+.model-ref-status { display: inline-block; margin: 0 0 8px; padding: 2px 10px; border: 2px solid var(--wood); border-radius: 6px; font-size: 13px; font-weight: 700; color: var(--wood); }
+.model-ref dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 12px; margin: 0 0 8px; }
+.model-ref dt { font-weight: 700; color: var(--muted); }
+.model-ref dd { margin: 0; }
+@media (max-width: 760px) { .model-ref dl { grid-template-columns: minmax(0, 1fr); gap: 0; } .model-ref dd { margin-bottom: 6px; } }
+</style>
+<script>try{if(localStorage.getItem("clean-a-snow-guide-open")==="1")document.documentElement.classList.add("site-open")}catch(e){}</script>
+</head>
+<body>
+<div id="site-lock" class="site-lock" role="dialog" aria-modal="true" aria-labelledby="site-lock-title">
+<form id="site-lock-form" class="site-lock-card">
+<p id="site-lock-title">Введите пароль, чтобы открыть страницы.</p>
+<label>Пароль <input name="password" type="password" autocomplete="current-password" required autofocus></label>
+<button type="submit">Открыть</button>
+<p id="site-lock-error" class="site-lock-error" hidden>Пароль не подошёл.</p>
+</form>
+</div>
+<header class="topbar"><button id="menu" type="button" aria-expanded="false" aria-controls="sidebar">Разделы</button><a class="brand" href="index.html">Clean a Snow</a><a class="top-link" href="hud.html">HUD</a><a class="top-link" href="testing.html">Тестирование</a><a class="top-link" href="board.html">Доска</a><a class="top-link" href="analysis.html">Анализ</a><a class="top-link" href="mechanics.html">Механики</a><a class="top-link" href="ideas.html">Идеи</a><a class="top-link" href="questions.html">Вопросы</a><a class="top-link" href="discuss.html">Обсудить</a><a class="top-link" href="vfx.html">VFX</a><a class="top-link" href="timeline.html">Таймлайн</a><button id="site-close" class="top-link" type="button">Закрыть</button><span class="hint">Собрано из файлов репозитория: <code>node tools/guide/build.mjs</code></span></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Разделы"><ul><li><a href="index.html">Об игре</a></li><li><a href="place.html">Плейс и запуск</a></li><li><a href="style.html">Стиль</a></li><li><a href="refs.html">Референсы</a></li><li><a href="economy.html">Экономика</a></li><li><a href="weapons.html">Оружие</a></li><li><a href="code.html">Код</a></li><li><details class="group" data-group="galleries.html" open><summary><a href="galleries.html">Кадры и картинки</a></summary><ul><li><a href="gallery-bugs.html">Кадры багов</a></li><li><a href="gallery-frames.html">Кадры игры</a></li><li><a href="gallery-frames-2026-11-22-lobby-larger-scale.html">frames/2026-11-22-lobby-larger-scale</a></li><li><a href="gallery-frames-2026-11-22-lobby-space-and-glow.html">frames/2026-11-22-lobby-space-and-glow</a></li><li><a href="gallery-frames-2026-11-22-lobby-start-effects.html">frames/2026-11-22-lobby-start-effects</a></li><li><a href="gallery-frames-2026-11-22-processor-upgrade.html">frames/2026-11-22-processor-upgrade</a></li><li><a href="gallery-frames-2026-11-22-tool-piece-span.html">frames/2026-11-22-tool-piece-span</a></li><li><a href="gallery-frames-2026-11-22-vehicle-piece-span.html">frames/2026-11-22-vehicle-piece-span</a></li><li><a href="gallery-frames-2026-11-22-winter-lobby.html">frames/2026-11-22-winter-lobby</a></li><li><a href="gallery-frames-2026-11-23-valley-terrain-trim.html">frames/2026-11-23-valley-terrain-trim</a></li><li><a href="gallery-frames-2026-11-24-piece-vanish-gold-ring.html">Золотое кольцо при пропаже отрезанного куска снега (карточка 66c915)</a></li><li><a href="gallery-frames-2026-11-25-snow-gradient.html">frames/2026-11-25-snow-gradient</a></li><li><a href="gallery-frames-live-audit.html">frames/live-audit</a></li><li><a href="gallery-hud-current-elements.html">hud-current/elements</a></li><li><a href="gallery-hud-current-frames.html">hud-current/frames</a></li><li><a href="gallery-hud-current.html">Текущий HUD: кадры и индекс</a></li><li><a href="gallery-ideas.html">Референсы идей</a></li><li><a href="gallery-models-elf-preview-iterations-06.html">models/elf/preview/iterations/06</a></li><li><a href="gallery-models-elf-preview-iterations-07.html">models/elf/preview/iterations/07</a></li><li><a href="gallery-models-elf-textures.html">models/elf/textures</a></li><li><a href="gallery-models-farm-helper-elf-preview.html">models/farm-helper-elf/preview</a></li><li><a href="gallery-models-farm-helper-elf-reports.html">models/farm-helper-elf/reports</a></li><li><a href="gallery-models-garden-plants-reports.html">Садовые растения — 36 моделей</a></li><li><a href="gallery-models-grinch-preview-iterations-06.html">models/grinch/preview/iterations/06</a></li><li><a href="gallery-models-grinch-textures.html">models/grinch/textures</a></li><li><a href="gallery-models-grinch-hideout-preview.html">models/grinch-hideout/preview</a></li><li><a href="gallery-models-grinch-hideout-reports-views.html">models/grinch-hideout/reports/views</a></li><li><a href="gallery-models-grinch-v2-preview-iterations-05.html">models/grinch-v2/preview/iterations/05</a></li><li><a href="gallery-models-grinch-v2-textures.html">models/grinch-v2/textures</a></li><li><a href="gallery-models-grinch-v3-preview-iterations-07.html">models/grinch-v3/preview/iterations/07</a></li><li><a href="gallery-models-grinch-v3-reports-anim-check-02-limits.html">models/grinch-v3/reports/anim-check/02-limits</a></li><li><a href="gallery-models-grinch-v3-reports-anim-check-clips-attack.html">models/grinch-v3/reports/anim-check/clips/Attack</a></li><li><a href="gallery-models-grinch-v3-reports-anim-check-clips-hit.html">models/grinch-v3/reports/anim-check/clips/Hit</a></li><li><a href="gallery-models-grinch-v3-reports-anim-check-clips-idle.html">models/grinch-v3/reports/anim-check/clips/Idle</a></li><li><a href="gallery-models-grinch-v3-reports-anim-check-clips-stunned.html">models/grinch-v3/reports/anim-check/clips/Stunned</a></li><li><a href="gallery-models-grinch-v3-reports-anim-check-clips-walk.html">models/grinch-v3/reports/anim-check/clips/Walk</a></li><li><a href="gallery-models-grinch-v3-textures.html">models/grinch-v3/textures</a></li><li><a href="gallery-models-hockey-rink-preview.html">models/hockey-rink/preview</a></li><li><a href="gallery-models-hockey-rink-reports.html">models/hockey-rink/reports</a></li><li><a href="gallery-models-rustic-stalls-review.html">models/rustic-stalls/review</a></li><li><a href="gallery-models-santa-sleigh-preview.html">models/santa-sleigh/preview</a></li><li><a href="gallery-models-santa-sleigh-reports.html">models/santa-sleigh/reports</a></li><li><a href="gallery-models-snow-helicopter-reports.html">models/snow-helicopter/reports</a></li><li><a href="gallery-models-snow-helicopter-rounded-reports.html">models/snow-helicopter-rounded/reports</a></li><li><a href="gallery-models-snow-storage-icons.html">models/snow-storage/icons</a></li><li><a href="gallery-models-snow-storage-preview.html">models/snow-storage/preview</a></li><li><a href="gallery-models-snow-vacuum-preview.html">models/snow-vacuum/preview</a></li><li><a href="gallery-models-snow-vacuum-reports.html">models/snow-vacuum/reports</a></li><li><a href="gallery-models-starter-farmhouse-preview.html">models/starter-farmhouse/preview</a></li><li><a href="gallery-models-vehicle-yard-review.html">models/vehicle-yard/review</a></li><li><a href="gallery-models-well-preview-iterations-05.html">models/well/preview/iterations/05</a></li><li><a href="gallery-models-well-textures.html">models/well/textures</a></li><li><a href="gallery-models-winter-lobby-review.html">models/winter-lobby/review</a></li><li><a href="gallery-palette-preview.html">Палитра</a></li><li><a href="gallery-refs-arcade-catch-gifts.html">Аркада «Поймай подарки»</a></li><li><a href="gallery-refs-arcade-grinch-drifts.html">Аркада «Гринч в сугробах»</a></li><li><a href="gallery-refs-arcade-hall.html">Игровой зал</a></li><li><a href="gallery-refs-arcade-ice-fishing.html">Аркада «Подлёдная рыбалка»</a></li><li><a href="gallery-refs-arcade-santa-run.html">Аркада «Santa&#39;s Run»</a></li><li><a href="gallery-refs-buckets.html">refs/buckets</a></li><li><a href="gallery-refs-conveyor.html">Конвейер сверху</a></li><li><a href="gallery-refs-daily-gems.html">refs/daily-gems</a></li><li><a href="gallery-refs.html">refs</a></li><li><a href="gallery-refs-dev-panel.html">refs/dev-panel</a></li><li><a href="gallery-refs-farmhouse.html">Фермерский дом</a></li><li><a href="gallery-refs-farmhouse-walls.html">Стены фермерского дома</a></li><li><a href="gallery-refs-frostwood-snow.html">Снег в Frostwood</a></li><li><a href="gallery-refs-garden-plants.html">refs/garden-plants</a></li><li><a href="gallery-refs-garden-plot.html">refs/garden-plot</a></li><li><a href="gallery-refs-grinch.html">Гринч</a></li><li><a href="gallery-refs-grinch-hideout.html">Убежище Гринча</a></li><li><a href="gallery-refs-held-snow.html">refs/held-snow</a></li><li><a href="gallery-refs-hockey.html">Хоккей</a></li><li><a href="gallery-refs-hud-new-elements.html">refs/hud-new/elements</a></li><li><a href="gallery-refs-hud-new-key.html">refs/hud-new/key</a></li><li><a href="gallery-refs-hud-new.html">Новый вид HUD: референсы</a></li><li><a href="gallery-refs-hud-new-screens.html">refs/hud-new/screens</a></li><li><a href="gallery-refs-island-vanish.html">Пропажа изолированного куска снега</a></li><li><a href="gallery-refs-lobby-c34e67.html">refs/lobby-c34e67</a></li><li><a href="gallery-refs-map-border.html">refs/map-border</a></li><li><a href="gallery-refs-models-helper-elf.html">refs/models/helper-elf</a></li><li><a href="gallery-refs-models-helper-elf-variants.html">refs/models/helper-elf/variants</a></li><li><a href="gallery-refs-models-hockey-robot.html">refs/models/hockey-robot</a></li><li><a href="gallery-refs-models-santa-sleigh.html">refs/models/santa-sleigh</a></li><li><a href="gallery-refs-models-snow-fox.html">refs/models/snow-fox</a></li><li><a href="gallery-refs-models-snow-hare.html">refs/models/snow-hare</a></li><li><a href="gallery-refs-models-snow-helicopter.html">refs/models/snow-helicopter</a></li><li><a href="gallery-refs-models-snow-vacuum.html">refs/models/snow-vacuum</a></li><li><a href="gallery-refs-models-winter-owl.html">refs/models/winter-owl</a></li><li><a href="gallery-refs-party-game.html">Окно отряда и отсчёт старта — референсы</a></li><li><a href="gallery-refs-pets.html">refs/pets</a></li><li><a href="gallery-refs-run-hotbar.html">refs/run-hotbar</a></li><li><a href="gallery-refs-santa-cutscene.html">Ролик Санты: референсы (карточка 784f91)</a></li><li><a href="gallery-refs-seed-find.html">refs/seed-find</a></li><li><a href="gallery-refs-sheep-tank.html">refs/sheep-tank</a></li><li><a href="gallery-refs-snow-clear.html">refs/snow-clear</a></li><li><a href="gallery-refs-snow-look.html">refs/snow-look</a></li><li><a href="gallery-refs-snow-powder-cut.html">refs/snow-powder-cut</a></li><li><a href="gallery-refs-snow-processing.html">refs/snow-processing</a></li><li><a href="gallery-refs-snow-processing-intact.html">refs/snow-processing-intact</a></li><li><a href="gallery-refs-snow-removal.html">refs/snow-removal</a></li><li><a href="gallery-refs-snow-smooth.html">refs/snow-smooth</a></li><li><a href="gallery-refs-snow-storage.html">refs/snow-storage</a></li><li><a href="gallery-refs-snow-sweep.html">refs/snow-sweep</a></li><li><a href="gallery-refs-solo-board.html">refs/solo-board</a></li><li><a href="gallery-refs-vehicle-snow-heli.html">refs/vehicle-snow/heli</a></li><li><a href="gallery-refs-vehicle-snow-now.html">refs/vehicle-snow/now</a></li><li><a href="gallery-refs-vehicle-snow-pickup.html">refs/vehicle-snow/pickup</a></li><li><a href="gallery-refs-vehicle-snow.html">Машины ломают снег: как сейчас и референсы</a></li><li><a href="gallery-refs-vehicle-snow-snowmobile.html">refs/vehicle-snow/snowmobile</a></li><li><a href="gallery-refs-vehicle-snow-snowmobile-soft.html">refs/vehicle-snow/snowmobile-soft</a></li><li><a href="gallery-refs-vehicle-snow-tank.html">refs/vehicle-snow/tank</a></li><li><a href="gallery-refs-vehicle-snow-truck.html">refs/vehicle-snow/truck</a></li><li><a href="gallery-refs-vehicle-snow-v1.html">refs/vehicle-snow/v1</a></li><li><a href="gallery-refs-vehicle-snow-v2-fountain.html">refs/vehicle-snow/v2-fountain</a></li><li><a href="gallery-refs-vehicle-snow-v3-critic.html">refs/vehicle-snow/v3-critic</a></li><li><a href="gallery-refs-vehicle-yard.html">Площадка для снегоуборочной техники</a></li><li><a href="gallery-refs-vehicles-now.html">refs/vehicles/now</a></li><li><a href="gallery-refs-vehicles.html">refs/vehicles</a></li><li><a href="gallery-refs-weapons.html">refs/weapons</a></li><li><a href="gallery-refs-well.html">refs/well</a></li><li><a href="gallery-refs-wheel-gems.html">refs/wheel-gems</a></li><li><a href="gallery-refs-windows-wood.html">refs/windows-wood</a></li><li><a href="gallery-refs-winter-lobby.html">refs/winter-lobby</a></li><li><a href="gallery-refs-zone-bloom.html">refs/zone-bloom</a></li><li><a href="gallery-refs-zone-wall.html">refs/zone-wall</a></li><li><a href="gallery-terrain.html">Покрытия долины</a></li><li><a href="gallery-textures-snow-soft-powder.html">textures/snow-soft-powder</a></li><li><a href="gallery-ui-buckets.html">ui/buckets</a></li><li><a href="gallery-ui-classes.html">ui/classes</a></li><li><a href="gallery-ui-dev-panel.html">ui/dev-panel</a></li><li><a href="gallery-ui-hockey.html">ui/hockey</a></li><li><a href="gallery-ui-hotbar.html">ui/hotbar</a></li><li><a href="gallery-ui-hud.html">ui/hud</a></li><li><a href="gallery-ui-party.html">ui/party</a></li><li><a href="gallery-ui-pets.html">ui/pets</a></li><li><a href="gallery-ui-seeds.html">ui/seeds</a></li><li><a href="gallery-ui-solo-board.html">ui/solo-board</a></li><li><a href="gallery-ui-upgrades.html">ui/upgrades</a></li><li><a href="gallery-ui-weapons.html">ui/weapons</a></li><li><a href="gallery-ui-windows.html">ui/windows</a></li><li><a href="gallery-ui-wood.html">ui/wood</a></li><li><a href="gallery-vfx.html">vfx</a></li><li><a href="gallery-vfx-reviews.html">vfx/reviews</a></li><li><a href="gallery-vfx-snow-removal-now.html">vfx/snow-removal/now</a></li></ul></details></li><li><details class="group" data-group="docs.html" open><summary><a href="docs.html">Документы</a></summary><ul><li><a href="doc-architecture-summary.html">architecture/summary.md</a></li><li><a href="doc-checks-server.html">checks-server.md</a></li><li><a href="doc-clearing-audit.html">clearing-audit.md</a></li><li><a href="doc-docs-audit-2026-11-15.html">docs-audit-2026-11-15.md</a></li><li><a href="doc-held-items-audit.html">held-items-audit.md</a></li><li><a href="doc-mechanics-audit.html">mechanics-audit.md</a></li><li><a href="doc-mechanics-live-audit-2026-11-15-verdicts.html">mechanics-live-audit-2026-11-15-verdicts.md</a></li><li><a href="doc-mechanics-live-audit-2026-11-15.html">mechanics-live-audit-2026-11-15.md</a></li><li><a href="doc-publish-places.html">publish-places.md</a></li><li><a href="doc-snow-approach-analysis.html">snow-approach-analysis.md</a></li><li><a href="doc-snow-phone-measure.html">snow-phone-measure.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-catalog-answers.html">superpowers/plans/2026-11-10-catalog-answers.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-client-actions.html">superpowers/plans/2026-11-10-client-actions.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-economy.html">superpowers/plans/2026-11-10-data-economy.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-garden-animals-vehicles.html">superpowers/plans/2026-11-10-data-garden-animals-vehicles.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-session-server.html">superpowers/plans/2026-11-10-data-session-server.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-held-items-audit.html">superpowers/plans/2026-11-10-held-items-audit.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-map-bake.html">superpowers/plans/2026-11-10-map-bake.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-movement-check.html">superpowers/plans/2026-11-10-movement-check.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-packet-limits.html">superpowers/plans/2026-11-10-packet-limits.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-anchors.html">superpowers/plans/2026-11-10-place-anchors.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-role-world.html">superpowers/plans/2026-11-10-place-role-world.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-processor-intake.html">superpowers/plans/2026-11-10-processor-intake.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-processor-queue.html">superpowers/plans/2026-11-10-processor-queue.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-profile-store-core.html">superpowers/plans/2026-11-10-profile-store-core.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-receipt-ledger.html">superpowers/plans/2026-11-10-receipt-ledger.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-server-lifecycle.html">superpowers/plans/2026-11-10-server-lifecycle.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-areas.html">superpowers/plans/2026-11-10-snow-areas.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-break-burst.html">superpowers/plans/2026-11-10-snow-break-burst.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-break-like-reference.html">superpowers/plans/2026-11-10-snow-break-like-reference.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-cell-strength.html">superpowers/plans/2026-11-10-snow-cell-strength.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-clap.html">superpowers/plans/2026-11-10-snow-clap.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-pillow-layers.html">superpowers/plans/2026-11-10-snow-pillow-layers.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-response.html">superpowers/plans/2026-11-10-snow-response.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-starter-spoon.html">superpowers/plans/2026-11-10-starter-spoon.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-plan.html">superpowers/plans/2026-11-10-strike-plan.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-rules.html">superpowers/plans/2026-11-10-strike-rules.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-two-places.html">superpowers/plans/2026-11-10-two-places.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-wallet.html">superpowers/plans/2026-11-10-wallet.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-client-views.html">superpowers/plans/2026-11-11-client-views.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-data-client-copies.html">superpowers/plans/2026-11-11-data-client-copies.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-farmhouse-shop-stands.html">superpowers/plans/2026-11-11-farmhouse-shop-stands.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-guide-json-only.html">superpowers/plans/2026-11-11-guide-json-only.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-loading-screen.html">superpowers/plans/2026-11-11-loading-screen.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-one-snow-strength.html">superpowers/plans/2026-11-11-one-snow-strength.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-place-sources.html">superpowers/plans/2026-11-11-place-sources.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-remove-garden.html">superpowers/plans/2026-11-11-remove-garden.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-run-hotbar.html">superpowers/plans/2026-11-11-run-hotbar.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-snow-clear-wave-flakes.html">superpowers/plans/2026-11-11-snow-clear-wave-flakes.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-snow-garden-growth.html">superpowers/plans/2026-11-11-snow-garden-growth.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-snow-garden-plots.html">superpowers/plans/2026-11-11-snow-garden-plots.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-spoon-layer-snow.html">superpowers/plans/2026-11-11-spoon-layer-snow.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-vehicle-snow-vfx.html">superpowers/plans/2026-11-11-vehicle-snow-vfx.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-weapon-rule.html">superpowers/plans/2026-11-11-weapon-rule.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-buckets.html">superpowers/plans/2026-11-12-buckets.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-classes-data-buy.html">superpowers/plans/2026-11-12-classes-data-buy.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-classes-window.html">superpowers/plans/2026-11-12-classes-window.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-contour-fit.html">superpowers/plans/2026-11-12-contour-fit.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-conveyor.html">superpowers/plans/2026-11-12-conveyor.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-gems-rewards.html">superpowers/plans/2026-11-12-gems-rewards.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-hotbar-look.html">superpowers/plans/2026-11-12-hotbar-look.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-place-windows.html">superpowers/plans/2026-11-12-place-windows.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-snow-height.html">superpowers/plans/2026-11-12-snow-height.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-snow-rarity.html">superpowers/plans/2026-11-12-snow-rarity.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-two-vacuums.html">superpowers/plans/2026-11-12-two-vacuums.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-arcade-catch-gifts.html">superpowers/plans/2026-11-13-arcade-catch-gifts.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-arcade-grinch-drifts.html">superpowers/plans/2026-11-13-arcade-grinch-drifts.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-arcade-hall.html">superpowers/plans/2026-11-13-arcade-hall.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-conveyor-two-lanes.html">superpowers/plans/2026-11-13-conveyor-two-lanes.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-first-run-one-task.html">superpowers/plans/2026-11-13-first-run-one-task.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-game-rewards-solo.html">superpowers/plans/2026-11-13-game-rewards-solo.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-host-world-run.html">superpowers/plans/2026-11-13-host-world-run.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-party-continue-new.html">superpowers/plans/2026-11-13-party-continue-new.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-party-start-buttons.html">superpowers/plans/2026-11-13-party-start-buttons.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-phone-touch-sizes.html">superpowers/plans/2026-11-13-phone-touch-sizes.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-solo-board.html">superpowers/plans/2026-11-13-solo-board.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-world-carried-snow.html">superpowers/plans/2026-11-13-world-carried-snow.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-world-snow-save.html">superpowers/plans/2026-11-13-world-snow-save.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-world-store.html">superpowers/plans/2026-11-13-world-store.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-world-wallet.html">superpowers/plans/2026-11-13-world-wallet.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-zone-wall.html">superpowers/plans/2026-11-13-zone-wall.md</a></li><li><a href="doc-superpowers-plans-2026-11-14-arcade-ice-fishing.html">superpowers/plans/2026-11-14-arcade-ice-fishing.md</a></li><li><a href="doc-superpowers-plans-2026-11-14-conveyor-four-lanes.html">superpowers/plans/2026-11-14-conveyor-four-lanes.md</a></li><li><a href="doc-superpowers-plans-2026-11-14-hockey-rink.html">superpowers/plans/2026-11-14-hockey-rink.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-arcade-hall-bigger.html">superpowers/plans/2026-11-15-arcade-hall-bigger.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-arcade-hall-timer.html">superpowers/plans/2026-11-15-arcade-hall-timer.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-arcade-halls-schedule.html">superpowers/plans/2026-11-15-arcade-halls-schedule.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-arcade-santa-run.html">superpowers/plans/2026-11-15-arcade-santa-run.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-dev-panel.html">superpowers/plans/2026-11-15-dev-panel.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-grinch-fight.html">superpowers/plans/2026-11-15-grinch-fight.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-grinch-hideout.html">superpowers/plans/2026-11-15-grinch-hideout.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-grinch-victory-gifts.html">superpowers/plans/2026-11-15-grinch-victory-gifts.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-hockey-ai.html">superpowers/plans/2026-11-15-hockey-ai.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-hockey-match.html">superpowers/plans/2026-11-15-hockey-match.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-hockey-teams.html">superpowers/plans/2026-11-15-hockey-teams.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-mechanics-live-audit.html">superpowers/plans/2026-11-15-mechanics-live-audit.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-snow-removal-vfx.html">superpowers/plans/2026-11-15-snow-removal-vfx.md</a></li><li><a href="doc-superpowers-plans-2026-11-16-shovel-first-person-dig.html">superpowers/plans/2026-11-16-shovel-first-person-dig.md</a></li><li><a href="doc-superpowers-plans-2026-11-16-stale-studio-scenarios.html">superpowers/plans/2026-11-16-stale-studio-scenarios.md</a></li><li><a href="doc-superpowers-plans-2026-11-16-ui-item-pictures.html">superpowers/plans/2026-11-16-ui-item-pictures.md</a></li><li><a href="doc-superpowers-plans-2026-11-16-weapons-first-person-no-hands.html">superpowers/plans/2026-11-16-weapons-first-person-no-hands.md</a></li><li><a href="doc-superpowers-plans-2026-11-17-dev-panel-state.html">superpowers/plans/2026-11-17-dev-panel-state.md</a></li><li><a href="doc-superpowers-plans-2026-11-17-hud-current-shots.html">superpowers/plans/2026-11-17-hud-current-shots.md</a></li><li><a href="doc-superpowers-plans-2026-11-17-hud-new-look-refs.html">superpowers/plans/2026-11-17-hud-new-look-refs.md</a></li><li><a href="doc-superpowers-plans-2026-11-17-ui-item-pictures-wave2.html">superpowers/plans/2026-11-17-ui-item-pictures-wave2.md</a></li><li><a href="doc-superpowers-plans-2026-11-17-vehicle-mouse-look-and-seats.html">superpowers/plans/2026-11-17-vehicle-mouse-look-and-seats.md</a></li><li><a href="doc-superpowers-plans-2026-11-18-snow-golem.html">superpowers/plans/2026-11-18-snow-golem.md</a></li><li><a href="doc-superpowers-plans-2026-11-18-snow-sweep.html">superpowers/plans/2026-11-18-snow-sweep.md</a></li><li><a href="doc-superpowers-plans-2026-11-19-adaptive-snow-audio.html">superpowers/plans/2026-11-19-adaptive-snow-audio.md</a></li><li><a href="doc-superpowers-plans-2026-11-19-hud-approved.html">superpowers/plans/2026-11-19-hud-approved.md</a></li><li><a href="doc-superpowers-plans-2026-11-19-snow-processing-press.html">superpowers/plans/2026-11-19-snow-processing-press.md</a></li><li><a href="doc-superpowers-plans-2026-11-19-snow-sweep-lab.html">superpowers/plans/2026-11-19-snow-sweep-lab.md</a></li><li><a href="doc-superpowers-plans-2026-11-19-snow-sweep-look.html">superpowers/plans/2026-11-19-snow-sweep-look.md</a></li><li><a href="doc-superpowers-plans-2026-11-19-snow-sweep-tools.html">superpowers/plans/2026-11-19-snow-sweep-tools.md</a></li><li><a href="doc-superpowers-plans-2026-11-20-board-testing.html">superpowers/plans/2026-11-20-board-testing.md</a></li><li><a href="doc-superpowers-plans-2026-11-20-far-snow-ring.html">superpowers/plans/2026-11-20-far-snow-ring.md</a></li><li><a href="doc-superpowers-plans-2026-11-20-new-snow-lag.html">superpowers/plans/2026-11-20-new-snow-lag.md</a></li><li><a href="doc-superpowers-plans-2026-11-21-hud-align-edges.html">superpowers/plans/2026-11-21-hud-align-edges.md</a></li><li><a href="doc-superpowers-plans-2026-11-21-snow-horizon.html">superpowers/plans/2026-11-21-snow-horizon.md</a></li><li><a href="doc-superpowers-plans-2026-11-21-snow-mesh-release.html">superpowers/plans/2026-11-21-snow-mesh-release.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-activity-clock.html">superpowers/plans/2026-11-22-activity-clock.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-auto-collect-pieces.html">superpowers/plans/2026-11-22-auto-collect-pieces.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-continue-by-steps.html">superpowers/plans/2026-11-22-continue-by-steps.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-grinch-hideout-two-minutes.html">superpowers/plans/2026-11-22-grinch-hideout-two-minutes.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-lobby-larger-scale.html">superpowers/plans/2026-11-22-lobby-larger-scale.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-lobby-space-and-glow.html">superpowers/plans/2026-11-22-lobby-space-and-glow.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-lobby-start-effects.html">superpowers/plans/2026-11-22-lobby-start-effects.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-processor-model-upgrade.html">superpowers/plans/2026-11-22-processor-model-upgrade.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-save-cells.html">superpowers/plans/2026-11-22-save-cells.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-save-slots.html">superpowers/plans/2026-11-22-save-slots.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-snow-flow-fixes.html">superpowers/plans/2026-11-22-snow-flow-fixes.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-snow-long-play.html">superpowers/plans/2026-11-22-snow-long-play.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-snow-reaudit.html">superpowers/plans/2026-11-22-snow-reaudit.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-tutorial-hidden-stands.html">superpowers/plans/2026-11-22-tutorial-hidden-stands.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-tutorial-island.html">superpowers/plans/2026-11-22-tutorial-island.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-tutorial-steps.html">superpowers/plans/2026-11-22-tutorial-steps.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-tutorial-task-line.html">superpowers/plans/2026-11-22-tutorial-task-line.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-vehicle-client-carve.html">superpowers/plans/2026-11-22-vehicle-client-carve.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-vehicle-cut-shapes.html">superpowers/plans/2026-11-22-vehicle-cut-shapes.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-vehicle-piece-span.html">superpowers/plans/2026-11-22-vehicle-piece-span.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-winter-lobby.html">superpowers/plans/2026-11-22-winter-lobby.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-zone-gardens.html">superpowers/plans/2026-11-22-zone-gardens.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-big-spoon-start.html">superpowers/plans/2026-11-23-big-spoon-start.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-counted-square-melts.html">superpowers/plans/2026-11-23-counted-square-melts.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-forest-mountains-meshes.html">superpowers/plans/2026-11-23-forest-mountains-meshes.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-gold-snow-shell.html">superpowers/plans/2026-11-23-gold-snow-shell.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-pets-off.html">superpowers/plans/2026-11-23-pets-off.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-sell-per-snow.html">superpowers/plans/2026-11-23-sell-per-snow.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-snow-client-perf.html">superpowers/plans/2026-11-23-snow-client-perf.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-snow-frame-budget.html">superpowers/plans/2026-11-23-snow-frame-budget.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-snow-world-end-meshes.html">superpowers/plans/2026-11-23-snow-world-end-meshes.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-tank-flame-carve.html">superpowers/plans/2026-11-23-tank-flame-carve.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-tank-flame-rear-view.html">superpowers/plans/2026-11-23-tank-flame-rear-view.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-tool-cut-plan.html">superpowers/plans/2026-11-23-tool-cut-plan.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-tools-wave-plan.html">superpowers/plans/2026-11-23-tools-wave-plan.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-valley-terrain-trim.html">superpowers/plans/2026-11-23-valley-terrain-trim.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-vehicle-speed-data.html">superpowers/plans/2026-11-23-vehicle-speed-data.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-windows-wood.html">superpowers/plans/2026-11-23-windows-wood.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-zone-bloom.html">superpowers/plans/2026-11-23-zone-bloom.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-coin-cents-ladder.html">superpowers/plans/2026-11-24-coin-cents-ladder.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-counted-square-keeps-snow.html">superpowers/plans/2026-11-24-counted-square-keeps-snow.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-far-lift.html">superpowers/plans/2026-11-24-far-lift.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-far-snow-reach.html">superpowers/plans/2026-11-24-far-snow-reach.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-old-snow-scenarios.html">superpowers/plans/2026-11-24-old-snow-scenarios.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-piece-vanish-gold-ring.html">superpowers/plans/2026-11-24-piece-vanish-gold-ring.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-processor-intake-delay.html">superpowers/plans/2026-11-24-processor-intake-delay.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-processor-whole-load.html">superpowers/plans/2026-11-24-processor-whole-load.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-ready-wait-scenarios.html">superpowers/plans/2026-11-24-ready-wait-scenarios.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-snow-200-nodes.html">superpowers/plans/2026-11-24-snow-200-nodes.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-snow-approach-analysis.html">superpowers/plans/2026-11-24-snow-approach-analysis.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-snow-batch-paint.html">superpowers/plans/2026-11-24-snow-batch-paint.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-snow-contour-outline.html">superpowers/plans/2026-11-24-snow-contour-outline.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-snow-contour-probe.html">superpowers/plans/2026-11-24-snow-contour-probe.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-snow-phone-meter.html">superpowers/plans/2026-11-24-snow-phone-meter.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-snow-soft-relief.html">superpowers/plans/2026-11-24-snow-soft-relief.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-vehicle-camera-controls.html">superpowers/plans/2026-11-24-vehicle-camera-controls.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-vehicle-shop.html">superpowers/plans/2026-11-24-vehicle-shop.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-wider-spoon.html">superpowers/plans/2026-11-24-wider-spoon.md</a></li><li><a href="doc-superpowers-plans-2026-11-25-powder-cut-detail.html">superpowers/plans/2026-11-25-powder-cut-detail.md</a></li><li><a href="doc-superpowers-plans-2026-11-25-snow-wall-gradient.html">superpowers/plans/2026-11-25-snow-wall-gradient.md</a></li><li><a href="doc-superpowers-plans-2026-11-25-tool-hand-size.html">superpowers/plans/2026-11-25-tool-hand-size.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-catalog-answers-design.html">superpowers/specs/2026-11-10-catalog-answers-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-client-actions-design.html">superpowers/specs/2026-11-10-client-actions-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-economy-design.html">superpowers/specs/2026-11-10-data-economy-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-garden-animals-vehicles-design.html">superpowers/specs/2026-11-10-data-garden-animals-vehicles-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-session-server-design.html">superpowers/specs/2026-11-10-data-session-server-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-held-items-audit-design.html">superpowers/specs/2026-11-10-held-items-audit-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-map-bake-design.html">superpowers/specs/2026-11-10-map-bake-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-movement-check-design.html">superpowers/specs/2026-11-10-movement-check-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-packet-limits-design.html">superpowers/specs/2026-11-10-packet-limits-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-anchors-design.html">superpowers/specs/2026-11-10-place-anchors-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-role-world-design.html">superpowers/specs/2026-11-10-place-role-world-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-processor-intake-design.html">superpowers/specs/2026-11-10-processor-intake-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-processor-queue-design.html">superpowers/specs/2026-11-10-processor-queue-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-profile-store-core-design.html">superpowers/specs/2026-11-10-profile-store-core-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-receipt-ledger-design.html">superpowers/specs/2026-11-10-receipt-ledger-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-server-lifecycle-design.html">superpowers/specs/2026-11-10-server-lifecycle-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-areas-design.html">superpowers/specs/2026-11-10-snow-areas-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-break-burst-design.html">superpowers/specs/2026-11-10-snow-break-burst-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-break-like-reference-design.html">superpowers/specs/2026-11-10-snow-break-like-reference-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-cell-strength-design.html">superpowers/specs/2026-11-10-snow-cell-strength-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-pillow-layers-design.html">superpowers/specs/2026-11-10-snow-pillow-layers-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-puff-design.html">superpowers/specs/2026-11-10-snow-puff-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-response-design.html">superpowers/specs/2026-11-10-snow-response-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-starter-spoon-design.html">superpowers/specs/2026-11-10-starter-spoon-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-plan-design.html">superpowers/specs/2026-11-10-strike-plan-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-rules-design.html">superpowers/specs/2026-11-10-strike-rules-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-two-places-design.html">superpowers/specs/2026-11-10-two-places-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-wallet-design.html">superpowers/specs/2026-11-10-wallet-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-bag-full-design.html">superpowers/specs/2026-11-11-bag-full-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-classes-design.html">superpowers/specs/2026-11-11-classes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-data-client-copies-design.html">superpowers/specs/2026-11-11-data-client-copies-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-farmhouse-shop-stands-design.html">superpowers/specs/2026-11-11-farmhouse-shop-stands-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-farmhouse-weapon-stands-design.html">superpowers/specs/2026-11-11-farmhouse-weapon-stands-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-guide-json-only-design.html">superpowers/specs/2026-11-11-guide-json-only-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-loading-screen-design.html">superpowers/specs/2026-11-11-loading-screen-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-one-snow-strength-design.html">superpowers/specs/2026-11-11-one-snow-strength-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-place-sources-design.html">superpowers/specs/2026-11-11-place-sources-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-remove-garden-design.html">superpowers/specs/2026-11-11-remove-garden-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-run-hotbar-design.html">superpowers/specs/2026-11-11-run-hotbar-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-shared-question-marks-design.html">superpowers/specs/2026-11-11-shared-question-marks-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-snow-clear-wave-flakes-design.html">superpowers/specs/2026-11-11-snow-clear-wave-flakes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-snow-garden-design.html">superpowers/specs/2026-11-11-snow-garden-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-snow-work-rule-design.html">superpowers/specs/2026-11-11-snow-work-rule-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-spoon-layer-snow-design.html">superpowers/specs/2026-11-11-spoon-layer-snow-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-vehicle-snow-vfx-design.html">superpowers/specs/2026-11-11-vehicle-snow-vfx-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-vehicle-unlock-design.html">superpowers/specs/2026-11-11-vehicle-unlock-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-weapon-rule-design.html">superpowers/specs/2026-11-11-weapon-rule-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-zone-open-90-saved-design.html">superpowers/specs/2026-11-11-zone-open-90-saved-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-buckets-design.html">superpowers/specs/2026-11-12-buckets-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-contour-fit-design.html">superpowers/specs/2026-11-12-contour-fit-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-conveyor-design.html">superpowers/specs/2026-11-12-conveyor-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-gems-rewards-design.html">superpowers/specs/2026-11-12-gems-rewards-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-hotbar-look-design.html">superpowers/specs/2026-11-12-hotbar-look-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-place-windows-design.html">superpowers/specs/2026-11-12-place-windows-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-snow-height-design.html">superpowers/specs/2026-11-12-snow-height-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-snow-rarity-design.html">superpowers/specs/2026-11-12-snow-rarity-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-two-vacuums-design.html">superpowers/specs/2026-11-12-two-vacuums-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-arcade-catch-gifts-design.html">superpowers/specs/2026-11-13-arcade-catch-gifts-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-arcade-grinch-drifts-design.html">superpowers/specs/2026-11-13-arcade-grinch-drifts-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-arcade-hall-design.html">superpowers/specs/2026-11-13-arcade-hall-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-continue-new-game-design.html">superpowers/specs/2026-11-13-continue-new-game-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-conveyor-two-lanes-design.html">superpowers/specs/2026-11-13-conveyor-two-lanes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-first-run-one-task-design.html">superpowers/specs/2026-11-13-first-run-one-task-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-party-start-buttons-design.html">superpowers/specs/2026-11-13-party-start-buttons-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-phone-touch-sizes-design.html">superpowers/specs/2026-11-13-phone-touch-sizes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-solo-board-design.html">superpowers/specs/2026-11-13-solo-board-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-zone-wall-design.html">superpowers/specs/2026-11-13-zone-wall-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-14-arcade-ice-fishing-design.html">superpowers/specs/2026-11-14-arcade-ice-fishing-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-14-conveyor-four-lanes-design.html">superpowers/specs/2026-11-14-conveyor-four-lanes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-14-hockey-rink-design.html">superpowers/specs/2026-11-14-hockey-rink-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-arcade-hall-bigger-design.html">superpowers/specs/2026-11-15-arcade-hall-bigger-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-arcade-hall-timer-design.html">superpowers/specs/2026-11-15-arcade-hall-timer-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-arcade-halls-schedule-design.html">superpowers/specs/2026-11-15-arcade-halls-schedule-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-arcade-santa-run-design.html">superpowers/specs/2026-11-15-arcade-santa-run-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-dev-panel-design.html">superpowers/specs/2026-11-15-dev-panel-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-grinch-fight-design.html">superpowers/specs/2026-11-15-grinch-fight-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-grinch-hideout-design.html">superpowers/specs/2026-11-15-grinch-hideout-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-grinch-victory-gifts-design.html">superpowers/specs/2026-11-15-grinch-victory-gifts-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-hockey-ai-design.html">superpowers/specs/2026-11-15-hockey-ai-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-hockey-match-design.html">superpowers/specs/2026-11-15-hockey-match-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-hockey-teams-design.html">superpowers/specs/2026-11-15-hockey-teams-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-mechanics-live-audit.html">superpowers/specs/2026-11-15-mechanics-live-audit.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-snow-removal-vfx-design.html">superpowers/specs/2026-11-15-snow-removal-vfx-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-16-shovel-first-person-dig-design.html">superpowers/specs/2026-11-16-shovel-first-person-dig-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-16-stale-studio-scenarios-design.html">superpowers/specs/2026-11-16-stale-studio-scenarios-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-16-ui-item-pictures-design.html">superpowers/specs/2026-11-16-ui-item-pictures-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-16-weapons-first-person-no-hands-design.html">superpowers/specs/2026-11-16-weapons-first-person-no-hands-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-17-dev-panel-state-design.html">superpowers/specs/2026-11-17-dev-panel-state-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-17-hockey-aim-line-design.html">superpowers/specs/2026-11-17-hockey-aim-line-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-17-hud-current-shots-design.html">superpowers/specs/2026-11-17-hud-current-shots-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-17-hud-new-look-refs-design.html">superpowers/specs/2026-11-17-hud-new-look-refs-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-17-party-rejoin-design.html">superpowers/specs/2026-11-17-party-rejoin-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-17-ui-item-pictures-wave2-design.html">superpowers/specs/2026-11-17-ui-item-pictures-wave2-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-17-vehicle-mouse-look-and-seats-design.html">superpowers/specs/2026-11-17-vehicle-mouse-look-and-seats-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-18-snow-golem.html">superpowers/specs/2026-11-18-snow-golem.md</a></li><li><a href="doc-superpowers-specs-2026-11-18-snow-sweep-design.html">superpowers/specs/2026-11-18-snow-sweep-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-19-adaptive-snow-audio-design.html">superpowers/specs/2026-11-19-adaptive-snow-audio-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-19-hud-approved-design.html">superpowers/specs/2026-11-19-hud-approved-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-19-new-snow-in-game-design.html">superpowers/specs/2026-11-19-new-snow-in-game-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-19-snow-processing-reference-study.html">superpowers/specs/2026-11-19-snow-processing-reference-study.md</a></li><li><a href="doc-superpowers-specs-2026-11-19-snow-sweep-lab-design.html">superpowers/specs/2026-11-19-snow-sweep-lab-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-19-snow-sweep-look-design.html">superpowers/specs/2026-11-19-snow-sweep-look-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-19-snow-sweep-tools-design.html">superpowers/specs/2026-11-19-snow-sweep-tools-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-20-board-testing-design.html">superpowers/specs/2026-11-20-board-testing-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-21-snow-mesh-release-design.html">superpowers/specs/2026-11-21-snow-mesh-release-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-continue-by-steps-design.html">superpowers/specs/2026-11-22-continue-by-steps-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-lobby-larger-scale-design.html">superpowers/specs/2026-11-22-lobby-larger-scale-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-lobby-space-and-glow-design.html">superpowers/specs/2026-11-22-lobby-space-and-glow-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-lobby-start-effects-design.html">superpowers/specs/2026-11-22-lobby-start-effects-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-piece-area-400-design.html">superpowers/specs/2026-11-22-piece-area-400-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-processor-model-upgrade-design.html">superpowers/specs/2026-11-22-processor-model-upgrade-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-santa-after-tutorial-design.html">superpowers/specs/2026-11-22-santa-after-tutorial-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-save-slots-design.html">superpowers/specs/2026-11-22-save-slots-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-snow-flow-review.html" aria-current="page">superpowers/specs/2026-11-22-snow-flow-review.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-snow-long-play-design.html">superpowers/specs/2026-11-22-snow-long-play-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-snow-reaudit.html">superpowers/specs/2026-11-22-snow-reaudit.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-solo-90-minutes-design.html">superpowers/specs/2026-11-22-solo-90-minutes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-tutorial-hidden-stands-design.html">superpowers/specs/2026-11-22-tutorial-hidden-stands-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-tutorial-island-design.html">superpowers/specs/2026-11-22-tutorial-island-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-tutorial-steps-design.html">superpowers/specs/2026-11-22-tutorial-steps-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-tutorial-task-line-design.html">superpowers/specs/2026-11-22-tutorial-task-line-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-vehicle-client-carve-design.html">superpowers/specs/2026-11-22-vehicle-client-carve-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-vehicle-cut-shapes-design.html">superpowers/specs/2026-11-22-vehicle-cut-shapes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-vehicle-piece-span-design.html">superpowers/specs/2026-11-22-vehicle-piece-span-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-winter-lobby-design.html">superpowers/specs/2026-11-22-winter-lobby-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-world-layers-analysis.html">superpowers/specs/2026-11-22-world-layers-analysis.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-zone-gardens-design.html">superpowers/specs/2026-11-22-zone-gardens-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-big-spoon-start-design.html">superpowers/specs/2026-11-23-big-spoon-start-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-counted-square-melts-design.html">superpowers/specs/2026-11-23-counted-square-melts-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-forest-mountains-meshes-design.html">superpowers/specs/2026-11-23-forest-mountains-meshes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-gold-snow-shell-design.html">superpowers/specs/2026-11-23-gold-snow-shell-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-pets-off-design.html">superpowers/specs/2026-11-23-pets-off-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-sell-per-snow-design.html">superpowers/specs/2026-11-23-sell-per-snow-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-shovel-square-cut-design.html">superpowers/specs/2026-11-23-shovel-square-cut-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-snow-frame-budget-design.html">superpowers/specs/2026-11-23-snow-frame-budget-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-snow-world-end-meshes-design.html">superpowers/specs/2026-11-23-snow-world-end-meshes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-tools-on-new-snow-design.html">superpowers/specs/2026-11-23-tools-on-new-snow-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-valley-terrain-trim-design.html">superpowers/specs/2026-11-23-valley-terrain-trim-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-vehicle-ladder-design.html">superpowers/specs/2026-11-23-vehicle-ladder-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-windows-wood-design.html">superpowers/specs/2026-11-23-windows-wood-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-zone-bloom-design.html">superpowers/specs/2026-11-23-zone-bloom-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-coin-cents-ladder-design.html">superpowers/specs/2026-11-24-coin-cents-ladder-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-counted-square-keeps-snow-design.html">superpowers/specs/2026-11-24-counted-square-keeps-snow-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-far-lift-design.html">superpowers/specs/2026-11-24-far-lift-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-far-snow-reach-design.html">superpowers/specs/2026-11-24-far-snow-reach-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-old-snow-scenarios-design.html">superpowers/specs/2026-11-24-old-snow-scenarios-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-piece-vanish-gold-ring-design.html">superpowers/specs/2026-11-24-piece-vanish-gold-ring-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-processor-intake-delay-design.html">superpowers/specs/2026-11-24-processor-intake-delay-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-processor-whole-load-design.html">superpowers/specs/2026-11-24-processor-whole-load-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-ready-wait-scenarios-design.html">superpowers/specs/2026-11-24-ready-wait-scenarios-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-snow-200-nodes-design.html">superpowers/specs/2026-11-24-snow-200-nodes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-snow-batch-paint-design.html">superpowers/specs/2026-11-24-snow-batch-paint-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-snow-contour-outline-design.html">superpowers/specs/2026-11-24-snow-contour-outline-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-snow-phone-meter-design.html">superpowers/specs/2026-11-24-snow-phone-meter-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-snow-soft-relief-design.html">superpowers/specs/2026-11-24-snow-soft-relief-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-vehicle-camera-controls-design.html">superpowers/specs/2026-11-24-vehicle-camera-controls-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-vehicle-shop-design.html">superpowers/specs/2026-11-24-vehicle-shop-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-wider-spoon-design.html">superpowers/specs/2026-11-24-wider-spoon-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-25-powder-cut-detail-design.html">superpowers/specs/2026-11-25-powder-cut-detail-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-25-snow-wall-gradient-design.html">superpowers/specs/2026-11-25-snow-wall-gradient-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-25-tool-hand-size-design.html">superpowers/specs/2026-11-25-tool-hand-size-design.md</a></li><li><a href="doc-superpowers-specs-phone-touch-sizes-30c439-ref-phone-classes-prompt.html">superpowers/specs/phone-touch-sizes/30c439-ref-phone-classes.prompt.md</a></li><li><a href="doc-superpowers-specs-phone-touch-sizes-30c439-ref-phone-gemwheel-prompt.html">superpowers/specs/phone-touch-sizes/30c439-ref-phone-gemwheel.prompt.md</a></li><li><a href="doc-unused-inventory.html">unused-inventory.md</a></li><li><a href="doc-vfx-roblox.html">vfx-roblox.md</a></li></ul></details></li></ul></nav>
+<main>
+<section class="part with-toc"><h2>superpowers/specs/2026-11-22-snow-flow-review.md</h2><nav class="toc" aria-label="На этой странице"><ul><li><a href="#коротко">Коротко</a></li><li><a href="#как-проверял">Как проверял</a></li><li><a href="#поток-данных">Поток данных</a></li><li><a href="#что-сделано-правильно">Что сделано правильно</a></li><li><a href="#как-это-делают-другие">Как это делают другие</a></li><li><a href="#находки-по-важности">Находки по важности</a></li><li><a href="#н1-вход-и-перезаход-через-журнал-отпечатков-не-выдерживают-долгий-забег-critical-замер-код-bug-20261122-002">Н1. Вход и перезаход через журнал отпечатков не выдерживают долгий забег (critical, замер + код) — BUG-20261122-002</a></li><li><a href="#н2-предсказание-без-поправки-картинка-и-счёт-расходятся-major-код-замер-bug-20261122-003">Н2. Предсказание без поправки: картинка и счёт расходятся (major, код + замер) — BUG-20261122-003</a></li><li><a href="#н3-ручная-уборка-обходит-проверку-движения-major-код-замер-bug-20261122-004">Н3. Ручная уборка обходит проверку движения (major, код + замер) — BUG-20261122-004</a></li><li><a href="#н4-трафик-уборки-major-замер-bug-20261122-005">Н4. Трафик уборки (major, замер) — BUG-20261122-005</a></li><li><a href="#н5-снег-под-платформой-голема-не-засчитывается-карта-не-доходит-до-100-critical-код-проверка-в-studio-bug-20261122-006">Н5. Снег под платформой голема не засчитывается, карта не доходит до 100 % (critical, код + проверка в Studio) — BUG-20261122-006</a></li><li><a href="#н6-continue-возвращает-снег-грубыми-квадратами-major-по-виду-отложенная-часть-спеки-работа-не-баг">Н6. Continue возвращает снег грубыми квадратами (major по виду, отложенная часть спеки) — работа, не баг</a></li><li><a href="#н7-память-поля-на-телефоне-minor-замер-в-общей-карточке-мелочей">Н7. Память поля на телефоне (minor, замер) — в общей карточке мелочей</a></li><li><a href="#н8-мелочи-minor-код-в-общей-карточке-мелочей">Н8. Мелочи (minor, код) — в общей карточке мелочей</a></li><li><a href="#н9-тесты-серверного-снега-major-для-продакшна">Н9. Тесты серверного снега (major для продакшна)</a></li><li><a href="#ответы-владельца-и-принятые-решения">Ответы владельца и принятые решения</a></li><li><a href="#план-исправлений">План исправлений</a></li><li><a href="#что-не-проверено">Что не проверено</a></li><li><a href="#ручные-проверки-которые-ждут-владельца">Ручные проверки, которые ждут владельца</a></li></ul></nav><div class="part-body"><article class="doc prose" id="doc-superpowers-specs-2026-11-22-snow-flow-review"><p class="path">docs/superpowers/specs/2026-11-22-snow-flow-review.md</p><h1>Ревью флоу снега: архитектура, поток данных, готовность к продакшну</h1>
+<ul>
+<li>Дата: 22.11.2026. Ветка <code>snow-flow-review</code> от <code>main</code> 92f5d2ace.</li>
+<li>Кто: Claude, чат «Ревью флоу снега» по поручению основной сессии.</li>
+<li>Просьба владельца 22.11.2026: «проверить наш флоу, как работает снег, правильно ли он работает … проверить, что действительно у нас правильно архитектура выстроена, и поток данных, флоу … и так сделано в продакшн решение». Позже: «Проверь еще внимательно, как правильно должна работать, ибо в роблоксе куча игр, где уже есть подобная механика (очистка луны и т.п.)».</li>
+<li>Статус: ревью закончено, план исправлений принят в режиме «апрув везде» (владелец 22.11.2026: «тебе везде даю апрувы»). Код в этой задаче не менялся, тесты не запускались.</li>
+<li>Основа: спека <a href="doc-superpowers-specs-2026-11-19-new-snow-in-game-design.html">2026-11-19-new-snow-in-game-design.md</a> (новый снег в игре).</li>
+</ul>
+<h2 id="коротко">Коротко</h2>
+<ol>
+<li>Основа выбрана верно. Сервер сам режет то же поле, что и клиент, и сам платит. Отпечатки не зависят от порядка, поле разреженное. Похожие игры на Roblox делают проще и грубее.</li>
+<li>Главная беда для 20-часового забега — вход и перезаход. Новичок получает всю историю отпечатков и проигрывает её заново. Журнал истории заполняется за 20–40 минут игры вчетвером. Дальше новые срезы в него не пишутся, и вошедший позже видит снег там, где его уже нет. Спека требовала другое: снимок поля кусками.</li>
+<li>Предсказание без поправки. Клиент режет снег сразу, а если сервер отказал (ведро полно, стена, частота), снег на экране не возвращается. Картинка и счёт расходятся, а спека называет это анти-целью.</li>
+<li>Ручная уборка берёт сырую позицию головы и обходит проверку движения, хотя машины её соблюдают.</li>
+<li>Трафик: после каждого пакета уборки уходит полный снимок состояния игрока, около 1,6 КБ, то есть примерно 16 КБ/с на каждого, кто убирает.</li>
+<li>Снег под платформой голема убирается без учёта. Проверено в Studio на данных карты: 8 участков под платформой уже никогда не наберут 60 %, и после 13-й минуты карта не может дойти до 100 %.</li>
+<li>Серверный снег, журнал и сохранение не покрыты тестами.</li>
+</ol>
+<h2 id="как-проверял">Как проверял</h2>
+<ul>
+<li>Прочитал код снега на клиенте и сервере, сеть, сохранение мира, машины и голема (ссылки ниже), а также спеку 19.11 и её анти-цели.</li>
+<li><strong>Замер поля в Lune на ПК.</strong> Это <code>Field.luau</code> как есть, без Roblox, скрипты <code>probe.luau</code> и <code>probe3.luau</code> в черновиках чата. Мерил честную уборку, длинные капсулы на свежем и тронутом снегу и проигрывание истории. Сделано два прогона, второй — при занятом другими чатами процессоре, поэтому где числа разошлись, указаны оба.</li>
+<li><strong>Проба в Studio.</strong> Сценарий <code>snow-flow-probe</code>: одиночный забег, 10 с уборки ложкой, счётчики пакетов, ответов, снимков и рассылки, размер Sync. Окно Studio фоновое и рисует 15 кадров в секунду, поэтому числа «на 60 кадров» пересчитаны и помечены как оценка.</li>
+<li>В первой пробе нашлась только стойка клиентской стены <code>ClientZoneBarrier</code>: сервер её не видит и принял все 9 пакетов (OK=9).</li>
+<li><strong>Вторая проба в Studio</strong> (22.11.2026, после того как освободилось окно). Сценарий сохранён в репозитории: <code>tools/studio-scenarios/snow-flow-review.json</code>. В нём:<ul>
+<li>участки под платформой голема по настоящим данным карты (<code>Ground</code>, <code>Patches</code>);</li>
+<li>уборка за настоящей стеной сервера, кадр того, что видит резчик, и история сервера в этом месте;</li>
+<li>уборка до полного ведра.</li>
+</ul>
+</li>
+<li>Посмотрел, как устроена такая же механика в других играх (раздел «Как это делают другие»).</li>
+</ul>
+<h2 id="поток-данных">Поток данных</h2>
+<pre><code class="language-text">Клиент (SweepController, кадр рисования)
+  BrushMotion -&gt; капсула {x, z, yaw, halfLength, halfWidth, round}
+  Field:stamp локально (предсказание, сразу видно)
+  если срезал &gt; 0: onStamp -&gt; outgoing.points (до 8 точек, 0,1 с) -&gt; ActionRequest &quot;SnowSweep&quot; {pass, seq, points}
+
+Сервер
+  RemotesRouter: NetSchema (типы, до 16 чисел, 12/с, всплеск 14), общий лимит 30/с
+  SnowWorldService.sweep:
+    свой лимит 12/с, seq растёт, SnowWorkRule &quot;Hit&quot; (жив, пешком, ведро игрока)
+    голова = character.Head.Position (сырая)
+    каждая точка: дальность &lt;= 14 от головы, зона &lt;= открытая + 1, луч от головы (rayClear)
+    капсула от прошлой принятой точки того же pass (brushCut)
+  cut(): место в ведре -&gt; Field:stamp с onCleared
+    100 узлов = 1 снег (остаток копится) -&gt; grantHarvest по участкам (~9 стад) -&gt; finishHarvest
+    участок срезан на 60 % -&gt; breakPatch (проценты зон, сад, семена, мир)
+    record(): отпечаток с округлением 0,01 -&gt; outbox и журнал (до 300 000 отпечатков)
+  ответ: ActionResult {seq, units, cleared} (клиент его не читает)
+         SnowSwept (снежки летят в ведро)
+         dirty -&gt; полный StateSnapshot на следующем тике (0,1 с)
+
+Рассылка (tick 0,1 с): outbox -&gt; WorldEvent &quot;SnowStamps&quot; всем в сессии, включая резчика -&gt; applyStamps
+Вход позже и перезаход: RemoteFunction Sync, страницы по 4 000 отпечатков
+  страница 1 несёт restored (участки, сломанные в прошлых забегах) -&gt; applyStamps всей истории
+Сохранение: каждые 2 с exportBroken -&gt; WorldRecord (битовая маска сломанных участков)
+  -&gt; WorldStore (durable=false, пишется автосохранением 30 с); конец забега: экспорт до освобождения мира
+Continue: importBroken -&gt; restoredAt, маска поля на сервере и у клиентов
+Машины: VehicleSnowService (проверяет movement.trusts) -&gt; vehicleCarve -&gt; cut в кузов
+Голем: clearFootprint -&gt; Field:stamp без onCleared
+Картинка: SnowLayer, SnowTiles, SnowFar по грязным кускам поля (чат «Мигание травы»)
+</code></pre>
+<h2 id="что-сделано-правильно">Что сделано правильно</h2>
+<ul>
+<li><strong>Сервер решает.</strong> Сколько снега снято и сколько лежит в ведре, считает только сервер: свои узлы, свой остаток, цена по участку (<code>SnowWorldService.luau:252-329</code>). Клиенту не верят — как требуют правила игры и спека.</li>
+<li><strong>Отпечаток не зависит от порядка.</strong> Поле только уменьшается (min), повтор ничего не меняет. Страницы Sync и живая рассылка могут приходить в любом порядке, и итог один. Это хорошая основа для сети.</li>
+<li><strong>Разреженное поле.</strong> Нетронутый кусок 8×8 ничего не хранит, целиком убранный схлопывается в <code>true</code>, а память тратится только на кромки (<code>Field.luau</code>).</li>
+<li><strong>Проверки на сервере.</strong> Тип и размер пакета, частота (схема и окно сервиса), рост <code>seq</code>, состояние игрока, дальность от головы, правило зоны «открытая + 1», луч до точки.</li>
+<li><strong>Машины.</strong> Они соблюдают проверку движения (<code>VehicleSnowService.luau:117-145</code>) и режут через тот же <code>cut</code> в кузов.</li>
+<li><strong>Порядок конца забега.</strong> <code>Lifecycle</code> закрывает в обратном порядке, поэтому снег мира сохраняется раньше, чем мир хоста освобождается.</li>
+<li><strong>Сохранение мира компактное.</strong> Это битовая маска участков (<code>WorldRecord</code>), DataStore не раздувается.</li>
+<li><strong>Картинка.</strong> Пулы, бюджеты вершин и повтор сборки плиток и дальнего снега через 1 с (<code>SnowTiles</code>, <code>SnowFar</code>).</li>
+<li><strong>Полное ведро.</strong> Когда ведро полно, сервер перестаёт резать, а кольцо инструмента у клиента серое. Так же работает Sweep The Moon: при полной канистре щётка не собирает пыль.</li>
+</ul>
+<h2 id="как-это-делают-другие">Как это делают другие</h2>
+<ul>
+<li><strong>Sweep The Moon (DomBlox) и Clean the Moon! (Lunarlit), Roblox.</strong> Поверхность разбита на плитки, у каждой процент чистоты. Щётка снимает процент с плиток под собой. При полной канистре сбор останавливается, прогресс сохраняется. Состояние мира — это число на плитку, поэтому вход и сохранение дешёвые, но след выходит грубым, клетками. Наш след плавный, и за это мы платим сложностью синхронизации.</li>
+<li><strong>Moon Sweepers (Steam).</strong> Плавные следы и отряд до 16 игроков. Устройство сети не опубликовано.</li>
+<li><strong>Valheim.</strong> Перекопанная земля сначала хранилась отдельными объектами-правками. С ростом мира они стали тормозить загрузку и сеть, и в обновлении 0.150.3 правки начали сливать в общую карту высот кусками. Это тот же урок, что у нас с журналом отпечатков: долгий мир надо хранить состоянием кусков, а не историей действий.</li>
+<li><strong>Сеть Roblox.</strong> Мягкий предел — около 50 КБ/с на клиента, разумная цель — до 25 КБ/с. Сейчас уборка вчетвером даёт клиенту около 30 КБ/с одного снега (Н4).</li>
+<li><strong>Вывод.</strong> Наш путь (общее поле расстояний, сервер режет сам) точнее и красивее плиток. Но вход, перезаход и сохранение надо строить на снимке состояния кусков, как в плиточных играх и в Valheim, а не на истории.</li>
+</ul>
+<h2 id="находки-по-важности">Находки по важности</h2>
+<p>Обозначения: «замер» — есть число, «код» — вывод по чтению кода, в игре не воспроизведено.</p>
+<h3 id="н1-вход-и-перезаход-через-журнал-отпечатков-не-выдерживают-долгий-забег-critical-замер-код-bug-20261122-002">Н1. Вход и перезаход через журнал отпечатков не выдерживают долгий забег (critical, замер + код) — BUG-20261122-002</h3>
+<ul>
+<li>Вошедший позже или вернувшийся игрок получает через <code>Sync</code> все отпечатки забега и ставит их по одному (<code>SnowWorldService.luau:568-587</code>, <code>SnowWorldController.luau:160-192</code>).</li>
+<li>Журнал ограничен 300 000 отпечатков (<code>SnowWorldService.luau:30</code>, <code>:242</code>), и после этого новые срезы в него не пишутся вовсе. На 60 кадрах один убирающий даёт до 60 отпечатков в секунду, отряд из 4 — до 240. Предел наступает через 20–40 минут игры вчетвером или примерно через 80 минут в одиночку, а владелец ждёт забеги до 20 часов. Вошедший после этого видит снег там, где его уже нет: срезать его нельзя, и денег он не даст.</li>
+<li><strong>Объём.</strong> 300 000 отпечатков — это около 16 МБ по сети (6 чисел по ~9 байт). На сервере журнал занимает около 29 МБ как таблица Lua.</li>
+<li><strong>Время.</strong> Проигрывание 300 000 отпечатков заняло 73 с CPU на ПК (замер Lune; при занятом процессоре — 121 с), 10 минут одиночной уборки — 8,7–11 с. Страница в 4 000 отпечатков ставится одним куском без передышки, а это около 1 с замирания кадра на ПК и в несколько раз больше на телефоне.</li>
+<li><strong>Спека</strong> требовала другое: «Вошедший или вернувшийся игрок получает снимок поля кусками вокруг себя … дальше — рассылку отпечатков».</li>
+<li><strong>Исправление.</strong> Снимок поля по кускам 8×8. Убранный кусок — одна отметка, тронутый — квантованные узлы (u8 или битовая маска клеток 1×1 плюс кромка). Сначала куски вокруг игрока, дальние — грубой маской. Новичку после снимка — обычная рассылка. Журнал отпечатков убрать.</li>
+</ul>
+<h3 id="н2-предсказание-без-поправки-картинка-и-счёт-расходятся-major-код-замер-bug-20261122-003">Н2. Предсказание без поправки: картинка и счёт расходятся (major, код + замер) — BUG-20261122-003</h3>
+<p>Клиент режет снег сразу, а сервер может отказать. Тогда снег на экране резчика не возвращается, а у товарищей он лежит. Это анти-цель спеки: «картинка и счёт расходятся … у товарищей другие следы». Вот откуда это берётся:</p>
+<ul>
+<li><strong>Ведро.</strong> Клиент узнаёт о полном ведре только из следующего снимка (<code>SnowWorldController.luau:311-327</code>), а сервер перестаёт резать сразу (<code>cut</code>, <code>room &lt; 1</code>). Всё, что клиент срезал за время пинга, на сервере остаётся снегом.</li>
+<li><strong>Луч и дальность.</strong> Сервер пропускает точки за стеной и дальше 14 стад (<code>SnowWorldService.luau:369-386</code>). Клиент таких проверок не делает, а <code>canSweep</code> смотрит только фазу, ведро и зону.<ul>
+<li><strong>Проверено в Studio.</strong> Игрок стоит у мельницы (<code>CartoonFarm.Buildings.CartoonWindmill</code>) и 3 с убирает снег за её стеной. Сервер отказал во всех 9 пакетах (<code>OutOfRange</code> = 9), и в его истории нет ни одного отпечатка в этом месте. На кадре резчика там видна прорезь: у него снег убран, у сервера и товарищей он лежит.</li>
+<li>Вернётся снег у резчика только после перезахода.</li>
+</ul>
+</li>
+<li><strong>Ведро в Studio.</strong> Клиент перестал слать пакеты после первого отказа <code>BagFull</code>: из 46 ответов <code>BagFull</code> был 1. В Studio пинга почти нет, поэтому окно расхождения — один пакет. При живом пинге 100–200 мс это 1–2 пакета снега, который видит только резчик.</li>
+<li><strong>Частота.</strong> Клиент отправляет пакет каждые 0,1 с или по 8 точкам (<code>SnowWorldController.luau:121-131</code>, <code>:533-535</code>). Выше 96 кадров в секунду это больше 12 пакетов в секунду, лишние сервер отбрасывает как <code>RateLimited</code> (<code>Config.luau:40-42</code>, <code>NetSchema.luau:74</code>). Компьютеры с высокой частотой экрана режут снег, которого на сервере нет.</li>
+<li><strong>Пропущенные кадры.</strong> Кадр, который у клиента ничего не срезал, не отправляется (<code>SweepController.luau:298-305</code>). Сервер соединяет прошлую отправленную точку со следующей прямой капсулой (<code>SnowWorldService.luau:386-392</code>). Если путь шёл дугой, хорда срезает снег, которого клиент не трогал, и резчик получает его обратно рассылкой: снег у инструмента пропадает сам.</li>
+<li><strong>Ответ сервера.</strong> Ответ на пакет клиент не читает (<code>SnowWorldController.luau:716</code>, <code>api.result</code> пустой), так что поправить себя ему не из чего.</li>
+<li><strong>Отпечатки до Sync.</strong> Рассылка <code>SnowStamps</code> ставится сразу (<code>:708-711</code>), даже если первая страница Sync с <code>restored</code> ещё не пришла. Куски, созданные до этого, получают маску без восстановленных участков. После Continue на месте убранного в прошлый раз снега может лечь снег, который нельзя срезать.</li>
+</ul>
+<p><strong>Исправление</strong> (решение ниже, В4):</p>
+<ol>
+<li>Клиент повторяет проверки сервера: луч, дальность от той же головы и место в ведре по своему счётчику единиц.</li>
+<li>Если ведро наполнилось внутри окна пинга, сервер дорезает последний кусок без оплаты. Анти-цель «срез отпрыгивает» в обычной игре так и не появляется.</li>
+<li>При любом другом отказе сервер возвращает резчику точное состояние затронутых кусков, и снег тихо возвращается.</li>
+<li>Клиент отправляет каждый кадр с движением, а не только кадры со срезом. Частота пакетов не зависит от частоты кадров.</li>
+<li>Рассылка ждёт первую страницу снимка.</li>
+</ol>
+<h3 id="н3-ручная-уборка-обходит-проверку-движения-major-код-замер-bug-20261122-004">Н3. Ручная уборка обходит проверку движения (major, код + замер) — BUG-20261122-004</h3>
+<ul>
+<li><strong>Сырая голова.</strong> Сервер берёт голову из <code>character.Head.Position</code> (<code>SnowWorldService.luau:331-339</code>). Это сырая позиция, которую двигает клиент. Проверка движения (<code>Bootstrap.server.luau:102-110</code>, <code>ctx.position</code>, <code>ctx.movement.trusts</code>) здесь не участвует, хотя машины ей подчиняются. Читер, который двигает персонажа сам, убирает снег, где хочет; ограничивают его только зона и ведро.</li>
+<li><strong>Хорда через стену.</strong> Капсула идёт от последней принятой точки (<code>:386-392</code>), поэтому отклонённые точки за стеной не рвут хорду. Взмах «точка перед стеной, точка за стеной, точка снова перед стеной» срезает снег за стеной. Это вывод по коду. В Studio проверено только, что точки за стеной сервер отклоняет (Н2). Хорду через стену не пробовал: для этого нужна узкая преграда, которую можно обвести по обе стороны.</li>
+<li><strong>Длина капсулы</strong> ограничена только дальностью точек: до 28 стад, 2 × 14. Короб отпечатка строится вокруг описанного круга капсулы (<code>Field.luau</code>, <code>reach = sqrt(hl² + hw²) + 2·step</code>), поэтому длинная диагональ обходит в 8–12 раз больше узлов, чем площадь капсулы.</li>
+<li><strong>Нагрузка.</strong> На свежем снегу капсула 28 стад ледяной лопатой стоит 15–18 мс против 1,3–1,5 мс у короткой (два прогона Lune на ПК). На уже тронутом снегу, где капсула почти ничего не срезает и ведро не полнеет, она стоит 12,2 мс: время уходит на обход короба, а не на срез. 12 пакетов по 8 таких капсул — около 1,2 с CPU сервера в секунду от одного клиента, и так сколько угодно долго. Сервер Match общий на отряд, поэтому тормозят все. Честный быстрый взмах на 6 стад стоит 1,8 мс, и повёрнутый короб удешевит и его. Модуль поля не помечен <code>--!native</code>.</li>
+<li><strong>Спека</strong> сознательно не ограничивает скорость инструмента: «быстрый взмах мышью режет всё на пути» (<code>2026-11-19-new-snow-in-game-design.md:144</code>). Значит, ограничивать надо не скорость кончика лопаты, а то, где стоит игрок, и площадь среза в секунду.</li>
+</ul>
+<p><strong>Исправление</strong> (решение владельца В3: «Проверка движения и скорости»):</p>
+<ol>
+<li>Голова — от проверенной позиции (<code>ctx.position</code>), а при <code>trusts == false</code> отказ, как у машин.</li>
+<li>Хорда рвётся на отклонённой точке.</li>
+<li>Длина капсулы не больше диаметра круга досягаемости.</li>
+<li>Бюджет площади среза в секунду с запасом над честным быстрым взмахом. Запас сначала замерить в лаборатории.</li>
+<li>Короб отпечатка строится по повёрнутой капсуле, а не по описанному кругу. Это дешевле и для честной игры.</li>
+</ol>
+<h3 id="н4-трафик-уборки-major-замер-bug-20261122-005">Н4. Трафик уборки (major, замер) — BUG-20261122-005</h3>
+<ul>
+<li><strong>Снимок на каждый пакет.</strong> Любой <code>ActionRequest</code>, включая <code>SnowSweep</code>, ставит игроку <code>dirty</code> (<code>Bootstrap.server.luau:286</code>, <code>RemotesRouter.luau:105-108</code>), и на следующем тике уходит полный <code>StateSnapshot</code>. Замер в Studio:<ul>
+<li>стоя без дела — 1,1 снимка в секунду по ~1 634 байта;</li>
+<li>при уборке — 4,5 снимка в секунду по ~1 650 байт, то есть по снимку на пакет.
+На 60 кадрах пакетов 10 в секунду, это около 16,5 КБ/с на каждого убирающего (оценка).</li>
+</ul>
+</li>
+<li><strong>Рассылка отпечатков.</strong> <code>SnowStamps</code> — таблица чисел double, около 54 байт на отпечаток, до ~60 отпечатков в секунду на убирающего. Это около 3,2 КБ/с на каждого убирающего каждому в отряде, включая самого резчика, которому эти отпечатки не нужны: он их уже поставил. В спеке было: «сжатый буфер».</li>
+<li><strong>Итого</strong> при уборке вчетвером клиент получает около 30 КБ/с одного снега. Это выше цели 25 КБ/с и больше половины мягкого предела Roblox.</li>
+<li><strong>Исправление:</strong><ol>
+<li>Пакет уборки не ставит <code>dirty</code>; ведро и выдача уходят коротким событием (<code>SnowSwept</code> уже есть), а полный снимок остаётся раз в секунду.</li>
+<li><code>SnowStamps</code> — <code>buffer</code> из i16 или u16 (координаты в шагах 0,25 стада, поворот и размеры квантованы).</li>
+<li>Резчику его же отпечатки не слать.</li>
+</ol>
+</li>
+</ul>
+<h3 id="н5-снег-под-платформой-голема-не-засчитывается-карта-не-доходит-до-100-critical-код-проверка-в-studio-bug-20261122-006">Н5. Снег под платформой голема не засчитывается, карта не доходит до 100 % (critical, код + проверка в Studio) — BUG-20261122-006</h3>
+<ul>
+<li><strong>Как устроено.</strong> На 13-й минуте забега (<code>play.json</code>, <code>SnowGolem.After</code> 780) голем убирает снег под платформой: прямоугольник примерно 18 × 25 стад у (-145, 166) (<code>SnowGolemService.luau:333-336</code>). Это делает <code>clearFootprint</code> без <code>onCleared</code> (<code>SnowWorldService.luau:498-506</code>), поэтому <code>r.cut</code> участков под платформой не растёт.</li>
+<li><strong>Последствие.</strong> Участки, на которые платформа заняла больше 40 % снега, уже никогда не наберут 60 % и не будут сломаны. Снега там нет, резать нечего. <code>WorldRecord.percent</code> отдаёт 100 только когда сломаны все учтённые участки (<code>WorldRecord.luau:454-459</code>), а без этого конец карты не наступает (<code>HostWorldService.luau:202</code>, <code>:223</code>).</li>
+<li><strong>Проверено в Studio</strong> на сервере, по настоящим данным карты (сценарий <code>snow-flow-review</code>).<ul>
+<li>Платформа — 18,2 × 24,8 стада у (-142,2; 164,3), на ней 7 223 узла, весь этот участок под снегом.</li>
+<li>Платформа задевает 11 участков. 8 из них уже никогда не наберут 60 %, и все 8 входят в процент карты: это не огороды и не остров.</li>
+<li>Примеры (узлов под платформой / всего в участке): <code>N@-17:18:1</code> 1 488/1 344, <code>N@-16:17:1</code> 1 339/1 232, <code>N@-15:18:1</code> 849/1 216.</li>
+</ul>
+</li>
+<li><strong>Итог.</strong> Если до 13-й минуты эти участки не сломаны, карта после голема не дойдёт до 100 %. Конец карты (<code>HostWorldService</code>) так и не наступит.</li>
+<li><strong>Исправление.</strong> <code>clearFootprint</code> засчитывает снятые узлы участкам без оплаты (или участки под платформой исключаются из учёта), плюс тест.</li>
+</ul>
+<h3 id="н6-continue-возвращает-снег-грубыми-квадратами-major-по-виду-отложенная-часть-спеки-работа-не-баг">Н6. Continue возвращает снег грубыми квадратами (major по виду, отложенная часть спеки) — работа, не баг</h3>
+<ul>
+<li>Мир хранит только участки около 9 стад, сломанные на 60 % (<code>WorldRecord</code>, <code>SnowWorldService.luau:517-565</code>). После Continue каждый след становится рядом квадратов 9 × 9: сломанные участки целиком чистые, недорезанные целиком снова под снегом.</li>
+<li>Спека описывала клетки 1×1 и квадраты зон 2×2 (<code>2026-11-19-new-snow-in-game-design.md:157-165</code>), но эта часть была отложена (<code>:43</code>).</li>
+<li><strong>Решение</strong> (В5 ниже): делать по спеке. Формат кусков тот же, что у снимка входа из Н1, так что они делят кодировку.</li>
+</ul>
+<h3 id="н7-память-поля-на-телефоне-minor-замер-в-общей-карточке-мелочей">Н7. Память поля на телефоне (minor, замер) — в общей карточке мелочей</h3>
+<ul>
+<li>Тронутый, но не до конца убранный кусок держит буфер f32 на 33 × 33 узла, это 4 356 байт, до конца забега на клиенте и на сервере.<ul>
+<li>В модели честной уборки полосами 300 000 отпечатков оставили 280 тронутых кусков и 1 080 целиком убранных, всего 1,2 МБ поля (замер).</li>
+<li>Настоящие следы кривее и оставляют больше кромок. Но и 10 000 тронутых кусков — это около 44 МБ, на грани бюджета телефона (оценка, не замер).</li>
+</ul>
+</li>
+<li>Сервер не чистит <code>r.nodes</code> и остатки <code>r.carry</code> по ключам машин при выходе игрока: <code>onPlayerLeave</code> чистит только ключи игроков (<code>SnowWorldService.luau:604-611</code>).</li>
+<li><strong>Исправление.</strong> Хранить кромку в u8 (расстояние в долях шага): в 4 раза меньше памяти и тот же формат, что у снимка из Н1.</li>
+</ul>
+<h3 id="н8-мелочи-minor-код-в-общей-карточке-мелочей">Н8. Мелочи (minor, код) — в общей карточке мелочей</h3>
+<ul>
+<li><code>rayClear</code> на каждую точку заново собирает список исключений и <code>RaycastParams</code> (<code>SnowWorldService.luau:191-218</code>). Достаточно одного раза на пакет.</li>
+<li><strong>Перебор при оплате.</strong> Порядок обхода словаря <code>pay</code> случайный (<code>:287</code>). Когда место в ведре кончается, какие участки, а значит тип снега и шанс Lucky Find, попадут в ведро, решает случай. Последний отпечаток в полное ведро срезается целиком, и лишние единицы пропадают без оплаты. Спека говорила «режет до последней влезшей единицы».</li>
+<li>Ответ сервера на пакет <code>api.result</code> клиент игнорирует. Это связано с Н2.</li>
+<li>Слой снега при сбое сборки сразу снова ставит себя в очередь, без паузы (<code>SnowLayer.luau:411-418</code>), а у плиток и дальнего снега пауза 1 с. Это файл чата «Мигание травы», передано ему. Его ответ 22.11.2026: при сбое старая часть куска остаётся на месте, потому что подмена идёт только после удачной сборки (<code>SnowLayer.luau:285-296</code>). Траву сбой не открывает, это только лишняя нагрузка при повторах. Паузу он добавит, если его правка дойдёт до <code>SnowLayer.update</code>.</li>
+</ul>
+<h3 id="н9-тесты-серверного-снега-major-для-продакшна">Н9. Тесты серверного снега (major для продакшна)</h3>
+<ul>
+<li>Тестов нет у <code>SnowWorldService</code> (оплата, остаток, полное ведро, правила точки, журнал, Sync), <code>Patches</code>, сохранения и восстановления снега мира. В тесте <code>SnowSweepField_Test</code> нет проверки независимости от порядка отпечатков, хотя на ней держится сеть.</li>
+<li>Девять сценариев тестов из спеки не написаны: владелец тогда сказал «лучше пока убрать тесты».</li>
+<li><strong>Решение.</strong> Каждая карточка исправления начинается с тестов своего поведения (TDD из правил студии). Отдельной карточки «написать все тесты» нет.</li>
+</ul>
+<h2 id="ответы-владельца-и-принятые-решения">Ответы владельца и принятые решения</h2>
+<ul>
+<li><strong>В1. Каким бывает забег.</strong> Ответ владельца 22.11.2026: «забег может длиться хоть 20 часов, отряд до 4, войти и вернуться можно когда угодно». Отсюда Н1 — первый приоритет.</li>
+<li><strong>В2. На каких телефонах держать память и кадр.</strong> Ответ владельца 22.11.2026: средние телефоны 3–4 лет. Бюджет памяти снега — порядка 50 МБ, проигрывание истории в минуты недопустимо.</li>
+<li><strong>В3. Защита ручной уборки.</strong> Ответ владельца 22.11.2026: «Проверка движения и скорости». Скорость кончика лопаты не ограничивается (спека, быстрый взмах), ограничиваются проверенная позиция игрока, длина хорды и площадь среза в секунду.</li>
+<li><strong>В4. Что делать при отказе сервера</strong> (решено в режиме «апрув везде», владелец 22.11.2026).<ul>
+<li>Клиент повторяет проверки сервера: луч, дальность и ведро.</li>
+<li>Если ведро наполнилось за время пинга, сервер дорезает без оплаты.</li>
+<li>При других отказах резчик получает точное состояние кусков, и снег тихо возвращается.</li>
+<li>Почему так: в обычной игре срез не отпрыгивает, а у читера и при ошибке картинка сходится с сервером.</li>
+</ul>
+</li>
+<li><strong>В5. Сохранение Continue</strong> (решено в режиме «апрув везде»). Делать клетки 1×1 и квадраты зон 2×2, как в спеке. Почему так: это уже утверждённый дизайн, и формат кусков общий со снимком входа.</li>
+<li><strong>В6. Порядок работ</strong> (решено в режиме «апрув везде»): сначала дешёвые и защитные правки, потом большие (план ниже).</li>
+</ul>
+<h2 id="план-исправлений">План исправлений</h2>
+<p>Все карточки — эпик <code>clearing</code>. Каждая начинается с короткого разбора тестов и тестов своего поведения. Сценарий Studio идёт там, где результат видно в игре.</p>
+<ol>
+<li><strong>P0. Ручная уборка через проверку движения</strong> (Н3, карточка ebb20b), небольшая серверная правка.<ul>
+<li>голова от проверенной позиции, отказ при <code>trusts == false</code>;</li>
+<li>хорда рвётся на отклонённой точке;</li>
+<li>длина капсулы не больше диаметра круга досягаемости;</li>
+<li>бюджет площади среза в секунду;</li>
+<li>короб отпечатка по повёрнутой капсуле.</li>
+</ul>
+</li>
+<li><strong>P0. Трафик уборки</strong> (Н4, карточка cb8053), небольшая правка.<ul>
+<li>уборка не ставит <code>dirty</code>;</li>
+<li><code>SnowStamps</code> упакованы в <code>buffer</code>;</li>
+<li>резчику его отпечатки не шлются.</li>
+<li>цель: при уборке вчетвером клиент получает до 10 КБ/с снега.</li>
+</ul>
+</li>
+<li><strong>P0. Снимок поля вместо журнала</strong> (Н1, карточка 96d742), большая работа, <code>spec-plan</code>.<ul>
+<li>Sync отдаёт куски 8×8 по близости, дальние — маской;</li>
+<li>рассылка ждёт первую страницу;</li>
+<li>журнал удаляется.</li>
+<li>Цели:<ul>
+<li>вход в забег, где 4 игрока убирали 20 часов: снимок до 1 МБ;</li>
+<li>без замирания кадра больше 50 мс на телефоне;</li>
+<li>снег у вошедшего совпадает с сервером.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>P1. Поправка предсказания</strong> (Н2, карточка b803e8), средняя работа. Нужна карточка 3, потому что возврат кусков резчику использует её формат.<ul>
+<li>клиент повторяет проверки сервера;</li>
+<li>точное состояние кусков при отказе;</li>
+<li>отправка кадров без среза;</li>
+<li>частота пакетов не зависит от частоты кадров.</li>
+</ul>
+</li>
+<li><strong>P0. Голем засчитывает снег под платформой</strong> (Н5, карточка 8e4c2b). Поднят из P1 после проверки в Studio: правка маленькая, а без неё карта не доходит до 100 %.<ul>
+<li>правка <code>clearFootprint</code> и тест;</li>
+<li>сценарий <code>snow-flow-review</code> после правки показывает 0 участков, которые не могут дойти до 60 %.</li>
+</ul>
+</li>
+<li><strong>P1. Сохранение клетками 1×1 и квадраты зон 2×2</strong> (Н6, карточка e3afaa), большая работа, <code>spec-plan</code> по разделам спеки 19.11. Кодировку кусков делит с карточкой 3.</li>
+<li><strong>P2. Мелочи серверного снега</strong> (Н7, Н8, карточка 69511d):<ul>
+<li>кромка в u8;</li>
+<li>чистка ключей машин;</li>
+<li><code>rayClear</code> один раз на пакет;</li>
+<li>порядок оплаты;</li>
+<li>дорезание до последней единицы.</li>
+</ul>
+</li>
+</ol>
+<h2 id="что-не-проверено">Что не проверено</h2>
+<ul>
+<li>Хорда через стену (Н3) не проверена в игре.</li>
+<li>Числа на 60 кадрах пересчитаны из пробы на 15 кадрах: окно Studio фоновое, а выводить его вперёд на экран владельца нельзя.</li>
+<li>Телефон и сеть с задержкой не проверялись. В Studio пинга почти нет, поэтому расхождение у полного ведра там всего один пакет.</li>
+<li>Хуки <code>cpu-gate</code> и <code>TEST-ROUND</code> в этой задаче ничего не откладывали. Тесты не запускались, потому что код не менялся.</li>
+</ul>
+<h2 id="ручные-проверки-которые-ждут-владельца">Ручные проверки, которые ждут владельца</h2>
+<ul>
+<li>PLAY-20261112-001 (карточка b4cb0b), PLAY-20261112-002 (карточка 682cde), PLAY-20261113-001 (карточка b0bf2e).</li>
+</ul>
+</article></div></section>
+</main>
+</div>
+<dialog id="viewer" aria-label="Просмотр картинки"><div class="viewer-bar"><p id="viewer-caption"></p><a id="viewer-open" target="_blank" rel="noopener">Открыть файл</a><button id="viewer-close" type="button">Закрыть</button></div><img id="viewer-image" alt=""></dialog>
+<script>// Поведение страницы: пароль на весь сайт, меню на узком экране и просмотр картинки.
+// Текущую страницу в меню отмечает сборщик.
+(() => {
+  const SITE_KEY = "clean-a-snow-guide-open";
+  const SITE_PASSWORD = "91-23sdf-123dsf213-gfdf";
+  const lock = document.getElementById("site-lock-form");
+  if (lock) {
+    lock.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const error = document.getElementById("site-lock-error");
+      if (new FormData(lock).get("password") === SITE_PASSWORD) {
+        try {
+          localStorage.setItem(SITE_KEY, "1");
+        } catch {
+          // Без хранилища сайт откроется только до закрытия вкладки.
+        }
+        document.documentElement.classList.add("site-open");
+      } else if (error) error.hidden = false;
+    });
+  }
+
+  const close = document.getElementById("site-close");
+  if (close) {
+    close.addEventListener("click", () => {
+      try {
+        localStorage.removeItem(SITE_KEY);
+      } catch {
+        // Без хранилища достаточно убрать класс: следующая страница снова спросит пароль.
+      }
+      const error = document.getElementById("site-lock-error");
+      if (error) error.hidden = true;
+      const input = lock?.querySelector("input");
+      if (input) input.value = "";
+      document.documentElement.classList.remove("site-open");
+      input?.focus();
+    });
+  }
+
+  // «Обсудить»: кнопка человека показывает только его панель с темами.
+  const discussButtons = [...document.querySelectorAll("[data-discuss-person]")];
+  if (discussButtons.length) {
+    const panels = [...document.querySelectorAll("[data-discuss-panel]")];
+    const show = (person) => {
+      for (const button of discussButtons) button.setAttribute("aria-pressed", String(button.dataset.discussPerson === person));
+      for (const panel of panels) panel.hidden = panel.dataset.discussPanel !== person;
+    };
+    for (const button of discussButtons) button.addEventListener("click", () => show(button.dataset.discussPerson));
+  }
+
+  const board = document.querySelector(".board-columns");
+  if (board) {
+    const buttons = [...document.querySelectorAll("[data-person-filter]")];
+    const apply = (person) => {
+      for (const button of buttons) button.setAttribute("aria-pressed", String(button.dataset.personFilter === person));
+      for (const column of board.querySelectorAll(".board-column")) {
+        let visible = 0;
+        for (const card of column.querySelectorAll(".board-card")) {
+          const show = person === "all" || card.dataset.person === person;
+          card.hidden = !show;
+          if (show) visible += 1;
+        }
+        column.querySelector(".board-count").textContent = String(visible);
+        column.querySelector(".board-empty").hidden = visible !== 0;
+      }
+    };
+    for (const button of buttons) button.addEventListener("click", () => apply(button.dataset.personFilter));
+    // Время коммита — в часовом поясе того, кто смотрит доску (в HTML оно в поясе автора коммита).
+    const two = (n) => String(n).padStart(2, "0");
+    for (const time of board.querySelectorAll(".board-origin time[datetime*='T']")) {
+      const at = new Date(time.getAttribute("datetime"));
+      if (!Number.isNaN(at.getTime())) time.textContent = `${two(at.getDate())}.${two(at.getMonth() + 1)} ${two(at.getHours())}:${two(at.getMinutes())}`;
+    }
+    // Порядок карточек: «Сначала новые» (по дате и времени коммита) или «Как раньше». Выбор помнит браузер.
+    const sortButtons = [...document.querySelectorAll("[data-board-sort]")];
+    const sortKey = "clean-a-snow-board-sort";
+    const sort = (order) => {
+      const rank = order === "old" ? "oldRank" : "newRank";
+      for (const button of sortButtons) button.setAttribute("aria-pressed", String(button.dataset.boardSort === order));
+      for (const list of board.querySelectorAll(".board-cards")) {
+        const cards = [...list.querySelectorAll(":scope > .board-card")];
+        cards.sort((a, b) => Number(a.dataset[rank]) - Number(b.dataset[rank]));
+        for (const card of cards) list.appendChild(card);
+      }
+      try {
+        localStorage.setItem(sortKey, order);
+      } catch (e) {}
+    };
+    for (const button of sortButtons) button.addEventListener("click", () => sort(button.dataset.boardSort));
+    let savedSort = null;
+    try {
+      savedSort = localStorage.getItem(sortKey);
+    } catch (e) {}
+    if (savedSort === "old") sort("old");
+    // Ссылка на карточку (board.html#card-…) раскрывает её текст и показывает карточку.
+    const target = location.hash.startsWith("#card-") ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+    if (target) {
+      const text = target.querySelector("details");
+      if (text) text.open = true;
+      target.scrollIntoView({ block: "start" });
+    }
+  }
+
+  // Кнопка текущей страницы в шапке видна и на узком экране, где шапка листается вбок.
+  document.querySelector(".topbar .top-link[aria-current]")?.scrollIntoView({ block: "nearest", inline: "center" });
+
+  const menu = document.getElementById("menu");
+  const sidebar = document.getElementById("sidebar");
+  menu.addEventListener("click", () => {
+    const open = sidebar.classList.toggle("open");
+    menu.setAttribute("aria-expanded", String(open));
+  });
+  sidebar.addEventListener("click", (e) => {
+    if (e.target.closest("a")) {
+      sidebar.classList.remove("open");
+      menu.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  // Свёрнутые разделы меню. Выбор читателя помнит браузер; без него открыт только раздел текущей страницы.
+  const KEY = "clean-a-snow-guide-nav-folds";
+  let folds = {};
+  try {
+    folds = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+  } catch {
+    folds = {};
+  }
+  for (const group of sidebar.querySelectorAll("details.group")) {
+    const id = group.dataset.group;
+    group.open = id in folds ? folds[id] : group.querySelector('[aria-current="page"]') !== null;
+    group.addEventListener("toggle", () => {
+      folds[id] = group.open;
+      try {
+        localStorage.setItem(KEY, JSON.stringify(folds));
+      } catch {
+        // Без хранилища выбор живёт до перехода на другую страницу.
+      }
+    });
+  }
+  // Общие галочки: файл на сервере, браузер держит копию. Сервер недоступен — остаётся копия в браузере.
+  // Пользуются чеклист «Тестирование» и отметки «Ответ дан» страницы «Вопросы».
+  // reset() снимает все отметки у всех. onPaint вызывается после каждой смены галочек.
+  const sharedChecks = ({ boxes, keyOf, storageKey, url, onPaint }) => {
+    let done = {};
+    let revision = null;
+    let sending = false;
+    let dirty = false;
+    let resetPending = false;
+    const touched = new Set();
+    try {
+      done = JSON.parse(localStorage.getItem(storageKey) || "{}") || {};
+    } catch {
+      done = {};
+    }
+    const save = () => {
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(done));
+      } catch {
+        // Без хранилища отметки живут до ухода со страницы.
+      }
+    };
+    const paint = () => {
+      for (const box of boxes) box.checked = done[keyOf(box)] === true;
+      onPaint();
+    };
+    const mergeTouched = (serverChecks, localChecks, keys) => {
+      const merged = { ...serverChecks };
+      for (const key of keys) {
+        if (localChecks[key] === true) merged[key] = true;
+        else delete merged[key];
+      }
+      return merged;
+    };
+    const push = () => {
+      if (revision === null || sending) {
+        dirty = true;
+        return;
+      }
+      sending = true;
+      dirty = false;
+      const sentChecks = { ...done };
+      const sentTouched = [...touched];
+      const wasReset = resetPending;
+      resetPending = false;
+      touched.clear();
+      fetch(url, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ revision, checks: sentChecks }),
+      })
+        .then((res) => res.json().then((doc) => ({ status: res.status, doc })))
+        .then(({ status, doc }) => {
+          if (!doc || !doc.checks || !Number.isInteger(doc.revision)) return;
+          revision = doc.revision;
+          if (status === 409) {
+            const newerTouched = [...touched];
+            const newerChecks = { ...done };
+            if (wasReset && newerTouched.length === 0) done = {};
+            else done = mergeTouched(mergeTouched(doc.checks, sentChecks, sentTouched), newerChecks, newerTouched);
+            dirty = true;
+          } else if (status === 200) {
+            if (dirty || touched.size) done = { ...done };
+            else done = doc.checks;
+          }
+          save();
+          paint();
+        })
+        .catch(() => {
+          // Сервер недоступен: копия в браузере уже сохранена.
+        })
+        .finally(() => {
+          sending = false;
+          if (dirty || touched.size || resetPending) push();
+        });
+    };
+    const pull = () => {
+      fetch(url)
+        .then((res) => (res.ok ? res.json() : null))
+        .then((doc) => {
+          if (!doc || !doc.checks || !Number.isInteger(doc.revision)) return;
+          if (revision === null) {
+            revision = doc.revision;
+            if (touched.size || resetPending) {
+              if (!resetPending) done = mergeTouched(doc.checks, done, touched);
+              push();
+            } else {
+              done = doc.checks;
+              save();
+              paint();
+            }
+            return;
+          }
+          if (sending || touched.size || resetPending) return;
+          if (revision === doc.revision) return;
+          revision = doc.revision;
+          done = doc.checks;
+          save();
+          paint();
+        })
+        .catch(() => {
+          // Без сервера страница остаётся на копии в браузере.
+        });
+    };
+    for (const box of boxes) {
+      box.addEventListener("change", () => {
+        if (box.checked) done[keyOf(box)] = true;
+        else delete done[keyOf(box)];
+        touched.add(keyOf(box));
+        resetPending = false;
+        save();
+        onPaint();
+        push();
+      });
+    }
+    paint();
+    pull();
+    setInterval(pull, 2000);
+    return {
+      reset() {
+        done = {};
+        touched.clear();
+        resetPending = true;
+        save();
+        paint();
+        push();
+      },
+    };
+  };
+  const CHECKS_SERVER = "https://atlas.31-58-209-99.sslip.io/clean-snow-checks/";
+
+  // Галочки чеклиста «Тестирование». «Сбросить» начинает новый круг у всех.
+  const checks = document.querySelectorAll("input[data-check]");
+  if (checks.length) {
+    const visibleBoxes = (root) => [...root.querySelectorAll("input[data-check]")].filter((box) => !box.closest(".test-item")?.hidden);
+    const count = () => {
+      for (const group of document.querySelectorAll("details.test-group")) {
+        const boxes = visibleBoxes(group);
+        const ticked = boxes.filter((b) => b.checked).length;
+        group.querySelector(".test-count").textContent = `${ticked} из ${boxes.length}`;
+        group.classList.toggle("test-finished", boxes.length > 0 && ticked === boxes.length);
+      }
+      document.getElementById("test-done").textContent = String(visibleBoxes(document).filter((b) => b.checked).length);
+    };
+    const filterButtons = [...document.querySelectorAll("[data-test-filter]")];
+    const applyPerson = (person) => {
+      for (const button of filterButtons) button.setAttribute("aria-pressed", String(button.dataset.testFilter === person));
+      for (const item of document.querySelectorAll(".test-item")) {
+        const people = (item.dataset.people || "").split(/\s+/).filter(Boolean);
+        item.hidden = person !== "all" && people.length > 0 && !people.includes(person);
+      }
+      for (const task of document.querySelectorAll(".test-task")) {
+        task.hidden = ![...task.querySelectorAll(".test-item")].some((item) => !item.hidden);
+      }
+      for (const group of document.querySelectorAll("details.test-group")) {
+        group.hidden = ![...group.querySelectorAll(".test-item")].some((item) => !item.hidden);
+      }
+      const shown = visibleBoxes(document);
+      for (const node of document.querySelector(".test-total").childNodes) {
+        if (node.nodeType === Node.TEXT_NODE && node.textContent.includes(" из ")) node.textContent = ` из ${shown.length} `;
+      }
+      count();
+    };
+    for (const button of filterButtons) button.addEventListener("click", () => applyPerson(button.dataset.testFilter));
+    const testing = sharedChecks({
+      boxes: checks,
+      keyOf: (box) => box.dataset.check,
+      storageKey: "clean-a-snow-guide-testing-checks",
+      url: CHECKS_SERVER,
+      onPaint: count,
+    });
+    document.getElementById("test-reset").addEventListener("click", () => {
+      if (!confirm("Снять все отметки и начать проверку заново?")) return;
+      testing.reset();
+    });
+  }
+
+  // Отметки «Ответ дан» страницы «Вопросы»: свой файл того же сервера.
+  const answers = document.querySelectorAll("input[data-answer]");
+  if (answers.length) {
+    sharedChecks({
+      boxes: answers,
+      keyOf: (box) => box.dataset.answer,
+      storageKey: "clean-a-snow-guide-question-answers",
+      url: "https://atlas.31-58-209-99.sslip.io/clean-snow-checks/questions",
+      onPaint: () => {
+        for (const box of answers) box.closest(".question")?.classList.toggle("question-answered", box.checked);
+        document.getElementById("answer-done").textContent = String([...answers].filter((b) => b.checked).length);
+      },
+    });
+  }
+
+  // Отметки Approved раздела HUD: свой файл того же сервера.
+  const approvals = document.querySelectorAll("input[data-hud]");
+  if (approvals.length) {
+    sharedChecks({
+      boxes: approvals,
+      keyOf: (box) => box.dataset.hud,
+      storageKey: "clean-a-snow-guide-hud-approved",
+      url: "https://atlas.31-58-209-99.sslip.io/clean-snow-checks/hud",
+      onPaint: () => {
+        for (const box of approvals) box.closest(".hud-row")?.classList.toggle("hud-approved", box.checked);
+        document.getElementById("hud-approved").textContent = String([...approvals].filter((b) => b.checked).length);
+      },
+    });
+  }
+
+  const current = sidebar.querySelector('[aria-current="page"]');
+  if (current) current.scrollIntoView({ block: "nearest" });
+
+  const viewer = document.getElementById("viewer");
+  const image = document.getElementById("viewer-image");
+  const caption = document.getElementById("viewer-caption");
+  const open = document.getElementById("viewer-open");
+  document.addEventListener("click", (e) => {
+    const img = e.target.closest("main img");
+    if (!img) return;
+    image.src = img.src;
+    image.alt = img.alt;
+    caption.textContent = img.dataset.caption || img.alt;
+    open.href = img.src;
+    viewer.showModal();
+  });
+  document.getElementById("viewer-close").addEventListener("click", () => viewer.close());
+  viewer.addEventListener("click", (e) => {
+    if (e.target === viewer) viewer.close();
+  });
+})();
+</script>
+</body>
+</html>

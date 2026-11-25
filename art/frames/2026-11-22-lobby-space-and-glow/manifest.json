@@ -1,0 +1,96 @@
+{
+  "round": 1,
+  "version": "4FDBBC230F482018599FAA6A5B4F041486E44742F4401B3DB31FCC62AAF44DA7",
+  "source": "build/winter-lobby/layout-v2/apply.luau",
+  "scenario": "Local NaLovi Studio Play, six successive QueueStart / ReturnLobby cycles, live CaptureService captures",
+  "persistent": true,
+  "phaseExplanation": "Static ongoing light marker, no flash or motion phases. Frame times are actual os.clock, unpaused.",
+  "frames": [
+    {
+      "name": "gate",
+      "clock": 8504.468115800002,
+      "quality": "High",
+      "reduced": false,
+      "path": "art/frames/2026-11-22-lobby-space-and-glow/gate.png",
+      "frozen": false,
+      "method": "CaptureService real main-game Play",
+      "robloxGraphics": 10
+    },
+    {
+      "name": "services",
+      "clock": 8506.349331200006,
+      "quality": "High",
+      "reduced": false,
+      "path": "art/frames/2026-11-22-lobby-space-and-glow/services.png",
+      "frozen": false,
+      "method": "CaptureService real main-game Play",
+      "robloxGraphics": 10
+    },
+    {
+      "name": "player",
+      "clock": 8508.126357900008,
+      "quality": "High",
+      "reduced": false,
+      "path": "art/frames/2026-11-22-lobby-space-and-glow/player.png",
+      "frozen": false,
+      "method": "CaptureService real main-game Play",
+      "robloxGraphics": 10
+    },
+    {
+      "name": "low",
+      "clock": 8510.0710386,
+      "quality": "Low",
+      "reduced": false,
+      "path": "art/frames/2026-11-22-lobby-space-and-glow/low.png",
+      "frozen": false,
+      "method": "CaptureService real main-game Play",
+      "robloxGraphics": 10
+    },
+    {
+      "name": "reduced",
+      "clock": 8511.934516800015,
+      "quality": "Low",
+      "reduced": true,
+      "path": "art/frames/2026-11-22-lobby-space-and-glow/reduced.png",
+      "frozen": false,
+      "method": "CaptureService real main-game Play",
+      "robloxGraphics": 10
+    }
+  ],
+  "stats": {
+    "before": {
+      "beams": 102,
+      "attachments": 108,
+      "invisibleMarkers": 6,
+      "particles": 0,
+      "descendants": 234
+    },
+    "after": {
+      "beams": 102,
+      "attachments": 108,
+      "invisibleMarkers": 6,
+      "particles": 0,
+      "descendants": 234
+    },
+    "pool": 0,
+    "visibleParts": 0,
+    "soloRuns": 6
+  },
+  "approachChecks": {
+    "upgrades": {
+      "closestStart": 26.96357,
+      "promptRadius": 16
+    },
+    "classes": {
+      "closestStart": 18.22521,
+      "promptRadius": 16
+    },
+    "wheel": {
+      "closestStart": 26.96333,
+      "promptRadius": 7
+    }
+  },
+  "limits": "Low is game SnowQuality=Low, Roblox global graphics remained 10. No physical phone test. No fullscreen effect or animated allocation.",
+  "model": "models/lobby/Workspace/LobbyArea.rbxm",
+  "modelSha256": "D604BABE9D26800005D40B8AEAA4CE4FBFCC93A08DF161508F5E4E3066F9D5B4"
+}

@@ -1,0 +1,1 @@
+{"rounds":[{"round":1,"verdict":"fail","fidelity":7,"appeal":7,"fixes":["Остекление","Боковые прорези","Вид полости раструба"]},{"round":2,"verdict":"pass","fidelity":9,"appeal":8,"note":"Остекление кабины более плоское, чем на референсе."}],"export":{"triangles":2620,"dimensionsStuds":[18.78,17.46,9.07],"coplanarOverlaps":0}}

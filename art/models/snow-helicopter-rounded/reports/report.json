@@ -1,0 +1,275 @@
+{
+  "file": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\snow-helicopter-rounded\\source\\SnowHelicopterRounded_master.blend",
+  "sha256": "54c8b2a363d7c32a595bac95d5ca60e4099c83f62160879d708746af77bfcae6",
+  "blender": "5.0.1",
+  "collection": "SnowHelicopter",
+  "export": [
+    "Tail",
+    "LandingSkids",
+    "VacuumBell",
+    "CollectorGlass",
+    "Snow",
+    "MainRotor",
+    "TailRotor",
+    "Cabin",
+    "CabinInterior",
+    "RunningLights"
+  ],
+  "dimensions": {
+    "width": 5.2584,
+    "depth": 5.114758,
+    "height": 2.549398,
+    "min_z": -0.004198,
+    "center": [
+      0.0,
+      0.998621,
+      1.270501
+    ]
+  },
+  "totals": {
+    "tris": 6284,
+    "verts": 3236,
+    "meshes": 10,
+    "touching_verts": 0,
+    "materials": [
+      "Canopy and collector glass",
+      "M_SnowHelicopter_Palette"
+    ],
+    "bones": 0,
+    "textures": [
+      {
+        "name": "SnowHelicopter_Palette",
+        "size": [
+          64,
+          64
+        ]
+      }
+    ]
+  },
+  "objects": [
+    {
+      "name": "Tail",
+      "tris": 112,
+      "verts": 64,
+      "parts": 4,
+      "touching_verts": 0,
+      "materials": [
+        "M_SnowHelicopter_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LandingSkids",
+      "tris": 344,
+      "verts": 192,
+      "parts": 10,
+      "touching_verts": 0,
+      "materials": [
+        "M_SnowHelicopter_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "VacuumBell",
+      "tris": 316,
+      "verts": 160,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_SnowHelicopter_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "CollectorGlass",
+      "tris": 156,
+      "verts": 80,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "Canopy and collector glass"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Snow",
+      "tris": 884,
+      "verts": 476,
+      "parts": 17,
+      "touching_verts": 0,
+      "materials": [
+        "M_SnowHelicopter_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MainRotor",
+      "tris": 276,
+      "verts": 144,
+      "parts": 3,
+      "touching_verts": 0,
+      "materials": [
+        "M_SnowHelicopter_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "TailRotor",
+      "tris": 84,
+      "verts": 48,
+      "parts": 3,
+      "touching_verts": 0,
+      "materials": [
+        "M_SnowHelicopter_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Cabin",
+      "tris": 3740,
+      "verts": 1872,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "Canopy and collector glass",
+        "M_SnowHelicopter_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "CabinInterior",
+      "tris": 252,
+      "verts": 136,
+      "parts": 5,
+      "touching_verts": 0,
+      "materials": [
+        "M_SnowHelicopter_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RunningLights",
+      "tris": 120,
+      "verts": 64,
+      "parts": 2,
+      "touching_verts": 0,
+      "materials": [
+        "M_SnowHelicopter_Palette"
+      ],
+      "modifiers": []
+    }
+  ],
+  "issues": [
+    {
+      "code": "object_name",
+      "object": null,
+      "count": 10,
+      "severity": "warning",
+      "message": "объекты названы не по правилу SnowHelicopterRounded_Body, SnowHelicopterRounded_LOD<n>, арматура SnowHelicopterRounded_Rig, глаза — пустые объекты SnowHelicopterRounded_EyeL/R и SnowHelicopterRounded_PupilL/R с мешами SnowHelicopterRounded_EyeL_LOD<n> и SnowHelicopterRounded_PupilL_LOD<n>: Cabin, CabinInterior, CollectorGlass, LandingSkids, MainRotor, RunningLights, Snow, Tail, TailRotor, VacuumBell"
+    },
+    {
+      "code": "material_name",
+      "object": null,
+      "count": 2,
+      "severity": "warning",
+      "message": "материалы названы не по правилу M_SnowHelicopterRounded_<Часть>: Canopy and collector glass, M_SnowHelicopter_Palette"
+    }
+  ],
+  "ok": true,
+  "eyes": {
+    "found": false,
+    "objects": [],
+    "issues": []
+  },
+  "palette": {
+    "file": "art/palette.json",
+    "materials": [
+      {
+        "name": "M_SnowHelicopter_Palette",
+        "hex": null,
+        "texture": "SnowHelicopter_Palette",
+        "match": null,
+        "checked": true,
+        "off": [],
+        "legacy": []
+      },
+      {
+        "name": "Canopy and collector glass",
+        "hex": null,
+        "match": null,
+        "checked": false
+      }
+    ]
+  },
+  "budget": {
+    "class": "vehicle",
+    "rows": [
+      {
+        "key": "tris",
+        "value": 6284,
+        "limit": 8000,
+        "ok": true
+      },
+      {
+        "key": "materials",
+        "value": 2,
+        "limit": 2,
+        "ok": true
+      },
+      {
+        "key": "bones",
+        "value": 0,
+        "limit": 0,
+        "ok": true
+      },
+      {
+        "key": "textureSize",
+        "value": 64,
+        "limit": 256,
+        "ok": true
+      }
+    ]
+  },
+  "naming": {
+    "model": "SnowHelicopterRounded",
+    "source": "file",
+    "objects": [
+      "Cabin",
+      "CabinInterior",
+      "CollectorGlass",
+      "LandingSkids",
+      "MainRotor",
+      "RunningLights",
+      "Snow",
+      "Tail",
+      "TailRotor",
+      "VacuumBell"
+    ],
+    "materials": [
+      "Canopy and collector glass",
+      "M_SnowHelicopter_Palette"
+    ]
+  },
+  "export_copies": {
+    "duplicates": [],
+    "skipped": "файл вне проекта Unity и без --assets: папка движка неизвестна"
+  },
+  "renders": {
+    "front": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\snow-helicopter-rounded\\reports\\front.png",
+    "side": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\snow-helicopter-rounded\\reports\\side.png",
+    "back": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\snow-helicopter-rounded\\reports\\back.png",
+    "top": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\snow-helicopter-rounded\\reports\\top.png",
+    "three-quarter": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\snow-helicopter-rounded\\reports\\three-quarter.png"
+  },
+  "render_settings": {
+    "engine": "BLENDER_EEVEE",
+    "clay": false,
+    "backface_culling": true,
+    "film_transparent": false,
+    "player": true,
+    "grid": {
+      "minor": 0.1,
+      "major": 1.0
+    }
+  }
+}

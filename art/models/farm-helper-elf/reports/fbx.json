@@ -1,0 +1,23 @@
+{
+  "Idle": {
+    "frames": 64,
+    "triangles": 1104,
+    "bones": 17,
+    "seam_m": 0.0,
+    "motion_m": 0.04047152379895813
+  },
+  "Walk": {
+    "frames": 32,
+    "triangles": 1104,
+    "bones": 17,
+    "seam_m": 0.0,
+    "motion_m": 0.11501282614421447
+  },
+  "Dig": {
+    "frames": 80,
+    "triangles": 1104,
+    "bones": 17,
+    "seam_m": 0.0,
+    "motion_m": 0.048421487954432525
+  }
+}

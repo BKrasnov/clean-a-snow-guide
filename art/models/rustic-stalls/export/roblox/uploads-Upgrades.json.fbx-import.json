@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "profile": "studio-fbx-me-origin-v1",
+  "game": "clean-a-snow",
+  "file": "C:\\Users\\User\\development\\slime_studio\\games\\clean-a-snow-hud-polish\\art\\models\\rustic-stalls\\export\\roblox\\Upgrades.fbx",
+  "originalFile": "C:\\Users\\User\\development\\slime_studio\\games\\clean-a-snow-hud-polish\\art\\models\\rustic-stalls\\export\\roblox\\Upgrades.fbx",
+  "sha256": "71676ea9f4822dcd9947fdc212c476a4249380abd799aa14ba45e4d00b35aa33",
+  "state": "complete",
+  "artifactDirectory": "C:\\Users\\User\\development\\slime_studio\\roblox\\build\\fbx-import\\500c2bb8-7959-4e45-b670-7cc84fe88d4c",
+  "startedAt": "2026-11-23T11:52:41.974Z",
+  "exposedAt": "2026-11-23T11:52:55.254Z",
+  "submittedAt": "2026-11-23T11:53:01.255Z",
+  "completedAt": "2026-11-23T11:53:19.856Z",
+  "observed": {
+    "containerPivot": [
+      -0.01277381181716919,
+      1.3433817625045776,
+      -0.09303915500640869
+    ],
+    "name": "Upgrades",
+    "rig": {
+      "bones": [],
+      "classes": {
+        "MeshPart": 1,
+        "Model": 1
+      },
+      "others": [
+        "Model.Upgrades : Model",
+        "Model.Upgrades.Upgrades : MeshPart"
+      ],
+      "clips": []
+    },
+    "parts": [
+      {
+        "id": "rbxassetid://122244893963453",
+        "position": [
+          -0.01277381181716919,
+          1.343381643295288,
+          -0.09303915500640869
+        ],
+        "name": "Upgrades",
+        "size": [
+          2.9367499351501465,
+          2.6867637634277344,
+          2.153226137161255
+        ]
+      }
+    ],
+    "pivot": [
+      0,
+      0,
+      0
+    ],
+    "ready": true,
+    "created": "2026-11-23T11:53:06.681Z",
+    "creatorId": "6054024552",
+    "assetName": "Upgrades",
+    "sourceAssetId": "117582405561174",
+    "workspacePivot": [
+      0,
+      -79.96096801757812,
+      -99.95121002197266
+    ],
+    "workspaceContainerPivot": [
+      0,
+      -79.96096801757812,
+      -99.95121002197266
+    ]
+  }
+}

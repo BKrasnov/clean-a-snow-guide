@@ -1,0 +1,388 @@
+{
+  "file": "../source/GrinchHideout_master.blend",
+  "sha256": "dd087c716ea5ecdc9d459f2506cac43ab6933666d40db08ba1241d67df703519",
+  "blender": "5.0.1",
+  "collection": "GrinchHideout",
+  "export": [
+    "Glacial walls",
+    "Gate arch and sign",
+    "Leaning ice tower",
+    "Snow floor",
+    "Entrance gate - hinged",
+    "Snow at the foundation",
+    "Snow roof",
+    "Frozen dais",
+    "Gift red",
+    "Gift emerald",
+    "Gift aqua",
+    "Gift gold",
+    "Locked gift fence",
+    "Empty ice throne",
+    "Snowballs near the left wall",
+    "Ornament lantern 1",
+    "Ornament lantern 2",
+    "Ornament lantern 3",
+    "Ice lattice -1",
+    "Ice lattice 1"
+  ],
+  "dimensions": {
+    "width": 10.19375,
+    "depth": 7.6146,
+    "height": 5.622371,
+    "min_z": 0,
+    "center": [
+      0.056125,
+      -0.0437,
+      2.811186
+    ]
+  },
+  "totals": {
+    "tris": 5946,
+    "verts": 3381,
+    "meshes": 20,
+    "touching_verts": 20,
+    "materials": [
+      "M_GrinchHideout_Palette"
+    ],
+    "bones": 0,
+    "textures": [
+      {
+        "name": "GrinchHideout_Palette",
+        "size": [
+          64,
+          64
+        ]
+      }
+    ]
+  },
+  "objects": [
+    {
+      "name": "Glacial walls",
+      "tris": 936,
+      "verts": 468,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_GrinchHideout_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Gate arch and sign",
+      "tris": 860,
+      "verts": 498,
+      "parts": 34,
+      "touching_verts": 0,
+      "materials": [
+        "M_GrinchHideout_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Leaning ice tower",
+      "tris": 330,
+      "verts": 189,
+      "parts": 12,
+      "touching_verts": 0,
+      "materials": [
+        "M_GrinchHideout_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Snow floor",
+      "tris": 116,
+      "verts": 60,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_GrinchHideout_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Entrance gate - hinged",
+      "tris": 344,
+      "verts": 208,
+      "parts": 18,
+      "touching_verts": 0,
+      "materials": [
+        "M_GrinchHideout_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Snow at the foundation",
+      "tris": 512,
+      "verts": 292,
+      "parts": 18,
+      "touching_verts": 4,
+      "materials": [
+        "M_GrinchHideout_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Snow roof",
+      "tris": 510,
+      "verts": 291,
+      "parts": 18,
+      "touching_verts": 0,
+      "materials": [
+        "M_GrinchHideout_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Frozen dais",
+      "tris": 20,
+      "verts": 12,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_GrinchHideout_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Gift red",
+      "tris": 232,
+      "verts": 136,
+      "parts": 12,
+      "touching_verts": 4,
+      "materials": [
+        "M_GrinchHideout_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Gift emerald",
+      "tris": 232,
+      "verts": 136,
+      "parts": 12,
+      "touching_verts": 4,
+      "materials": [
+        "M_GrinchHideout_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Gift aqua",
+      "tris": 288,
+      "verts": 168,
+      "parts": 14,
+      "touching_verts": 4,
+      "materials": [
+        "M_GrinchHideout_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Gift gold",
+      "tris": 232,
+      "verts": 136,
+      "parts": 12,
+      "touching_verts": 4,
+      "materials": [
+        "M_GrinchHideout_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Locked gift fence",
+      "tris": 472,
+      "verts": 288,
+      "parts": 26,
+      "touching_verts": 0,
+      "materials": [
+        "M_GrinchHideout_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Empty ice throne",
+      "tris": 404,
+      "verts": 230,
+      "parts": 14,
+      "touching_verts": 0,
+      "materials": [
+        "M_GrinchHideout_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Snowballs near the left wall",
+      "tris": 78,
+      "verts": 45,
+      "parts": 3,
+      "touching_verts": 0,
+      "materials": [
+        "M_GrinchHideout_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Ornament lantern 1",
+      "tris": 84,
+      "verts": 48,
+      "parts": 3,
+      "touching_verts": 0,
+      "materials": [
+        "M_GrinchHideout_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Ornament lantern 2",
+      "tris": 84,
+      "verts": 48,
+      "parts": 3,
+      "touching_verts": 0,
+      "materials": [
+        "M_GrinchHideout_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Ornament lantern 3",
+      "tris": 84,
+      "verts": 48,
+      "parts": 3,
+      "touching_verts": 0,
+      "materials": [
+        "M_GrinchHideout_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Ice lattice -1",
+      "tris": 64,
+      "verts": 40,
+      "parts": 4,
+      "touching_verts": 0,
+      "materials": [
+        "M_GrinchHideout_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Ice lattice 1",
+      "tris": 64,
+      "verts": 40,
+      "parts": 4,
+      "touching_verts": 0,
+      "materials": [
+        "M_GrinchHideout_Palette"
+      ],
+      "modifiers": []
+    }
+  ],
+  "issues": [
+    {
+      "code": "object_name",
+      "object": null,
+      "count": 20,
+      "severity": "warning",
+      "message": "объекты названы не по правилу GrinchHideout_Body, GrinchHideout_LOD<n>, арматура GrinchHideout_Rig, глаза — пустые объекты GrinchHideout_EyeL/R и GrinchHideout_PupilL/R с мешами GrinchHideout_EyeL_LOD<n> и GrinchHideout_PupilL_LOD<n>: Empty ice throne, Entrance gate - hinged, Frozen dais, Gate arch and sign, Gift aqua, Gift emerald, Gift gold, Gift red, Glacial walls, Ice lattice -1, Ice lattice 1, Leaning ice tower, Locked gift fence, Ornament lantern 1, Ornament lantern 2, Ornament lantern 3, Snow at the foundation, Snow floor, Snow roof, Snowballs near the left wall"
+    }
+  ],
+  "ok": true,
+  "eyes": {
+    "found": false,
+    "objects": [],
+    "issues": []
+  },
+  "palette": {
+    "file": "../../../palette.json",
+    "materials": [
+      {
+        "name": "M_GrinchHideout_Palette",
+        "hex": null,
+        "texture": "GrinchHideout_Palette",
+        "match": null,
+        "checked": true,
+        "off": [],
+        "legacy": []
+      }
+    ]
+  },
+  "budget": {
+    "class": "building",
+    "rows": [
+      {
+        "key": "tris",
+        "value": 5946,
+        "limit": 6000,
+        "ok": true
+      },
+      {
+        "key": "materials",
+        "value": 1,
+        "limit": 2,
+        "ok": true
+      },
+      {
+        "key": "bones",
+        "value": 0,
+        "limit": 0,
+        "ok": true
+      },
+      {
+        "key": "textureSize",
+        "value": 64,
+        "limit": 256,
+        "ok": true
+      }
+    ]
+  },
+  "naming": {
+    "model": "GrinchHideout",
+    "source": "argument",
+    "objects": [
+      "Empty ice throne",
+      "Entrance gate - hinged",
+      "Frozen dais",
+      "Gate arch and sign",
+      "Gift aqua",
+      "Gift emerald",
+      "Gift gold",
+      "Gift red",
+      "Glacial walls",
+      "Ice lattice -1",
+      "Ice lattice 1",
+      "Leaning ice tower",
+      "Locked gift fence",
+      "Ornament lantern 1",
+      "Ornament lantern 2",
+      "Ornament lantern 3",
+      "Snow at the foundation",
+      "Snow floor",
+      "Snow roof",
+      "Snowballs near the left wall"
+    ],
+    "materials": []
+  },
+  "export_copies": {
+    "duplicates": [],
+    "skipped": "файл вне проекта Unity и без --assets: папка движка неизвестна"
+  },
+  "renders": {
+    "front": "views/front.png",
+    "side": "views/side.png",
+    "back": "views/back.png",
+    "top": "views/top.png",
+    "side-right": "views/side-right.png",
+    "three-quarter": "views/three-quarter.png"
+  },
+  "render_settings": {
+    "engine": "BLENDER_EEVEE",
+    "clay": false,
+    "backface_culling": true,
+    "film_transparent": false,
+    "player": true,
+    "grid": {
+      "minor": 1,
+      "major": 10
+    }
+  }
+}

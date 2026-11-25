@@ -1,0 +1,479 @@
+{
+  "modules": {
+    "Straight": {
+      "dimensions": {
+        "width": 0.87528,
+        "depth": 1.1144,
+        "height": 0.26264,
+        "min_z": 0.0,
+        "center": [
+          -1.68,
+          1.12,
+          0.13132
+        ]
+      },
+      "totals": {
+        "tris": 204,
+        "verts": 124,
+        "meshes": 1,
+        "touching_verts": 0,
+        "materials": [
+          "M_ClassicConveyor"
+        ],
+        "bones": 0,
+        "textures": [
+          {
+            "name": "ClassicConveyor_Palette",
+            "size": [
+              32,
+              8
+            ]
+          }
+        ]
+      },
+      "objects": [
+        {
+          "name": "Straight",
+          "tris": 204,
+          "verts": 124,
+          "parts": 11,
+          "touching_verts": 0,
+          "materials": [
+            "M_ClassicConveyor"
+          ],
+          "modifiers": []
+        }
+      ],
+      "issues": [],
+      "ok": true,
+      "budget": {
+        "class": "small_prop",
+        "rows": [
+          {
+            "key": "tris",
+            "value": 204,
+            "limit": 1000,
+            "ok": true
+          },
+          {
+            "key": "materials",
+            "value": 1,
+            "limit": 1,
+            "ok": true
+          },
+          {
+            "key": "bones",
+            "value": 0,
+            "limit": 0,
+            "ok": true
+          },
+          {
+            "key": "textureSize",
+            "value": 32,
+            "limit": 256,
+            "ok": true
+          }
+        ]
+      }
+    },
+    "TurnLeft": {
+      "dimensions": {
+        "width": 0.99484,
+        "depth": 0.99484,
+        "height": 0.26264,
+        "min_z": 0.0,
+        "center": [
+          -0.05978,
+          1.06022,
+          0.13132
+        ]
+      },
+      "totals": {
+        "tris": 714,
+        "verts": 379,
+        "meshes": 1,
+        "touching_verts": 0,
+        "materials": [
+          "M_ClassicConveyor"
+        ],
+        "bones": 0,
+        "textures": [
+          {
+            "name": "ClassicConveyor_Palette",
+            "size": [
+              32,
+              8
+            ]
+          }
+        ]
+      },
+      "objects": [
+        {
+          "name": "TurnLeft",
+          "tris": 714,
+          "verts": 379,
+          "parts": 11,
+          "touching_verts": 0,
+          "materials": [
+            "M_ClassicConveyor"
+          ],
+          "modifiers": []
+        }
+      ],
+      "issues": [],
+      "ok": true,
+      "budget": {
+        "class": "small_prop",
+        "rows": [
+          {
+            "key": "tris",
+            "value": 714,
+            "limit": 1000,
+            "ok": true
+          },
+          {
+            "key": "materials",
+            "value": 1,
+            "limit": 1,
+            "ok": true
+          },
+          {
+            "key": "bones",
+            "value": 0,
+            "limit": 0,
+            "ok": true
+          },
+          {
+            "key": "textureSize",
+            "value": 32,
+            "limit": 256,
+            "ok": true
+          }
+        ]
+      }
+    },
+    "TurnRight": {
+      "dimensions": {
+        "width": 0.99484,
+        "depth": 0.99484,
+        "height": 0.26264,
+        "min_z": 0.0,
+        "center": [
+          1.73978,
+          1.06022,
+          0.13132
+        ]
+      },
+      "totals": {
+        "tris": 714,
+        "verts": 379,
+        "meshes": 1,
+        "touching_verts": 0,
+        "materials": [
+          "M_ClassicConveyor"
+        ],
+        "bones": 0,
+        "textures": [
+          {
+            "name": "ClassicConveyor_Palette",
+            "size": [
+              32,
+              8
+            ]
+          }
+        ]
+      },
+      "objects": [
+        {
+          "name": "TurnRight",
+          "tris": 714,
+          "verts": 379,
+          "parts": 11,
+          "touching_verts": 0,
+          "materials": [
+            "M_ClassicConveyor"
+          ],
+          "modifiers": []
+        }
+      ],
+      "issues": [],
+      "ok": true,
+      "budget": {
+        "class": "small_prop",
+        "rows": [
+          {
+            "key": "tris",
+            "value": 714,
+            "limit": 1000,
+            "ok": true
+          },
+          {
+            "key": "materials",
+            "value": 1,
+            "limit": 1,
+            "ok": true
+          },
+          {
+            "key": "bones",
+            "value": 0,
+            "limit": 0,
+            "ok": true
+          },
+          {
+            "key": "textureSize",
+            "value": 32,
+            "limit": 256,
+            "ok": true
+          }
+        ]
+      }
+    },
+    "Tee": {
+      "dimensions": {
+        "width": 1.1144,
+        "depth": 0.99484,
+        "height": 0.26264,
+        "min_z": 0.0,
+        "center": [
+          -1.68,
+          -0.61978,
+          0.13132
+        ]
+      },
+      "totals": {
+        "tris": 650,
+        "verts": 359,
+        "meshes": 1,
+        "touching_verts": 0,
+        "materials": [
+          "M_ClassicConveyor"
+        ],
+        "bones": 0,
+        "textures": [
+          {
+            "name": "ClassicConveyor_Palette",
+            "size": [
+              32,
+              8
+            ]
+          }
+        ]
+      },
+      "objects": [
+        {
+          "name": "Tee",
+          "tris": 650,
+          "verts": 359,
+          "parts": 17,
+          "touching_verts": 0,
+          "materials": [
+            "M_ClassicConveyor"
+          ],
+          "modifiers": []
+        }
+      ],
+      "issues": [],
+      "ok": true,
+      "budget": {
+        "class": "small_prop",
+        "rows": [
+          {
+            "key": "tris",
+            "value": 650,
+            "limit": 1000,
+            "ok": true
+          },
+          {
+            "key": "materials",
+            "value": 1,
+            "limit": 1,
+            "ok": true
+          },
+          {
+            "key": "bones",
+            "value": 0,
+            "limit": 0,
+            "ok": true
+          },
+          {
+            "key": "textureSize",
+            "value": 32,
+            "limit": 256,
+            "ok": true
+          }
+        ]
+      }
+    },
+    "Cross": {
+      "dimensions": {
+        "width": 1.1144,
+        "depth": 1.1144,
+        "height": 0.26264,
+        "min_z": 0.0,
+        "center": [
+          0.0,
+          -0.56,
+          0.13132
+        ]
+      },
+      "totals": {
+        "tris": 996,
+        "verts": 542,
+        "meshes": 1,
+        "touching_verts": 0,
+        "materials": [
+          "M_ClassicConveyor"
+        ],
+        "bones": 0,
+        "textures": [
+          {
+            "name": "ClassicConveyor_Palette",
+            "size": [
+              32,
+              8
+            ]
+          }
+        ]
+      },
+      "objects": [
+        {
+          "name": "Cross",
+          "tris": 996,
+          "verts": 542,
+          "parts": 22,
+          "touching_verts": 0,
+          "materials": [
+            "M_ClassicConveyor"
+          ],
+          "modifiers": []
+        }
+      ],
+      "issues": [],
+      "ok": true,
+      "budget": {
+        "class": "small_prop",
+        "rows": [
+          {
+            "key": "tris",
+            "value": 996,
+            "limit": 1000,
+            "ok": true
+          },
+          {
+            "key": "materials",
+            "value": 1,
+            "limit": 1,
+            "ok": true
+          },
+          {
+            "key": "bones",
+            "value": 0,
+            "limit": 0,
+            "ok": true
+          },
+          {
+            "key": "textureSize",
+            "value": 32,
+            "limit": 256,
+            "ok": true
+          }
+        ]
+      }
+    },
+    "TowerAdapter": {
+      "dimensions": {
+        "width": 1.9348,
+        "depth": 1.1536,
+        "height": 1.3888,
+        "min_z": 0.0,
+        "center": [
+          1.68,
+          -0.5796,
+          0.6944
+        ]
+      },
+      "totals": {
+        "tris": 336,
+        "verts": 186,
+        "meshes": 1,
+        "touching_verts": 0,
+        "materials": [
+          "M_ClassicConveyor"
+        ],
+        "bones": 0,
+        "textures": [
+          {
+            "name": "ClassicConveyor_Palette",
+            "size": [
+              32,
+              8
+            ]
+          }
+        ]
+      },
+      "objects": [
+        {
+          "name": "TowerAdapter",
+          "tris": 336,
+          "verts": 186,
+          "parts": 10,
+          "touching_verts": 0,
+          "materials": [
+            "M_ClassicConveyor"
+          ],
+          "modifiers": []
+        }
+      ],
+      "issues": [],
+      "ok": true,
+      "budget": {
+        "class": "small_prop",
+        "rows": [
+          {
+            "key": "tris",
+            "value": 336,
+            "limit": 1000,
+            "ok": true
+          },
+          {
+            "key": "materials",
+            "value": 1,
+            "limit": 1,
+            "ok": true
+          },
+          {
+            "key": "bones",
+            "value": 0,
+            "limit": 0,
+            "ok": true
+          },
+          {
+            "key": "textureSize",
+            "value": 32,
+            "limit": 256,
+            "ok": true
+          }
+        ]
+      }
+    }
+  },
+  "mates_tested": 196,
+  "through_deck_studs": 0.7,
+  "pitch_studs": 4.0,
+  "belt_width_studs": 2.6,
+  "rear_dock_studs": 6.06,
+  "minimum_rotor_clearance_studs": 0.4375,
+  "kit_meshes": 6,
+  "combined_meshes": 14,
+  "avatar_studs": 5.1,
+  "exports_bytes": {
+    "ClassicConveyorKit.glb": 240088,
+    "ClassicConveyorWithProcessor.glb": 364132,
+    "Cross.glb": 66952,
+    "Straight.glb": 14960,
+    "Tee.glb": 44196,
+    "TowerAdapter.glb": 22588,
+    "TurnLeft.glb": 47664,
+    "TurnRight.glb": 47728
+  }
+}

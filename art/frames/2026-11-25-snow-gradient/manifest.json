@@ -1,0 +1,240 @@
+{
+  "version": {
+    "src/ReplicatedStorage/SnowSweep/Contour.luau": "9b8ff91594b9c73054c62a7a886745ac4d57c41e955cca2edd0d4f919e0851db",
+    "src/ReplicatedStorage/SnowSweep/MeshPaint.luau": "3038e89323358168f4d6717d1d196a7855525342241bd60f27c5ca6cecd17cf4",
+    "src/ReplicatedStorage/SnowSweep/SnowFar.luau": "bc869e4072156e7dfecb2e2e2adec1434157d9d3d84084197fff0ad98837e5ed",
+    "src/ReplicatedStorage/SnowSweep/SnowFinish.luau": "ffe177cdc533d72fef2e6397e5a3ee8274079914605d7d628c0df53aeee09d2a",
+    "src/ReplicatedStorage/SnowSweep/SnowLayer.luau": "dc700f5dc48982e32a5ae4ee9ee85df5f47787eb58fb246e525138f50187cdbc",
+    "src/ReplicatedStorage/SnowSweep/SnowTiles.luau": "bb39c7f8e582c30c6c43e75bc220755c8b526283e9ee41aff9f1727563727c9c",
+    "src/StarterPlayer/StarterPlayerScripts/CleanSnow/SnowWorldController.luau": "06c68133d170157e011ff007ad1cb5d9a03d927c14370246c7ab84f62c933beb",
+    "src/StarterPlayer/StarterPlayerScripts/CleanSnow/TutorialGlow.luau": "357dc05f35eefc304ff4013a8bbdbb4f9f2c729ba3cae60a45899081206604da"
+  },
+  "method": "Actual Roblox Studio Play game controller and current world/HUD/tool. CaptureService All, unmodified PNG, no frozen time. Local Field stamps for edge/clear fixtures; server geometry regressions independent. Temporary quality hook switches actual renderer budgets to Low; templates/hooks removed from Edit immediately after Play started.",
+  "bench": {
+    "finish": {
+      "median": 3.5046000011789147,
+      "faces": 772,
+      "max": 5.1289999992150115
+    },
+    "baseline": {
+      "median": 1.4973999986978015,
+      "faces": 772,
+      "max": 1.9393000002310146
+    }
+  },
+  "unit": "2026-11-24T23:38:30.695Z,677.695190,72f8,6,Info [FLog::CreatorOutput] SNOW_FINISH_UNIT 70 70 0",
+  "load": [
+    {
+      "finishEmitters": 0,
+      "finishParts": 0,
+      "tileLimit": 1000,
+      "label": "before-repeat",
+      "emitters": 0,
+      "round": 0,
+      "parts": 1184,
+      "quality": "High"
+    },
+    {
+      "finishEmitters": 0,
+      "finishParts": 0,
+      "tileLimit": 1000,
+      "label": "far",
+      "emitters": 0,
+      "round": 1,
+      "parts": 1180,
+      "quality": "High"
+    },
+    {
+      "finishEmitters": 0,
+      "finishParts": 0,
+      "tileLimit": 1000,
+      "label": "near-after-return",
+      "emitters": 0,
+      "round": 1,
+      "parts": 1184,
+      "quality": "High"
+    },
+    {
+      "finishEmitters": 0,
+      "finishParts": 0,
+      "tileLimit": 1000,
+      "label": "far",
+      "emitters": 0,
+      "round": 2,
+      "parts": 1180,
+      "quality": "High"
+    },
+    {
+      "finishEmitters": 0,
+      "finishParts": 0,
+      "tileLimit": 1000,
+      "label": "near-after-return",
+      "emitters": 0,
+      "round": 2,
+      "parts": 1184,
+      "quality": "High"
+    },
+    {
+      "finishEmitters": 0,
+      "finishParts": 0,
+      "tileLimit": 120,
+      "label": "before-repeat",
+      "emitters": 0,
+      "round": 0,
+      "parts": 758,
+      "quality": "Low"
+    },
+    {
+      "finishEmitters": 0,
+      "finishParts": 0,
+      "tileLimit": 120,
+      "label": "far",
+      "emitters": 0,
+      "round": 1,
+      "parts": 859,
+      "quality": "Low"
+    },
+    {
+      "finishEmitters": 0,
+      "finishParts": 0,
+      "tileLimit": 120,
+      "label": "near-after-return",
+      "emitters": 0,
+      "round": 1,
+      "parts": 866,
+      "quality": "Low"
+    },
+    {
+      "finishEmitters": 0,
+      "finishParts": 0,
+      "tileLimit": 120,
+      "label": "far",
+      "emitters": 0,
+      "round": 2,
+      "parts": 859,
+      "quality": "Low"
+    },
+    {
+      "finishEmitters": 0,
+      "finishParts": 0,
+      "tileLimit": 120,
+      "label": "near-after-return",
+      "emitters": 0,
+      "round": 2,
+      "parts": 866,
+      "quality": "Low"
+    }
+  ],
+  "mechanics": "Field/Ground/DEPTH/snowTop/server unchanged. Runtime non-colliding visuals asserted. Relief max .24, bounded cap refinement of existing meshes, two top colors/25 normals, continuous wall colors white F3F6F5 to blue 80A0E6 with local height^1.3, common wall shading. No new effect Parts or emitters.",
+  "frames": [
+    {
+      "visible": 938,
+      "name": "gold",
+      "frozen": false,
+      "parts": 956,
+      "time": 5.01706699999886,
+      "utc": "2026-11-24T23:38:36Z",
+      "quality": "High",
+      "path": "gold.png"
+    },
+    {
+      "visible": 952,
+      "name": "field-wide",
+      "frozen": false,
+      "parts": 1004,
+      "time": 9.482415399999809,
+      "utc": "2026-11-24T23:38:41Z",
+      "quality": "High",
+      "path": "field-wide.png"
+    },
+    {
+      "visible": 952,
+      "name": "surface-close",
+      "frozen": false,
+      "parts": 1004,
+      "time": 9.967325999999957,
+      "utc": "2026-11-24T23:38:41Z",
+      "quality": "High",
+      "path": "surface-close.png"
+    },
+    {
+      "visible": 960,
+      "name": "cut-edge",
+      "frozen": false,
+      "parts": 1010,
+      "time": 14.418001699999877,
+      "utc": "2026-11-24T23:38:46Z",
+      "quality": "High",
+      "path": "cut-edge.png"
+    },
+    {
+      "visible": 948,
+      "name": "cleared-grass",
+      "frozen": false,
+      "parts": 1010,
+      "time": 18.86557619999985,
+      "utc": "2026-11-24T23:38:50Z",
+      "quality": "High",
+      "path": "cleared-grass.png"
+    },
+    {
+      "visible": 926,
+      "name": "far-handoff",
+      "frozen": false,
+      "parts": 1180,
+      "time": 27.415391399999862,
+      "utc": "2026-11-24T23:38:59Z",
+      "quality": "High",
+      "path": "far-handoff.png"
+    },
+    {
+      "visible": 958,
+      "name": "returned-cut",
+      "frozen": false,
+      "parts": 1184,
+      "time": 32.86570979999851,
+      "utc": "2026-11-24T23:39:04Z",
+      "quality": "High",
+      "path": "returned-cut.png"
+    },
+    {
+      "visible": 738,
+      "name": "low-field",
+      "frozen": false,
+      "parts": 752,
+      "time": 68.26462259999971,
+      "utc": "2026-11-24T23:39:40Z",
+      "quality": "Low",
+      "path": "low-field.png"
+    },
+    {
+      "visible": 744,
+      "name": "low-cut",
+      "frozen": false,
+      "parts": 758,
+      "time": 72.73113079999894,
+      "utc": "2026-11-24T23:39:44Z",
+      "quality": "Low",
+      "path": "low-cut.png"
+    }
+  ],
+  "limits": [
+    "Static effect: timing/reduced-motion n/a. Physical devices, two live players, full game suite and video not checked. Bench is fixture CPU not full frame time."
+  ],
+  "texture": {
+    "id": "rbxassetid://82299227763710",
+    "status": "Enum.AssetFetchStatus.Success",
+    "evidence": "Play ContentProvider preload callback: Enum.AssetFetchStatus.Success; see spec for results",
+    "projection": "world XZ /32; same UVs in near/tiles/far, gold untextured"
+  },
+  "scope": "Static snow surface and side gradient. Reference for gradient is owner screenshot and explicit stronger request 25.11.2026; texture PNG art/textures/snow-soft-powder/snow-soft-powder.png uploaded by owner. No new animation. Prior broad pillow surface is not being redesigned in this revision.",
+  "review": {
+    "verdict": "pass",
+    "round": 1,
+    "clarity": 9,
+    "style": 9,
+    "issues": [],
+    "reviewer": "snow_gradient_vfx_review",
+    "scope": "Continuous stronger side gradient and owner-supplied snow texture; static effect"
+  }
+}

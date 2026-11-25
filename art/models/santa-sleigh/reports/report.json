@@ -1,0 +1,104 @@
+{
+  "file": "../source/SantaSleigh_master.blend",
+  "sha256": "c484936a44a142963ef4c9c833f8f089a56b3548ee3c85bbb0f92603129b6ce5",
+  "blender": "5.0.1",
+  "collection": "SantaSleigh",
+  "export": [
+    "SantaSleigh_Body",
+    "SantaSleigh_Rig"
+  ],
+  "dimensions": {
+    "width": 5.718501,
+    "depth": 2.886019,
+    "height": 2.86,
+    "min_z": 0,
+    "center": [
+      -0.28075,
+      0,
+      1.43
+    ]
+  },
+  "totals": {
+    "tris": 3528,
+    "verts": 2070,
+    "meshes": 1,
+    "touching_verts": 0,
+    "materials": [
+      "M_SantaSleigh_Palette"
+    ],
+    "bones": 49,
+    "textures": [
+      {
+        "name": "SantaSleigh_Palette",
+        "size": [
+          64,
+          64
+        ]
+      }
+    ]
+  },
+  "objects": [
+    {
+      "name": "SantaSleigh_Body",
+      "tris": 3528,
+      "verts": 2070,
+      "parts": 153,
+      "touching_verts": 0,
+      "materials": [
+        "M_SantaSleigh_Palette"
+      ],
+      "modifiers": [
+        "ARMATURE"
+      ]
+    }
+  ],
+  "issues": [],
+  "ok": true,
+  "eyes": {
+    "found": false,
+    "objects": [],
+    "issues": []
+  },
+  "palette": {
+    "file": "../../../palette.json",
+    "materials": [
+      {
+        "name": "M_SantaSleigh_Palette",
+        "hex": null,
+        "texture": "SantaSleigh_Palette",
+        "match": null,
+        "checked": true,
+        "off": [],
+        "legacy": []
+      }
+    ]
+  },
+  "naming": {
+    "model": "SantaSleigh",
+    "source": "argument",
+    "objects": [],
+    "materials": []
+  },
+  "export_copies": {
+    "duplicates": [],
+    "skipped": "файл вне проекта Unity и без --assets: папка движка неизвестна"
+  },
+  "renders": {
+    "front": "front.png",
+    "side": "side.png",
+    "back": "back.png",
+    "top": "top.png",
+    "three-quarter": "three-quarter.png"
+  },
+  "render_settings": {
+    "engine": "BLENDER_EEVEE",
+    "clay": false,
+    "backface_culling": true,
+    "film_transparent": false,
+    "player": true,
+    "grid": {
+      "minor": 0.1,
+      "major": 1
+    }
+  }
+}

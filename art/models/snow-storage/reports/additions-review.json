@@ -1,0 +1,13 @@
+{
+  "verdict": "pass",
+  "stage": "Blender",
+  "sha256": "4232310a09b5d26ea62410dcc44d2a9232e91671ebe84c38880076eab7226ef0",
+  "models": {
+    "Dustpan": {"tris": 380, "fidelity": 9, "appeal": 9},
+    "ChipPacket": {"tris": 500, "fidelity": 9, "appeal": 9},
+    "Suitcase": {"tris": 476, "fidelity": 9, "appeal": 9}
+  },
+  "views_per_model": 5,
+  "overlapping_face_pairs_at_2mm": 0,
+  "minor": ["Угловые накладки чемодана меньше, чем на референсе.", "Карман слабо контрастирует с подкладкой.", "Задний шов пачки менее выражен."]
+}

@@ -1,0 +1,62 @@
+{
+  "Idle": {
+    "mode": {
+      "mode": "in_place",
+      "from": null,
+      "to": null
+    },
+    "flags": [],
+    "seam": {
+      "pose_deg": 0,
+      "velocity_deg": 0.119,
+      "mesh_m": 0,
+      "velocity": {
+        "bone": "Forearm_R",
+        "value": 0.1195,
+        "peak_elsewhere": 0.0802,
+        "ratio": 1.489,
+        "limit": 2
+      }
+    }
+  },
+  "Walk": {
+    "mode": {
+      "mode": "in_place",
+      "from": null,
+      "to": null
+    },
+    "flags": [],
+    "seam": {
+      "pose_deg": 0,
+      "velocity_deg": 1.36,
+      "mesh_m": 0,
+      "velocity": {
+        "bone": "Forearm_L",
+        "value": 1.0904,
+        "peak_elsewhere": 0.9871,
+        "ratio": 1.105,
+        "limit": 2
+      }
+    }
+  },
+  "Dig": {
+    "mode": {
+      "mode": "in_place",
+      "from": null,
+      "to": null
+    },
+    "flags": [],
+    "seam": {
+      "pose_deg": 0,
+      "velocity_deg": 0.608,
+      "mesh_m": 0,
+      "velocity": {
+        "bone": "UpperArm_R",
+        "value": 0.4841,
+        "peak_elsewhere": 1.6329,
+        "ratio": 0.296,
+        "limit": 3.2658
+      }
+    }
+  }
+}

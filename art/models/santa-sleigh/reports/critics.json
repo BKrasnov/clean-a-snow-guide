@@ -1,0 +1,1 @@
+{"model":[{"round":1,"verdict":"fail","fidelity":8,"appeal":8,"findings":["Развернуть развилки рогов","Увеличить ширину голов и белых манишек"]},{"round":2,"verdict":"pass","fidelity":9,"appeal":9,"weight":10}],"rig":{"verdict":"pass","score":9,"scope":"Ручная анимация FK; тестовые позы и повторный импорт FBX в Blender"}}

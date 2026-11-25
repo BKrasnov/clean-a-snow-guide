@@ -1,0 +1,218 @@
+{
+  "file": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\snow-vacuum\\source\\SnowVacuum_master.blend",
+  "sha256": "7f185524ed0eaac1458cf31e885eec95ced40b6ee271fd55c0024dfbd6af3343",
+  "blender": "5.0.1",
+  "collection": "SnowVacuum",
+  "export": [
+    "SnowVacuum_Canister",
+    "SnowVacuum_WheelL",
+    "SnowVacuum_WheelR",
+    "SnowVacuum_HoseAndWand",
+    "SnowVacuum_Intake",
+    "SnowVacuum_Exhaust",
+    "SnowVacuum_TowEye"
+  ],
+  "dimensions": {
+    "width": 0.76888,
+    "depth": 1.4098,
+    "height": 1.113772,
+    "min_z": 0.0,
+    "center": [
+      0.0,
+      -0.2359,
+      0.556886
+    ]
+  },
+  "totals": {
+    "tris": 1868,
+    "verts": 958,
+    "meshes": 7,
+    "touching_verts": 0,
+    "materials": [
+      "M_SnowVacuum_Palette"
+    ],
+    "bones": 0,
+    "textures": [
+      {
+        "name": "SnowVacuum_Palette",
+        "size": [
+          64,
+          64
+        ]
+      }
+    ]
+  },
+  "objects": [
+    {
+      "name": "SnowVacuum_Canister",
+      "tris": 312,
+      "verts": 162,
+      "parts": 3,
+      "touching_verts": 0,
+      "materials": [
+        "M_SnowVacuum_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowVacuum_WheelL",
+      "tris": 356,
+      "verts": 180,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_SnowVacuum_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowVacuum_WheelR",
+      "tris": 356,
+      "verts": 180,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_SnowVacuum_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowVacuum_HoseAndWand",
+      "tris": 548,
+      "verts": 276,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_SnowVacuum_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowVacuum_Intake",
+      "tris": 124,
+      "verts": 64,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_SnowVacuum_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowVacuum_Exhaust",
+      "tris": 80,
+      "verts": 48,
+      "parts": 4,
+      "touching_verts": 0,
+      "materials": [
+        "M_SnowVacuum_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowVacuum_TowEye",
+      "tris": 92,
+      "verts": 48,
+      "parts": 2,
+      "touching_verts": 0,
+      "materials": [
+        "M_SnowVacuum_Palette"
+      ],
+      "modifiers": []
+    }
+  ],
+  "issues": [
+    {
+      "code": "object_name",
+      "object": null,
+      "count": 7,
+      "severity": "warning",
+      "message": "объекты названы не по правилу SnowVacuum_Body, SnowVacuum_LOD<n>, арматура SnowVacuum_Rig, глаза — пустые объекты SnowVacuum_EyeL/R и SnowVacuum_PupilL/R с мешами SnowVacuum_EyeL_LOD<n> и SnowVacuum_PupilL_LOD<n>: SnowVacuum_Canister, SnowVacuum_Exhaust, SnowVacuum_HoseAndWand, SnowVacuum_Intake, SnowVacuum_TowEye, SnowVacuum_WheelL, SnowVacuum_WheelR"
+    }
+  ],
+  "ok": true,
+  "eyes": {
+    "found": false,
+    "objects": [],
+    "issues": []
+  },
+  "palette": {
+    "file": "art/palette.json",
+    "materials": [
+      {
+        "name": "M_SnowVacuum_Palette",
+        "hex": null,
+        "texture": "SnowVacuum_Palette",
+        "match": null,
+        "checked": true,
+        "off": [],
+        "legacy": []
+      }
+    ]
+  },
+  "budget": {
+    "class": "tool",
+    "rows": [
+      {
+        "key": "tris",
+        "value": 1868,
+        "limit": 2000,
+        "ok": true
+      },
+      {
+        "key": "materials",
+        "value": 1,
+        "limit": 2,
+        "ok": true
+      },
+      {
+        "key": "bones",
+        "value": 0,
+        "limit": 0,
+        "ok": true
+      },
+      {
+        "key": "textureSize",
+        "value": 64,
+        "limit": 256,
+        "ok": true
+      }
+    ]
+  },
+  "naming": {
+    "model": "SnowVacuum",
+    "source": "file",
+    "objects": [
+      "SnowVacuum_Canister",
+      "SnowVacuum_Exhaust",
+      "SnowVacuum_HoseAndWand",
+      "SnowVacuum_Intake",
+      "SnowVacuum_TowEye",
+      "SnowVacuum_WheelL",
+      "SnowVacuum_WheelR"
+    ],
+    "materials": []
+  },
+  "export_copies": {
+    "duplicates": [],
+    "skipped": "файл вне проекта Unity и без --assets: папка движка неизвестна"
+  },
+  "renders": {
+    "front": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\snow-vacuum\\reports\\front.png",
+    "side": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\snow-vacuum\\reports\\side.png",
+    "back": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\snow-vacuum\\reports\\back.png",
+    "top": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\snow-vacuum\\reports\\top.png",
+    "three-quarter": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\snow-vacuum\\reports\\three-quarter.png"
+  },
+  "render_settings": {
+    "engine": "BLENDER_EEVEE",
+    "clay": false,
+    "backface_culling": true,
+    "film_transparent": false,
+    "player": true,
+    "grid": {
+      "minor": 0.1,
+      "major": 1.0
+    }
+  }
+}

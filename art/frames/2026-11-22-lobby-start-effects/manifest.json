@@ -1,0 +1,66 @@
+{
+  "version": "B192351368CB9480FC0BD4E591CA5D0808C0EE89265D7DA5F7FF5EC053FF9425",
+  "versionFile": "build/winter-lobby/start-fx.luau",
+  "scenario": "Local NaLovi Studio Play, solo, six actual QueueStart runs and ReturnLobby transitions, then stationary live captures",
+  "mode": "Persistent static glow. No positional animation, flash, explosion, fade or timing phases. All frame times are actual unpaused client os.clock, not event offsets.",
+  "frames": [
+    {
+      "kind": "gate",
+      "file": "art/frames/2026-11-22-lobby-start-effects/gate.png",
+      "clock": 7303.5643117,
+      "quality": "High",
+      "robloxGraphics": 10,
+      "reducedMotion": false,
+      "capture": "CaptureService, live"
+    },
+    {
+      "kind": "player",
+      "file": "art/frames/2026-11-22-lobby-start-effects/player.png",
+      "clock": 7305.439000999992,
+      "quality": "High",
+      "robloxGraphics": 10,
+      "reducedMotion": false,
+      "capture": "CaptureService, live"
+    },
+    {
+      "kind": "low",
+      "file": "art/frames/2026-11-22-lobby-start-effects/low.png",
+      "clock": 7307.286923700012,
+      "quality": "Low",
+      "robloxGraphics": 10,
+      "reducedMotion": false,
+      "capture": "CaptureService, live"
+    },
+    {
+      "kind": "reduced",
+      "file": "art/frames/2026-11-22-lobby-start-effects/reduced.png",
+      "clock": 7309.099960699998,
+      "quality": "Low",
+      "robloxGraphics": 10,
+      "reducedMotion": true,
+      "capture": "CaptureService, live"
+    }
+  ],
+  "measured": {
+    "before": {
+      "beams": 72,
+      "attachments": 48,
+      "invisibleDetectionMarkers": 6,
+      "particles": 0,
+      "stationDescendants": 144
+    },
+    "after": {
+      "beams": 72,
+      "attachments": 48,
+      "invisibleDetectionMarkers": 6,
+      "particles": 0,
+      "stationDescendants": 144
+    },
+    "visibleParts": 0,
+    "pool": 0,
+    "launches": 6
+  },
+  "limits": "Low is the game's SnowQuality=Low, independently restored after capture. The attempt to change global Roblox graphics from a LocalScript was rejected by Studio, so global graphics remained 10. No newly created particles or runtime objects in any quality. ReducedMotion.get() returned true in the last frame.",
+  "model": "models/lobby/Workspace/LobbyArea.rbxm",
+  "modelSha256": "D28B671C11EBC24CFD4AB069FD763B87850BA207B7E5729CD5270C0660709E22"
+}

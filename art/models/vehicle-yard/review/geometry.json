@@ -1,0 +1,100 @@
+{
+  "assets": {
+    "VehicleYard_Ground": {
+      "stud_bounds": [
+        [
+          -41.579,
+          41.579
+        ],
+        [
+          -22.723,
+          22.723
+        ],
+        [
+          -0.435,
+          0.0
+        ]
+      ],
+      "triangles": 1862,
+      "material_slots": 1,
+      "close_coplanar_pairs": [],
+      "nonmanifold_edges_after_position_weld": 0
+    },
+    "VehicleYard_LogEnds": {
+      "stud_bounds": [
+        [
+          -40.648,
+          40.172
+        ],
+        [
+          -17.627,
+          20.78
+        ],
+        [
+          -0.24,
+          0.399
+        ]
+      ],
+      "triangles": 1120,
+      "material_slots": 1,
+      "close_coplanar_pairs": [],
+      "nonmanifold_edges_after_position_weld": 0
+    }
+  },
+  "triangles": 2982,
+  "stud_meters": 0.28,
+  "vehicle_placement": {
+    "KESTREL_07": {
+      "contact_studs": [
+        -35.79,
+        -25.83,
+        -6.81,
+        10.25
+      ],
+      "surface_samples": 589,
+      "unobstructed_front": "No log ends across contact width toward local -Y"
+    },
+    "CartoonTank": {
+      "contact_studs": [
+        -22.59,
+        -8.21,
+        -10.88,
+        11.65
+      ],
+      "surface_samples": 589,
+      "unobstructed_front": "No log ends across contact width toward local -Y"
+    },
+    "CartoonTruck": {
+      "contact_studs": [
+        -3.88,
+        5.37,
+        -7.74,
+        6.53
+      ],
+      "surface_samples": 589,
+      "unobstructed_front": "No log ends across contact width toward local -Y"
+    },
+    "CartoonPickup": {
+      "contact_studs": [
+        10.91,
+        19.65,
+        -8.78,
+        5.68
+      ],
+      "surface_samples": 589,
+      "unobstructed_front": "No log ends across contact width toward local -Y"
+    },
+    "CartoonSnowmobile": {
+      "contact_studs": [
+        27.37,
+        35.57,
+        -10.4,
+        9.96
+      ],
+      "surface_samples": 589,
+      "unobstructed_front": "No log ends across contact width toward local -Y"
+    }
+  },
+  "yard_height_transition_studs": 0.17,
+  "intentional_contacts": "Log bottoms embed in the dirt edge."
+}

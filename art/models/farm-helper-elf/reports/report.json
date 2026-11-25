@@ -1,0 +1,157 @@
+{
+  "file": "../source/FarmHelper_master.blend",
+  "sha256": "188ba9a642c57a1ea84c740d2906ba274201781771a251881479e532d4274041",
+  "blender": "5.0.1",
+  "collection": "FarmHelper",
+  "export": [
+    "FarmHelper_Body",
+    "Snow scoop",
+    "FarmHelper_Rig"
+  ],
+  "dimensions": {
+    "width": 0.9384,
+    "depth": 0.33648,
+    "height": 1.12272,
+    "min_z": 0,
+    "center": [
+      0,
+      0,
+      0.56136
+    ]
+  },
+  "totals": {
+    "tris": 1104,
+    "verts": 652,
+    "meshes": 2,
+    "touching_verts": 0,
+    "materials": [
+      "M_FarmHelper_Palette"
+    ],
+    "bones": 17,
+    "textures": [
+      {
+        "name": "FarmHelper_Palette",
+        "size": [
+          64,
+          64
+        ]
+      }
+    ]
+  },
+  "objects": [
+    {
+      "name": "FarmHelper_Body",
+      "tris": 1060,
+      "verts": 624,
+      "parts": 47,
+      "touching_verts": 0,
+      "materials": [
+        "M_FarmHelper_Palette"
+      ],
+      "modifiers": [
+        "ARMATURE"
+      ]
+    },
+    {
+      "name": "Snow scoop",
+      "tris": 44,
+      "verts": 28,
+      "parts": 3,
+      "touching_verts": 0,
+      "materials": [
+        "M_FarmHelper_Palette"
+      ],
+      "modifiers": [
+        "ARMATURE"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "code": "object_name",
+      "object": null,
+      "count": 1,
+      "severity": "warning",
+      "message": "объекты названы не по правилу FarmHelper_Body, FarmHelper_LOD<n>, арматура FarmHelper_Rig, глаза — пустые объекты FarmHelper_EyeL/R и FarmHelper_PupilL/R с мешами FarmHelper_EyeL_LOD<n> и FarmHelper_PupilL_LOD<n>: Snow scoop"
+    }
+  ],
+  "ok": true,
+  "eyes": {
+    "found": false,
+    "objects": [],
+    "issues": []
+  },
+  "palette": {
+    "file": "../../../palette.json",
+    "materials": [
+      {
+        "name": "M_FarmHelper_Palette",
+        "hex": null,
+        "texture": "FarmHelper_Palette",
+        "match": null,
+        "checked": true,
+        "off": [],
+        "legacy": []
+      }
+    ]
+  },
+  "budget": {
+    "class": "pet",
+    "rows": [
+      {
+        "key": "tris",
+        "value": 1104,
+        "limit": 3000,
+        "ok": true
+      },
+      {
+        "key": "materials",
+        "value": 1,
+        "limit": 1,
+        "ok": true
+      },
+      {
+        "key": "bones",
+        "value": 17,
+        "limit": 30,
+        "ok": true
+      },
+      {
+        "key": "textureSize",
+        "value": 64,
+        "limit": 256,
+        "ok": true
+      }
+    ]
+  },
+  "naming": {
+    "model": "FarmHelper",
+    "source": "argument",
+    "objects": [
+      "Snow scoop"
+    ],
+    "materials": []
+  },
+  "export_copies": {
+    "duplicates": [],
+    "skipped": "файл вне проекта Unity и без --assets: папка движка неизвестна"
+  },
+  "renders": {
+    "front": "front.png",
+    "side": "side.png",
+    "back": "back.png",
+    "top": "top.png",
+    "three-quarter": "three-quarter.png"
+  },
+  "render_settings": {
+    "engine": "BLENDER_EEVEE",
+    "clay": false,
+    "backface_culling": true,
+    "film_transparent": false,
+    "player": true,
+    "grid": {
+      "minor": 0.1,
+      "major": 1
+    }
+  }
+}

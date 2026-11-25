@@ -1,0 +1,155 @@
+{
+  "dimensions": {
+    "width": 17.464134,
+    "depth": 3.214681,
+    "height": 5.32,
+    "min_z": 0.0,
+    "center": [
+      0.615391,
+      -0.125857,
+      2.66
+    ]
+  },
+  "totals": {
+    "tris": 4908,
+    "verts": 2598,
+    "meshes": 4,
+    "touching_verts": 0,
+    "materials": [
+      "M_ForestPalette"
+    ],
+    "bones": 0,
+    "textures": [
+      {
+        "name": "ForestPalette",
+        "size": [
+          64,
+          32
+        ]
+      }
+    ]
+  },
+  "objects": [
+    {
+      "name": "Spruce",
+      "tris": 606,
+      "verts": 313,
+      "parts": 5,
+      "touching_verts": 0,
+      "materials": [
+        "M_ForestPalette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "ScotsPine",
+      "tris": 728,
+      "verts": 380,
+      "parts": 8,
+      "touching_verts": 0,
+      "materials": [
+        "M_ForestPalette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SilverBirch",
+      "tris": 2524,
+      "verts": 1354,
+      "parts": 46,
+      "touching_verts": 0,
+      "materials": [
+        "M_ForestPalette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Oak",
+      "tris": 1050,
+      "verts": 551,
+      "parts": 13,
+      "touching_verts": 0,
+      "materials": [
+        "M_ForestPalette"
+      ],
+      "modifiers": []
+    }
+  ],
+  "issues": [],
+  "ok": true,
+  "detached": {
+    "Spruce": [],
+    "ScotsPine": [],
+    "SilverBirch": [],
+    "Oak": []
+  },
+  "exports": {
+    "Spruce": {
+      "studs": [
+        9.928,
+        8.712,
+        16.0
+      ],
+      "triangles": 606,
+      "materials": 1,
+      "colors": [
+        "bark",
+        "deep",
+        "green",
+        "lime"
+      ],
+      "coplanar": []
+    },
+    "ScotsPine": {
+      "studs": [
+        14.056,
+        6.972,
+        19.0
+      ],
+      "triangles": 728,
+      "materials": 1,
+      "colors": [
+        "deep",
+        "green",
+        "leaf",
+        "lime",
+        "wood"
+      ],
+      "coplanar": []
+    },
+    "SilverBirch": {
+      "studs": [
+        11.417,
+        6.422,
+        15.0
+      ],
+      "triangles": 2524,
+      "materials": 1,
+      "colors": [
+        "cream",
+        "dark",
+        "green",
+        "leaf",
+        "lime"
+      ],
+      "coplanar": []
+    },
+    "Oak": {
+      "studs": [
+        18.78,
+        11.481,
+        14.0
+      ],
+      "triangles": 1050,
+      "materials": 1,
+      "colors": [
+        "bark",
+        "deep",
+        "green",
+        "leaf",
+        "lime"
+      ],
+      "coplanar": []
+    }
+  }
+}

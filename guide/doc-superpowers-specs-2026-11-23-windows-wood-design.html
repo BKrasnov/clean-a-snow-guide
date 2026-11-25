@@ -1,0 +1,967 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>superpowers/specs/2026-11-23-windows-wood-design.md — Clean a Snow</title>
+<style>/* Цвета взяты с кадров игры: снег, тёмно-синие плашки HUD, дерево домиков, золото монет. */
+:root {
+  --snow: #EEF3F8;
+  --ink: #1D2740;
+  --wood: #9A5A2C;
+  --wood-dark: #5E3417;
+  --gold: #F2C230;
+  --ice: #4A90C8;
+  --ice-dark: #234E78;
+  --muted: #7C8798;
+  --paper: #FFFFFF;
+}
+* { box-sizing: border-box; }
+/* Своё display у блока не должно отменять атрибут hidden. */
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+body { margin: 0; background: var(--snow); color: var(--ink); font: 16px/1.55 "Segoe UI", system-ui, sans-serif; }
+a { color: var(--ice-dark); }
+code { font-family: Consolas, "Cascadia Mono", monospace; font-size: .9em; background: rgba(29, 39, 64, .07); padding: 0 .3em; border-radius: 4px; overflow-wrap: anywhere; }
+pre { white-space: pre-wrap; word-break: break-word; background: rgba(29, 39, 64, .06); padding: 12px; border-radius: 8px; font-size: 13px; }
+pre code { background: none; padding: 0; }
+
+.topbar { position: sticky; top: 0; z-index: 5; display: flex; gap: 16px; align-items: center; padding: 10px 20px; background: var(--ink); color: var(--snow); }
+.topbar .brand { color: var(--snow); font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap; }
+.topbar .top-link, #menu { white-space: nowrap; }
+.topbar .hint { margin-left: auto; font-size: 13px; color: var(--gold); }
+.topbar .hint code { background: rgba(238, 243, 248, .12); color: var(--snow); }
+.topbar .top-link { color: var(--snow); text-decoration: none; font-weight: 600; padding: 5px 12px; border: 2px solid var(--gold); border-radius: 6px; background: transparent; font: inherit; cursor: pointer; }
+.topbar .top-link:hover, .topbar .top-link[aria-current="page"] { background: var(--gold); color: var(--ink); }
+#menu { display: none; background: var(--wood); color: var(--snow); border: 0; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+
+/* Тестирование: группы сворачиваются, у пункта — галочка, у группы — счётчик отмеченных. */
+.test-total { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 15px; }
+#test-reset { background: transparent; color: var(--wood); border: 2px solid var(--wood); border-radius: 6px; padding: 4px 12px; font: inherit; font-weight: 600; cursor: pointer; }
+#test-reset:hover { background: var(--wood); color: var(--snow); }
+.test-group { margin: 14px 0; border: 2px solid rgba(29, 39, 64, .12); border-radius: 8px; background: rgba(255, 255, 255, .5); }
+.test-group > summary { cursor: pointer; padding: 10px 14px; font-weight: 700; font-size: 18px; }
+.test-group .test-count { margin-left: 8px; font-size: 13px; font-weight: 600; color: var(--wood); }
+.test-group.test-finished .test-count { color: var(--ice); }
+.test-task { padding: 4px 16px 12px; border-top: 1px solid rgba(29, 39, 64, .08); }
+.test-task h4 { margin: 10px 0 6px; }
+.test-item { display: flex; gap: 10px; align-items: flex-start; padding: 5px 4px; border-radius: 6px; line-height: 1.4; cursor: pointer; }
+.test-item:hover { background: rgba(154, 90, 44, .08); }
+.test-item input { width: 18px; height: 18px; margin-top: 2px; flex: none; accent-color: var(--wood); }
+.test-item:has(input:checked) > span:first-of-type { color: rgba(29, 39, 64, .55); text-decoration: line-through; }
+.test-people { margin-left: auto; flex: none; font-size: 12px; font-weight: 700; color: var(--wood); white-space: nowrap; }
+
+/* Вопросы: карточка вопроса, общая галочка «Ответ дан»; отвеченный вопрос бледнеет. */
+.question { margin: 14px 0; padding: 4px 16px 10px; border: 2px solid rgba(29, 39, 64, .12); border-radius: 8px; background: rgba(255, 255, 255, .5); }
+.question h3 { margin: 10px 0 6px; }
+.question-status { margin: 4px 0; font-size: 13px; font-weight: 600; color: var(--wood); }
+.answer-mark { display: inline-flex; gap: 8px; align-items: center; padding: 4px 10px; border: 2px solid var(--wood); border-radius: 6px; font-weight: 700; color: var(--wood); cursor: pointer; }
+.answer-mark input { width: 18px; height: 18px; margin: 0; accent-color: var(--ice); }
+.question-answered { border-color: var(--ice); }
+.question-answered .answer-mark { border-color: var(--ice); color: var(--ice-dark); }
+.question-answered > .prose { opacity: .55; }
+/* HUD: слева как сейчас, справа референс, отметка Approved под парой; на узком экране пара в столбик. */
+.hud-row { margin: 14px 0; padding: 4px 16px 12px; border: 2px solid rgba(29, 39, 64, .12); border-radius: 8px; background: rgba(255, 255, 255, .5); }
+.hud-row h4 { margin: 10px 0 2px; color: var(--ice-dark); font-size: 17px; }
+.hud-states { margin: 0 0 8px; font-size: 13px; color: var(--muted); }
+.hud-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 10px; }
+.hud-pair figure { margin: 0; min-width: 0; }
+.hud-pair figcaption { margin-bottom: 4px; font-size: 13px; font-weight: 700; color: var(--wood); }
+.hud-now, .hud-ref { display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-start; }
+.hud-now img { max-width: 100%; max-height: 260px; object-fit: contain; border-radius: 6px; cursor: zoom-in; }
+.hud-ref img { width: 100%; border-radius: 6px; cursor: zoom-in; }
+.hud-approved { border-color: var(--ice); }
+.hud-approved .answer-mark { border-color: var(--ice); color: var(--ice-dark); }
+@media (max-width: 700px) { .hud-pair { grid-template-columns: 1fr; } }
+
+html:not(.site-open) .topbar,
+html:not(.site-open) .layout,
+html:not(.site-open) #viewer { display: none !important; }
+.site-lock { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; padding: 24px; background: var(--snow); }
+html.site-open .site-lock { display: none !important; }
+.site-lock-card { display: grid; gap: 10px; width: min(420px, 100%); padding: 16px; background: var(--paper); border: 2px solid var(--ink); border-radius: 10px; }
+.site-lock-card p { margin: 0; }
+.site-lock-card label { display: grid; gap: 4px; font-weight: 700; }
+.site-lock-card input { font: inherit; padding: 8px 10px; border: 2px solid var(--ink); border-radius: 6px; }
+.site-lock-card button, .board-filters button { font: inherit; font-weight: 700; padding: 6px 14px; border: 2px solid var(--ink); border-radius: 6px; background: var(--paper); color: var(--ink); cursor: pointer; }
+.site-lock-card button { justify-self: start; background: var(--gold); }
+.site-lock-error { color: var(--wood-dark); font-weight: 700; }
+.board-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 14px; }
+.board-filters button[aria-pressed="true"] { background: var(--ink); color: var(--snow); }
+.board-columns { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; align-items: start; }
+.board-column { background: rgba(255, 255, 255, .55); border: 1px solid rgba(29, 39, 64, .1); border-radius: 10px; padding: 10px; }
+.board-column > h3 { margin: 0 0 8px; font-size: 15px; }
+.board-count { display: inline-block; min-width: 1.4em; padding: 0 6px; border-radius: 999px; background: var(--ink); color: var(--snow); font-size: 12px; text-align: center; }
+.board-card { margin: 0 0 8px; padding: 10px 12px; background: var(--paper); border: 1px solid rgba(29, 39, 64, .12); border-radius: 8px; }
+.board-card h3 { margin: 0 0 6px; font-size: 16px; }
+.board-meta, .board-lead, .board-empty { margin: 0 0 6px; }
+.board-empty { color: var(--muted); }
+.board-origin { margin: 0 0 6px; color: var(--muted); font-size: 13px; }
+.board-author { font-weight: 700; color: var(--ink); }
+.board-archive { color: var(--muted); font-size: 12px; }
+.person { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+.person[data-person="Богдан"] { background: var(--gold); }
+.person[data-person="Леонид"] { background: var(--ice); color: var(--snow); }
+.person[data-person="Георгий"] { background: var(--wood); color: var(--snow); }
+.board-shots { display: grid; gap: 8px; margin: 0 0 8px; }
+.board-shots img { width: 100%; height: auto; border-radius: 6px; }
+.board-card details { margin-top: 4px; }
+.board-card summary { cursor: pointer; font-weight: 600; }
+@media (max-width: 1100px) {
+  .board-columns { grid-template-columns: 1fr 1fr; }
+}
+
+.layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); }
+#sidebar { position: sticky; top: 52px; align-self: start; height: calc(100vh - 52px); overflow-y: auto; padding: 16px 12px; border-right: 2px solid rgba(29, 39, 64, .1); }
+#sidebar ul { list-style: none; margin: 0; padding: 0; }
+#sidebar li a { display: block; padding: 6px 10px; border-radius: 6px; color: var(--ink); text-decoration: none; font-weight: 600; }
+#sidebar li a:hover, #sidebar li a[aria-current="page"] { background: var(--ice-dark); color: var(--snow); }
+#sidebar ul ul a { font-weight: 400; font-size: 14px; padding-left: 22px; }
+/* Сворачиваемый раздел: стрелка браузера слева сворачивает, ссылка рядом открывает страницу раздела. */
+#sidebar summary { cursor: pointer; color: var(--ice-dark); font-size: 15px; padding: 0 0 0 6px; border-radius: 6px; }
+#sidebar summary:hover { background: rgba(74, 144, 200, .14); }
+#sidebar summary a { display: inline-block; width: calc(100% - 22px); vertical-align: middle; }
+
+main { padding: 8px 32px 64px; max-width: 1280px; }
+.part { padding-top: 16px; padding-bottom: 24px; }
+.part > h2 { font-size: 28px; margin: 12px 0 16px; color: var(--wood-dark); }
+.toc { margin: 0 0 18px; }
+.toc ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { display: inline-block; padding: 4px 10px; border-radius: 999px; background: var(--paper); color: var(--ice-dark); text-decoration: none; font-weight: 600; font-size: 14px; }
+.toc a:hover { background: var(--ice-dark); color: var(--snow); }
+h3 { color: var(--ice-dark); margin-top: 28px; }
+.prose { max-width: 900px; }
+.prose table { border-collapse: collapse; margin: 12px 0; display: block; overflow-x: auto; }
+.prose th, .prose td { border: 1px solid rgba(29, 39, 64, .2); padding: 6px 10px; text-align: left; vertical-align: top; }
+.prose th { background: rgba(74, 144, 200, .14); }
+.prose img { max-width: 100%; border-radius: 8px; }
+.prose.small, .small { font-size: 14px; }
+.doc { background: var(--paper); border-radius: 12px; padding: 4px 24px 16px; margin: 0 0 20px; box-shadow: 0 1px 0 rgba(29, 39, 64, .1); }
+.doc .path { margin: 12px 0 0; font-size: 13px; color: var(--muted); }
+.lead { font-size: 17px; max-width: 900px; }
+.source { font-size: 13px; color: var(--muted); }
+
+.gallery { margin: 8px 0 28px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.shot { margin: 0; background: var(--paper); border-radius: 10px; padding: 8px; }
+.shot img { width: 100%; height: 190px; object-fit: cover; border-radius: 6px; cursor: zoom-in; display: block; }
+.shot figcaption { font-size: 14px; padding: 6px 2px 0; }
+.shot details { font-size: 13px; }
+.shot summary { cursor: pointer; color: var(--ice-dark); }
+.tag { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 999px; background: rgba(74, 144, 200, .15); color: var(--ice-dark); }
+.hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin: 0 0 20px; }
+.hero img { width: 100%; border-radius: 10px; cursor: zoom-in; display: block; }
+
+/* Таблицы данных из кода игры. */
+.table-wrap { overflow-x: auto; margin: 12px 0; }
+.data { border-collapse: collapse; background: var(--paper); border-radius: 8px; min-width: 420px; }
+.data th, .data td { padding: 7px 12px; border-bottom: 1px solid rgba(29, 39, 64, .1); text-align: left; vertical-align: top; }
+.data thead th { background: rgba(74, 144, 200, .14); font-size: 14px; white-space: nowrap; }
+.data tbody th { white-space: nowrap; }
+.data td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.data .sub { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
+.coin { color: #B8860B; font-weight: 600; }
+.gem { color: #2E7FB8; font-weight: 600; }
+.rar { display: inline-block; padding: 1px 8px 1px 6px; border-radius: 6px; background: var(--paper); border-left: 6px solid var(--rar); font-weight: 600; font-size: 13px; white-space: nowrap; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.chips code { background: var(--paper); border: 1px solid rgba(29, 39, 64, .12); padding: 2px 8px; }
+
+/* Раздел «Стиль»: образцы цветов палитры. */
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 8px 0 16px; }
+.swatch { margin: 0; background: var(--paper); border-radius: 10px; overflow: hidden; box-shadow: 0 1px 0 rgba(29, 39, 64, .1); }
+.swatch .chip { display: block; height: 72px; border-bottom: 1px solid rgba(29, 39, 64, .12); }
+.swatch figcaption { padding: 8px 10px 10px; font-size: 14px; }
+.swatch figcaption .small { display: block; margin-top: 4px; font-size: 13px; color: var(--muted); }
+
+/* Раздел «Код»: модуль, вид и его первая строка-комментарий. */
+.modules { list-style: none; padding: 0; margin: 8px 0 20px; display: grid; gap: 6px; }
+.modules li { background: var(--paper); border-radius: 8px; padding: 6px 12px; display: grid; grid-template-columns: minmax(180px, 280px) 90px 60px minmax(0, 1fr); gap: 10px; align-items: baseline; }
+.modules .kind { font-size: 12px; color: var(--muted); }
+.modules .lines { font-size: 12px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+.modules .note { font-size: 14px; }
+.modules .note.empty { color: var(--muted); }
+
+#viewer { border: 0; padding: 0; max-width: 96vw; max-height: 96vh; background: var(--ink); color: var(--snow); border-radius: 10px; }
+#viewer::backdrop { background: rgba(29, 39, 64, .8); }
+.viewer-bar { display: flex; gap: 12px; align-items: center; padding: 8px 12px; }
+.viewer-bar p { margin: 0; flex: 1; font-size: 14px; word-break: break-all; }
+.viewer-bar a { color: var(--gold); }
+.viewer-bar button { background: var(--wood); color: var(--snow); border: 0; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+#viewer img { display: block; max-width: 94vw; max-height: calc(96vh - 52px); }
+
+.pages { list-style: none; padding: 0; display: grid; gap: 10px; }
+.pages > li { background: rgba(255, 255, 255, .6); border: 1px solid rgba(29, 39, 64, .1); border-radius: 10px; padding: 10px 14px; }
+.pages > li > a { font-weight: 700; font-size: 18px; }
+
+.mechanic { margin: 12px 0; border: 2px solid rgba(29, 39, 64, .12); border-radius: 10px; background: rgba(255, 255, 255, .6); }
+.mechanic > summary { cursor: pointer; padding: 12px 16px; font-weight: 700; font-size: 20px; }
+.mechanic-body { padding: 0 16px 14px; }
+/* «Обсудить»: темы внутри раздела человека — блоки поменьше. */
+.mechanic.discuss-topic { margin: 8px 0; background: rgba(255, 255, 255, .85); }
+.mechanic.discuss-topic > summary { font-size: 17px; padding: 10px 14px; }
+/* «Механики»: метки разбора — зелёная «Обсудили», жёлтая «Обсудить ещё» (карточка 52f8ad). Плашки текстом, без значков. */
+.discussed { display: inline-block; margin-left: 10px; padding: 2px 10px; border-radius: 999px; font-size: 13px; font-weight: 700; vertical-align: middle; white-space: nowrap; }
+.discussed.done { background: #2E8B57; color: #FFFFFF; }
+.discussed.open { background: #FFCE43; color: var(--ink); }
+.discussed-legend .discussed { margin: 0 4px 0 0; }
+.discussed-legend { color: var(--muted); font-size: 14px; margin: 8px 0 4px; }
+.discussed-note { margin: 4px 0 12px; padding: 8px 12px; border-left: 4px solid #FFCE43; border-radius: 6px; background: rgba(255, 206, 67, .18); font-weight: 600; }
+.mechanic-body .facts { margin: 8px 0 12px; }
+.flow { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 14px; padding: 0; list-style: none; }
+.flow li { display: flex; flex-direction: column; gap: 2px; flex: 1 1 140px; margin: 0; padding: 8px 10px; background: var(--paper); border: 2px solid var(--ink); border-radius: 8px; }
+.flow b { font-size: 15px; }
+.flow span { color: var(--muted); font-size: 13px; }
+.bars { margin: 8px 0 14px; }
+.bars-title { margin: 0 0 8px; font-weight: 700; }
+.bar { display: grid; grid-template-columns: minmax(7em, 11em) minmax(0, 1fr) auto; gap: 8px; align-items: center; margin: 6px 0; }
+.bar-track { height: 14px; background: rgba(29, 39, 64, .08); border-radius: 7px; overflow: hidden; }
+.bar-fill { display: block; height: 100%; background: var(--ice); }
+.bars-zone .bar-fill, .bars-tool .bar-fill { background: var(--wood); }
+.bar-value { font-weight: 700; white-space: nowrap; }
+/* Таймлайн: день — аккордеон, внутри темы со списком сделанного, ссылками и коммитами. */
+.day { margin: 12px 0; border: 2px solid rgba(29, 39, 64, .12); border-radius: 10px; background: rgba(255, 255, 255, .6); }
+.day > summary { cursor: pointer; padding: 12px 16px; font-size: 17px; }
+.day-date { font-weight: 700; font-size: 20px; margin-right: 6px; }
+.day-summary { color: var(--muted); }
+.day-body { padding: 0 16px 14px; }
+.day-topic { margin: 10px 0 0; padding: 10px 0 0; border-top: 1px solid rgba(29, 39, 64, .12); }
+.day-topic h3 { margin: 0 0 6px; font-size: 18px; }
+.day-done { margin: 0 0 8px; padding-left: 20px; }
+.day-links { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 8px; padding: 0; list-style: none; }
+.day-links li { margin: 0; }
+.day-links a { display: inline-block; padding: 3px 8px; background: var(--paper); border: 1px solid rgba(29, 39, 64, .16); border-radius: 6px; text-decoration: none; font-size: 14px; }
+.day-links a:hover { border-color: var(--ice-dark); }
+.day-commits { margin: 0; color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
+.board-card { scroll-margin-top: 70px; }
+.board-card:target { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+@media (max-width: 860px) {
+  #menu { display: inline-block; }
+  /* Кнопок больше, чем ширина телефона: шапка листается вбок, страница остаётся на месте. */
+  .topbar { gap: 10px; padding: 10px 12px; overflow-x: auto; scrollbar-width: thin; }
+  .topbar .top-link { padding: 4px 8px; }
+  /* На самых узких экранах сжимается название, кнопки остаются целыми. */
+  .topbar .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .topbar .top-link, #menu { flex: none; }
+  .topbar .hint { display: none; }
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  #sidebar { display: none; position: fixed; top: 52px; left: 0; right: 0; height: auto; max-height: 70vh; background: var(--snow); z-index: 4; border-bottom: 2px solid var(--ink); }
+  #sidebar.open { display: block; }
+  main { padding: 8px 16px 48px; }
+  .doc { padding: 4px 14px 12px; }
+  .modules li { grid-template-columns: minmax(0, 1fr) auto; }
+  .modules .note { grid-column: 1 / -1; }
+  .modules .lines { display: none; }
+  .board-columns { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 1100px) {
+  .part.with-toc { display: grid; grid-template-columns: minmax(0, 1fr) 230px; column-gap: 28px; align-items: start; }
+  .part.with-toc > h2, .part.with-toc > .part-body { grid-column: 1; }
+  .part.with-toc > .toc { grid-column: 2; grid-row: 1 / span 2; position: sticky; top: 68px; max-height: calc(100vh - 84px); overflow: auto; margin: 18px 0 0; }
+  .part.with-toc > .toc ul { display: grid; gap: 2px; }
+  .part.with-toc > .toc a { display: block; border-radius: 6px; background: transparent; padding: 5px 8px; }
+}
+/* Подсвеченный блок в документе: открытый вопрос владельцу и другие важные пометки. */
+.doc blockquote { margin: 14px 0; padding: 6px 16px; background: rgba(242, 194, 48, .16); border-left: 4px solid var(--gold); border-radius: 8px; }
+/* Референсы моделей: картинка с трёх сторон сверху, под ней название, статус и поля. */
+.model-refs { display: grid; gap: 16px; }
+.model-ref { padding: 12px; border: 2px solid rgba(29, 39, 64, .12); border-radius: 8px; background: var(--paper); }
+.model-ref img { display: block; width: 100%; height: auto; border-radius: 6px; background: var(--snow); cursor: zoom-in; }
+.model-ref h3 { margin: 10px 0 6px; }
+.model-ref-status { display: inline-block; margin: 0 0 8px; padding: 2px 10px; border: 2px solid var(--wood); border-radius: 6px; font-size: 13px; font-weight: 700; color: var(--wood); }
+.model-ref dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 12px; margin: 0 0 8px; }
+.model-ref dt { font-weight: 700; color: var(--muted); }
+.model-ref dd { margin: 0; }
+@media (max-width: 760px) { .model-ref dl { grid-template-columns: minmax(0, 1fr); gap: 0; } .model-ref dd { margin-bottom: 6px; } }
+</style>
+<script>try{if(localStorage.getItem("clean-a-snow-guide-open")==="1")document.documentElement.classList.add("site-open")}catch(e){}</script>
+</head>
+<body>
+<div id="site-lock" class="site-lock" role="dialog" aria-modal="true" aria-labelledby="site-lock-title">
+<form id="site-lock-form" class="site-lock-card">
+<p id="site-lock-title">Введите пароль, чтобы открыть страницы.</p>
+<label>Пароль <input name="password" type="password" autocomplete="current-password" required autofocus></label>
+<button type="submit">Открыть</button>
+<p id="site-lock-error" class="site-lock-error" hidden>Пароль не подошёл.</p>
+</form>
+</div>
+<header class="topbar"><button id="menu" type="button" aria-expanded="false" aria-controls="sidebar">Разделы</button><a class="brand" href="index.html">Clean a Snow</a><a class="top-link" href="hud.html">HUD</a><a class="top-link" href="testing.html">Тестирование</a><a class="top-link" href="board.html">Доска</a><a class="top-link" href="analysis.html">Анализ</a><a class="top-link" href="mechanics.html">Механики</a><a class="top-link" href="ideas.html">Идеи</a><a class="top-link" href="questions.html">Вопросы</a><a class="top-link" href="discuss.html">Обсудить</a><a class="top-link" href="vfx.html">VFX</a><a class="top-link" href="timeline.html">Таймлайн</a><button id="site-close" class="top-link" type="button">Закрыть</button><span class="hint">Собрано из файлов репозитория: <code>node tools/guide/build.mjs</code></span></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Разделы"><ul><li><a href="index.html">Об игре</a></li><li><a href="place.html">Плейс и запуск</a></li><li><a href="style.html">Стиль</a></li><li><a href="refs.html">Референсы</a></li><li><a href="economy.html">Экономика</a></li><li><a href="weapons.html">Оружие</a></li><li><a href="code.html">Код</a></li><li><details class="group" data-group="galleries.html" open><summary><a href="galleries.html">Кадры и картинки</a></summary><ul><li><a href="gallery-bugs.html">Кадры багов</a></li><li><a href="gallery-frames.html">Кадры игры</a></li><li><a href="gallery-frames-2026-11-22-lobby-larger-scale.html">frames/2026-11-22-lobby-larger-scale</a></li><li><a href="gallery-frames-2026-11-22-lobby-space-and-glow.html">frames/2026-11-22-lobby-space-and-glow</a></li><li><a href="gallery-frames-2026-11-22-lobby-start-effects.html">frames/2026-11-22-lobby-start-effects</a></li><li><a href="gallery-frames-2026-11-22-processor-upgrade.html">frames/2026-11-22-processor-upgrade</a></li><li><a href="gallery-frames-2026-11-22-tool-piece-span.html">frames/2026-11-22-tool-piece-span</a></li><li><a href="gallery-frames-2026-11-22-vehicle-piece-span.html">frames/2026-11-22-vehicle-piece-span</a></li><li><a href="gallery-frames-2026-11-22-winter-lobby.html">frames/2026-11-22-winter-lobby</a></li><li><a href="gallery-frames-2026-11-23-valley-terrain-trim.html">frames/2026-11-23-valley-terrain-trim</a></li><li><a href="gallery-frames-2026-11-24-piece-vanish-gold-ring.html">Золотое кольцо при пропаже отрезанного куска снега (карточка 66c915)</a></li><li><a href="gallery-frames-2026-11-25-snow-gradient.html">frames/2026-11-25-snow-gradient</a></li><li><a href="gallery-frames-live-audit.html">frames/live-audit</a></li><li><a href="gallery-hud-current-elements.html">hud-current/elements</a></li><li><a href="gallery-hud-current-frames.html">hud-current/frames</a></li><li><a href="gallery-hud-current.html">Текущий HUD: кадры и индекс</a></li><li><a href="gallery-ideas.html">Референсы идей</a></li><li><a href="gallery-models-elf-preview-iterations-06.html">models/elf/preview/iterations/06</a></li><li><a href="gallery-models-elf-preview-iterations-07.html">models/elf/preview/iterations/07</a></li><li><a href="gallery-models-elf-textures.html">models/elf/textures</a></li><li><a href="gallery-models-farm-helper-elf-preview.html">models/farm-helper-elf/preview</a></li><li><a href="gallery-models-farm-helper-elf-reports.html">models/farm-helper-elf/reports</a></li><li><a href="gallery-models-garden-plants-reports.html">Садовые растения — 36 моделей</a></li><li><a href="gallery-models-grinch-preview-iterations-06.html">models/grinch/preview/iterations/06</a></li><li><a href="gallery-models-grinch-textures.html">models/grinch/textures</a></li><li><a href="gallery-models-grinch-hideout-preview.html">models/grinch-hideout/preview</a></li><li><a href="gallery-models-grinch-hideout-reports-views.html">models/grinch-hideout/reports/views</a></li><li><a href="gallery-models-grinch-v2-preview-iterations-05.html">models/grinch-v2/preview/iterations/05</a></li><li><a href="gallery-models-grinch-v2-textures.html">models/grinch-v2/textures</a></li><li><a href="gallery-models-grinch-v3-preview-iterations-07.html">models/grinch-v3/preview/iterations/07</a></li><li><a href="gallery-models-grinch-v3-reports-anim-check-02-limits.html">models/grinch-v3/reports/anim-check/02-limits</a></li><li><a href="gallery-models-grinch-v3-reports-anim-check-clips-attack.html">models/grinch-v3/reports/anim-check/clips/Attack</a></li><li><a href="gallery-models-grinch-v3-reports-anim-check-clips-hit.html">models/grinch-v3/reports/anim-check/clips/Hit</a></li><li><a href="gallery-models-grinch-v3-reports-anim-check-clips-idle.html">models/grinch-v3/reports/anim-check/clips/Idle</a></li><li><a href="gallery-models-grinch-v3-reports-anim-check-clips-stunned.html">models/grinch-v3/reports/anim-check/clips/Stunned</a></li><li><a href="gallery-models-grinch-v3-reports-anim-check-clips-walk.html">models/grinch-v3/reports/anim-check/clips/Walk</a></li><li><a href="gallery-models-grinch-v3-textures.html">models/grinch-v3/textures</a></li><li><a href="gallery-models-hockey-rink-preview.html">models/hockey-rink/preview</a></li><li><a href="gallery-models-hockey-rink-reports.html">models/hockey-rink/reports</a></li><li><a href="gallery-models-rustic-stalls-review.html">models/rustic-stalls/review</a></li><li><a href="gallery-models-santa-sleigh-preview.html">models/santa-sleigh/preview</a></li><li><a href="gallery-models-santa-sleigh-reports.html">models/santa-sleigh/reports</a></li><li><a href="gallery-models-snow-helicopter-reports.html">models/snow-helicopter/reports</a></li><li><a href="gallery-models-snow-helicopter-rounded-reports.html">models/snow-helicopter-rounded/reports</a></li><li><a href="gallery-models-snow-storage-icons.html">models/snow-storage/icons</a></li><li><a href="gallery-models-snow-storage-preview.html">models/snow-storage/preview</a></li><li><a href="gallery-models-snow-vacuum-preview.html">models/snow-vacuum/preview</a></li><li><a href="gallery-models-snow-vacuum-reports.html">models/snow-vacuum/reports</a></li><li><a href="gallery-models-starter-farmhouse-preview.html">models/starter-farmhouse/preview</a></li><li><a href="gallery-models-vehicle-yard-review.html">models/vehicle-yard/review</a></li><li><a href="gallery-models-well-preview-iterations-05.html">models/well/preview/iterations/05</a></li><li><a href="gallery-models-well-textures.html">models/well/textures</a></li><li><a href="gallery-models-winter-lobby-review.html">models/winter-lobby/review</a></li><li><a href="gallery-palette-preview.html">Палитра</a></li><li><a href="gallery-refs-arcade-catch-gifts.html">Аркада «Поймай подарки»</a></li><li><a href="gallery-refs-arcade-grinch-drifts.html">Аркада «Гринч в сугробах»</a></li><li><a href="gallery-refs-arcade-hall.html">Игровой зал</a></li><li><a href="gallery-refs-arcade-ice-fishing.html">Аркада «Подлёдная рыбалка»</a></li><li><a href="gallery-refs-arcade-santa-run.html">Аркада «Santa&#39;s Run»</a></li><li><a href="gallery-refs-buckets.html">refs/buckets</a></li><li><a href="gallery-refs-conveyor.html">Конвейер сверху</a></li><li><a href="gallery-refs-daily-gems.html">refs/daily-gems</a></li><li><a href="gallery-refs.html">refs</a></li><li><a href="gallery-refs-dev-panel.html">refs/dev-panel</a></li><li><a href="gallery-refs-farmhouse.html">Фермерский дом</a></li><li><a href="gallery-refs-farmhouse-walls.html">Стены фермерского дома</a></li><li><a href="gallery-refs-frostwood-snow.html">Снег в Frostwood</a></li><li><a href="gallery-refs-garden-plants.html">refs/garden-plants</a></li><li><a href="gallery-refs-garden-plot.html">refs/garden-plot</a></li><li><a href="gallery-refs-grinch.html">Гринч</a></li><li><a href="gallery-refs-grinch-hideout.html">Убежище Гринча</a></li><li><a href="gallery-refs-held-snow.html">refs/held-snow</a></li><li><a href="gallery-refs-hockey.html">Хоккей</a></li><li><a href="gallery-refs-hud-new-elements.html">refs/hud-new/elements</a></li><li><a href="gallery-refs-hud-new-key.html">refs/hud-new/key</a></li><li><a href="gallery-refs-hud-new.html">Новый вид HUD: референсы</a></li><li><a href="gallery-refs-hud-new-screens.html">refs/hud-new/screens</a></li><li><a href="gallery-refs-island-vanish.html">Пропажа изолированного куска снега</a></li><li><a href="gallery-refs-lobby-c34e67.html">refs/lobby-c34e67</a></li><li><a href="gallery-refs-map-border.html">refs/map-border</a></li><li><a href="gallery-refs-models-helper-elf.html">refs/models/helper-elf</a></li><li><a href="gallery-refs-models-helper-elf-variants.html">refs/models/helper-elf/variants</a></li><li><a href="gallery-refs-models-hockey-robot.html">refs/models/hockey-robot</a></li><li><a href="gallery-refs-models-santa-sleigh.html">refs/models/santa-sleigh</a></li><li><a href="gallery-refs-models-snow-fox.html">refs/models/snow-fox</a></li><li><a href="gallery-refs-models-snow-hare.html">refs/models/snow-hare</a></li><li><a href="gallery-refs-models-snow-helicopter.html">refs/models/snow-helicopter</a></li><li><a href="gallery-refs-models-snow-vacuum.html">refs/models/snow-vacuum</a></li><li><a href="gallery-refs-models-winter-owl.html">refs/models/winter-owl</a></li><li><a href="gallery-refs-party-game.html">Окно отряда и отсчёт старта — референсы</a></li><li><a href="gallery-refs-pets.html">refs/pets</a></li><li><a href="gallery-refs-run-hotbar.html">refs/run-hotbar</a></li><li><a href="gallery-refs-santa-cutscene.html">Ролик Санты: референсы (карточка 784f91)</a></li><li><a href="gallery-refs-seed-find.html">refs/seed-find</a></li><li><a href="gallery-refs-sheep-tank.html">refs/sheep-tank</a></li><li><a href="gallery-refs-snow-clear.html">refs/snow-clear</a></li><li><a href="gallery-refs-snow-look.html">refs/snow-look</a></li><li><a href="gallery-refs-snow-powder-cut.html">refs/snow-powder-cut</a></li><li><a href="gallery-refs-snow-processing.html">refs/snow-processing</a></li><li><a href="gallery-refs-snow-processing-intact.html">refs/snow-processing-intact</a></li><li><a href="gallery-refs-snow-removal.html">refs/snow-removal</a></li><li><a href="gallery-refs-snow-smooth.html">refs/snow-smooth</a></li><li><a href="gallery-refs-snow-storage.html">refs/snow-storage</a></li><li><a href="gallery-refs-snow-sweep.html">refs/snow-sweep</a></li><li><a href="gallery-refs-solo-board.html">refs/solo-board</a></li><li><a href="gallery-refs-vehicle-snow-heli.html">refs/vehicle-snow/heli</a></li><li><a href="gallery-refs-vehicle-snow-now.html">refs/vehicle-snow/now</a></li><li><a href="gallery-refs-vehicle-snow-pickup.html">refs/vehicle-snow/pickup</a></li><li><a href="gallery-refs-vehicle-snow.html">Машины ломают снег: как сейчас и референсы</a></li><li><a href="gallery-refs-vehicle-snow-snowmobile.html">refs/vehicle-snow/snowmobile</a></li><li><a href="gallery-refs-vehicle-snow-snowmobile-soft.html">refs/vehicle-snow/snowmobile-soft</a></li><li><a href="gallery-refs-vehicle-snow-tank.html">refs/vehicle-snow/tank</a></li><li><a href="gallery-refs-vehicle-snow-truck.html">refs/vehicle-snow/truck</a></li><li><a href="gallery-refs-vehicle-snow-v1.html">refs/vehicle-snow/v1</a></li><li><a href="gallery-refs-vehicle-snow-v2-fountain.html">refs/vehicle-snow/v2-fountain</a></li><li><a href="gallery-refs-vehicle-snow-v3-critic.html">refs/vehicle-snow/v3-critic</a></li><li><a href="gallery-refs-vehicle-yard.html">Площадка для снегоуборочной техники</a></li><li><a href="gallery-refs-vehicles-now.html">refs/vehicles/now</a></li><li><a href="gallery-refs-vehicles.html">refs/vehicles</a></li><li><a href="gallery-refs-weapons.html">refs/weapons</a></li><li><a href="gallery-refs-well.html">refs/well</a></li><li><a href="gallery-refs-wheel-gems.html">refs/wheel-gems</a></li><li><a href="gallery-refs-windows-wood.html">refs/windows-wood</a></li><li><a href="gallery-refs-winter-lobby.html">refs/winter-lobby</a></li><li><a href="gallery-refs-zone-bloom.html">refs/zone-bloom</a></li><li><a href="gallery-refs-zone-wall.html">refs/zone-wall</a></li><li><a href="gallery-terrain.html">Покрытия долины</a></li><li><a href="gallery-textures-snow-soft-powder.html">textures/snow-soft-powder</a></li><li><a href="gallery-ui-buckets.html">ui/buckets</a></li><li><a href="gallery-ui-classes.html">ui/classes</a></li><li><a href="gallery-ui-dev-panel.html">ui/dev-panel</a></li><li><a href="gallery-ui-hockey.html">ui/hockey</a></li><li><a href="gallery-ui-hotbar.html">ui/hotbar</a></li><li><a href="gallery-ui-hud.html">ui/hud</a></li><li><a href="gallery-ui-party.html">ui/party</a></li><li><a href="gallery-ui-pets.html">ui/pets</a></li><li><a href="gallery-ui-seeds.html">ui/seeds</a></li><li><a href="gallery-ui-solo-board.html">ui/solo-board</a></li><li><a href="gallery-ui-upgrades.html">ui/upgrades</a></li><li><a href="gallery-ui-weapons.html">ui/weapons</a></li><li><a href="gallery-ui-windows.html">ui/windows</a></li><li><a href="gallery-ui-wood.html">ui/wood</a></li><li><a href="gallery-vfx.html">vfx</a></li><li><a href="gallery-vfx-reviews.html">vfx/reviews</a></li><li><a href="gallery-vfx-snow-removal-now.html">vfx/snow-removal/now</a></li></ul></details></li><li><details class="group" data-group="docs.html" open><summary><a href="docs.html">Документы</a></summary><ul><li><a href="doc-architecture-summary.html">architecture/summary.md</a></li><li><a href="doc-checks-server.html">checks-server.md</a></li><li><a href="doc-clearing-audit.html">clearing-audit.md</a></li><li><a href="doc-docs-audit-2026-11-15.html">docs-audit-2026-11-15.md</a></li><li><a href="doc-held-items-audit.html">held-items-audit.md</a></li><li><a href="doc-mechanics-audit.html">mechanics-audit.md</a></li><li><a href="doc-mechanics-live-audit-2026-11-15-verdicts.html">mechanics-live-audit-2026-11-15-verdicts.md</a></li><li><a href="doc-mechanics-live-audit-2026-11-15.html">mechanics-live-audit-2026-11-15.md</a></li><li><a href="doc-publish-places.html">publish-places.md</a></li><li><a href="doc-snow-approach-analysis.html">snow-approach-analysis.md</a></li><li><a href="doc-snow-phone-measure.html">snow-phone-measure.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-catalog-answers.html">superpowers/plans/2026-11-10-catalog-answers.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-client-actions.html">superpowers/plans/2026-11-10-client-actions.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-economy.html">superpowers/plans/2026-11-10-data-economy.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-garden-animals-vehicles.html">superpowers/plans/2026-11-10-data-garden-animals-vehicles.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-session-server.html">superpowers/plans/2026-11-10-data-session-server.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-held-items-audit.html">superpowers/plans/2026-11-10-held-items-audit.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-map-bake.html">superpowers/plans/2026-11-10-map-bake.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-movement-check.html">superpowers/plans/2026-11-10-movement-check.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-packet-limits.html">superpowers/plans/2026-11-10-packet-limits.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-anchors.html">superpowers/plans/2026-11-10-place-anchors.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-role-world.html">superpowers/plans/2026-11-10-place-role-world.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-processor-intake.html">superpowers/plans/2026-11-10-processor-intake.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-processor-queue.html">superpowers/plans/2026-11-10-processor-queue.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-profile-store-core.html">superpowers/plans/2026-11-10-profile-store-core.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-receipt-ledger.html">superpowers/plans/2026-11-10-receipt-ledger.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-server-lifecycle.html">superpowers/plans/2026-11-10-server-lifecycle.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-areas.html">superpowers/plans/2026-11-10-snow-areas.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-break-burst.html">superpowers/plans/2026-11-10-snow-break-burst.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-break-like-reference.html">superpowers/plans/2026-11-10-snow-break-like-reference.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-cell-strength.html">superpowers/plans/2026-11-10-snow-cell-strength.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-clap.html">superpowers/plans/2026-11-10-snow-clap.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-pillow-layers.html">superpowers/plans/2026-11-10-snow-pillow-layers.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-response.html">superpowers/plans/2026-11-10-snow-response.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-starter-spoon.html">superpowers/plans/2026-11-10-starter-spoon.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-plan.html">superpowers/plans/2026-11-10-strike-plan.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-rules.html">superpowers/plans/2026-11-10-strike-rules.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-two-places.html">superpowers/plans/2026-11-10-two-places.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-wallet.html">superpowers/plans/2026-11-10-wallet.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-client-views.html">superpowers/plans/2026-11-11-client-views.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-data-client-copies.html">superpowers/plans/2026-11-11-data-client-copies.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-farmhouse-shop-stands.html">superpowers/plans/2026-11-11-farmhouse-shop-stands.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-guide-json-only.html">superpowers/plans/2026-11-11-guide-json-only.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-loading-screen.html">superpowers/plans/2026-11-11-loading-screen.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-one-snow-strength.html">superpowers/plans/2026-11-11-one-snow-strength.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-place-sources.html">superpowers/plans/2026-11-11-place-sources.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-remove-garden.html">superpowers/plans/2026-11-11-remove-garden.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-run-hotbar.html">superpowers/plans/2026-11-11-run-hotbar.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-snow-clear-wave-flakes.html">superpowers/plans/2026-11-11-snow-clear-wave-flakes.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-snow-garden-growth.html">superpowers/plans/2026-11-11-snow-garden-growth.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-snow-garden-plots.html">superpowers/plans/2026-11-11-snow-garden-plots.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-spoon-layer-snow.html">superpowers/plans/2026-11-11-spoon-layer-snow.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-vehicle-snow-vfx.html">superpowers/plans/2026-11-11-vehicle-snow-vfx.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-weapon-rule.html">superpowers/plans/2026-11-11-weapon-rule.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-buckets.html">superpowers/plans/2026-11-12-buckets.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-classes-data-buy.html">superpowers/plans/2026-11-12-classes-data-buy.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-classes-window.html">superpowers/plans/2026-11-12-classes-window.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-contour-fit.html">superpowers/plans/2026-11-12-contour-fit.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-conveyor.html">superpowers/plans/2026-11-12-conveyor.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-gems-rewards.html">superpowers/plans/2026-11-12-gems-rewards.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-hotbar-look.html">superpowers/plans/2026-11-12-hotbar-look.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-place-windows.html">superpowers/plans/2026-11-12-place-windows.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-snow-height.html">superpowers/plans/2026-11-12-snow-height.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-snow-rarity.html">superpowers/plans/2026-11-12-snow-rarity.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-two-vacuums.html">superpowers/plans/2026-11-12-two-vacuums.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-arcade-catch-gifts.html">superpowers/plans/2026-11-13-arcade-catch-gifts.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-arcade-grinch-drifts.html">superpowers/plans/2026-11-13-arcade-grinch-drifts.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-arcade-hall.html">superpowers/plans/2026-11-13-arcade-hall.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-conveyor-two-lanes.html">superpowers/plans/2026-11-13-conveyor-two-lanes.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-first-run-one-task.html">superpowers/plans/2026-11-13-first-run-one-task.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-game-rewards-solo.html">superpowers/plans/2026-11-13-game-rewards-solo.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-host-world-run.html">superpowers/plans/2026-11-13-host-world-run.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-party-continue-new.html">superpowers/plans/2026-11-13-party-continue-new.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-party-start-buttons.html">superpowers/plans/2026-11-13-party-start-buttons.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-phone-touch-sizes.html">superpowers/plans/2026-11-13-phone-touch-sizes.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-solo-board.html">superpowers/plans/2026-11-13-solo-board.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-world-carried-snow.html">superpowers/plans/2026-11-13-world-carried-snow.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-world-snow-save.html">superpowers/plans/2026-11-13-world-snow-save.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-world-store.html">superpowers/plans/2026-11-13-world-store.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-world-wallet.html">superpowers/plans/2026-11-13-world-wallet.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-zone-wall.html">superpowers/plans/2026-11-13-zone-wall.md</a></li><li><a href="doc-superpowers-plans-2026-11-14-arcade-ice-fishing.html">superpowers/plans/2026-11-14-arcade-ice-fishing.md</a></li><li><a href="doc-superpowers-plans-2026-11-14-conveyor-four-lanes.html">superpowers/plans/2026-11-14-conveyor-four-lanes.md</a></li><li><a href="doc-superpowers-plans-2026-11-14-hockey-rink.html">superpowers/plans/2026-11-14-hockey-rink.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-arcade-hall-bigger.html">superpowers/plans/2026-11-15-arcade-hall-bigger.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-arcade-hall-timer.html">superpowers/plans/2026-11-15-arcade-hall-timer.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-arcade-halls-schedule.html">superpowers/plans/2026-11-15-arcade-halls-schedule.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-arcade-santa-run.html">superpowers/plans/2026-11-15-arcade-santa-run.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-dev-panel.html">superpowers/plans/2026-11-15-dev-panel.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-grinch-fight.html">superpowers/plans/2026-11-15-grinch-fight.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-grinch-hideout.html">superpowers/plans/2026-11-15-grinch-hideout.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-grinch-victory-gifts.html">superpowers/plans/2026-11-15-grinch-victory-gifts.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-hockey-ai.html">superpowers/plans/2026-11-15-hockey-ai.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-hockey-match.html">superpowers/plans/2026-11-15-hockey-match.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-hockey-teams.html">superpowers/plans/2026-11-15-hockey-teams.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-mechanics-live-audit.html">superpowers/plans/2026-11-15-mechanics-live-audit.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-snow-removal-vfx.html">superpowers/plans/2026-11-15-snow-removal-vfx.md</a></li><li><a href="doc-superpowers-plans-2026-11-16-shovel-first-person-dig.html">superpowers/plans/2026-11-16-shovel-first-person-dig.md</a></li><li><a href="doc-superpowers-plans-2026-11-16-stale-studio-scenarios.html">superpowers/plans/2026-11-16-stale-studio-scenarios.md</a></li><li><a href="doc-superpowers-plans-2026-11-16-ui-item-pictures.html">superpowers/plans/2026-11-16-ui-item-pictures.md</a></li><li><a href="doc-superpowers-plans-2026-11-16-weapons-first-person-no-hands.html">superpowers/plans/2026-11-16-weapons-first-person-no-hands.md</a></li><li><a href="doc-superpowers-plans-2026-11-17-dev-panel-state.html">superpowers/plans/2026-11-17-dev-panel-state.md</a></li><li><a href="doc-superpowers-plans-2026-11-17-hud-current-shots.html">superpowers/plans/2026-11-17-hud-current-shots.md</a></li><li><a href="doc-superpowers-plans-2026-11-17-hud-new-look-refs.html">superpowers/plans/2026-11-17-hud-new-look-refs.md</a></li><li><a href="doc-superpowers-plans-2026-11-17-ui-item-pictures-wave2.html">superpowers/plans/2026-11-17-ui-item-pictures-wave2.md</a></li><li><a href="doc-superpowers-plans-2026-11-17-vehicle-mouse-look-and-seats.html">superpowers/plans/2026-11-17-vehicle-mouse-look-and-seats.md</a></li><li><a href="doc-superpowers-plans-2026-11-18-snow-golem.html">superpowers/plans/2026-11-18-snow-golem.md</a></li><li><a href="doc-superpowers-plans-2026-11-18-snow-sweep.html">superpowers/plans/2026-11-18-snow-sweep.md</a></li><li><a href="doc-superpowers-plans-2026-11-19-adaptive-snow-audio.html">superpowers/plans/2026-11-19-adaptive-snow-audio.md</a></li><li><a href="doc-superpowers-plans-2026-11-19-hud-approved.html">superpowers/plans/2026-11-19-hud-approved.md</a></li><li><a href="doc-superpowers-plans-2026-11-19-snow-processing-press.html">superpowers/plans/2026-11-19-snow-processing-press.md</a></li><li><a href="doc-superpowers-plans-2026-11-19-snow-sweep-lab.html">superpowers/plans/2026-11-19-snow-sweep-lab.md</a></li><li><a href="doc-superpowers-plans-2026-11-19-snow-sweep-look.html">superpowers/plans/2026-11-19-snow-sweep-look.md</a></li><li><a href="doc-superpowers-plans-2026-11-19-snow-sweep-tools.html">superpowers/plans/2026-11-19-snow-sweep-tools.md</a></li><li><a href="doc-superpowers-plans-2026-11-20-board-testing.html">superpowers/plans/2026-11-20-board-testing.md</a></li><li><a href="doc-superpowers-plans-2026-11-20-far-snow-ring.html">superpowers/plans/2026-11-20-far-snow-ring.md</a></li><li><a href="doc-superpowers-plans-2026-11-20-new-snow-lag.html">superpowers/plans/2026-11-20-new-snow-lag.md</a></li><li><a href="doc-superpowers-plans-2026-11-21-hud-align-edges.html">superpowers/plans/2026-11-21-hud-align-edges.md</a></li><li><a href="doc-superpowers-plans-2026-11-21-snow-horizon.html">superpowers/plans/2026-11-21-snow-horizon.md</a></li><li><a href="doc-superpowers-plans-2026-11-21-snow-mesh-release.html">superpowers/plans/2026-11-21-snow-mesh-release.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-activity-clock.html">superpowers/plans/2026-11-22-activity-clock.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-auto-collect-pieces.html">superpowers/plans/2026-11-22-auto-collect-pieces.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-continue-by-steps.html">superpowers/plans/2026-11-22-continue-by-steps.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-grinch-hideout-two-minutes.html">superpowers/plans/2026-11-22-grinch-hideout-two-minutes.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-lobby-larger-scale.html">superpowers/plans/2026-11-22-lobby-larger-scale.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-lobby-space-and-glow.html">superpowers/plans/2026-11-22-lobby-space-and-glow.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-lobby-start-effects.html">superpowers/plans/2026-11-22-lobby-start-effects.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-processor-model-upgrade.html">superpowers/plans/2026-11-22-processor-model-upgrade.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-save-cells.html">superpowers/plans/2026-11-22-save-cells.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-save-slots.html">superpowers/plans/2026-11-22-save-slots.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-snow-flow-fixes.html">superpowers/plans/2026-11-22-snow-flow-fixes.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-snow-long-play.html">superpowers/plans/2026-11-22-snow-long-play.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-snow-reaudit.html">superpowers/plans/2026-11-22-snow-reaudit.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-tutorial-hidden-stands.html">superpowers/plans/2026-11-22-tutorial-hidden-stands.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-tutorial-island.html">superpowers/plans/2026-11-22-tutorial-island.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-tutorial-steps.html">superpowers/plans/2026-11-22-tutorial-steps.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-tutorial-task-line.html">superpowers/plans/2026-11-22-tutorial-task-line.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-vehicle-client-carve.html">superpowers/plans/2026-11-22-vehicle-client-carve.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-vehicle-cut-shapes.html">superpowers/plans/2026-11-22-vehicle-cut-shapes.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-vehicle-piece-span.html">superpowers/plans/2026-11-22-vehicle-piece-span.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-winter-lobby.html">superpowers/plans/2026-11-22-winter-lobby.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-zone-gardens.html">superpowers/plans/2026-11-22-zone-gardens.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-big-spoon-start.html">superpowers/plans/2026-11-23-big-spoon-start.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-counted-square-melts.html">superpowers/plans/2026-11-23-counted-square-melts.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-forest-mountains-meshes.html">superpowers/plans/2026-11-23-forest-mountains-meshes.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-gold-snow-shell.html">superpowers/plans/2026-11-23-gold-snow-shell.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-pets-off.html">superpowers/plans/2026-11-23-pets-off.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-sell-per-snow.html">superpowers/plans/2026-11-23-sell-per-snow.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-snow-client-perf.html">superpowers/plans/2026-11-23-snow-client-perf.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-snow-frame-budget.html">superpowers/plans/2026-11-23-snow-frame-budget.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-snow-world-end-meshes.html">superpowers/plans/2026-11-23-snow-world-end-meshes.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-tank-flame-carve.html">superpowers/plans/2026-11-23-tank-flame-carve.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-tank-flame-rear-view.html">superpowers/plans/2026-11-23-tank-flame-rear-view.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-tool-cut-plan.html">superpowers/plans/2026-11-23-tool-cut-plan.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-tools-wave-plan.html">superpowers/plans/2026-11-23-tools-wave-plan.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-valley-terrain-trim.html">superpowers/plans/2026-11-23-valley-terrain-trim.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-vehicle-speed-data.html">superpowers/plans/2026-11-23-vehicle-speed-data.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-windows-wood.html">superpowers/plans/2026-11-23-windows-wood.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-zone-bloom.html">superpowers/plans/2026-11-23-zone-bloom.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-coin-cents-ladder.html">superpowers/plans/2026-11-24-coin-cents-ladder.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-counted-square-keeps-snow.html">superpowers/plans/2026-11-24-counted-square-keeps-snow.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-far-lift.html">superpowers/plans/2026-11-24-far-lift.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-far-snow-reach.html">superpowers/plans/2026-11-24-far-snow-reach.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-old-snow-scenarios.html">superpowers/plans/2026-11-24-old-snow-scenarios.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-piece-vanish-gold-ring.html">superpowers/plans/2026-11-24-piece-vanish-gold-ring.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-processor-intake-delay.html">superpowers/plans/2026-11-24-processor-intake-delay.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-processor-whole-load.html">superpowers/plans/2026-11-24-processor-whole-load.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-ready-wait-scenarios.html">superpowers/plans/2026-11-24-ready-wait-scenarios.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-snow-200-nodes.html">superpowers/plans/2026-11-24-snow-200-nodes.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-snow-approach-analysis.html">superpowers/plans/2026-11-24-snow-approach-analysis.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-snow-batch-paint.html">superpowers/plans/2026-11-24-snow-batch-paint.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-snow-contour-outline.html">superpowers/plans/2026-11-24-snow-contour-outline.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-snow-contour-probe.html">superpowers/plans/2026-11-24-snow-contour-probe.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-snow-phone-meter.html">superpowers/plans/2026-11-24-snow-phone-meter.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-snow-soft-relief.html">superpowers/plans/2026-11-24-snow-soft-relief.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-vehicle-camera-controls.html">superpowers/plans/2026-11-24-vehicle-camera-controls.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-vehicle-shop.html">superpowers/plans/2026-11-24-vehicle-shop.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-wider-spoon.html">superpowers/plans/2026-11-24-wider-spoon.md</a></li><li><a href="doc-superpowers-plans-2026-11-25-powder-cut-detail.html">superpowers/plans/2026-11-25-powder-cut-detail.md</a></li><li><a href="doc-superpowers-plans-2026-11-25-snow-wall-gradient.html">superpowers/plans/2026-11-25-snow-wall-gradient.md</a></li><li><a href="doc-superpowers-plans-2026-11-25-tool-hand-size.html">superpowers/plans/2026-11-25-tool-hand-size.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-catalog-answers-design.html">superpowers/specs/2026-11-10-catalog-answers-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-client-actions-design.html">superpowers/specs/2026-11-10-client-actions-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-economy-design.html">superpowers/specs/2026-11-10-data-economy-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-garden-animals-vehicles-design.html">superpowers/specs/2026-11-10-data-garden-animals-vehicles-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-session-server-design.html">superpowers/specs/2026-11-10-data-session-server-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-held-items-audit-design.html">superpowers/specs/2026-11-10-held-items-audit-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-map-bake-design.html">superpowers/specs/2026-11-10-map-bake-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-movement-check-design.html">superpowers/specs/2026-11-10-movement-check-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-packet-limits-design.html">superpowers/specs/2026-11-10-packet-limits-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-anchors-design.html">superpowers/specs/2026-11-10-place-anchors-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-role-world-design.html">superpowers/specs/2026-11-10-place-role-world-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-processor-intake-design.html">superpowers/specs/2026-11-10-processor-intake-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-processor-queue-design.html">superpowers/specs/2026-11-10-processor-queue-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-profile-store-core-design.html">superpowers/specs/2026-11-10-profile-store-core-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-receipt-ledger-design.html">superpowers/specs/2026-11-10-receipt-ledger-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-server-lifecycle-design.html">superpowers/specs/2026-11-10-server-lifecycle-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-areas-design.html">superpowers/specs/2026-11-10-snow-areas-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-break-burst-design.html">superpowers/specs/2026-11-10-snow-break-burst-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-break-like-reference-design.html">superpowers/specs/2026-11-10-snow-break-like-reference-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-cell-strength-design.html">superpowers/specs/2026-11-10-snow-cell-strength-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-pillow-layers-design.html">superpowers/specs/2026-11-10-snow-pillow-layers-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-puff-design.html">superpowers/specs/2026-11-10-snow-puff-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-response-design.html">superpowers/specs/2026-11-10-snow-response-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-starter-spoon-design.html">superpowers/specs/2026-11-10-starter-spoon-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-plan-design.html">superpowers/specs/2026-11-10-strike-plan-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-rules-design.html">superpowers/specs/2026-11-10-strike-rules-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-two-places-design.html">superpowers/specs/2026-11-10-two-places-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-wallet-design.html">superpowers/specs/2026-11-10-wallet-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-bag-full-design.html">superpowers/specs/2026-11-11-bag-full-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-classes-design.html">superpowers/specs/2026-11-11-classes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-data-client-copies-design.html">superpowers/specs/2026-11-11-data-client-copies-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-farmhouse-shop-stands-design.html">superpowers/specs/2026-11-11-farmhouse-shop-stands-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-farmhouse-weapon-stands-design.html">superpowers/specs/2026-11-11-farmhouse-weapon-stands-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-guide-json-only-design.html">superpowers/specs/2026-11-11-guide-json-only-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-loading-screen-design.html">superpowers/specs/2026-11-11-loading-screen-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-one-snow-strength-design.html">superpowers/specs/2026-11-11-one-snow-strength-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-place-sources-design.html">superpowers/specs/2026-11-11-place-sources-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-remove-garden-design.html">superpowers/specs/2026-11-11-remove-garden-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-run-hotbar-design.html">superpowers/specs/2026-11-11-run-hotbar-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-shared-question-marks-design.html">superpowers/specs/2026-11-11-shared-question-marks-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-snow-clear-wave-flakes-design.html">superpowers/specs/2026-11-11-snow-clear-wave-flakes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-snow-garden-design.html">superpowers/specs/2026-11-11-snow-garden-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-snow-work-rule-design.html">superpowers/specs/2026-11-11-snow-work-rule-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-spoon-layer-snow-design.html">superpowers/specs/2026-11-11-spoon-layer-snow-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-vehicle-snow-vfx-design.html">superpowers/specs/2026-11-11-vehicle-snow-vfx-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-vehicle-unlock-design.html">superpowers/specs/2026-11-11-vehicle-unlock-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-weapon-rule-design.html">superpowers/specs/2026-11-11-weapon-rule-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-zone-open-90-saved-design.html">superpowers/specs/2026-11-11-zone-open-90-saved-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-buckets-design.html">superpowers/specs/2026-11-12-buckets-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-contour-fit-design.html">superpowers/specs/2026-11-12-contour-fit-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-conveyor-design.html">superpowers/specs/2026-11-12-conveyor-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-gems-rewards-design.html">superpowers/specs/2026-11-12-gems-rewards-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-hotbar-look-design.html">superpowers/specs/2026-11-12-hotbar-look-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-place-windows-design.html">superpowers/specs/2026-11-12-place-windows-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-snow-height-design.html">superpowers/specs/2026-11-12-snow-height-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-snow-rarity-design.html">superpowers/specs/2026-11-12-snow-rarity-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-two-vacuums-design.html">superpowers/specs/2026-11-12-two-vacuums-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-arcade-catch-gifts-design.html">superpowers/specs/2026-11-13-arcade-catch-gifts-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-arcade-grinch-drifts-design.html">superpowers/specs/2026-11-13-arcade-grinch-drifts-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-arcade-hall-design.html">superpowers/specs/2026-11-13-arcade-hall-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-continue-new-game-design.html">superpowers/specs/2026-11-13-continue-new-game-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-conveyor-two-lanes-design.html">superpowers/specs/2026-11-13-conveyor-two-lanes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-first-run-one-task-design.html">superpowers/specs/2026-11-13-first-run-one-task-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-party-start-buttons-design.html">superpowers/specs/2026-11-13-party-start-buttons-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-phone-touch-sizes-design.html">superpowers/specs/2026-11-13-phone-touch-sizes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-solo-board-design.html">superpowers/specs/2026-11-13-solo-board-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-zone-wall-design.html">superpowers/specs/2026-11-13-zone-wall-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-14-arcade-ice-fishing-design.html">superpowers/specs/2026-11-14-arcade-ice-fishing-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-14-conveyor-four-lanes-design.html">superpowers/specs/2026-11-14-conveyor-four-lanes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-14-hockey-rink-design.html">superpowers/specs/2026-11-14-hockey-rink-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-arcade-hall-bigger-design.html">superpowers/specs/2026-11-15-arcade-hall-bigger-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-arcade-hall-timer-design.html">superpowers/specs/2026-11-15-arcade-hall-timer-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-arcade-halls-schedule-design.html">superpowers/specs/2026-11-15-arcade-halls-schedule-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-arcade-santa-run-design.html">superpowers/specs/2026-11-15-arcade-santa-run-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-dev-panel-design.html">superpowers/specs/2026-11-15-dev-panel-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-grinch-fight-design.html">superpowers/specs/2026-11-15-grinch-fight-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-grinch-hideout-design.html">superpowers/specs/2026-11-15-grinch-hideout-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-grinch-victory-gifts-design.html">superpowers/specs/2026-11-15-grinch-victory-gifts-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-hockey-ai-design.html">superpowers/specs/2026-11-15-hockey-ai-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-hockey-match-design.html">superpowers/specs/2026-11-15-hockey-match-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-hockey-teams-design.html">superpowers/specs/2026-11-15-hockey-teams-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-mechanics-live-audit.html">superpowers/specs/2026-11-15-mechanics-live-audit.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-snow-removal-vfx-design.html">superpowers/specs/2026-11-15-snow-removal-vfx-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-16-shovel-first-person-dig-design.html">superpowers/specs/2026-11-16-shovel-first-person-dig-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-16-stale-studio-scenarios-design.html">superpowers/specs/2026-11-16-stale-studio-scenarios-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-16-ui-item-pictures-design.html">superpowers/specs/2026-11-16-ui-item-pictures-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-16-weapons-first-person-no-hands-design.html">superpowers/specs/2026-11-16-weapons-first-person-no-hands-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-17-dev-panel-state-design.html">superpowers/specs/2026-11-17-dev-panel-state-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-17-hockey-aim-line-design.html">superpowers/specs/2026-11-17-hockey-aim-line-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-17-hud-current-shots-design.html">superpowers/specs/2026-11-17-hud-current-shots-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-17-hud-new-look-refs-design.html">superpowers/specs/2026-11-17-hud-new-look-refs-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-17-party-rejoin-design.html">superpowers/specs/2026-11-17-party-rejoin-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-17-ui-item-pictures-wave2-design.html">superpowers/specs/2026-11-17-ui-item-pictures-wave2-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-17-vehicle-mouse-look-and-seats-design.html">superpowers/specs/2026-11-17-vehicle-mouse-look-and-seats-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-18-snow-golem.html">superpowers/specs/2026-11-18-snow-golem.md</a></li><li><a href="doc-superpowers-specs-2026-11-18-snow-sweep-design.html">superpowers/specs/2026-11-18-snow-sweep-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-19-adaptive-snow-audio-design.html">superpowers/specs/2026-11-19-adaptive-snow-audio-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-19-hud-approved-design.html">superpowers/specs/2026-11-19-hud-approved-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-19-new-snow-in-game-design.html">superpowers/specs/2026-11-19-new-snow-in-game-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-19-snow-processing-reference-study.html">superpowers/specs/2026-11-19-snow-processing-reference-study.md</a></li><li><a href="doc-superpowers-specs-2026-11-19-snow-sweep-lab-design.html">superpowers/specs/2026-11-19-snow-sweep-lab-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-19-snow-sweep-look-design.html">superpowers/specs/2026-11-19-snow-sweep-look-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-19-snow-sweep-tools-design.html">superpowers/specs/2026-11-19-snow-sweep-tools-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-20-board-testing-design.html">superpowers/specs/2026-11-20-board-testing-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-21-snow-mesh-release-design.html">superpowers/specs/2026-11-21-snow-mesh-release-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-continue-by-steps-design.html">superpowers/specs/2026-11-22-continue-by-steps-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-lobby-larger-scale-design.html">superpowers/specs/2026-11-22-lobby-larger-scale-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-lobby-space-and-glow-design.html">superpowers/specs/2026-11-22-lobby-space-and-glow-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-lobby-start-effects-design.html">superpowers/specs/2026-11-22-lobby-start-effects-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-piece-area-400-design.html">superpowers/specs/2026-11-22-piece-area-400-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-processor-model-upgrade-design.html">superpowers/specs/2026-11-22-processor-model-upgrade-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-santa-after-tutorial-design.html">superpowers/specs/2026-11-22-santa-after-tutorial-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-save-slots-design.html">superpowers/specs/2026-11-22-save-slots-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-snow-flow-review.html">superpowers/specs/2026-11-22-snow-flow-review.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-snow-long-play-design.html">superpowers/specs/2026-11-22-snow-long-play-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-snow-reaudit.html">superpowers/specs/2026-11-22-snow-reaudit.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-solo-90-minutes-design.html">superpowers/specs/2026-11-22-solo-90-minutes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-tutorial-hidden-stands-design.html">superpowers/specs/2026-11-22-tutorial-hidden-stands-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-tutorial-island-design.html">superpowers/specs/2026-11-22-tutorial-island-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-tutorial-steps-design.html">superpowers/specs/2026-11-22-tutorial-steps-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-tutorial-task-line-design.html">superpowers/specs/2026-11-22-tutorial-task-line-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-vehicle-client-carve-design.html">superpowers/specs/2026-11-22-vehicle-client-carve-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-vehicle-cut-shapes-design.html">superpowers/specs/2026-11-22-vehicle-cut-shapes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-vehicle-piece-span-design.html">superpowers/specs/2026-11-22-vehicle-piece-span-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-winter-lobby-design.html">superpowers/specs/2026-11-22-winter-lobby-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-world-layers-analysis.html">superpowers/specs/2026-11-22-world-layers-analysis.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-zone-gardens-design.html">superpowers/specs/2026-11-22-zone-gardens-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-big-spoon-start-design.html">superpowers/specs/2026-11-23-big-spoon-start-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-counted-square-melts-design.html">superpowers/specs/2026-11-23-counted-square-melts-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-forest-mountains-meshes-design.html">superpowers/specs/2026-11-23-forest-mountains-meshes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-gold-snow-shell-design.html">superpowers/specs/2026-11-23-gold-snow-shell-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-pets-off-design.html">superpowers/specs/2026-11-23-pets-off-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-sell-per-snow-design.html">superpowers/specs/2026-11-23-sell-per-snow-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-shovel-square-cut-design.html">superpowers/specs/2026-11-23-shovel-square-cut-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-snow-frame-budget-design.html">superpowers/specs/2026-11-23-snow-frame-budget-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-snow-world-end-meshes-design.html">superpowers/specs/2026-11-23-snow-world-end-meshes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-tools-on-new-snow-design.html">superpowers/specs/2026-11-23-tools-on-new-snow-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-valley-terrain-trim-design.html">superpowers/specs/2026-11-23-valley-terrain-trim-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-vehicle-ladder-design.html">superpowers/specs/2026-11-23-vehicle-ladder-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-windows-wood-design.html" aria-current="page">superpowers/specs/2026-11-23-windows-wood-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-zone-bloom-design.html">superpowers/specs/2026-11-23-zone-bloom-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-coin-cents-ladder-design.html">superpowers/specs/2026-11-24-coin-cents-ladder-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-counted-square-keeps-snow-design.html">superpowers/specs/2026-11-24-counted-square-keeps-snow-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-far-lift-design.html">superpowers/specs/2026-11-24-far-lift-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-far-snow-reach-design.html">superpowers/specs/2026-11-24-far-snow-reach-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-old-snow-scenarios-design.html">superpowers/specs/2026-11-24-old-snow-scenarios-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-piece-vanish-gold-ring-design.html">superpowers/specs/2026-11-24-piece-vanish-gold-ring-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-processor-intake-delay-design.html">superpowers/specs/2026-11-24-processor-intake-delay-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-processor-whole-load-design.html">superpowers/specs/2026-11-24-processor-whole-load-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-ready-wait-scenarios-design.html">superpowers/specs/2026-11-24-ready-wait-scenarios-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-snow-200-nodes-design.html">superpowers/specs/2026-11-24-snow-200-nodes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-snow-batch-paint-design.html">superpowers/specs/2026-11-24-snow-batch-paint-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-snow-contour-outline-design.html">superpowers/specs/2026-11-24-snow-contour-outline-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-snow-phone-meter-design.html">superpowers/specs/2026-11-24-snow-phone-meter-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-snow-soft-relief-design.html">superpowers/specs/2026-11-24-snow-soft-relief-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-vehicle-camera-controls-design.html">superpowers/specs/2026-11-24-vehicle-camera-controls-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-vehicle-shop-design.html">superpowers/specs/2026-11-24-vehicle-shop-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-wider-spoon-design.html">superpowers/specs/2026-11-24-wider-spoon-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-25-powder-cut-detail-design.html">superpowers/specs/2026-11-25-powder-cut-detail-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-25-snow-wall-gradient-design.html">superpowers/specs/2026-11-25-snow-wall-gradient-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-25-tool-hand-size-design.html">superpowers/specs/2026-11-25-tool-hand-size-design.md</a></li><li><a href="doc-superpowers-specs-phone-touch-sizes-30c439-ref-phone-classes-prompt.html">superpowers/specs/phone-touch-sizes/30c439-ref-phone-classes.prompt.md</a></li><li><a href="doc-superpowers-specs-phone-touch-sizes-30c439-ref-phone-gemwheel-prompt.html">superpowers/specs/phone-touch-sizes/30c439-ref-phone-gemwheel.prompt.md</a></li><li><a href="doc-unused-inventory.html">unused-inventory.md</a></li><li><a href="doc-vfx-roblox.html">vfx-roblox.md</a></li></ul></details></li></ul></nav>
+<main>
+<section class="part with-toc"><h2>superpowers/specs/2026-11-23-windows-wood-design.md</h2><nav class="toc" aria-label="На этой странице"><ul><li><a href="#зачем">Зачем</a></li><li><a href="#решения-владельца">Решения владельца</a></li><li><a href="#опись-окон">Опись окон</a></li><li><a href="#что-получится">Что получится</a></li><li><a href="#подходы">Подходы</a></li><li><a href="#как-устроено-подход-a">Как устроено (подход A)</a></li><li><a href="#модуль-windowwood">Модуль WindowWood</a></li><li><a href="#что-уходит">Что уходит</a></li><li><a href="#картинки">Картинки</a></li><li><a href="#части-работы">Части работы</a></li><li><a href="#тесты">Тесты</a></li><li><a href="#проверка">Проверка</a></li><li><a href="#что-решает-билдер">Что решает билдер</a></li><li><a href="#мои-решения-после-проверки-билдером">Мои решения после проверки билдером</a></li><li><a href="#мои-решения-в-части-1-23-11-2026">Мои решения в части 1 (23.11.2026)</a></li><li><a href="#мои-решения-в-части-2-23-11-2026">Мои решения в части 2 (23.11.2026)</a></li><li><a href="#мои-решения-в-части-3-23-11-2026">Мои решения в части 3 (23.11.2026)</a></li><li><a href="#шлифовка-по-скринам-владельца-карточка-1cf3e9-23-11-2026">Шлифовка по скринам владельца (карточка 1cf3e9, 23.11.2026)</a></li></ul></nav><div class="part-body"><article class="doc prose" id="doc-superpowers-specs-2026-11-23-windows-wood-design"><p class="path">docs/superpowers/specs/2026-11-23-windows-wood-design.md</p><h1>Все окна на деревянной доске со снегом — дизайн</h1>
+<p>Карточка: <code>6137fd</code> (<code>tasks/active/ui-6137fd-windows-wood.md</code>). Дата: 23.11.2026.</p>
+<h2 id="зачем">Зачем</h2>
+<p>Окна игры сейчас в трёх разных видах: голубая ледяная рамка (UPGRADES, DAILY GEMS и ещё три окна), старая «бумага» с волокнами и окна вообще без картинок. HUD уже стоит на деревянных плашках со снегом сверху (<code>Shared/HudWood</code>, <code>art/ui/wood/</code>). Владелец хочет, чтобы и окна были в этом же «классическом» виде: дерево, снег лежит на верхнем краю. Ледяная рамка уходит из игры совсем.</p>
+<p>Меняется только вид. Набор улучшений, цены, тексты механик, размеры и места окон остаются как есть. Содержимое UPGRADES меняют карточки <code>44564d</code> и <code>c029ed</code>, PETS убирает карточка <code>a91042</code>.</p>
+<h2 id="решения-владельца">Решения владельца</h2>
+<ul>
+<li>Решение владельца 23.11.2026 (через оркестратора): все окна переходят на классическую доску, дерево со снегом сверху. Ледяная рамка уходит из игры и больше нигде не используется.</li>
+<li>Решение владельца 23.11.2026: питомцев убрать из игры (выключить, код оставить) — это делает карточка <code>a91042</code> в отдельном чате. Окно PETS уходит с ней и здесь не перерисовывается.</li>
+<li>Решение владельца 23.11.2026: референс <code>art/refs/windows-wood/upgrades-window.png</code> утверждён. Все окна выглядят как он: доска со снегом, тёмная планка заголовка, красный крестик со снегом, плашка баланса, деревянные вкладки, вдавленные деревянные карточки, зелёные кнопки со снегом.</li>
+<li>Решение владельца 23.11.2026: картинки — «и гем, и иконки». Гем везде такой же, как в HUD. Иконки получают строки SETTINGS и YOUR EXPEDITION и три истории WELCOME TO WINTER.</li>
+<li>Решение владельца 23.11.2026: старое окно <code>SnowUpgradesGui</code> удалить в этой задаче и отметить это в карточке <code>0ecdb5</code>.</li>
+<li>Решение владельца 23.11.2026: табло итогов аркад (свой плоский стиль) и панель команд хоккея (уже на дереве HUD) не трогать.</li>
+<li>Решение владельца 23.11.2026: картинки содержимого — диск колеса GEM WHEEL, жетон-снежинка, галочка DAILY GEMS и ледяной пьедестал в CLASSES — остаются как есть.</li>
+<li>Решение владельца 23.11.2026: спека утверждена, работа идёт тремя частями по очереди, каждая своей карточкой.</li>
+</ul>
+<h2 id="опись-окон">Опись окон</h2>
+<p>Кадры сняты в живой игре 22.11.2026 сценарием <code>windows-wood-audit</code> (компьютер 1920×1080, лобби). Лист кадров — <code>art/refs/windows-wood/before-sheet.jpg</code>, ледяной UPGRADES со скриншота владельца — <code>art/refs/windows-wood/upgrades-ice-before.png</code>. Повторить: <code>node tools/studio-scenarios/_gen-windows-wood-audit.mjs</code>, потом <code>npm run play -- windows-wood-audit</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Окно</th>
+<th>Как открывается</th>
+<th>Где GUI</th>
+<th>Размер (ед.)</th>
+<th>Рамка сейчас</th>
+<th>Картинки сейчас</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>UPGRADES (<code>Workshop</code>)</td>
+<td>кнопка UPGRADES в боковом меню</td>
+<td>плейс <code>Modals.Workshop</code>, <code>Panel</code> — ImageLabel</td>
+<td>1000×750</td>
+<td>лёд</td>
+<td>лопата, ботинки, процессор; монета HUD</td>
+</tr>
+<tr>
+<td>SNOW PROCESSOR (<code>ProcessorUpgrade</code>)</td>
+<td>E у процессора</td>
+<td>плейс, <code>Panel</code> 660×760 + <code>Action</code></td>
+<td>1120×780</td>
+<td>лёд</td>
+<td>нет картинки процессора</td>
+</tr>
+<tr>
+<td>CLASSES (<code>Classes</code>)</td>
+<td>E у стойки CLASSES</td>
+<td>плейс, <code>Panel</code></td>
+<td>1240×800</td>
+<td>лёд</td>
+<td>гем старого плейса</td>
+</tr>
+<tr>
+<td>DAILY GEMS (<code>DailyGems</code>)</td>
+<td>награда дня из HUD</td>
+<td>код (<code>GemWindowShell</code>, копия <code>Workshop.Panel</code>)</td>
+<td>как у <code>Workshop</code></td>
+<td>лёд</td>
+<td>гем старого плейса, галочка, жетон</td>
+</tr>
+<tr>
+<td>GEM WHEEL (<code>GemWheel</code>)</td>
+<td>колесо из HUD</td>
+<td>код (<code>GemWindowShell</code>)</td>
+<td>как у <code>Workshop</code></td>
+<td>лёд</td>
+<td>гем старого плейса, диск колеса, жетон</td>
+</tr>
+<tr>
+<td>INDEX (<code>Upgrades</code>)</td>
+<td>кнопка INDEX</td>
+<td>плейс, Frame</td>
+<td>1080×580</td>
+<td>бумага</td>
+<td>вкладки STATS и INDEX</td>
+</tr>
+<tr>
+<td>PETS (<code>Pets</code>)</td>
+<td>кнопка PETS</td>
+<td>плейс, Frame</td>
+<td>830×580</td>
+<td>бумага</td>
+<td>уходит с <code>a91042</code>, не перерисовываем</td>
+</tr>
+<tr>
+<td>SETTINGS (<code>Settings</code>)</td>
+<td>меню, SETTINGS</td>
+<td>плейс, Frame</td>
+<td>830×580</td>
+<td>бумага</td>
+<td>нет: 5 строк с ON/OFF (FALLING SNOW, SOUND EFFECTS, CAMERA SHAKE, IMPACT WORDS, REDUCED MOTION)</td>
+</tr>
+<tr>
+<td>WELCOME TO WINTER (<code>News</code>)</td>
+<td>меню, NEWS</td>
+<td>плейс, Frame</td>
+<td>830×580</td>
+<td>бумага</td>
+<td>нет: 3 истории</td>
+</tr>
+<tr>
+<td>YOUR EXPEDITION (<code>Stats</code>)</td>
+<td>меню, STATS</td>
+<td>плейс, Frame</td>
+<td>830×580</td>
+<td>бумага</td>
+<td>нет: 5 строк</td>
+</tr>
+<tr>
+<td>SNOW CLEARERS (<code>Leaderboard</code>)</td>
+<td>LEADERBOARD в <code>Stats</code></td>
+<td>код, копия <code>Stats</code></td>
+<td>830×580</td>
+<td>бумага</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>SNOW PROCESSOR (<code>Processing</code>)</td>
+<td>грузовик из HUD</td>
+<td>плейс, Frame</td>
+<td>830×580</td>
+<td>бумага</td>
+<td>снег, шестерня, монета</td>
+</tr>
+<tr>
+<td>EXPEDITION COMPLETE! (<code>Results</code>)</td>
+<td>итог забега</td>
+<td>плейс, Frame</td>
+<td>830×580</td>
+<td>бумага</td>
+<td>часы, снег, монета</td>
+</tr>
+<tr>
+<td>START A RUN (<code>Queue</code>)</td>
+<td>E у плиты в лобби</td>
+<td>плейс, Frame + снег и сосульки из кода</td>
+<td>830×580</td>
+<td>бумага</td>
+<td>нет; красные кнопки NEW GAME</td>
+</tr>
+</tbody></table>
+<p>Не открываются и в опись не входят: <code>Shop</code> и <code>ToolPurchase</code> (карточка <code>51a4ef</code> закрыла их путь), <code>Pets</code> (с 23.11.2026 питомцы выключены карточкой <code>a91042</code>, окно не открывается), <code>SnowUpgradesGui</code> (старое ледяное окно, нигде не используется — удаляется). Не окна этой задачи: табло итогов аркад, панель команд хоккея, <code>QueueCountdown</code>, экран загрузки, <code>DevPanel</code>.</p>
+<p>Откуда берётся лёд:</p>
+<ul>
+<li>Плейс (<code>models/shared/StarterGui/CleanSnowUI.rbxm</code>): картинка панели <code>rbxassetid://122155586238264</code> и картинка кнопки <code>rbxassetid://110053029313850</code> (у Close, Buy, Action). Всего 9 элементов в UPGRADES, CLASSES и SNOW PROCESSOR.</li>
+<li>Код: <code>GemWindowShell</code> копирует <code>Workshop.Panel</code> и красит в цвета льда (<code>INK</code> 23,73,109, белые карточки с голубой линией, <code>MUTED</code>). Цвета льда есть и в <code>Workshop</code>, <code>Classes</code>, <code>ProcessorUpgrade</code>, <code>Queue</code>, <code>Upgrades</code>, а в <code>InterfaceKit</code> — не из палитры (<code>BUY_GREEN</code>, <code>TAB_ON</code>, <code>LOCKED_BLUE</code>).</li>
+<li><code>models/shared/StarterGui/SnowUpgradesGui.rbxm</code> — целиком ледяное окно.</li>
+</ul>
+<p>У «бумаги» в плейсе: <code>ReferenceEdge</code>, <code>ReferenceGradient</code>, <code>ReferenceTextInk</code>, <code>ReferencePaperFiber1…N</code>, скрытая <code>InnerBorder</code> и надпись <code>PreviewNote</code> (её уже удаляет <code>InterfaceController</code> при старте).</p>
+<h2 id="что-получится">Что получится</h2>
+<p>Каждое окно описи, кроме PETS, — одна большая деревянная доска цвета «Доска» с толстым тёмным контуром и подушкой снега на верхнем крае, нарисованной вместе с доской одной картинкой (правило владельца 19.11.2026). На ней, как на референсе:</p>
+<ul>
+<li>заголовок кремовыми буквами с тёмным контуром на тёмной планке;</li>
+<li>справа — красная квадратная кнопка со снегом и кремовым крестиком;</li>
+<li>рядом, если в окне есть деньги, — тёмная плашка баланса с монетой или гемом из HUD;</li>
+<li>вкладки: выбранная зелёная, остальные цвета «Дерево», у всех контур;</li>
+<li>строки и карточки — вдавленные светлые деревянные карточки с тёмной плиткой для картинки;</li>
+<li>главная кнопка — зелёная со снегом, «опасная» (NEW GAME) — красная со снегом, кнопка «выключено» и второстепенные — деревянные (сейчас OFF тоже зелёная — моё решение сделать её деревянной, чтобы ON и OFF различались);</li>
+<li>полоски уровня — тёмное дерево и оранжевые сегменты;</li>
+<li>подпись внизу — мелкий кремовый текст.</li>
+</ul>
+<p>В опубликованной игре, пока владелец не загрузил картинки, та же доска рисуется кодом: дерево, контур, свет сверху, без снега. Так же сейчас работает HUD.</p>
+<h2 id="подходы">Подходы</h2>
+<p><strong>A. Общий модуль одевает окна в игре, плейс только чистится (рекомендую, выбран).</strong> Новый модуль <code>WindowWood</code> рядом с <code>HudWood</code> по описанию окна строит дерево: доску, планку заголовка, крестик, карточки, вкладки, кнопки, роли текста. Каждое окно описывает свой вид данными (<code>look</code>), как сейчас описывает раскладку телефона (<code>phone</code>). В плейсе через Studio убираются только ледяные картинки, «бумажные» украшения и <code>SnowUpgradesGui</code>. Плюсы: один источник вида, одинаково работает для окон плейса и окон из кода (DAILY GEMS, GEM WHEEL, SNOW CLEARERS), есть рисованный запасной вид без картинок, проверяется Luau-тестами без Studio. Размеры, пути и раскладки телефона не меняются. Минус: вид собирается кодом при старте клиента — окна в это время скрыты, игрок этого не видит.</p>
+<p><strong>B. Перекрасить окна руками в Studio.</strong> 14 окон правятся в бинарном файле UI, общего модуля нет, окна из кода всё равно надо переделывать отдельно, запасного вида без картинок нет. Не подходит: бриф требует один общий модуль, а <code>CleanSnowUI.rbxm</code> правят и другие чаты.</p>
+<p><strong>C. Собрать все окна заново в коде.</strong> Самый большой объём, ломает пути, <code>WindowPins</code> и раскладки телефона, мешает <code>44564d</code> и <code>c029ed</code>. Ради смены вида не оправдан.</p>
+<h2 id="как-устроено-подход-a">Как устроено (подход A)</h2>
+<h3 id="модуль-windowwood">Модуль <code>WindowWood</code></h3>
+<p><code>src/ReplicatedStorage/CleanSnow/Shared/WindowWood.luau</code>, <code>--!strict</code>. Стоит на <code>HudWood</code> и <code>ItemPictures</code>, сам цвета не выдумывает: только <code>HudWood.COLORS</code> (цвета <code>art/palette.json</code>).</p>
+<p>Глубокий модуль с маленьким входом. Наружу — одна функция, плюс несколько частей для окон, которые сами строят строки:</p>
+<ul>
+<li><code>WindowWood.dress(panel, look)</code> — одевает окно целиком по описанию <code>look</code>: что доска (сам кадр окна или его <code>Panel</code>), где заголовок, крестик, баланс, вкладки, карточки, кнопки, подпись. Повторный вызов ничего не множит: находит сделанное раньше, как <code>HudWood</code>.</li>
+<li><code>WindowWood.card(frame)</code>, <code>WindowWood.tab(button, on)</code>, <code>WindowWood.button(button, tone)</code>, <code>WindowWood.tile(frame)</code> и <code>WindowWood.text(label, role)</code> — для строк, которые окна делают в коде (строки улучшений, классов, наград).</li>
+</ul>
+<p>Картинки — ключи <code>Wood:*</code> в <code>ItemPictures</code>, как у HUD: с id или локальной копией в Studio показывается картинка 9-slice, без них код рисует ту же доску без снега.</p>
+<p>Окно в <code>Windows/*.luau</code> получает поле <code>look</code>. <code>InterfaceController</code> после сборки окон (сразу за <code>Windows.build</code> и циклом <code>def.new</code>) зовёт <code>WindowWood.dress</code> для каждого окна с <code>look</code>. Окна, чьи строки появляются позже (рендер списка), одевают свои строки сами частями модуля.</p>
+<h3 id="что-уходит">Что уходит</h3>
+<ul>
+<li><code>GemWindowShell</code> больше не копирует <code>Workshop.Panel</code> и не держит цвета льда: доска DAILY GEMS и GEM WHEEL — та же <code>WindowWood</code>. Гем старого плейса (<code>88461119958156</code>) меняется на гем HUD (<code>Hud:Gem</code>), так же в CLASSES.</li>
+<li>Цвета льда и цвета не из палитры в <code>Workshop</code>, <code>Classes</code>, <code>ProcessorUpgrade</code>, <code>Queue</code>, <code>Upgrades</code>, <code>InterfaceKit</code> заменяются цветами палитры (через <code>HudWood.COLORS</code>). Логика, тексты и числа не трогаются.</li>
+<li>Снег шапки <code>Queue</code>, нарисованный кодом, уходит: снег теперь в картинке доски.</li>
+<li>В плейсе (Studio, затем <code>node tools/places/export.mjs Dev</code> по <code>docs/place.md</code>): очистить ледяные картинки у 9 элементов, удалить <code>Reference*</code>-украшения и <code>InnerBorder</code> у «бумажных» окон, удалить <code>SnowUpgradesGui</code>. Ничего, кроме GUI окон, не меняется. После выгрузки проверить, что в <code>models/</code> нет <code>ExplorerIconContent</code>.</li>
+<li>Ледяные картинки из <code>art/</code>, если на них больше ничего не ссылается, удаляются. Загруженные id в Roblox остаются как есть: удалять ассеты в Roblox — не эта задача.</li>
+</ul>
+<h3 id="картинки">Картинки</h3>
+<p>Все — <code>codex-imagegen</code> (<code>node tools/imagegen/cli.mjs</code>), с <code>--ref</code> на утверждённый референс, <code>art/frames/</code> и <code>art/ui/wood/wood-sheet-v2.png</code>, цвета только из <code>art/palette.json</code>, промпт рядом в <code>.prompt.md</code>. Не больше трёх попыток на картинку. В Studio — локальные копии (<code>npm run ui:local</code>), в Roblox ничего не загружается без слова владельца. Строки для загрузки добавляются в <code>art/import.md</code>.</p>
+<ol>
+<li>Лист частей окна на прозрачном фоне, режется на отдельные PNG в <code>art/ui/wood/</code>, как <code>wood-sheet-v2</code>:<ul>
+<li><code>Wood:Window</code> — большая доска со снегом сверху, 9-slice: снег ровный по всей ширине середины, середина доски без деталей, которые видно при растяжении, — от 830×580 до 1240×800;</li>
+<li><code>Wood:Header</code> — тёмная планка заголовка;</li>
+<li><code>Wood:Card</code> — вдавленная светлая карточка;</li>
+<li><code>Wood:Tile</code> — тёмная плитка под картинку;</li>
+<li><code>Wood:Close</code> — красная квадратная кнопка со снегом и кремовым крестиком;</li>
+<li><code>Wood:GreenSnow</code> — зелёная кнопка со снегом;</li>
+<li><code>Wood:RedSnow</code> — красная кнопка со снегом (NEW GAME в START A RUN).
+Деревянная кнопка со снегом уже есть (<code>Wood:ButtonSnow</code>).</li>
+</ul>
+</li>
+<li>Иконки строк, 256×256, в стиле иконок HUD (<code>art/ui/hud/</code>), в <code>art/ui/windows/</code>:<ul>
+<li>SETTINGS — падающий снег, звуки, тряска камеры, слова удара, меньше движения (5 новых);</li>
+<li>YOUR EXPEDITION — пройденные экспедиции и лучшая область (2 новых); снег, монета и часы берутся готовые (<code>Snow:Block</code>, <code>Hud:Coin</code>, <code>Hud:Clock</code>);</li>
+<li>WELCOME TO WINTER — по одной на историю: FROSTWOOD AWAITS, BETTER TOGETHER, FOLLOW THE SNOW (3 новых).</li>
+</ul>
+</li>
+<li>Готовые картинки на новых местах: гем HUD в CLASSES, DAILY GEMS и GEM WHEEL; процессор <code>Upgrade:ProcessorSpeed</code> в SNOW PROCESSOR.</li>
+</ol>
+<p>Картинки диска колеса, жетона, галочки DAILY GEMS и пьедестала CLASSES остаются (решение владельца 23.11.2026): это содержимое окон, а не рамка. Окна без новых иконок (START A RUN, SNOW PROCESSOR грузовика, EXPEDITION COMPLETE!, INDEX) получают только дерево.</p>
+<h2 id="части-работы">Части работы</h2>
+<p>Окон много, поэтому три части по очереди в этом чате, каждая — своей карточкой доски (превью карточек и апрув владельца перед стартом):</p>
+<ol>
+<li><strong>Рамка и ледяные окна.</strong> Модуль <code>WindowWood</code>, лист частей окна, UPGRADES, SNOW PROCESSOR, CLASSES, DAILY GEMS, GEM WHEEL; <code>GemWindowShell</code> без льда; гем HUD; очистка льда в плейсе и удаление <code>SnowUpgradesGui</code>. После неё льда в игре нет.</li>
+<li><strong>«Бумажные» окна.</strong> INDEX, SETTINGS, WELCOME TO WINTER, YOUR EXPEDITION, SNOW CLEARERS, SNOW PROCESSOR грузовика, EXPEDITION COMPLETE!, START A RUN; удаление украшений «бумаги» в плейсе; цвета <code>InterfaceKit</code> в палитру.</li>
+<li><strong>Иконки.</strong> 10 новых иконок и картинка процессора на своих местах.</li>
+</ol>
+<h2 id="тесты">Тесты</h2>
+<p>Брейншторм тестов (правило владельца 07.10.2026) — минимальный набор <code>tests/ServerStorage/UnitTest/Cases/WindowWood_Test.luau</code>:</p>
+<ol>
+<li>Повторное <code>dress</code> одного окна оставляет одну доску и одну планку. Причина: окна перерисовываются, у <code>HudWood</code> такая же ошибка уже была (раунд 8) — копии доски копились.</li>
+<li>Без картинок доска рисуется кодом: цвет «Доска», контур «Контур», без картинки и без снега. Причина: так окна выглядят в опубликованной игре до загрузки.</li>
+<li>Ни одно окно плейса и ни одно окно из кода (DAILY GEMS, GEM WHEEL) после сборки не показывает ледяные картинки (<code>122155586238264</code>, <code>110053029313850</code>) и цвета льда. Причина: главное требование владельца — льда в игре нет. Где проверяется (23.11.2026): в Studio юнит-тестов нет ни интерфейса плейса, ни клиентских окон, поэтому плейс читает Lune-тест <code>tools/places/windows-ice.test.luau</code>, а все окна после сборки — первый шаг сценариев <code>windows-wood-audit</code> и <code>windows-wood-fallback</code> в Play.</li>
+</ol>
+<p>Пути окон проверяет уже существующая проверка старта (<code>Windows.check</code>): если очистка плейса потеряет элемент, окно не соберётся и это видно в Output. Тесты затронутых окон и эти три гоняются одним заходом в конце, не чаще раза в час.</p>
+<h2 id="проверка">Проверка</h2>
+<ul>
+<li>Кадры каждого окна в живой игре на компьютере 1920×1080 тем же сценарием <code>windows-wood-audit</code> — до и после. Смотрю сам, показываю владельцу.</li>
+<li>Большие окна проходят <code>feature-design-critic</code> с таблицей размера окна на всех экранах (<code>.agents/feature-team/RUBRICS.md</code>, раздел «Размер окна»): телефоны, планшеты, компьютер. Размеры окон не меняются, поэтому таблица должна совпасть с прежней; критик смотрит вид.</li>
+<li>Кадры с картинками (<code>ui:local</code>) и без картинок (<code>workspace.HudPicturesOff</code>), чтобы видеть оба вида.</li>
+<li><code>npm run check</code> без новых замечаний.</li>
+</ul>
+<h2 id="что-решает-билдер">Что решает билдер</h2>
+<ul>
+<li>Точные отступы, толщины контура и размеры планки заголовка и плиток в единицах окна — по референсу и кадрам.</li>
+<li>Как именно описан <code>look</code> у каждого окна и какие строки окна одевают сами.</li>
+<li>Нарезка листа частей и центры 9-slice.</li>
+<li>Запасной вид крестика без картинки: красная доска с кремовой буквой X, как сейчас в «бумажных» окнах (моё решение). У окон из присланного плейса крестик — картинка красного X, на красной доске она терялась, поэтому у них запасной крестик — тёмная доска с красным X (критик дизайна, круг 1, F4).</li>
+</ul>
+<h2 id="мои-решения-после-проверки-билдером">Мои решения после проверки билдером</h2>
+<ul>
+<li>Снег лежит внутри кадра окна, а не над ним: верх подушки снега — верхний край кадра. Размер кадра и подгонка под экран не меняются, поэтому таблица размера окна должна совпасть с прежней. Заголовок и содержимое «бумажных» окон опускаются под снег; числа <code>header</code> в раскладках телефона (<code>phone</code>) пересчитываются под новый заголовок.</li>
+<li>Окно одевается в дерево до того, как его модуль запоминает цвета вкладок, полосок и кнопок (UPGRADES и SNOW PROCESSOR запоминают их при сборке), иначе модуль вернёт старые цвета. Поэтому порядок такой: дерево — до <code>def.new</code>, а цвета состояний модули берут из <code>WindowWood</code>, а не из плейса.</li>
+<li><code>WindowPins</code> на телефоне рисует закреплённую полосу копией картинки рамки (<code>phone.art</code>, сейчас — ледяная <code>Panel</code>). Поле <code>art</code> окон указывает на новую деревянную картинку доски; без картинки <code>WindowPins</code> копирует рисованную доску (цвет, углы, контур — он это уже умеет).</li>
+<li>Гем HUD (<code>Hud:Gem</code>) ещё не загружен. В опубликованной игре до загрузки окна показывают прежний загруженный гем (<code>88461119958156</code>), как <code>ItemPictures</code> поступает с другими картинками: в Studio — новый гем, после загрузки владельцем — новый везде.</li>
+<li>Первая строка SETTINGS — FALLING SNOW (элемент <code>Music</code> переименован в <code>Settings.luau</code>), поэтому иконка — падающий снег, не музыка.</li>
+</ul>
+<h2 id="мои-решения-в-части-1-23-11-2026">Мои решения в части 1 (23.11.2026)</h2>
+<ul>
+<li>Плейс правится Lune-скриптом на копии плейса из окна чата, затем штатный <code>node tools/places/export.mjs Dev &lt;копия&gt;</code>. Studio не сохраняет плейс по команде, а нажимать Ctrl+S в окне на столе владельца нельзя. Перед правкой выгрузка копии дала «the world is the same as in models/»; после неё в <code>CleanSnowUI.rbxm</code> изменились ровно 9 картинок (<code>ImageContent</code> → пусто), <code>SnowUpgradesGui.rbxm</code> удалён, <code>ExplorerIconContent</code> в <code>models/</code> нет.</li>
+<li>Ледяной рамки в <code>art/</code> нет: эти картинки пришли вместе с присланным плейсом, удалять в <code>art/</code> нечего.</li>
+<li>Текст окна целиком становится кремовым с тёмным контуром ещё до ролей из <code>look</code>; контур — свой у текста, рамки элементов (<code>Border</code>) не трогаются. Полосы прокрутки — «Тёмное дерево».</li>
+<li>SNOW PROCESSOR: блок <code>Action</code> (подпись, кнопка, баланс) остаётся без доски, над миром, как в присланном плейсе; его слова кремовые с контуром. Плашка «15% LESS» — тёмная плитка с золотым текстом, новые значения («0.28s», «1 / 4») — золотом, как строка улучшения на референсе.</li>
+<li>CLASSES: строки — светлые карточки, выбранная — с зелёной рамкой, как выбранная вкладка; превью работника — тёмная плитка (подиум остаётся, решение владельца); строка YOUR CLASS — тёмная планка; полоса цвета класса слева у строки остаётся.</li>
+<li>Цена, на которую не хватает денег, остаётся красной и на зелёной кнопке: это сигнал состояния; с тёмным контуром она читается.</li>
+<li>DAILY GEMS: день впереди — светлая карточка, взятый день — тёмная плитка под галочкой, сегодня — золотая рамка. В эффекте получения плитка не сереет плавным тоном, а на 0,72 с сменяется тёмной плиткой (картинки нельзя перелить тоном); прыжок, галочка, вспышка числа и «+N» не менялись.</li>
+<li>Гем HUD ставится и у гемов снеговика (<code>SnowGolemGemsView</code> брал константу гема из оболочки окон гемов).</li>
+<li>Окно постоянных улучшений лобби за гемы (<code>LobbyUpgrades</code>, модель <code>models/lobby/ReplicatedStorage/LobbyUpgradeWindow.rbxm</code>) пришло в main 23.11.2026 в 03:57, уже после описи, и было собрано на той же ледяной рамке: доска, крестик, кнопки покупки и фильтры. Оно тоже переходит на дерево в части 1: доска со снегом, тёмная планка заголовка и баланс, строки — светлые карточки с тёмными плитками картинок, покупка — зелёная (MAXED — серый камень), фильтры ALL, WORK, COMFORT — вкладки (выбранная зелёная), полоски уровня — «Оранжевый» на «Тёмном дереве», старый гем — гем HUD. Лёд снят и из его модели, проверка льда читает обе модели. Раскладка окна под экраны (<code>fit</code>) не менялась, кроме ширины корня: 1130 оставляли 12 единиц слева от фильтров и 100 справа от доски, окно стояло не по центру; корень теперь 1042 — по видимым границам (критик дизайна, круг 1, F2). Высоту окна на телефоне <code>fit</code> считал по ширине 1130, и с узким корнем окно выросло до 97 % высоты экрана; теперь она считается по ширине корня — 90 %, как было. Планка заголовка накрывает всё слово, даже если оно шире своей метки (F1: у LobbyUpgrades и SNOW PROCESSOR буква висела над доской).</li>
+<li>Проверка части 1 (23.11.2026): <code>feature-design-critic</code>, круг 1 — нужны исправления (F1 планка заголовка уже слова, F2 LobbyUpgrades не по центру, F3 не сняты телефоны 667 и 932 с новой полосой прокрутки, F4 запасной крестик не записан), круг 2 — принято, HUD score 84/100. Таблица размера окна шести окон на семи экранах — <code>build/studio-play/windows-wood-part1-sizes.md</code> (пять старых окон совпали с прежней таблицей, LobbyUpgrades: телефоны и планшеты 78 % ширины, компьютер 59–60 %, поля равные). Низкие замечания критика, не блокирующие: F5 — при нехватке денег CLASSES показывает каменную кнопку, другие окна — зелёную с красной ценой (так было до карточки); F6 — справа от кнопки покупки в строках LobbyUpgrades пустое место около 30 px (прежняя раскладка); рука «листай» на 667x375 закрывает часть строки YOUR CLASS до первого листания (прежнее поведение подсказки).</li>
+</ul>
+<h2 id="мои-решения-в-части-2-23-11-2026">Мои решения в части 2 (23.11.2026)</h2>
+<ul>
+<li>«Бумага» снята тем же путём, что лёд: Lune-правка копии плейса и <code>node tools/places/export.mjs Dev &lt;копия&gt;</code>. В <code>CleanSnowUI.rbxm</code> у семи окон ушли 323 части (<code>InnerBorder</code>, волокна, рейки, листья, края, градиенты, обводки <code>Reference*</code>); оставлены <code>ReferenceIconInk</code>, <code>ReferenceInk_*</code>, <code>ReferenceGroup*</code>, <code>ReferenceCorner</code>. Проверка в Lune (<code>tools/places/windows-ice.test.luau</code>) теперь ловит и бумагу этих окон; у PETS бумага остаётся (решение владельца).</li>
+<li>Заголовок и содержимое опущены на 20 единиц: коробка заголовка стоит на 20 под верхом доски, в нижней половине снега, как у окон части 1 (LobbyUpgrades — 22). У INDEX заголовка нет, его вкладки STATS и INDEX торчали над кадром на 32 — они опущены на 55 и стоят там, где у других окон планка заголовка. Числа <code>phone.header</code> выросли на те же 20 (SETTINGS, NEWS, YOUR EXPEDITION — 126, SNOW PROCESSOR, EXPEDITION COMPLETE!, START A RUN — 72), у INDEX — на 55 (78).</li>
+<li>Цвета <code>InterfaceKit</code> (<code>BUY_GREEN</code>, <code>OWNED_GRAY</code>, <code>LOCKED_BLUE</code>, <code>TAB_ON</code>, <code>TAB_OFF</code>) не заменены: ими же красятся окна PETS, Shop, ToolPurchase и кнопки HUD, а их не трогаем. Вместо этого кнопки и вкладки внутри деревянного окна (<code>dress</code> ставит окну атрибут <code>WoodWindow</code>) одеваются деревом: цена — зелёная, MAX, OWNED, EQUIPPED и CHECKING… — камень, LOCKED — тёмное дерево, ON — зелёная, OFF — деревянная; кнопки <code>Kit.addButton</code> — деревянные, главные — зелёные.</li>
+<li>START A RUN: снег и сосульки из кода убраны (снег — в картинке доски), вместе с ними — запас <code>top</code> над кадром на телефоне. Строка участников — слова прямо на доске (карточка в 50 единиц была тоньше своих краёв), карточки слотов — светлые карточки с заголовком SLOT N (планка в 28 единиц выходила тонкой полоской: её углы больше половины высоты), строка гостя «чья игра» — тёмная планка, полоска сохранения — «Оранжевый» на «Тёмном дереве», CONTINUE — зелёная, NEW GAME — красная со снегом, у занятого слота обе — камень. Вопрос NEW GAME? — маленькая доска со снегом, заголовок на планке под снегом, YES — красная, NO — зелёная. Размеры отряда — вкладки (выбранная зелёная), START A RUN гостя — зелёная, WAITING FOR HOST — камень. EMPTY — «Тень снега», как было.</li>
+<li>INDEX: страницы названы как их вкладки (<code>Body.Stats</code> — и кнопка, и страница), поэтому окно одевает их у себя, а не путями <code>look</code>. Карточки снега — светлые (копии одетой первой); у не открытого снега кнопка-подпись UNDISCOVERED каменная вместо полупрозрачной карточки (у доски-картинки прозрачность карточки не видна); золотой снег — золотой заголовок. Строки STATS — карточки, значения золотом. Страница UPGRADES (её вкладку скрыло окно UPGRADES в лобби) одета так же: группы — карточки с тёмными планками, улучшения — тёмные плитки, выбранное — зелёная рамка вместо жёлтой заливки, цена — золото или красная, точки уровня — «Оранжевый» на «Тёмном дереве», LOCKED — тёмное дерево.</li>
+<li>SNOW CLEARERS — копия YOUR EXPEDITION: копия одевается заново, у её заголовка своя планка по своим словам; строки таблицы — светлые карточки.</li>
+<li>SNOW PROCESSOR (сдача снега): полоска переработки — «Оранжевый» на «Тёмном дереве», DEPOSIT — зелёная, монеты — золотом.</li>
+<li>После первых кадров: снег доски свисает в верхних углах — слева примерно на 40 единиц внутрь, справа на 75, до 115 под верхом доски. Подзаголовки под заголовком сдвинуты на 40 вправо, кнопки справа в шапке (GOT IT!, LEADERBOARD) — на 40 влево. У START A RUN и SNOW PROCESSOR сдачи вниз ушёл только заголовок, содержимое стоит где стояло (их нижние ряды упирались в нижний край доски; у START A RUN нет подзаголовка, у SNOW PROCESSOR под ним хватает места), поэтому их <code>phone.rise</code> — 34 вместо 54. INDEX: в ряд четыре карточки снега вместо трёх (ширина ячейки 242 → 234): доска справа стояла пустой, так было и на бумаге. Правка плейса — тем же путём, Lune-копия и <code>export.mjs</code>.</li>
+<li>Заголовок SLOT N на карточке слота — слова прямо на карточке: у надписи по умолчанию серый фон, его видно полосой над EMPTY, фон убран.</li>
+<li>Замер размеров (<code>_gen-phone-sizes.mjs</code>) не открывал START A RUN: окно открывается только при отряде игрока на плите (карточка <code>1b215e</code>), а нетронутый отряд распадается через <code>QueueConfigureSeconds</code> (20 с), и плита прячет E от игрока, который на ней остался. Теперь перед START A RUN на каждом экране игрок сходит с плиты, встаёт на неё и нажимает E.</li>
+<li>Кубик снега в карточках INDEX стоял правее середины и на бумаге: карточка нарисована шириной 314 с картинкой в 70 от края, а сетка ставит её в ячейку 234. Картинка теперь стоит по середине карточки.</li>
+<li>Состояние кнопки в деревянном окне по её надписи (цена и ON — зелёная, OFF — дерево, MAX, OWNED, EQUIPPED и ожидание ответа — камень, LOCKED — тёмное дерево) выбирает общий <code>WindowWood.stateTone</code>, а <code>InterfaceKit.priceLabel</code> его вызывает: клиентских скриптов нет в Studio unit-тестов, и правило проверяется там без них.</li>
+<li>Проверка части 2 (23.11.2026): <code>feature-design-critic</code>, круг 1 — нужны исправления (F1: на телефонах 844 и 932 числа наград EXPEDITION COMPLETE! срезаны при открытии — середина под выросшей шапкой стала на 20 короче; низкие F2–F6), круг 2 — принято, HUD score 82/100. Таблица размера окна семи окон на семи экранах — <code>build/studio-play/windows-wood-part2-sizes.md</code>: ширина и поля совпали с замером 15.11.2026, на телефоне видна 91 % высоты вместо 84–86 % (над кадром нет больше частей, под которые закреплённая раскладка держала запас). Исправлено: F1 (на телефоне AREA N CLEARED выше на 8, награды на 12, листать нечего), F4 (планка NEW GAME? по середине своей доски), сверх находок — кубик снега по середине карточки INDEX. Оставлены как низкие: F2 — углы верхнего ряда INDEX и карточек SNOW PROCESSOR на телефоне уходят под свисающий снег доски (листаемая середина, всё читается); F3 — рука «листай» на 667x375 закрывает GOT IT! до первого листания (место выбирает WindowPins, рука не ловит нажатия); F5 — белая полоса у кнопок, созданных кодом окна, в кадрах без картинок: сценарий одевает заново только пути <code>look</code>, в опубликованной игре без id картинок такие кнопки сразу рисует код (проверить после загрузки картинок); F6 — на 667x375 описание снега в INDEX в одну строку «Process this snow». Не сняты в кадрах (нет сохранений и открытий у профиля Studio), проверены по коду: занятый слот, строки гостя, выбранное улучшение INDEX, DISCOVERED.</li>
+</ul>
+<h2 id="мои-решения-в-части-3-23-11-2026">Мои решения в части 3 (23.11.2026)</h2>
+<ul>
+<li>Иконки строк задаёт сам <code>look</code> окна (<code>look.icons</code>: ключ картинки, какие слова строки сдвинуть, размер и место плитки). Их ставит <code>WindowWood.dress</code> после карточек: тёмная плитка <code>Wood:Tile</code> слева, картинка в ней, слова строки правее плитки с тем же правым краем.</li>
+<li>Без картинки (опубликованная игра до загрузки, проверка <code>HudPicturesOff</code>) плитки нет и слова стоят где были: прежнее место хранится в атрибутах <code>IconHomeX</code>/<code>IconHomeW</code>, поэтому повторная одевка не сдвигает их дважды и возвращает назад. Это четвёртый тест <code>WindowWood_Test</code>: в Studio всегда видна локальная копия, и только тест видит строку без картинки.</li>
+<li>Размеры: строки SETTINGS и YOUR EXPEDITION — плитка во всю высоту строки без 6 сверху и снизу, истории WELCOME TO WINTER — 88, процессор — 56 слева от подписи PROCESSING STATION; описание под ней остаётся во всю ширину (рядом с плиткой 96 оно на телефоне 667×375 занимало три строки и теряло последние слова).</li>
+<li>Десять иконок — четыре листа ChatGPT Image по три значка (последний — один), нарезаны по 256×256; промпт и нарезка записаны в <code>art/ui/windows/&lt;имя&gt;-256.prompt.md</code>, листы в проект не положены. Строки загрузки — <code>art/import.md</code>.</li>
+<li>Референсы генерации (<code>--ref</code>) иконок — кадр HUD <code>art/refs/hud-new/key/run-pc.png</code> и иконки HUD (<code>art/ui/hud/hud-wood-icons-sheet.png</code>, <code>hud-fire-256.png</code>), а не кадры <code>art/frames/</code>: по спеке иконки строк рисуются в стиле иконок HUD, и в окне они стоят рядом с готовыми монетой, часами и снегом HUD (находка критика N2 части 3).</li>
+<li>Проверка части 3 (23.11.2026): <code>feature-design-critic</code> — круг 1 «проверка заблокирована» (не было SHA файлов и итоговых кадров процессора на 1024x768 и без картинок; дефектов нет), круг 2 — принято, HUD score 83/100. Низкая N1 — картинка процессора на телефоне 667x375 около 26 пт — оставлена: она украшает подпись PROCESSING STATION, подпись читается, а крупнее плитка снова сужает описание. Тесты: <code>WindowWood_Test</code> 4/4, <code>tools/art/item-pictures.test.mjs</code> и <code>tools/places/content.test.mjs</code> 10/10, <code>npm run check</code> без новых замечаний.</li>
+</ul>
+<h2 id="шлифовка-по-скринам-владельца-карточка-1cf3e9-23-11-2026">Шлифовка по скринам владельца (карточка <code>1cf3e9</code>, 23.11.2026)</h2>
+<ul>
+<li>Решение владельца 23.11.2026: HUD не трогать — UPGR, INDEX, три кнопки меню слева сверху, ведро и круглая кнопка действия остаются со снегом.</li>
+<li>Решение владельца 23.11.2026: крестик закрытия без снега.</li>
+<li>Решение владельца 23.11.2026: буквы табличек хаба REWARDS, UPGRADES, CLASSES пересобрать шрифтом игры Fredoka One кремовым и загрузить три меша ларьков в Roblox.</li>
+<li>Снег остаётся только на деревянных плашках: доска окна и планка заголовка. Кнопки окон (зелёная, красная, деревянная) и крестик — картинки без снега с листа <code>art/ui/wood/window-buttons-bare.png</code> (ключи <code>Wood:Green</code>, <code>Wood:Red</code>, <code>Wood:Button</code>, <code>Wood:Close</code>), снежные <code>button-*-snow.png</code> удалены. Деревянная кнопка теперь тоже картинка, а не планка кодом. Крестик — <code>whole</code>: картинка целиком вписана в кнопку, углы не режутся.</li>
+<li>Крестик и планка заголовка у «бумажных» окон (SETTINGS, NEWS, STATS, LEADERBOARD, SNOW PROCESSOR, EXPEDITION COMPLETE!, START A RUN) и у INDEX стоят как у Мастерской: крестик 70 единиц доски, 47 от правого края, 26 сверху; планка 72 от левого края, 21 сверху. Кнопки GOT IT! и LEADERBOARD в шапке — левее крестика. INDEX: тело и вкладки ниже на 32, под крестиком. На телефоне шапка этих окон 110 (<code>phone.header</code>), кроме EXPEDITION COMPLETE!: там шапка прежняя, 72, — под крестиком в середине пусто, а шапка 110 снова срезала числа наград на 844x390 (критик, круг 1). У START A RUN середина поднимается на 34, а не на 38 меньше, чтобы карточкам слотов хватило их 114 на 844x390. Правка плейса — Lune-копия и <code>export.mjs Dev</code>.</li>
+<li>Затемнение окна: <code>CleanSnowUI</code> стоит в <code>CoreUISafeInsets</code>, поэтому <code>Backdrop</code> 1×1 не доставал до полосы топбара. Теперь он по центру размером 3×3 экрана. Сценарий <code>windows-wood-audit</code> проверяет у каждого окна, что затемнение закрывает весь экран, а крестик и планка стоят внутри доски, и пишет их места в единицах доски.</li>
+<li>Буквы табличек: <code>art/models/rustic-stalls/source/relabel_stalls.py</code> берёт стойки владельца <code>RusticStalls_Updated.glb</code>, удаляет старые буквы (кремовые грани перед доской вывески) и ставит Fredoka One той же «Крем» (<code>#FFFDF5</code>, тот же цвет, что у заголовков окон), той же глубины, в ту же рамку 5,63 × 0,82 стада по середине доски. Остальные грани и нормали стойки проверяются без изменений, габарит — равным прежнему <code>InitialSize</code> (поворот стойки на лобби 24°, 16°, −24° запечён в меш, как у загруженных владельцем). В меше заменяется только <code>MeshContent</code> и <code>InitialSize</code>; <code>Size</code>, <code>CFrame</code> и текстура прежние.</li>
+<li>Загружены меши: Rewards <code>rbxassetid://140169279530018</code>, Upgrades <code>rbxassetid://122244893963453</code>, Classes <code>rbxassetid://138913218914483</code> (отчёты — <code>art/models/rustic-stalls/export/roblox/uploads*.json</code>). Слой <code>models/lobby/Workspace/LobbyArea.rbxm</code> против HEAD: 6 отличий из 1994 объектов — <code>MeshContent</code> и <code>InitialSize</code> трёх стоек.</li>
+<li>Цвет букв в игре: «Крем» в текстуре тот же, что был у старых букв. Вывески стоят к солнцу спиной, под голубым светом неба, и на экране буквы бледно-голубые, около (140, 190, 217), как и до правки. Светлее цвета в текстуре нет, а тёплый в этой тени выйдет серым. Чтобы буквы выглядели кремовыми, нужна светящаяся надпись отдельной деталью, а это уже правка мира. Решение владельца 23.11.2026: оставить цвет как есть, светящуюся надпись не делать.</li>
+<li>Проверка (23.11.2026): <code>feature-design-critic</code>, круг 1 — нужны исправления: F1 — на телефонах 844 и 932 у EXPEDITION COMPLETE! при открытии не видно чисел наград; F2 — у START A RUN на 844 срезана NEW GAME; в манифесте нет версии файлов. Круг 2 — принято, HUD score 82/100. Исправлено: у EXPEDITION COMPLETE! шапка на телефоне 72 вместо 110, середина поднимается на 54, AREA N CLEARED на 44, награды на 95; у START A RUN середина не поднимается (<code>PHONE_RISE</code> 0). На 667, 844 и 932 листать нечего. Строки телефонов выше 100 % в таблице размера помечены «вынужденно»: раскладка с закреплённой шапкой уже на минимуме, кнопки 44–45, текст около 12. Оставлены как низкие:<ul>
+<li>F3 — рука «листай» на 844 и 932 закрывает GOT IT!. Нажатия она не ловит.</li>
+<li>F4 — в бумажных окнах крестик на экране крупнее, чем в Мастерской. Если его уменьшить, на 667 он станет меньше 44 пт.</li>
+<li>N5 — в вопросе NEW GAME? крестик окна START A RUN остаётся ярким над затемнением.</li>
+<li>N6 — строка AREA N CLEARED на телефоне стоит вплотную к планке и наградам.</li>
+</ul>
+</li>
+</ul>
+</article></div></section>
+</main>
+</div>
+<dialog id="viewer" aria-label="Просмотр картинки"><div class="viewer-bar"><p id="viewer-caption"></p><a id="viewer-open" target="_blank" rel="noopener">Открыть файл</a><button id="viewer-close" type="button">Закрыть</button></div><img id="viewer-image" alt=""></dialog>
+<script>// Поведение страницы: пароль на весь сайт, меню на узком экране и просмотр картинки.
+// Текущую страницу в меню отмечает сборщик.
+(() => {
+  const SITE_KEY = "clean-a-snow-guide-open";
+  const SITE_PASSWORD = "91-23sdf-123dsf213-gfdf";
+  const lock = document.getElementById("site-lock-form");
+  if (lock) {
+    lock.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const error = document.getElementById("site-lock-error");
+      if (new FormData(lock).get("password") === SITE_PASSWORD) {
+        try {
+          localStorage.setItem(SITE_KEY, "1");
+        } catch {
+          // Без хранилища сайт откроется только до закрытия вкладки.
+        }
+        document.documentElement.classList.add("site-open");
+      } else if (error) error.hidden = false;
+    });
+  }
+
+  const close = document.getElementById("site-close");
+  if (close) {
+    close.addEventListener("click", () => {
+      try {
+        localStorage.removeItem(SITE_KEY);
+      } catch {
+        // Без хранилища достаточно убрать класс: следующая страница снова спросит пароль.
+      }
+      const error = document.getElementById("site-lock-error");
+      if (error) error.hidden = true;
+      const input = lock?.querySelector("input");
+      if (input) input.value = "";
+      document.documentElement.classList.remove("site-open");
+      input?.focus();
+    });
+  }
+
+  // «Обсудить»: кнопка человека показывает только его панель с темами.
+  const discussButtons = [...document.querySelectorAll("[data-discuss-person]")];
+  if (discussButtons.length) {
+    const panels = [...document.querySelectorAll("[data-discuss-panel]")];
+    const show = (person) => {
+      for (const button of discussButtons) button.setAttribute("aria-pressed", String(button.dataset.discussPerson === person));
+      for (const panel of panels) panel.hidden = panel.dataset.discussPanel !== person;
+    };
+    for (const button of discussButtons) button.addEventListener("click", () => show(button.dataset.discussPerson));
+  }
+
+  const board = document.querySelector(".board-columns");
+  if (board) {
+    const buttons = [...document.querySelectorAll("[data-person-filter]")];
+    const apply = (person) => {
+      for (const button of buttons) button.setAttribute("aria-pressed", String(button.dataset.personFilter === person));
+      for (const column of board.querySelectorAll(".board-column")) {
+        let visible = 0;
+        for (const card of column.querySelectorAll(".board-card")) {
+          const show = person === "all" || card.dataset.person === person;
+          card.hidden = !show;
+          if (show) visible += 1;
+        }
+        column.querySelector(".board-count").textContent = String(visible);
+        column.querySelector(".board-empty").hidden = visible !== 0;
+      }
+    };
+    for (const button of buttons) button.addEventListener("click", () => apply(button.dataset.personFilter));
+    // Время коммита — в часовом поясе того, кто смотрит доску (в HTML оно в поясе автора коммита).
+    const two = (n) => String(n).padStart(2, "0");
+    for (const time of board.querySelectorAll(".board-origin time[datetime*='T']")) {
+      const at = new Date(time.getAttribute("datetime"));
+      if (!Number.isNaN(at.getTime())) time.textContent = `${two(at.getDate())}.${two(at.getMonth() + 1)} ${two(at.getHours())}:${two(at.getMinutes())}`;
+    }
+    // Порядок карточек: «Сначала новые» (по дате и времени коммита) или «Как раньше». Выбор помнит браузер.
+    const sortButtons = [...document.querySelectorAll("[data-board-sort]")];
+    const sortKey = "clean-a-snow-board-sort";
+    const sort = (order) => {
+      const rank = order === "old" ? "oldRank" : "newRank";
+      for (const button of sortButtons) button.setAttribute("aria-pressed", String(button.dataset.boardSort === order));
+      for (const list of board.querySelectorAll(".board-cards")) {
+        const cards = [...list.querySelectorAll(":scope > .board-card")];
+        cards.sort((a, b) => Number(a.dataset[rank]) - Number(b.dataset[rank]));
+        for (const card of cards) list.appendChild(card);
+      }
+      try {
+        localStorage.setItem(sortKey, order);
+      } catch (e) {}
+    };
+    for (const button of sortButtons) button.addEventListener("click", () => sort(button.dataset.boardSort));
+    let savedSort = null;
+    try {
+      savedSort = localStorage.getItem(sortKey);
+    } catch (e) {}
+    if (savedSort === "old") sort("old");
+    // Ссылка на карточку (board.html#card-…) раскрывает её текст и показывает карточку.
+    const target = location.hash.startsWith("#card-") ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+    if (target) {
+      const text = target.querySelector("details");
+      if (text) text.open = true;
+      target.scrollIntoView({ block: "start" });
+    }
+  }
+
+  // Кнопка текущей страницы в шапке видна и на узком экране, где шапка листается вбок.
+  document.querySelector(".topbar .top-link[aria-current]")?.scrollIntoView({ block: "nearest", inline: "center" });
+
+  const menu = document.getElementById("menu");
+  const sidebar = document.getElementById("sidebar");
+  menu.addEventListener("click", () => {
+    const open = sidebar.classList.toggle("open");
+    menu.setAttribute("aria-expanded", String(open));
+  });
+  sidebar.addEventListener("click", (e) => {
+    if (e.target.closest("a")) {
+      sidebar.classList.remove("open");
+      menu.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  // Свёрнутые разделы меню. Выбор читателя помнит браузер; без него открыт только раздел текущей страницы.
+  const KEY = "clean-a-snow-guide-nav-folds";
+  let folds = {};
+  try {
+    folds = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+  } catch {
+    folds = {};
+  }
+  for (const group of sidebar.querySelectorAll("details.group")) {
+    const id = group.dataset.group;
+    group.open = id in folds ? folds[id] : group.querySelector('[aria-current="page"]') !== null;
+    group.addEventListener("toggle", () => {
+      folds[id] = group.open;
+      try {
+        localStorage.setItem(KEY, JSON.stringify(folds));
+      } catch {
+        // Без хранилища выбор живёт до перехода на другую страницу.
+      }
+    });
+  }
+  // Общие галочки: файл на сервере, браузер держит копию. Сервер недоступен — остаётся копия в браузере.
+  // Пользуются чеклист «Тестирование» и отметки «Ответ дан» страницы «Вопросы».
+  // reset() снимает все отметки у всех. onPaint вызывается после каждой смены галочек.
+  const sharedChecks = ({ boxes, keyOf, storageKey, url, onPaint }) => {
+    let done = {};
+    let revision = null;
+    let sending = false;
+    let dirty = false;
+    let resetPending = false;
+    const touched = new Set();
+    try {
+      done = JSON.parse(localStorage.getItem(storageKey) || "{}") || {};
+    } catch {
+      done = {};
+    }
+    const save = () => {
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(done));
+      } catch {
+        // Без хранилища отметки живут до ухода со страницы.
+      }
+    };
+    const paint = () => {
+      for (const box of boxes) box.checked = done[keyOf(box)] === true;
+      onPaint();
+    };
+    const mergeTouched = (serverChecks, localChecks, keys) => {
+      const merged = { ...serverChecks };
+      for (const key of keys) {
+        if (localChecks[key] === true) merged[key] = true;
+        else delete merged[key];
+      }
+      return merged;
+    };
+    const push = () => {
+      if (revision === null || sending) {
+        dirty = true;
+        return;
+      }
+      sending = true;
+      dirty = false;
+      const sentChecks = { ...done };
+      const sentTouched = [...touched];
+      const wasReset = resetPending;
+      resetPending = false;
+      touched.clear();
+      fetch(url, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ revision, checks: sentChecks }),
+      })
+        .then((res) => res.json().then((doc) => ({ status: res.status, doc })))
+        .then(({ status, doc }) => {
+          if (!doc || !doc.checks || !Number.isInteger(doc.revision)) return;
+          revision = doc.revision;
+          if (status === 409) {
+            const newerTouched = [...touched];
+            const newerChecks = { ...done };
+            if (wasReset && newerTouched.length === 0) done = {};
+            else done = mergeTouched(mergeTouched(doc.checks, sentChecks, sentTouched), newerChecks, newerTouched);
+            dirty = true;
+          } else if (status === 200) {
+            if (dirty || touched.size) done = { ...done };
+            else done = doc.checks;
+          }
+          save();
+          paint();
+        })
+        .catch(() => {
+          // Сервер недоступен: копия в браузере уже сохранена.
+        })
+        .finally(() => {
+          sending = false;
+          if (dirty || touched.size || resetPending) push();
+        });
+    };
+    const pull = () => {
+      fetch(url)
+        .then((res) => (res.ok ? res.json() : null))
+        .then((doc) => {
+          if (!doc || !doc.checks || !Number.isInteger(doc.revision)) return;
+          if (revision === null) {
+            revision = doc.revision;
+            if (touched.size || resetPending) {
+              if (!resetPending) done = mergeTouched(doc.checks, done, touched);
+              push();
+            } else {
+              done = doc.checks;
+              save();
+              paint();
+            }
+            return;
+          }
+          if (sending || touched.size || resetPending) return;
+          if (revision === doc.revision) return;
+          revision = doc.revision;
+          done = doc.checks;
+          save();
+          paint();
+        })
+        .catch(() => {
+          // Без сервера страница остаётся на копии в браузере.
+        });
+    };
+    for (const box of boxes) {
+      box.addEventListener("change", () => {
+        if (box.checked) done[keyOf(box)] = true;
+        else delete done[keyOf(box)];
+        touched.add(keyOf(box));
+        resetPending = false;
+        save();
+        onPaint();
+        push();
+      });
+    }
+    paint();
+    pull();
+    setInterval(pull, 2000);
+    return {
+      reset() {
+        done = {};
+        touched.clear();
+        resetPending = true;
+        save();
+        paint();
+        push();
+      },
+    };
+  };
+  const CHECKS_SERVER = "https://atlas.31-58-209-99.sslip.io/clean-snow-checks/";
+
+  // Галочки чеклиста «Тестирование». «Сбросить» начинает новый круг у всех.
+  const checks = document.querySelectorAll("input[data-check]");
+  if (checks.length) {
+    const visibleBoxes = (root) => [...root.querySelectorAll("input[data-check]")].filter((box) => !box.closest(".test-item")?.hidden);
+    const count = () => {
+      for (const group of document.querySelectorAll("details.test-group")) {
+        const boxes = visibleBoxes(group);
+        const ticked = boxes.filter((b) => b.checked).length;
+        group.querySelector(".test-count").textContent = `${ticked} из ${boxes.length}`;
+        group.classList.toggle("test-finished", boxes.length > 0 && ticked === boxes.length);
+      }
+      document.getElementById("test-done").textContent = String(visibleBoxes(document).filter((b) => b.checked).length);
+    };
+    const filterButtons = [...document.querySelectorAll("[data-test-filter]")];
+    const applyPerson = (person) => {
+      for (const button of filterButtons) button.setAttribute("aria-pressed", String(button.dataset.testFilter === person));
+      for (const item of document.querySelectorAll(".test-item")) {
+        const people = (item.dataset.people || "").split(/\s+/).filter(Boolean);
+        item.hidden = person !== "all" && people.length > 0 && !people.includes(person);
+      }
+      for (const task of document.querySelectorAll(".test-task")) {
+        task.hidden = ![...task.querySelectorAll(".test-item")].some((item) => !item.hidden);
+      }
+      for (const group of document.querySelectorAll("details.test-group")) {
+        group.hidden = ![...group.querySelectorAll(".test-item")].some((item) => !item.hidden);
+      }
+      const shown = visibleBoxes(document);
+      for (const node of document.querySelector(".test-total").childNodes) {
+        if (node.nodeType === Node.TEXT_NODE && node.textContent.includes(" из ")) node.textContent = ` из ${shown.length} `;
+      }
+      count();
+    };
+    for (const button of filterButtons) button.addEventListener("click", () => applyPerson(button.dataset.testFilter));
+    const testing = sharedChecks({
+      boxes: checks,
+      keyOf: (box) => box.dataset.check,
+      storageKey: "clean-a-snow-guide-testing-checks",
+      url: CHECKS_SERVER,
+      onPaint: count,
+    });
+    document.getElementById("test-reset").addEventListener("click", () => {
+      if (!confirm("Снять все отметки и начать проверку заново?")) return;
+      testing.reset();
+    });
+  }
+
+  // Отметки «Ответ дан» страницы «Вопросы»: свой файл того же сервера.
+  const answers = document.querySelectorAll("input[data-answer]");
+  if (answers.length) {
+    sharedChecks({
+      boxes: answers,
+      keyOf: (box) => box.dataset.answer,
+      storageKey: "clean-a-snow-guide-question-answers",
+      url: "https://atlas.31-58-209-99.sslip.io/clean-snow-checks/questions",
+      onPaint: () => {
+        for (const box of answers) box.closest(".question")?.classList.toggle("question-answered", box.checked);
+        document.getElementById("answer-done").textContent = String([...answers].filter((b) => b.checked).length);
+      },
+    });
+  }
+
+  // Отметки Approved раздела HUD: свой файл того же сервера.
+  const approvals = document.querySelectorAll("input[data-hud]");
+  if (approvals.length) {
+    sharedChecks({
+      boxes: approvals,
+      keyOf: (box) => box.dataset.hud,
+      storageKey: "clean-a-snow-guide-hud-approved",
+      url: "https://atlas.31-58-209-99.sslip.io/clean-snow-checks/hud",
+      onPaint: () => {
+        for (const box of approvals) box.closest(".hud-row")?.classList.toggle("hud-approved", box.checked);
+        document.getElementById("hud-approved").textContent = String([...approvals].filter((b) => b.checked).length);
+      },
+    });
+  }
+
+  const current = sidebar.querySelector('[aria-current="page"]');
+  if (current) current.scrollIntoView({ block: "nearest" });
+
+  const viewer = document.getElementById("viewer");
+  const image = document.getElementById("viewer-image");
+  const caption = document.getElementById("viewer-caption");
+  const open = document.getElementById("viewer-open");
+  document.addEventListener("click", (e) => {
+    const img = e.target.closest("main img");
+    if (!img) return;
+    image.src = img.src;
+    image.alt = img.alt;
+    caption.textContent = img.dataset.caption || img.alt;
+    open.href = img.src;
+    viewer.showModal();
+  });
+  document.getElementById("viewer-close").addEventListener("click", () => viewer.close());
+  viewer.addEventListener("click", (e) => {
+    if (e.target === viewer) viewer.close();
+  });
+})();
+</script>
+</body>
+</html>

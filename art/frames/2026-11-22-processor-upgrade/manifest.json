@@ -1,0 +1,230 @@
+{
+  "round": 2,
+  "stats": {
+    "pool_after": 83,
+    "parts_allocated": 80,
+    "sounds_allocated": 3,
+    "reduced_visible": 1,
+    "pool_before": 83,
+    "peak_visible_low": 5,
+    "peak_visible_high": 9
+  },
+  "note": "Camera on real map. Feed-mid side angle. Three live frames natural RenderStepped. All remaining frames explicitly freeze production animation between steps. Selected seven unchanged captures stored beside this manifest; full sequence retained locally under build/processor-upgrade.",
+  "frames": [
+    {
+      "utc": "2026-11-22T03:03:40.203Z",
+      "name": "before",
+      "sim_time": "0",
+      "quality": "High",
+      "reduced": false,
+      "frozen": true,
+      "resolution": "1618x801",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\processor-upgrade\\before.png",
+      "capture": "CaptureService, real main-game Play, actor controller drives production animation"
+    },
+    {
+      "utc": "2026-11-22T03:03:40.604Z",
+      "name": "feed",
+      "sim_time": "0.7999999999999996",
+      "quality": "High",
+      "reduced": false,
+      "frozen": true,
+      "resolution": "1618x801",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\processor-upgrade\\feed.png",
+      "capture": "CaptureService, real main-game Play, actor controller drives production animation"
+    },
+    {
+      "utc": "2026-11-22T03:03:41.065Z",
+      "name": "feed-mid",
+      "sim_time": "1.6499999999999966",
+      "quality": "High",
+      "reduced": false,
+      "frozen": true,
+      "resolution": "1618x801",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\processor-upgrade\\feed-mid.png",
+      "capture": "CaptureService, real main-game Play, actor controller drives production animation"
+    },
+    {
+      "utc": "2026-11-22T03:03:41.437Z",
+      "name": "feed-late",
+      "sim_time": "2.2499999999999947",
+      "quality": "High",
+      "reduced": false,
+      "frozen": true,
+      "resolution": "1618x801",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\processor-upgrade\\feed-late.png",
+      "capture": "CaptureService, real main-game Play, actor controller drives production animation"
+    },
+    {
+      "utc": "2026-11-22T03:03:41.8Z",
+      "name": "processing",
+      "sim_time": "2.5499999999999936",
+      "quality": "High",
+      "reduced": false,
+      "frozen": true,
+      "resolution": "1618x801",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\processor-upgrade\\processing.png",
+      "capture": "CaptureService, real main-game Play, actor controller drives production animation"
+    },
+    {
+      "utc": "2026-11-22T03:03:42.157Z",
+      "name": "crumbs-peak",
+      "sim_time": "2.674999999999993",
+      "quality": "High",
+      "reduced": false,
+      "frozen": true,
+      "resolution": "1618x801",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\processor-upgrade\\crumbs-peak.png",
+      "capture": "CaptureService, real main-game Play, actor controller drives production animation"
+    },
+    {
+      "utc": "2026-11-22T03:03:42.586Z",
+      "name": "fading",
+      "sim_time": "2.8749999999999925",
+      "quality": "High",
+      "reduced": false,
+      "frozen": true,
+      "resolution": "1618x801",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\processor-upgrade\\fading.png",
+      "capture": "CaptureService, real main-game Play, actor controller drives production animation"
+    },
+    {
+      "utc": "2026-11-22T03:03:42.919Z",
+      "name": "tail-cleared",
+      "sim_time": "3.4749999999999903",
+      "quality": "High",
+      "reduced": false,
+      "frozen": true,
+      "resolution": "1618x801",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\processor-upgrade\\tail-cleared.png",
+      "capture": "CaptureService, real main-game Play, actor controller drives production animation"
+    },
+    {
+      "utc": "2026-11-22T03:03:43.352Z",
+      "name": "after-two-loads",
+      "sim_time": "27.47499999999908",
+      "quality": "High",
+      "reduced": false,
+      "frozen": true,
+      "resolution": "1618x801",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\processor-upgrade\\after-two-loads.png",
+      "capture": "CaptureService, real main-game Play, actor controller drives production animation"
+    },
+    {
+      "utc": "2026-11-22T03:03:43.848Z",
+      "name": "rear-delivery",
+      "sim_time": "27.624999999999073",
+      "quality": "High",
+      "reduced": false,
+      "frozen": true,
+      "resolution": "1618x801",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\processor-upgrade\\rear-delivery.png",
+      "capture": "CaptureService, real main-game Play, actor controller drives production animation"
+    },
+    {
+      "utc": "2026-11-22T03:03:44.247Z",
+      "name": "rear-processing",
+      "sim_time": "28.366666666665697",
+      "quality": "High",
+      "reduced": false,
+      "frozen": true,
+      "resolution": "1618x801",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\processor-upgrade\\rear-processing.png",
+      "capture": "CaptureService, real main-game Play, actor controller drives production animation"
+    },
+    {
+      "utc": "2026-11-22T03:03:44.645Z",
+      "name": "rear-peak",
+      "sim_time": "28.49166666666569",
+      "quality": "High",
+      "reduced": false,
+      "frozen": true,
+      "resolution": "1618x801",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\processor-upgrade\\rear-peak.png",
+      "capture": "CaptureService, real main-game Play, actor controller drives production animation"
+    },
+    {
+      "utc": "2026-11-22T03:03:45.099Z",
+      "name": "rear-after",
+      "sim_time": "29.291666666665645",
+      "quality": "High",
+      "reduced": false,
+      "frozen": true,
+      "resolution": "1618x801",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\processor-upgrade\\rear-after.png",
+      "capture": "CaptureService, real main-game Play, actor controller drives production animation"
+    },
+    {
+      "utc": "2026-11-22T03:03:45.54Z",
+      "name": "low-processing",
+      "sim_time": "55.84166666666414",
+      "quality": "Low",
+      "reduced": false,
+      "frozen": true,
+      "resolution": "1618x801",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\processor-upgrade\\low-processing.png",
+      "capture": "CaptureService, real main-game Play, actor controller drives production animation"
+    },
+    {
+      "utc": "2026-11-22T03:03:46.014Z",
+      "name": "reduced-processing",
+      "sim_time": "80.12500000000983",
+      "quality": "High",
+      "reduced": true,
+      "frozen": true,
+      "resolution": "1618x801",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\processor-upgrade\\reduced-processing.png",
+      "capture": "CaptureService, real main-game Play, actor controller drives production animation"
+    },
+    {
+      "utc": "2026-11-22T03:03:47.869Z",
+      "name": "live-feed",
+      "sim_time": "105.96125549546542",
+      "quality": "High",
+      "reduced": false,
+      "frozen": false,
+      "resolution": "1618x801",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\processor-upgrade\\live-feed.png",
+      "capture": "CaptureService, real main-game Play, actor controller drives production animation"
+    },
+    {
+      "utc": "2026-11-22T03:03:48.908Z",
+      "name": "live-front-processing",
+      "sim_time": "106.99524849004212",
+      "quality": "High",
+      "reduced": false,
+      "frozen": false,
+      "resolution": "1618x801",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\processor-upgrade\\live-front-processing.png",
+      "capture": "CaptureService, real main-game Play, actor controller drives production animation"
+    },
+    {
+      "utc": "2026-11-22T03:03:50.083Z",
+      "name": "live-rear-processing",
+      "sim_time": "132.17757789422393",
+      "quality": "High",
+      "reduced": false,
+      "frozen": false,
+      "resolution": "1618x801",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\processor-upgrade\\live-rear-processing.png",
+      "capture": "CaptureService, real main-game Play, actor controller drives production animation"
+    }
+  ],
+  "source_sha256": {
+    "models/shared/ReplicatedStorage/CleanSnowAssets.rbxm": "A0C3CECBE370BCE29A1F3E75B840AD817A0B186E7584AF03E2ABA3F7FD30563A",
+    "models/match/ServerStorage/BrrrMechanicsTemplate.rbxm": "DC27FC5BCB28946E9E1D4C0474C6B84D32D8A256FFF75D32CBB0C58983B0A611",
+    "src/StarterPlayer/StarterPlayerScripts/CleanSnow/ConveyorRideController.luau": "E39BF85AE805B7FD644D4DB1FDDB70D3605DD353BB285B0B75ED13240452BB50",
+    "src/StarterPlayer/StarterPlayerScripts/CleanSnow/SnowProcessingFx.luau": "158CFFDB8BBE0189D1A3EC554A665EED7939734F2488440E74E044BE30D6D55E",
+    "src/StarterPlayer/StarterPlayerScripts/CleanSnow/SnowIntakeGeometry.luau": "E5C21649C080526E5CD9AB3C8DB21112EE49CE1CCFE74798FE95399BE1E86545"
+  },
+  "hud_frame": {
+    "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\processor-upgrade\\hud-processing.png",
+    "utc": "2026-11-22T03:21:54.786Z",
+    "sim_time": 107.00709190129402,
+    "quality": "High",
+    "reduced": false,
+    "frozen": false,
+    "resolution": "1618x801",
+    "capture": "CaptureService UICaptureMode.All; production HUD enabled, loading screen naturally completed; live RenderStepped"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "triangles_checked": 3592,
+  "parallel_plane_tolerance_m": 0.002,
+  "min_overlap_area_m2": 1e-07,
+  "overlapping_face_pairs": 0,
+  "by_object": {},
+  "items": {
+    "MetalPail_Body": {
+      "tris": 476,
+      "size_studs": [
+        2.02,
+        1.85,
+        2.46
+      ]
+    },
+    "ChipPacket_Body": {
+      "tris": 500,
+      "size_studs": [
+        2.02,
+        0.87,
+        1.9
+      ]
+    },
+    "BurlapSack_Body": {
+      "tris": 516,
+      "size_studs": [
+        2.44,
+        1.94,
+        2.21
+      ]
+    },
+    "PlasticCarrier_Body": {
+      "tris": 420,
+      "size_studs": [
+        1.83,
+        0.99,
+        2.06
+      ]
+    },
+    "WheelieBin_Body": {
+      "tris": 492,
+      "size_studs": [
+        2.27,
+        2.15,
+        4.44
+      ]
+    },
+    "PizzaBox_Body": {
+      "tris": 332,
+      "size_studs": [
+        2.16,
+        2.1,
+        2.24
+      ]
+    },
+    "Dustpan_Body": {
+      "tris": 380,
+      "size_studs": [
+        1.71,
+        1.38,
+        1.53
+      ]
+    },
+    "Suitcase_Body": {
+      "tris": 476,
+      "size_studs": [
+        2.85,
+        2.36,
+        2.48
+      ]
+    }
+  }
+}

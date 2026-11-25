@@ -1,0 +1,44 @@
+{
+  "triangles_checked": 5276,
+  "parallel_plane_tolerance_m": 0.002,
+  "min_overlap_area_m2": 1e-7,
+  "overlapping_face_pairs": 0,
+  "by_object": {},
+  "baseline_overlapping_face_pairs": 449,
+  "draw_order_check": {
+    "baseline": {
+      "engine": "Blender Workbench, flat textured, 640 x 400, AA off",
+      "poses": 9,
+      "changed_pixels_per_pose": [
+        340,
+        351,
+        336,
+        72,
+        33,
+        19,
+        17,
+        2,
+        3
+      ],
+      "total_changed_pixels": 1173
+    },
+    "corrected": {
+      "engine": "Blender Workbench, flat textured, 640 x 400, AA off",
+      "poses": 9,
+      "changed_pixels_per_pose": [
+        2,
+        3,
+        3,
+        4,
+        12,
+        6,
+        1,
+        2,
+        4
+      ],
+      "total_changed_pixels": 37
+    },
+    "changed_pixels_location": "Edges of nonparallel intersecting surfaces",
+    "max_channel_difference_ignored_8bit_linear": 1
+  }
+}

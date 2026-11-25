@@ -1,0 +1,1 @@
+{"model":[{"round":1,"verdict":"fail","fidelity":8,"appeal":8,"findings":["Постоянная глубина колпака","Ровный задний край туники"]},{"round":2,"verdict":"pass","fidelity":9,"appeal":9}],"animation":[{"round":1,"verdict":"fail","findings":["Переворот предплечья при копании","Резкая смена угла ботинка"]},{"round":2,"verdict":"pass","scores":{"rig":9,"Idle":9,"Walk":9,"Dig":9}}]}

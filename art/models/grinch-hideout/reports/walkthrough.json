@@ -1,0 +1,21 @@
+{
+  "overlaps_frame_1": {
+    "triangles_checked": 5946,
+    "parallel_plane_tolerance_m": 0.002,
+    "min_overlap_area_m2": 1e-07,
+    "overlapping_face_pairs": 0,
+    "by_object": {}
+  },
+  "overlaps_frame_36": {
+    "triangles_checked": 5946,
+    "parallel_plane_tolerance_m": 0.002,
+    "min_overlap_area_m2": 1e-07,
+    "overlapping_face_pairs": 0,
+    "by_object": {}
+  },
+  "open_gate_rays": 9,
+  "clear_avatar_positions": 4,
+  "clearance_height_m": 1.82,
+  "guard_instances": 3,
+  "triangles_per_guard": 1960
+}

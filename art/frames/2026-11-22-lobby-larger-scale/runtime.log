@@ -1,0 +1,13 @@
+2026-11-22T20:44:06.291Z,9623.291016,8750,6,Info [FLog::CreatorOutput] LobbyLargerScaleQA BEFORE beam/attachment/hidden part/particle/descendant 102 108 6 0 234
+2026-11-22T20:44:06.291Z,9623.291016,8750,6,Info [FLog::CreatorOutput] LobbyLargerScaleQA SIZE 156, 0.25999999046325684, 132 zones 36 x 16.5, side gap 8
+2026-11-22T20:44:06.291Z,9623.291016,8750,6,Info [FLog::CreatorOutput] LobbyLargerScaleQA APPROACH Upgrades_Node nearest start zone 40.5203956152407 interaction radius 16
+2026-11-22T20:44:06.291Z,9623.291016,8750,6,Info [FLog::CreatorOutput] LobbyLargerScaleQA APPROACH Classes_Node nearest start zone 26.971359252929688 interaction radius 16
+2026-11-22T20:44:06.291Z,9623.291016,8750,6,Info [FLog::CreatorOutput] LobbyLargerScaleQA APPROACH PrizeWheel_Kiosk_Node nearest start zone 40.52003008247383 interaction radius 7
+2026-11-22T20:44:11.199Z,9628.199219,61a8,6,Info [FLog::CreatorOutput] LobbyLargerScaleQA PASS Station01 0b6793cd-d264-4bff-957c-89f805d34460_1 run at -14, 10.5, 165
+2026-11-22T20:44:14.858Z,9631.858398,8b08,6,Info [FLog::CreatorOutput] LobbyLargerScaleQA PASS Station02 0b6793cd-d264-4bff-957c-89f805d34460_2 run at -14, 10.5, 165
+2026-11-22T20:44:18.471Z,9635.471680,26d4,6,Info [FLog::CreatorOutput] LobbyLargerScaleQA PASS Station03 0b6793cd-d264-4bff-957c-89f805d34460_3 run at -14, 10.5, 165
+2026-11-22T20:44:21.915Z,9638.915039,2d34,6,Info [FLog::CreatorOutput] LobbyLargerScaleQA PASS Station04 0b6793cd-d264-4bff-957c-89f805d34460_4 run at -14, 10.5, 165
+2026-11-22T20:44:25.451Z,9642.451172,6500,6,Info [FLog::CreatorOutput] LobbyLargerScaleQA PASS Station05 0b6793cd-d264-4bff-957c-89f805d34460_5 run at -14, 10.5, 165
+2026-11-22T20:44:28.946Z,9645.946289,8b08,6,Info [FLog::CreatorOutput] LobbyLargerScaleQA PASS Station06 0b6793cd-d264-4bff-957c-89f805d34460_6 run at -14, 10.5, 165
+2026-11-22T20:44:29.146Z,9646.146484,8750,6,Info [FLog::CreatorOutput] LobbyLargerScaleQA AFTER beam/attachment/hidden part/particle/descendant 102 108 6 0 234
+2026-11-22T20:44:29.146Z,9646.146484,8750,6,Info [FLog::CreatorOutput] LobbyLargerScaleQA COMPLETE 6/6

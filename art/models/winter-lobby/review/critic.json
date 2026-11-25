@@ -1,0 +1,21 @@
+{
+  "reference": "art/refs/winter-lobby/01-atrium.png",
+  "rounds": [
+    {
+      "round": 1,
+      "verdict": "fail",
+      "scores": {"fidelity": 8, "appeal": 9},
+      "finding": "С камеры ворот контуры площадок и фонари матовые.",
+      "correction": "Добавить эмиссию на кайму льда и стекло фонарей, проверить новый GLB."
+    },
+    {
+      "round": 2,
+      "verdict": "pass",
+      "scores": {"fidelity": 9, "appeal": 9},
+      "summary": "Модель готова к показу владельцу. На кадре от ворот видны все шесть площадок, светящиеся фонари и четыре стойки, развёрнутые к проходу.",
+      "evidence": ["Entrance.jpg", "FromGate.jpg", "Stations.jpg", "Plaza.jpg", "reimport-check.json", "geometry.json"],
+      "remaining_findings": [],
+      "scope": "Blender и повторный импорт GLB. FPS и физика Roblox Studio не измерялись."
+    }
+  ]
+}

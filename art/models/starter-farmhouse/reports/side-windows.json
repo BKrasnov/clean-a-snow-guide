@@ -1,0 +1,15 @@
+{
+  "mirrored_geometry_and_palette": true,
+  "windows_per_side": 2,
+  "window_centers_y_m": [
+    -1.79,
+    1.79
+  ],
+  "opening_m": [
+    1.68,
+    1.56
+  ],
+  "sill_height_m": 1.295,
+  "wall_faces_per_side": 230,
+  "furniture_clearance": "verified"
+}

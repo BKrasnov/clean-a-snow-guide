@@ -1,0 +1,110 @@
+{
+  "model": "StarterFarmhouse",
+  "stage": "final",
+  "generation": null,
+  "date": "2026-11-19",
+  "source": "model",
+  "overall": 94,
+  "scored": 4,
+  "flags": [],
+  "criteria": {
+    "weight": {
+      "score": 10.0,
+      "note": "класс building: треугольники LOD0 5276 из 6000, материалы 1 из 2, кости 0 из 0, текстура 64 из 256",
+      "flags": []
+    },
+    "mesh": {
+      "score": 9.5,
+      "note": "предупреждения: object_name",
+      "flags": []
+    },
+    "fidelity": {
+      "score": 9,
+      "note": "Виды фасада и боковин сохраняют узнаваемый профиль. Отдельные цветовые зоны и предметы чисто читаются вблизи; с боковой стороны снег несколько строже по форме.",
+      "flags": []
+    },
+    "appeal": {
+      "score": 9,
+      "note": "Виды фасада и боковин сохраняют узнаваемый профиль. Отдельные цветовые зоны и предметы чисто читаются вблизи; с боковой стороны снег несколько строже по форме.",
+      "flags": []
+    }
+  },
+  "class": "building",
+  "tris": {
+    "value": 5276,
+    "limit": 6000
+  },
+  "bytes": null,
+  "report": {
+    "file": "source/StarterFarmhouse_master.blend",
+    "sha256": "45d7ab2b12bb0d6d9ec569178b2e6fd066ad42ac68ad0327f3f50bb8a3360c8f",
+    "dimensions": {
+      "width": 9.88,
+      "depth": 10.940001,
+      "height": 7.451498,
+      "min_z": 0,
+      "center": [
+        0,
+        -0.765,
+        3.725749
+      ]
+    },
+    "totals": {
+      "tris": 5276,
+      "verts": 2974,
+      "meshes": 26,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "bones": 0,
+      "textures": [
+        {
+          "name": "StarterFarmhouse_Palette",
+          "size": [
+            64,
+            64
+          ]
+        }
+      ]
+    },
+    "budget": {
+      "class": "building",
+      "rows": [
+        {
+          "key": "tris",
+          "value": 5276,
+          "limit": 6000,
+          "ok": true
+        },
+        {
+          "key": "materials",
+          "value": 1,
+          "limit": 2,
+          "ok": true
+        },
+        {
+          "key": "bones",
+          "value": 0,
+          "limit": 0,
+          "ok": true
+        },
+        {
+          "key": "textureSize",
+          "value": 64,
+          "limit": 256,
+          "ok": true
+        }
+      ]
+    },
+    "issues": [
+      {
+        "code": "object_name",
+        "object": null,
+        "count": 26,
+        "severity": "warning",
+        "message": "объекты названы не по правилу StarterFarmhouse_Body, StarterFarmhouse_LOD<n>, арматура StarterFarmhouse_Rig, глаза — пустые объекты StarterFarmhouse_EyeL/R и StarterFarmhouse_PupilL/R с мешами StarterFarmhouse_EyeL_LOD<n> и StarterFarmhouse_PupilL_LOD<n>: Barrel, Bench, Chimney, CornerBoards, Display_01, Display_02, Display_03, Display_04, Display_05, Display_06, Floor, FrontGable, FrontWall, LeftDoor, LeftLantern, LeftWall, MainRoof, Porch, PorchCanopy, RearGable, RearWall, RightDoor, RightLantern, RightShelving, RightWall, Workbench"
+      }
+    ]
+  }
+}

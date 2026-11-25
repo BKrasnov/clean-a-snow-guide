@@ -1,0 +1,103 @@
+{
+  "scenario": "Larger winter lobby: six real QueueStart/ReturnLobby cycles; persistent light boundaries; final photos in local Play",
+  "date": "2026-11-22",
+  "source_base": "2e2367c03f231160ee0fc6a4b9485b5a6bfbb511",
+  "edit_recipe_sha256": "1ade52979f3543bced0b51788648210e0015b9e99d666cf0698910c5c8ad1e1f",
+  "method": "CaptureService:CaptureScreenshot in Roblox Studio Play, camera locked for framing, effect time runs normally, actual HUD retained",
+  "viewport": [
+    1618,
+    801
+  ],
+  "effect_lifecycle": "Static continuous light, no flash/burst/fade-out event. Event timeline phases not applicable.",
+  "footprint": {
+    "before": {
+      "beams": 102,
+      "attachments": 108,
+      "hidden_zone_parts": 6,
+      "particles": 0,
+      "descendants": 234
+    },
+    "after": {
+      "beams": 102,
+      "attachments": 108,
+      "hidden_zone_parts": 6,
+      "particles": 0,
+      "descendants": 234
+    }
+  },
+  "runs_passed": 6,
+  "limits": [
+    "SnowQuality Low and ReducedMotion verified; Roblox engine quality stayed at 10 because runtime cannot set SavedQualityLevel.",
+    "Desktop viewport; physical phone/tablet not tested.",
+    "Existing local sound and private texture asset load warnings are outside this world edit."
+  ],
+  "frames": [
+    {
+      "file": "gate.png",
+      "absolute_path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\frames\\2026-11-22-lobby-larger-scale\\gate.png",
+      "captured_at_utc": "2026-11-22T20:51:36.107Z,10073.107422,8750,6",
+      "client_clock_seconds": 10070.521308199997,
+      "engine_quality": "QualityLevel10",
+      "game_snow_quality": "High",
+      "reduced_motion": false,
+      "capture_id": "rbxtemp://201",
+      "effect_time_seconds": null,
+      "frozen": false,
+      "sha256": "e8e51930cb99e7d37662060671173f5eccb1380ce3bd39eb1dc1855ff766fabb"
+    },
+    {
+      "file": "services.png",
+      "absolute_path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\frames\\2026-11-22-lobby-larger-scale\\services.png",
+      "captured_at_utc": "2026-11-22T20:51:37.853Z,10074.853516,26d4,6",
+      "client_clock_seconds": 10072.267578400002,
+      "engine_quality": "QualityLevel10",
+      "game_snow_quality": "High",
+      "reduced_motion": false,
+      "capture_id": "rbxtemp://202",
+      "effect_time_seconds": null,
+      "frozen": false,
+      "sha256": "eae7bcc29c5b652ab0dc14bdb3771c5459582ab3a9b43f95c697f751fd244da0"
+    },
+    {
+      "file": "player.png",
+      "absolute_path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\frames\\2026-11-22-lobby-larger-scale\\player.png",
+      "captured_at_utc": "2026-11-22T20:51:39.615Z,10076.615234,8750,6",
+      "client_clock_seconds": 10074.028621200006,
+      "engine_quality": "QualityLevel10",
+      "game_snow_quality": "High",
+      "reduced_motion": false,
+      "capture_id": "rbxtemp://203",
+      "effect_time_seconds": null,
+      "frozen": false,
+      "sha256": "fa4e887a9a6593f4cf19e1463ac9d771558cefd895a2bd3799925681b7147b80"
+    },
+    {
+      "file": "low.png",
+      "absolute_path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\frames\\2026-11-22-lobby-larger-scale\\low.png",
+      "captured_at_utc": "2026-11-22T20:51:41.305Z,10078.305664,8b08,6",
+      "client_clock_seconds": 10075.71991320001,
+      "engine_quality": "QualityLevel10",
+      "game_snow_quality": "Low",
+      "reduced_motion": false,
+      "capture_id": "rbxtemp://204",
+      "effect_time_seconds": null,
+      "frozen": false,
+      "sha256": "d86e3f8da361755d561266916638847673dc804fe1727fda1d628109c2bc2ce4"
+    },
+    {
+      "file": "reduced.png",
+      "absolute_path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\frames\\2026-11-22-lobby-larger-scale\\reduced.png",
+      "captured_at_utc": "2026-11-22T20:51:42.980Z,10079.980469,8750,6",
+      "client_clock_seconds": 10077.393468099996,
+      "engine_quality": "QualityLevel10",
+      "game_snow_quality": "Low",
+      "reduced_motion": true,
+      "capture_id": "rbxtemp://205",
+      "effect_time_seconds": null,
+      "frozen": false,
+      "sha256": "371b425c6a8d62c559156a459860af9a34a212612d555e8e68a0796bdf47036a"
+    }
+  ],
+  "exported_model_sha256": "3031d6a2ab4f74ceac973f9a6905b4f1cb09f86987620f3aa845cf515bd25a75",
+  "verified_build_commit": "9583f5116ee4e3d616240de42eae04615c5584bb"
+}

@@ -1,0 +1,148 @@
+{
+  "dimensions": {
+    "width": 2.198,
+    "depth": 4.3106,
+    "height": 0.7756,
+    "min_z": 0.0,
+    "center": [
+      0.0,
+      -2.0909,
+      0.3878
+    ]
+  },
+  "totals": {
+    "tris": 2120,
+    "verts": 1110,
+    "meshes": 5,
+    "touching_verts": 0,
+    "materials": [
+      "M_RamFeeder"
+    ],
+    "bones": 0,
+    "textures": [
+      {
+        "name": "RamFeeder_Palette",
+        "size": [
+          32,
+          8
+        ]
+      }
+    ]
+  },
+  "objects": [
+    {
+      "name": "FeederFrame",
+      "tris": 1164,
+      "verts": 622,
+      "parts": 24,
+      "touching_verts": 0,
+      "materials": [
+        "M_RamFeeder"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Sleeves01",
+      "tris": 240,
+      "verts": 120,
+      "parts": 2,
+      "touching_verts": 0,
+      "materials": [
+        "M_RamFeeder"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Sleeves02",
+      "tris": 240,
+      "verts": 120,
+      "parts": 2,
+      "touching_verts": 0,
+      "materials": [
+        "M_RamFeeder"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Sleeves03",
+      "tris": 240,
+      "verts": 120,
+      "parts": 2,
+      "touching_verts": 0,
+      "materials": [
+        "M_RamFeeder"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Pusher",
+      "tris": 236,
+      "verts": 128,
+      "parts": 5,
+      "touching_verts": 0,
+      "materials": [
+        "M_RamFeeder"
+      ],
+      "modifiers": []
+    }
+  ],
+  "issues": [],
+  "ok": true,
+  "budget": {
+    "class": "big_prop",
+    "rows": [
+      {
+        "key": "tris",
+        "value": 2120,
+        "limit": 3000,
+        "ok": true
+      },
+      {
+        "key": "materials",
+        "value": 1,
+        "limit": 2,
+        "ok": true
+      },
+      {
+        "key": "bones",
+        "value": 0,
+        "limit": 0,
+        "ok": true
+      },
+      {
+        "key": "textureSize",
+        "value": 32,
+        "limit": 256,
+        "ok": true
+      }
+    ]
+  },
+  "fit": {
+    "tower": "SnowProcessorTower.blend",
+    "dock_y_from_tower_origin_blender_studs": -6.06,
+    "tongue_top_studs": 0.7,
+    "tower_sill_studs": 0.56,
+    "tongue_underside_gap_studs": 0.03,
+    "fully_rotating_drum_envelope_clearance_studs": 0.338,
+    "straight_rail_height_studs": 1.2,
+    "player_height_studs": 5.1,
+    "lowest_point_studs": 0.0
+  },
+  "mechanism": {
+    "stroke_studs": 10.64,
+    "rest_fraction": 0.26,
+    "sampled_positions_per_intake": 101,
+    "intakes_tested": [
+      "front",
+      "rear"
+    ],
+    "cross_part_intersections": 0,
+    "coplanar_overlaps_at_rest": 0,
+    "minimum_sleeve_engagement_studs": 0.19
+  },
+  "files": {
+    "RamFeeder.blend": 110180,
+    "RamFeeder.glb": 128044,
+    "RamFeederWithTower.glb": 323572
+  }
+}

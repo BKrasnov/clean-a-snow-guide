@@ -1,0 +1,7 @@
+{
+  "triangles_checked": 1984,
+  "parallel_plane_tolerance_m": 0.002,
+  "min_overlap_area_m2": 1e-07,
+  "overlapping_face_pairs": 0,
+  "by_object": {}
+}

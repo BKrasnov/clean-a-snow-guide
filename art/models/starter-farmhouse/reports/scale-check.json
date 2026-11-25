@@ -1,0 +1,34 @@
+{
+  "stud_m": 0.28,
+  "wall_footprint_m": [
+    8.96,
+    8.4
+  ],
+  "wall_footprint_studs": [
+    32,
+    30
+  ],
+  "clear_entrance_m": [
+    4.31,
+    2.68
+  ],
+  "clear_entrance_studs": [
+    15.39,
+    9.57
+  ],
+  "tested_avatar_height_studs": 6.5,
+  "free_route_width_m": 2.6,
+  "free_route_ray_count": 9,
+  "step_tops_m": [
+    0.21,
+    0.42,
+    0.42
+  ],
+  "bench_seat_m_above_floor": 0.4625,
+  "workbench_top_m_above_floor": 0.94,
+  "stand_top_m_above_floor": 0.45,
+  "shelf_levels_m_above_floor": [
+    0.28,
+    1.14
+  ]
+}

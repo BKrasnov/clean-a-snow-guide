@@ -201,16 +201,6 @@
    "reference": "art/refs/hud-new/elements/12-upgrade-hint.png"
   },
   {
-   "id": "13-seed-find",
-   "title": "Найденное семечко и счётчик семян",
-   "states": "находка обычная и редкая, счётчик",
-   "current": [
-    "art/hud-current/elements/12-run-seed-found-pc--SeedFind.png",
-    "art/hud-current/elements/12-run-seed-found-pc--SeedCounter.png"
-   ],
-   "reference": "art/refs/hud-new/elements/13-seed-find.png"
-  },
-  {
    "id": "14-save-note",
    "title": "YOUR PROGRESS SAVES",
    "states": "пока открыто меню Roblox",

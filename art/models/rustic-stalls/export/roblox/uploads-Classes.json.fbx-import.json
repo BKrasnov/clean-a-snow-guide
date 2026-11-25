@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "profile": "studio-fbx-me-origin-v1",
+  "game": "clean-a-snow",
+  "file": "C:\\Users\\User\\development\\slime_studio\\games\\clean-a-snow-hud-polish\\art\\models\\rustic-stalls\\export\\roblox\\Classes.fbx",
+  "originalFile": "C:\\Users\\User\\development\\slime_studio\\games\\clean-a-snow-hud-polish\\art\\models\\rustic-stalls\\export\\roblox\\Classes.fbx",
+  "sha256": "62926245c53a4d52b92386f08b667f924f037b6a7643b87431f761711f8299c3",
+  "state": "complete",
+  "artifactDirectory": "C:\\Users\\User\\development\\slime_studio\\roblox\\build\\fbx-import\\8de16b6e-6718-467c-aad8-475609552b84",
+  "startedAt": "2026-11-23T12:09:46.693Z",
+  "exposedAt": "2026-11-23T12:10:35.116Z",
+  "submittedAt": "2026-11-23T12:10:43.316Z",
+  "completedAt": "2026-11-23T12:11:00.534Z",
+  "observed": {
+    "containerPivot": [
+      0.03426259756088257,
+      1.3429861068725586,
+      -0.09890890121459961
+    ],
+    "name": "Classes",
+    "rig": {
+      "bones": [],
+      "classes": {
+        "MeshPart": 1,
+        "Model": 1
+      },
+      "others": [
+        "Model.Classes : Model",
+        "Model.Classes.Classes : MeshPart"
+      ],
+      "clips": []
+    },
+    "parts": [
+      {
+        "id": "rbxassetid://138913218914483",
+        "position": [
+          0.03426259756088257,
+          1.3430187702178955,
+          -0.09888362884521484
+        ],
+        "name": "Classes",
+        "size": [
+          3.004427909851074,
+          2.686038017272949,
+          2.4496920108795166
+        ]
+      }
+    ],
+    "pivot": [
+      0,
+      0,
+      0
+    ],
+    "ready": true,
+    "created": "2026-11-23T12:10:49.186Z",
+    "creatorId": "6054024552",
+    "assetName": "Classes",
+    "sourceAssetId": "110879156743802",
+    "workspacePivot": [
+      0,
+      -79.96096801757812,
+      -99.95121002197266
+    ],
+    "workspaceContainerPivot": [
+      0,
+      -79.96096801757812,
+      -99.95121002197266
+    ]
+  }
+}

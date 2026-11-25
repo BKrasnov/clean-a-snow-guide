@@ -1,0 +1,621 @@
+{
+  "file": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\winter-lobby\\source\\WinterLobby.blend",
+  "sha256": "07b48528cd2fc0c8294d264a4e95b48ff99bb8badb897671b37f192f43e2f52c",
+  "blender": "5.0.1",
+  "collection": "WinterLobby",
+  "export": [
+    "SnowGround",
+    "Fence_Back",
+    "Fence_Left",
+    "Fence_Entry_Left",
+    "OpenGate_Left",
+    "Fence_Right",
+    "Fence_Entry_Right",
+    "OpenGate_Right",
+    "Station01",
+    "Station02",
+    "Station03",
+    "Station04",
+    "Station05",
+    "Station06",
+    "Leaderboard01",
+    "Leaderboard02",
+    "Leaderboard03",
+    "Rewards",
+    "Upgrades",
+    "PrizeWheel_Kiosk",
+    "PrizeWheel_Rotor",
+    "Classes",
+    "SnowFir01",
+    "SnowFir02",
+    "SnowFir03",
+    "SnowFir04",
+    "SnowFir05",
+    "SnowFir06",
+    "SnowFir07",
+    "SnowFir08",
+    "SnowFir09",
+    "SnowFir10"
+  ],
+  "dimensions": {
+    "width": 27.719999,
+    "depth": 25.204731,
+    "height": 5.22308,
+    "min_z": -0.3976,
+    "center": [
+      0.0,
+      0.142365,
+      2.21394
+    ]
+  },
+  "totals": {
+    "tris": 20552,
+    "verts": 11372,
+    "meshes": 32,
+    "touching_verts": 0,
+    "materials": [
+      "Ice edge — snow light",
+      "Lantern — warm light",
+      "WinterLobby_Palette"
+    ],
+    "bones": 0,
+    "textures": [
+      {
+        "name": "WinterLobby_Swatches",
+        "size": [
+          64,
+          32
+        ]
+      }
+    ]
+  },
+  "objects": [
+    {
+      "name": "SnowGround",
+      "tris": 92,
+      "verts": 48,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Fence_Back",
+      "tris": 1740,
+      "verts": 992,
+      "parts": 61,
+      "touching_verts": 0,
+      "materials": [
+        "Lantern — warm light",
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Fence_Left",
+      "tris": 1456,
+      "verts": 832,
+      "parts": 52,
+      "touching_verts": 0,
+      "materials": [
+        "Lantern — warm light",
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Fence_Entry_Left",
+      "tris": 616,
+      "verts": 352,
+      "parts": 22,
+      "touching_verts": 0,
+      "materials": [
+        "Lantern — warm light",
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "OpenGate_Left",
+      "tris": 96,
+      "verts": 64,
+      "parts": 8,
+      "touching_verts": 0,
+      "materials": [
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Fence_Right",
+      "tris": 1456,
+      "verts": 832,
+      "parts": 52,
+      "touching_verts": 0,
+      "materials": [
+        "Lantern — warm light",
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Fence_Entry_Right",
+      "tris": 616,
+      "verts": 352,
+      "parts": 22,
+      "touching_verts": 0,
+      "materials": [
+        "Lantern — warm light",
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "OpenGate_Right",
+      "tris": 96,
+      "verts": 64,
+      "parts": 8,
+      "touching_verts": 0,
+      "materials": [
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Station01",
+      "tris": 336,
+      "verts": 170,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "Ice edge — snow light",
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Station02",
+      "tris": 334,
+      "verts": 169,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "Ice edge — snow light",
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Station03",
+      "tris": 338,
+      "verts": 171,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "Ice edge — snow light",
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Station04",
+      "tris": 336,
+      "verts": 170,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "Ice edge — snow light",
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Station05",
+      "tris": 334,
+      "verts": 169,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "Ice edge — snow light",
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Station06",
+      "tris": 338,
+      "verts": 171,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "Ice edge — snow light",
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Leaderboard01",
+      "tris": 804,
+      "verts": 492,
+      "parts": 45,
+      "touching_verts": 0,
+      "materials": [
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Leaderboard02",
+      "tris": 804,
+      "verts": 492,
+      "parts": 45,
+      "touching_verts": 0,
+      "materials": [
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Leaderboard03",
+      "tris": 804,
+      "verts": 492,
+      "parts": 45,
+      "touching_verts": 0,
+      "materials": [
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Rewards",
+      "tris": 1648,
+      "verts": 950,
+      "parts": 63,
+      "touching_verts": 0,
+      "materials": [
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Upgrades",
+      "tris": 992,
+      "verts": 554,
+      "parts": 29,
+      "touching_verts": 0,
+      "materials": [
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "PrizeWheel_Kiosk",
+      "tris": 484,
+      "verts": 262,
+      "parts": 10,
+      "touching_verts": 0,
+      "materials": [
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "PrizeWheel_Rotor",
+      "tris": 1060,
+      "verts": 584,
+      "parts": 27,
+      "touching_verts": 0,
+      "materials": [
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Classes",
+      "tris": 2212,
+      "verts": 1190,
+      "parts": 42,
+      "touching_verts": 0,
+      "materials": [
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowFir01",
+      "tris": 392,
+      "verts": 198,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowFir02",
+      "tris": 320,
+      "verts": 162,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowFir03",
+      "tris": 392,
+      "verts": 198,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowFir04",
+      "tris": 320,
+      "verts": 162,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowFir05",
+      "tris": 320,
+      "verts": 162,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowFir06",
+      "tris": 392,
+      "verts": 198,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowFir07",
+      "tris": 392,
+      "verts": 198,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowFir08",
+      "tris": 320,
+      "verts": 162,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowFir09",
+      "tris": 320,
+      "verts": 162,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowFir10",
+      "tris": 392,
+      "verts": 198,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "WinterLobby_Palette"
+      ],
+      "modifiers": []
+    }
+  ],
+  "issues": [
+    {
+      "code": "unapplied_transform",
+      "object": "OpenGate_Left",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "OpenGate_Right",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Rewards",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Upgrades",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "PrizeWheel_Kiosk",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "PrizeWheel_Rotor",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Classes",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowFir01",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowFir02",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowFir03",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowFir04",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowFir05",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowFir06",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowFir07",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowFir08",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowFir09",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowFir10",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "below_floor",
+      "object": null,
+      "count": 1,
+      "severity": "warning",
+      "message": "нижняя точка модели ниже пола больше чем на 5 мм"
+    }
+  ],
+  "ok": true,
+  "eyes": {
+    "skipped": true,
+    "reason": "имя модели не задано: --model <Модель> или мастер <Модель>_master.blend",
+    "objects": [],
+    "issues": []
+  },
+  "palette": {
+    "file": "art/palette.json",
+    "materials": [
+      {
+        "name": "WinterLobby_Palette",
+        "hex": null,
+        "match": null,
+        "checked": false
+      },
+      {
+        "name": "Lantern — warm light",
+        "hex": "#FAD66E",
+        "match": "Солома",
+        "checked": true
+      },
+      {
+        "name": "Ice edge — snow light",
+        "hex": "#F3F6F5",
+        "match": "Снег",
+        "checked": true
+      }
+    ]
+  },
+  "naming": {
+    "model": null,
+    "skipped": "имя модели не задано: --model <Модель> или мастер <Модель>_master.blend"
+  },
+  "export_copies": {
+    "duplicates": [],
+    "skipped": "файл вне проекта Unity и без --assets: папка движка неизвестна"
+  },
+  "renders": {
+    "front": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\winter-lobby-qa\\front.png",
+    "side": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\winter-lobby-qa\\side.png",
+    "back": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\winter-lobby-qa\\back.png",
+    "top": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\winter-lobby-qa\\top.png",
+    "three-quarter": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\winter-lobby-qa\\three-quarter.png"
+  },
+  "render_settings": {
+    "engine": "BLENDER_EEVEE",
+    "clay": false,
+    "backface_culling": true,
+    "film_transparent": false,
+    "player": true,
+    "grid": {
+      "minor": 1.0,
+      "major": 10.0
+    }
+  }
+}

@@ -1,0 +1,244 @@
+{
+  "file": "../source/HockeyRink_master.blend",
+  "sha256": "ec3e6023080811075ab086807fd4a313e3aa1e244381f4807424fef294626aa3",
+  "blender": "5.0.1",
+  "collection": "HockeyRink",
+  "export": [
+    "Raised timber deck",
+    "Marked ice",
+    "Rounded boards and cream rail",
+    "Entry stair and snow ramps",
+    "Red goal",
+    "Blue goal",
+    "Scoreboard",
+    "Team sign",
+    "Corner festoons"
+  ],
+  "dimensions": {
+    "width": 46.703999,
+    "depth": 27.888,
+    "height": 8.204392,
+    "min_z": 0,
+    "center": [
+      3.08,
+      -3.08,
+      4.102196
+    ]
+  },
+  "totals": {
+    "tris": 1984,
+    "verts": 1222,
+    "meshes": 9,
+    "touching_verts": 0,
+    "materials": [
+      "M_HockeyRink_Palette"
+    ],
+    "bones": 0,
+    "textures": [
+      {
+        "name": "HockeyRink_Palette",
+        "size": [
+          64,
+          64
+        ]
+      }
+    ]
+  },
+  "objects": [
+    {
+      "name": "Raised timber deck",
+      "tris": 108,
+      "verts": 72,
+      "parts": 9,
+      "touching_verts": 0,
+      "materials": [
+        "M_HockeyRink_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Marked ice",
+      "tris": 308,
+      "verts": 156,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_HockeyRink_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Rounded boards and cream rail",
+      "tris": 212,
+      "verts": 108,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_HockeyRink_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Entry stair and snow ramps",
+      "tris": 172,
+      "verts": 104,
+      "parts": 9,
+      "touching_verts": 0,
+      "materials": [
+        "M_HockeyRink_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Red goal",
+      "tris": 216,
+      "verts": 144,
+      "parts": 18,
+      "touching_verts": 0,
+      "materials": [
+        "M_HockeyRink_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Blue goal",
+      "tris": 216,
+      "verts": 144,
+      "parts": 18,
+      "touching_verts": 0,
+      "materials": [
+        "M_HockeyRink_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Scoreboard",
+      "tris": 72,
+      "verts": 46,
+      "parts": 5,
+      "touching_verts": 0,
+      "materials": [
+        "M_HockeyRink_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Team sign",
+      "tris": 232,
+      "verts": 136,
+      "parts": 10,
+      "touching_verts": 0,
+      "materials": [
+        "M_HockeyRink_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Corner festoons",
+      "tris": 448,
+      "verts": 312,
+      "parts": 44,
+      "touching_verts": 0,
+      "materials": [
+        "M_HockeyRink_Palette"
+      ],
+      "modifiers": []
+    }
+  ],
+  "issues": [
+    {
+      "code": "object_name",
+      "object": null,
+      "count": 9,
+      "severity": "warning",
+      "message": "объекты названы не по правилу HockeyRink_Body, HockeyRink_LOD<n>, арматура HockeyRink_Rig, глаза — пустые объекты HockeyRink_EyeL/R и HockeyRink_PupilL/R с мешами HockeyRink_EyeL_LOD<n> и HockeyRink_PupilL_LOD<n>: Blue goal, Corner festoons, Entry stair and snow ramps, Marked ice, Raised timber deck, Red goal, Rounded boards and cream rail, Scoreboard, Team sign"
+    }
+  ],
+  "ok": true,
+  "eyes": {
+    "found": false,
+    "objects": [],
+    "issues": []
+  },
+  "palette": {
+    "file": "../../../palette.json",
+    "materials": [
+      {
+        "name": "M_HockeyRink_Palette",
+        "hex": null,
+        "texture": "HockeyRink_Palette",
+        "match": null,
+        "checked": true,
+        "off": [],
+        "legacy": []
+      }
+    ]
+  },
+  "budget": {
+    "class": "building",
+    "rows": [
+      {
+        "key": "tris",
+        "value": 1984,
+        "limit": 6000,
+        "ok": true
+      },
+      {
+        "key": "materials",
+        "value": 1,
+        "limit": 2,
+        "ok": true
+      },
+      {
+        "key": "bones",
+        "value": 0,
+        "limit": 0,
+        "ok": true
+      },
+      {
+        "key": "textureSize",
+        "value": 64,
+        "limit": 256,
+        "ok": true
+      }
+    ]
+  },
+  "naming": {
+    "model": "HockeyRink",
+    "source": "argument",
+    "objects": [
+      "Blue goal",
+      "Corner festoons",
+      "Entry stair and snow ramps",
+      "Marked ice",
+      "Raised timber deck",
+      "Red goal",
+      "Rounded boards and cream rail",
+      "Scoreboard",
+      "Team sign"
+    ],
+    "materials": []
+  },
+  "export_copies": {
+    "duplicates": [],
+    "skipped": "файл вне проекта Unity и без --assets: папка движка неизвестна"
+  },
+  "renders": {
+    "front": "front.png",
+    "side": "side.png",
+    "back": "back.png",
+    "top": "top.png",
+    "three-quarter": "three-quarter.png"
+  },
+  "render_settings": {
+    "engine": "BLENDER_EEVEE",
+    "clay": false,
+    "backface_culling": true,
+    "film_transparent": false,
+    "player": true,
+    "grid": {
+      "minor": 1,
+      "major": 10
+    }
+  }
+}

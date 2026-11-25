@@ -1,0 +1,466 @@
+{
+  "file": "source/StarterFarmhouse_master.blend",
+  "sha256": "45d7ab2b12bb0d6d9ec569178b2e6fd066ad42ac68ad0327f3f50bb8a3360c8f",
+  "blender": "5.0.1",
+  "collection": "StarterFarmhouse",
+  "export": [
+    "Floor",
+    "FrontWall",
+    "RearWall",
+    "RightWall",
+    "LeftWall",
+    "Porch",
+    "PorchCanopy",
+    "CornerBoards",
+    "LeftDoor",
+    "RightDoor",
+    "FrontGable",
+    "RearGable",
+    "MainRoof",
+    "Chimney",
+    "Display_01",
+    "Display_02",
+    "Display_03",
+    "Display_04",
+    "Display_05",
+    "Display_06",
+    "Bench",
+    "Workbench",
+    "RightShelving",
+    "Barrel",
+    "LeftLantern",
+    "RightLantern"
+  ],
+  "dimensions": {
+    "width": 9.88,
+    "depth": 10.940001,
+    "height": 7.451498,
+    "min_z": 0,
+    "center": [
+      0,
+      -0.765,
+      3.725749
+    ]
+  },
+  "totals": {
+    "tris": 5276,
+    "verts": 2974,
+    "meshes": 26,
+    "touching_verts": 0,
+    "materials": [
+      "M_StarterFarmhouse_Palette"
+    ],
+    "bones": 0,
+    "textures": [
+      {
+        "name": "StarterFarmhouse_Palette",
+        "size": [
+          64,
+          64
+        ]
+      }
+    ]
+  },
+  "objects": [
+    {
+      "name": "Floor",
+      "tris": 312,
+      "verts": 208,
+      "parts": 26,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "FrontWall",
+      "tris": 80,
+      "verts": 48,
+      "parts": 4,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RearWall",
+      "tris": 460,
+      "verts": 224,
+      "parts": 7,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RightWall",
+      "tris": 460,
+      "verts": 224,
+      "parts": 7,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LeftWall",
+      "tris": 460,
+      "verts": 224,
+      "parts": 7,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Porch",
+      "tris": 96,
+      "verts": 64,
+      "parts": 8,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "PorchCanopy",
+      "tris": 288,
+      "verts": 148,
+      "parts": 2,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "CornerBoards",
+      "tris": 108,
+      "verts": 72,
+      "parts": 9,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LeftDoor",
+      "tris": 100,
+      "verts": 56,
+      "parts": 4,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RightDoor",
+      "tris": 100,
+      "verts": 56,
+      "parts": 4,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "FrontGable",
+      "tris": 272,
+      "verts": 136,
+      "parts": 4,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RearGable",
+      "tris": 52,
+      "verts": 28,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MainRoof",
+      "tris": 408,
+      "verts": 216,
+      "parts": 6,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Chimney",
+      "tris": 324,
+      "verts": 172,
+      "parts": 5,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Display_01",
+      "tris": 60,
+      "verts": 40,
+      "parts": 5,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Display_02",
+      "tris": 60,
+      "verts": 40,
+      "parts": 5,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Display_03",
+      "tris": 60,
+      "verts": 40,
+      "parts": 5,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Display_04",
+      "tris": 60,
+      "verts": 40,
+      "parts": 5,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Display_05",
+      "tris": 60,
+      "verts": 40,
+      "parts": 5,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Display_06",
+      "tris": 60,
+      "verts": 40,
+      "parts": 5,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Bench",
+      "tris": 60,
+      "verts": 40,
+      "parts": 5,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Workbench",
+      "tris": 300,
+      "verts": 194,
+      "parts": 22,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RightShelving",
+      "tris": 568,
+      "verts": 348,
+      "parts": 32,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Barrel",
+      "tris": 252,
+      "verts": 132,
+      "parts": 3,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LeftLantern",
+      "tris": 108,
+      "verts": 72,
+      "parts": 9,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RightLantern",
+      "tris": 108,
+      "verts": 72,
+      "parts": 9,
+      "touching_verts": 0,
+      "materials": [
+        "M_StarterFarmhouse_Palette"
+      ],
+      "modifiers": []
+    }
+  ],
+  "issues": [
+    {
+      "code": "object_name",
+      "object": null,
+      "count": 26,
+      "severity": "warning",
+      "message": "объекты названы не по правилу StarterFarmhouse_Body, StarterFarmhouse_LOD<n>, арматура StarterFarmhouse_Rig, глаза — пустые объекты StarterFarmhouse_EyeL/R и StarterFarmhouse_PupilL/R с мешами StarterFarmhouse_EyeL_LOD<n> и StarterFarmhouse_PupilL_LOD<n>: Barrel, Bench, Chimney, CornerBoards, Display_01, Display_02, Display_03, Display_04, Display_05, Display_06, Floor, FrontGable, FrontWall, LeftDoor, LeftLantern, LeftWall, MainRoof, Porch, PorchCanopy, RearGable, RearWall, RightDoor, RightLantern, RightShelving, RightWall, Workbench"
+    }
+  ],
+  "ok": true,
+  "eyes": {
+    "found": false,
+    "objects": [],
+    "issues": []
+  },
+  "palette": {
+    "file": "../../palette.json",
+    "materials": [
+      {
+        "name": "M_StarterFarmhouse_Palette",
+        "hex": null,
+        "texture": "StarterFarmhouse_Palette",
+        "match": null,
+        "checked": true,
+        "off": [],
+        "legacy": []
+      }
+    ]
+  },
+  "budget": {
+    "class": "building",
+    "rows": [
+      {
+        "key": "tris",
+        "value": 5276,
+        "limit": 6000,
+        "ok": true
+      },
+      {
+        "key": "materials",
+        "value": 1,
+        "limit": 2,
+        "ok": true
+      },
+      {
+        "key": "bones",
+        "value": 0,
+        "limit": 0,
+        "ok": true
+      },
+      {
+        "key": "textureSize",
+        "value": 64,
+        "limit": 256,
+        "ok": true
+      }
+    ]
+  },
+  "naming": {
+    "model": "StarterFarmhouse",
+    "source": "file",
+    "objects": [
+      "Barrel",
+      "Bench",
+      "Chimney",
+      "CornerBoards",
+      "Display_01",
+      "Display_02",
+      "Display_03",
+      "Display_04",
+      "Display_05",
+      "Display_06",
+      "Floor",
+      "FrontGable",
+      "FrontWall",
+      "LeftDoor",
+      "LeftLantern",
+      "LeftWall",
+      "MainRoof",
+      "Porch",
+      "PorchCanopy",
+      "RearGable",
+      "RearWall",
+      "RightDoor",
+      "RightLantern",
+      "RightShelving",
+      "RightWall",
+      "Workbench"
+    ],
+    "materials": []
+  },
+  "export_copies": {
+    "duplicates": [],
+    "skipped": "файл вне проекта Unity и без --assets: папка движка неизвестна"
+  },
+  "renders": {
+    "front": "preview/front.png",
+    "side": "preview/side.png",
+    "back": "preview/back.png",
+    "top": "preview/top.png",
+    "side-right": "preview/side-right.png",
+    "three-quarter": "preview/three-quarter.png"
+  },
+  "render_settings": {
+    "engine": "BLENDER_EEVEE",
+    "clay": false,
+    "backface_culling": true,
+    "film_transparent": false,
+    "player": true,
+    "grid": {
+      "minor": 1,
+      "major": 10
+    }
+  }
+}

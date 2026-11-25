@@ -1,0 +1,189 @@
+{
+  "dimensions": {
+    "width": 4.6256,
+    "depth": 3.8752,
+    "height": 0.5292,
+    "min_z": 0.0,
+    "center": [
+      0.0,
+      -0.0084,
+      0.2646
+    ]
+  },
+  "totals": {
+    "tris": 2208,
+    "verts": 1248,
+    "meshes": 9,
+    "touching_verts": 0,
+    "materials": [
+      "M_GardenTimber"
+    ],
+    "bones": 0,
+    "textures": [
+      {
+        "name": "GardenTimber_Palette",
+        "size": [
+          64,
+          32
+        ]
+      }
+    ]
+  },
+  "objects": [
+    {
+      "name": "Bed01",
+      "tris": 300,
+      "verts": 168,
+      "parts": 9,
+      "touching_verts": 0,
+      "materials": [
+        "M_GardenTimber"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Bed02",
+      "tris": 300,
+      "verts": 168,
+      "parts": 9,
+      "touching_verts": 0,
+      "materials": [
+        "M_GardenTimber"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Bed03",
+      "tris": 300,
+      "verts": 168,
+      "parts": 9,
+      "touching_verts": 0,
+      "materials": [
+        "M_GardenTimber"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Bed04",
+      "tris": 300,
+      "verts": 168,
+      "parts": 9,
+      "touching_verts": 0,
+      "materials": [
+        "M_GardenTimber"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "FenceFrontLeft",
+      "tris": 140,
+      "verts": 80,
+      "parts": 5,
+      "touching_verts": 0,
+      "materials": [
+        "M_GardenTimber"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "FenceFrontRight",
+      "tris": 140,
+      "verts": 80,
+      "parts": 5,
+      "touching_verts": 0,
+      "materials": [
+        "M_GardenTimber"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "FenceLeft",
+      "tris": 224,
+      "verts": 128,
+      "parts": 8,
+      "touching_verts": 0,
+      "materials": [
+        "M_GardenTimber"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "FenceRight",
+      "tris": 224,
+      "verts": 128,
+      "parts": 8,
+      "touching_verts": 0,
+      "materials": [
+        "M_GardenTimber"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "FenceBack",
+      "tris": 280,
+      "verts": 160,
+      "parts": 10,
+      "touching_verts": 0,
+      "materials": [
+        "M_GardenTimber"
+      ],
+      "modifiers": []
+    }
+  ],
+  "issues": [],
+  "ok": true,
+  "reimport": {
+    "triangles": 2208,
+    "per_mesh": {
+      "Bed01": 300,
+      "Bed02": 300,
+      "Bed03": 300,
+      "Bed04": 300,
+      "FenceFrontLeft": 140,
+      "FenceFrontRight": 140,
+      "FenceLeft": 224,
+      "FenceRight": 224,
+      "FenceBack": 280
+    },
+    "materials": 1,
+    "embedded_texture": true
+  },
+  "clearance": {
+    "ground_level_studs": 0,
+    "clear_width_studs": {
+      "gate": 5.0,
+      "south_north": 4.5,
+      "east_west": 4.5
+    },
+    "avatar_height_studs": 5.1,
+    "test_diameter_studs": 3.3,
+    "min_side_margin_studs": {
+      "gate_and_central_aisle": 0.6,
+      "cross_to_left": 0.6,
+      "cross_to_right": 0.6
+    },
+    "plant_origins_studs": {
+      "Bed01": [
+        -4.5,
+        -3.75,
+        0.58
+      ],
+      "Bed02": [
+        4.5,
+        -3.75,
+        0.58
+      ],
+      "Bed03": [
+        -4.5,
+        3.75,
+        0.58
+      ],
+      "Bed04": [
+        4.5,
+        3.75,
+        0.58
+      ]
+    }
+  },
+  "coplanar_overlaps": []
+}

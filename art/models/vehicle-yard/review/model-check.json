@@ -1,0 +1,149 @@
+{
+  "file": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\vehicle-yard\\source\\VehicleYard.blend",
+  "sha256": "4f2b710e8995b9e6a9c0d4c29d814246f5f30b8f27ad3eb9456c348ee018aab6",
+  "blender": "5.0.1",
+  "collection": "VehicleYard",
+  "export": [
+    "VehicleYard_Ground",
+    "VehicleYard_LogEnds"
+  ],
+  "dimensions": {
+    "width": 23.284355,
+    "depth": 12.725141,
+    "height": 0.233674,
+    "min_z": -0.121836,
+    "center": [
+      -2.7e-05,
+      0.0,
+      -0.004999
+    ]
+  },
+  "totals": {
+    "tris": 2982,
+    "verts": 1525,
+    "meshes": 2,
+    "touching_verts": 0,
+    "materials": [
+      "M_VehicleYard_EarthAndWood"
+    ],
+    "bones": 0,
+    "textures": [
+      {
+        "name": "VehicleYard_Palette",
+        "size": [
+          8,
+          4
+        ]
+      }
+    ]
+  },
+  "objects": [
+    {
+      "name": "VehicleYard_Ground",
+      "tris": 1862,
+      "verts": 933,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_VehicleYard_EarthAndWood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "VehicleYard_LogEnds",
+      "tris": 1120,
+      "verts": 592,
+      "parts": 16,
+      "touching_verts": 0,
+      "materials": [
+        "M_VehicleYard_EarthAndWood"
+      ],
+      "modifiers": []
+    }
+  ],
+  "issues": [
+    {
+      "code": "below_floor",
+      "object": null,
+      "count": 1,
+      "severity": "warning",
+      "message": "нижняя точка модели ниже пола больше чем на 5 мм"
+    }
+  ],
+  "ok": true,
+  "eyes": {
+    "skipped": true,
+    "reason": "имя модели не задано: --model <Модель> или мастер <Модель>_master.blend",
+    "objects": [],
+    "issues": []
+  },
+  "palette": {
+    "file": "art/palette.json",
+    "materials": [
+      {
+        "name": "M_VehicleYard_EarthAndWood",
+        "hex": null,
+        "texture": "VehicleYard_Palette",
+        "match": null,
+        "checked": true,
+        "off": [],
+        "legacy": []
+      }
+    ]
+  },
+  "budget": {
+    "class": "big_prop",
+    "rows": [
+      {
+        "key": "tris",
+        "value": 2982,
+        "limit": 3000,
+        "ok": true
+      },
+      {
+        "key": "materials",
+        "value": 1,
+        "limit": 2,
+        "ok": true
+      },
+      {
+        "key": "bones",
+        "value": 0,
+        "limit": 0,
+        "ok": true
+      },
+      {
+        "key": "textureSize",
+        "value": 8,
+        "limit": 256,
+        "ok": true
+      }
+    ]
+  },
+  "naming": {
+    "model": null,
+    "skipped": "имя модели не задано: --model <Модель> или мастер <Модель>_master.blend"
+  },
+  "export_copies": {
+    "duplicates": [],
+    "skipped": "файл вне проекта Unity и без --assets: папка движка неизвестна"
+  },
+  "renders": {
+    "front": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\vehicle-yard-views\\front.png",
+    "side": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\vehicle-yard-views\\side.png",
+    "back": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\vehicle-yard-views\\back.png",
+    "top": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\vehicle-yard-views\\top.png",
+    "three-quarter": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\vehicle-yard-views\\three-quarter.png"
+  },
+  "render_settings": {
+    "engine": "BLENDER_EEVEE",
+    "clay": false,
+    "backface_culling": true,
+    "film_transparent": false,
+    "player": false,
+    "grid": {
+      "minor": 1.0,
+      "major": 10.0
+    }
+  }
+}

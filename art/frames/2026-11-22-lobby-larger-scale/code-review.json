@@ -1,0 +1,15 @@
+{
+  "reviewer": "/root/larger_lobby_review",
+  "verdict": "pass",
+  "model_sha256": "3031d6a2ab4f74ceac973f9a6905b4f1cb09f86987620f3aa845cf515bd25a75",
+  "build_commit": "9583f5116ee4e3d616240de42eae04615c5584bb",
+  "findings": [],
+  "checks": [
+    "Spec and Standards/Quality accepted; no Critical, Important or Minor findings.",
+    "Exported XML has zone centers X 6448/6552, footprint 36 x 16.5, gaps 8.25 along Z.",
+    "Three leaderboard cabinets of width 12.570806 have gaps approximately 0.219.",
+    "Server insideZone reads actual CFrame and Size; enlarged zones do not depend on old constants.",
+    "Verified model/test/recipe/measurements hashes and build report; VFX reviewed separately."
+  ],
+  "limits": "Read-only review. Runtime tests were run by root and supplied as evidence. Physical phones and full game test suite not covered."
+}

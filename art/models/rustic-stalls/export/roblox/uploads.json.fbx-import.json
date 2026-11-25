@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "profile": "studio-fbx-me-origin-v1",
+  "game": "clean-a-snow",
+  "file": "C:\\Users\\User\\development\\slime_studio\\games\\clean-a-snow-hud-polish\\art\\models\\rustic-stalls\\export\\roblox\\Rewards.fbx",
+  "originalFile": "C:\\Users\\User\\development\\slime_studio\\games\\clean-a-snow-hud-polish\\art\\models\\rustic-stalls\\export\\roblox\\Rewards.fbx",
+  "sha256": "43c6803ef22876e1495bd3945d35488a903c5ed1e36e7e2d9dc8fabcc3280de4",
+  "state": "complete",
+  "artifactDirectory": "C:\\Users\\User\\development\\slime_studio\\roblox\\build\\fbx-import\\da72cbcc-d947-415e-9a94-c5ae3b6cf7a1",
+  "startedAt": "2026-11-23T11:51:47.378Z",
+  "exposedAt": "2026-11-23T11:52:01.769Z",
+  "submittedAt": "2026-11-23T11:52:08.502Z",
+  "completedAt": "2026-11-23T11:52:26.256Z",
+  "observed": {
+    "containerPivot": [
+      -0.013722479343414307,
+      1.3470256328582764,
+      -0.05660456418991089
+    ],
+    "name": "Rewards",
+    "rig": {
+      "bones": [],
+      "classes": {
+        "MeshPart": 1,
+        "Model": 1
+      },
+      "others": [
+        "Model.Rewards : Model",
+        "Model.Rewards.Rewards : MeshPart"
+      ],
+      "clips": []
+    },
+    "parts": [
+      {
+        "id": "rbxassetid://140169279530018",
+        "position": [
+          -0.013722479343414307,
+          1.3470914363861084,
+          -0.05660456418991089
+        ],
+        "name": "Rewards",
+        "size": [
+          3.0326642990112305,
+          2.694183349609375,
+          2.4719419479370117
+        ]
+      }
+    ],
+    "pivot": [
+      0,
+      0,
+      0
+    ],
+    "ready": true,
+    "created": "2026-11-23T11:52:14.406Z",
+    "creatorId": "6054024552",
+    "assetName": "Rewards",
+    "sourceAssetId": "82740033985514",
+    "workspacePivot": [
+      0,
+      -79.96096801757812,
+      -99.95121002197266
+    ],
+    "workspaceContainerPivot": [
+      0,
+      -79.96096801757812,
+      -99.95121002197266
+    ]
+  }
+}
