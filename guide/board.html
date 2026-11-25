@@ -308,7 +308,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <section class="part"><h2>Доска</h2><div class="board-filters" role="group" aria-label="Фильтр по участнику"><button type="button" data-person-filter="all" aria-pressed="true">Все</button><button type="button" data-person-filter="Богдан" aria-pressed="false">Богдан</button><button type="button" data-person-filter="Леонид" aria-pressed="false">Леонид</button><button type="button" data-person-filter="Георгий" aria-pressed="false">Георгий</button></div>
 <div class="board-filters" role="group" aria-label="Порядок карточек"><button type="button" data-board-sort="new" aria-pressed="true">Сначала новые</button><button type="button" data-board-sort="old" aria-pressed="false">Как раньше</button></div>
 <div class="board-columns"><section class="board-column" data-status="todo">
-  <h3>К выполнению <span class="board-count">19</span></h3>
+  <h3>К выполнению <span class="board-count">18</span></h3>
   <div class="board-cards"><article class="board-card" id="card-687aac" data-person="Богдан" data-status="todo" data-new-rank="1" data-old-rank="392">
   <h3>Сценарии snow-soft-relief и processor-model-upgrade не проходят в окне Studio чата</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>687aac</code> баг · bug</p>
@@ -692,34 +692,6 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </ul>
 </div></details>
 </article>
-<article class="board-card" id="card-752bac" data-person="Леонид" data-status="todo" data-new-rank="273" data-old-rank="97">
-  <h3>События по таймеру: придумать и описать (Санта, Гринч — примеры)</h3>
-  <p class="board-meta"><span class="person" data-person="Леонид">Леонид</span> <code>752bac</code> фича · events</p>
-  <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-12T00:10:38-05:00">12.11 00:10</time></p>
-  <p class="board-lead">Предложение владельца 11.11.2026 в чате: новая механика — в забеге каждые N минут срабатывает событие. Примеры владельца (только примеры, не решение): появляется Санта-Клаус и раздаёт подарки; на 15-й минуте — Гринч, который что-то забирает или прячет.</p>
-  
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Предложение владельца 11.11.2026 в чате: новая механика — в забеге каждые N минут срабатывает событие. Примеры владельца (только примеры, не решение): появляется Санта-Клаус и раздаёт подарки; на 15-й минуте — Гринч, который что-то забирает или прячет.</p>
-<p>Обсудить с владельцем и описать механику. Вопросы — на вкладке «Обсудить», тема «События по таймеру».</p>
-<h2>Готово когда</h2>
-<ul>
-<li><input disabled="" type="checkbox"> Решено: какие события, что каждое делает, как часто (каждые N минут или на какой минуте), что дают игроку, для кого — для отряда или для всего сервера.</li>
-<li><input disabled="" type="checkbox"> Решено, делать ли одну общую систему событий вместе с погодными событиями (тема «Погодные события»).</li>
-<li><input disabled="" type="checkbox"> Спека в <code>docs/superpowers/specs/</code>, после неё — карточки Богдану, модели — с Георгием.</li>
-</ul>
-<h2>Работа</h2>
-<ul>
-<li>2026-11-17: независимая проверка свечения подарков пройдена. Понятность 9,3/10, стиль 9,1/10. Кадры из Studio подтверждают пульсацию сквозь стену, исчезновение свечения вблизи, качество Low и режим «Меньше движения».</li>
-</ul>
-<h2>Заметки</h2>
-<ul>
-<li>Владелец 11.11.2026: «новая механика, где событие будет срабатывать каждое время n, и какие именно события: например, спавнится Санта-Клаус, который раздаёт подарки, потом на 15-й минуте Гринч… но это лишь примеры, это для обсуждения».</li>
-<li>Таймер уже есть у погоды: первое событие через 60 с, дальше каждые 600 с (<code>Data/weather.json</code>, <code>WeatherService.luau</code>). Сейчас список погодных событий пустой (карточка <code>e5330f</code>).</li>
-<li>Решение владельца 17.11.2026: один пролёт Санты с санями и оленями на четвёртой минуте забега. Камера сопровождает сани, переводит взгляд на место сброса, задерживается на упавших подарках на секунду и возвращается игроку. Подарки лежат на расстоянии друг от друга, мигают жёлтым контуром и содержат только монеты. В Dev событие доступно по кнопке «Санта с подарками» в меню Y.</li>
-<li>Решение владельца 17.11.2026: с расстояния вся коробка пульсирует жёлтым сквозь стены и рельеф. При приближении свечение плавно гаснет и пропадает в 30 стадах от подарка.</li>
-</ul>
-</div></details>
-</article>
 <article class="board-card" id="card-b81273" data-person="Богдан" data-status="todo" data-new-rank="326" data-old-rank="112">
   <h3>Одна формула урона игрока</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>b81273</code> техработа · clearing</p>
@@ -782,64 +754,9 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
   <p class="board-empty" hidden>Пусто.</p>
 </section>
 <section class="board-column" data-status="doing">
-  <h3>В работе <span class="board-count">2</span></h3>
-  <div class="board-cards"><article class="board-card" id="card-826f80" data-person="Богдан" data-status="doing" data-new-rank="8" data-old-rank="393">
-  <h3>Snow Truck продаётся за монеты, но грузовика в забеге нет</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>826f80</code> баг · bug</p>
-  <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-25T01:26:24+07:00">25.11 01:26</time></p>
-  <p class="board-lead">Воспроизвести и исправить `BUG-20261125-002` из `tasks/bugs.md`.</p>
-  
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Воспроизвести и исправить <code>BUG-20261125-002</code> из <code>tasks/bugs.md</code>.</p>
-<h2>Готово когда</h2>
-<ul>
-<li><input disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
-<li><input disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
-</ul>
-<h2>Оценка</h2>
-<ul>
-<li>Баг с решением владельца: убрать продажу или вернуть грузовик; после ответа правка локальная.</li>
-</ul>
-<h2>Работа</h2>
-<ul>
-<li>2026-11-25 12:49 →</li>
-</ul>
-<h2>Заметки</h2>
-<ul>
-<li>Журнал: <code>BUG-20261125-002</code>.</li>
-<li>Что выбрать — убрать продажу Snow Truck или вернуть грузовик — решает владелец (24.11.2026 он велел убрать старый красный грузовик у дома). Сценарии <code>shop-truck-auto</code>, <code>truck-speed</code>, <code>truck-speed-driver</code> вписаны в опись К-24 (<code>docs/unused-inventory.md</code>); если грузовик вернётся, их можно поднять оттуда. Разбор — карточка <code>43ca02</code>.</li>
-</ul>
-</div></details>
-</article>
-<article class="board-card" id="card-6444e8" data-person="Богдан" data-status="doing" data-new-rank="9" data-old-rank="391">
-  <h3>Щелчок по строке DAILY GEMS открывает GEM WHEEL: невидимая зона нажатия нижней строки накрывает верхнюю</h3>
-  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>6444e8</code> баг · bug</p>
-  <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-25T01:26:24+07:00">25.11 01:26</time></p>
-  <p class="board-lead">Воспроизвести и исправить `BUG-20261125-001` из `tasks/bugs.md`.</p>
-  
-  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
-<p>Воспроизвести и исправить <code>BUG-20261125-001</code> из <code>tasks/bugs.md</code>.</p>
-<h2>Готово когда</h2>
-<ul>
-<li><input disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
-<li><input disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
-</ul>
-<h2>Оценка</h2>
-<ul>
-<li>Известный баг: перекрытие невидимых зон нажатия строк, локальная правка раскладки без смены вида.</li>
-</ul>
-<h2>Работа</h2>
-<ul>
-<li>2026-11-25 12:49 →</li>
-</ul>
-<h2>Заметки</h2>
-<ul>
-<li>Журнал: <code>BUG-20261125-001</code>.</li>
-<li>Проверка после исправления: сценарии <code>gems-windows</code>, <code>gems-effects</code>, <code>gems-effects-reduced</code> (<code>npm run play -- &lt;сценарий&gt;</code>) сейчас падают на шаге «no minute in a run yet: the button asks to play» — щелчок по <code>ExpeditionActions.Reward</code> открывает GEM WHEEL; после исправления они должны пройти. Разбор — карточка <code>43ca02</code>, спека <code>docs/superpowers/specs/2026-11-24-ready-wait-scenarios-design.md</code>.</li>
-</ul>
-</div></details>
-</article></div>
-  <p class="board-empty" hidden>Пусто.</p>
+  <h3>В работе <span class="board-count">0</span></h3>
+  <div class="board-cards"></div>
+  <p class="board-empty">Пусто.</p>
 </section>
 <section class="board-column" data-status="paused">
   <h3>Пауза <span class="board-count">12</span></h3>
@@ -1221,7 +1138,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
   <p class="board-empty">Пусто.</p>
 </section>
 <section class="board-column" data-status="done">
-  <h3>Готово <span class="board-count">367</span></h3>
+  <h3>Готово <span class="board-count">370</span></h3>
   <div class="board-cards"><article class="board-card" id="card-ad3cfb" data-person="Богдан" data-status="done" data-new-rank="0" data-old-rank="395">
   <h3>Остров урока меньше (14×14), золото урока прозрачнее и светится ярче</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>ad3cfb</code> фича · onboarding</p>
@@ -1350,6 +1267,67 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <li>Воспроизведено сценарием <code>zone-edge</code> (угол 72°): после пяти рядов у линии остался снег в 162 из 323 точек участков зоны 2, в участках зоны 1 — 0 из 73.</li>
 <li>Исправлено в <code>55a9c8454</code>: зона точки — её кольцо (<code>ToolCut.pointOpen</code>), клиент и сервер. После: внутри линии снега 0 из 323 точек участков зоны 2 (было 162), за линией в 6 стадах снег цел, игрок у стены остаётся внутри. Кадры до <code>build/studio-play/zone-edge-20261125-040734/</code>, после <code>zone-edge-20261125-042420/</code>.</li>
 <li>Не входит: огонь Молотова и машины сверяют зону по участку, у стены там те же зубцы.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-826f80" data-person="Богдан" data-status="done" data-new-rank="8" data-old-rank="393">
+  <h3>Snow Truck продаётся за монеты, но грузовика в забеге нет</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>826f80</code> баг · bug</p>
+  <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-25T01:26:24+07:00">25.11 01:26</time></p>
+  <p class="board-lead">Воспроизвести и исправить `BUG-20261125-002` из `tasks/bugs.md`.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Воспроизвести и исправить <code>BUG-20261125-002</code> из <code>tasks/bugs.md</code>.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
+<li><input checked="" disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Баг с решением владельца: убрать продажу или вернуть грузовик; после ответа правка локальная.</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-25 12:49 → 2026-11-25 13:49</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Журнал: <code>BUG-20261125-002</code>.</li>
+<li>Что выбрать — убрать продажу Snow Truck или вернуть грузовик — решает владелец (24.11.2026 он велел убрать старый красный грузовик у дома). Сценарии <code>shop-truck-auto</code>, <code>truck-speed</code>, <code>truck-speed-driver</code> вписаны в опись К-24 (<code>docs/unused-inventory.md</code>); если грузовик вернётся, их можно поднять оттуда. Разбор — карточка <code>43ca02</code>.</li>
+<li>Решение владельца 25.11.2026: убрать Snow Truck из продажи; тем, кто уже купил его в своём мире, ничего не возвращать.</li>
+<li>25.11: воспроизведено пробой <code>probe-truck-20261125-060618</code> (покупка списала 6.25, грузовика в мире нет). Исправление: <code>disabled</code> у <code>SnowTruck</code>, строка MORE ACTIONS и кнопки кабины скрыты, на телефоне картинки окна переработки поднялись в их ряд; тест <code>ShopService_Test</code>, сценарий <code>truck-off-sale</code>.</li>
+<li>25.11: критик <code>feature-design-critic</code> окна SNOW PROCESSOR — ПРИНЯТО, 87/100 (таблица размера на семи экранах, кадры <code>probe-processing-sizes-20261125-063915</code>); низкое замечание: на компьютере и планшете под DEPOSIT SNOW места больше, чем над ней, — не блокирует.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-6444e8" data-person="Богдан" data-status="done" data-new-rank="9" data-old-rank="391">
+  <h3>Щелчок по строке DAILY GEMS открывает GEM WHEEL: невидимая зона нажатия нижней строки накрывает верхнюю</h3>
+  <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>6444e8</code> баг · bug</p>
+  <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-25T01:26:24+07:00">25.11 01:26</time></p>
+  <p class="board-lead">Воспроизвести и исправить `BUG-20261125-001` из `tasks/bugs.md`.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Воспроизвести и исправить <code>BUG-20261125-001</code> из <code>tasks/bugs.md</code>.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Дефект воспроизведён до исправления.</li>
+<li><input checked="" disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Известный баг: перекрытие невидимых зон нажатия строк, локальная правка раскладки без смены вида.</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-25 12:49 → 2026-11-25 13:48</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Журнал: <code>BUG-20261125-001</code>.</li>
+<li>Проверка после исправления: сценарии <code>gems-windows</code>, <code>gems-effects</code>, <code>gems-effects-reduced</code> (<code>npm run play -- &lt;сценарий&gt;</code>) сейчас падают на шаге «no minute in a run yet: the button asks to play» — щелчок по <code>ExpeditionActions.Reward</code> открывает GEM WHEEL; после исправления они должны пройти. Разбор — карточка <code>43ca02</code>, спека <code>docs/superpowers/specs/2026-11-24-ready-wait-scenarios-design.md</code>.</li>
+<li>25.11: причина подтверждена — площадки <code>TapPad</code> карточки <code>784561</code> (44 точки без оглядки на соседей), код с первого коммита <code>d9e274bd3</code>; <code>1cf3e9</code> ни при чём. Исправление: <code>ScreenFit.tapZone</code>/<code>tapPad</code>, <code>TouchSizes.padButton</code>; вид HUD не менялся.</li>
+<li>25.11: <code>tap-zones</code> прошёл на ПК и телефонных размерах, <code>gems-windows</code> прошёл. <code>gems-effects</code> и <code>gems-effects-reduced</code> упали дальше, на счёте объектов окон: ожидание «105 87» старое, окна гемов стали деревянными в <code>a2207ca7b</code> (23.11) — 156 и 113, площадок в окнах 0. Счёт теперь без <code>TapPad</code>, ожидание «156 113»; после выдачи «157 113»: кнопка CLAIM в состоянии «взято» рисуется обводкой и градиентом вместо деревянной картинки (проба <code>probe-daily-diff-20261125-063634</code>), остатков эффектов нет.</li>
 </ul>
 </div></details>
 </article>
@@ -11661,6 +11639,40 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <li>Числа Better Deals и Lucky Finds — черновик до документа Леонида <code>c029ed</code>.</li>
 <li>Критик <code>feature-design-critic</code> 12.11.2026: круг 1 — fail (размер окна; LOCKED и MAX похожи на кнопку покупки; не хватало состояний; карточка «Applies to» под снегом; текст Note). Круг 2 — fail (шкала уровня Мастерской не закрашивалась; три цвета вне палитры; MAX переработчика приглушён не целиком). Круг 3 — pass, 76/100 (Workshop.luau sha256 fd2664fdff18044f, ProcessorUpgrade.luau f6876ee4e2603a89, CleanSnowUI.rbxm b112894cda2a0e60). Размер окна не проходит по таблице, принято решением владельца, телефонный вид — <code>784561</code>. Вход в окно по E у переработчика без живого кадра: переработчик есть только в плейсе забега. На потом: иконка Lucky Finds похожа на гем (новая — через codex-imagegen с одобрения владельца), кнопка переработчика сдвинута влево, мелкий второстепенный текст.</li>
 <li>Сделано (claude-95a78f, коммит 205d387): Мастерская и окно переработчика в <code>CleanSnowUI.Modals</code> (слой <code>models/shared</code>), окно за гемы <code>SnowUpgradesGui</code> выключено; код — <code>Shared/UpgradeRows.luau</code>, <code>Windows/Workshop.luau</code>, <code>Windows/ProcessorUpgrade.luau</code>; Better Deals (<code>Balance.saleMultiplier</code>, <code>bonusCoins</code> в чеке) и Lucky Finds (<code>Balance.luckyFind</code> в <code>MapSnowService</code>); кнопка INDEX к старому окну индекса и статистики.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-752bac" data-person="Леонид" data-status="done" data-new-rank="273" data-old-rank="97">
+  <h3>События по таймеру: придумать и описать (Санта, Гринч — примеры)</h3>
+  <p class="board-meta"><span class="person" data-person="Леонид">Леонид</span> <code>752bac</code> фича · events</p>
+  <p class="board-origin">Автор: <span class="board-author" data-author="Марк">Марк Азовский</span> <time datetime="2026-11-12T00:10:38-05:00">12.11 00:10</time></p>
+  <p class="board-lead">Предложение владельца 11.11.2026 в чате: новая механика — в забеге каждые N минут срабатывает событие. Примеры владельца (только примеры, не решение): появляется Санта-Клаус и раздаёт подарки; на 15-й минуте — Гринч, который что-то забирает или прячет.</p>
+  
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Предложение владельца 11.11.2026 в чате: новая механика — в забеге каждые N минут срабатывает событие. Примеры владельца (только примеры, не решение): появляется Санта-Клаус и раздаёт подарки; на 15-й минуте — Гринч, который что-то забирает или прячет.</p>
+<p>Обсудить с владельцем и описать механику. Вопросы — на вкладке «Обсудить», тема «События по таймеру».</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Решено: какие события, что каждое делает, как часто (каждые N минут или на какой минуте), что дают игроку, для кого — для отряда или для всего сервера.</li>
+<li><input checked="" disabled="" type="checkbox"> Решено, делать ли одну общую систему событий вместе с погодными событиями (тема «Погодные события»).</li>
+<li><input checked="" disabled="" type="checkbox"> Спека в <code>docs/superpowers/specs/</code>, после неё — карточки Богдану, модели — с Георгием.</li>
+</ul>
+<h2>Оценка</h2>
+<ul>
+<li>Решения уже приняты и сделаны в других карточках; осталось закрыть</li>
+</ul>
+<h2>Работа</h2>
+<ul>
+<li>2026-11-25 01:45 → 2026-11-25 01:45</li>
+<li>2026-11-17: независимая проверка свечения подарков пройдена. Понятность 9,3/10, стиль 9,1/10. Кадры из Studio подтверждают пульсацию сквозь стену, исчезновение свечения вблизи, качество Low и режим «Меньше движения».</li>
+</ul>
+<h2>Заметки</h2>
+<ul>
+<li>Решение владельца 25.11.2026: события по таймеру сделаны — Санта с подарками, игровой зал 1 (7-я минута), убежище Гринча (18-я), снежный голем, хоккей (23-я), игровой зал 2 (30-я); числа и награды в <code>Data/play.json</code>, <code>Data/arcade.json</code>, <code>Data/fight.json</code>. Погодных событий не будет, общая система с погодой не нужна. Тема ушла из «Обсудить».</li>
+<li>Владелец 11.11.2026: «новая механика, где событие будет срабатывать каждое время n, и какие именно события: например, спавнится Санта-Клаус, который раздаёт подарки, потом на 15-й минуте Гринч… но это лишь примеры, это для обсуждения».</li>
+<li>Таймер уже есть у погоды: первое событие через 60 с, дальше каждые 600 с (<code>Data/weather.json</code>, <code>WeatherService.luau</code>). Сейчас список погодных событий пустой (карточка <code>e5330f</code>).</li>
+<li>Решение владельца 17.11.2026: один пролёт Санты с санями и оленями на четвёртой минуте забега. Камера сопровождает сани, переводит взгляд на место сброса, задерживается на упавших подарках на секунду и возвращается игроку. Подарки лежат на расстоянии друг от друга, мигают жёлтым контуром и содержат только монеты. В Dev событие доступно по кнопке «Санта с подарками» в меню Y.</li>
+<li>Решение владельца 17.11.2026: с расстояния вся коробка пульсирует жёлтым сквозь стены и рельеф. При приближении свечение плавно гаснет и пропадает в 30 стадах от подарка.</li>
 </ul>
 </div></details>
 </article>

@@ -327,8 +327,8 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <li><code>5879af</code> — 9 сценариев магазина, иконок и окон: Starter Shovel, Hold, окно Pets.</li>
 <li><code>e7e92d</code> — 3 сценария машин: ряды <code>cargo-full</code> по стоянке, выход из пикапа в <code>vehicle-seats</code>, замер взгляда в <code>vehicle-mouse</code>.</li>
 <li><code>29be2a</code> — <code>dev-panel</code>: вкладка времени по старому расписанию.</li>
-<li><code>6444e8</code> — ошибка игры: щелчок по строке DAILY GEMS открывает GEM WHEEL; на ней стоят три сценария гемов.</li>
-<li><code>826f80</code> — ошибка игры: Snow Truck продаётся, а грузовика в забеге нет; три сценария грузовика вписаны в опись.</li>
+<li><code>6444e8</code> — ошибка игры: щелчок по строке DAILY GEMS открывает GEM WHEEL; на ней стоят три сценария гемов. Исправлено 25.11.2026, три сценария гемов проходят, новый сценарий <code>tap-zones</code>.</li>
+<li><code>826f80</code> — ошибка игры: Snow Truck продаётся, а грузовика в забеге нет; три сценария грузовика вписаны в опись. Решение владельца 25.11.2026: убрать из продажи; сделано, сценарий <code>truck-off-sale</code>.</li>
 </ul>
 <p>По пути: в установленной Studio не было локальных звуков игры (<code>rbxasset://sounds/cleansnow</code>, «Temp read failed» в каждом прогоне после её обновления) — поставлены <code>npm run sounds:local</code>. Щелчки сценария по правому краю экрана промахиваются, когда окно Studio шире экрана (<code>workshop-windows</code>).</p>
 <table>
@@ -594,21 +594,21 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </tr>
 <tr>
 <td><code>gems-effects-reduced</code></td>
-<td>карточка <code>6444e8</code></td>
-<td>То же</td>
-<td>упал на шаге 8 из 49, <code>gems-effects-reduced-20261124-163453</code></td>
+<td>проходит</td>
+<td>Исправлено по карточке <code>6444e8</code> (25.11.2026); счёт объектов окон гемов — без <code>TapPad</code>, числа деревянных окон <code>104d10</code>: 156 и 113</td>
+<td>прошёл, 49/49, <code>gems-effects-reduced-20261125-062341</code></td>
 </tr>
 <tr>
 <td><code>gems-effects</code></td>
-<td>карточка <code>6444e8</code></td>
-<td>То же</td>
-<td>упал на шаге 6 из 106, <code>gems-effects-20261124-164518</code></td>
+<td>проходит</td>
+<td>Исправлено по карточке <code>6444e8</code> (25.11.2026); счёт объектов: 156 и 113 до выдачи, 157 и 113 после (кнопка CLAIM «взято» рисуется обводкой и градиентом вместо деревянной картинки)</td>
+<td>прошёл, 106/106, <code>gems-effects-20261125-064000</code></td>
 </tr>
 <tr>
 <td><code>gems-windows</code></td>
-<td>карточка <code>6444e8</code></td>
-<td>Щелчок по строке DAILY GEMS открывает GEM WHEEL: невидимая зона нажатия строки ниже накрывает её (ошибка игры). Пройдёт после её исправления</td>
-<td>упал на шаге 6 из 44, <code>gems-windows-20261124-162957</code></td>
+<td>проходит</td>
+<td>Исправлено по карточке <code>6444e8</code> (25.11.2026): зона нажатия строки MORE ACTIONS больше не накрывает соседнюю</td>
+<td>прошёл, 44/44, <code>gems-windows-20261125-063029</code></td>
 </tr>
 <tr>
 <td><code>held-items</code></td>
