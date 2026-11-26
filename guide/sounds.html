@@ -295,6 +295,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <main>
 <section class="part with-toc"><h2>Звуки</h2><nav class="toc" aria-label="На этой странице"><ul><li><a href="#нравится-и-выбрано">Нравится и выбрано</a></li><li><a href="#не-понравилось-не-возвращать">Не понравилось — не возвращать</a></li><li><a href="#все-события-по-разделам">Все события по разделам</a></li><li><a href="#снег-и-ведро">Снег и ведро</a></li><li><a href="#инструменты">Инструменты</a></li><li><a href="#машины">Машины</a></li><li><a href="#забег">Забег</a></li><li><a href="#кнопки-и-награды">Кнопки и награды</a></li><li><a href="#мир-и-гринч">Мир и Гринч</a></li><li><a href="#аркады-и-хоккей">Аркады и хоккей</a></li><li><a href="#новые-26-11">Новые 26.11</a></li><li><a href="#рекомендую-послушать">Рекомендую послушать</a></li><li><a href="#рекомендации">Рекомендации</a></li><li><a href="#тулбокс-26-11">Тулбокс 26.11</a></li></ul></nav><div class="part-body"><div class="prose sound-table"><h1>Звуки игры: что нравится, что стоит, что ждёт</h1>
 <p>Одна таблица на все звуки Clean a Snow. Номера — как в пульте <code>place/SoundBoard.rbxl</code> (вкладка «Все по номеру»): «ведро полное — 7». Ссылка с id открывает звук в Creator Store.</p>
+<p>В пульте первые две вкладки — то же самое: «Уже решено» (как звучит в игре) и «Надо определиться» (по каждому событию все варианты рядом, сначала то, что я рекомендую).</p>
 <ul>
 <li><strong>Нравится</strong> — Леонид послушал и сказал, что нравится.</li>
 <li><strong>Выбрано</strong> — Леонид выбрал номер, звук уже в игре.</li>
@@ -318,14 +319,21 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <td>Резка снега</td>
 <td>наши записи хруста снега: мягкий слой и хруст (<code>powder_rustle.wav</code>, <code>powder_grain.wav</code>), №1 и №2</td>
 <td><strong>Нравится</strong></td>
-<td><audio controls preload="none" src="../art/sounds/previews/chosen-cut.m4a"></audio></td>
+<td><audio controls preload="none" src="../art/sounds/previews/chosen-1.m4a"></audio> <audio controls preload="none" src="../art/sounds/previews/chosen-2.m4a"></audio></td>
 <td>Леонид 26.11: «ломка снега ложкой и лопатой нравится». Играет только в Studio: в опубликованной игре тут тишина, пока эти два файла не загружены в Roblox (загрузка — только по слову Леонида).</td>
+</tr>
+<tr>
+<td>Ведро полное</td>
+<td>№339 «Synth Sparkle Tone High Pitch Bell Tone Ding» <a href="https://create.roblox.com/store/asset/9126073001">9126073001</a>: один раз, когда ведро или кузов машины заполнились до конца</td>
+<td><strong>Выбрано</strong></td>
+<td><audio controls preload="none" src="../art/sounds/previews/chosen-339.m4a"></audio></td>
+<td>Леонид 26.11: «339, когда полное ведро или у машины, но только один раз: даже если игрок ломает инструментом или машиной, не играет — только когда до максимума доходит».</td>
 </tr>
 <tr>
 <td>Блок на конвейер</td>
 <td>№13 «весло втыкается в ледяной снег» <a href="https://create.roblox.com/store/asset/9126274119">9126274119</a>, на каждый блок</td>
 <td><strong>Нравится</strong></td>
-<td><audio controls preload="none" src="../art/sounds/previews/chosen-conveyor.m4a"></audio></td>
+<td><audio controls preload="none" src="../art/sounds/previews/chosen-13.m4a"></audio></td>
 <td>Леонид 26.11: «Paddle Into Icy пока лучше звучит, как снег». Тише вдали, со 100 стадов не слышно.</td>
 </tr>
 <tr>
@@ -336,59 +344,66 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <td>Леонид 26.11: «получение монет как сейчас — нравится, пока что». Звучит у переработчика: тише вдали, со 100 стадов не слышно. Звон за кролика — у игрока.</td>
 </tr>
 <tr>
+<td>Шаги по снегу</td>
+<td>№438 «snow footsteps» <a href="https://create.roblox.com/store/asset/87562273941536">87562273941536</a>, в 1,5 раза быстрее (как быстрее ходит игрок)</td>
+<td><strong>Выбрано</strong></td>
+<td><span class="muted">только в Roblox</span></td>
+<td>Леонид 26.11: «438 для ходьбы, но скорость игрока в полтора раза быстрее, поэтому и звук в полтора раза быстрее»: шаги идут со скоростью ходьбы / 16, сейчас ×1,5, с ботинками быстрее.</td>
+</tr>
+<tr>
 <td>Пылесос</td>
 <td>№371 «Vacuum Cleaner 1» <a href="https://create.roblox.com/store/asset/9120360676">9120360676</a>: с включения (0,25 с), дальше по кругу 9,6–14 с</td>
 <td><strong>Выбрано</strong></td>
-<td><audio controls preload="none" src="../art/sounds/previews/chosen-vacuum.m4a"></audio></td>
+<td><audio controls preload="none" src="../art/sounds/previews/chosen-371.m4a"></audio></td>
 <td>Леонид 26.11: «371 юзай для пылесоса».</td>
 </tr>
 <tr>
 <td>Шнекороторный снегоочиститель</td>
 <td>№371, как у пылесоса <a href="https://create.roblox.com/store/asset/9120360676">9120360676</a></td>
 <td><strong>Выбрано</strong></td>
-<td><audio controls preload="none" src="../art/sounds/previews/chosen-vacuum.m4a"></audio></td>
+<td><audio controls preload="none" src="../art/sounds/previews/chosen-371.m4a"></audio></td>
 <td>Леонид 26.11: «там 371 есть с рекомендаций, давай его» — «пылесос». №43, №42, №330 не взяты.</td>
 </tr>
 <tr>
 <td>Тепловая пушка</td>
 <td>№368 «Fire Whoosh 1» <a href="https://create.roblox.com/store/asset/9112780561">9112780561</a>: с 9 с, где ревёт пламя, по кругу 9–14,5 с</td>
 <td><strong>Выбрано</strong></td>
-<td><audio controls preload="none" src="../art/sounds/previews/chosen-thermal.m4a"></audio></td>
+<td><audio controls preload="none" src="../art/sounds/previews/chosen-368.m4a"></audio></td>
 <td>Леонид 26.11: «с того момента, где звук чувствуется как пламя».</td>
 </tr>
 <tr>
 <td>Молотов: бросок</td>
 <td>№391 «Whoosh By Fast Airy» <a href="https://create.roblox.com/store/asset/9126229255">9126229255</a>, смягчён (верх −10 дБ, громкость 0,22)</td>
 <td><strong>Нравится</strong></td>
-<td><audio controls preload="none" src="../art/sounds/previews/chosen-molotov-throw.m4a"></audio></td>
+<td><audio controls preload="none" src="../art/sounds/previews/chosen-391.m4a"></audio></td>
 <td>Леонид 26.11: «чтоб не резали уши», потом «да норм».</td>
 </tr>
 <tr>
 <td>Молотов: разбилась и вспыхнула</td>
 <td>стекло №53 <a href="https://create.roblox.com/store/asset/9114591515">9114591515</a> (смягчено, без пустой первой секунды) и взрыв №314 <a href="https://create.roblox.com/store/asset/9117985933">9117985933</a></td>
 <td><strong>Нравится</strong></td>
-<td><audio controls preload="none" src="../art/sounds/previews/chosen-molotov-glass.m4a"></audio> <audio controls preload="none" src="../art/sounds/previews/chosen-molotov-burst.m4a"></audio></td>
+<td><audio controls preload="none" src="../art/sounds/previews/chosen-53.m4a"></audio> <audio controls preload="none" src="../art/sounds/previews/chosen-314.m4a"></audio></td>
 <td>Леонид 26.11: взрыв — №314; стекло «чтоб не резало уши», потом «да норм». Слышат все рядом.</td>
 </tr>
 <tr>
 <td>Покупка</td>
 <td>инструмент, ведро, машина — №280 «Correct Answer 3» <a href="https://create.roblox.com/store/asset/1839997938">1839997938</a>; другие покупки — наш <code>purchase.wav</code> (только в Studio)</td>
 <td><strong>Выбрано</strong></td>
-<td><audio controls preload="none" src="../art/sounds/previews/chosen-gear.m4a"></audio></td>
+<td><audio controls preload="none" src="../art/sounds/previews/chosen-280.m4a"></audio></td>
 <td>Леонид 26.11: «280 — когда купил инструмент, ведро или машину». Звук других покупок (питомец, класс, помощник) ещё ждёт выбора.</td>
 </tr>
 <tr>
 <td>Новая зона открыта</td>
 <td>№287 «Correct Answer 2» <a href="https://create.roblox.com/store/asset/1839997929">1839997929</a></td>
 <td><strong>Выбрано</strong></td>
-<td><audio controls preload="none" src="../art/sounds/previews/chosen-zone.m4a"></audio></td>
+<td><audio controls preload="none" src="../art/sounds/previews/chosen-287.m4a"></audio></td>
 <td>Леонид 26.11: «287 — когда зону открывают».</td>
 </tr>
 <tr>
 <td>Вся игра пройдена (окно EXPEDITION COMPLETE)</td>
 <td>«Take the Win» <a href="https://create.roblox.com/store/asset/1840091947">1840091947</a>, 6,8 с (в пульте №95, №171, №271)</td>
 <td><strong>Выбрано</strong></td>
-<td><audio controls preload="none" src="../art/sounds/previews/chosen-win.m4a"></audio></td>
+<td><audio controls preload="none" src="../art/sounds/previews/chosen-95.m4a"></audio></td>
 <td>Леонид 25.11.</td>
 </tr>
 <tr>
@@ -465,14 +480,14 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <tr>
 <td>Подбор снега в ведро</td>
 <td>тишина</td>
-<td><strong>Ждёт выбора</strong></td>
-<td>№3–6; из chop a forest: №346, №379; новые из тулбокса: №431–433</td>
+<td><strong>Не нужно</strong></td>
+<td>—</td>
 </tr>
 <tr>
 <td>Ведро полное</td>
-<td>тишина</td>
-<td><strong>Ждёт выбора</strong></td>
-<td>№7–9; из chop a forest: №339; новые из тулбокса: №434–436</td>
+<td>№339 «Synth Sparkle Tone High Pitch Bell Tone Ding» <a href="https://create.roblox.com/store/asset/9126073001">9126073001</a>: один раз, когда ведро или кузов машины заполнились до конца</td>
+<td><strong>Выбрано</strong></td>
+<td>—</td>
 </tr>
 <tr>
 <td>Блок на конвейер</td>
@@ -488,9 +503,9 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </tr>
 <tr>
 <td>Шаги по снегу</td>
-<td>стандартные шаги по пластику (№18)</td>
-<td><strong>Ждёт выбора</strong></td>
-<td>№18–20; новые из тулбокса: №437–439</td>
+<td>№438 «snow footsteps» <a href="https://create.roblox.com/store/asset/87562273941536">87562273941536</a>, в 1,5 раза быстрее (как быстрее ходит игрок)</td>
+<td><strong>Выбрано</strong></td>
+<td>—</td>
 </tr>
 </tbody></table>
 <h3 id="инструменты">Инструменты</h3>
@@ -505,15 +520,15 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 </thead>
 <tbody><tr>
 <td>Взмах ложкой и лопатой</td>
-<td>при копании не звучит: ложка и лопата копают, пока зажата кнопка, слышно только хруст №1–2 (проверено в забеге 26.11); свист меча остался в коде</td>
-<td><strong>Ждёт выбора</strong></td>
-<td>№21–24; из chop a forest: №397, №408, №412</td>
+<td>не звучит: ложка и лопата копают, пока зажата кнопка, слышно только хруст №1–2</td>
+<td><strong>Не нужно</strong></td>
+<td>—</td>
 </tr>
 <tr>
 <td>Удар ложкой и лопатой по снегу</td>
-<td>при копании не звучит, слышно только хруст №1–2 (проверено в забеге 26.11); шлепок остался в коде</td>
-<td><strong>Ждёт выбора</strong></td>
-<td>№25–28</td>
+<td>не звучит: при копании слышно только хруст №1–2</td>
+<td><strong>Не нужно</strong></td>
+<td>—</td>
 </tr>
 <tr>
 <td>Ледоруб по льду</td>
@@ -584,7 +599,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <td>Мотор трака</td>
 <td>тишина</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№62–64</td>
+<td>№62–64; новые из тулбокса: №545–547</td>
 </tr>
 <tr>
 <td>Снегоход</td>
@@ -608,7 +623,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <td>Гусеницы танка</td>
 <td>тишина</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№211–214</td>
+<td>№211–214; новые из тулбокса: №548–550</td>
 </tr>
 <tr>
 <td>Запуск мотора</td>
@@ -626,7 +641,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <td>Машина убирает снег</td>
 <td>космический свист (№78)</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№78–81; из chop a forest: №346</td>
+<td>№78–81; из chop a forest: №346; новые из тулбокса: №551–553</td>
 </tr>
 </tbody></table>
 <h3 id="забег">Забег</h3>
@@ -673,7 +688,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <td>Зона оживает</td>
 <td>тишина</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№98–100</td>
+<td>№98–100; новые из тулбокса: №554–556</td>
 </tr>
 <tr>
 <td>Шаг обучения выполнен</td>
@@ -744,7 +759,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <td>Ежедневные гемы</td>
 <td>сбор гема (№130)</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№130–132</td>
+<td>№130–132; новые из тулбокса: №560–562</td>
 </tr>
 <tr>
 <td>Питомец появился</td>
@@ -756,7 +771,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <td>Класс выбран</td>
 <td>тишина</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№136–138</td>
+<td>№136–138; новые из тулбокса: №563–565</td>
 </tr>
 </tbody></table>
 <h3 id="мир-и-гринч">Мир и Гринч</h3>
@@ -791,7 +806,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <td>Птицы</td>
 <td>тишина</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№150–151</td>
+<td>№150–151; новые из тулбокса: №566–568</td>
 </tr>
 <tr>
 <td>Метель</td>
@@ -809,7 +824,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <td>Санта: «хо-хо-хо»</td>
 <td>тишина</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№215–218</td>
+<td>№215–218; новые из тулбокса: №569–571</td>
 </tr>
 <tr>
 <td>Подарок открылся</td>
@@ -839,7 +854,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <td>Музыка боя с Гринчем</td>
 <td>тишина</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№165–166</td>
+<td>№165–166; новые из тулбокса: №572–574</td>
 </tr>
 <tr>
 <td>Удар по Гринчу</td>
@@ -880,25 +895,25 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <td>Поймал подарок</td>
 <td>тишина</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№178–180</td>
+<td>№178–180; новые из тулбокса: №575–577</td>
 </tr>
 <tr>
 <td>Уронил подарок, промах</td>
 <td>тишина</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№181–182</td>
+<td>№181–182; новые из тулбокса: №578–580</td>
 </tr>
 <tr>
 <td>Прыжок</td>
 <td>стандартный прыжок (№183)</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№183–184</td>
+<td>№183–184; новые из тулбокса: №581–583</td>
 </tr>
 <tr>
 <td>Столкновение</td>
 <td>тишина</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№185–186</td>
+<td>№185–186; новые из тулбокса: №584–586</td>
 </tr>
 <tr>
 <td>Заброс удочки</td>
@@ -910,13 +925,13 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <td>Поплавок в воду</td>
 <td>стандартный всплеск (№189)</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№189–191</td>
+<td>№189–191; новые из тулбокса: №587–589</td>
 </tr>
 <tr>
 <td>Катушка, клюёт</td>
 <td>тишина</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№192–193</td>
+<td>№192–193; новые из тулбокса: №590–592</td>
 </tr>
 <tr>
 <td>Рыба поймана</td>
@@ -946,7 +961,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <td>Хоккей: шайба о борт</td>
 <td>тишина</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№203; из chop a forest: №400, №403</td>
+<td>№203; из chop a forest: №400, №403; новые из тулбокса: №593–595</td>
 </tr>
 <tr>
 <td>Хоккей: гол</td>
@@ -964,7 +979,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <td>Хоккей: толчок</td>
 <td>тишина</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№209–210</td>
+<td>№209–210; новые из тулбокса: №596–598</td>
 </tr>
 </tbody></table>
 <h3 id="новые-26-11">Новые 26.11</h3>
@@ -993,25 +1008,25 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <td>Здание уходит в снег: фонтан золота</td>
 <td>тишина</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№230–232</td>
+<td>№230–232; новые из тулбокса: №599–601</td>
 </tr>
 <tr>
 <td>Кусок снега отвалился</td>
 <td>тишина (id 125089719696690 и 4518881974 лежат в настройках, но не играют)</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№233–236; из chop a forest: №329, №382</td>
+<td>№233–236; из chop a forest: №329, №382; новые из тулбокса: №602–604</td>
 </tr>
 <tr>
 <td>Остров урока отвалился</td>
 <td>тишина</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№237–239</td>
+<td>№237–239; новые из тулбокса: №605–607</td>
 </tr>
 <tr>
 <td>Финал туториала: TUTORIAL COMPLETE</td>
 <td>тишина</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№240–242; из chop a forest: №283</td>
+<td>№240–242; из chop a forest: №283; новые из тулбокса: №608–610</td>
 </tr>
 <tr>
 <td>Подарки Санты падают в снег</td>
@@ -1023,19 +1038,19 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <td>Эльф и Гринч исчезают в облачке</td>
 <td>тишина</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№246–248; из chop a forest: №321</td>
+<td>№246–248; из chop a forest: №321; новые из тулбокса: №611–613</td>
 </tr>
 <tr>
 <td>Подарки Гринча: забор упал</td>
 <td>тишина</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№249–251; из chop a forest: №292, №304</td>
+<td>№249–251; из chop a forest: №292, №304; новые из тулбокса: №614–616</td>
 </tr>
 <tr>
 <td>Голем появился</td>
 <td>тишина</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№252–254</td>
+<td>№252–254; новые из тулбокса: №617–619</td>
 </tr>
 <tr>
 <td>Автомат в зале аркад: старт игры</td>
@@ -1047,19 +1062,19 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <td>Хоккей: итог матча</td>
 <td>тишина</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№259–260</td>
+<td>№259–260; новые из тулбокса: №620–622</td>
 </tr>
 <tr>
 <td>Хоккей: заряд броска</td>
 <td>тишина</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№261–263; из chop a forest: №319</td>
+<td>№261–263; из chop a forest: №319; новые из тулбокса: №623–625</td>
 </tr>
 <tr>
 <td>Лобби: встал в очередь</td>
 <td>тишина</td>
 <td><strong>Ждёт выбора</strong></td>
-<td>№264–266</td>
+<td>№264–266; новые из тулбокса: №626–628</td>
 </tr>
 </tbody></table>
 <h2 id="рекомендую-послушать">Рекомендую послушать</h2>
@@ -2400,6 +2415,726 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <td>звук игрового автомата, 2 с</td>
 <td><audio controls preload="none" src="../art/sounds/previews/544.m4a"></audio></td>
 <td><a href="https://create.roblox.com/store/asset/16480579685">16480579685</a></td>
+</tr>
+<tr>
+<td>Мотор трака</td>
+<td>545</td>
+<td>ровный гул тягача</td>
+<td>большой грузовик, готовая петля, 46 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/545.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9112736299">9112736299</a></td>
+</tr>
+<tr>
+<td>Мотор трака</td>
+<td>546</td>
+<td>гул мотора автобуса</td>
+<td>мягкий ровный гул, петля, 27 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/546.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9112886237">9112886237</a></td>
+</tr>
+<tr>
+<td>Мотор трака</td>
+<td>547</td>
+<td>дизель самосвала</td>
+<td>тяжёлый мотор, петля, 46 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/547.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9112735782">9112735782</a></td>
+</tr>
+<tr>
+<td>Гусеницы танка</td>
+<td>548</td>
+<td>мультяшные гусеницы</td>
+<td>игровые гусеницы, ровная петля, 10 с, файл только в Roblox</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/6325936117">6325936117</a></td>
+</tr>
+<tr>
+<td>Гусеницы танка</td>
+<td>549</td>
+<td>гусеницы машины</td>
+<td>короткая петля гусениц, 6 с, файл только в Roblox</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/78250429589481">78250429589481</a></td>
+</tr>
+<tr>
+<td>Гусеницы танка</td>
+<td>550</td>
+<td>гусеницы танка катятся</td>
+<td>гусеницы на ходу, 7 с, файл только в Roblox</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/98478680431616">98478680431616</a></td>
+</tr>
+<tr>
+<td>Машина убирает снег</td>
+<td>551</td>
+<td>лист едет по снегу</td>
+<td>ровный шорох снега, 20 с, 21 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/551.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9125945654">9125945654</a></td>
+</tr>
+<tr>
+<td>Машина убирает снег</td>
+<td>552</td>
+<td>скольжение по снегу</td>
+<td>мягкий снежный шорох, 16 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/552.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9119997864">9119997864</a></td>
+</tr>
+<tr>
+<td>Машина убирает снег</td>
+<td>553</td>
+<td>долгий шорох снега</td>
+<td>второй дубль того же, 20 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/553.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9125945945">9125945945</a></td>
+</tr>
+<tr>
+<td>Зона оживает</td>
+<td>554</td>
+<td>волшебные колокольчики</td>
+<td>звон идёт вверх, 3 с, 3 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/554.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9116383967">9116383967</a></td>
+</tr>
+<tr>
+<td>Зона оживает</td>
+<td>555</td>
+<td>перелив вверх</td>
+<td>музыкальный подъём, как расцвет, 5 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/555.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1836341885">1836341885</a></td>
+</tr>
+<tr>
+<td>Зона оживает</td>
+<td>556</td>
+<td>мягкое сияние</td>
+<td>волшебная аура от Roblox, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/556.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/17208327798">17208327798</a></td>
+</tr>
+<tr>
+<td>Покупка</td>
+<td>557</td>
+<td>звук покупки</td>
+<td>готовый звук покупки Roblox, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/557.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/17208380755">17208380755</a></td>
+</tr>
+<tr>
+<td>Покупка</td>
+<td>558</td>
+<td>звон монеток</td>
+<td>монеты уходят, от Roblox, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/558.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/127645268874265">127645268874265</a></td>
+</tr>
+<tr>
+<td>Покупка</td>
+<td>559</td>
+<td>касса звенит</td>
+<td>классическая касса, 3 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/559.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/5852497507">5852497507</a></td>
+</tr>
+<tr>
+<td>Ежедневные гемы</td>
+<td>560</td>
+<td>стеклянный дзинь</td>
+<td>звон как у кристалла, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/560.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9126073953">9126073953</a></td>
+</tr>
+<tr>
+<td>Ежедневные гемы</td>
+<td>561</td>
+<td>подбор камня</td>
+<td>сделан для гемов, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/561.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/4612375233">4612375233</a></td>
+</tr>
+<tr>
+<td>Ежедневные гемы</td>
+<td>562</td>
+<td>звонкий колокольчик</td>
+<td>сверкающий звон, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/562.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9126073302">9126073302</a></td>
+</tr>
+<tr>
+<td>Класс выбран</td>
+<td>563</td>
+<td>весёлый аккорд</td>
+<td>бодро, мило, 2 с, 3 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/563.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9040476898">9040476898</a></td>
+</tr>
+<tr>
+<td>Класс выбран</td>
+<td>564</td>
+<td>радостный мини-джингл</td>
+<td>коротко и весело, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/564.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9045807588">9045807588</a></td>
+</tr>
+<tr>
+<td>Класс выбран</td>
+<td>565</td>
+<td>торжественная фанфара</td>
+<td>ясное «выбрано», 5 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/565.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1845287239">1845287239</a></td>
+</tr>
+<tr>
+<td>Птицы</td>
+<td>566</td>
+<td>утренние птицы</td>
+<td>щебет, готовая петля, 36 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/566.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9112831666">9112831666</a></td>
+</tr>
+<tr>
+<td>Птицы</td>
+<td>567</td>
+<td>птицы рядом поют</td>
+<td>звонкий щебет, петля, 32 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/567.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9112874946">9112874946</a></td>
+</tr>
+<tr>
+<td>Птицы</td>
+<td>568</td>
+<td>щебет в лесу</td>
+<td>спокойный фон птиц, 36 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/568.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9116969466">9116969466</a></td>
+</tr>
+<tr>
+<td>Санта: «хо-хо-хо»</td>
+<td>569</td>
+<td>Санта «хо-хо-хо»</td>
+<td>добрый смех Санты, 3 с, файл только в Roblox</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/121307115107222">121307115107222</a></td>
+</tr>
+<tr>
+<td>Санта: «хо-хо-хо»</td>
+<td>570</td>
+<td>короткое «хо-хо-хо»</td>
+<td>коротко, 2 с, 2 с, файл только в Roblox</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/93142807667480">93142807667480</a></td>
+</tr>
+<tr>
+<td>Санта: «хо-хо-хо»</td>
+<td>571</td>
+<td>«хо-хо-хо, с Рождеством»</td>
+<td>смех и поздравление, 4 с, файл только в Roblox</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/8168233527">8168233527</a></td>
+</tr>
+<tr>
+<td>Музыка боя с Гринчем</td>
+<td>572</td>
+<td>рождественская погоня</td>
+<td>быстро, весело, колокольчики, 126 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/572.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9038460167">9038460167</a></td>
+</tr>
+<tr>
+<td>Музыка боя с Гринчем</td>
+<td>573</td>
+<td>мультяшная погоня</td>
+<td>альбом для детей, 166 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/573.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1844611874">1844611874</a></td>
+</tr>
+<tr>
+<td>Музыка боя с Гринчем</td>
+<td>574</td>
+<td>шкодные эльфы</td>
+<td>озорно, сказочно, 125 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/574.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1841594035">1841594035</a></td>
+</tr>
+<tr>
+<td>Поймал подарок</td>
+<td>575</td>
+<td>звук подбора</td>
+<td>яркий подбор от Roblox, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/575.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/17208319162">17208319162</a></td>
+</tr>
+<tr>
+<td>Поймал подарок</td>
+<td>576</td>
+<td>сбор предмета</td>
+<td>игровой «взял», 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/576.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/4612375802">4612375802</a></td>
+</tr>
+<tr>
+<td>Поймал подарок</td>
+<td>577</td>
+<td>звонкий пинг</td>
+<td>чистый короткий звон, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/577.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9126076030">9126076030</a></td>
+</tr>
+<tr>
+<td>Уронил подарок, промах</td>
+<td>578</td>
+<td>«увы» из телешоу</td>
+<td>мягкое «не вышло», 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/578.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1844442622">1844442622</a></td>
+</tr>
+<tr>
+<td>Уронил подарок, промах</td>
+<td>579</td>
+<td>смешное бульканье</td>
+<td>не обидно, смешно, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/579.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9112752818">9112752818</a></td>
+</tr>
+<tr>
+<td>Уронил подарок, промах</td>
+<td>580</td>
+<td>мультяшный бонк</td>
+<td>пружинистый промах, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/580.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9113854527">9113854527</a></td>
+</tr>
+<tr>
+<td>Прыжок</td>
+<td>581</td>
+<td>пружинка</td>
+<td>классический звук Roblox, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/581.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/12222124">12222124</a></td>
+</tr>
+<tr>
+<td>Прыжок</td>
+<td>582</td>
+<td>мультяшный «боинг»</td>
+<td>пружинистый и смешной, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/582.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9113854388">9113854388</a></td>
+</tr>
+<tr>
+<td>Прыжок</td>
+<td>583</td>
+<td>боинг пружины</td>
+<td>второй вариант «боинга», 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/583.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9113854393">9113854393</a></td>
+</tr>
+<tr>
+<td>Столкновение</td>
+<td>584</td>
+<td>мультяшный удар</td>
+<td>смешной «бонк» удара, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/584.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9113854411">9113854411</a></td>
+</tr>
+<tr>
+<td>Столкновение</td>
+<td>585</td>
+<td>глухой «бумп»</td>
+<td>мягкий мультяшный удар, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/585.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9113537815">9113537815</a></td>
+</tr>
+<tr>
+<td>Столкновение</td>
+<td>586</td>
+<td>мягкий стук</td>
+<td>глухо, не больно, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/586.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9113637982">9113637982</a></td>
+</tr>
+<tr>
+<td>Поплавок в воду</td>
+<td>587</td>
+<td>плюх в воду</td>
+<td>классика Roblox</td>
+<td><audio controls preload="none" src="../art/sounds/previews/587.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/12222054">12222054</a></td>
+</tr>
+<tr>
+<td>Поплавок в воду</td>
+<td>588</td>
+<td>капля плюх</td>
+<td>лёгкий маленький плюх, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/588.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9114176192">9114176192</a></td>
+</tr>
+<tr>
+<td>Поплавок в воду</td>
+<td>589</td>
+<td>тихий всплеск</td>
+<td>мягкий маленький всплеск, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/589.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9120584388">9120584388</a></td>
+</tr>
+<tr>
+<td>Катушка, клюёт</td>
+<td>590</td>
+<td>катушка тихо трещит</td>
+<td>мягкие щелчки катушки, 5 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/590.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9114453929">9114453929</a></td>
+</tr>
+<tr>
+<td>Катушка, клюёт</td>
+<td>591</td>
+<td>катушка мотает</td>
+<td>короткая намотка лески, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/591.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9114449879">9114449879</a></td>
+</tr>
+<tr>
+<td>Катушка, клюёт</td>
+<td>592</td>
+<td>леска «вжик»</td>
+<td>как клюнула большая рыба, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/592.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9114448918">9114448918</a></td>
+</tr>
+<tr>
+<td>Хоккей: шайба о борт</td>
+<td>593</td>
+<td>шайба бьёт в борт</td>
+<td>настоящий борт, взять один удар, 4 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/593.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9125607878">9125607878</a></td>
+</tr>
+<tr>
+<td>Хоккей: шайба о борт</td>
+<td>594</td>
+<td>резиновый шлёп</td>
+<td>короткий плотный удар, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/594.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9113904412">9113904412</a></td>
+</tr>
+<tr>
+<td>Хоккей: шайба о борт</td>
+<td>595</td>
+<td>удар аэрохоккея</td>
+<td>короткий пластиковый стук, 1 с, файл только в Roblox</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/88940519192431">88940519192431</a></td>
+</tr>
+<tr>
+<td>Хоккей: толчок</td>
+<td>596</td>
+<td>глухие толчки</td>
+<td>мягкие удары телом, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/596.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9120899089">9120899089</a></td>
+</tr>
+<tr>
+<td>Хоккей: толчок</td>
+<td>597</td>
+<td>мягкий стук телом</td>
+<td>глухой короткий «бум», 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/597.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9113637974">9113637974</a></td>
+</tr>
+<tr>
+<td>Хоккей: толчок</td>
+<td>598</td>
+<td>глухое падение</td>
+<td>мягко, не больно, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/598.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9113479620">9113479620</a></td>
+</tr>
+<tr>
+<td>Здание уходит в снег: фонтан золота</td>
+<td>599</td>
+<td>выигрыш джекпота</td>
+<td>звон приза из игры, 3 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/599.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1846251193">1846251193</a></td>
+</tr>
+<tr>
+<td>Здание уходит в снег: фонтан золота</td>
+<td>600</td>
+<td>россыпь монет</td>
+<td>много монет падает, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/600.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9113849579">9113849579</a></td>
+</tr>
+<tr>
+<td>Здание уходит в снег: фонтан золота</td>
+<td>601</td>
+<td>искрящиеся монеты</td>
+<td>звон золота с блеском, 4 с, файл только в Roblox</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/132643294818400">132643294818400</a></td>
+</tr>
+<tr>
+<td>Кусок снега отвалился</td>
+<td>602</td>
+<td>снежок рассыпался</td>
+<td>снег разлетается, 1 с, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/602.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9119312319">9119312319</a></td>
+</tr>
+<tr>
+<td>Кусок снега отвалился</td>
+<td>603</td>
+<td>ком в снег</td>
+<td>мягкий глухой хруст, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/603.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9119310338">9119310338</a></td>
+</tr>
+<tr>
+<td>Кусок снега отвалился</td>
+<td>604</td>
+<td>хрусткий снег</td>
+<td>очень короткий, 0.7 с, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/604.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9119316983">9119316983</a></td>
+</tr>
+<tr>
+<td>Остров урока отвалился</td>
+<td>605</td>
+<td>снег осыпается охапкой</td>
+<td>большой ком падает, 3 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/605.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9119314868">9119314868</a></td>
+</tr>
+<tr>
+<td>Остров урока отвалился</td>
+<td>606</td>
+<td>снег падает с ветки</td>
+<td>тяжёлая осыпь снега, 3 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/606.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9119315072">9119315072</a></td>
+</tr>
+<tr>
+<td>Остров урока отвалился</td>
+<td>607</td>
+<td>весёлый мини-джингл</td>
+<td>радостная точка после, 4 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/607.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1841485481">1841485481</a></td>
+</tr>
+<tr>
+<td>Финал туториала: TUTORIAL COMPLETE</td>
+<td>608</td>
+<td>«Снеговик на Рождество»</td>
+<td>зимний праздничный джингл, 5 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/608.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1838007733">1838007733</a></td>
+</tr>
+<tr>
+<td>Финал туториала: TUTORIAL COMPLETE</td>
+<td>609</td>
+<td>весёлый ксилофон с бубенцами</td>
+<td>смешной праздничный финал, 8 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/609.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9041731513">9041731513</a></td>
+</tr>
+<tr>
+<td>Финал туториала: TUTORIAL COMPLETE</td>
+<td>610</td>
+<td>зимний джингл</td>
+<td>короткий зимний праздник, 8 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/610.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1837978643">1837978643</a></td>
+</tr>
+<tr>
+<td>Эльф и Гринч исчезают в облачке</td>
+<td>611</td>
+<td>волшебный «пуф»</td>
+<td>короткое облачко, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/611.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9116405867">9116405867</a></td>
+</tr>
+<tr>
+<td>Эльф и Гринч исчезают в облачке</td>
+<td>612</td>
+<td>искры улетают</td>
+<td>блеск и «фьють», исчез, 3 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/612.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9125635285">9125635285</a></td>
+</tr>
+<tr>
+<td>Эльф и Гринч исчезают в облачке</td>
+<td>613</td>
+<td>мягкий «пуф»</td>
+<td>глухое волшебное облако, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/613.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9116406375">9116406375</a></td>
+</tr>
+<tr>
+<td>Подарки Гринча: забор упал</td>
+<td>614</td>
+<td>доски падают</td>
+<td>деревянный грохот без металла, 3 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/614.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9120860399">9120860399</a></td>
+</tr>
+<tr>
+<td>Подарки Гринча: забор упал</td>
+<td>615</td>
+<td>доски на землю</td>
+<td>короче, 2.4 с, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/615.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9120858323">9120858323</a></td>
+</tr>
+<tr>
+<td>Подарки Гринча: забор упал</td>
+<td>616</td>
+<td>грохот досок</td>
+<td>длиннее, с россыпью, 3 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/616.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9120858127">9120858127</a></td>
+</tr>
+<tr>
+<td>Голем появился</td>
+<td>617</td>
+<td>волшебный «бум»</td>
+<td>тяжёлый удар с сиянием, 3 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/617.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9116384485">9116384485</a></td>
+</tr>
+<tr>
+<td>Голем появился</td>
+<td>618</td>
+<td>тяжёлый топ в снег</td>
+<td>глухой снежный удар, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/618.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9125965536">9125965536</a></td>
+</tr>
+<tr>
+<td>Голем появился</td>
+<td>619</td>
+<td>обвал с гулом</td>
+<td>мощный грохот, как лавина, 3 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/619.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9113217346">9113217346</a></td>
+</tr>
+<tr>
+<td>Хоккей: итог матча</td>
+<td>620</td>
+<td>аплодисменты</td>
+<td>победа: хлопают, 6 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/620.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9113137529">9113137529</a></td>
+</tr>
+<tr>
+<td>Хоккей: итог матча</td>
+<td>621</td>
+<td>труба «уа-уа»</td>
+<td>поражение: смешно, не обидно, 4 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/621.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1840568386">1840568386</a></td>
+</tr>
+<tr>
+<td>Хоккей: итог матча</td>
+<td>622</td>
+<td>сирена конца матча</td>
+<td>победа: как на стадионе, 3 с, файл только в Roblox</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/5804341339">5804341339</a></td>
+</tr>
+<tr>
+<td>Хоккей: заряд броска</td>
+<td>623</td>
+<td>тон растёт</td>
+<td>заряд вверх, обрезать до 1.5 с, 3 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/623.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9119816546">9119816546</a></td>
+</tr>
+<tr>
+<td>Хоккей: заряд броска</td>
+<td>624</td>
+<td>синт-заряд</td>
+<td>многоголосый подъём, 3 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/624.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9119816241">9119816241</a></td>
+</tr>
+<tr>
+<td>Хоккей: заряд броска</td>
+<td>625</td>
+<td>свист нарастает</td>
+<td>ровно 1.5 с, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/625.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9125805759">9125805759</a></td>
+</tr>
+<tr>
+<td>Лобби: встал в очередь</td>
+<td>626</td>
+<td>звук «вошёл»</td>
+<td>мягкое подтверждение Roblox, 3 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/626.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/87296803139875">87296803139875</a></td>
+</tr>
+<tr>
+<td>Лобби: встал в очередь</td>
+<td>627</td>
+<td>«принято»</td>
+<td>короткий тон Roblox, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/627.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/17208209318">17208209318</a></td>
+</tr>
+<tr>
+<td>Лобби: встал в очередь</td>
+<td>628</td>
+<td>щелчок выбора</td>
+<td>тихий UI-звук Roblox, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/628.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/10128760939">10128760939</a></td>
+</tr>
+<tr>
+<td>Кролик пойман</td>
+<td>629</td>
+<td>милый «пуп»</td>
+<td>высокий и милый, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/629.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9112751536">9112751536</a></td>
+</tr>
+<tr>
+<td>Кролик пойман</td>
+<td>630</td>
+<td>искорка «пинг»</td>
+<td>лёгкий блеск, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/630.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9126075967">9126075967</a></td>
+</tr>
+<tr>
+<td>Кролик пойман</td>
+<td>631</td>
+<td>крошечный «пуп»</td>
+<td>совсем короткий, 0.6 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/631.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9112751731">9112751731</a></td>
+</tr>
+<tr>
+<td>Аркада: новый рекорд</td>
+<td>632</td>
+<td>джингл «рекорд»</td>
+<td>так и называется, 4 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/632.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1837769150">1837769150</a></td>
+</tr>
+<tr>
+<td>Аркада: новый рекорд</td>
+<td>633</td>
+<td>фанфара рекорда</td>
+<td>ярко, 6 с, 6 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/633.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1844927446">1844927446</a></td>
+</tr>
+<tr>
+<td>Аркада: новый рекорд</td>
+<td>634</td>
+<td>«главный приз»</td>
+<td>игровое шоу, победа, 6 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/634.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1846251212">1846251212</a></td>
 </tr>
 </tbody></table>
 </div>
