@@ -1,0 +1,30 @@
+# projectile-03-glow-dots.png
+
+Generated with ChatGPT Image: Codex CLI `codex exec`, model gpt-6.1-sol, built-in image_gen, through `node tools/imagegen/cli.mjs`.
+
+Дата генерации: 2026-11-26.
+
+## Prompt
+
+Concept reference for a visual effect in a Roblox winter snow-cleaning game for kids. Match the art style of the attached game frame exactly: soft pastel low-poly cartoon, flat colours, visible facets, bright cold daylight, no realistic textures, no photo materials, no noise. The ground is a wide smooth snow field about 1.3 studs deep (snow #F3F6F5, snow in shade #B3C2D4, lilac snow shadow #CDCDED). Where snow has melted away the ground is green grass (#96DC6A) with smooth melted snow walls and a soft blue rim (#A8DEE7). Distant pastel low-poly mountains (#A096DE, #CE9ED2, #80A0E6) and snowy pine trees (#54A577) on the horizon.
+
+Camera: first person, as in the attached game frame: no arms, no hands, no player character, nothing at the lower right; the rest of the screen shows the snow field ahead.
+
+The weapon is the "Molotov": a squat light-blue glass bottle (#8BE0FF, ice #A8DEE7 highlights) with a white cloth wick (#FFFDF5) and a small cartoon flame on top, exactly like the attached bottle picture, as a chunky low-poly 3D object. It is thrown far into the field; where it lands the fire melts the snow into a round patch of green grass (the game's rule: the melt spreads smoothly as one growing ring, about 22 studs across at the end, never in square blocks).
+
+It must feel like a satisfying, juicy, "dopamine" moment in a top kids mobile game: big, bright, clear and readable on a phone, cartoon fire, never scary, no gore, no realistic explosion, no black smoke.
+No HUD, no buttons, no text, no letters, no numbers, no arrows, no labels, no comic lettering.
+Use only colours from this list: snow #F3F6F5, #B3C2D4, #CDCDED, ice #A8DEE7, crystal #8BE0FF, grass #96DC6A, cream #FFFDF5, gold #FFCE43, straw #FAD66E, orange #F8AA3C, red #D6392B, wood #CD925C, dark outline #2B1A11 (only for thin outlines if the style needs it), metal #A0B0C4. No black, no grey smoke, no other neon colours.
+
+Layout: ONE wide image split into THREE equal panels side by side, left to right = three moments of the same throw from the same camera: (1) just thrown, the bottle a few studs ahead of the camera, rising, (2) the top of its arc halfway to the target, (3) just before it hits the snow far ahead. Thin white gaps between panels. Only the flying bottle and its trail, no explosion yet.
+
+The flight concept: GLOWING BOTTLE AND DOTTED ARC. The bottle glows softly with a warm gold aura and a crystal #8BE0FF rim light, spinning slowly, leaving a dotted arc of round gold glowing dots behind it like a toy aiming line, with a little flame flickering on the wick and two or three small sparkles.
+
+## Референсы
+
+- `art/frames/02-snow-run.jpeg` — style reference.
+- `art/ui/hotbar/hotbar-molotov-256.png` — style reference.
+
+## Проверка
+
+Попыток: 1 (26.11.2026). PNG посмотрен: три момента, бутылка как на значке хотбара, цвета палитры, без текста, цифр, HUD и рук. Референс для выбора Леонидом (карточка 8b5562), в игру не подключается.

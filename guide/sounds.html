@@ -1,0 +1,2778 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Звуки — Clean a Snow</title>
+<style>/* Цвета взяты с кадров игры: снег, тёмно-синие плашки HUD, дерево домиков, золото монет. */
+:root {
+  --snow: #EEF3F8;
+  --ink: #1D2740;
+  --wood: #9A5A2C;
+  --wood-dark: #5E3417;
+  --gold: #F2C230;
+  --ice: #4A90C8;
+  --ice-dark: #234E78;
+  --muted: #7C8798;
+  --paper: #FFFFFF;
+}
+* { box-sizing: border-box; }
+/* Своё display у блока не должно отменять атрибут hidden. */
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+body { margin: 0; background: var(--snow); color: var(--ink); font: 16px/1.55 "Segoe UI", system-ui, sans-serif; }
+a { color: var(--ice-dark); }
+code { font-family: Consolas, "Cascadia Mono", monospace; font-size: .9em; background: rgba(29, 39, 64, .07); padding: 0 .3em; border-radius: 4px; overflow-wrap: anywhere; }
+pre { white-space: pre-wrap; word-break: break-word; background: rgba(29, 39, 64, .06); padding: 12px; border-radius: 8px; font-size: 13px; }
+pre code { background: none; padding: 0; }
+
+.topbar { position: sticky; top: 0; z-index: 5; display: flex; gap: 16px; align-items: center; padding: 10px 20px; background: var(--ink); color: var(--snow); }
+.topbar .brand { color: var(--snow); font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap; }
+.topbar .top-link, #menu { white-space: nowrap; }
+.topbar .hint { margin-left: auto; font-size: 13px; color: var(--gold); }
+.topbar .hint code { background: rgba(238, 243, 248, .12); color: var(--snow); }
+.topbar .top-link { color: var(--snow); text-decoration: none; font-weight: 600; padding: 5px 12px; border: 2px solid var(--gold); border-radius: 6px; background: transparent; font: inherit; cursor: pointer; }
+.topbar .top-link:hover, .topbar .top-link[aria-current="page"] { background: var(--gold); color: var(--ink); }
+#menu { display: none; background: var(--wood); color: var(--snow); border: 0; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+
+/* Тестирование: группы сворачиваются, у пункта — галочка, у группы — счётчик отмеченных. */
+.test-total { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 15px; }
+#test-reset { background: transparent; color: var(--wood); border: 2px solid var(--wood); border-radius: 6px; padding: 4px 12px; font: inherit; font-weight: 600; cursor: pointer; }
+#test-reset:hover { background: var(--wood); color: var(--snow); }
+.test-group { margin: 14px 0; border: 2px solid rgba(29, 39, 64, .12); border-radius: 8px; background: rgba(255, 255, 255, .5); }
+.test-group > summary { cursor: pointer; padding: 10px 14px; font-weight: 700; font-size: 18px; }
+.test-group .test-count { margin-left: 8px; font-size: 13px; font-weight: 600; color: var(--wood); }
+.test-group.test-finished .test-count { color: var(--ice); }
+.test-task { padding: 4px 16px 12px; border-top: 1px solid rgba(29, 39, 64, .08); }
+.test-task h4 { margin: 10px 0 6px; }
+.test-item { display: flex; gap: 10px; align-items: flex-start; padding: 5px 4px; border-radius: 6px; line-height: 1.4; cursor: pointer; }
+.test-item:hover { background: rgba(154, 90, 44, .08); }
+.test-item input { width: 18px; height: 18px; margin-top: 2px; flex: none; accent-color: var(--wood); }
+.test-item:has(input:checked) > span:first-of-type { color: rgba(29, 39, 64, .55); text-decoration: line-through; }
+.test-people { margin-left: auto; flex: none; font-size: 12px; font-weight: 700; color: var(--wood); white-space: nowrap; }
+
+/* Вопросы: карточка вопроса, общая галочка «Ответ дан»; отвеченный вопрос бледнеет. */
+.question { margin: 14px 0; padding: 4px 16px 10px; border: 2px solid rgba(29, 39, 64, .12); border-radius: 8px; background: rgba(255, 255, 255, .5); }
+.question h3 { margin: 10px 0 6px; }
+.question-status { margin: 4px 0; font-size: 13px; font-weight: 600; color: var(--wood); }
+.answer-mark { display: inline-flex; gap: 8px; align-items: center; padding: 4px 10px; border: 2px solid var(--wood); border-radius: 6px; font-weight: 700; color: var(--wood); cursor: pointer; }
+.answer-mark input { width: 18px; height: 18px; margin: 0; accent-color: var(--ice); }
+.question-answered { border-color: var(--ice); }
+.question-answered .answer-mark { border-color: var(--ice); color: var(--ice-dark); }
+.question-answered > .prose { opacity: .55; }
+/* HUD: слева как сейчас, справа референс, отметка Approved под парой; на узком экране пара в столбик. */
+.hud-row { margin: 14px 0; padding: 4px 16px 12px; border: 2px solid rgba(29, 39, 64, .12); border-radius: 8px; background: rgba(255, 255, 255, .5); }
+.hud-row h4 { margin: 10px 0 2px; color: var(--ice-dark); font-size: 17px; }
+.hud-states { margin: 0 0 8px; font-size: 13px; color: var(--muted); }
+.hud-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 10px; }
+.hud-pair figure { margin: 0; min-width: 0; }
+.hud-pair figcaption { margin-bottom: 4px; font-size: 13px; font-weight: 700; color: var(--wood); }
+.hud-now, .hud-ref { display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-start; }
+.hud-now img { max-width: 100%; max-height: 260px; object-fit: contain; border-radius: 6px; cursor: zoom-in; }
+.hud-ref img { width: 100%; border-radius: 6px; cursor: zoom-in; }
+.hud-approved { border-color: var(--ice); }
+.hud-approved .answer-mark { border-color: var(--ice); color: var(--ice-dark); }
+@media (max-width: 700px) { .hud-pair { grid-template-columns: 1fr; } }
+
+html:not(.site-open) .topbar,
+html:not(.site-open) .layout,
+html:not(.site-open) #viewer { display: none !important; }
+.site-lock { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; padding: 24px; background: var(--snow); }
+html.site-open .site-lock { display: none !important; }
+.site-lock-card { display: grid; gap: 10px; width: min(420px, 100%); padding: 16px; background: var(--paper); border: 2px solid var(--ink); border-radius: 10px; }
+.site-lock-card p { margin: 0; }
+.site-lock-card label { display: grid; gap: 4px; font-weight: 700; }
+.site-lock-card input { font: inherit; padding: 8px 10px; border: 2px solid var(--ink); border-radius: 6px; }
+.site-lock-card button, .board-filters button { font: inherit; font-weight: 700; padding: 6px 14px; border: 2px solid var(--ink); border-radius: 6px; background: var(--paper); color: var(--ink); cursor: pointer; }
+.site-lock-card button { justify-self: start; background: var(--gold); }
+.site-lock-error { color: var(--wood-dark); font-weight: 700; }
+.board-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 14px; }
+.board-filters button[aria-pressed="true"] { background: var(--ink); color: var(--snow); }
+.board-columns { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; align-items: start; }
+.board-column { background: rgba(255, 255, 255, .55); border: 1px solid rgba(29, 39, 64, .1); border-radius: 10px; padding: 10px; }
+.board-column > h3 { margin: 0 0 8px; font-size: 15px; }
+.board-count { display: inline-block; min-width: 1.4em; padding: 0 6px; border-radius: 999px; background: var(--ink); color: var(--snow); font-size: 12px; text-align: center; }
+.board-card { margin: 0 0 8px; padding: 10px 12px; background: var(--paper); border: 1px solid rgba(29, 39, 64, .12); border-radius: 8px; }
+.board-card h3 { margin: 0 0 6px; font-size: 16px; }
+.board-meta, .board-lead, .board-empty { margin: 0 0 6px; }
+.board-empty { color: var(--muted); }
+.board-origin { margin: 0 0 6px; color: var(--muted); font-size: 13px; }
+.board-author { font-weight: 700; color: var(--ink); }
+.board-archive { color: var(--muted); font-size: 12px; }
+.person { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+.person[data-person="Богдан"] { background: var(--gold); }
+.person[data-person="Леонид"] { background: var(--ice); color: var(--snow); }
+.person[data-person="Георгий"] { background: var(--wood); color: var(--snow); }
+.board-shots { display: grid; gap: 8px; margin: 0 0 8px; }
+.board-shots img { width: 100%; height: auto; border-radius: 6px; }
+.board-card details { margin-top: 4px; }
+.board-card summary { cursor: pointer; font-weight: 600; }
+@media (max-width: 1100px) {
+  .board-columns { grid-template-columns: 1fr 1fr; }
+}
+
+.layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); }
+#sidebar { position: sticky; top: 52px; align-self: start; height: calc(100vh - 52px); overflow-y: auto; padding: 16px 12px; border-right: 2px solid rgba(29, 39, 64, .1); }
+#sidebar ul { list-style: none; margin: 0; padding: 0; }
+#sidebar li a { display: block; padding: 6px 10px; border-radius: 6px; color: var(--ink); text-decoration: none; font-weight: 600; }
+#sidebar li a:hover, #sidebar li a[aria-current="page"] { background: var(--ice-dark); color: var(--snow); }
+#sidebar ul ul a { font-weight: 400; font-size: 14px; padding-left: 22px; }
+/* Сворачиваемый раздел: стрелка браузера слева сворачивает, ссылка рядом открывает страницу раздела. */
+#sidebar summary { cursor: pointer; color: var(--ice-dark); font-size: 15px; padding: 0 0 0 6px; border-radius: 6px; }
+#sidebar summary:hover { background: rgba(74, 144, 200, .14); }
+#sidebar summary a { display: inline-block; width: calc(100% - 22px); vertical-align: middle; }
+
+main { padding: 8px 32px 64px; max-width: 1280px; }
+.part { padding-top: 16px; padding-bottom: 24px; }
+.part > h2 { font-size: 28px; margin: 12px 0 16px; color: var(--wood-dark); }
+.toc { margin: 0 0 18px; }
+.toc ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { display: inline-block; padding: 4px 10px; border-radius: 999px; background: var(--paper); color: var(--ice-dark); text-decoration: none; font-weight: 600; font-size: 14px; }
+.toc a:hover { background: var(--ice-dark); color: var(--snow); }
+h3 { color: var(--ice-dark); margin-top: 28px; }
+.prose { max-width: 900px; }
+.prose table { border-collapse: collapse; margin: 12px 0; display: block; overflow-x: auto; }
+.prose th, .prose td { border: 1px solid rgba(29, 39, 64, .2); padding: 6px 10px; text-align: left; vertical-align: top; }
+.prose th { background: rgba(74, 144, 200, .14); }
+.prose img { max-width: 100%; border-radius: 8px; }
+.prose.small, .small { font-size: 14px; }
+.doc { background: var(--paper); border-radius: 12px; padding: 4px 24px 16px; margin: 0 0 20px; box-shadow: 0 1px 0 rgba(29, 39, 64, .1); }
+.doc .path { margin: 12px 0 0; font-size: 13px; color: var(--muted); }
+.lead { font-size: 17px; max-width: 900px; }
+.source { font-size: 13px; color: var(--muted); }
+
+.gallery { margin: 8px 0 28px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.shot { margin: 0; background: var(--paper); border-radius: 10px; padding: 8px; }
+.shot img { width: 100%; height: 190px; object-fit: cover; border-radius: 6px; cursor: zoom-in; display: block; }
+.shot figcaption { font-size: 14px; padding: 6px 2px 0; }
+.shot details { font-size: 13px; }
+.shot summary { cursor: pointer; color: var(--ice-dark); }
+.tag { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 999px; background: rgba(74, 144, 200, .15); color: var(--ice-dark); }
+.hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin: 0 0 20px; }
+.hero img { width: 100%; border-radius: 10px; cursor: zoom-in; display: block; }
+
+/* Таблицы данных из кода игры. */
+.table-wrap { overflow-x: auto; margin: 12px 0; }
+.data { border-collapse: collapse; background: var(--paper); border-radius: 8px; min-width: 420px; }
+.data th, .data td { padding: 7px 12px; border-bottom: 1px solid rgba(29, 39, 64, .1); text-align: left; vertical-align: top; }
+.data thead th { background: rgba(74, 144, 200, .14); font-size: 14px; white-space: nowrap; }
+.data tbody th { white-space: nowrap; }
+.data td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.data .sub { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
+.coin { color: #B8860B; font-weight: 600; }
+.gem { color: #2E7FB8; font-weight: 600; }
+.rar { display: inline-block; padding: 1px 8px 1px 6px; border-radius: 6px; background: var(--paper); border-left: 6px solid var(--rar); font-weight: 600; font-size: 13px; white-space: nowrap; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.chips code { background: var(--paper); border: 1px solid rgba(29, 39, 64, .12); padding: 2px 8px; }
+
+/* Раздел «Стиль»: образцы цветов палитры. */
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 8px 0 16px; }
+.swatch { margin: 0; background: var(--paper); border-radius: 10px; overflow: hidden; box-shadow: 0 1px 0 rgba(29, 39, 64, .1); }
+.swatch .chip { display: block; height: 72px; border-bottom: 1px solid rgba(29, 39, 64, .12); }
+.swatch figcaption { padding: 8px 10px 10px; font-size: 14px; }
+.swatch figcaption .small { display: block; margin-top: 4px; font-size: 13px; color: var(--muted); }
+
+/* Раздел «Код»: модуль, вид и его первая строка-комментарий. */
+.modules { list-style: none; padding: 0; margin: 8px 0 20px; display: grid; gap: 6px; }
+.modules li { background: var(--paper); border-radius: 8px; padding: 6px 12px; display: grid; grid-template-columns: minmax(180px, 280px) 90px 60px minmax(0, 1fr); gap: 10px; align-items: baseline; }
+.modules .kind { font-size: 12px; color: var(--muted); }
+.modules .lines { font-size: 12px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+.modules .note { font-size: 14px; }
+.modules .note.empty { color: var(--muted); }
+
+#viewer { border: 0; padding: 0; max-width: 96vw; max-height: 96vh; background: var(--ink); color: var(--snow); border-radius: 10px; }
+#viewer::backdrop { background: rgba(29, 39, 64, .8); }
+.viewer-bar { display: flex; gap: 12px; align-items: center; padding: 8px 12px; }
+.viewer-bar p { margin: 0; flex: 1; font-size: 14px; word-break: break-all; }
+.viewer-bar a { color: var(--gold); }
+.viewer-bar button { background: var(--wood); color: var(--snow); border: 0; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+#viewer img { display: block; max-width: 94vw; max-height: calc(96vh - 52px); }
+
+.pages { list-style: none; padding: 0; display: grid; gap: 10px; }
+.pages > li { background: rgba(255, 255, 255, .6); border: 1px solid rgba(29, 39, 64, .1); border-radius: 10px; padding: 10px 14px; }
+.pages > li > a { font-weight: 700; font-size: 18px; }
+
+.mechanic { margin: 12px 0; border: 2px solid rgba(29, 39, 64, .12); border-radius: 10px; background: rgba(255, 255, 255, .6); }
+.mechanic > summary { cursor: pointer; padding: 12px 16px; font-weight: 700; font-size: 20px; }
+.mechanic-body { padding: 0 16px 14px; }
+/* «Обсудить»: темы внутри раздела человека — блоки поменьше. */
+.mechanic.discuss-topic { margin: 8px 0; background: rgba(255, 255, 255, .85); }
+.mechanic.discuss-topic > summary { font-size: 17px; padding: 10px 14px; }
+/* «Механики»: метки разбора — зелёная «Обсудили», жёлтая «Обсудить ещё» (карточка 52f8ad). Плашки текстом, без значков. */
+.discussed { display: inline-block; margin-left: 10px; padding: 2px 10px; border-radius: 999px; font-size: 13px; font-weight: 700; vertical-align: middle; white-space: nowrap; }
+.discussed.done { background: #2E8B57; color: #FFFFFF; }
+.discussed.open { background: #FFCE43; color: var(--ink); }
+.discussed-legend .discussed { margin: 0 4px 0 0; }
+.discussed-legend { color: var(--muted); font-size: 14px; margin: 8px 0 4px; }
+.discussed-note { margin: 4px 0 12px; padding: 8px 12px; border-left: 4px solid #FFCE43; border-radius: 6px; background: rgba(255, 206, 67, .18); font-weight: 600; }
+.mechanic-body .facts { margin: 8px 0 12px; }
+.flow { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 14px; padding: 0; list-style: none; }
+.flow li { display: flex; flex-direction: column; gap: 2px; flex: 1 1 140px; margin: 0; padding: 8px 10px; background: var(--paper); border: 2px solid var(--ink); border-radius: 8px; }
+.flow b { font-size: 15px; }
+.flow span { color: var(--muted); font-size: 13px; }
+.bars { margin: 8px 0 14px; }
+.bars-title { margin: 0 0 8px; font-weight: 700; }
+.bar { display: grid; grid-template-columns: minmax(7em, 11em) minmax(0, 1fr) auto; gap: 8px; align-items: center; margin: 6px 0; }
+.bar-track { height: 14px; background: rgba(29, 39, 64, .08); border-radius: 7px; overflow: hidden; }
+.bar-fill { display: block; height: 100%; background: var(--ice); }
+.bars-zone .bar-fill, .bars-tool .bar-fill { background: var(--wood); }
+.bar-value { font-weight: 700; white-space: nowrap; }
+/* Таймлайн: день — аккордеон, внутри темы со списком сделанного, ссылками и коммитами. */
+.day { margin: 12px 0; border: 2px solid rgba(29, 39, 64, .12); border-radius: 10px; background: rgba(255, 255, 255, .6); }
+.day > summary { cursor: pointer; padding: 12px 16px; font-size: 17px; }
+.day-date { font-weight: 700; font-size: 20px; margin-right: 6px; }
+.day-summary { color: var(--muted); }
+.day-body { padding: 0 16px 14px; }
+.day-topic { margin: 10px 0 0; padding: 10px 0 0; border-top: 1px solid rgba(29, 39, 64, .12); }
+.day-topic h3 { margin: 0 0 6px; font-size: 18px; }
+.day-done { margin: 0 0 8px; padding-left: 20px; }
+.day-links { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 8px; padding: 0; list-style: none; }
+.day-links li { margin: 0; }
+.day-links a { display: inline-block; padding: 3px 8px; background: var(--paper); border: 1px solid rgba(29, 39, 64, .16); border-radius: 6px; text-decoration: none; font-size: 14px; }
+.day-links a:hover { border-color: var(--ice-dark); }
+.day-commits { margin: 0; color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
+.board-card { scroll-margin-top: 70px; }
+.board-card:target { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+@media (max-width: 860px) {
+  #menu { display: inline-block; }
+  /* Кнопок больше, чем ширина телефона: шапка листается вбок, страница остаётся на месте. */
+  .topbar { gap: 10px; padding: 10px 12px; overflow-x: auto; scrollbar-width: thin; }
+  .topbar .top-link { padding: 4px 8px; }
+  /* На самых узких экранах сжимается название, кнопки остаются целыми. */
+  .topbar .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .topbar .top-link, #menu { flex: none; }
+  .topbar .hint { display: none; }
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  #sidebar { display: none; position: fixed; top: 52px; left: 0; right: 0; height: auto; max-height: 70vh; background: var(--snow); z-index: 4; border-bottom: 2px solid var(--ink); }
+  #sidebar.open { display: block; }
+  main { padding: 8px 16px 48px; }
+  .doc { padding: 4px 14px 12px; }
+  .modules li { grid-template-columns: minmax(0, 1fr) auto; }
+  .modules .note { grid-column: 1 / -1; }
+  .modules .lines { display: none; }
+  .board-columns { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 1100px) {
+  .part.with-toc { display: grid; grid-template-columns: minmax(0, 1fr) 230px; column-gap: 28px; align-items: start; }
+  .part.with-toc > h2, .part.with-toc > .part-body { grid-column: 1; }
+  .part.with-toc > .toc { grid-column: 2; grid-row: 1 / span 2; position: sticky; top: 68px; max-height: calc(100vh - 84px); overflow: auto; margin: 18px 0 0; }
+  .part.with-toc > .toc ul { display: grid; gap: 2px; }
+  .part.with-toc > .toc a { display: block; border-radius: 6px; background: transparent; padding: 5px 8px; }
+}
+/* Подсвеченный блок в документе: открытый вопрос владельцу и другие важные пометки. */
+.doc blockquote { margin: 14px 0; padding: 6px 16px; background: rgba(242, 194, 48, .16); border-left: 4px solid var(--gold); border-radius: 8px; }
+/* Референсы моделей: картинка с трёх сторон сверху, под ней название, статус и поля. */
+.model-refs { display: grid; gap: 16px; }
+.model-ref { padding: 12px; border: 2px solid rgba(29, 39, 64, .12); border-radius: 8px; background: var(--paper); }
+.model-ref img { display: block; width: 100%; height: auto; border-radius: 6px; background: var(--snow); cursor: zoom-in; }
+.model-ref h3 { margin: 10px 0 6px; }
+.model-ref-status { display: inline-block; margin: 0 0 8px; padding: 2px 10px; border: 2px solid var(--wood); border-radius: 6px; font-size: 13px; font-weight: 700; color: var(--wood); }
+.model-ref dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 12px; margin: 0 0 8px; }
+.model-ref dt { font-weight: 700; color: var(--muted); }
+.model-ref dd { margin: 0; }
+@media (max-width: 760px) { .model-ref dl { grid-template-columns: minmax(0, 1fr); gap: 0; } .model-ref dd { margin-bottom: 6px; } }
+/* Вкладка «Звуки»: плеер в ячейке таблицы (Леонид 26.11.2026: слушать прямо на странице). */
+.sound-table audio { width: 220px; height: 32px; vertical-align: middle; }
+.sound-table .muted { color: var(--muted); font-size: 13px; }
+</style>
+<script>try{if(localStorage.getItem("clean-a-snow-guide-open")==="1")document.documentElement.classList.add("site-open")}catch(e){}</script>
+</head>
+<body>
+<div id="site-lock" class="site-lock" role="dialog" aria-modal="true" aria-labelledby="site-lock-title">
+<form id="site-lock-form" class="site-lock-card">
+<p id="site-lock-title">Введите пароль, чтобы открыть страницы.</p>
+<label>Пароль <input name="password" type="password" autocomplete="current-password" required autofocus></label>
+<button type="submit">Открыть</button>
+<p id="site-lock-error" class="site-lock-error" hidden>Пароль не подошёл.</p>
+</form>
+</div>
+<header class="topbar"><button id="menu" type="button" aria-expanded="false" aria-controls="sidebar">Разделы</button><a class="brand" href="index.html">Clean a Snow</a><a class="top-link" href="hud.html">HUD</a><a class="top-link" href="testing.html">Тестирование</a><a class="top-link" href="board.html">Доска</a><a class="top-link" href="analysis.html">Анализ</a><a class="top-link" href="mechanics.html">Механики</a><a class="top-link" href="ideas.html">Идеи</a><a class="top-link" href="questions.html">Вопросы</a><a class="top-link" href="discuss.html">Обсудить</a><a class="top-link" href="vfx.html">VFX</a><a class="top-link" href="sounds.html" aria-current="page">Звуки</a><a class="top-link" href="timeline.html">Таймлайн</a><button id="site-close" class="top-link" type="button">Закрыть</button><span class="hint">Собрано из файлов репозитория: <code>node tools/guide/build.mjs</code></span></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Разделы"><ul><li><a href="index.html">Об игре</a></li><li><a href="place.html">Плейс и запуск</a></li><li><a href="style.html">Стиль</a></li><li><a href="refs.html">Референсы</a></li><li><a href="economy.html">Экономика</a></li><li><a href="weapons.html">Оружие</a></li><li><a href="code.html">Код</a></li><li><details class="group" data-group="galleries.html" open><summary><a href="galleries.html">Кадры и картинки</a></summary><ul><li><a href="gallery-bugs.html">Кадры багов</a></li><li><a href="gallery-frames.html">Кадры игры</a></li><li><a href="gallery-frames-2026-11-22-lobby-larger-scale.html">frames/2026-11-22-lobby-larger-scale</a></li><li><a href="gallery-frames-2026-11-22-lobby-space-and-glow.html">frames/2026-11-22-lobby-space-and-glow</a></li><li><a href="gallery-frames-2026-11-22-lobby-start-effects.html">frames/2026-11-22-lobby-start-effects</a></li><li><a href="gallery-frames-2026-11-22-processor-upgrade.html">frames/2026-11-22-processor-upgrade</a></li><li><a href="gallery-frames-2026-11-22-tool-piece-span.html">frames/2026-11-22-tool-piece-span</a></li><li><a href="gallery-frames-2026-11-22-vehicle-piece-span.html">frames/2026-11-22-vehicle-piece-span</a></li><li><a href="gallery-frames-2026-11-22-winter-lobby.html">frames/2026-11-22-winter-lobby</a></li><li><a href="gallery-frames-2026-11-23-valley-terrain-trim.html">frames/2026-11-23-valley-terrain-trim</a></li><li><a href="gallery-frames-2026-11-24-piece-vanish-gold-ring.html">Золотое кольцо при пропаже отрезанного куска снега (карточка 66c915)</a></li><li><a href="gallery-frames-2026-11-25-farmyard-lobby.html">frames/2026-11-25-farmyard-lobby</a></li><li><a href="gallery-frames-2026-11-25-farmyard-lobby-review-round1.html">frames/2026-11-25-farmyard-lobby/review-round1</a></li><li><a href="gallery-frames-2026-11-25-farmyard-lobby-vfx.html">frames/2026-11-25-farmyard-lobby/vfx</a></li><li><a href="gallery-frames-2026-11-25-snow-gradient.html">frames/2026-11-25-snow-gradient</a></li><li><a href="gallery-frames-2026-11-26-launch-stand-picture.html">frames/2026-11-26-launch-stand-picture</a></li><li><a href="gallery-frames-2026-11-26-lobby-model-swap.html">frames/2026-11-26-lobby-model-swap</a></li><li><a href="gallery-frames-2026-11-26-lobby-snow-hills.html">frames/2026-11-26-lobby-snow-hills</a></li><li><a href="gallery-frames-2026-11-26-lobby-snowbanks.html">frames/2026-11-26-lobby-snowbanks</a></li><li><a href="gallery-frames-2026-11-26-owner-layout.html">frames/2026-11-26-owner-layout</a></li><li><a href="gallery-frames-2026-11-26-soft-sunlight.html">frames/2026-11-26-soft-sunlight</a></li><li><a href="gallery-frames-live-audit.html">frames/live-audit</a></li><li><a href="gallery-hud-current-elements.html">hud-current/elements</a></li><li><a href="gallery-hud-current-frames.html">hud-current/frames</a></li><li><a href="gallery-hud-current.html">Текущий HUD: кадры и индекс</a></li><li><a href="gallery-ideas.html">Референсы идей</a></li><li><a href="gallery-models-elf-preview-iterations-06.html">models/elf/preview/iterations/06</a></li><li><a href="gallery-models-elf-preview-iterations-07.html">models/elf/preview/iterations/07</a></li><li><a href="gallery-models-elf-textures.html">models/elf/textures</a></li><li><a href="gallery-models-farm-helper-elf-preview.html">models/farm-helper-elf/preview</a></li><li><a href="gallery-models-farm-helper-elf-reports.html">models/farm-helper-elf/reports</a></li><li><a href="gallery-models-farmyard-lobby-review.html">models/farmyard-lobby/review</a></li><li><a href="gallery-models-farmyard-props-review.html">models/farmyard-props/review</a></li><li><a href="gallery-models-farmyard-props-textures.html">models/farmyard-props/textures</a></li><li><a href="gallery-models-garden-plants-reports.html">Садовые растения — 36 моделей</a></li><li><a href="gallery-models-grinch-preview-iterations-06.html">models/grinch/preview/iterations/06</a></li><li><a href="gallery-models-grinch-textures.html">models/grinch/textures</a></li><li><a href="gallery-models-grinch-hideout-preview.html">models/grinch-hideout/preview</a></li><li><a href="gallery-models-grinch-hideout-reports-views.html">models/grinch-hideout/reports/views</a></li><li><a href="gallery-models-grinch-v2-preview-iterations-05.html">models/grinch-v2/preview/iterations/05</a></li><li><a href="gallery-models-grinch-v2-textures.html">models/grinch-v2/textures</a></li><li><a href="gallery-models-grinch-v3-preview-iterations-07.html">models/grinch-v3/preview/iterations/07</a></li><li><a href="gallery-models-grinch-v3-reports-anim-check-02-limits.html">models/grinch-v3/reports/anim-check/02-limits</a></li><li><a href="gallery-models-grinch-v3-reports-anim-check-clips-attack.html">models/grinch-v3/reports/anim-check/clips/Attack</a></li><li><a href="gallery-models-grinch-v3-reports-anim-check-clips-hit.html">models/grinch-v3/reports/anim-check/clips/Hit</a></li><li><a href="gallery-models-grinch-v3-reports-anim-check-clips-idle.html">models/grinch-v3/reports/anim-check/clips/Idle</a></li><li><a href="gallery-models-grinch-v3-reports-anim-check-clips-stunned.html">models/grinch-v3/reports/anim-check/clips/Stunned</a></li><li><a href="gallery-models-grinch-v3-reports-anim-check-clips-walk.html">models/grinch-v3/reports/anim-check/clips/Walk</a></li><li><a href="gallery-models-grinch-v3-textures.html">models/grinch-v3/textures</a></li><li><a href="gallery-models-hockey-rink-preview.html">models/hockey-rink/preview</a></li><li><a href="gallery-models-hockey-rink-reports.html">models/hockey-rink/reports</a></li><li><a href="gallery-models-holiday-decor-reference.html">models/holiday-decor/reference</a></li><li><a href="gallery-models-holiday-decor-review.html">models/holiday-decor/review</a></li><li><a href="gallery-models-lobby-snowbanks-review.html">models/lobby-snowbanks/review</a></li><li><a href="gallery-models-lobby-snowbanks-review-details-clumps.html">models/lobby-snowbanks/review/details/Clumps</a></li><li><a href="gallery-models-lobby-snowbanks-review-details-crescent.html">models/lobby-snowbanks/review/details/Crescent</a></li><li><a href="gallery-models-lobby-snowbanks-review-details-pillow.html">models/lobby-snowbanks/review/details/Pillow</a></li><li><a href="gallery-models-lobby-snowbanks-review-details-shoulder.html">models/lobby-snowbanks/review/details/Shoulder</a></li><li><a href="gallery-models-lobby-snowbanks-review-details-treeskirt.html">models/lobby-snowbanks/review/details/TreeSkirt</a></li><li><a href="gallery-models-lobby-snowbanks-review-details-windbank.html">models/lobby-snowbanks/review/details/Windbank</a></li><li><a href="gallery-models-lobby-snowbanks-review-round-1.html">models/lobby-snowbanks/review/round-1</a></li><li><a href="gallery-models-lobby-snowbanks-review-round-2.html">models/lobby-snowbanks/review/round-2</a></li><li><a href="gallery-models-lobby-snowbanks-review-round-3.html">models/lobby-snowbanks/review/round-3</a></li><li><a href="gallery-models-rustic-stalls-review.html">models/rustic-stalls/review</a></li><li><a href="gallery-models-santa-sleigh-preview.html">models/santa-sleigh/preview</a></li><li><a href="gallery-models-santa-sleigh-reports.html">models/santa-sleigh/reports</a></li><li><a href="gallery-models-snow-helicopter-reports.html">models/snow-helicopter/reports</a></li><li><a href="gallery-models-snow-helicopter-rounded-reports.html">models/snow-helicopter-rounded/reports</a></li><li><a href="gallery-models-snow-storage-icons.html">models/snow-storage/icons</a></li><li><a href="gallery-models-snow-storage-preview.html">models/snow-storage/preview</a></li><li><a href="gallery-models-snow-vacuum-preview.html">models/snow-vacuum/preview</a></li><li><a href="gallery-models-snow-vacuum-reports.html">models/snow-vacuum/reports</a></li><li><a href="gallery-models-starter-farmhouse-preview.html">models/starter-farmhouse/preview</a></li><li><a href="gallery-models-vehicle-yard-review.html">models/vehicle-yard/review</a></li><li><a href="gallery-models-well-preview-iterations-05.html">models/well/preview/iterations/05</a></li><li><a href="gallery-models-well-textures.html">models/well/textures</a></li><li><a href="gallery-models-winter-lobby-review.html">models/winter-lobby/review</a></li><li><a href="gallery-palette-preview.html">Палитра</a></li><li><a href="gallery-refs-arcade-catch-gifts.html">Аркада «Поймай подарки»</a></li><li><a href="gallery-refs-arcade-grinch-drifts.html">Аркада «Гринч в сугробах»</a></li><li><a href="gallery-refs-arcade-hall.html">Игровой зал</a></li><li><a href="gallery-refs-arcade-ice-fishing.html">Аркада «Подлёдная рыбалка»</a></li><li><a href="gallery-refs-arcade-santa-run.html">Аркада «Santa&#39;s Run»</a></li><li><a href="gallery-refs-buckets.html">refs/buckets</a></li><li><a href="gallery-refs-conveyor.html">Конвейер сверху</a></li><li><a href="gallery-refs-daily-gems.html">refs/daily-gems</a></li><li><a href="gallery-refs.html">refs</a></li><li><a href="gallery-refs-dev-panel.html">refs/dev-panel</a></li><li><a href="gallery-refs-farm-lobby.html">Фермерское лобби</a></li><li><a href="gallery-refs-farmhouse.html">Фермерский дом</a></li><li><a href="gallery-refs-farmhouse-walls.html">Стены фермерского дома</a></li><li><a href="gallery-refs-frostwood-snow.html">Снег в Frostwood</a></li><li><a href="gallery-refs-garden-plants.html">refs/garden-plants</a></li><li><a href="gallery-refs-garden-plot.html">refs/garden-plot</a></li><li><a href="gallery-refs-grinch.html">Гринч</a></li><li><a href="gallery-refs-grinch-hideout.html">Убежище Гринча</a></li><li><a href="gallery-refs-held-snow.html">refs/held-snow</a></li><li><a href="gallery-refs-hockey.html">Хоккей</a></li><li><a href="gallery-refs-hud-new-elements.html">refs/hud-new/elements</a></li><li><a href="gallery-refs-hud-new-key.html">refs/hud-new/key</a></li><li><a href="gallery-refs-hud-new.html">Новый вид HUD: референсы</a></li><li><a href="gallery-refs-hud-new-screens.html">refs/hud-new/screens</a></li><li><a href="gallery-refs-island-vanish.html">Пропажа изолированного куска снега</a></li><li><a href="gallery-refs-lobby-c34e67.html">refs/lobby-c34e67</a></li><li><a href="gallery-refs-lobby-snow-terrain.html">refs/lobby-snow-terrain</a></li><li><a href="gallery-refs-lobby-snowbanks.html">refs/lobby-snowbanks</a></li><li><a href="gallery-refs-map-border.html">refs/map-border</a></li><li><a href="gallery-refs-models-helper-elf.html">refs/models/helper-elf</a></li><li><a href="gallery-refs-models-helper-elf-variants.html">refs/models/helper-elf/variants</a></li><li><a href="gallery-refs-models-hockey-robot.html">refs/models/hockey-robot</a></li><li><a href="gallery-refs-models-santa-sleigh.html">refs/models/santa-sleigh</a></li><li><a href="gallery-refs-models-snow-fox.html">refs/models/snow-fox</a></li><li><a href="gallery-refs-models-snow-hare.html">refs/models/snow-hare</a></li><li><a href="gallery-refs-models-snow-helicopter.html">refs/models/snow-helicopter</a></li><li><a href="gallery-refs-models-snow-vacuum.html">refs/models/snow-vacuum</a></li><li><a href="gallery-refs-models-winter-owl.html">refs/models/winter-owl</a></li><li><a href="gallery-refs-molotov.html">Молотов: референсы взрыва и снаряда</a></li><li><a href="gallery-refs-molotov-kingdom-study.html">refs/molotov/kingdom-study</a></li><li><a href="gallery-refs-party-game.html">Окно отряда и отсчёт старта — референсы</a></li><li><a href="gallery-refs-pets.html">refs/pets</a></li><li><a href="gallery-refs-run-hotbar.html">refs/run-hotbar</a></li><li><a href="gallery-refs-santa-cutscene.html">Ролик Санты: референсы (карточка 784f91)</a></li><li><a href="gallery-refs-seed-find.html">refs/seed-find</a></li><li><a href="gallery-refs-sheep-tank.html">refs/sheep-tank</a></li><li><a href="gallery-refs-snow-clear.html">refs/snow-clear</a></li><li><a href="gallery-refs-snow-look.html">refs/snow-look</a></li><li><a href="gallery-refs-snow-powder-cut.html">refs/snow-powder-cut</a></li><li><a href="gallery-refs-snow-processing.html">refs/snow-processing</a></li><li><a href="gallery-refs-snow-processing-intact.html">refs/snow-processing-intact</a></li><li><a href="gallery-refs-snow-removal.html">refs/snow-removal</a></li><li><a href="gallery-refs-snow-smooth.html">refs/snow-smooth</a></li><li><a href="gallery-refs-snow-storage.html">refs/snow-storage</a></li><li><a href="gallery-refs-snow-sweep.html">refs/snow-sweep</a></li><li><a href="gallery-refs-solo-board.html">refs/solo-board</a></li><li><a href="gallery-refs-tool-breaking.html">Механика разрушения снега по инструментам — референсы</a></li><li><a href="gallery-refs-vehicle-snow-heli.html">refs/vehicle-snow/heli</a></li><li><a href="gallery-refs-vehicle-snow-now.html">refs/vehicle-snow/now</a></li><li><a href="gallery-refs-vehicle-snow-pickup.html">refs/vehicle-snow/pickup</a></li><li><a href="gallery-refs-vehicle-snow.html">Машины ломают снег: как сейчас и референсы</a></li><li><a href="gallery-refs-vehicle-snow-snowmobile.html">refs/vehicle-snow/snowmobile</a></li><li><a href="gallery-refs-vehicle-snow-snowmobile-soft.html">refs/vehicle-snow/snowmobile-soft</a></li><li><a href="gallery-refs-vehicle-snow-tank.html">refs/vehicle-snow/tank</a></li><li><a href="gallery-refs-vehicle-snow-truck.html">refs/vehicle-snow/truck</a></li><li><a href="gallery-refs-vehicle-snow-v1.html">refs/vehicle-snow/v1</a></li><li><a href="gallery-refs-vehicle-snow-v2-fountain.html">refs/vehicle-snow/v2-fountain</a></li><li><a href="gallery-refs-vehicle-snow-v3-critic.html">refs/vehicle-snow/v3-critic</a></li><li><a href="gallery-refs-vehicle-yard.html">Площадка для снегоуборочной техники</a></li><li><a href="gallery-refs-vehicles-now.html">refs/vehicles/now</a></li><li><a href="gallery-refs-vehicles.html">refs/vehicles</a></li><li><a href="gallery-refs-weapons.html">refs/weapons</a></li><li><a href="gallery-refs-well.html">refs/well</a></li><li><a href="gallery-refs-wheel-gems.html">refs/wheel-gems</a></li><li><a href="gallery-refs-windows-wood.html">refs/windows-wood</a></li><li><a href="gallery-refs-winter-lobby.html">refs/winter-lobby</a></li><li><a href="gallery-refs-zone-bloom.html">refs/zone-bloom</a></li><li><a href="gallery-refs-zone-wall.html">refs/zone-wall</a></li><li><a href="gallery-terrain.html">Покрытия долины</a></li><li><a href="gallery-textures-lobby-white-grass.html">textures/lobby-white-grass</a></li><li><a href="gallery-textures-snow-soft-powder.html">textures/snow-soft-powder</a></li><li><a href="gallery-ui-buckets.html">ui/buckets</a></li><li><a href="gallery-ui-classes.html">ui/classes</a></li><li><a href="gallery-ui-dev-panel.html">ui/dev-panel</a></li><li><a href="gallery-ui-hockey.html">ui/hockey</a></li><li><a href="gallery-ui-hotbar.html">ui/hotbar</a></li><li><a href="gallery-ui-hud.html">ui/hud</a></li><li><a href="gallery-ui-party.html">ui/party</a></li><li><a href="gallery-ui-pets.html">ui/pets</a></li><li><a href="gallery-ui-seeds.html">ui/seeds</a></li><li><a href="gallery-ui-solo-board.html">ui/solo-board</a></li><li><a href="gallery-ui-upgrades.html">ui/upgrades</a></li><li><a href="gallery-ui-weapons.html">ui/weapons</a></li><li><a href="gallery-ui-windows.html">ui/windows</a></li><li><a href="gallery-ui-wood.html">ui/wood</a></li><li><a href="gallery-vfx.html">vfx</a></li><li><a href="gallery-vfx-reviews.html">vfx/reviews</a></li><li><a href="gallery-vfx-snow-removal-now.html">vfx/snow-removal/now</a></li></ul></details></li><li><details class="group" data-group="docs.html" open><summary><a href="docs.html">Документы</a></summary><ul><li><a href="doc-architecture-summary.html">architecture/summary.md</a></li><li><a href="doc-checks-server.html">checks-server.md</a></li><li><a href="doc-clearing-audit.html">clearing-audit.md</a></li><li><a href="doc-docs-audit-2026-11-15.html">docs-audit-2026-11-15.md</a></li><li><a href="doc-docs-audit-2026-11-25.html">docs-audit-2026-11-25.md</a></li><li><a href="doc-held-items-audit.html">held-items-audit.md</a></li><li><a href="doc-mechanics-audit.html">mechanics-audit.md</a></li><li><a href="doc-mechanics-live-audit-2026-11-15-verdicts.html">mechanics-live-audit-2026-11-15-verdicts.md</a></li><li><a href="doc-mechanics-live-audit-2026-11-15.html">mechanics-live-audit-2026-11-15.md</a></li><li><a href="doc-perf-audit-2026-11-26-round2.html">perf-audit-2026-11-26-round2.md</a></li><li><a href="doc-perf-audit-2026-11-26.html">perf-audit-2026-11-26.md</a></li><li><a href="doc-publish-places.html">publish-places.md</a></li><li><a href="doc-snow-approach-analysis.html">snow-approach-analysis.md</a></li><li><a href="doc-snow-phone-measure.html">snow-phone-measure.md</a></li><li><a href="doc-sounds-sound-picks-plan.html">sounds/sound-picks-plan.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-catalog-answers.html">superpowers/plans/2026-11-10-catalog-answers.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-client-actions.html">superpowers/plans/2026-11-10-client-actions.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-economy.html">superpowers/plans/2026-11-10-data-economy.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-garden-animals-vehicles.html">superpowers/plans/2026-11-10-data-garden-animals-vehicles.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-data-session-server.html">superpowers/plans/2026-11-10-data-session-server.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-held-items-audit.html">superpowers/plans/2026-11-10-held-items-audit.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-map-bake.html">superpowers/plans/2026-11-10-map-bake.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-movement-check.html">superpowers/plans/2026-11-10-movement-check.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-packet-limits.html">superpowers/plans/2026-11-10-packet-limits.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-anchors.html">superpowers/plans/2026-11-10-place-anchors.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-place-role-world.html">superpowers/plans/2026-11-10-place-role-world.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-processor-intake.html">superpowers/plans/2026-11-10-processor-intake.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-processor-queue.html">superpowers/plans/2026-11-10-processor-queue.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-profile-store-core.html">superpowers/plans/2026-11-10-profile-store-core.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-receipt-ledger.html">superpowers/plans/2026-11-10-receipt-ledger.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-server-lifecycle.html">superpowers/plans/2026-11-10-server-lifecycle.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-areas.html">superpowers/plans/2026-11-10-snow-areas.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-break-burst.html">superpowers/plans/2026-11-10-snow-break-burst.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-break-like-reference.html">superpowers/plans/2026-11-10-snow-break-like-reference.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-cell-strength.html">superpowers/plans/2026-11-10-snow-cell-strength.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-clap.html">superpowers/plans/2026-11-10-snow-clap.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-pillow-layers.html">superpowers/plans/2026-11-10-snow-pillow-layers.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-snow-response.html">superpowers/plans/2026-11-10-snow-response.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-starter-spoon.html">superpowers/plans/2026-11-10-starter-spoon.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-plan.html">superpowers/plans/2026-11-10-strike-plan.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-strike-rules.html">superpowers/plans/2026-11-10-strike-rules.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-two-places.html">superpowers/plans/2026-11-10-two-places.md</a></li><li><a href="doc-superpowers-plans-2026-11-10-wallet.html">superpowers/plans/2026-11-10-wallet.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-client-views.html">superpowers/plans/2026-11-11-client-views.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-data-client-copies.html">superpowers/plans/2026-11-11-data-client-copies.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-farmhouse-shop-stands.html">superpowers/plans/2026-11-11-farmhouse-shop-stands.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-guide-json-only.html">superpowers/plans/2026-11-11-guide-json-only.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-loading-screen.html">superpowers/plans/2026-11-11-loading-screen.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-one-snow-strength.html">superpowers/plans/2026-11-11-one-snow-strength.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-place-sources.html">superpowers/plans/2026-11-11-place-sources.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-remove-garden.html">superpowers/plans/2026-11-11-remove-garden.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-run-hotbar.html">superpowers/plans/2026-11-11-run-hotbar.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-snow-clear-wave-flakes.html">superpowers/plans/2026-11-11-snow-clear-wave-flakes.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-snow-garden-growth.html">superpowers/plans/2026-11-11-snow-garden-growth.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-snow-garden-plots.html">superpowers/plans/2026-11-11-snow-garden-plots.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-spoon-layer-snow.html">superpowers/plans/2026-11-11-spoon-layer-snow.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-vehicle-snow-vfx.html">superpowers/plans/2026-11-11-vehicle-snow-vfx.md</a></li><li><a href="doc-superpowers-plans-2026-11-11-weapon-rule.html">superpowers/plans/2026-11-11-weapon-rule.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-buckets.html">superpowers/plans/2026-11-12-buckets.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-classes-data-buy.html">superpowers/plans/2026-11-12-classes-data-buy.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-classes-window.html">superpowers/plans/2026-11-12-classes-window.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-contour-fit.html">superpowers/plans/2026-11-12-contour-fit.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-conveyor.html">superpowers/plans/2026-11-12-conveyor.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-gems-rewards.html">superpowers/plans/2026-11-12-gems-rewards.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-hotbar-look.html">superpowers/plans/2026-11-12-hotbar-look.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-place-windows.html">superpowers/plans/2026-11-12-place-windows.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-snow-height.html">superpowers/plans/2026-11-12-snow-height.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-snow-rarity.html">superpowers/plans/2026-11-12-snow-rarity.md</a></li><li><a href="doc-superpowers-plans-2026-11-12-two-vacuums.html">superpowers/plans/2026-11-12-two-vacuums.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-arcade-catch-gifts.html">superpowers/plans/2026-11-13-arcade-catch-gifts.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-arcade-grinch-drifts.html">superpowers/plans/2026-11-13-arcade-grinch-drifts.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-arcade-hall.html">superpowers/plans/2026-11-13-arcade-hall.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-conveyor-two-lanes.html">superpowers/plans/2026-11-13-conveyor-two-lanes.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-first-run-one-task.html">superpowers/plans/2026-11-13-first-run-one-task.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-game-rewards-solo.html">superpowers/plans/2026-11-13-game-rewards-solo.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-host-world-run.html">superpowers/plans/2026-11-13-host-world-run.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-party-continue-new.html">superpowers/plans/2026-11-13-party-continue-new.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-party-start-buttons.html">superpowers/plans/2026-11-13-party-start-buttons.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-phone-touch-sizes.html">superpowers/plans/2026-11-13-phone-touch-sizes.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-solo-board.html">superpowers/plans/2026-11-13-solo-board.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-world-carried-snow.html">superpowers/plans/2026-11-13-world-carried-snow.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-world-snow-save.html">superpowers/plans/2026-11-13-world-snow-save.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-world-store.html">superpowers/plans/2026-11-13-world-store.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-world-wallet.html">superpowers/plans/2026-11-13-world-wallet.md</a></li><li><a href="doc-superpowers-plans-2026-11-13-zone-wall.html">superpowers/plans/2026-11-13-zone-wall.md</a></li><li><a href="doc-superpowers-plans-2026-11-14-arcade-ice-fishing.html">superpowers/plans/2026-11-14-arcade-ice-fishing.md</a></li><li><a href="doc-superpowers-plans-2026-11-14-conveyor-four-lanes.html">superpowers/plans/2026-11-14-conveyor-four-lanes.md</a></li><li><a href="doc-superpowers-plans-2026-11-14-hockey-rink.html">superpowers/plans/2026-11-14-hockey-rink.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-arcade-hall-bigger.html">superpowers/plans/2026-11-15-arcade-hall-bigger.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-arcade-hall-timer.html">superpowers/plans/2026-11-15-arcade-hall-timer.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-arcade-halls-schedule.html">superpowers/plans/2026-11-15-arcade-halls-schedule.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-arcade-santa-run.html">superpowers/plans/2026-11-15-arcade-santa-run.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-dev-panel.html">superpowers/plans/2026-11-15-dev-panel.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-grinch-fight.html">superpowers/plans/2026-11-15-grinch-fight.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-grinch-hideout.html">superpowers/plans/2026-11-15-grinch-hideout.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-grinch-victory-gifts.html">superpowers/plans/2026-11-15-grinch-victory-gifts.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-hockey-ai.html">superpowers/plans/2026-11-15-hockey-ai.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-hockey-match.html">superpowers/plans/2026-11-15-hockey-match.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-hockey-teams.html">superpowers/plans/2026-11-15-hockey-teams.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-mechanics-live-audit.html">superpowers/plans/2026-11-15-mechanics-live-audit.md</a></li><li><a href="doc-superpowers-plans-2026-11-15-snow-removal-vfx.html">superpowers/plans/2026-11-15-snow-removal-vfx.md</a></li><li><a href="doc-superpowers-plans-2026-11-16-shovel-first-person-dig.html">superpowers/plans/2026-11-16-shovel-first-person-dig.md</a></li><li><a href="doc-superpowers-plans-2026-11-16-stale-studio-scenarios.html">superpowers/plans/2026-11-16-stale-studio-scenarios.md</a></li><li><a href="doc-superpowers-plans-2026-11-16-ui-item-pictures.html">superpowers/plans/2026-11-16-ui-item-pictures.md</a></li><li><a href="doc-superpowers-plans-2026-11-16-weapons-first-person-no-hands.html">superpowers/plans/2026-11-16-weapons-first-person-no-hands.md</a></li><li><a href="doc-superpowers-plans-2026-11-17-dev-panel-state.html">superpowers/plans/2026-11-17-dev-panel-state.md</a></li><li><a href="doc-superpowers-plans-2026-11-17-hud-current-shots.html">superpowers/plans/2026-11-17-hud-current-shots.md</a></li><li><a href="doc-superpowers-plans-2026-11-17-hud-new-look-refs.html">superpowers/plans/2026-11-17-hud-new-look-refs.md</a></li><li><a href="doc-superpowers-plans-2026-11-17-ui-item-pictures-wave2.html">superpowers/plans/2026-11-17-ui-item-pictures-wave2.md</a></li><li><a href="doc-superpowers-plans-2026-11-17-vehicle-mouse-look-and-seats.html">superpowers/plans/2026-11-17-vehicle-mouse-look-and-seats.md</a></li><li><a href="doc-superpowers-plans-2026-11-18-snow-golem.html">superpowers/plans/2026-11-18-snow-golem.md</a></li><li><a href="doc-superpowers-plans-2026-11-18-snow-sweep.html">superpowers/plans/2026-11-18-snow-sweep.md</a></li><li><a href="doc-superpowers-plans-2026-11-19-adaptive-snow-audio.html">superpowers/plans/2026-11-19-adaptive-snow-audio.md</a></li><li><a href="doc-superpowers-plans-2026-11-19-hud-approved.html">superpowers/plans/2026-11-19-hud-approved.md</a></li><li><a href="doc-superpowers-plans-2026-11-19-snow-processing-press.html">superpowers/plans/2026-11-19-snow-processing-press.md</a></li><li><a href="doc-superpowers-plans-2026-11-19-snow-sweep-lab.html">superpowers/plans/2026-11-19-snow-sweep-lab.md</a></li><li><a href="doc-superpowers-plans-2026-11-19-snow-sweep-look.html">superpowers/plans/2026-11-19-snow-sweep-look.md</a></li><li><a href="doc-superpowers-plans-2026-11-19-snow-sweep-tools.html">superpowers/plans/2026-11-19-snow-sweep-tools.md</a></li><li><a href="doc-superpowers-plans-2026-11-20-board-testing.html">superpowers/plans/2026-11-20-board-testing.md</a></li><li><a href="doc-superpowers-plans-2026-11-20-far-snow-ring.html">superpowers/plans/2026-11-20-far-snow-ring.md</a></li><li><a href="doc-superpowers-plans-2026-11-20-new-snow-lag.html">superpowers/plans/2026-11-20-new-snow-lag.md</a></li><li><a href="doc-superpowers-plans-2026-11-21-hud-align-edges.html">superpowers/plans/2026-11-21-hud-align-edges.md</a></li><li><a href="doc-superpowers-plans-2026-11-21-snow-horizon.html">superpowers/plans/2026-11-21-snow-horizon.md</a></li><li><a href="doc-superpowers-plans-2026-11-21-snow-mesh-release.html">superpowers/plans/2026-11-21-snow-mesh-release.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-activity-clock.html">superpowers/plans/2026-11-22-activity-clock.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-auto-collect-pieces.html">superpowers/plans/2026-11-22-auto-collect-pieces.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-continue-by-steps.html">superpowers/plans/2026-11-22-continue-by-steps.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-grinch-hideout-two-minutes.html">superpowers/plans/2026-11-22-grinch-hideout-two-minutes.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-lobby-larger-scale.html">superpowers/plans/2026-11-22-lobby-larger-scale.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-lobby-space-and-glow.html">superpowers/plans/2026-11-22-lobby-space-and-glow.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-lobby-start-effects.html">superpowers/plans/2026-11-22-lobby-start-effects.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-processor-model-upgrade.html">superpowers/plans/2026-11-22-processor-model-upgrade.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-save-cells.html">superpowers/plans/2026-11-22-save-cells.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-save-slots.html">superpowers/plans/2026-11-22-save-slots.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-snow-flow-fixes.html">superpowers/plans/2026-11-22-snow-flow-fixes.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-snow-long-play.html">superpowers/plans/2026-11-22-snow-long-play.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-snow-reaudit.html">superpowers/plans/2026-11-22-snow-reaudit.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-tutorial-hidden-stands.html">superpowers/plans/2026-11-22-tutorial-hidden-stands.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-tutorial-island.html">superpowers/plans/2026-11-22-tutorial-island.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-tutorial-steps.html">superpowers/plans/2026-11-22-tutorial-steps.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-tutorial-task-line.html">superpowers/plans/2026-11-22-tutorial-task-line.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-vehicle-client-carve.html">superpowers/plans/2026-11-22-vehicle-client-carve.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-vehicle-cut-shapes.html">superpowers/plans/2026-11-22-vehicle-cut-shapes.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-vehicle-piece-span.html">superpowers/plans/2026-11-22-vehicle-piece-span.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-winter-lobby.html">superpowers/plans/2026-11-22-winter-lobby.md</a></li><li><a href="doc-superpowers-plans-2026-11-22-zone-gardens.html">superpowers/plans/2026-11-22-zone-gardens.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-big-spoon-start.html">superpowers/plans/2026-11-23-big-spoon-start.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-counted-square-melts.html">superpowers/plans/2026-11-23-counted-square-melts.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-forest-mountains-meshes.html">superpowers/plans/2026-11-23-forest-mountains-meshes.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-gold-snow-shell.html">superpowers/plans/2026-11-23-gold-snow-shell.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-pets-off.html">superpowers/plans/2026-11-23-pets-off.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-sell-per-snow.html">superpowers/plans/2026-11-23-sell-per-snow.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-snow-client-perf.html">superpowers/plans/2026-11-23-snow-client-perf.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-snow-frame-budget.html">superpowers/plans/2026-11-23-snow-frame-budget.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-snow-world-end-meshes.html">superpowers/plans/2026-11-23-snow-world-end-meshes.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-tank-flame-carve.html">superpowers/plans/2026-11-23-tank-flame-carve.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-tank-flame-rear-view.html">superpowers/plans/2026-11-23-tank-flame-rear-view.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-tool-cut-plan.html">superpowers/plans/2026-11-23-tool-cut-plan.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-tools-wave-plan.html">superpowers/plans/2026-11-23-tools-wave-plan.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-valley-terrain-trim.html">superpowers/plans/2026-11-23-valley-terrain-trim.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-vehicle-speed-data.html">superpowers/plans/2026-11-23-vehicle-speed-data.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-windows-wood.html">superpowers/plans/2026-11-23-windows-wood.md</a></li><li><a href="doc-superpowers-plans-2026-11-23-zone-bloom.html">superpowers/plans/2026-11-23-zone-bloom.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-coin-cents-ladder.html">superpowers/plans/2026-11-24-coin-cents-ladder.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-counted-square-keeps-snow.html">superpowers/plans/2026-11-24-counted-square-keeps-snow.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-far-lift.html">superpowers/plans/2026-11-24-far-lift.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-far-snow-reach.html">superpowers/plans/2026-11-24-far-snow-reach.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-old-snow-scenarios.html">superpowers/plans/2026-11-24-old-snow-scenarios.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-piece-vanish-gold-ring.html">superpowers/plans/2026-11-24-piece-vanish-gold-ring.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-processor-intake-delay.html">superpowers/plans/2026-11-24-processor-intake-delay.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-processor-whole-load.html">superpowers/plans/2026-11-24-processor-whole-load.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-ready-wait-scenarios.html">superpowers/plans/2026-11-24-ready-wait-scenarios.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-snow-200-nodes.html">superpowers/plans/2026-11-24-snow-200-nodes.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-snow-approach-analysis.html">superpowers/plans/2026-11-24-snow-approach-analysis.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-snow-batch-paint.html">superpowers/plans/2026-11-24-snow-batch-paint.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-snow-contour-outline.html">superpowers/plans/2026-11-24-snow-contour-outline.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-snow-contour-probe.html">superpowers/plans/2026-11-24-snow-contour-probe.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-snow-phone-meter.html">superpowers/plans/2026-11-24-snow-phone-meter.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-snow-soft-relief.html">superpowers/plans/2026-11-24-snow-soft-relief.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-vehicle-camera-controls.html">superpowers/plans/2026-11-24-vehicle-camera-controls.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-vehicle-shop.html">superpowers/plans/2026-11-24-vehicle-shop.md</a></li><li><a href="doc-superpowers-plans-2026-11-24-wider-spoon.html">superpowers/plans/2026-11-24-wider-spoon.md</a></li><li><a href="doc-superpowers-plans-2026-11-25-farmyard-lobby.html">superpowers/plans/2026-11-25-farmyard-lobby.md</a></li><li><a href="doc-superpowers-plans-2026-11-25-hand-tools-like-spoon.html">superpowers/plans/2026-11-25-hand-tools-like-spoon.md</a></li><li><a href="doc-superpowers-plans-2026-11-25-powder-cut-detail.html">superpowers/plans/2026-11-25-powder-cut-detail.md</a></li><li><a href="doc-superpowers-plans-2026-11-25-rare-snow-spots.html">superpowers/plans/2026-11-25-rare-snow-spots.md</a></li><li><a href="doc-superpowers-plans-2026-11-25-scenarios-new-snow-zones.html">superpowers/plans/2026-11-25-scenarios-new-snow-zones.md</a></li><li><a href="doc-superpowers-plans-2026-11-25-seven-tools-only.html">superpowers/plans/2026-11-25-seven-tools-only.md</a></li><li><a href="doc-superpowers-plans-2026-11-25-snow-norm-data.html">superpowers/plans/2026-11-25-snow-norm-data.md</a></li><li><a href="doc-superpowers-plans-2026-11-25-snow-wall-gradient.html">superpowers/plans/2026-11-25-snow-wall-gradient.md</a></li><li><a href="doc-superpowers-plans-2026-11-25-tool-break-feel-m1-big-shovel.html">superpowers/plans/2026-11-25-tool-break-feel-m1-big-shovel.md</a></li><li><a href="doc-superpowers-plans-2026-11-25-tool-break-feel-m2-ice-axe-vacuum.html">superpowers/plans/2026-11-25-tool-break-feel-m2-ice-axe-vacuum.md</a></li><li><a href="doc-superpowers-plans-2026-11-25-tool-hand-size.html">superpowers/plans/2026-11-25-tool-hand-size.md</a></li><li><a href="doc-superpowers-plans-2026-11-26-client-per-frame-smalls.html">superpowers/plans/2026-11-26-client-per-frame-smalls.md</a></li><li><a href="doc-superpowers-plans-2026-11-26-dev-panel-update.html">superpowers/plans/2026-11-26-dev-panel-update.md</a></li><li><a href="doc-superpowers-plans-2026-11-26-fx-cost.html">superpowers/plans/2026-11-26-fx-cost.md</a></li><li><a href="doc-superpowers-plans-2026-11-26-heli-gc-long-frames.html">superpowers/plans/2026-11-26-heli-gc-long-frames.md</a></li><li><a href="doc-superpowers-plans-2026-11-26-hud-render-coalesce.html">superpowers/plans/2026-11-26-hud-render-coalesce.md</a></li><li><a href="doc-superpowers-plans-2026-11-26-launch-stand-picture.html">superpowers/plans/2026-11-26-launch-stand-picture.md</a></li><li><a href="doc-superpowers-plans-2026-11-26-lobby-model-swap.html">superpowers/plans/2026-11-26-lobby-model-swap.md</a></li><li><a href="doc-superpowers-plans-2026-11-26-lobby-snow-terrain.html">superpowers/plans/2026-11-26-lobby-snow-terrain.md</a></li><li><a href="doc-superpowers-plans-2026-11-26-lobby-snowbanks.html">superpowers/plans/2026-11-26-lobby-snowbanks.md</a></li><li><a href="doc-superpowers-plans-2026-11-26-molotov-rework.html">superpowers/plans/2026-11-26-molotov-rework.md</a></li><li><a href="doc-superpowers-plans-2026-11-26-one-player-damage.html">superpowers/plans/2026-11-26-one-player-damage.md</a></li><li><a href="doc-superpowers-plans-2026-11-26-perf-audit-round2.html">superpowers/plans/2026-11-26-perf-audit-round2.md</a></li><li><a href="doc-superpowers-plans-2026-11-26-perf-audit.html">superpowers/plans/2026-11-26-perf-audit.md</a></li><li><a href="doc-superpowers-plans-2026-11-26-processor-part-delta.html">superpowers/plans/2026-11-26-processor-part-delta.md</a></li><li><a href="doc-superpowers-plans-2026-11-26-run-entry-load.html">superpowers/plans/2026-11-26-run-entry-load.md</a></li><li><a href="doc-superpowers-plans-2026-11-26-snow-idle-pass.html">superpowers/plans/2026-11-26-snow-idle-pass.md</a></li><li><a href="doc-superpowers-plans-2026-11-26-snow-long-run-fps.html">superpowers/plans/2026-11-26-snow-long-run-fps.md</a></li><li><a href="doc-superpowers-plans-2026-11-26-soft-sunlight.html">superpowers/plans/2026-11-26-soft-sunlight.md</a></li><li><a href="doc-superpowers-plans-2026-11-26-stale-scenarios-seven-tools.html">superpowers/plans/2026-11-26-stale-scenarios-seven-tools.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-catalog-answers-design.html">superpowers/specs/2026-11-10-catalog-answers-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-client-actions-design.html">superpowers/specs/2026-11-10-client-actions-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-economy-design.html">superpowers/specs/2026-11-10-data-economy-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-garden-animals-vehicles-design.html">superpowers/specs/2026-11-10-data-garden-animals-vehicles-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-data-session-server-design.html">superpowers/specs/2026-11-10-data-session-server-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-held-items-audit-design.html">superpowers/specs/2026-11-10-held-items-audit-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-map-bake-design.html">superpowers/specs/2026-11-10-map-bake-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-movement-check-design.html">superpowers/specs/2026-11-10-movement-check-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-packet-limits-design.html">superpowers/specs/2026-11-10-packet-limits-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-anchors-design.html">superpowers/specs/2026-11-10-place-anchors-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-place-role-world-design.html">superpowers/specs/2026-11-10-place-role-world-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-processor-intake-design.html">superpowers/specs/2026-11-10-processor-intake-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-processor-queue-design.html">superpowers/specs/2026-11-10-processor-queue-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-profile-store-core-design.html">superpowers/specs/2026-11-10-profile-store-core-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-receipt-ledger-design.html">superpowers/specs/2026-11-10-receipt-ledger-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-server-lifecycle-design.html">superpowers/specs/2026-11-10-server-lifecycle-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-areas-design.html">superpowers/specs/2026-11-10-snow-areas-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-break-burst-design.html">superpowers/specs/2026-11-10-snow-break-burst-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-break-like-reference-design.html">superpowers/specs/2026-11-10-snow-break-like-reference-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-cell-strength-design.html">superpowers/specs/2026-11-10-snow-cell-strength-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-pillow-layers-design.html">superpowers/specs/2026-11-10-snow-pillow-layers-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-puff-design.html">superpowers/specs/2026-11-10-snow-puff-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-snow-response-design.html">superpowers/specs/2026-11-10-snow-response-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-starter-spoon-design.html">superpowers/specs/2026-11-10-starter-spoon-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-plan-design.html">superpowers/specs/2026-11-10-strike-plan-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-strike-rules-design.html">superpowers/specs/2026-11-10-strike-rules-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-two-places-design.html">superpowers/specs/2026-11-10-two-places-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-10-wallet-design.html">superpowers/specs/2026-11-10-wallet-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-bag-full-design.html">superpowers/specs/2026-11-11-bag-full-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-classes-design.html">superpowers/specs/2026-11-11-classes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-data-client-copies-design.html">superpowers/specs/2026-11-11-data-client-copies-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-farmhouse-shop-stands-design.html">superpowers/specs/2026-11-11-farmhouse-shop-stands-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-farmhouse-weapon-stands-design.html">superpowers/specs/2026-11-11-farmhouse-weapon-stands-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-guide-json-only-design.html">superpowers/specs/2026-11-11-guide-json-only-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-loading-screen-design.html">superpowers/specs/2026-11-11-loading-screen-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-one-snow-strength-design.html">superpowers/specs/2026-11-11-one-snow-strength-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-place-sources-design.html">superpowers/specs/2026-11-11-place-sources-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-remove-garden-design.html">superpowers/specs/2026-11-11-remove-garden-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-run-hotbar-design.html">superpowers/specs/2026-11-11-run-hotbar-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-shared-question-marks-design.html">superpowers/specs/2026-11-11-shared-question-marks-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-snow-clear-wave-flakes-design.html">superpowers/specs/2026-11-11-snow-clear-wave-flakes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-snow-garden-design.html">superpowers/specs/2026-11-11-snow-garden-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-snow-work-rule-design.html">superpowers/specs/2026-11-11-snow-work-rule-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-spoon-layer-snow-design.html">superpowers/specs/2026-11-11-spoon-layer-snow-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-vehicle-snow-vfx-design.html">superpowers/specs/2026-11-11-vehicle-snow-vfx-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-vehicle-unlock-design.html">superpowers/specs/2026-11-11-vehicle-unlock-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-weapon-rule-design.html">superpowers/specs/2026-11-11-weapon-rule-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-11-zone-open-90-saved-design.html">superpowers/specs/2026-11-11-zone-open-90-saved-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-buckets-design.html">superpowers/specs/2026-11-12-buckets-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-contour-fit-design.html">superpowers/specs/2026-11-12-contour-fit-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-conveyor-design.html">superpowers/specs/2026-11-12-conveyor-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-gems-rewards-design.html">superpowers/specs/2026-11-12-gems-rewards-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-hotbar-look-design.html">superpowers/specs/2026-11-12-hotbar-look-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-place-windows-design.html">superpowers/specs/2026-11-12-place-windows-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-snow-height-design.html">superpowers/specs/2026-11-12-snow-height-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-snow-rarity-design.html">superpowers/specs/2026-11-12-snow-rarity-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-12-two-vacuums-design.html">superpowers/specs/2026-11-12-two-vacuums-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-arcade-catch-gifts-design.html">superpowers/specs/2026-11-13-arcade-catch-gifts-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-arcade-grinch-drifts-design.html">superpowers/specs/2026-11-13-arcade-grinch-drifts-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-arcade-hall-design.html">superpowers/specs/2026-11-13-arcade-hall-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-continue-new-game-design.html">superpowers/specs/2026-11-13-continue-new-game-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-conveyor-two-lanes-design.html">superpowers/specs/2026-11-13-conveyor-two-lanes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-first-run-one-task-design.html">superpowers/specs/2026-11-13-first-run-one-task-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-party-start-buttons-design.html">superpowers/specs/2026-11-13-party-start-buttons-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-phone-touch-sizes-design.html">superpowers/specs/2026-11-13-phone-touch-sizes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-solo-board-design.html">superpowers/specs/2026-11-13-solo-board-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-13-zone-wall-design.html">superpowers/specs/2026-11-13-zone-wall-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-14-arcade-ice-fishing-design.html">superpowers/specs/2026-11-14-arcade-ice-fishing-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-14-conveyor-four-lanes-design.html">superpowers/specs/2026-11-14-conveyor-four-lanes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-14-hockey-rink-design.html">superpowers/specs/2026-11-14-hockey-rink-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-arcade-hall-bigger-design.html">superpowers/specs/2026-11-15-arcade-hall-bigger-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-arcade-hall-timer-design.html">superpowers/specs/2026-11-15-arcade-hall-timer-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-arcade-halls-schedule-design.html">superpowers/specs/2026-11-15-arcade-halls-schedule-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-arcade-santa-run-design.html">superpowers/specs/2026-11-15-arcade-santa-run-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-dev-panel-design.html">superpowers/specs/2026-11-15-dev-panel-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-grinch-fight-design.html">superpowers/specs/2026-11-15-grinch-fight-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-grinch-hideout-design.html">superpowers/specs/2026-11-15-grinch-hideout-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-grinch-victory-gifts-design.html">superpowers/specs/2026-11-15-grinch-victory-gifts-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-hockey-ai-design.html">superpowers/specs/2026-11-15-hockey-ai-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-hockey-match-design.html">superpowers/specs/2026-11-15-hockey-match-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-hockey-teams-design.html">superpowers/specs/2026-11-15-hockey-teams-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-mechanics-live-audit.html">superpowers/specs/2026-11-15-mechanics-live-audit.md</a></li><li><a href="doc-superpowers-specs-2026-11-15-snow-removal-vfx-design.html">superpowers/specs/2026-11-15-snow-removal-vfx-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-16-shovel-first-person-dig-design.html">superpowers/specs/2026-11-16-shovel-first-person-dig-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-16-stale-studio-scenarios-design.html">superpowers/specs/2026-11-16-stale-studio-scenarios-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-16-ui-item-pictures-design.html">superpowers/specs/2026-11-16-ui-item-pictures-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-16-weapons-first-person-no-hands-design.html">superpowers/specs/2026-11-16-weapons-first-person-no-hands-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-17-dev-panel-state-design.html">superpowers/specs/2026-11-17-dev-panel-state-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-17-hockey-aim-line-design.html">superpowers/specs/2026-11-17-hockey-aim-line-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-17-hud-current-shots-design.html">superpowers/specs/2026-11-17-hud-current-shots-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-17-hud-new-look-refs-design.html">superpowers/specs/2026-11-17-hud-new-look-refs-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-17-party-rejoin-design.html">superpowers/specs/2026-11-17-party-rejoin-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-17-ui-item-pictures-wave2-design.html">superpowers/specs/2026-11-17-ui-item-pictures-wave2-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-17-vehicle-mouse-look-and-seats-design.html">superpowers/specs/2026-11-17-vehicle-mouse-look-and-seats-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-18-snow-golem.html">superpowers/specs/2026-11-18-snow-golem.md</a></li><li><a href="doc-superpowers-specs-2026-11-18-snow-sweep-design.html">superpowers/specs/2026-11-18-snow-sweep-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-19-adaptive-snow-audio-design.html">superpowers/specs/2026-11-19-adaptive-snow-audio-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-19-hud-approved-design.html">superpowers/specs/2026-11-19-hud-approved-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-19-new-snow-in-game-design.html">superpowers/specs/2026-11-19-new-snow-in-game-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-19-snow-processing-reference-study.html">superpowers/specs/2026-11-19-snow-processing-reference-study.md</a></li><li><a href="doc-superpowers-specs-2026-11-19-snow-sweep-lab-design.html">superpowers/specs/2026-11-19-snow-sweep-lab-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-19-snow-sweep-look-design.html">superpowers/specs/2026-11-19-snow-sweep-look-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-19-snow-sweep-tools-design.html">superpowers/specs/2026-11-19-snow-sweep-tools-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-20-board-testing-design.html">superpowers/specs/2026-11-20-board-testing-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-21-snow-mesh-release-design.html">superpowers/specs/2026-11-21-snow-mesh-release-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-continue-by-steps-design.html">superpowers/specs/2026-11-22-continue-by-steps-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-lobby-larger-scale-design.html">superpowers/specs/2026-11-22-lobby-larger-scale-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-lobby-space-and-glow-design.html">superpowers/specs/2026-11-22-lobby-space-and-glow-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-lobby-start-effects-design.html">superpowers/specs/2026-11-22-lobby-start-effects-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-piece-area-400-design.html">superpowers/specs/2026-11-22-piece-area-400-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-processor-model-upgrade-design.html">superpowers/specs/2026-11-22-processor-model-upgrade-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-santa-after-tutorial-design.html">superpowers/specs/2026-11-22-santa-after-tutorial-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-save-slots-design.html">superpowers/specs/2026-11-22-save-slots-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-snow-flow-review.html">superpowers/specs/2026-11-22-snow-flow-review.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-snow-long-play-design.html">superpowers/specs/2026-11-22-snow-long-play-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-snow-reaudit.html">superpowers/specs/2026-11-22-snow-reaudit.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-solo-90-minutes-design.html">superpowers/specs/2026-11-22-solo-90-minutes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-tutorial-hidden-stands-design.html">superpowers/specs/2026-11-22-tutorial-hidden-stands-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-tutorial-island-design.html">superpowers/specs/2026-11-22-tutorial-island-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-tutorial-steps-design.html">superpowers/specs/2026-11-22-tutorial-steps-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-tutorial-task-line-design.html">superpowers/specs/2026-11-22-tutorial-task-line-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-vehicle-client-carve-design.html">superpowers/specs/2026-11-22-vehicle-client-carve-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-vehicle-cut-shapes-design.html">superpowers/specs/2026-11-22-vehicle-cut-shapes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-vehicle-piece-span-design.html">superpowers/specs/2026-11-22-vehicle-piece-span-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-winter-lobby-design.html">superpowers/specs/2026-11-22-winter-lobby-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-world-layers-analysis.html">superpowers/specs/2026-11-22-world-layers-analysis.md</a></li><li><a href="doc-superpowers-specs-2026-11-22-zone-gardens-design.html">superpowers/specs/2026-11-22-zone-gardens-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-big-spoon-start-design.html">superpowers/specs/2026-11-23-big-spoon-start-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-counted-square-melts-design.html">superpowers/specs/2026-11-23-counted-square-melts-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-forest-mountains-meshes-design.html">superpowers/specs/2026-11-23-forest-mountains-meshes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-gold-snow-shell-design.html">superpowers/specs/2026-11-23-gold-snow-shell-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-pets-off-design.html">superpowers/specs/2026-11-23-pets-off-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-sell-per-snow-design.html">superpowers/specs/2026-11-23-sell-per-snow-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-shovel-square-cut-design.html">superpowers/specs/2026-11-23-shovel-square-cut-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-snow-frame-budget-design.html">superpowers/specs/2026-11-23-snow-frame-budget-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-snow-world-end-meshes-design.html">superpowers/specs/2026-11-23-snow-world-end-meshes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-tools-on-new-snow-design.html">superpowers/specs/2026-11-23-tools-on-new-snow-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-valley-terrain-trim-design.html">superpowers/specs/2026-11-23-valley-terrain-trim-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-vehicle-ladder-design.html">superpowers/specs/2026-11-23-vehicle-ladder-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-windows-wood-design.html">superpowers/specs/2026-11-23-windows-wood-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-23-zone-bloom-design.html">superpowers/specs/2026-11-23-zone-bloom-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-coin-cents-ladder-design.html">superpowers/specs/2026-11-24-coin-cents-ladder-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-counted-square-keeps-snow-design.html">superpowers/specs/2026-11-24-counted-square-keeps-snow-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-far-lift-design.html">superpowers/specs/2026-11-24-far-lift-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-far-snow-reach-design.html">superpowers/specs/2026-11-24-far-snow-reach-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-old-snow-scenarios-design.html">superpowers/specs/2026-11-24-old-snow-scenarios-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-piece-vanish-gold-ring-design.html">superpowers/specs/2026-11-24-piece-vanish-gold-ring-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-processor-intake-delay-design.html">superpowers/specs/2026-11-24-processor-intake-delay-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-processor-whole-load-design.html">superpowers/specs/2026-11-24-processor-whole-load-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-ready-wait-scenarios-design.html">superpowers/specs/2026-11-24-ready-wait-scenarios-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-snow-200-nodes-design.html">superpowers/specs/2026-11-24-snow-200-nodes-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-snow-batch-paint-design.html">superpowers/specs/2026-11-24-snow-batch-paint-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-snow-contour-outline-design.html">superpowers/specs/2026-11-24-snow-contour-outline-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-snow-phone-meter-design.html">superpowers/specs/2026-11-24-snow-phone-meter-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-snow-soft-relief-design.html">superpowers/specs/2026-11-24-snow-soft-relief-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-vehicle-camera-controls-design.html">superpowers/specs/2026-11-24-vehicle-camera-controls-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-vehicle-shop-design.html">superpowers/specs/2026-11-24-vehicle-shop-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-24-wider-spoon-design.html">superpowers/specs/2026-11-24-wider-spoon-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-25-farmyard-lobby-design.html">superpowers/specs/2026-11-25-farmyard-lobby-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-25-hand-tools-like-spoon-design.html">superpowers/specs/2026-11-25-hand-tools-like-spoon-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-25-powder-cut-detail-design.html">superpowers/specs/2026-11-25-powder-cut-detail-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-25-run-tutorial-skip-design.html">superpowers/specs/2026-11-25-run-tutorial-skip-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-25-snow-norm-data-design.html">superpowers/specs/2026-11-25-snow-norm-data-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-25-snow-wall-gradient-design.html">superpowers/specs/2026-11-25-snow-wall-gradient-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-25-tool-break-feel-design.html">superpowers/specs/2026-11-25-tool-break-feel-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-25-tool-hand-size-design.html">superpowers/specs/2026-11-25-tool-hand-size-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-26-client-per-frame-smalls-design.html">superpowers/specs/2026-11-26-client-per-frame-smalls-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-26-dev-panel-update-design.html">superpowers/specs/2026-11-26-dev-panel-update-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-26-fx-cost-design.html">superpowers/specs/2026-11-26-fx-cost-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-26-heli-gc-long-frames-design.html">superpowers/specs/2026-11-26-heli-gc-long-frames-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-26-hud-render-coalesce-design.html">superpowers/specs/2026-11-26-hud-render-coalesce-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-26-lobby-model-swap-design.html">superpowers/specs/2026-11-26-lobby-model-swap-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-26-lobby-snow-terrain-design.html">superpowers/specs/2026-11-26-lobby-snow-terrain-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-26-lobby-snowbanks-design.html">superpowers/specs/2026-11-26-lobby-snowbanks-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-26-molotov-rework-design.html">superpowers/specs/2026-11-26-molotov-rework-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-26-one-player-damage-design.html">superpowers/specs/2026-11-26-one-player-damage-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-26-perf-audit-design.html">superpowers/specs/2026-11-26-perf-audit-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-26-perf-audit-round2-design.html">superpowers/specs/2026-11-26-perf-audit-round2-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-26-processor-part-delta-design.html">superpowers/specs/2026-11-26-processor-part-delta-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-26-run-entry-load-design.html">superpowers/specs/2026-11-26-run-entry-load-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-26-snow-idle-pass-design.html">superpowers/specs/2026-11-26-snow-idle-pass-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-26-snow-long-run-fps-design.html">superpowers/specs/2026-11-26-snow-long-run-fps-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-26-soft-sunlight-design.html">superpowers/specs/2026-11-26-soft-sunlight-design.md</a></li><li><a href="doc-superpowers-specs-2026-11-26-stale-scenarios-seven-tools-design.html">superpowers/specs/2026-11-26-stale-scenarios-seven-tools-design.md</a></li><li><a href="doc-superpowers-specs-phone-touch-sizes-30c439-ref-phone-classes-prompt.html">superpowers/specs/phone-touch-sizes/30c439-ref-phone-classes.prompt.md</a></li><li><a href="doc-superpowers-specs-phone-touch-sizes-30c439-ref-phone-gemwheel-prompt.html">superpowers/specs/phone-touch-sizes/30c439-ref-phone-gemwheel.prompt.md</a></li><li><a href="doc-tools-balance-2026-11-26.html">tools-balance-2026-11-26.md</a></li><li><a href="doc-tools-vehicles-balance-2026-11-25.html">tools-vehicles-balance-2026-11-25.md</a></li><li><a href="doc-unused-inventory.html">unused-inventory.md</a></li><li><a href="doc-vfx-roblox.html">vfx-roblox.md</a></li></ul></details></li></ul></nav>
+<main>
+<section class="part with-toc"><h2>Звуки</h2><nav class="toc" aria-label="На этой странице"><ul><li><a href="#нравится-и-выбрано">Нравится и выбрано</a></li><li><a href="#не-понравилось-не-возвращать">Не понравилось — не возвращать</a></li><li><a href="#все-события-по-разделам">Все события по разделам</a></li><li><a href="#снег-и-ведро">Снег и ведро</a></li><li><a href="#инструменты">Инструменты</a></li><li><a href="#машины">Машины</a></li><li><a href="#забег">Забег</a></li><li><a href="#кнопки-и-награды">Кнопки и награды</a></li><li><a href="#мир-и-гринч">Мир и Гринч</a></li><li><a href="#аркады-и-хоккей">Аркады и хоккей</a></li><li><a href="#новые-26-11">Новые 26.11</a></li><li><a href="#рекомендую-послушать">Рекомендую послушать</a></li><li><a href="#рекомендации">Рекомендации</a></li><li><a href="#тулбокс-26-11">Тулбокс 26.11</a></li></ul></nav><div class="part-body"><div class="prose sound-table"><h1>Звуки игры: что нравится, что стоит, что ждёт</h1>
+<p>Одна таблица на все звуки Clean a Snow. Номера — как в пульте <code>place/SoundBoard.rbxl</code> (вкладка «Все по номеру»): «ведро полное — 7». Ссылка с id открывает звук в Creator Store.</p>
+<ul>
+<li><strong>Нравится</strong> — Леонид послушал и сказал, что нравится.</li>
+<li><strong>Выбрано</strong> — Леонид выбрал номер, звук уже в игре.</li>
+<li><strong>Ждёт выбора</strong> — сейчас стоит временный звук или тишина; номера на пробу — в последней колонке.</li>
+<li><strong>Без звука</strong> — решили, что звука нет. <strong>Не нужно</strong> — этой вещи больше нет в игре.</li>
+<li>«Только в Studio» — наш файл без id Roblox: в опубликованной игре там тишина, пока его не загрузят (только по слову Леонида).</li>
+</ul>
+<h2 id="нравится-и-выбрано">Нравится и выбрано</h2>
+<p>Послушать — так, как звучит в игре: нужный кусок, смягчение. Все файлы одной громкости.</p>
+<table>
+<thead>
+<tr>
+<th>Где в игре</th>
+<th>Что звучит</th>
+<th>Статус</th>
+<th>Послушать</th>
+<th>Как решили</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Резка снега</td>
+<td>наши записи хруста снега: мягкий слой и хруст (<code>powder_rustle.wav</code>, <code>powder_grain.wav</code>), №1 и №2</td>
+<td><strong>Нравится</strong></td>
+<td><audio controls preload="none" src="../art/sounds/previews/chosen-cut.m4a"></audio></td>
+<td>Леонид 26.11: «ломка снега ложкой и лопатой нравится». Играет только в Studio: в опубликованной игре тут тишина, пока эти два файла не загружены в Roblox (загрузка — только по слову Леонида).</td>
+</tr>
+<tr>
+<td>Блок на конвейер</td>
+<td>№13 «весло втыкается в ледяной снег» <a href="https://create.roblox.com/store/asset/9126274119">9126274119</a>, на каждый блок</td>
+<td><strong>Нравится</strong></td>
+<td><audio controls preload="none" src="../art/sounds/previews/chosen-conveyor.m4a"></audio></td>
+<td>Леонид 26.11: «Paddle Into Icy пока лучше звучит, как снег». Тише вдали, со 100 стадов не слышно.</td>
+</tr>
+<tr>
+<td>Монетка с переработчика за каждый кусок</td>
+<td>«Coin Collect 2» <a href="https://create.roblox.com/store/asset/1169806635">1169806635</a>: пара — тихий звон, через 0,3 с громкий, новая пара раз в 1,5 с</td>
+<td><strong>Нравится</strong></td>
+<td><span class="muted">только в Roblox</span></td>
+<td>Леонид 26.11: «получение монет как сейчас — нравится, пока что». Звучит у переработчика: тише вдали, со 100 стадов не слышно. Звон за кролика — у игрока.</td>
+</tr>
+<tr>
+<td>Пылесос</td>
+<td>№371 «Vacuum Cleaner 1» <a href="https://create.roblox.com/store/asset/9120360676">9120360676</a>: с включения (0,25 с), дальше по кругу 9,6–14 с</td>
+<td><strong>Выбрано</strong></td>
+<td><audio controls preload="none" src="../art/sounds/previews/chosen-vacuum.m4a"></audio></td>
+<td>Леонид 26.11: «371 юзай для пылесоса».</td>
+</tr>
+<tr>
+<td>Шнекороторный снегоочиститель</td>
+<td>№371, как у пылесоса <a href="https://create.roblox.com/store/asset/9120360676">9120360676</a></td>
+<td><strong>Выбрано</strong></td>
+<td><audio controls preload="none" src="../art/sounds/previews/chosen-vacuum.m4a"></audio></td>
+<td>Леонид 26.11: «там 371 есть с рекомендаций, давай его» — «пылесос». №43, №42, №330 не взяты.</td>
+</tr>
+<tr>
+<td>Тепловая пушка</td>
+<td>№368 «Fire Whoosh 1» <a href="https://create.roblox.com/store/asset/9112780561">9112780561</a>: с 9 с, где ревёт пламя, по кругу 9–14,5 с</td>
+<td><strong>Выбрано</strong></td>
+<td><audio controls preload="none" src="../art/sounds/previews/chosen-thermal.m4a"></audio></td>
+<td>Леонид 26.11: «с того момента, где звук чувствуется как пламя».</td>
+</tr>
+<tr>
+<td>Молотов: бросок</td>
+<td>№391 «Whoosh By Fast Airy» <a href="https://create.roblox.com/store/asset/9126229255">9126229255</a>, смягчён (верх −10 дБ, громкость 0,22)</td>
+<td><strong>Нравится</strong></td>
+<td><audio controls preload="none" src="../art/sounds/previews/chosen-molotov-throw.m4a"></audio></td>
+<td>Леонид 26.11: «чтоб не резали уши», потом «да норм».</td>
+</tr>
+<tr>
+<td>Молотов: разбилась и вспыхнула</td>
+<td>стекло №53 <a href="https://create.roblox.com/store/asset/9114591515">9114591515</a> (смягчено, без пустой первой секунды) и взрыв №314 <a href="https://create.roblox.com/store/asset/9117985933">9117985933</a></td>
+<td><strong>Нравится</strong></td>
+<td><audio controls preload="none" src="../art/sounds/previews/chosen-molotov-glass.m4a"></audio> <audio controls preload="none" src="../art/sounds/previews/chosen-molotov-burst.m4a"></audio></td>
+<td>Леонид 26.11: взрыв — №314; стекло «чтоб не резало уши», потом «да норм». Слышат все рядом.</td>
+</tr>
+<tr>
+<td>Покупка</td>
+<td>инструмент, ведро, машина — №280 «Correct Answer 3» <a href="https://create.roblox.com/store/asset/1839997938">1839997938</a>; другие покупки — наш <code>purchase.wav</code> (только в Studio)</td>
+<td><strong>Выбрано</strong></td>
+<td><audio controls preload="none" src="../art/sounds/previews/chosen-gear.m4a"></audio></td>
+<td>Леонид 26.11: «280 — когда купил инструмент, ведро или машину». Звук других покупок (питомец, класс, помощник) ещё ждёт выбора.</td>
+</tr>
+<tr>
+<td>Новая зона открыта</td>
+<td>№287 «Correct Answer 2» <a href="https://create.roblox.com/store/asset/1839997929">1839997929</a></td>
+<td><strong>Выбрано</strong></td>
+<td><audio controls preload="none" src="../art/sounds/previews/chosen-zone.m4a"></audio></td>
+<td>Леонид 26.11: «287 — когда зону открывают».</td>
+</tr>
+<tr>
+<td>Вся игра пройдена (окно EXPEDITION COMPLETE)</td>
+<td>«Take the Win» <a href="https://create.roblox.com/store/asset/1840091947">1840091947</a>, 6,8 с (в пульте №95, №171, №271)</td>
+<td><strong>Выбрано</strong></td>
+<td><audio controls preload="none" src="../art/sounds/previews/chosen-win.m4a"></audio></td>
+<td>Леонид 25.11.</td>
+</tr>
+<tr>
+<td>Звуки переработчика вдали</td>
+<td>звон монет за переработку и стук блоков звучат у переработчика: до 20 стадов целиком, дальше тише, со 100 стадов тишина</td>
+<td><strong>Выбрано</strong></td>
+<td>—</td>
+<td>Леонид 26.11: «тише, когда отдаляешься, со 100 стадов вообще не слышно».</td>
+</tr>
+</tbody></table>
+<h2 id="не-понравилось-не-возвращать">Не понравилось — не возвращать</h2>
+<table>
+<thead>
+<tr>
+<th>Что пробовали</th>
+<th>Что сказал Леонид</th>
+<th>Что стоит вместо</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Блок на конвейер: №13 смягчённый (ниже тон, верх −10 дБ, тише)</td>
+<td>«Paddle Into Icy пока лучше звучит, как снег»</td>
+<td>№13 как в пульте</td>
+</tr>
+<tr>
+<td>Монеты пачкой: до 6 звонов через 0,1 с</td>
+<td>«фигово звучит, пока не делай»</td>
+<td>пары звонов</td>
+</tr>
+<tr>
+<td>Монета на каждый кусок, через 0,3 с</td>
+<td>«слишком бесит»</td>
+<td>пары звонов</td>
+</tr>
+<tr>
+<td>Монеты: громкий, через 0,3 с тихий, раз в секунду</td>
+<td>«всё равно резкие немного, я бы больше паузы»</td>
+<td>тихий, потом громкий, раз в 1,5 с</td>
+</tr>
+<tr>
+<td>Молотов: №391 и №53 как есть</td>
+<td>«режут уши»</td>
+<td>те же номера, смягчённые</td>
+</tr>
+<tr>
+<td>Снегоуборщик: №43 воздуходувка, №42 машина для заливки льда, №330 тросик стартера</td>
+<td>выбрал №371</td>
+<td>№371, как пылесос</td>
+</tr>
+<tr>
+<td>Ледоруб: свист меча и металлический стук</td>
+<td>убрать (25.11)</td>
+<td>без звука</td>
+</tr>
+</tbody></table>
+<h2 id="все-события-по-разделам">Все события по разделам</h2>
+<p>«Из chop a forest» — номера вкладки «Рекомендации». «Новые из тулбокса» — вкладка «Тулбокс 26.11»: выбраны по названию и длине, на слух ещё никто не слушал.</p>
+<h3 id="снег-и-ведро">Снег и ведро</h3>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Сейчас в игре</th>
+<th>Статус</th>
+<th>На пробу в пульте</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Резка снега</td>
+<td>наши записи хруста снега: мягкий слой и хруст (<code>powder_rustle.wav</code>, <code>powder_grain.wav</code>), №1 и №2</td>
+<td><strong>Нравится</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Подбор снега в ведро</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№3–6; из chop a forest: №346, №379; новые из тулбокса: №431–433</td>
+</tr>
+<tr>
+<td>Ведро полное</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№7–9; из chop a forest: №339; новые из тулбокса: №434–436</td>
+</tr>
+<tr>
+<td>Блок на конвейер</td>
+<td>№13 «весло втыкается в ледяной снег» <a href="https://create.roblox.com/store/asset/9126274119">9126274119</a>, на каждый блок</td>
+<td><strong>Нравится</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Монетка с переработчика за каждый кусок</td>
+<td>«Coin Collect 2» <a href="https://create.roblox.com/store/asset/1169806635">1169806635</a>: пара — тихий звон, через 0,3 с громкий, новая пара раз в 1,5 с</td>
+<td><strong>Нравится</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Шаги по снегу</td>
+<td>стандартные шаги по пластику (№18)</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№18–20; новые из тулбокса: №437–439</td>
+</tr>
+</tbody></table>
+<h3 id="инструменты">Инструменты</h3>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Сейчас в игре</th>
+<th>Статус</th>
+<th>На пробу в пульте</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Взмах ложкой и лопатой</td>
+<td>при копании не звучит: ложка и лопата копают, пока зажата кнопка, слышно только хруст №1–2 (проверено в забеге 26.11); свист меча остался в коде</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№21–24; из chop a forest: №397, №408, №412</td>
+</tr>
+<tr>
+<td>Удар ложкой и лопатой по снегу</td>
+<td>при копании не звучит, слышно только хруст №1–2 (проверено в забеге 26.11); шлепок остался в коде</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№25–28</td>
+</tr>
+<tr>
+<td>Ледоруб по льду</td>
+<td>тишина: ни взмаха, ни удара</td>
+<td><strong>Без звука</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Отбойный молоток</td>
+<td>—</td>
+<td><strong>Не нужно</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Пылесос</td>
+<td>№371 «Vacuum Cleaner 1» <a href="https://create.roblox.com/store/asset/9120360676">9120360676</a>: с включения (0,25 с), дальше по кругу 9,6–14 с</td>
+<td><strong>Выбрано</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Шнекороторный снегоочиститель</td>
+<td>№371, как у пылесоса <a href="https://create.roblox.com/store/asset/9120360676">9120360676</a></td>
+<td><strong>Выбрано</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Тепловая пушка</td>
+<td>№368 «Fire Whoosh 1» <a href="https://create.roblox.com/store/asset/9112780561">9112780561</a>: с 9 с, где ревёт пламя, по кругу 9–14,5 с</td>
+<td><strong>Выбрано</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Молотов: бросок</td>
+<td>№391 «Whoosh By Fast Airy» <a href="https://create.roblox.com/store/asset/9126229255">9126229255</a>, смягчён (верх −10 дБ, громкость 0,22)</td>
+<td><strong>Нравится</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Молотов: разбилась и вспыхнула</td>
+<td>стекло №53 <a href="https://create.roblox.com/store/asset/9114591515">9114591515</a> (смягчено, без пустой первой секунды) и взрыв №314 <a href="https://create.roblox.com/store/asset/9117985933">9117985933</a></td>
+<td><strong>Нравится</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Смена инструмента</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№56–58; из chop a forest: №328, №419; новые из тулбокса: №440–442</td>
+</tr>
+</tbody></table>
+<h3 id="машины">Машины</h3>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Сейчас в игре</th>
+<th>Статус</th>
+<th>На пробу в пульте</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Мотор пикапа</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№59–61; новые из тулбокса: №443–445</td>
+</tr>
+<tr>
+<td>Мотор трака</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№62–64</td>
+</tr>
+<tr>
+<td>Снегоход</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№65–67; из chop a forest: №296; новые из тулбокса: №446–448</td>
+</tr>
+<tr>
+<td>Вертолёт</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№68–69; новые из тулбокса: №449–451</td>
+</tr>
+<tr>
+<td>Мотор танка</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№70–72; новые из тулбокса: №452–454</td>
+</tr>
+<tr>
+<td>Гусеницы танка</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№211–214</td>
+</tr>
+<tr>
+<td>Запуск мотора</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№73–74; новые из тулбокса: №455–457</td>
+</tr>
+<tr>
+<td>Сигнал</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№75–77; новые из тулбокса: №458–460</td>
+</tr>
+<tr>
+<td>Машина убирает снег</td>
+<td>космический свист (№78)</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№78–81; из chop a forest: №346</td>
+</tr>
+</tbody></table>
+<h3 id="забег">Забег</h3>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Сейчас в игре</th>
+<th>Статус</th>
+<th>На пробу в пульте</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Отсчёт 3-2-1</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№82–84; новые из тулбокса: №461–463</td>
+</tr>
+<tr>
+<td>Старт</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№85–87; новые из тулбокса: №464–466</td>
+</tr>
+<tr>
+<td>Последние 10 секунд</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№88–90; из chop a forest: №269; новые из тулбокса: №467–469</td>
+</tr>
+<tr>
+<td>Время вышло</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№91–93; новые из тулбокса: №470–472</td>
+</tr>
+<tr>
+<td>Итоги забега</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№94–97; новые из тулбокса: №473–475</td>
+</tr>
+<tr>
+<td>Зона оживает</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№98–100</td>
+</tr>
+<tr>
+<td>Шаг обучения выполнен</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№101–103; из chop a forest: №313, №339; новые из тулбокса: №476–478</td>
+</tr>
+</tbody></table>
+<h3 id="кнопки-и-награды">Кнопки и награды</h3>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Сейчас в игре</th>
+<th>Статус</th>
+<th>На пробу в пульте</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Кнопка</td>
+<td>наш щелчок (№104), только в Studio</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№104–106; новые из тулбокса: №479–481</td>
+</tr>
+<tr>
+<td>Окно открылось</td>
+<td>наш звук окна (№107), только в Studio</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№107–109; из chop a forest: №337; новые из тулбокса: №482–484</td>
+</tr>
+<tr>
+<td>Покупка</td>
+<td>инструмент, ведро, машина — №280 «Correct Answer 3» <a href="https://create.roblox.com/store/asset/1839997938">1839997938</a>; другие покупки — наш <code>purchase.wav</code> (только в Studio)</td>
+<td><strong>Выбрано</strong></td>
+<td>№110–113</td>
+</tr>
+<tr>
+<td>Отказ в покупке</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№114–117; из chop a forest: №395; новые из тулбокса: №485–487</td>
+</tr>
+<tr>
+<td>Новая зона открыта</td>
+<td>№287 «Correct Answer 2» <a href="https://create.roblox.com/store/asset/1839997929">1839997929</a></td>
+<td><strong>Выбрано</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Большая награда</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№121–123; из chop a forest: №282, №285; новые из тулбокса: №488–490</td>
+</tr>
+<tr>
+<td>Колесо гемов: щелчки</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№124–126; новые из тулбокса: №491–492</td>
+</tr>
+<tr>
+<td>Колесо гемов: выигрыш</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№127–129; новые из тулбокса: №493–494</td>
+</tr>
+<tr>
+<td>Ежедневные гемы</td>
+<td>сбор гема (№130)</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№130–132</td>
+</tr>
+<tr>
+<td>Питомец появился</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№133–135; новые из тулбокса: №495–496</td>
+</tr>
+<tr>
+<td>Класс выбран</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№136–138</td>
+</tr>
+</tbody></table>
+<h3 id="мир-и-гринч">Мир и Гринч</h3>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Сейчас в игре</th>
+<th>Статус</th>
+<th>На пробу в пульте</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Музыка лобби</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№139–142; из chop a forest: №376; новые из тулбокса: №497–498</td>
+</tr>
+<tr>
+<td>Музыка забега</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№143–146; новые из тулбокса: №499–500</td>
+</tr>
+<tr>
+<td>Ветер</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№147–149; новые из тулбокса: №501–502</td>
+</tr>
+<tr>
+<td>Птицы</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№150–151</td>
+</tr>
+<tr>
+<td>Метель</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№152–154; новые из тулбокса: №503–504</td>
+</tr>
+<tr>
+<td>Санта прилетел</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№155–156; новые из тулбокса: №505–506</td>
+</tr>
+<tr>
+<td>Санта: «хо-хо-хо»</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№215–218</td>
+</tr>
+<tr>
+<td>Подарок открылся</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№157–159; из chop a forest: №328; новые из тулбокса: №507–508</td>
+</tr>
+<tr>
+<td>Персонаж упал</td>
+<td>уф (№160)</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№160–162; новые из тулбокса: №511–512</td>
+</tr>
+<tr>
+<td>Гринч появился</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№163–164; новые из тулбокса: №513–514</td>
+</tr>
+<tr>
+<td>Смех Гринча</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№219–222; новые из тулбокса: №515–516</td>
+</tr>
+<tr>
+<td>Музыка боя с Гринчем</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№165–166</td>
+</tr>
+<tr>
+<td>Удар по Гринчу</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№167–169; новые из тулбокса: №517–518</td>
+</tr>
+<tr>
+<td>Гринч побеждён</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№170–172; новые из тулбокса: №519–520</td>
+</tr>
+<tr>
+<td>Снежный голем: шаг</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№173–175; новые из тулбокса: №521–522</td>
+</tr>
+<tr>
+<td>Снежный голем: удар</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№176–177; новые из тулбокса: №523–524</td>
+</tr>
+</tbody></table>
+<h3 id="аркады-и-хоккей">Аркады и хоккей</h3>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Сейчас в игре</th>
+<th>Статус</th>
+<th>На пробу в пульте</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Поймал подарок</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№178–180</td>
+</tr>
+<tr>
+<td>Уронил подарок, промах</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№181–182</td>
+</tr>
+<tr>
+<td>Прыжок</td>
+<td>стандартный прыжок (№183)</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№183–184</td>
+</tr>
+<tr>
+<td>Столкновение</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№185–186</td>
+</tr>
+<tr>
+<td>Заброс удочки</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№187–188; новые из тулбокса: №533–534</td>
+</tr>
+<tr>
+<td>Поплавок в воду</td>
+<td>стандартный всплеск (№189)</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№189–191</td>
+</tr>
+<tr>
+<td>Катушка, клюёт</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№192–193</td>
+</tr>
+<tr>
+<td>Рыба поймана</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№194–195; новые из тулбокса: №535–536</td>
+</tr>
+<tr>
+<td>Снежок брошен</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№196–197; новые из тулбокса: №529–530</td>
+</tr>
+<tr>
+<td>Снежок попал</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№198–199; новые из тулбокса: №531–532</td>
+</tr>
+<tr>
+<td>Хоккей: удар клюшкой</td>
+<td>приземление (№200)</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№200–202; новые из тулбокса: №537–538</td>
+</tr>
+<tr>
+<td>Хоккей: шайба о борт</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№203; из chop a forest: №400, №403</td>
+</tr>
+<tr>
+<td>Хоккей: гол</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№204–206; новые из тулбокса: №539–540</td>
+</tr>
+<tr>
+<td>Хоккей: свисток</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№207–208; новые из тулбокса: №541–542</td>
+</tr>
+<tr>
+<td>Хоккей: толчок</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№209–210</td>
+</tr>
+</tbody></table>
+<h3 id="новые-26-11">Новые 26.11</h3>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Сейчас в игре</th>
+<th>Статус</th>
+<th>На пробу в пульте</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Здание поднимается из снега</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№223–226; из chop a forest: №274, №312; новые из тулбокса: №525–526</td>
+</tr>
+<tr>
+<td>Здание уходит в снег: гул</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№227–229; новые из тулбокса: №527–528</td>
+</tr>
+<tr>
+<td>Здание уходит в снег: фонтан золота</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№230–232</td>
+</tr>
+<tr>
+<td>Кусок снега отвалился</td>
+<td>тишина (id 125089719696690 и 4518881974 лежат в настройках, но не играют)</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№233–236; из chop a forest: №329, №382</td>
+</tr>
+<tr>
+<td>Остров урока отвалился</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№237–239</td>
+</tr>
+<tr>
+<td>Финал туториала: TUTORIAL COMPLETE</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№240–242; из chop a forest: №283</td>
+</tr>
+<tr>
+<td>Подарки Санты падают в снег</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№243–245; новые из тулбокса: №509–510</td>
+</tr>
+<tr>
+<td>Эльф и Гринч исчезают в облачке</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№246–248; из chop a forest: №321</td>
+</tr>
+<tr>
+<td>Подарки Гринча: забор упал</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№249–251; из chop a forest: №292, №304</td>
+</tr>
+<tr>
+<td>Голем появился</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№252–254</td>
+</tr>
+<tr>
+<td>Автомат в зале аркад: старт игры</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№255–258; новые из тулбокса: №543–544</td>
+</tr>
+<tr>
+<td>Хоккей: итог матча</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№259–260</td>
+</tr>
+<tr>
+<td>Хоккей: заряд броска</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№261–263; из chop a forest: №319</td>
+</tr>
+<tr>
+<td>Лобби: встал в очередь</td>
+<td>тишина</td>
+<td><strong>Ждёт выбора</strong></td>
+<td>№264–266</td>
+</tr>
+</tbody></table>
+<h2 id="рекомендую-послушать">Рекомендую послушать</h2>
+<p>Всё, что я советую взять, с плеером. «Рекомендации» — звуки из chop a forest; «Тулбокс 26.11» — новые из Creator Store, найдены 26.11 по названию и длине. Петли и музыка обрезаны до 10–20 с. «Только в Roblox» — Roblox отдаёт файл только после входа: слушать по ссылке с id или в пульте.</p>
+<h3 id="рекомендации">Рекомендации</h3>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>№</th>
+<th>Что это</th>
+<th>Почему</th>
+<th>Послушать</th>
+<th>id</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Подбор снега в ведро</td>
+<td>379</td>
+<td>копание, удар черенком в землю</td>
+<td>короткий глухой «чух», не металл</td>
+<td><audio controls preload="none" src="../art/sounds/previews/379.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9114109300">9114109300</a></td>
+</tr>
+<tr>
+<td>Подбор снега в ведро</td>
+<td>346</td>
+<td>гравий сыплется</td>
+<td>как снег, который сыплется в ведро</td>
+<td><audio controls preload="none" src="../art/sounds/previews/346.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9114658416">9114658416</a></td>
+</tr>
+<tr>
+<td>Ведро полное</td>
+<td>339</td>
+<td>звонкий колокольчик «динь»</td>
+<td>понятный короткий сигнал</td>
+<td><audio controls preload="none" src="../art/sounds/previews/339.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9126073001">9126073001</a></td>
+</tr>
+<tr>
+<td>Монетка с переработчика</td>
+<td>422</td>
+<td>сбор монетки</td>
+<td>короче и легче нынешнего, звучит часто</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/135483737426662">135483737426662</a></td>
+</tr>
+<tr>
+<td>Монетка с переработчика</td>
+<td>405</td>
+<td>сбор монетки, другой</td>
+<td>это звук, что играет сейчас</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/1169806635">1169806635</a></td>
+</tr>
+<tr>
+<td>Кусок снега отвалился</td>
+<td>329</td>
+<td>ледяной блок падает и рассыпается</td>
+<td>хруст с осыпанием, 1,4 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/329.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9114856749">9114856749</a></td>
+</tr>
+<tr>
+<td>Кусок снега отвалился</td>
+<td>382</td>
+<td>хрустящая скорлупа</td>
+<td>хруст, как ломается наст</td>
+<td><audio controls preload="none" src="../art/sounds/previews/382.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9113959332">9113959332</a></td>
+</tr>
+<tr>
+<td>Взмах ложкой и лопатой</td>
+<td>408</td>
+<td>деревянный взмах по воздуху</td>
+<td>без металла, как лопата</td>
+<td><audio controls preload="none" src="../art/sounds/previews/408.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9120972444">9120972444</a></td>
+</tr>
+<tr>
+<td>Взмах ложкой и лопатой</td>
+<td>412</td>
+<td>деревянный взмах, другой</td>
+<td></td>
+<td><audio controls preload="none" src="../art/sounds/previews/412.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9120972323">9120972323</a></td>
+</tr>
+<tr>
+<td>Взмах ложкой и лопатой</td>
+<td>397</td>
+<td>взмах ракеткой</td>
+<td>мягче и ниже</td>
+<td><audio controls preload="none" src="../art/sounds/previews/397.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9120728883">9120728883</a></td>
+</tr>
+<tr>
+<td>Удар по снегу</td>
+<td>379</td>
+<td>копание, удар черенком в землю</td>
+<td>глухой удар, похож на лопату в снег</td>
+<td><audio controls preload="none" src="../art/sounds/previews/379.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9114109300">9114109300</a></td>
+</tr>
+<tr>
+<td>Пылесос</td>
+<td>371</td>
+<td>пылесос: включился, работает, выключился</td>
+<td>16 с, можно резать на петлю</td>
+<td><audio controls preload="none" src="../art/sounds/previews/371.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9120360676">9120360676</a></td>
+</tr>
+<tr>
+<td>Тепловая пушка</td>
+<td>368</td>
+<td>пламя горелки ревёт</td>
+<td>длинная петля огня, 49 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/368.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9112780561">9112780561</a></td>
+</tr>
+<tr>
+<td>Тепловая пушка</td>
+<td>351</td>
+<td>костёр трещит</td>
+<td>тише, петля</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/134868242817030">134868242817030</a></td>
+</tr>
+<tr>
+<td>Шнекороторный снегоочиститель</td>
+<td>330</td>
+<td>дёрнули тросик стартера</td>
+<td>запуск, как у настоящего снегоочистителя</td>
+<td><audio controls preload="none" src="../art/sounds/previews/330.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9125435361">9125435361</a></td>
+</tr>
+<tr>
+<td>Шнекороторный снегоочиститель</td>
+<td>267</td>
+<td>мотор на холостых</td>
+<td>петля мотора, 9,5 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/126549071567267">126549071567267</a></td>
+</tr>
+<tr>
+<td>Молотов: разбилась и вспыхнула</td>
+<td>310</td>
+<td>ледяной блок разбился</td>
+<td>похоже на стекло</td>
+<td><audio controls preload="none" src="../art/sounds/previews/310.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9114855870">9114855870</a></td>
+</tr>
+<tr>
+<td>Молотов: разбилась и вспыхнула</td>
+<td>314</td>
+<td>огненный шар</td>
+<td>вспышка огня</td>
+<td><audio controls preload="none" src="../art/sounds/previews/314.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9117985933">9117985933</a></td>
+</tr>
+<tr>
+<td>Молотов: бросок</td>
+<td>391</td>
+<td>быстрый свист пролёта</td>
+<td></td>
+<td><audio controls preload="none" src="../art/sounds/previews/391.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9126229255">9126229255</a></td>
+</tr>
+<tr>
+<td>Смена инструмента</td>
+<td>328</td>
+<td>мультяшный пузырь лопнул</td>
+<td>короткий «поп»</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/109359226723492">109359226723492</a></td>
+</tr>
+<tr>
+<td>Смена инструмента</td>
+<td>419</td>
+<td>наведение на кнопку</td>
+<td>очень короткий щелчок</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/107511012621133">107511012621133</a></td>
+</tr>
+<tr>
+<td>Снегоход</td>
+<td>296</td>
+<td>маленький мотор газует</td>
+<td>похож на мотор снегохода, петля</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/131975342663188">131975342663188</a></td>
+</tr>
+<tr>
+<td>Запуск мотора машины</td>
+<td>354</td>
+<td>дизель заводится</td>
+<td>грузовик и танк</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/90722133329536">90722133329536</a></td>
+</tr>
+<tr>
+<td>Машина убирает снег</td>
+<td>346</td>
+<td>гравий сыплется</td>
+<td>снег сыплется с отвала</td>
+<td><audio controls preload="none" src="../art/sounds/previews/346.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9114658416">9114658416</a></td>
+</tr>
+<tr>
+<td>Последние 10 секунд</td>
+<td>269</td>
+<td>барабанная дробь</td>
+<td>8 с напряжения перед концом времени</td>
+<td><audio controls preload="none" src="../art/sounds/previews/269.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1840444182">1840444182</a></td>
+</tr>
+<tr>
+<td>Новая зона открыта</td>
+<td>287</td>
+<td>«правильно!», блестящий</td>
+<td>№280 уже стоит на покупке инструмента</td>
+<td><audio controls preload="none" src="../art/sounds/previews/287.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1839997929">1839997929</a></td>
+</tr>
+<tr>
+<td>Большая награда</td>
+<td>282</td>
+<td>джингл главного приза</td>
+<td></td>
+<td><audio controls preload="none" src="../art/sounds/previews/282.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1845411858">1845411858</a></td>
+</tr>
+<tr>
+<td>Большая награда</td>
+<td>285</td>
+<td>джингл «победитель»</td>
+<td></td>
+<td><audio controls preload="none" src="../art/sounds/previews/285.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1844584698">1844584698</a></td>
+</tr>
+<tr>
+<td>Финал туториала: TUTORIAL COMPLETE</td>
+<td>283</td>
+<td>лёгкий радостный джингл</td>
+<td>4 с, мягкий и весёлый</td>
+<td><audio controls preload="none" src="../art/sounds/previews/283.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9044739323">9044739323</a></td>
+</tr>
+<tr>
+<td>Шаг обучения выполнен</td>
+<td>313</td>
+<td>мягкий волшебный перезвон</td>
+<td>тихий, не мешает</td>
+<td><audio controls preload="none" src="../art/sounds/previews/313.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9116394876">9116394876</a></td>
+</tr>
+<tr>
+<td>Шаг обучения выполнен</td>
+<td>339</td>
+<td>звонкий колокольчик «динь»</td>
+<td></td>
+<td><audio controls preload="none" src="../art/sounds/previews/339.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9126073001">9126073001</a></td>
+</tr>
+<tr>
+<td>Покупка: питомец, класс, помощник</td>
+<td>293</td>
+<td>касса «ча-чинг»</td>
+<td>есть id, будет слышно и в живой игре</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/101396758527961">101396758527961</a></td>
+</tr>
+<tr>
+<td>Окно открылось</td>
+<td>337</td>
+<td>восходящий свист</td>
+<td>лёгкий «вжух»</td>
+<td><audio controls preload="none" src="../art/sounds/previews/337.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9120733948">9120733948</a></td>
+</tr>
+<tr>
+<td>Отказ в покупке</td>
+<td>395</td>
+<td>низкий мягкий «бум»</td>
+<td>мягкое «нет», не ошибка</td>
+<td><audio controls preload="none" src="../art/sounds/previews/395.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9119882039">9119882039</a></td>
+</tr>
+<tr>
+<td>Здание поднимается из снега</td>
+<td>274</td>
+<td>обвал камней и гул</td>
+<td>5 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/274.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9114221862">9114221862</a></td>
+</tr>
+<tr>
+<td>Здание поднимается из снега</td>
+<td>312</td>
+<td>трещит большая льдина</td>
+<td>треск наста</td>
+<td><audio controls preload="none" src="../art/sounds/previews/312.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9114858583">9114858583</a></td>
+</tr>
+<tr>
+<td>Здание уходит в снег</td>
+<td>273</td>
+<td>глубокий гулкий удар с хвостом</td>
+<td>проседание</td>
+<td><audio controls preload="none" src="../art/sounds/previews/273.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9125484526">9125484526</a></td>
+</tr>
+<tr>
+<td>Здание уходит в снег</td>
+<td>290</td>
+<td>мягкий волшебный перезвон</td>
+<td>фонтан золота, 6 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/290.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9116395424">9116395424</a></td>
+</tr>
+<tr>
+<td>Голем</td>
+<td>301</td>
+<td>далёкий тяжёлый удар</td>
+<td>появление</td>
+<td><audio controls preload="none" src="../art/sounds/previews/301.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9125404320">9125404320</a></td>
+</tr>
+<tr>
+<td>Голем</td>
+<td>375</td>
+<td>мультяшный глухой удар</td>
+<td>шаг голема</td>
+<td><audio controls preload="none" src="../art/sounds/previews/375.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9114036511">9114036511</a></td>
+</tr>
+<tr>
+<td>Эльф и Гринч исчезают в облачке</td>
+<td>321</td>
+<td>короткий «пуф» воздуха</td>
+<td></td>
+<td><audio controls preload="none" src="../art/sounds/previews/321.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9126228023">9126228023</a></td>
+</tr>
+<tr>
+<td>Подарки Гринча: забор упал</td>
+<td>304</td>
+<td>брус падает и катится</td>
+<td>деревянный забор</td>
+<td><audio controls preload="none" src="../art/sounds/previews/304.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9126248887">9126248887</a></td>
+</tr>
+<tr>
+<td>Подарки Гринча: забор упал</td>
+<td>292</td>
+<td>деревяшки рушатся</td>
+<td>громче</td>
+<td><audio controls preload="none" src="../art/sounds/previews/292.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9120828793">9120828793</a></td>
+</tr>
+<tr>
+<td>Подарок открылся</td>
+<td>328</td>
+<td>мультяшный пузырь лопнул</td>
+<td>«поп»</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/109359226723492">109359226723492</a></td>
+</tr>
+<tr>
+<td>Хоккей: шайба о борт</td>
+<td>400</td>
+<td>глухой удар по деревянной балке</td>
+<td>борт деревянный</td>
+<td><audio controls preload="none" src="../art/sounds/previews/400.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9120885460">9120885460</a></td>
+</tr>
+<tr>
+<td>Хоккей: шайба о борт</td>
+<td>403</td>
+<td>глухой удар по балке, другой</td>
+<td></td>
+<td><audio controls preload="none" src="../art/sounds/previews/403.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9126267607">9126267607</a></td>
+</tr>
+<tr>
+<td>Хоккей: заряд броска</td>
+<td>319</td>
+<td>нарастающее шипение</td>
+<td>до 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/319.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9125805781">9125805781</a></td>
+</tr>
+<tr>
+<td>Ветер и фон леса</td>
+<td>367</td>
+<td>ветер в деревьях, листва</td>
+<td>длинная петля 76 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/367.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9116258071">9116258071</a></td>
+</tr>
+<tr>
+<td>Ветер и фон леса</td>
+<td>369</td>
+<td>утренние птицы в лесу</td>
+<td>петля 58 с, у леса</td>
+<td><audio controls preload="none" src="../art/sounds/previews/369.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9116970599">9116970599</a></td>
+</tr>
+<tr>
+<td>Музыка лобби</td>
+<td>376</td>
+<td>музыка Light Dreamer</td>
+<td>150 с, электропиано; не зимняя, на пробу</td>
+<td><audio controls preload="none" src="../art/sounds/previews/376.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9047105702">9047105702</a></td>
+</tr>
+</tbody></table>
+<h3 id="тулбокс-26-11">Тулбокс 26.11</h3>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>№</th>
+<th>Что это</th>
+<th>Почему</th>
+<th>Послушать</th>
+<th>id</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Подбор снега в ведро</td>
+<td>431</td>
+<td>лопатка в рыхлый грунт</td>
+<td>мягкий короткий черпок, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/431.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9114115823">9114115823</a></td>
+</tr>
+<tr>
+<td>Подбор снега в ведро</td>
+<td>432</td>
+<td>снег рассыпается пухом</td>
+<td>пушистый снежный шорох, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/432.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9125964557">9125964557</a></td>
+</tr>
+<tr>
+<td>Подбор снега в ведро</td>
+<td>433</td>
+<td>снежок плюхнулся в снег</td>
+<td>короткий мягкий хруст, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/433.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9119310368">9119310368</a></td>
+</tr>
+<tr>
+<td>Ведро полное</td>
+<td>434</td>
+<td>милый звук «пока»</td>
+<td>нежный сигнал от Roblox</td>
+<td><audio controls preload="none" src="../art/sounds/previews/434.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/15675081158">15675081158</a></td>
+</tr>
+<tr>
+<td>Ведро полное</td>
+<td>435</td>
+<td>мультяшное бульканье</td>
+<td>смешное «больше не лезет», 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/435.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9112752692">9112752692</a></td>
+</tr>
+<tr>
+<td>Ведро полное</td>
+<td>436</td>
+<td>мягкий щелчок назад</td>
+<td>тихий отказ без резкости, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/436.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/17208186900">17208186900</a></td>
+</tr>
+<tr>
+<td>Шаги по снегу</td>
+<td>437</td>
+<td>шаги по снегу</td>
+<td>петля ходьбы 8 с, 8 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/130107112794393">130107112794393</a></td>
+</tr>
+<tr>
+<td>Шаги по снегу</td>
+<td>438</td>
+<td>шаги в глубоком снегу</td>
+<td>рыхлый снег, петля, 6 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/87562273941536">87562273941536</a></td>
+</tr>
+<tr>
+<td>Шаги по снегу</td>
+<td>439</td>
+<td>один шаг по снегу</td>
+<td>набор из отдельных шагов, 1 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/123155171379155">123155171379155</a></td>
+</tr>
+<tr>
+<td>Смена инструмента</td>
+<td>440</td>
+<td>щелчок «взял в руки»</td>
+<td>звук экипировки от Roblox, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/440.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/17208323435">17208323435</a></td>
+</tr>
+<tr>
+<td>Смена инструмента</td>
+<td>441</td>
+<td>короткий свист</td>
+<td>лёгкий взмах</td>
+<td><audio controls preload="none" src="../art/sounds/previews/441.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/15675012262">15675012262</a></td>
+</tr>
+<tr>
+<td>Смена инструмента</td>
+<td>442</td>
+<td>мягкий свуш</td>
+<td>плавная смена, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/442.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/15675046931">15675046931</a></td>
+</tr>
+<tr>
+<td>Мотор пикапа</td>
+<td>443</td>
+<td>ровный мотор машины</td>
+<td>готовая петля 9 с, 9 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/443.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/80317022777602">80317022777602</a></td>
+</tr>
+<tr>
+<td>Мотор пикапа</td>
+<td>444</td>
+<td>холостой ход пикапа</td>
+<td>настоящий пикап Dodge, 25 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/444.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9125350177">9125350177</a></td>
+</tr>
+<tr>
+<td>Мотор пикапа</td>
+<td>445</td>
+<td>старый пикап урчит</td>
+<td>мягкое урчание, 35 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/445.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9112988132">9112988132</a></td>
+</tr>
+<tr>
+<td>Снегоход</td>
+<td>446</td>
+<td>жужжащий гидроцикл</td>
+<td>двухтактный звон как у снегохода, 36 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/446.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9112799028">9112799028</a></td>
+</tr>
+<tr>
+<td>Снегоход</td>
+<td>447</td>
+<td>моторчик карта</td>
+<td>маленький бодрый мотор, 27 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/447.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9112787430">9112787430</a></td>
+</tr>
+<tr>
+<td>Снегоход</td>
+<td>448</td>
+<td>выхлоп карта</td>
+<td>ровный звон мотора, 36 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/448.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9112787519">9112787519</a></td>
+</tr>
+<tr>
+<td>Вертолёт</td>
+<td>449</td>
+<td>лопасти вертолёта</td>
+<td>чистая петля винта, 10 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/18630771616">18630771616</a></td>
+</tr>
+<tr>
+<td>Вертолёт</td>
+<td>450</td>
+<td>вертолёт висит в воздухе</td>
+<td>зависание, длинная запись, 46 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/450.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9113417360">9113417360</a></td>
+</tr>
+<tr>
+<td>Вертолёт</td>
+<td>451</td>
+<td>стук лопастей</td>
+<td>короткая петля винта, 6 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/126966962086051">126966962086051</a></td>
+</tr>
+<tr>
+<td>Мотор танка</td>
+<td>452</td>
+<td>танк на холостых</td>
+<td>тяжёлый гул, петля, 7 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/8213083943">8213083943</a></td>
+</tr>
+<tr>
+<td>Мотор танка</td>
+<td>453</td>
+<td>танк едет</td>
+<td>гул на ходу, петля, 29 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/8213082259">8213082259</a></td>
+</tr>
+<tr>
+<td>Мотор танка</td>
+<td>454</td>
+<td>тяжёлый дизель тарахтит</td>
+<td>густой мотор без лязга, 42 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/454.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9114776167">9114776167</a></td>
+</tr>
+<tr>
+<td>Запуск мотора</td>
+<td>455</td>
+<td>старая машина заводится</td>
+<td>короткий весёлый запуск, 3 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/455.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9112952113">9112952113</a></td>
+</tr>
+<tr>
+<td>Запуск мотора</td>
+<td>456</td>
+<td>мотор заводится</td>
+<td>короткий понятный запуск, 2 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/5830481291">5830481291</a></td>
+</tr>
+<tr>
+<td>Запуск мотора</td>
+<td>457</td>
+<td>ключ и запуск</td>
+<td>ключ, стартер, мотор, 3 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/912961304">912961304</a></td>
+</tr>
+<tr>
+<td>Сигнал</td>
+<td>458</td>
+<td>бип мопеда</td>
+<td>тонкий дружелюбный бип, 3 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/458.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9114824179">9114824179</a></td>
+</tr>
+<tr>
+<td>Сигнал</td>
+<td>459</td>
+<td>бип-бип машины</td>
+<td>короткое «бип-бип», 1 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/124134291878251">124134291878251</a></td>
+</tr>
+<tr>
+<td>Сигнал</td>
+<td>460</td>
+<td>гудок легковушки</td>
+<td>обычный негромкий гудок, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/460.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9113019260">9113019260</a></td>
+</tr>
+<tr>
+<td>Отсчёт 3-2-1</td>
+<td>461</td>
+<td>бипы отсчёта</td>
+<td>сделан для старта забега, 4 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/136924498052589">136924498052589</a></td>
+</tr>
+<tr>
+<td>Отсчёт 3-2-1</td>
+<td>462</td>
+<td>один бип отсчёта</td>
+<td>бип на каждую цифру, 1 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/117751546358455">117751546358455</a></td>
+</tr>
+<tr>
+<td>Отсчёт 3-2-1</td>
+<td>463</td>
+<td>бип детской игры</td>
+<td>мягкий бип для детей, 1 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/100337235644206">100337235644206</a></td>
+</tr>
+<tr>
+<td>Старт</td>
+<td>464</td>
+<td>джингл «на старт, марш»</td>
+<td>весёлый музыкальный старт, 5 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/464.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9043702404">9043702404</a></td>
+</tr>
+<tr>
+<td>Старт</td>
+<td>465</td>
+<td>один свисток</td>
+<td>ясный сигнал старта, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/465.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9118114086">9118114086</a></td>
+</tr>
+<tr>
+<td>Старт</td>
+<td>466</td>
+<td>взлетающий свуш</td>
+<td>рывок вперёд, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/466.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9125806038">9125806038</a></td>
+</tr>
+<tr>
+<td>Последние 10 секунд</td>
+<td>467</td>
+<td>кокосовые часики</td>
+<td>смешное тиканье из телешоу, 37 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/467.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1839998128">1839998128</a></td>
+</tr>
+<tr>
+<td>Последние 10 секунд</td>
+<td>468</td>
+<td>отсчёт десяти секунд</td>
+<td>ровно под 10 секунд, 12 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/468.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1841791990">1841791990</a></td>
+</tr>
+<tr>
+<td>Последние 10 секунд</td>
+<td>469</td>
+<td>тик-так часов</td>
+<td>ровный тик, петля, 32 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/469.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9043366100">9043366100</a></td>
+</tr>
+<tr>
+<td>Время вышло</td>
+<td>470</td>
+<td>звонок таймера</td>
+<td>дзинь вместо сирены, 3 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/79416249421697">79416249421697</a></td>
+</tr>
+<tr>
+<td>Время вышло</td>
+<td>471</td>
+<td>свисток судьи</td>
+<td>один свисток, конец, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/471.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9118113825">9118113825</a></td>
+</tr>
+<tr>
+<td>Время вышло</td>
+<td>472</td>
+<td>короткий дзинь таймера</td>
+<td>мягкий конец раунда, 1 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/97401067944474">97401067944474</a></td>
+</tr>
+<tr>
+<td>Итоги забега</td>
+<td>473</td>
+<td>«Мы желаем Рождества»</td>
+<td>праздничный джингл, 4 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/473.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9044919318">9044919318</a></td>
+</tr>
+<tr>
+<td>Итоги забега</td>
+<td>474</td>
+<td>бубенцы и колокольчики</td>
+<td>весёлый финал с бубенцами, 7 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/474.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9041728922">9041728922</a></td>
+</tr>
+<tr>
+<td>Итоги забега</td>
+<td>475</td>
+<td>рождественский джингл</td>
+<td>короткий праздничный итог, 6 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/475.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1841241468">1841241468</a></td>
+</tr>
+<tr>
+<td>Шаг обучения выполнен</td>
+<td>476</td>
+<td>звонкий дзинь</td>
+<td>чистый короткий успех, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/476.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9126073026">9126073026</a></td>
+</tr>
+<tr>
+<td>Шаг обучения выполнен</td>
+<td>477</td>
+<td>волшебные колокольчики</td>
+<td>мягкое сияние, 3 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/477.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9116394756">9116394756</a></td>
+</tr>
+<tr>
+<td>Шаг обучения выполнен</td>
+<td>478</td>
+<td>дзинь «верно»</td>
+<td>понятное «правильно», 1 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/100767074657294">100767074657294</a></td>
+</tr>
+<tr>
+<td>Кнопка</td>
+<td>479</td>
+<td>яркий щелчок</td>
+<td>UI-звук Roblox</td>
+<td><audio controls preload="none" src="../art/sounds/previews/479.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/15675059323">15675059323</a></td>
+</tr>
+<tr>
+<td>Кнопка</td>
+<td>480</td>
+<td>тихий щелчок</td>
+<td>очень мягкий клик</td>
+<td><audio controls preload="none" src="../art/sounds/previews/480.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/15675032796">15675032796</a></td>
+</tr>
+<tr>
+<td>Кнопка</td>
+<td>481</td>
+<td>щелчок выбора</td>
+<td>звук выбора Roblox, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/481.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/17208396156">17208396156</a></td>
+</tr>
+<tr>
+<td>Окно открылось</td>
+<td>482</td>
+<td>лёгкий свуш</td>
+<td>окно выезжает, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/482.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/15675024286">15675024286</a></td>
+</tr>
+<tr>
+<td>Окно открылось</td>
+<td>483</td>
+<td>смахивание</td>
+<td>UI-свайп Roblox, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/483.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/17208405682">17208405682</a></td>
+</tr>
+<tr>
+<td>Окно открылось</td>
+<td>484</td>
+<td>шорох бумаги</td>
+<td>мягкое открытие, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/484.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/15675037413">15675037413</a></td>
+</tr>
+<tr>
+<td>Отказ в покупке</td>
+<td>485</td>
+<td>мягкое «нет»</td>
+<td>отказ от Roblox, не резкий</td>
+<td><audio controls preload="none" src="../art/sounds/previews/485.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/17208353912">17208353912</a></td>
+</tr>
+<tr>
+<td>Отказ в покупке</td>
+<td>486</td>
+<td>сброс звонка</td>
+<td>короткий тон вниз, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/486.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/17208214688">17208214688</a></td>
+</tr>
+<tr>
+<td>Отказ в покупке</td>
+<td>487</td>
+<td>простая ошибка</td>
+<td>короткий тихий сигнал</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/87519554692663">87519554692663</a></td>
+</tr>
+<tr>
+<td>Большая награда</td>
+<td>488</td>
+<td>фанфара «джекпот»</td>
+<td>большой выигрыш, 3 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/488.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1844442542">1844442542</a></td>
+</tr>
+<tr>
+<td>Большая награда</td>
+<td>489</td>
+<td>органная фанфара</td>
+<td>торжественно и коротко, 4 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/489.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1839997889">1839997889</a></td>
+</tr>
+<tr>
+<td>Большая награда</td>
+<td>490</td>
+<td>фанфара «победа»</td>
+<td>яркий праздник, 3 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/490.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1844442571">1844442571</a></td>
+</tr>
+<tr>
+<td>Колесо гемов: щелчки</td>
+<td>491</td>
+<td>мягкий щелчок</td>
+<td>щелчок на каждый сектор, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/491.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/16480568821">16480568821</a></td>
+</tr>
+<tr>
+<td>Колесо гемов: щелчки</td>
+<td>492</td>
+<td>крошечный щелчок кнопки</td>
+<td>частый тихий тик</td>
+<td><audio controls preload="none" src="../art/sounds/previews/492.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/16480550292">16480550292</a></td>
+</tr>
+<tr>
+<td>Колесо гемов: выигрыш</td>
+<td>493</td>
+<td>фанфара «бинго»</td>
+<td>короткий выигрыш, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/493.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1844442553">1844442553</a></td>
+</tr>
+<tr>
+<td>Колесо гемов: выигрыш</td>
+<td>494</td>
+<td>джингл победителя</td>
+<td>радостный приз, 5 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/494.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1846942308">1846942308</a></td>
+</tr>
+<tr>
+<td>Питомец появился</td>
+<td>495</td>
+<td>милый поп</td>
+<td>мультяшное появление, 3 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/495.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/15675055424">15675055424</a></td>
+</tr>
+<tr>
+<td>Питомец появился</td>
+<td>496</td>
+<td>пузырёк лопнул</td>
+<td>лёгкий милый пуф, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/496.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/17208204604">17208204604</a></td>
+</tr>
+<tr>
+<td>Музыка лобби</td>
+<td>497</td>
+<td>прогулка в снежном шаре</td>
+<td>уютная зимняя музыка, 144 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/497.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9044905048">9044905048</a></td>
+</tr>
+<tr>
+<td>Музыка лобби</td>
+<td>498</td>
+<td>«Открывая снег»</td>
+<td>детский альбом, спокойно, 91 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/498.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9047780634">9047780634</a></td>
+</tr>
+<tr>
+<td>Музыка забега</td>
+<td>499</td>
+<td>«В погоне за снеговиком»</td>
+<td>бодро, детский альбом, 98 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/499.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9047780416">9047780416</a></td>
+</tr>
+<tr>
+<td>Музыка забега</td>
+<td>500</td>
+<td>«Снегоход»</td>
+<td>весёлая праздничная гонка, 152 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/500.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1838091765">1838091765</a></td>
+</tr>
+<tr>
+<td>Ветер</td>
+<td>501</td>
+<td>лёгкий посвист ветра</td>
+<td>тихие порывы, 37 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/501.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9114057104">9114057104</a></td>
+</tr>
+<tr>
+<td>Ветер</td>
+<td>502</td>
+<td>лёгкий порывистый ветер</td>
+<td>мягкий фон, 27 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/502.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9113287001">9113287001</a></td>
+</tr>
+<tr>
+<td>Метель</td>
+<td>503</td>
+<td>метель</td>
+<td>плотный снежный ветер, 54 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/4175285709">4175285709</a></td>
+</tr>
+<tr>
+<td>Метель</td>
+<td>504</td>
+<td>сильный вой ветра</td>
+<td>короткая петля бури, 10 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/6544555787">6544555787</a></td>
+</tr>
+<tr>
+<td>Санта прилетел</td>
+<td>505</td>
+<td>трель бубенцов</td>
+<td>бубенцы саней, 7 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/505.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1840229014">1840229014</a></td>
+</tr>
+<tr>
+<td>Санта прилетел</td>
+<td>506</td>
+<td>сани звенят</td>
+<td>звон упряжки, 15 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/506.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9114826038">9114826038</a></td>
+</tr>
+<tr>
+<td>Подарок открылся</td>
+<td>507</td>
+<td>подарок открылся</td>
+<td>сделан для подарка, 1 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/115591684874922">115591684874922</a></td>
+</tr>
+<tr>
+<td>Подарок открылся</td>
+<td>508</td>
+<td>рвётся бумага</td>
+<td>шорох обёртки, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/508.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9117233449">9117233449</a></td>
+</tr>
+<tr>
+<td>Подарки Санты падают в снег</td>
+<td>509</td>
+<td>плюх в снег</td>
+<td>мягкий удар о снег, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/509.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9125964398">9125964398</a></td>
+</tr>
+<tr>
+<td>Подарки Санты падают в снег</td>
+<td>510</td>
+<td>глухой шлёп в снег</td>
+<td>тяжёлый, но мягкий, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/510.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9125964297">9125964297</a></td>
+</tr>
+<tr>
+<td>Персонаж упал</td>
+<td>511</td>
+<td>мультяшное падение</td>
+<td>смешно, не больно, 2 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/128432117238577">128432117238577</a></td>
+</tr>
+<tr>
+<td>Персонаж упал</td>
+<td>512</td>
+<td>падение в сугроб</td>
+<td>мягкий снег, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/512.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9113479897">9113479897</a></td>
+</tr>
+<tr>
+<td>Гринч появился</td>
+<td>513</td>
+<td>хитрый джингл злодея</td>
+<td>комичный злодей, 6 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/513.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9039421063">9039421063</a></td>
+</tr>
+<tr>
+<td>Гринч появился</td>
+<td>514</td>
+<td>крадущиеся гоблины</td>
+<td>шкодный пиццикато, 4 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/514.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9044898054">9044898054</a></td>
+</tr>
+<tr>
+<td>Смех Гринча</td>
+<td>515</td>
+<td>мультяшный смех</td>
+<td>смешно, не страшно, 2 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/112239686414581">112239686414581</a></td>
+</tr>
+<tr>
+<td>Смех Гринча</td>
+<td>516</td>
+<td>мультяшный хохот</td>
+<td>весёлый, не злой, 3 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/128606601752043">128606601752043</a></td>
+</tr>
+<tr>
+<td>Удар по Гринчу</td>
+<td>517</td>
+<td>мультяшный бонк</td>
+<td>смешной удар, 1 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/132937320140224">132937320140224</a></td>
+</tr>
+<tr>
+<td>Удар по Гринчу</td>
+<td>518</td>
+<td>бонк по голове</td>
+<td>классика мультиков, 1 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/3765689841">3765689841</a></td>
+</tr>
+<tr>
+<td>Гринч побеждён</td>
+<td>519</td>
+<td>рождественский джингл</td>
+<td>радостная победа, 7 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/519.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9042207540">9042207540</a></td>
+</tr>
+<tr>
+<td>Гринч побеждён</td>
+<td>520</td>
+<td>праздничный биг-бэнд</td>
+<td>весёлый финал, 7 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/520.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1840036006">1840036006</a></td>
+</tr>
+<tr>
+<td>Снежный голем: шаг</td>
+<td>521</td>
+<td>тяжёлый шаг по снегу</td>
+<td>большой зверь в снегу, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/521.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9114165561">9114165561</a></td>
+</tr>
+<tr>
+<td>Снежный голем: шаг</td>
+<td>522</td>
+<td>гулкий шаг великана</td>
+<td>мощно, но глухо, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/522.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9114080709">9114080709</a></td>
+</tr>
+<tr>
+<td>Снежный голем: удар</td>
+<td>523</td>
+<td>сильный удар в снег</td>
+<td>топот в сугроб, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/523.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9125965330">9125965330</a></td>
+</tr>
+<tr>
+<td>Снежный голем: удар</td>
+<td>524</td>
+<td>шлепки снегом</td>
+<td>плотный снежный удар, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/524.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9125965523">9125965523</a></td>
+</tr>
+<tr>
+<td>Здание поднимается из снега</td>
+<td>525</td>
+<td>выныривает из сугроба</td>
+<td>снег разлетается, 4 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/525.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9119314500">9119314500</a></td>
+</tr>
+<tr>
+<td>Здание поднимается из снега</td>
+<td>526</td>
+<td>земля гудит</td>
+<td>низкий гул и осыпь, 12 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/526.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9113221477">9113221477</a></td>
+</tr>
+<tr>
+<td>Здание уходит в снег: гул</td>
+<td>527</td>
+<td>низкий подземный гул</td>
+<td>ровный гул, петля, 49 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/527.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9112775181">9112775181</a></td>
+</tr>
+<tr>
+<td>Здание уходит в снег: гул</td>
+<td>528</td>
+<td>гул лавины</td>
+<td>осыпь и дрожь, 13 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/528.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9113222959">9113222959</a></td>
+</tr>
+<tr>
+<td>Снежок брошен</td>
+<td>529</td>
+<td>быстрый свуш</td>
+<td>мягкий бросок, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/529.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9120742729">9120742729</a></td>
+</tr>
+<tr>
+<td>Снежок брошен</td>
+<td>530</td>
+<td>резкий короткий свист</td>
+<td>очень короткий</td>
+<td><audio controls preload="none" src="../art/sounds/previews/530.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9120704978">9120704978</a></td>
+</tr>
+<tr>
+<td>Снежок попал</td>
+<td>531</td>
+<td>снежок в куртку</td>
+<td>снег разлетается, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/531.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9119311802">9119311802</a></td>
+</tr>
+<tr>
+<td>Снежок попал</td>
+<td>532</td>
+<td>шлёп снежком</td>
+<td>короткий мягкий удар, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/532.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9119312304">9119312304</a></td>
+</tr>
+<tr>
+<td>Заброс удочки</td>
+<td>533</td>
+<td>заброс удочки</td>
+<td>сделан для рыбалки, 3 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/83682073380871">83682073380871</a></td>
+</tr>
+<tr>
+<td>Заброс удочки</td>
+<td>534</td>
+<td>леска разматывается</td>
+<td>жужжание катушки, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/534.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9114452629">9114452629</a></td>
+</tr>
+<tr>
+<td>Рыба поймана</td>
+<td>535</td>
+<td>редкая рыба</td>
+<td>радостный сигнал улова, 2 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/86740905540872">86740905540872</a></td>
+</tr>
+<tr>
+<td>Рыба поймана</td>
+<td>536</td>
+<td>рыба поймана</td>
+<td>короткий улов, 1 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/116261779144607">116261779144607</a></td>
+</tr>
+<tr>
+<td>Хоккей: удар клюшкой</td>
+<td>537</td>
+<td>клюшка по льду</td>
+<td>чистый удар, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/537.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9114814745">9114814745</a></td>
+</tr>
+<tr>
+<td>Хоккей: удар клюшкой</td>
+<td>538</td>
+<td>шайба шлёпнула</td>
+<td>щелчок по шайбе, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/538.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9114811906">9114811906</a></td>
+</tr>
+<tr>
+<td>Хоккей: гол</td>
+<td>539</td>
+<td>дети кричат «йе»</td>
+<td>детская радость, 3 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/539.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/1841221347">1841221347</a></td>
+</tr>
+<tr>
+<td>Хоккей: гол</td>
+<td>540</td>
+<td>сирена гола</td>
+<td>как на стадионе, 3 с</td>
+<td><span class="muted">только в Roblox</span></td>
+<td><a href="https://create.roblox.com/store/asset/93076840995445">93076840995445</a></td>
+</tr>
+<tr>
+<td>Хоккей: свисток</td>
+<td>541</td>
+<td>свисток судьи</td>
+<td>короткий свисток, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/541.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9125967307">9125967307</a></td>
+</tr>
+<tr>
+<td>Хоккей: свисток</td>
+<td>542</td>
+<td>свисток без шарика</td>
+<td>резкий, но короткий, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/542.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/9117265660">9117265660</a></td>
+</tr>
+<tr>
+<td>Автомат в зале аркад: старт игры</td>
+<td>543</td>
+<td>8-битный бип</td>
+<td>аркадный старт Roblox, 1 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/543.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/16480580213">16480580213</a></td>
+</tr>
+<tr>
+<td>Автомат в зале аркад: старт игры</td>
+<td>544</td>
+<td>8-битная трель</td>
+<td>звук игрового автомата, 2 с</td>
+<td><audio controls preload="none" src="../art/sounds/previews/544.m4a"></audio></td>
+<td><a href="https://create.roblox.com/store/asset/16480579685">16480579685</a></td>
+</tr>
+</tbody></table>
+</div>
+<p class="source">Источник: <code>docs/sounds/sound-table.md</code>. Собрать заново: <code>python3 tools/sounds/board/table.py . docs/sounds/sound-table.md</code>, затем <code>node tools/guide/build.mjs</code>.</p></div></section>
+</main>
+</div>
+<dialog id="viewer" aria-label="Просмотр картинки"><div class="viewer-bar"><p id="viewer-caption"></p><a id="viewer-open" target="_blank" rel="noopener">Открыть файл</a><button id="viewer-close" type="button">Закрыть</button></div><img id="viewer-image" alt=""></dialog>
+<script>// Поведение страницы: пароль на весь сайт, меню на узком экране и просмотр картинки.
+// Текущую страницу в меню отмечает сборщик.
+(() => {
+  const SITE_KEY = "clean-a-snow-guide-open";
+  const SITE_PASSWORD = "91-23sdf-123dsf213-gfdf";
+  const lock = document.getElementById("site-lock-form");
+  if (lock) {
+    lock.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const error = document.getElementById("site-lock-error");
+      if (new FormData(lock).get("password") === SITE_PASSWORD) {
+        try {
+          localStorage.setItem(SITE_KEY, "1");
+        } catch {
+          // Без хранилища сайт откроется только до закрытия вкладки.
+        }
+        document.documentElement.classList.add("site-open");
+      } else if (error) error.hidden = false;
+    });
+  }
+
+  const close = document.getElementById("site-close");
+  if (close) {
+    close.addEventListener("click", () => {
+      try {
+        localStorage.removeItem(SITE_KEY);
+      } catch {
+        // Без хранилища достаточно убрать класс: следующая страница снова спросит пароль.
+      }
+      const error = document.getElementById("site-lock-error");
+      if (error) error.hidden = true;
+      const input = lock?.querySelector("input");
+      if (input) input.value = "";
+      document.documentElement.classList.remove("site-open");
+      input?.focus();
+    });
+  }
+
+  // «Обсудить»: кнопка человека показывает только его панель с темами.
+  const discussButtons = [...document.querySelectorAll("[data-discuss-person]")];
+  if (discussButtons.length) {
+    const panels = [...document.querySelectorAll("[data-discuss-panel]")];
+    const show = (person) => {
+      for (const button of discussButtons) button.setAttribute("aria-pressed", String(button.dataset.discussPerson === person));
+      for (const panel of panels) panel.hidden = panel.dataset.discussPanel !== person;
+    };
+    for (const button of discussButtons) button.addEventListener("click", () => show(button.dataset.discussPerson));
+  }
+
+  const board = document.querySelector(".board-columns");
+  if (board) {
+    const buttons = [...document.querySelectorAll("[data-person-filter]")];
+    const apply = (person) => {
+      for (const button of buttons) button.setAttribute("aria-pressed", String(button.dataset.personFilter === person));
+      for (const column of board.querySelectorAll(".board-column")) {
+        let visible = 0;
+        for (const card of column.querySelectorAll(".board-card")) {
+          const show = person === "all" || card.dataset.person === person;
+          card.hidden = !show;
+          if (show) visible += 1;
+        }
+        column.querySelector(".board-count").textContent = String(visible);
+        column.querySelector(".board-empty").hidden = visible !== 0;
+      }
+    };
+    for (const button of buttons) button.addEventListener("click", () => apply(button.dataset.personFilter));
+    // Время коммита — в часовом поясе того, кто смотрит доску (в HTML оно в поясе автора коммита).
+    const two = (n) => String(n).padStart(2, "0");
+    for (const time of board.querySelectorAll(".board-origin time[datetime*='T']")) {
+      const at = new Date(time.getAttribute("datetime"));
+      if (!Number.isNaN(at.getTime())) time.textContent = `${two(at.getDate())}.${two(at.getMonth() + 1)} ${two(at.getHours())}:${two(at.getMinutes())}`;
+    }
+    // Порядок карточек: «Сначала новые» (по дате и времени коммита) или «Как раньше». Выбор помнит браузер.
+    const sortButtons = [...document.querySelectorAll("[data-board-sort]")];
+    const sortKey = "clean-a-snow-board-sort";
+    const sort = (order) => {
+      const rank = order === "old" ? "oldRank" : "newRank";
+      for (const button of sortButtons) button.setAttribute("aria-pressed", String(button.dataset.boardSort === order));
+      for (const list of board.querySelectorAll(".board-cards")) {
+        const cards = [...list.querySelectorAll(":scope > .board-card")];
+        cards.sort((a, b) => Number(a.dataset[rank]) - Number(b.dataset[rank]));
+        for (const card of cards) list.appendChild(card);
+      }
+      try {
+        localStorage.setItem(sortKey, order);
+      } catch (e) {}
+    };
+    for (const button of sortButtons) button.addEventListener("click", () => sort(button.dataset.boardSort));
+    let savedSort = null;
+    try {
+      savedSort = localStorage.getItem(sortKey);
+    } catch (e) {}
+    if (savedSort === "old") sort("old");
+    // Ссылка на карточку (board.html#card-…) раскрывает её текст и показывает карточку.
+    const target = location.hash.startsWith("#card-") ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+    if (target) {
+      const text = target.querySelector("details");
+      if (text) text.open = true;
+      target.scrollIntoView({ block: "start" });
+    }
+  }
+
+  // Кнопка текущей страницы в шапке видна и на узком экране, где шапка листается вбок.
+  document.querySelector(".topbar .top-link[aria-current]")?.scrollIntoView({ block: "nearest", inline: "center" });
+
+  const menu = document.getElementById("menu");
+  const sidebar = document.getElementById("sidebar");
+  menu.addEventListener("click", () => {
+    const open = sidebar.classList.toggle("open");
+    menu.setAttribute("aria-expanded", String(open));
+  });
+  sidebar.addEventListener("click", (e) => {
+    if (e.target.closest("a")) {
+      sidebar.classList.remove("open");
+      menu.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  // Свёрнутые разделы меню. Выбор читателя помнит браузер; без него открыт только раздел текущей страницы.
+  const KEY = "clean-a-snow-guide-nav-folds";
+  let folds = {};
+  try {
+    folds = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+  } catch {
+    folds = {};
+  }
+  for (const group of sidebar.querySelectorAll("details.group")) {
+    const id = group.dataset.group;
+    group.open = id in folds ? folds[id] : group.querySelector('[aria-current="page"]') !== null;
+    group.addEventListener("toggle", () => {
+      folds[id] = group.open;
+      try {
+        localStorage.setItem(KEY, JSON.stringify(folds));
+      } catch {
+        // Без хранилища выбор живёт до перехода на другую страницу.
+      }
+    });
+  }
+  // Общие галочки: файл на сервере, браузер держит копию. Сервер недоступен — остаётся копия в браузере.
+  // Пользуются чеклист «Тестирование» и отметки «Ответ дан» страницы «Вопросы».
+  // reset() снимает все отметки у всех. onPaint вызывается после каждой смены галочек.
+  const sharedChecks = ({ boxes, keyOf, storageKey, url, onPaint }) => {
+    let done = {};
+    let revision = null;
+    let sending = false;
+    let dirty = false;
+    let resetPending = false;
+    const touched = new Set();
+    try {
+      done = JSON.parse(localStorage.getItem(storageKey) || "{}") || {};
+    } catch {
+      done = {};
+    }
+    const save = () => {
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(done));
+      } catch {
+        // Без хранилища отметки живут до ухода со страницы.
+      }
+    };
+    const paint = () => {
+      for (const box of boxes) box.checked = done[keyOf(box)] === true;
+      onPaint();
+    };
+    const mergeTouched = (serverChecks, localChecks, keys) => {
+      const merged = { ...serverChecks };
+      for (const key of keys) {
+        if (localChecks[key] === true) merged[key] = true;
+        else delete merged[key];
+      }
+      return merged;
+    };
+    const push = () => {
+      if (revision === null || sending) {
+        dirty = true;
+        return;
+      }
+      sending = true;
+      dirty = false;
+      const sentChecks = { ...done };
+      const sentTouched = [...touched];
+      const wasReset = resetPending;
+      resetPending = false;
+      touched.clear();
+      fetch(url, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ revision, checks: sentChecks }),
+      })
+        .then((res) => res.json().then((doc) => ({ status: res.status, doc })))
+        .then(({ status, doc }) => {
+          if (!doc || !doc.checks || !Number.isInteger(doc.revision)) return;
+          revision = doc.revision;
+          if (status === 409) {
+            const newerTouched = [...touched];
+            const newerChecks = { ...done };
+            if (wasReset && newerTouched.length === 0) done = {};
+            else done = mergeTouched(mergeTouched(doc.checks, sentChecks, sentTouched), newerChecks, newerTouched);
+            dirty = true;
+          } else if (status === 200) {
+            if (dirty || touched.size) done = { ...done };
+            else done = doc.checks;
+          }
+          save();
+          paint();
+        })
+        .catch(() => {
+          // Сервер недоступен: копия в браузере уже сохранена.
+        })
+        .finally(() => {
+          sending = false;
+          if (dirty || touched.size || resetPending) push();
+        });
+    };
+    const pull = () => {
+      fetch(url)
+        .then((res) => (res.ok ? res.json() : null))
+        .then((doc) => {
+          if (!doc || !doc.checks || !Number.isInteger(doc.revision)) return;
+          if (revision === null) {
+            revision = doc.revision;
+            if (touched.size || resetPending) {
+              if (!resetPending) done = mergeTouched(doc.checks, done, touched);
+              push();
+            } else {
+              done = doc.checks;
+              save();
+              paint();
+            }
+            return;
+          }
+          if (sending || touched.size || resetPending) return;
+          if (revision === doc.revision) return;
+          revision = doc.revision;
+          done = doc.checks;
+          save();
+          paint();
+        })
+        .catch(() => {
+          // Без сервера страница остаётся на копии в браузере.
+        });
+    };
+    for (const box of boxes) {
+      box.addEventListener("change", () => {
+        if (box.checked) done[keyOf(box)] = true;
+        else delete done[keyOf(box)];
+        touched.add(keyOf(box));
+        resetPending = false;
+        save();
+        onPaint();
+        push();
+      });
+    }
+    paint();
+    pull();
+    setInterval(pull, 2000);
+    return {
+      reset() {
+        done = {};
+        touched.clear();
+        resetPending = true;
+        save();
+        paint();
+        push();
+      },
+    };
+  };
+  const CHECKS_SERVER = "https://atlas.31-58-209-99.sslip.io/clean-snow-checks/";
+
+  // Галочки чеклиста «Тестирование». «Сбросить» начинает новый круг у всех.
+  const checks = document.querySelectorAll("input[data-check]");
+  if (checks.length) {
+    const visibleBoxes = (root) => [...root.querySelectorAll("input[data-check]")].filter((box) => !box.closest(".test-item")?.hidden);
+    const count = () => {
+      for (const group of document.querySelectorAll("details.test-group")) {
+        const boxes = visibleBoxes(group);
+        const ticked = boxes.filter((b) => b.checked).length;
+        group.querySelector(".test-count").textContent = `${ticked} из ${boxes.length}`;
+        group.classList.toggle("test-finished", boxes.length > 0 && ticked === boxes.length);
+      }
+      document.getElementById("test-done").textContent = String(visibleBoxes(document).filter((b) => b.checked).length);
+    };
+    const filterButtons = [...document.querySelectorAll("[data-test-filter]")];
+    const applyPerson = (person) => {
+      for (const button of filterButtons) button.setAttribute("aria-pressed", String(button.dataset.testFilter === person));
+      for (const item of document.querySelectorAll(".test-item")) {
+        const people = (item.dataset.people || "").split(/\s+/).filter(Boolean);
+        item.hidden = person !== "all" && people.length > 0 && !people.includes(person);
+      }
+      for (const task of document.querySelectorAll(".test-task")) {
+        task.hidden = ![...task.querySelectorAll(".test-item")].some((item) => !item.hidden);
+      }
+      for (const group of document.querySelectorAll("details.test-group")) {
+        group.hidden = ![...group.querySelectorAll(".test-item")].some((item) => !item.hidden);
+      }
+      const shown = visibleBoxes(document);
+      for (const node of document.querySelector(".test-total").childNodes) {
+        if (node.nodeType === Node.TEXT_NODE && node.textContent.includes(" из ")) node.textContent = ` из ${shown.length} `;
+      }
+      count();
+    };
+    for (const button of filterButtons) button.addEventListener("click", () => applyPerson(button.dataset.testFilter));
+    const testing = sharedChecks({
+      boxes: checks,
+      keyOf: (box) => box.dataset.check,
+      storageKey: "clean-a-snow-guide-testing-checks",
+      url: CHECKS_SERVER,
+      onPaint: count,
+    });
+    document.getElementById("test-reset").addEventListener("click", () => {
+      if (!confirm("Снять все отметки и начать проверку заново?")) return;
+      testing.reset();
+    });
+  }
+
+  // Отметки «Ответ дан» страницы «Вопросы»: свой файл того же сервера.
+  const answers = document.querySelectorAll("input[data-answer]");
+  if (answers.length) {
+    sharedChecks({
+      boxes: answers,
+      keyOf: (box) => box.dataset.answer,
+      storageKey: "clean-a-snow-guide-question-answers",
+      url: "https://atlas.31-58-209-99.sslip.io/clean-snow-checks/questions",
+      onPaint: () => {
+        for (const box of answers) box.closest(".question")?.classList.toggle("question-answered", box.checked);
+        document.getElementById("answer-done").textContent = String([...answers].filter((b) => b.checked).length);
+      },
+    });
+  }
+
+  // Отметки Approved раздела HUD: свой файл того же сервера.
+  const approvals = document.querySelectorAll("input[data-hud]");
+  if (approvals.length) {
+    sharedChecks({
+      boxes: approvals,
+      keyOf: (box) => box.dataset.hud,
+      storageKey: "clean-a-snow-guide-hud-approved",
+      url: "https://atlas.31-58-209-99.sslip.io/clean-snow-checks/hud",
+      onPaint: () => {
+        for (const box of approvals) box.closest(".hud-row")?.classList.toggle("hud-approved", box.checked);
+        document.getElementById("hud-approved").textContent = String([...approvals].filter((b) => b.checked).length);
+      },
+    });
+  }
+
+  const current = sidebar.querySelector('[aria-current="page"]');
+  if (current) current.scrollIntoView({ block: "nearest" });
+
+  const viewer = document.getElementById("viewer");
+  const image = document.getElementById("viewer-image");
+  const caption = document.getElementById("viewer-caption");
+  const open = document.getElementById("viewer-open");
+  document.addEventListener("click", (e) => {
+    const img = e.target.closest("main img");
+    if (!img) return;
+    image.src = img.src;
+    image.alt = img.alt;
+    caption.textContent = img.dataset.caption || img.alt;
+    open.href = img.src;
+    viewer.showModal();
+  });
+  document.getElementById("viewer-close").addEventListener("click", () => viewer.close());
+  viewer.addEventListener("click", (e) => {
+    if (e.target === viewer) viewer.close();
+  });
+})();
+</script>
+</body>
+</html>
