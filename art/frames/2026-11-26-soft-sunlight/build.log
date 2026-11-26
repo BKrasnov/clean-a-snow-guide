@@ -1,0 +1,6 @@
+Commit 099866c71641b5546f51aa62e655646ed6f2c763 (HEAD), 476 .luau files
+place/NaLovi-Lobby.rbxl: Lobby, 42 world parts, 489 scripts in the code services, 15772 instances
+place/NaLovi-Match.rbxl: Match, 52 world parts, 489 scripts in the code services, 24540 instances
+place/NaLovi.rbxl: Dev, 54 world parts, 489 scripts in the code services, 27391 instances
+Wrote 3 place files from 099866c71641b5546f51aa62e655646ed6f2c763; old ones in place/backup/
+The place files carry the world and code of 099866c71641b5546f51aa62e655646ed6f2c763; report in build/places/build.json

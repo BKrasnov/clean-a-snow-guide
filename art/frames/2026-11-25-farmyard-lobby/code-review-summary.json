@@ -1,0 +1,21 @@
+{
+  "kind": "summary of independent reviews",
+  "featureReview": {
+    "agent": "farmyard_code_review",
+    "finding": "QA runtime Upgrades action expected authored ID instead of Bootstrap runtime ID",
+    "otherSignificantGameplayFindings": 0
+  },
+  "fix": {
+    "agent": "farmyard_flow_fix",
+    "change": "Only runtime scenario expectation open.Upgrades -> open.LobbyUpgrades; authored model test unchanged"
+  },
+  "acceptance": {
+    "agent": "farmyard_flow_acceptance",
+    "result": "accepted narrow fix; no findings",
+    "evidence": [
+      "flow-fix-proof.json",
+      "flow-json.log"
+    ],
+    "scenarioSha256": "dfd3fe04c6eed821b179dad6d143b98f4fa49eeb124e6ea883cd9d1334d4825f"
+  }
+}

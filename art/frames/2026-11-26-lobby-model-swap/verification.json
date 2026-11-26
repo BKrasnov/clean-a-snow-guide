@@ -1,0 +1,56 @@
+{
+  "date": "2026-11-26",
+  "worldSha256": "3fb31fc31fe9c5035576e502ffdf6de19e5029db7979c30d50c85bf53242a91b",
+  "modelsChanged": [
+    "models/lobby/Workspace/LobbyArea.rbxm"
+  ],
+  "srcChanged": [],
+  "tests": {
+    "pass": 15,
+    "fail": 0,
+    "log": "tests.log",
+    "red": "red-test.log"
+  },
+  "runtime": {
+    "sixSoloStartsAndReturns": "pass",
+    "exactFlowScenarioSha256": "43806be061eb9473b1f0c6bacf928c966f02bf386984cade5a642097d3205788",
+    "steps": 54,
+    "log": "flow.log",
+    "windows": [
+      "LobbyUpgrades",
+      "Classes",
+      "GemWheel"
+    ],
+    "windowTest": "fresh Play per stand, real InputHoldBegin/End; each window visible and individual Play passed",
+    "screenshots": 8,
+    "quality": [
+      "Level21",
+      "Level01"
+    ],
+    "logWindows": "play.log"
+  },
+  "worldProof": "world-proof.json",
+  "graphicsRestored": "Automatic",
+  "limitations": [
+    "No live multiplayer, physical phone or full game unit suite",
+    "No purchases or wheel spin performed",
+    "REWARDS remains decorative as in baseline",
+    "Known weather texture access warnings and local powder sound load failures belong to unchanged game assets"
+  ],
+  "review": {
+    "spec": "PASS; no findings; all 8 live PNGs inspected",
+    "standards": "PASS; no findings; runtime src unchanged and existing invariants preserved"
+  },
+  "build": {
+    "commit": "65dd3f6f194811f8c6d4431393599b84baa99b1c",
+    "places": 3,
+    "result": "pass",
+    "log": "build.log"
+  },
+  "guideTests": {
+    "pass": 56,
+    "fail": 0,
+    "log": "guide-tests.log"
+  },
+  "officialExportCheck": "Lobby world equals models after build; export-check.log"
+}

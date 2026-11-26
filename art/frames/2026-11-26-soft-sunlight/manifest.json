@@ -1,0 +1,216 @@
+{
+  "date": "2026-11-26",
+  "studioId": "a394cfa8-c834-4959-b1d4-15693bfbd58c",
+  "frames": [
+    {
+      "time": "2026-11-25T22:06:56.979Z",
+      "name": "lobby-before",
+      "id": "rbxtemp://260",
+      "path": "art/frames/2026-11-26-soft-sunlight/lobby-before.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "469398c805647a4f2b2b58abb658a24907d3f3332a98933438e6ba280009fcbe"
+    },
+    {
+      "time": "2026-11-25T22:07:00.514Z",
+      "name": "lobby-after",
+      "id": "rbxtemp://261",
+      "path": "art/frames/2026-11-26-soft-sunlight/lobby-after.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "690f054b277255191f8477970a9bc69691a41c008ff8a1993f9055dfdb0ae5b9"
+    },
+    {
+      "time": "2026-11-25T22:07:04.165Z",
+      "name": "house-after",
+      "id": "rbxtemp://262",
+      "path": "art/frames/2026-11-26-soft-sunlight/house-after.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "012d073217a002909dbeff67aba59f747073b2716dfe7f97eacba60523bb90cc"
+    },
+    {
+      "time": "2026-11-25T22:07:07.796Z",
+      "name": "garage-after",
+      "id": "rbxtemp://263",
+      "path": "art/frames/2026-11-26-soft-sunlight/garage-after.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "8e65be31637c025922badab62672e781e1effef25873471bfc7f0b880d812da9"
+    },
+    {
+      "time": "2026-11-25T22:07:53.794Z",
+      "name": "valley-before",
+      "id": "rbxtemp://264",
+      "path": "art/frames/2026-11-26-soft-sunlight/valley-before.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "34690aed782e2ec7d44e67178b251e2938032fe206806e98205f9a46c2f09d26"
+    },
+    {
+      "time": "2026-11-25T22:07:57.245Z",
+      "name": "valley-after",
+      "id": "rbxtemp://265",
+      "path": "art/frames/2026-11-26-soft-sunlight/valley-after.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "19fc74203828c69cbd4ccb454682e714a4378e0be5e9c805da9980f408fc69f2"
+    },
+    {
+      "time": "2026-11-25T22:08:00.727Z",
+      "name": "snow-after",
+      "id": "rbxtemp://266",
+      "path": "art/frames/2026-11-26-soft-sunlight/snow-after.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "5c61c83acdf782f10e4b49001492401a3d5ff478de57ca1d5a279b80e91cc428"
+    },
+    {
+      "time": "2026-11-25T22:08:04.194Z",
+      "name": "horizon-after",
+      "id": "rbxtemp://267",
+      "path": "art/frames/2026-11-26-soft-sunlight/horizon-after.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "bfab58f38e87aba337d0ea41babd02a8a882bef7ffc34d14da55ab02d88c824f"
+    },
+    {
+      "time": "2026-11-25T22:00:20.211Z",
+      "name": "low-lobby-before",
+      "id": "rbxtemp://252",
+      "path": "art/frames/2026-11-26-soft-sunlight/low-lobby-before.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level01",
+      "sha256": "145be331b598bdc54ae19d7747490e148f300f56e657ecc7b566562f4ced425a",
+      "note": "Control sample under final profile; original-vs-final comparison is High only."
+    },
+    {
+      "time": "2026-11-25T22:00:23.561Z",
+      "name": "low-lobby-after",
+      "id": "rbxtemp://253",
+      "path": "art/frames/2026-11-26-soft-sunlight/low-lobby-after.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level01",
+      "sha256": "a9a67d05a04fe8fe6f5d26d94a2562bd8e497dfedef6fffbfd909580e245fb4e"
+    },
+    {
+      "time": "2026-11-25T22:00:26.911Z",
+      "name": "low-house-after",
+      "id": "rbxtemp://254",
+      "path": "art/frames/2026-11-26-soft-sunlight/low-house-after.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level01",
+      "sha256": "9e9113dbbfa51ccd7764e12df530a10eb9aa75bcd35a81de635a78d3d0606d1c"
+    },
+    {
+      "time": "2026-11-25T22:00:30.378Z",
+      "name": "low-garage-after",
+      "id": "rbxtemp://255",
+      "path": "art/frames/2026-11-26-soft-sunlight/low-garage-after.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level01",
+      "sha256": "045cc207d4604361802c69e23c6edee88394fdc761a9ac2ee0416543b82506a2"
+    },
+    {
+      "time": "2026-11-25T22:00:58.326Z",
+      "name": "low-valley-before",
+      "id": "rbxtemp://256",
+      "path": "art/frames/2026-11-26-soft-sunlight/low-valley-before.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level01",
+      "sha256": "1579e5f77a4940ac5ada6a79c2c3f875d6854007339a5b90945452744f6c863d",
+      "note": "Control sample under final profile; original-vs-final comparison is High only."
+    },
+    {
+      "time": "2026-11-25T22:01:01.760Z",
+      "name": "low-valley-after",
+      "id": "rbxtemp://257",
+      "path": "art/frames/2026-11-26-soft-sunlight/low-valley-after.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level01",
+      "sha256": "23e1693d2cadf2835de80fcaae66cd440dd69a3b6fd695af5dac1020c409dd51"
+    },
+    {
+      "time": "2026-11-25T22:01:05.310Z",
+      "name": "low-snow-after",
+      "id": "rbxtemp://258",
+      "path": "art/frames/2026-11-26-soft-sunlight/low-snow-after.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level01",
+      "sha256": "4acb6c1c2573c270f79a30174e2a3d3f2ae79f1bc39a049b69f78b4022bcd83f"
+    },
+    {
+      "time": "2026-11-25T22:01:08.760Z",
+      "name": "low-horizon-after",
+      "id": "rbxtemp://259",
+      "path": "art/frames/2026-11-26-soft-sunlight/low-horizon-after.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level01",
+      "sha256": "cf72563e329f0c1f9ab305914b389d1eb4dd2754341fa1fa6b3537ff709c8472"
+    }
+  ],
+  "result": [
+    "2026-11-25T21:53:13.410Z,12912.410156,5c88,6,Info [FLog::CreatorOutput] SUNLIGHT_RESULT pass nil\r",
+    "2026-11-25T21:53:19.387Z,12918.387695,5c88,6,Info [FLog::CreatorOutput] SUNLIGHT_PLAY_END true sunlight-pass\r",
+    "2026-11-25T21:56:29.687Z,13108.687500,5c88,6,Info [FLog::CreatorOutput] SUNLIGHT_RESULT pass nil\r",
+    "2026-11-25T21:56:35.553Z,13114.553711,5c88,6,Info [FLog::CreatorOutput] SUNLIGHT_PLAY_END true sunlight-pass\r",
+    "2026-11-25T22:01:08.760Z,13387.760742,6d58,6,Info [FLog::CreatorOutput] SUNLIGHT_RESULT pass nil\r",
+    "2026-11-25T22:01:14.736Z,13393.736328,5c88,6,Info [FLog::CreatorOutput] SUNLIGHT_PLAY_END true sunlight-pass\r",
+    "2026-11-25T22:08:04.194Z,13803.194336,2f48,6,Info [FLog::CreatorOutput] SUNLIGHT_RESULT pass nil\r",
+    "2026-11-25T22:08:10.318Z,13809.318359,5c88,6,Info [FLog::CreatorOutput] SUNLIGHT_PLAY_END true sunlight-pass\r"
+  ],
+  "profileSha256": "df379f81811f150f26e395e2d2c4142dd78746948f42a9cb0b299d24d2889a7f",
+  "baselineSha256": "2f16d3e130a707ddcf89cabb65fe3105959b14118e8a22d33a432ff6bb8fe41a",
+  "limitations": [
+    "Low engine culls far meshes as before; no geometry changed",
+    "No physical phone, live multiplayer, full unit suite; static lighting task"
+  ]
+}

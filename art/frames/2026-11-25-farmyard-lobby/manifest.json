@@ -1,0 +1,291 @@
+{
+  "date": "2026-11-25",
+  "studioWindowId": 68760,
+  "scope": "Static authored queue light boundaries resized with launch footprints. No event, flash, burst, motion or lifetime was added; temporal phases are inapplicable. Four chronological live samples document stable appearance.",
+  "codeVersion": {
+    "models/lobby/Workspace/LobbyArea.rbxm": "75c9be4cafdbe9e9594af4fdfd36d0d46959121da5f5b86b6c7d685c9a63d2ba",
+    "art/models/farmyard-lobby/source/assemble.luau": "c68d03501bbebf1d9037f198ad15a37f05cb36fedb863deefabc073c5e0d0d57",
+    "art/models/farmyard-lobby/source/build_farmyard.py": "b57da2be39d5ea05c916d8599932ed4e9412d740c1a51f51ce47f6026646c825",
+    "art/models/farmyard-lobby/export/parts.json": "67f1e40ad4319efa4277604427e5c798512389af3ee3c4730418e15d75cbb279"
+  },
+  "frames": [
+    {
+      "capturedAt": "2026-11-25T20:20:34.813Z",
+      "name": "01-entry",
+      "contentId": "rbxtemp://223",
+      "timeSeconds": 2.509,
+      "quality": "Level21",
+      "reducedMotion": false,
+      "resolution": [
+        1618,
+        761
+      ],
+      "viewportSource": "Native CaptureService PNG IHDR; viewport changed between Play sessions, reason was not logged",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\01-entry.png",
+      "relativePath": "art/frames/2026-11-25-farmyard-lobby/01-entry.png",
+      "cacheFile": "wob-12400000062",
+      "cacheTimeDeltaMs": 8,
+      "method": "CaptureService in live Play; exact quality set and asserted by Edit plugin before Play"
+    },
+    {
+      "capturedAt": "2026-11-25T20:20:37.446Z",
+      "name": "02-overview",
+      "contentId": "rbxtemp://224",
+      "timeSeconds": 5.147,
+      "quality": "Level21",
+      "reducedMotion": false,
+      "resolution": [
+        1618,
+        761
+      ],
+      "viewportSource": "Native CaptureService PNG IHDR; viewport changed between Play sessions, reason was not logged",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\02-overview.png",
+      "relativePath": "art/frames/2026-11-25-farmyard-lobby/02-overview.png",
+      "cacheFile": "wob-12400000063",
+      "cacheTimeDeltaMs": 13,
+      "method": "CaptureService in live Play; exact quality set and asserted by Edit plugin before Play"
+    },
+    {
+      "capturedAt": "2026-11-25T20:20:39.946Z",
+      "name": "03-launch",
+      "contentId": "rbxtemp://225",
+      "timeSeconds": 7.648,
+      "quality": "Level21",
+      "reducedMotion": false,
+      "resolution": [
+        1618,
+        761
+      ],
+      "viewportSource": "Native CaptureService PNG IHDR; viewport changed between Play sessions, reason was not logged",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\03-launch.png",
+      "relativePath": "art/frames/2026-11-25-farmyard-lobby/03-launch.png",
+      "cacheFile": "wob-12400000064",
+      "cacheTimeDeltaMs": 14,
+      "method": "CaptureService in live Play; exact quality set and asserted by Edit plugin before Play"
+    },
+    {
+      "capturedAt": "2026-11-25T20:20:42.580Z",
+      "name": "04-garage",
+      "contentId": "rbxtemp://226",
+      "timeSeconds": 10.274,
+      "quality": "Level21",
+      "reducedMotion": false,
+      "resolution": [
+        1618,
+        761
+      ],
+      "viewportSource": "Native CaptureService PNG IHDR; viewport changed between Play sessions, reason was not logged",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\04-garage.png",
+      "relativePath": "art/frames/2026-11-25-farmyard-lobby/04-garage.png",
+      "cacheFile": "wob-12400000065",
+      "cacheTimeDeltaMs": 6,
+      "method": "CaptureService in live Play; exact quality set and asserted by Edit plugin before Play"
+    },
+    {
+      "capturedAt": "2026-11-25T20:20:45.245Z",
+      "name": "05-house",
+      "contentId": "rbxtemp://227",
+      "timeSeconds": 12.934,
+      "quality": "Level21",
+      "reducedMotion": false,
+      "resolution": [
+        1618,
+        761
+      ],
+      "viewportSource": "Native CaptureService PNG IHDR; viewport changed between Play sessions, reason was not logged",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\05-house.png",
+      "relativePath": "art/frames/2026-11-25-farmyard-lobby/05-house.png",
+      "cacheFile": "wob-12400000066",
+      "cacheTimeDeltaMs": 0,
+      "method": "CaptureService in live Play; exact quality set and asserted by Edit plugin before Play"
+    },
+    {
+      "capturedAt": "2026-11-25T20:20:47.847Z",
+      "name": "vfx-static-1",
+      "contentId": "rbxtemp://228",
+      "timeSeconds": 2.59,
+      "quality": "Level21",
+      "reducedMotion": false,
+      "resolution": [
+        1618,
+        761
+      ],
+      "viewportSource": "Native CaptureService PNG IHDR; viewport changed between Play sessions, reason was not logged",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\vfx\\vfx-static-1.png",
+      "relativePath": "art/frames/2026-11-25-farmyard-lobby/vfx/vfx-static-1.png",
+      "cacheFile": "wob-12400000067",
+      "cacheTimeDeltaMs": 5,
+      "method": "CaptureService in live Play; exact quality set and asserted by Edit plugin before Play"
+    },
+    {
+      "capturedAt": "2026-11-25T20:20:50.496Z",
+      "name": "vfx-static-2",
+      "contentId": "rbxtemp://229",
+      "timeSeconds": 5.245,
+      "quality": "Level21",
+      "reducedMotion": false,
+      "resolution": [
+        1618,
+        761
+      ],
+      "viewportSource": "Native CaptureService PNG IHDR; viewport changed between Play sessions, reason was not logged",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\vfx\\vfx-static-2.png",
+      "relativePath": "art/frames/2026-11-25-farmyard-lobby/vfx/vfx-static-2.png",
+      "cacheFile": "wob-12400000068",
+      "cacheTimeDeltaMs": 11,
+      "method": "CaptureService in live Play; exact quality set and asserted by Edit plugin before Play"
+    },
+    {
+      "capturedAt": "2026-11-25T20:20:53.113Z",
+      "name": "vfx-static-3",
+      "contentId": "rbxtemp://230",
+      "timeSeconds": 7.851,
+      "quality": "Level21",
+      "reducedMotion": false,
+      "resolution": [
+        1618,
+        761
+      ],
+      "viewportSource": "Native CaptureService PNG IHDR; viewport changed between Play sessions, reason was not logged",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\vfx\\vfx-static-3.png",
+      "relativePath": "art/frames/2026-11-25-farmyard-lobby/vfx/vfx-static-3.png",
+      "cacheFile": "wob-12400000069",
+      "cacheTimeDeltaMs": 0,
+      "method": "CaptureService in live Play; exact quality set and asserted by Edit plugin before Play"
+    },
+    {
+      "capturedAt": "2026-11-25T20:20:55.762Z",
+      "name": "vfx-static-4",
+      "contentId": "rbxtemp://231",
+      "timeSeconds": 10.506,
+      "quality": "Level21",
+      "reducedMotion": false,
+      "resolution": [
+        1618,
+        761
+      ],
+      "viewportSource": "Native CaptureService PNG IHDR; viewport changed between Play sessions, reason was not logged",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\vfx\\vfx-static-4.png",
+      "relativePath": "art/frames/2026-11-25-farmyard-lobby/vfx/vfx-static-4.png",
+      "cacheFile": "wob-12400000070",
+      "cacheTimeDeltaMs": 6,
+      "method": "CaptureService in live Play; exact quality set and asserted by Edit plugin before Play"
+    },
+    {
+      "capturedAt": "2026-11-25T20:20:58.362Z",
+      "name": "vfx-reduced",
+      "contentId": "rbxtemp://232",
+      "timeSeconds": 13.115,
+      "quality": "Level21",
+      "reducedMotion": true,
+      "resolution": [
+        1618,
+        761
+      ],
+      "viewportSource": "Native CaptureService PNG IHDR; viewport changed between Play sessions, reason was not logged",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\vfx\\vfx-reduced.png",
+      "relativePath": "art/frames/2026-11-25-farmyard-lobby/vfx/vfx-reduced.png",
+      "cacheFile": "wob-12400000071",
+      "cacheTimeDeltaMs": 16,
+      "method": "CaptureService in live Play; exact quality set and asserted by Edit plugin before Play"
+    },
+    {
+      "capturedAt": "2026-11-25T20:24:04.888Z",
+      "name": "06-low",
+      "contentId": "rbxtemp://233",
+      "timeSeconds": 2.381,
+      "quality": "Level01",
+      "reducedMotion": false,
+      "resolution": [
+        1618,
+        761
+      ],
+      "viewportSource": "Native CaptureService PNG IHDR; viewport changed between Play sessions, reason was not logged",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\06-low.png",
+      "relativePath": "art/frames/2026-11-25-farmyard-lobby/06-low.png",
+      "cacheFile": "wob-12400000072",
+      "cacheTimeDeltaMs": 14,
+      "method": "CaptureService in live Play; exact quality set and asserted by Edit plugin before Play"
+    },
+    {
+      "capturedAt": "2026-11-25T20:24:07.322Z",
+      "name": "vfx-low",
+      "contentId": "rbxtemp://234",
+      "timeSeconds": 2.372,
+      "quality": "Level01",
+      "reducedMotion": false,
+      "resolution": [
+        1618,
+        761
+      ],
+      "viewportSource": "Native CaptureService PNG IHDR; viewport changed between Play sessions, reason was not logged",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\vfx\\vfx-low.png",
+      "relativePath": "art/frames/2026-11-25-farmyard-lobby/vfx/vfx-low.png",
+      "cacheFile": "wob-12400000073",
+      "cacheTimeDeltaMs": 5,
+      "method": "CaptureService in live Play; exact quality set and asserted by Edit plugin before Play"
+    },
+    {
+      "capturedAt": "2026-11-25T20:24:09.789Z",
+      "name": "vfx-low-reduced",
+      "contentId": "rbxtemp://235",
+      "timeSeconds": 4.845,
+      "quality": "Level01",
+      "reducedMotion": true,
+      "resolution": [
+        1618,
+        761
+      ],
+      "viewportSource": "Native CaptureService PNG IHDR; viewport changed between Play sessions, reason was not logged",
+      "path": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\vfx\\vfx-low-reduced.png",
+      "relativePath": "art/frames/2026-11-25-farmyard-lobby/vfx/vfx-low-reduced.png",
+      "cacheFile": "wob-12400000074",
+      "cacheTimeDeltaMs": 11,
+      "method": "CaptureService in live Play; exact quality set and asserted by Edit plugin before Play"
+    }
+  ],
+  "counts": [
+    {
+      "quality": "Level21",
+      "moment": "before",
+      "objects": 234,
+      "beams": 102,
+      "particles": 0,
+      "parts": 6
+    },
+    {
+      "quality": "Level21",
+      "moment": "after",
+      "objects": 234,
+      "beams": 102,
+      "particles": 0,
+      "parts": 6
+    },
+    {
+      "quality": "Level01",
+      "moment": "before",
+      "objects": 234,
+      "beams": 102,
+      "particles": 0,
+      "parts": 6
+    },
+    {
+      "quality": "Level01",
+      "moment": "after",
+      "objects": 234,
+      "beams": 102,
+      "particles": 0,
+      "parts": 6
+    }
+  ],
+  "pluginQuality": [
+    "2026-11-25T20:20:13.364Z,7332.364258,6d58,6,Info [FLog::CreatorOutput] FARMYARD_PLUGIN_QUALITY_BEGIN Level21 actual=Level21\r",
+    "2026-11-25T20:21:03.568Z,7382.568359,2f48,6,Info [FLog::CreatorOutput] FARMYARD_PLUGIN_QUALITY_END Level21 true farmyard-Level21-complete restored=Level21\r",
+    "2026-11-25T20:23:43.588Z,7542.588379,6d58,6,Info [FLog::CreatorOutput] FARMYARD_PLUGIN_QUALITY_BEGIN Level01 actual=Level01\r",
+    "2026-11-25T20:24:15.070Z,7574.070801,6d58,6,Info [FLog::CreatorOutput] FARMYARD_PLUGIN_QUALITY_END Level01 true farmyard-Level01-complete restored=Level21\r"
+  ],
+  "limits": [
+    "Two or more live players and physical mobile device were not tested.",
+    "No new snow/weather VFX or timed queue effect is part of this change."
+  ]
+}

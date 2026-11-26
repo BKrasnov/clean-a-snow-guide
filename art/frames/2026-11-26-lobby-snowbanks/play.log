@@ -1,0 +1,33 @@
+2026-11-26T01:35:51.849Z,26270.849609,2f48,6,Info [FLog::CreatorOutput] SNOWBANKS_RESULT Level21 fail Players.gio1234525.PlayerScripts._SnowbanksQAClient:6: assertion failed!
+2026-11-26T01:35:57.267Z,26276.267578,6d58,6,Info [FLog::CreatorOutput] SNOWBANKS_END Level21 true snowbanks-Level21-fail
+2026-11-26T01:41:49.378Z,26628.378906,6d58,6,Info [FLog::CreatorOutput] SNOWBANKS_END Level21 true snowbanks-timeout
+2026-11-26T01:43:57.382Z,26756.382812,3a14,6,Info [FLog::CreatorOutput] SNOWBANKS_RESULT Level21 fail Players.gio1234525.PlayerScripts._SnowbanksQAClient:10: Walk blocked at 14036,55
+2026-11-26T01:44:02.488Z,26761.488281,6d58,6,Info [FLog::CreatorOutput] SNOWBANKS_END Level21 true snowbanks-Level21-fail
+2026-11-26T01:45:36.763Z,26855.763672,3a14,6,Info [FLog::CreatorOutput] SNOWBANKS_WALK four segments passed
+2026-11-26T01:45:40.164Z,26859.164062,3a14,6,Info [FLog::CreatorOutput] SNOWBANKS_CAPTURE Level21-plaza rbxtemp://298
+2026-11-26T01:45:43.662Z,26862.662109,6b3c,6,Info [FLog::CreatorOutput] SNOWBANKS_CAPTURE Level21-eye rbxtemp://299
+2026-11-26T01:45:47.212Z,26866.212891,5c88,6,Info [FLog::CreatorOutput] SNOWBANKS_CAPTURE Level21-right rbxtemp://300
+2026-11-26T01:45:50.763Z,26869.763672,3a14,6,Info [FLog::CreatorOutput] SNOWBANKS_CAPTURE Level21-left rbxtemp://301
+2026-11-26T01:45:54.480Z,26873.480469,4144,6,Info [FLog::CreatorOutput] SNOWBANKS_CAPTURE Level21-tree rbxtemp://302
+2026-11-26T01:45:58.212Z,26877.212891,3a14,6,Info [FLog::CreatorOutput] SNOWBANKS_CAPTURE Level21-overhead rbxtemp://303
+2026-11-26T01:45:58.212Z,26877.212891,3a14,6,Info [FLog::CreatorOutput] SNOWBANKS_RESULT Level21 pass parts=179 queues=6
+2026-11-26T01:46:03.324Z,26882.324219,6d58,6,Info [FLog::CreatorOutput] SNOWBANKS_END Level21 true snowbanks-Level21-pass
+2026-11-26T01:47:36.660Z,26975.660156,3a14,6,Info [FLog::CreatorOutput] SNOWBANKS_CAPTURE Level01-plaza rbxtemp://304
+2026-11-26T01:47:40.140Z,26979.140625,3a14,6,Info [FLog::CreatorOutput] SNOWBANKS_CAPTURE Level01-eye rbxtemp://305
+2026-11-26T01:47:43.574Z,26982.574219,3a14,6,Info [FLog::CreatorOutput] SNOWBANKS_CAPTURE Level01-right rbxtemp://306
+2026-11-26T01:47:43.625Z,26982.625000,3a14,6,Info [FLog::CreatorOutput] SNOWBANKS_RESULT Level01 pass parts=179 queues=6
+2026-11-26T01:47:48.626Z,26987.626953,5c88,6,Info [FLog::CreatorOutput] SNOWBANKS_END Level01 true snowbanks-Level01-pass
+2026-11-26T01:49:50.205Z,27109.205078,3a14,6,Info [FLog::CreatorOutput] SNOWBANKS_WALK four segments passed
+2026-11-26T01:49:53.755Z,27112.755859,3a14,6,Info [FLog::CreatorOutput] SNOWBANKS_CAPTURE Level21-plaza rbxtemp://307
+2026-11-26T01:49:57.384Z,27116.384766,22d4,6,Info [FLog::CreatorOutput] SNOWBANKS_CAPTURE Level21-eye rbxtemp://308
+2026-11-26T01:50:01.054Z,27120.054688,6d58,6,Info [FLog::CreatorOutput] SNOWBANKS_CAPTURE Level21-right rbxtemp://309
+2026-11-26T01:50:04.687Z,27123.687500,2f48,6,Info [FLog::CreatorOutput] SNOWBANKS_CAPTURE Level21-left rbxtemp://310
+2026-11-26T01:50:08.353Z,27127.353516,22d4,6,Info [FLog::CreatorOutput] SNOWBANKS_CAPTURE Level21-tree rbxtemp://311
+2026-11-26T01:50:12.085Z,27131.085938,6d58,6,Info [FLog::CreatorOutput] SNOWBANKS_CAPTURE Level21-overhead rbxtemp://312
+2026-11-26T01:50:12.085Z,27131.085938,6d58,6,Info [FLog::CreatorOutput] SNOWBANKS_RESULT Level21 pass parts=179 queues=6
+2026-11-26T01:50:17.523Z,27136.523438,2f48,6,Info [FLog::CreatorOutput] SNOWBANKS_END Level21 true snowbanks-Level21-pass
+2026-11-26T01:51:26.935Z,27205.935547,2f48,6,Info [FLog::CreatorOutput] SNOWBANKS_CAPTURE Level01-plaza rbxtemp://313
+2026-11-26T01:51:30.351Z,27209.351562,6c58,6,Info [FLog::CreatorOutput] SNOWBANKS_CAPTURE Level01-eye rbxtemp://314
+2026-11-26T01:51:33.734Z,27212.734375,3a14,6,Info [FLog::CreatorOutput] SNOWBANKS_CAPTURE Level01-right rbxtemp://315
+2026-11-26T01:51:33.734Z,27212.734375,3a14,6,Info [FLog::CreatorOutput] SNOWBANKS_RESULT Level01 pass parts=179 queues=6
+2026-11-26T01:51:38.980Z,27217.980469,6d58,6,Info [FLog::CreatorOutput] SNOWBANKS_END Level01 true snowbanks-Level01-pass

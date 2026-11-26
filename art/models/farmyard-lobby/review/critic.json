@@ -1,0 +1,68 @@
+{
+  "record": "Summary of independent farmyard_model_critic messages",
+  "verdict": "pass",
+  "round": 3,
+  "summary": "Whole snow cover and irregular eaves accepted; open garage and accessible porch preserved.",
+  "scores": {
+    "fidelity": 9,
+    "appeal": 9,
+    "note": "All artistic findings fixed; Blender geometry review only."
+  },
+  "checks": [
+    {
+      "item": "Silhouette and proportions",
+      "status": "ok",
+      "note": "Reference garage, porch house, arch and six frames"
+    },
+    {
+      "item": "Palette",
+      "status": "ok",
+      "note": "Approved palette preserved"
+    },
+    {
+      "item": "Geometry",
+      "status": "ok",
+      "note": "Five views inspected, report contains no errors"
+    },
+    {
+      "item": "Weight",
+      "status": "not_checked",
+      "note": "Compound primitive kit has no single budget class; runtime SpecialMesh cost is not Blender triangle count"
+    }
+  ],
+  "problems": [],
+  "weight_review": {
+    "budget_class": null,
+    "score": null,
+    "budget_note": "Garage3992/6000, House4856/6000, arch2340/3000, each frame504/1000; no single class for whole kit."
+  },
+  "history": [
+    {
+      "round": 1,
+      "verdict": "fail",
+      "fidelity": 8,
+      "appeal": 7,
+      "findings": [
+        "flat snow sheets",
+        "periodic snow pattern"
+      ]
+    },
+    {
+      "round": 2,
+      "verdict": "fail",
+      "fidelity": 8,
+      "appeal": 8,
+      "findings": [
+        "isolated oval snow islands",
+        "straight porch edge"
+      ]
+    },
+    {
+      "round": 3,
+      "verdict": "pass",
+      "fidelity": 9,
+      "appeal": 9,
+      "remaining": "stale README numbers corrected by root"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+2026-11-25T19:53:48.060Z,5747.060059,6d58,6,Info [FLog::CreatorOutput] FARMYARD_PLUGIN_QUALITY_BEGIN Level21 actual=Level21
+2026-11-25T19:54:08.757Z,5767.757812,3a14,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE 01-entry rbxtemp://210 elapsed=2.519 quality=Level21 reduced=nil
+2026-11-25T19:54:11.375Z,5770.375488,3a14,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE 02-overview rbxtemp://211 elapsed=5.145 quality=Level21 reduced=nil
+2026-11-25T19:54:13.991Z,5772.991699,3a14,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE 03-launch rbxtemp://212 elapsed=7.757 quality=Level21 reduced=nil
+2026-11-25T19:54:16.674Z,5775.674805,5c88,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE 04-garage rbxtemp://213 elapsed=10.444 quality=Level21 reduced=nil
+2026-11-25T19:54:19.341Z,5778.341797,3a14,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE 05-house rbxtemp://214 elapsed=13.105 quality=Level21 reduced=nil
+2026-11-25T19:54:19.358Z,5778.358887,6d58,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_COUNTS Level21 before {"objects":234,"beams":102,"particles":0,"parts":6}
+2026-11-25T19:54:21.958Z,5780.958496,6d58,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE vfx-static-1 rbxtemp://215 elapsed=2.586 quality=Level21 reduced=nil
+2026-11-25T19:54:24.675Z,5783.675293,5c88,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE vfx-static-2 rbxtemp://216 elapsed=5.314 quality=Level21 reduced=nil
+2026-11-25T19:54:27.259Z,5786.259277,5c88,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE vfx-static-3 rbxtemp://217 elapsed=7.895 quality=Level21 reduced=nil
+2026-11-25T19:54:29.941Z,5788.941895,5c88,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE vfx-static-4 rbxtemp://218 elapsed=10.582 quality=Level21 reduced=nil
+2026-11-25T19:54:32.609Z,5791.609863,3a14,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE vfx-reduced rbxtemp://219 elapsed=13.240 quality=Level21 reduced=true
+2026-11-25T19:54:32.689Z,5791.689941,5c88,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_COUNTS Level21 after {"objects":234,"beams":102,"particles":0,"parts":6}
+2026-11-25T19:54:37.656Z,5796.656250,6d58,6,Info [FLog::CreatorOutput] FARMYARD_PLUGIN_QUALITY_END Level21 true farmyard-Level21-complete restored=Level21
+2026-11-25T19:58:40.981Z,6039.981934,3a14,6,Info [FLog::CreatorOutput] FARMYARD_PLUGIN_QUALITY_BEGIN Level01 actual=Level01
+2026-11-25T19:59:01.932Z,6060.932129,6b3c,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE 06-low rbxtemp://220 elapsed=2.381 quality=Level01 reduced=nil
+2026-11-25T19:59:01.999Z,6060.999512,6b3c,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_COUNTS Level01 before {"objects":234,"beams":102,"particles":0,"parts":6}
+2026-11-25T19:59:04.379Z,6063.379883,5c88,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE vfx-low rbxtemp://221 elapsed=2.382 quality=Level01 reduced=nil
+2026-11-25T19:59:06.847Z,6065.847168,3a14,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE vfx-low-reduced rbxtemp://222 elapsed=4.849 quality=Level01 reduced=true
+2026-11-25T19:59:06.863Z,6065.863281,3a14,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_COUNTS Level01 after {"objects":234,"beams":102,"particles":0,"parts":6}
+2026-11-25T19:59:12.164Z,6071.164062,22d4,6,Info [FLog::CreatorOutput] FARMYARD_PLUGIN_QUALITY_END Level01 true farmyard-Level01-complete restored=Level21
+2026-11-25T20:20:13.364Z,7332.364258,6d58,6,Info [FLog::CreatorOutput] FARMYARD_PLUGIN_QUALITY_BEGIN Level21 actual=Level21
+2026-11-25T20:20:34.813Z,7353.813477,5c88,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE 01-entry rbxtemp://223 elapsed=2.509 quality=Level21 reduced=nil
+2026-11-25T20:20:37.446Z,7356.446289,2f48,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE 02-overview rbxtemp://224 elapsed=5.147 quality=Level21 reduced=nil
+2026-11-25T20:20:39.946Z,7358.946777,2f48,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE 03-launch rbxtemp://225 elapsed=7.648 quality=Level21 reduced=nil
+2026-11-25T20:20:42.580Z,7361.580566,5c88,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE 04-garage rbxtemp://226 elapsed=10.274 quality=Level21 reduced=nil
+2026-11-25T20:20:45.245Z,7364.245117,5c88,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE 05-house rbxtemp://227 elapsed=12.934 quality=Level21 reduced=nil
+2026-11-25T20:20:45.245Z,7364.245117,5c88,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_COUNTS Level21 before {"objects":234,"beams":102,"particles":0,"parts":6}
+2026-11-25T20:20:47.847Z,7366.847656,2f48,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE vfx-static-1 rbxtemp://228 elapsed=2.590 quality=Level21 reduced=nil
+2026-11-25T20:20:50.496Z,7369.496094,5c88,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE vfx-static-2 rbxtemp://229 elapsed=5.245 quality=Level21 reduced=nil
+2026-11-25T20:20:53.113Z,7372.113770,3a14,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE vfx-static-3 rbxtemp://230 elapsed=7.851 quality=Level21 reduced=nil
+2026-11-25T20:20:55.762Z,7374.762207,5c88,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE vfx-static-4 rbxtemp://231 elapsed=10.506 quality=Level21 reduced=nil
+2026-11-25T20:20:58.362Z,7377.362793,3a14,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE vfx-reduced rbxtemp://232 elapsed=13.115 quality=Level21 reduced=true
+2026-11-25T20:20:58.446Z,7377.446289,4144,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_COUNTS Level21 after {"objects":234,"beams":102,"particles":0,"parts":6}
+2026-11-25T20:21:03.568Z,7382.568359,2f48,6,Info [FLog::CreatorOutput] FARMYARD_PLUGIN_QUALITY_END Level21 true farmyard-Level21-complete restored=Level21
+2026-11-25T20:23:43.588Z,7542.588379,6d58,6,Info [FLog::CreatorOutput] FARMYARD_PLUGIN_QUALITY_BEGIN Level01 actual=Level01
+2026-11-25T20:24:04.888Z,7563.888672,2f48,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE 06-low rbxtemp://233 elapsed=2.381 quality=Level01 reduced=nil
+2026-11-25T20:24:04.938Z,7563.938477,22d4,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_COUNTS Level01 before {"objects":234,"beams":102,"particles":0,"parts":6}
+2026-11-25T20:24:07.322Z,7566.322266,6d58,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE vfx-low rbxtemp://234 elapsed=2.372 quality=Level01 reduced=nil
+2026-11-25T20:24:09.789Z,7568.789062,3a14,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_CAPTURE vfx-low-reduced rbxtemp://235 elapsed=4.845 quality=Level01 reduced=true
+2026-11-25T20:24:09.838Z,7568.838379,6d58,6,Info [FLog::CreatorOutput] FARMYARD_VERIFIED_COUNTS Level01 after {"objects":234,"beams":102,"particles":0,"parts":6}
+2026-11-25T20:24:15.070Z,7574.070801,6d58,6,Info [FLog::CreatorOutput] FARMYARD_PLUGIN_QUALITY_END Level01 true farmyard-Level01-complete restored=Level21

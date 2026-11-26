@@ -1,0 +1,2400 @@
+{
+  "model": "FarmyardLobby",
+  "stage": "final",
+  "generation": null,
+  "date": "2026-11-25",
+  "source": "model",
+  "overall": 92,
+  "scored": 3,
+  "flags": [
+    "нет класса бюджета"
+  ],
+  "criteria": {
+    "weight": {
+      "score": null,
+      "note": "класс бюджета не задан",
+      "flags": [
+        "нет класса бюджета"
+      ]
+    },
+    "mesh": {
+      "score": 9.5,
+      "note": "предупреждения: unapplied_transform",
+      "flags": []
+    },
+    "fidelity": {
+      "score": 9,
+      "note": "All artistic findings fixed; Blender geometry review only.",
+      "flags": []
+    },
+    "appeal": {
+      "score": 9,
+      "note": "All artistic findings fixed; Blender geometry review only.",
+      "flags": []
+    }
+  },
+  "class": null,
+  "tris": {
+    "value": 16732,
+    "limit": null
+  },
+  "bytes": 321269,
+  "report": {
+    "file": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\models\\farmyard-lobby\\source\\FarmyardLobby.blend",
+    "sha256": "72ee620dddf7165f8ad3f501fd317d9431cc434fdc7f5fa0cfd1166fd2cee0ea",
+    "dimensions": {
+      "width": 48.47274,
+      "depth": 38.34885,
+      "height": 8.084378,
+      "min_z": 0.0,
+      "center": [
+        -0.003449,
+        -4.485574,
+        4.042189
+      ]
+    },
+    "totals": {
+      "tris": 16732,
+      "verts": 9286,
+      "meshes": 460,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark",
+        "M_Farmyard_blue",
+        "M_Farmyard_cream",
+        "M_Farmyard_dark",
+        "M_Farmyard_gold",
+        "M_Farmyard_ice",
+        "M_Farmyard_metal",
+        "M_Farmyard_oak",
+        "M_Farmyard_pine",
+        "M_Farmyard_red",
+        "M_Farmyard_shade",
+        "M_Farmyard_snow",
+        "M_Farmyard_sun",
+        "M_Farmyard_wood"
+      ],
+      "bones": 0,
+      "textures": []
+    },
+    "issues": [
+      {
+        "code": "unapplied_transform",
+        "object": "Foundation",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Floor",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "BackWall",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SideWall",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SideWall.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "FrontPier",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "FrontPier.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "DoorHeader",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "DoorFrame",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "DoorFrame.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "UpperWall",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "BackPlank",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "BackPlank.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.004",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.005",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "BackPlank.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.006",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.007",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "BackPlank.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.008",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.009",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "BackPlank.004",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.010",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.011",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "BackPlank.005",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.012",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.013",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "BackPlank.006",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "CornerPost",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "CornerPost.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "CornerPost.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "CornerPost.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RoofTimber",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowRoof",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowRoofLip",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowRoofLip.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowEave",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowEave.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowEave.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowEave.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowEave.004",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RoofTimber.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowRoof.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowRoofLip.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowRoofLip.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowEave.005",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowEave.006",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowEave.007",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowEave.008",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowEave.009",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Gable",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Gable.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Gable.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Gable.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RidgeSnow",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RidgeSnow.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RidgeSnow.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RidgeSnow.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "LoftDoor",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "LoftFrame",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "LoftFrame.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "LoftFrame.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "LoftFrame.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "LoftBrace",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "LoftBrace.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "GarageSign",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Shelf",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Shelf.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Shelf.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "ShelfLeg",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "ShelfLeg.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Crate",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Crate.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Crate.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Shelf.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Shelf.004",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Shelf.005",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "ShelfLeg.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "ShelfLeg.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Crate.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Crate.004",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Crate.005",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "LeftLampBracket",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "LeftLampBase",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "LeftLampLight",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "LeftLampFrame",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "LeftLampFrame.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "LeftLampCap",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "LeftLampSnow",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RightLampBracket",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RightLampBase",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RightLampLight",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RightLampFrame",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RightLampFrame.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RightLampCap",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RightLampSnow",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Foundation.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Floor.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "BackWall.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SideWall.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SideWall.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "FrontWall",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Door",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "DoorInset",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "DoorKnob",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "WindowFrame",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "WindowGlow",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "WindowVertical",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "WindowHorizontal",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "WindowFrame.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "WindowGlow.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "WindowVertical.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "WindowHorizontal.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.014",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.015",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "BackPlank.007",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "FrontPlank",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.016",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.017",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "BackPlank.008",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "FrontPlank.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.018",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.019",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "BackPlank.009",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "FrontPlank.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.020",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.021",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "BackPlank.010",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "FrontPlank.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.022",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.023",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "BackPlank.011",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "FrontPlank.004",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.024",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.025",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "BackPlank.012",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "FrontPlank.005",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.026",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SidePlank.027",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "BackPlank.013",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "FrontPlank.006",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "CornerPost.004",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "CornerPost.005",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "CornerPost.006",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "CornerPost.007",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RoofTimber.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowRoof.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowRoofLip.004",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowRoofLip.005",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowEave.010",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowEave.011",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowEave.012",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowEave.013",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowEave.014",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RoofTimber.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowRoof.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowRoofLip.006",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowRoofLip.007",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowEave.015",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowEave.016",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowEave.017",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowEave.018",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowEave.019",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Gable.004",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Gable.005",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Gable.006",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Gable.007",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RidgeSnow.004",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RidgeSnow.005",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RidgeSnow.006",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RidgeSnow.007",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "PorchDeck",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StepLow",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StepHigh",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "PorchPost",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RailSide",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RailSpindle",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RailSpindle.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RailSpindle.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "PorchPost.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RailSide.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RailSpindle.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RailSpindle.004",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RailSpindle.005",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "FrontRail",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RailSpindle.006",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RailSpindle.007",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RailSpindle.008",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RailSpindle.009",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "FrontRail.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RailSpindle.010",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RailSpindle.011",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RailSpindle.012",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RailSpindle.013",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "PorchCanopy",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "PorchSnow",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "PorchSnowPillow",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "PorchSnowPillow.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "PorchSnowPillow.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "PorchSnowPillow.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Chimney",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "ChimneyCap",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "LeftLampBracket.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "LeftLampBase.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "LeftLampLight.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "LeftLampFrame.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "LeftLampFrame.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "LeftLampCap.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "LeftLampSnow.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RightLampBracket.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RightLampBase.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RightLampLight.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RightLampFrame.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RightLampFrame.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RightLampCap.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "RightLampSnow.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Brace",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Brace.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.004",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.005",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.006",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.007",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.008",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.009",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.010",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.011",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.012",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.013",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.014",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.015",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.016",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.017",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.018",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.019",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.020",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.021",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.022",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.023",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.024",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.025",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.026",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.027",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.028",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.029",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.030",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.031",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.032",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.033",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.034",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MapMountain.035",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Post",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Post.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Counter",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "CounterBody",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Cabinet",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Cabinet.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Cabinet.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Roof",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowRoof.004",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallSnowPillow",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallSnowPillow.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallSnowPillow.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Sign.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallLampBracket",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallLampBase",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallLampLight",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallLampFrame",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallLampFrame.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallLampCap",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallLampSnow",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Gift",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Ribbon",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Gift.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Ribbon.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Gift.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Ribbon.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Post.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Post.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Counter.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "CounterBody.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Cabinet.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Cabinet.004",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Cabinet.005",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Roof.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowRoof.005",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallSnowPillow.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallSnowPillow.004",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallSnowPillow.005",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Sign.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallLampBracket.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallLampBase.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallLampLight.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallLampFrame.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallLampFrame.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallLampCap.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallLampSnow.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "ToolBox",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "ToolBox.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "ToolBox.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Post.004",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Post.005",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Counter.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "CounterBody.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Cabinet.006",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Cabinet.007",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Cabinet.008",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Roof.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "SnowRoof.006",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallSnowPillow.006",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallSnowPillow.007",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallSnowPillow.008",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "Sign.003",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallLampBracket.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallLampBase.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallLampLight.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallLampFrame.004",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallLampFrame.005",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallLampCap.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "StallLampSnow.002",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MannequinBody",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MannequinHead",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MannequinBody.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      },
+      {
+        "code": "unapplied_transform",
+        "object": "MannequinHead.001",
+        "count": 1,
+        "severity": "warning",
+        "message": "масштаб не 1 или поворот не 0"
+      }
+    ]
+  }
+}

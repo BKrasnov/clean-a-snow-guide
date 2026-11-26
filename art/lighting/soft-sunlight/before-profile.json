@@ -1,0 +1,50 @@
+{
+  "Lighting": {
+    "ClockTime": 14.75,
+    "GeographicLatitude": 48,
+    "Brightness": 2.319999933242798,
+    "ExposureCompensation": -0.07999999821186066,
+    "Ambient": "#7c797f",
+    "OutdoorAmbient": "#7c8fa6",
+    "ColorShift_Top": "#301b09",
+    "ColorShift_Bottom": "#000000",
+    "GlobalShadows": true,
+    "ShadowSoftness": 0.5199999809265137,
+    "EnvironmentDiffuseScale": 0.4699999988079071,
+    "EnvironmentSpecularScale": 0.20000000298023224,
+    "FogStart": 1275,
+    "FogEnd": 7800
+  },
+  "AiryDayColor": {
+    "Enabled": true,
+    "Brightness": 0,
+    "Contrast": 0.11500000208616257,
+    "Saturation": 0.14000000059604645,
+    "TintColor": "#eff7ff"
+  },
+  "AiryDayBloom": {
+    "Enabled": true,
+    "Intensity": 0.07999999821186066,
+    "Size": 19,
+    "Threshold": 1.5499999523162842
+  },
+  "AiryDaySunRays": {
+    "Enabled": false,
+    "Intensity": 0.012000000104308128,
+    "Spread": 0.18000000715255737
+  },
+  "WinterAtmosphere": {
+    "Color": "#82afef",
+    "Decay": "#6895ca",
+    "Density": 0.10000000149011612,
+    "Haze": 0.3499999940395355,
+    "Offset": 0.30000001192092896,
+    "Glare": 0.054999999701976776
+  },
+  "Bloom": {
+    "Enabled": false
+  },
+  "ColorCorrection": {
+    "Enabled": false
+  }
+}

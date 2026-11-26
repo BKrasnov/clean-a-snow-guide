@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-26",
+  "base": "2ca1d434d",
+  "scope": "Static Lighting only, saved in Edit Studio; gameplay/src/geometry unchanged",
+  "profileSha256": "df379f81811f150f26e395e2d2c4142dd78746948f42a9cb0b299d24d2889a7f",
+  "exportProof": "export-proof.json",
+  "tests": {
+    "command": "node --test tools/places/content.test.mjs tools/studio-scenarios/graphics.test.mjs",
+    "pass": 15,
+    "fail": 0,
+    "log": "tests.log"
+  },
+  "runtime": {
+    "quality": [
+      "Level21",
+      "Level01"
+    ],
+    "result": "sunlight-pass",
+    "log": "play.log",
+    "finalHighWarmupSeconds": 18,
+    "capturedPngs": 16,
+    "originalVsFinalPairs": [
+      "lobby High",
+      "valley High"
+    ],
+    "low": "Final-profile readability only; before-labelled Low frames are control samples"
+  },
+  "review": {
+    "spec": "accepted after warm-up comparison repair; no open findings",
+    "standards": "accepted: all 34 baseline properties match initial snapshot; P2/P3 closed; no open findings"
+  },
+  "graphics": "Automatic restored",
+  "limitations": [
+    "Low engine culls far meshes as before; no geometry changed",
+    "No physical phone, live multiplayer, full unit suite; static lighting task"
+  ],
+  "guideTests": {
+    "pass": 56,
+    "fail": 0
+  },
+  "build": {
+    "commit": "099866c71641b5546f51aa62e655646ed6f2c763",
+    "places": 3,
+    "result": "pass",
+    "log": "build.log"
+  },
+  "boardAudit": {
+    "preexistingViolations": 12,
+    "newCardViolations": 0
+  }
+}

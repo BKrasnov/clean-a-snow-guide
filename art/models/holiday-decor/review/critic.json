@@ -1,0 +1,21 @@
+{
+  "role": "model-critic",
+  "rounds": [
+    {
+      "round": 1,
+      "verdict": "fail",
+      "fidelity": 7,
+      "appeal": 7,
+      "findings": ["Bead strands disappear into the crown.", "Narrow bows and angular berries.", "Missing rear fasteners.", "Two coplanar overlaps on the greenery garland and excess triangles."]
+    },
+    {
+      "round": 2,
+      "verdict": "pass",
+      "fidelity": 9,
+      "appeal": 9,
+      "summary": "Золотые бусы читаются по всей ширине ёлки. Банты различимы на общем плане. У подвесных украшений видны крепления сзади.",
+      "note": "Хвоя и края снежных шапок чуть угловатее, чем на референсах.",
+      "open_findings": []
+    }
+  ]
+}

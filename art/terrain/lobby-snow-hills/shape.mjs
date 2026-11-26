@@ -1,0 +1,4 @@
+import fs from 'node:fs';
+export const profile=JSON.parse(fs.readFileSync(new URL('./profile.json',import.meta.url)));
+const smooth=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t)};
+export function height(x,z){const p=profile.protected,e=profile.edge;const dx=Math.max(Math.abs(x)-p.halfX,0),dz=Math.max(Math.abs(z-p.centerZ)-p.halfZ,0);let mask=smooth(Math.hypot(dx,dz)/p.blend);mask=Math.min(mask,Math.max(smooth((Math.abs(x)-p.entranceHalfWidth)/p.blend),smooth(Math.max(p.entranceZ-z,z-p.entranceEnd,0)/p.blend)));let sum=0;for(const [cx,cz,h,wx,wz] of profile.hills){const v=h*Math.exp(-.5*((x-cx)**2/wx**2+(z-cz)**2/wz**2));sum+=v*v}const edge=smooth(Math.min(e.halfX-Math.abs(x),e.halfZ-Math.abs(z))/e.blend);return profile.region.min[1]+(profile.floor-profile.region.min[1]+Math.sqrt(sum)*mask)*edge}

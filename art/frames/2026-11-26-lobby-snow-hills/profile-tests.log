@@ -1,0 +1,36 @@
+{
+  maxRise: 39.02086912375407,
+  maxSlope: 0.6026184491679791,
+  sides: [
+    32.18350620581117,
+    39.02086912375407,
+    39.02086912375407,
+    32.59908869104427
+  ]
+}
+✔ The entire plaza and entrance stay below the existing walkable snow (10.2242ms)
+✔ Broad connected hills have no spikes and remain in the authoring bounds (111.3006ms)
+✔ a place gets the parts of its own layers: Dev has the island and the valley terrain, the lobby has no valley (2.005ms)
+✔ an export writes a changed part where the place takes it from, a new one to its own layer, and removes a gone one (0.4688ms)
+✔ a part name Windows cannot hold is encoded, two names that differ only by case are an error (1.3982ms)
+✔ a build does not overwrite a place whose world was changed in Studio and not exported (0.3837ms)
+✔ Lune: the lobby stands have no E prompt, the plates say START A RUN (51a4ef, BUG-20261115-001, BUG-20261115-010) (216.8949ms)
+✔ Lune: imported farmyard stands retain six separated launch pads and remove retired houses (109.0748ms)
+✔ Lune: white snow surface and rolling hills preserve the owner lobby layout (2231.2769ms)
+✔ Lune: the driver of each ride vehicle sits on its seat, the head under the roof (5edc04, BUG-20261115-005) (112.9576ms)
+✔ Lune: the Santa model ships with its imported loop and matching skinned rig (120.8352ms)
+✔ Lune: no window of the place shows the ice frame or the paper, SnowUpgradesGui is gone (6137fd) (136.3549ms)
+✔ Lune: the old garden and the slab art of snow on the ground are only the server's (7704f7) (207.6781ms)
+✔ Lune: the valley's Terrain reads and writes back byte for byte, a cut keeps the ground within it, and the valley is cut (5729bf) (8823.7913ms)
+✔ Lune: split keeps the world without code, assemble and a second split give the same parts (95.8808ms)
+✔ Lune: the frames' level goes back to the level found, not to Level01 (97.7422ms)
+✔ no scenario sets the graphics level on its own (195.1811ms)
+✔ no generator of scenarios writes the graphics level itself (20.4948ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12241.4332

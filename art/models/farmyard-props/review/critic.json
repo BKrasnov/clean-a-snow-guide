@@ -1,0 +1,37 @@
+{
+  "role": "model-critic",
+  "rounds": [
+    {
+      "round": 1,
+      "verdict": "fail",
+      "fidelity": 8,
+      "appeal": 8,
+      "findings": ["Wheel overlaps the Classes kiosk and occludes the right board.", "Degenerate lettering triangles on the arch.", "Projecting snow tip at the porch roof junction."]
+    },
+    {
+      "round": 2,
+      "verdict": "pass",
+      "fidelity": 9,
+      "appeal": 9,
+      "summary": "Оба увеличенных лидерборда полностью видны от входа. Между колесом и лавкой CLASSES есть зазор. Стык навеса крыльца исправлен.",
+      "notes": "Снежные кромки и миниатюры карт геометрически проще иллюстрации. Производительность в живой игре не измерялась.",
+      "open_findings": []
+    },
+    {
+      "round": 3,
+      "scope": "Очистка лицевых поверхностей обоих лидербордов",
+      "verdict": "pass",
+      "fidelity": 10,
+      "appeal": 9,
+      "summary": "На обоих лидербордах чистая тёмная поверхность. Деревянные рамы, снежные козырьки и прежние габариты 9,91 × 14,68 стада сохранены.",
+      "open_findings": []
+    },
+    {
+      "round": 4,
+      "scope": "Пустые панели станций запуска и свободное место для VFX",
+      "verdict": "pass",
+      "summary": "У всех шести стендов удалены пейзажи и напольные площадки вместе с окантовкой. В рамах остались ровные панели под PNG, перед ними свободно для VFX.",
+      "open_findings": []
+    }
+  ]
+}

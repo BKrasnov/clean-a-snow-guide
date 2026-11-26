@@ -1,0 +1,165 @@
+{
+  "file": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\holiday-decor\\source\\HolidayDecor.blend",
+  "sha256": "3bf073401c01e479e09f45e44521ca63ddf6ae32c3e9f98be72fbef89d0272c7",
+  "blender": "5.0.1",
+  "collection": "HolidayDecor",
+  "export": [
+    "ChristmasSpruce",
+    "WrappedGifts",
+    "StringLights",
+    "PineGarland",
+    "BellWreath"
+  ],
+  "dimensions": {
+    "width": 4.695021,
+    "depth": 2.272778,
+    "height": 3.64,
+    "min_z": 0.0,
+    "center": [
+      0.003118,
+      -0.007989,
+      1.82
+    ]
+  },
+  "totals": {
+    "tris": 6760,
+    "verts": 3834,
+    "meshes": 5,
+    "touching_verts": 0,
+    "materials": [
+      "Holiday | amber bulbs",
+      "Holiday | painted wood and pine"
+    ],
+    "bones": 0,
+    "textures": [
+      {
+        "name": "Holiday light mask",
+        "size": [
+          64,
+          32
+        ]
+      },
+      {
+        "name": "Holiday palette",
+        "size": [
+          64,
+          32
+        ]
+      }
+    ]
+  },
+  "objects": [
+    {
+      "name": "ChristmasSpruce",
+      "tris": 2980,
+      "verts": 1680,
+      "parts": 95,
+      "touching_verts": 0,
+      "materials": [
+        "Holiday | painted wood and pine"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "WrappedGifts",
+      "tris": 864,
+      "verts": 450,
+      "parts": 15,
+      "touching_verts": 0,
+      "materials": [
+        "Holiday | painted wood and pine"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StringLights",
+      "tris": 936,
+      "verts": 492,
+      "parts": 12,
+      "touching_verts": 0,
+      "materials": [
+        "Holiday | amber bulbs"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "PineGarland",
+      "tris": 992,
+      "verts": 616,
+      "parts": 66,
+      "touching_verts": 0,
+      "materials": [
+        "Holiday | painted wood and pine"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "BellWreath",
+      "tris": 988,
+      "verts": 596,
+      "parts": 55,
+      "touching_verts": 0,
+      "materials": [
+        "Holiday | painted wood and pine"
+      ],
+      "modifiers": []
+    }
+  ],
+  "issues": [],
+  "ok": true,
+  "eyes": {
+    "skipped": true,
+    "reason": "имя модели не задано: --model <Модель> или мастер <Модель>_master.blend",
+    "objects": [],
+    "issues": []
+  },
+  "palette": {
+    "file": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\palette.json",
+    "materials": [
+      {
+        "name": "Holiday | painted wood and pine",
+        "hex": null,
+        "texture": "Holiday palette",
+        "match": null,
+        "checked": true,
+        "off": [],
+        "legacy": []
+      },
+      {
+        "name": "Holiday | amber bulbs",
+        "hex": null,
+        "texture": "Holiday palette",
+        "match": null,
+        "checked": true,
+        "off": [],
+        "legacy": []
+      }
+    ]
+  },
+  "naming": {
+    "model": null,
+    "skipped": "имя модели не задано: --model <Модель> или мастер <Модель>_master.blend"
+  },
+  "export_copies": {
+    "duplicates": [],
+    "skipped": "файл вне проекта Unity и без --assets: папка движка неизвестна"
+  },
+  "renders": {
+    "front": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\holiday-decor\\review\\front.png",
+    "side": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\holiday-decor\\review\\side.png",
+    "back": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\holiday-decor\\review\\back.png",
+    "top": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\holiday-decor\\review\\top.png",
+    "three-quarter": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\holiday-decor\\review\\three-quarter.png"
+  },
+  "render_settings": {
+    "engine": "BLENDER_EEVEE",
+    "clay": false,
+    "backface_culling": true,
+    "film_transparent": false,
+    "player": true,
+    "grid": {
+      "minor": 0.1,
+      "major": 1.0
+    }
+  }
+}

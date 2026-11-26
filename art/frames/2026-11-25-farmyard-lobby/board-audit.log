@@ -1,0 +1,14 @@
+journals: OK (183 записей)
+audit: tasks/active/events-1ffab8-hockey-four-minutes.md: 1ffab8: секция «Оценка» не содержит непустой Markdown bullet
+audit: tasks/active/events-435b9c-activity-clock-after-tutorial.md: 435b9c: секция «Оценка» не содержит непустой Markdown bullet
+audit: tasks/active/events-73ded9-grinch-hideout-two-minutes.md: 73ded9: секция «Оценка» не содержит непустой Markdown bullet
+audit: tasks/active/events-784f91-santa-cutscene-ref.md: 784f91: некорректный estimate: 30m
+audit: tasks/active/onboarding-0e0cad-tutorial-island-lesson.md: 0e0cad: секция «Оценка» не содержит непустой Markdown bullet
+audit: tasks/active/onboarding-42e38b-tutorial-glow-3d.md: 42e38b: некорректный complexity: moderate
+audit: tasks/active/onboarding-9a75f4-tutorial-complete-banner.md: 9a75f4: некорректный complexity: medium
+audit: tasks/active/onboarding-b9d499-tutorial-task-line.md: b9d499: секция «Оценка» не содержит непустой Markdown bullet
+audit: tasks/active/onboarding-c45818-tutorial-to-the-end.md: c45818: секция «Оценка» не содержит непустой Markdown bullet
+audit: tasks/active/onboarding-d8dc30-tutorial-hidden-stands.md: d8dc30: некорректный complexity: moderate
+audit: tasks/active/onboarding-f0c885-tutorial-hold-cursor.md: f0c885: некорректный estimate: <1h
+audit: tasks/active/vehicles-0eb71b-vehicle-pieces-800.md: 0eb71b: некорректный complexity: moderate
+audit: FAIL (12 нарушений)

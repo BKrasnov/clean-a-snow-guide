@@ -1,0 +1,140 @@
+{
+  "date": "2026-11-26",
+  "studioWindow": 68760,
+  "method": "Native CaptureService in live Play. Edit quality helper sets/asserts level before each test and restores previous level after EndTest.",
+  "groups": 53,
+  "parts": 179,
+  "walk": "Four humanoid MoveTo segments passed, route stays inside entrance fence and passes around pre-existing boards",
+  "frames": [
+    {
+      "capturedAt": "2026-11-26T01:49:53.755Z",
+      "name": "Level21-plaza",
+      "contentId": "rbxtemp://307",
+      "path": "art/frames/2026-11-26-lobby-snowbanks/Level21-plaza.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "24da7ff9bec4ced04199b5d9503dc665a7d548fa043da7c61405b2b52dd38c63",
+      "cacheTimeDeltaMs": 6
+    },
+    {
+      "capturedAt": "2026-11-26T01:49:57.384Z",
+      "name": "Level21-eye",
+      "contentId": "rbxtemp://308",
+      "path": "art/frames/2026-11-26-lobby-snowbanks/Level21-eye.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "83052570866063cafd395a8e4fbba3c46cfaa61a789ff1587758fc8d2871be85",
+      "cacheTimeDeltaMs": 16
+    },
+    {
+      "capturedAt": "2026-11-26T01:50:01.054Z",
+      "name": "Level21-right",
+      "contentId": "rbxtemp://309",
+      "path": "art/frames/2026-11-26-lobby-snowbanks/Level21-right.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "6f7a69c216b0ae5db33a6803ce802b80152bc5b2fd8f7d3cc9a4322b00686a3a",
+      "cacheTimeDeltaMs": 4
+    },
+    {
+      "capturedAt": "2026-11-26T01:50:04.687Z",
+      "name": "Level21-left",
+      "contentId": "rbxtemp://310",
+      "path": "art/frames/2026-11-26-lobby-snowbanks/Level21-left.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "5e427ba58e3be08d4592a22f690e37e838152e10473a6167c7a4f31de0bbbd74",
+      "cacheTimeDeltaMs": 3
+    },
+    {
+      "capturedAt": "2026-11-26T01:50:08.353Z",
+      "name": "Level21-tree",
+      "contentId": "rbxtemp://311",
+      "path": "art/frames/2026-11-26-lobby-snowbanks/Level21-tree.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "3b16ec1e5c0d6f36b9622446d2eff1aecd51dadb301a271a18c9934a83b45252",
+      "cacheTimeDeltaMs": 9
+    },
+    {
+      "capturedAt": "2026-11-26T01:50:12.085Z",
+      "name": "Level21-overhead",
+      "contentId": "rbxtemp://312",
+      "path": "art/frames/2026-11-26-lobby-snowbanks/Level21-overhead.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "9df5d69b555b9f71aceb9e41b47ae082a458ee7fffc697db11da1e9c8ae61273",
+      "cacheTimeDeltaMs": 2
+    },
+    {
+      "capturedAt": "2026-11-26T01:51:26.935Z",
+      "name": "Level01-plaza",
+      "contentId": "rbxtemp://313",
+      "path": "art/frames/2026-11-26-lobby-snowbanks/Level01-plaza.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level01",
+      "sha256": "f942a4fdf4f01e9d8c0c319c79167d708e0aa38036c8e8c9f3e653b5008e44a4",
+      "cacheTimeDeltaMs": 10
+    },
+    {
+      "capturedAt": "2026-11-26T01:51:30.351Z",
+      "name": "Level01-eye",
+      "contentId": "rbxtemp://314",
+      "path": "art/frames/2026-11-26-lobby-snowbanks/Level01-eye.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level01",
+      "sha256": "f64aa19920a8e64511ee45058b274af04c6de8d3c10f1888f7a15cb705808da5",
+      "cacheTimeDeltaMs": 6
+    },
+    {
+      "capturedAt": "2026-11-26T01:51:33.734Z",
+      "name": "Level01-right",
+      "contentId": "rbxtemp://315",
+      "path": "art/frames/2026-11-26-lobby-snowbanks/Level01-right.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level01",
+      "sha256": "70bfacb200bd5e9966c45ccecf56af5fed0ff07e7fa16411e4a1b8f8b1b03260",
+      "cacheTimeDeltaMs": 5
+    }
+  ],
+  "codeVersion": {
+    "models/lobby/Workspace/LobbyArea.rbxm": "b0b1e41fc6364544df07e11a71eafc0081b96571d3b7358bc120b4f682e5f914",
+    "art/models/lobby-snowbanks/source/Snowbanks_master.blend": "2bef30171f72c7a9fb4f66cd4180f97ec805446b53fd64bf896eab212e2215e1",
+    "art/models/lobby-snowbanks/export/templates.json": "9a41968c55f13a6d3bc680b0aff651006fc6b2f4863edcd2ac9bb08f64c452d0",
+    "art/models/lobby-snowbanks/export/placement.json": "c7067cf724f64f00fa95588dac7e8291e63570d3a3ef819eac2420b287f8be47",
+    "art/models/lobby-snowbanks/source/assemble.luau": "0f01639e5ab5c17356d5890f176e3953f4bfde4d83b7d7f22092b75a5baa5213"
+  },
+  "freeze": "Final placement reviewed in Level21 Play ending 01:50:17Z and Level01 ending 01:51:38Z, followed by cleanup/Automatic/CtrlS. Export retains exact baseline outside Snowbanks, allowing only Studio sin(pi) roundoff in its comparison.",
+  "limits": [
+    "Full game unit suite and physical mobile device were not tested.",
+    "No new weather, lights, particles or collision were introduced.",
+    "Existing private weather-image and local snow-sound load warnings remain."
+  ]
+}

@@ -1,0 +1,35 @@
+2026-11-25T22:48:00.883Z,16199.883789,4144,6,Info [FLog::CreatorOutput] LOBBY_SWAP_CAPTURE Level21 entry rbxtemp://269
+2026-11-25T22:48:03.449Z,16202.449219,4144,6,Info [FLog::CreatorOutput] LOBBY_SWAP_CAPTURE Level21 launch rbxtemp://270
+2026-11-25T22:48:06.033Z,16205.033203,3a14,6,Info [FLog::CreatorOutput] LOBBY_SWAP_CAPTURE Level21 left rbxtemp://271
+2026-11-25T22:48:08.683Z,16207.683594,4144,6,Info [FLog::CreatorOutput] LOBBY_SWAP_CAPTURE Level21 right rbxtemp://272
+2026-11-25T22:48:12.632Z,16211.632812,2f48,6,Info [FLog::CreatorOutput] LOBBY_SWAP_WINDOW LobbyUpgrades visible
+2026-11-25T22:48:15.083Z,16214.083008,22d4,6,Info [FLog::CreatorOutput] LOBBY_SWAP_CAPTURE Level21 window-LobbyUpgrades rbxtemp://273
+2026-11-25T22:48:18.931Z,16217.931641,4144,6,Info [FLog::CreatorOutput] LOBBY_SWAP_RESULT Level21 fail Players.gio1234525.PlayerScripts._LobbySwapQAClient:16: Expected window Classes
+2026-11-25T22:48:23.970Z,16222.970703,6d58,6,Info [FLog::CreatorOutput] LOBBY_SWAP_PLAY_END Level21 true lobby-swap-fail
+2026-11-25T22:49:58.962Z,16317.962891,22d4,6,Info [FLog::CreatorOutput] LOBBY_SWAP_CAPTURE Level21 entry rbxtemp://274
+2026-11-25T22:50:01.446Z,16320.446289,6d58,6,Info [FLog::CreatorOutput] LOBBY_SWAP_CAPTURE Level21 launch rbxtemp://275
+2026-11-25T22:50:03.980Z,16322.980469,2f48,6,Info [FLog::CreatorOutput] LOBBY_SWAP_CAPTURE Level21 left rbxtemp://276
+2026-11-25T22:50:06.512Z,16325.512695,5c88,6,Info [FLog::CreatorOutput] LOBBY_SWAP_CAPTURE Level21 right rbxtemp://277
+2026-11-25T22:50:10.396Z,16329.396484,6c58,6,Info [FLog::CreatorOutput] LOBBY_SWAP_WINDOW Classes visible
+2026-11-25T22:50:12.812Z,16331.812500,22d4,6,Info [FLog::CreatorOutput] LOBBY_SWAP_CAPTURE Level21 window-Classes rbxtemp://278
+2026-11-25T22:50:12.830Z,16331.830078,4144,6,Info [FLog::CreatorOutput] LOBBY_SWAP_RESULT Level21 pass nil
+2026-11-25T22:50:18.218Z,16337.218750,22d4,6,Info [FLog::CreatorOutput] LOBBY_SWAP_PLAY_END Level21 true lobby-swap-pass
+2026-11-25T22:51:37.876Z,16416.876953,22d4,6,Info [FLog::CreatorOutput] LOBBY_SWAP_CAPTURE Level21 entry rbxtemp://279
+2026-11-25T22:51:40.341Z,16419.341797,2f48,6,Info [FLog::CreatorOutput] LOBBY_SWAP_CAPTURE Level21 launch rbxtemp://280
+2026-11-25T22:51:42.892Z,16421.892578,22d4,6,Info [FLog::CreatorOutput] LOBBY_SWAP_CAPTURE Level21 left rbxtemp://281
+2026-11-25T22:51:45.410Z,16424.410156,6d58,6,Info [FLog::CreatorOutput] LOBBY_SWAP_CAPTURE Level21 right rbxtemp://282
+2026-11-25T22:51:49.359Z,16428.359375,5c88,6,Info [FLog::CreatorOutput] LOBBY_SWAP_WINDOW GemWheel visible
+2026-11-25T22:51:51.777Z,16430.777344,2f48,6,Info [FLog::CreatorOutput] LOBBY_SWAP_CAPTURE Level21 window-GemWheel rbxtemp://283
+2026-11-25T22:51:51.824Z,16430.824219,4144,6,Info [FLog::CreatorOutput] LOBBY_SWAP_RESULT Level21 pass nil
+2026-11-25T22:51:56.970Z,16435.970703,5c88,6,Info [FLog::CreatorOutput] LOBBY_SWAP_PLAY_END Level21 true lobby-swap-pass
+2026-11-25T22:52:58.474Z,16497.474609,3f6c,6,Info [FLog::CreatorOutput] LOBBY_SWAP_CAPTURE Level21 entry rbxtemp://284
+2026-11-25T22:53:00.939Z,16499.939453,2f48,6,Info [FLog::CreatorOutput] LOBBY_SWAP_CAPTURE Level21 launch rbxtemp://285
+2026-11-25T22:53:03.472Z,16502.472656,6d58,6,Info [FLog::CreatorOutput] LOBBY_SWAP_CAPTURE Level21 left rbxtemp://286
+2026-11-25T22:53:06.005Z,16505.005859,4144,6,Info [FLog::CreatorOutput] LOBBY_SWAP_CAPTURE Level21 right rbxtemp://287
+2026-11-25T22:53:09.873Z,16508.873047,22d4,6,Info [FLog::CreatorOutput] LOBBY_SWAP_WINDOW LobbyUpgrades visible
+2026-11-25T22:53:12.306Z,16511.306641,22d4,6,Info [FLog::CreatorOutput] LOBBY_SWAP_CAPTURE Level21 window-LobbyUpgrades rbxtemp://288
+2026-11-25T22:53:12.390Z,16511.390625,6d58,6,Info [FLog::CreatorOutput] LOBBY_SWAP_RESULT Level21 pass nil
+2026-11-25T22:53:17.375Z,16516.375000,6d58,6,Info [FLog::CreatorOutput] LOBBY_SWAP_PLAY_END Level21 true lobby-swap-pass
+2026-11-25T22:54:25.253Z,16584.253906,5c88,6,Info [FLog::CreatorOutput] LOBBY_SWAP_CAPTURE Level01 low-entry rbxtemp://289
+2026-11-25T22:54:25.302Z,16584.302734,3a14,6,Info [FLog::CreatorOutput] LOBBY_SWAP_RESULT Level01 pass nil
+2026-11-25T22:54:30.380Z,16589.380859,5c88,6,Info [FLog::CreatorOutput] LOBBY_SWAP_PLAY_END Level01 true lobby-swap-pass

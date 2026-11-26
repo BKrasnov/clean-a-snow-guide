@@ -1,0 +1,68 @@
+{
+  "date": "2026-11-26",
+  "method": "Native CaptureService PNG in live Play; quality set and asserted in Edit plugin before Play",
+  "image": "rbxassetid://123239346194001",
+  "loaded": 6,
+  "result": "pass",
+  "studioWindow": 68760,
+  "frames": [
+    {
+      "capturedAt": "2026-11-25T23:46:21.947Z",
+      "name": "overview",
+      "contentId": "rbxtemp://291",
+      "path": "art/frames/2026-11-26-launch-stand-picture/overview.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "103df7c7b6198d8b2137d14361a1102406ecbede7e97fecf385f3508f968c213",
+      "cacheTimeDeltaMs": 4
+    },
+    {
+      "capturedAt": "2026-11-25T23:46:25.445Z",
+      "name": "front",
+      "contentId": "rbxtemp://292",
+      "path": "art/frames/2026-11-26-launch-stand-picture/front.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "ab791090b31378f8743b9919a2d11bd6343bfc484bdb89463390ce1e7c73bc4e",
+      "cacheTimeDeltaMs": 13
+    },
+    {
+      "capturedAt": "2026-11-25T23:46:28.896Z",
+      "name": "close",
+      "contentId": "rbxtemp://293",
+      "path": "art/frames/2026-11-26-launch-stand-picture/close.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "a11f6f5be45a65264ffdf601a8d56f41e5c1628fb6eb68f33b786901b622473b",
+      "cacheTimeDeltaMs": 6
+    },
+    {
+      "capturedAt": "2026-11-25T23:46:32.396Z",
+      "name": "angle",
+      "contentId": "rbxtemp://294",
+      "path": "art/frames/2026-11-26-launch-stand-picture/angle.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "ecafbb0960e192444b2fba5760cb4917a588d75f4d1333d458b9a5226cd50860",
+      "cacheTimeDeltaMs": 13
+    }
+  ],
+  "model": {
+    "path": "models/lobby/Workspace/LobbyArea.rbxm",
+    "sha256": "38c4e91e008a93f2fb3d5e3a593e2ae4feacd0f2e23b87f9046f8d9eab5eca5b",
+    "baseline": "acc6496f2",
+    "note": "Export of the exact Studio LobbyArea after live Play and QA cleanup. World frozen after export."
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "date": "2026-11-26",
+  "studioId": "a394cfa8-c834-4959-b1d4-15693bfbd58c",
+  "frames": [
+    {
+      "time": "2026-11-25T22:52:58.474Z",
+      "quality": "Level21",
+      "name": "entry",
+      "contentId": "rbxtemp://284",
+      "path": "art/frames/2026-11-26-lobby-model-swap/entry.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "sha256": "d492cf62b33c74cb52e6eeb4a55f34f4697e077ce7360839889e33eea39af4b5"
+    },
+    {
+      "time": "2026-11-25T22:53:00.939Z",
+      "quality": "Level21",
+      "name": "launch",
+      "contentId": "rbxtemp://285",
+      "path": "art/frames/2026-11-26-lobby-model-swap/launch.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "sha256": "96bddb13d0fea4cdd05a6ec9a8e1767a47bee1c291be5d2291a7de4ade002971"
+    },
+    {
+      "time": "2026-11-25T22:53:03.472Z",
+      "quality": "Level21",
+      "name": "left",
+      "contentId": "rbxtemp://286",
+      "path": "art/frames/2026-11-26-lobby-model-swap/left.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "sha256": "a4bfac7165a587e857a56c964e23c0582a625a73d11a93361ea5ee80d5241e14"
+    },
+    {
+      "time": "2026-11-25T22:53:06.005Z",
+      "quality": "Level21",
+      "name": "right",
+      "contentId": "rbxtemp://287",
+      "path": "art/frames/2026-11-26-lobby-model-swap/right.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "sha256": "59143056869d7d7ecb936a7658eac7bc2986088614fefac00b89be9e3e41a22e"
+    },
+    {
+      "time": "2026-11-25T22:53:12.306Z",
+      "quality": "Level21",
+      "name": "window-LobbyUpgrades",
+      "contentId": "rbxtemp://288",
+      "path": "art/frames/2026-11-26-lobby-model-swap/window-LobbyUpgrades.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "sha256": "8c6765c80e2277eecebf466cc37e5e02d9726343ebd6210e1d78eda257f9cbc9"
+    },
+    {
+      "time": "2026-11-25T22:50:12.812Z",
+      "quality": "Level21",
+      "name": "window-Classes",
+      "contentId": "rbxtemp://278",
+      "path": "art/frames/2026-11-26-lobby-model-swap/window-Classes.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "sha256": "cad3c8df80b04b29c3f0667d828f9b0e0748c442237c419c876e0af77453094a"
+    },
+    {
+      "time": "2026-11-25T22:51:51.777Z",
+      "quality": "Level21",
+      "name": "window-GemWheel",
+      "contentId": "rbxtemp://283",
+      "path": "art/frames/2026-11-26-lobby-model-swap/window-GemWheel.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "sha256": "414b11ec463b600a644c0fa4ec74f92c89eb52e5726c5a09a9d46443d2293304"
+    },
+    {
+      "time": "2026-11-25T22:54:25.253Z",
+      "quality": "Level01",
+      "name": "low-entry",
+      "contentId": "rbxtemp://289",
+      "path": "art/frames/2026-11-26-lobby-model-swap/low-entry.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "sha256": "c6bd4dd380c6630b31bbc7291c303e6c299af624065a248fa2817f4ff615b731"
+    }
+  ],
+  "worldSha256": "3fb31fc31fe9c5035576e502ffdf6de19e5029db7979c30d50c85bf53242a91b",
+  "scenarioSha256": "43806be061eb9473b1f0c6bacf928c966f02bf386984cade5a642097d3205788"
+}

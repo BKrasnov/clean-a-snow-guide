@@ -1,0 +1,94 @@
+{
+  "model": "Snowbanks",
+  "stage": "final",
+  "generation": null,
+  "date": "2026-11-26",
+  "source": "model",
+  "overall": 95,
+  "scored": 4,
+  "flags": [],
+  "criteria": {
+    "weight": {
+      "score": 10.0,
+      "note": "класс big_prop: треугольники LOD0 1426 из 3000, материалы 1 из 2, кости 0 из 0, текстура 0 из 256",
+      "flags": []
+    },
+    "mesh": {
+      "score": 10.0,
+      "note": "без ошибок и предупреждений",
+      "flags": []
+    },
+    "fidelity": {
+      "score": 9,
+      "note": "Набор передаёт низкие уютные снежные массы утверждённой сцены. Шесть назначений читаются, пологие края и низкое кольцо выглядят цельно; небольшая регулярность стыков заметна преимущественно на крупных проверочных видах.",
+      "flags": []
+    },
+    "appeal": {
+      "score": 9,
+      "note": "Набор передаёт низкие уютные снежные массы утверждённой сцены. Шесть назначений читаются, пологие края и низкое кольцо выглядят цельно; небольшая регулярность стыков заметна преимущественно на крупных проверочных видах.",
+      "flags": []
+    }
+  },
+  "class": "big_prop",
+  "tris": {
+    "value": 1426,
+    "limit": 3000
+  },
+  "bytes": 114229,
+  "report": {
+    "file": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\models\\lobby-snowbanks\\source\\Snowbanks_master.blend",
+    "sha256": "2bef30171f72c7a9fb4f66cd4180f97ec805446b53fd64bf896eab212e2215e1",
+    "dimensions": {
+      "width": 14.04995,
+      "depth": 5.641328,
+      "height": 0.651,
+      "min_z": 0.0,
+      "center": [
+        0.009409,
+        0.027378,
+        0.3255
+      ]
+    },
+    "totals": {
+      "tris": 1426,
+      "verts": 759,
+      "meshes": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Snowbanks_Snow"
+      ],
+      "bones": 0,
+      "textures": []
+    },
+    "budget": {
+      "class": "big_prop",
+      "rows": [
+        {
+          "key": "tris",
+          "value": 1426,
+          "limit": 3000,
+          "ok": true
+        },
+        {
+          "key": "materials",
+          "value": 1,
+          "limit": 2,
+          "ok": true
+        },
+        {
+          "key": "bones",
+          "value": 0,
+          "limit": 0,
+          "ok": true
+        },
+        {
+          "key": "textureSize",
+          "value": 0,
+          "limit": 256,
+          "ok": true
+        }
+      ]
+    },
+    "issues": []
+  }
+}

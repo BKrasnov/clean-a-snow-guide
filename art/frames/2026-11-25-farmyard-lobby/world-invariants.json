@@ -1,0 +1,284 @@
+{
+  "afterDescendants": 2651,
+  "allowedChanges": [
+    "Farmyard new scenery/exhibits",
+    "Six zone XZ size/position and prompt range8",
+    "Attachments XZ and Beam widths fitted to footprint; Beam color/alpha unchanged",
+    "Plaza/path/spawn/fences/boards/kiosk positions",
+    "Three private stall MeshParts and one unmarked Part removed",
+    "Intruding firs moved outside widened yard"
+  ],
+  "beamCount": 102,
+  "beforeDescendants": 1993,
+  "exhibits": {
+    "MeshPart": 44,
+    "Model": 7
+  },
+  "forestCount": 184,
+  "interactions": [
+    {
+      "actionText": "Open upgrades",
+      "attributes": {
+        "GameplayActionId": "open.Upgrades"
+      },
+      "enabled": true,
+      "frame": [
+        13929,
+        124.5,
+        -29,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "name": "Upgrades_Node",
+      "promptName": "UpgradePrompt",
+      "range": 16
+    },
+    {
+      "actionText": "Open classes",
+      "attributes": {
+        "GameplayActionId": "open.Classes"
+      },
+      "enabled": true,
+      "frame": [
+        14050,
+        124.5,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "name": "Classes_Node",
+      "promptName": "ClassesPrompt",
+      "range": 10
+    },
+    {
+      "actionText": "Open",
+      "attributes": {
+        "GameplayActionId": "open.GemWheel"
+      },
+      "enabled": true,
+      "frame": [
+        14076.607421875,
+        124.11862182617188,
+        -33.95191955566406,
+        0.9455185532569885,
+        0,
+        -0.32556813955307007,
+        0,
+        1,
+        0,
+        0.32556813955307007,
+        0,
+        0.9455185532569885
+      ],
+      "name": "PrizeWheel_Kiosk_Node",
+      "promptName": "GemWheelPrompt",
+      "range": 6.659616947174072
+    }
+  ],
+  "queues": [
+    {
+      "actionText": "START A RUN",
+      "attributes": {
+        "MaxPlayers": 4,
+        "StationId": 1
+      },
+      "beams": 17,
+      "frame": [
+        13957.5,
+        120.94000244140625,
+        -32,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "id": "Station01",
+      "objectText": "Frostwood • 1–4 players",
+      "promptEnabled": true,
+      "promptRangeAfter": 8,
+      "promptRangeBefore": 11.920428276062012,
+      "size": "14, 0.333772, 12"
+    },
+    {
+      "actionText": "START A RUN",
+      "attributes": {
+        "MaxPlayers": 4,
+        "StationId": 2
+      },
+      "beams": 17,
+      "frame": [
+        13974.5,
+        120.94000244140625,
+        -32,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "id": "Station02",
+      "objectText": "Frostwood • 1–4 players",
+      "promptEnabled": true,
+      "promptRangeAfter": 8,
+      "promptRangeBefore": 11.920428276062012,
+      "size": "14, 0.333772, 12"
+    },
+    {
+      "actionText": "START A RUN",
+      "attributes": {
+        "MaxPlayers": 4,
+        "StationId": 3
+      },
+      "beams": 17,
+      "frame": [
+        13991.5,
+        120.94000244140625,
+        -32,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "id": "Station03",
+      "objectText": "Frostwood • 1–4 players",
+      "promptEnabled": true,
+      "promptRangeAfter": 8,
+      "promptRangeBefore": 11.920428276062012,
+      "size": "14, 0.333772, 12"
+    },
+    {
+      "actionText": "START A RUN",
+      "attributes": {
+        "MaxPlayers": 4,
+        "StationId": 4
+      },
+      "beams": 17,
+      "frame": [
+        14008.5,
+        120.94000244140625,
+        -32,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "id": "Station04",
+      "objectText": "Frostwood • 1–4 players",
+      "promptEnabled": true,
+      "promptRangeAfter": 8,
+      "promptRangeBefore": 11.920428276062012,
+      "size": "14, 0.333772, 12"
+    },
+    {
+      "actionText": "START A RUN",
+      "attributes": {
+        "MaxPlayers": 4,
+        "StationId": 5
+      },
+      "beams": 17,
+      "frame": [
+        14025.5,
+        120.94000244140625,
+        -32,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "id": "Station05",
+      "objectText": "Frostwood • 1–4 players",
+      "promptEnabled": true,
+      "promptRangeAfter": 8,
+      "promptRangeBefore": 11.920428276062012,
+      "size": "14, 0.333772, 12"
+    },
+    {
+      "actionText": "START A RUN",
+      "attributes": {
+        "MaxPlayers": 4,
+        "StationId": 6
+      },
+      "beams": 17,
+      "frame": [
+        14042.5,
+        120.94000244140625,
+        -32,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "id": "Station06",
+      "objectText": "Frostwood • 1–4 players",
+      "promptEnabled": true,
+      "promptRangeAfter": 8,
+      "promptRangeBefore": 11.920428276062012,
+      "size": "14, 0.333772, 12"
+    }
+  ],
+  "unchangedScopes": [
+    "LobbyIsland",
+    "SnowGround",
+    {
+      "name": "Scenery",
+      "parts": 1485
+    },
+    {
+      "name": "LobbyBounds",
+      "parts": 4
+    }
+  ],
+  "validationPassed": true,
+  "codeVersion": {
+    "models/lobby/Workspace/LobbyArea.rbxm": "75c9be4cafdbe9e9594af4fdfd36d0d46959121da5f5b86b6c7d685c9a63d2ba",
+    "art/models/farmyard-lobby/source/assemble.luau": "c68d03501bbebf1d9037f198ad15a37f05cb36fedb863deefabc073c5e0d0d57",
+    "art/models/farmyard-lobby/source/build_farmyard.py": "b57da2be39d5ea05c916d8599932ed4e9412d740c1a51f51ce47f6026646c825",
+    "art/models/farmyard-lobby/export/parts.json": "67f1e40ad4319efa4277604427e5c798512389af3ee3c4730418e15d75cbb279"
+  },
+  "changedTrackedWorldAndCode": [
+    "models/lobby/Workspace/LobbyArea.rbxm"
+  ]
+}

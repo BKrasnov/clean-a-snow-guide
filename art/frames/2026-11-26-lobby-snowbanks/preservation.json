@@ -1,0 +1,1 @@
+{"baselineModelSha256":"60584b12a1f868943e6b2af05fe0d35e9d19e505fe604326dd90b6fa830a5782","groups":53,"modelSha256":"b0b1e41fc6364544df07e11a71eafc0081b96571d3b7358bc120b4f682e5f914","parts":179,"protected":"Every property outside Snowbanks retained from exact baseline; saved Studio differs only by axis-aligned matrix roundoff <1e-6","result":"pass"}

@@ -1,0 +1,107 @@
+{
+  "ChristmasSpruce": {
+    "stud_bounds": [
+      [
+        -3.873,
+        4.187
+      ],
+      [
+        -4.03,
+        4.03
+      ],
+      [
+        0.0,
+        13.0
+      ]
+    ],
+    "triangles": 2980,
+    "material_slots": 1,
+    "close_coplanar_pairs": [],
+    "nonmanifold_edges_after_position_weld": 0,
+    "degenerate_triangles": 0
+  },
+  "WrappedGifts": {
+    "stud_bounds": [
+      [
+        -1.659,
+        1.129
+      ],
+      [
+        -1.587,
+        1.152
+      ],
+      [
+        0.0,
+        2.481
+      ]
+    ],
+    "triangles": 864,
+    "material_slots": 1,
+    "close_coplanar_pairs": [],
+    "nonmanifold_edges_after_position_weld": 0,
+    "degenerate_triangles": 0
+  },
+  "StringLights": {
+    "stud_bounds": [
+      [
+        -3.594,
+        3.594
+      ],
+      [
+        -0.265,
+        0.245
+      ],
+      [
+        -1.82,
+        0.179
+      ]
+    ],
+    "triangles": 936,
+    "material_slots": 1,
+    "close_coplanar_pairs": [],
+    "nonmanifold_edges_after_position_weld": 0,
+    "degenerate_triangles": 0
+  },
+  "PineGarland": {
+    "stud_bounds": [
+      [
+        -3.595,
+        3.595
+      ],
+      [
+        -0.529,
+        0.295
+      ],
+      [
+        -1.681,
+        0.152
+      ]
+    ],
+    "triangles": 992,
+    "material_slots": 1,
+    "close_coplanar_pairs": [],
+    "nonmanifold_edges_after_position_weld": 0,
+    "degenerate_triangles": 0
+  },
+  "BellWreath": {
+    "stud_bounds": [
+      [
+        -1.488,
+        1.519
+      ],
+      [
+        -0.712,
+        0.24
+      ],
+      [
+        -3.585,
+        0.052
+      ]
+    ],
+    "triangles": 988,
+    "material_slots": 1,
+    "close_coplanar_pairs": [],
+    "nonmanifold_edges_after_position_weld": 0,
+    "degenerate_triangles": 0
+  }
+}

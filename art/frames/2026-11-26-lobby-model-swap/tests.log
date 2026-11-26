@@ -1,0 +1,23 @@
+✔ a place gets the parts of its own layers: Dev has the island and the valley terrain, the lobby has no valley (1.5087ms)
+✔ an export writes a changed part where the place takes it from, a new one to its own layer, and removes a gone one (0.357ms)
+✔ a part name Windows cannot hold is encoded, two names that differ only by case are an error (0.747ms)
+✔ a build does not overwrite a place whose world was changed in Studio and not exported (0.4704ms)
+✔ Lune: the lobby stands have no E prompt, the plates say START A RUN (51a4ef, BUG-20261115-001, BUG-20261115-010) (142.0338ms)
+✔ Lune: imported farmyard stands retain six separated launch pads and remove retired houses (111.4502ms)
+✔ Lune: the driver of each ride vehicle sits on its seat, the head under the roof (5edc04, BUG-20261115-005) (98.3895ms)
+✔ Lune: the Santa model ships with its imported loop and matching skinned rig (116.308ms)
+✔ Lune: no window of the place shows the ice frame or the paper, SnowUpgradesGui is gone (6137fd) (122.9657ms)
+✔ Lune: the old garden and the slab art of snow on the ground are only the server's (7704f7) (238.9348ms)
+✔ Lune: the valley's Terrain reads and writes back byte for byte, a cut keeps the ground within it, and the valley is cut (5729bf) (7696.3062ms)
+✔ Lune: split keeps the world without code, assemble and a second split give the same parts (98.4073ms)
+✔ Lune: the frames' level goes back to the level found, not to Level01 (80.576ms)
+✔ no scenario sets the graphics level on its own (161.6248ms)
+✔ no generator of scenarios writes the graphics level itself (20.3626ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8752.6049

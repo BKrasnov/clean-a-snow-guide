@@ -1,0 +1,13 @@
+{
+  "finding": "Runtime Bootstrap sets open.LobbyUpgrades; offline authored model keeps open.Upgrades",
+  "testDesignBeforeFix": "Use the existing final server step after Station06 return to check the actual runtime action; correct only Upgrades expectation, retain Classes/GemWheel and offline/source model assertions. No new production code or mirrored unit test.",
+  "file": "tools/studio-scenarios/farmyard-lobby-flow.json",
+  "oldSha256": "32bb538dc1e8a95ba347377a0c767a1a8e5b9f18a271c3921e92a15dff2b8c41",
+  "newSha256": "dfd3fe04c6eed821b179dad6d143b98f4fa49eeb124e6ea883cd9d1334d4825f",
+  "oneReplacement": {
+    "from": "{'Upgrades_Node','open.Upgrades'}",
+    "to": "{'Upgrades_Node','open.LobbyUpgrades'}"
+  },
+  "proof": "Reversing this sole replacement reproduces the independently recorded pre-fix byte SHA256 exactly.",
+  "runtimeEvidence": "flow-json.log: step54 true ok and COMPLETE for corrected raw JSON SHA"
+}

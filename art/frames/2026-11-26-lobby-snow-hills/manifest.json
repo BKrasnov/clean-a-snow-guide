@@ -1,0 +1,158 @@
+{
+  "date": "2026-11-26",
+  "studioWindow": 68760,
+  "method": "Native CaptureService in live Play. Edit quality helper sets/asserts level before each test and restores previous level after EndTest.",
+  "texture": "rbxassetid://131610776889867",
+  "walk": "Four humanoid MoveTo segments passed, route stays inside entrance fence and passes around pre-existing boards",
+  "frames": [
+    {
+      "capturedAt": "2026-11-26T03:10:04.464Z",
+      "name": "Level21-plaza",
+      "contentId": "rbxtemp://331",
+      "path": "art/frames/2026-11-26-lobby-snow-hills/Level21-plaza.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "4ad15e76ce219a3b89506edb76ef5b76174670ca43b698b9bf13fe91338245e1",
+      "cacheTimeDeltaMs": 6
+    },
+    {
+      "capturedAt": "2026-11-26T03:10:08.146Z",
+      "name": "Level21-eye",
+      "contentId": "rbxtemp://332",
+      "path": "art/frames/2026-11-26-lobby-snow-hills/Level21-eye.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "9aa16141d84da30cd635075fd5c09a3291aa395e8214515bd7c8bf5bb971a590",
+      "cacheTimeDeltaMs": 14
+    },
+    {
+      "capturedAt": "2026-11-26T03:10:11.763Z",
+      "name": "Level21-right",
+      "contentId": "rbxtemp://333",
+      "path": "art/frames/2026-11-26-lobby-snow-hills/Level21-right.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "4c4db84bfb513f4bf1c8099273be60022bb3e20be3653a89282738f00aaf9bab",
+      "cacheTimeDeltaMs": 5
+    },
+    {
+      "capturedAt": "2026-11-26T03:10:15.416Z",
+      "name": "Level21-left",
+      "contentId": "rbxtemp://334",
+      "path": "art/frames/2026-11-26-lobby-snow-hills/Level21-left.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "2da1d5b672d833b6eb2656b2853a050724e1b922989268830038b56df05ae6cb",
+      "cacheTimeDeltaMs": 12
+    },
+    {
+      "capturedAt": "2026-11-26T03:10:18.962Z",
+      "name": "Level21-front",
+      "contentId": "rbxtemp://335",
+      "path": "art/frames/2026-11-26-lobby-snow-hills/Level21-front.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "10d48643cbcb192ff9370428307456204369c2aa4f804a3bcb2827f2e4482ba2",
+      "cacheTimeDeltaMs": 0
+    },
+    {
+      "capturedAt": "2026-11-26T03:10:26.011Z",
+      "name": "Level21-overhead",
+      "contentId": "rbxtemp://337",
+      "path": "art/frames/2026-11-26-lobby-snow-hills/Level21-overhead.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "ee1105bf248abb0c34b690061265f64c66e5786e673e6f5865dce194f9864f0e",
+      "cacheTimeDeltaMs": 3
+    },
+    {
+      "capturedAt": "2026-11-26T02:58:57.691Z",
+      "name": "Level01-plaza",
+      "contentId": "rbxtemp://328",
+      "path": "art/frames/2026-11-26-lobby-snow-hills/Level01-plaza.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level01",
+      "sha256": "cc951258116b062b4294a086287da488865281d94f5164f22c9c08a605a72c02",
+      "cacheTimeDeltaMs": -3
+    },
+    {
+      "capturedAt": "2026-11-26T02:59:01.156Z",
+      "name": "Level01-eye",
+      "contentId": "rbxtemp://329",
+      "path": "art/frames/2026-11-26-lobby-snow-hills/Level01-eye.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level01",
+      "sha256": "9e7543bf5037349619a32198bafbdd5b70cd22b0b278ac06e2cb67d065b2cc9f",
+      "cacheTimeDeltaMs": 8
+    },
+    {
+      "capturedAt": "2026-11-26T02:59:04.589Z",
+      "name": "Level01-right",
+      "contentId": "rbxtemp://330",
+      "path": "art/frames/2026-11-26-lobby-snow-hills/Level01-right.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level01",
+      "sha256": "ff1957d55846a55727ad7c1ac7180652ad45e65b25e05755488c76fa0f808ca3",
+      "cacheTimeDeltaMs": 11
+    },
+    {
+      "capturedAt": "2026-11-26T03:10:22.429Z",
+      "name": "Level21-landscape",
+      "contentId": "rbxtemp://336",
+      "path": "art/frames/2026-11-26-lobby-snow-hills/Level21-landscape.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "2135d45791a7ab21a3956a380de1a4558d0c51b851e13ad9cec966bfe5b557ba",
+      "cacheTimeDeltaMs": 16
+    }
+  ],
+  "worldVersion": {
+    "models/lobby/Workspace/LobbyArea.rbxm": "b5d0793a8408997615dfa6aa33820d400b9f15a9e79e1d8b87b63099b398602c",
+    "models/lobby/Workspace/Terrain.rbxm": "64b742688f1121ede124ed21b91953c145e3702415f003fe9a4b8c237fc69efe",
+    "models/match/Workspace/Terrain.rbxm": "77db7ba7dfeede0920df85f83ff1cbe1aa1bf95f8d2979f9a6fb08bed2fc4583",
+    "models/shared/MaterialService/LobbyWhiteGrass.rbxm": "685c08ae4baa6e3df6cc321972b707c6ca6eb66309f8be421544002b62e48292",
+    "art/terrain/lobby-snow-hills/profile.json": "c96694248f6d2b97381153b9d1e29ecc4d637c90dc4320e3217c92c78118259b"
+  },
+  "freeze": "Final High Play ended 2026-11-26T03:10:30.322Z; Low ended 2026-11-26T02:59:10.076Z. Both use occupancy height-2, restored pathway and six visible pads. Extra High viewpoints changed only QA cameras; saved/exported geometry unchanged. After the frames, removed only empty Folder ExplorerIconContent metadata during export; protected hash, Terrain, material and visible geometry unchanged.",
+  "limits": [
+    "Full game unit suite, physical mobile and FPS not tested.",
+    "Existing private weather-image and local sound warnings remain."
+  ],
+  "deliveryBuild": "33895c1e615af5477328127049f2bfb298f0208a",
+  "validation": {
+    "profileTests": 18,
+    "guideTests": 56,
+    "placeFiles": 3,
+    "lobbyRoundtrip": "unchanged"
+  }
+}

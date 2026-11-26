@@ -1,0 +1,50 @@
+{
+  "Lighting": {
+    "ClockTime": 14,
+    "GeographicLatitude": 32,
+    "Brightness": 2.1,
+    "ExposureCompensation": -0.12,
+    "Ambient": "#9090A6",
+    "OutdoorAmbient": "#A4A4BE",
+    "ColorShift_Top": "#0F0F0F",
+    "ColorShift_Bottom": "#000000",
+    "GlobalShadows": true,
+    "ShadowSoftness": 0.85,
+    "EnvironmentDiffuseScale": 0.45,
+    "EnvironmentSpecularScale": 0.12,
+    "FogStart": 1800,
+    "FogEnd": 9000
+  },
+  "AiryDayColor": {
+    "Enabled": true,
+    "Brightness": 0,
+    "Contrast": 0.045,
+    "Saturation": 0.12,
+    "TintColor": "#FFFDF5"
+  },
+  "AiryDayBloom": {
+    "Enabled": true,
+    "Intensity": 0.045,
+    "Size": 20,
+    "Threshold": 1.8
+  },
+  "AiryDaySunRays": {
+    "Enabled": true,
+    "Intensity": 0.012,
+    "Spread": 0.6
+  },
+  "WinterAtmosphere": {
+    "Color": "#80A0E6",
+    "Decay": "#A096DE",
+    "Density": 0.075,
+    "Haze": 0.2,
+    "Offset": 0.35,
+    "Glare": 0.01
+  },
+  "Bloom": {
+    "Enabled": false
+  },
+  "ColorCorrection": {
+    "Enabled": false
+  }
+}

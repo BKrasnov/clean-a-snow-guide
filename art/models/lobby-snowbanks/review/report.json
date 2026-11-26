@@ -1,0 +1,119 @@
+{
+  "file": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\models\\lobby-snowbanks\\source\\Snowbanks_master.blend",
+  "sha256": "2bef30171f72c7a9fb4f66cd4180f97ec805446b53fd64bf896eab212e2215e1",
+  "blender": "5.0.1",
+  "collection": "Export",
+  "export": [
+    "Snowbanks_Body"
+  ],
+  "dimensions": {
+    "width": 14.04995,
+    "depth": 5.641328,
+    "height": 0.651,
+    "min_z": 0.0,
+    "center": [
+      0.009409,
+      0.027378,
+      0.3255
+    ]
+  },
+  "totals": {
+    "tris": 1426,
+    "verts": 759,
+    "meshes": 1,
+    "touching_verts": 0,
+    "materials": [
+      "M_Snowbanks_Snow"
+    ],
+    "bones": 0,
+    "textures": []
+  },
+  "objects": [
+    {
+      "name": "Snowbanks_Body",
+      "tris": 1426,
+      "verts": 759,
+      "parts": 23,
+      "touching_verts": 0,
+      "materials": [
+        "M_Snowbanks_Snow"
+      ],
+      "modifiers": []
+    }
+  ],
+  "issues": [],
+  "ok": true,
+  "eyes": {
+    "found": false,
+    "objects": [],
+    "issues": []
+  },
+  "palette": {
+    "file": "art/palette.json",
+    "materials": [
+      {
+        "name": "M_Snowbanks_Snow",
+        "hex": "#F3F6F5",
+        "match": "Снег",
+        "checked": true
+      }
+    ]
+  },
+  "budget": {
+    "class": "big_prop",
+    "rows": [
+      {
+        "key": "tris",
+        "value": 1426,
+        "limit": 3000,
+        "ok": true
+      },
+      {
+        "key": "materials",
+        "value": 1,
+        "limit": 2,
+        "ok": true
+      },
+      {
+        "key": "bones",
+        "value": 0,
+        "limit": 0,
+        "ok": true
+      },
+      {
+        "key": "textureSize",
+        "value": 0,
+        "limit": 256,
+        "ok": true
+      }
+    ]
+  },
+  "naming": {
+    "model": "Snowbanks",
+    "source": "argument",
+    "objects": [],
+    "materials": []
+  },
+  "export_copies": {
+    "duplicates": [],
+    "skipped": "файл вне проекта Unity и без --assets: папка движка неизвестна"
+  },
+  "renders": {
+    "front": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\models\\lobby-snowbanks\\review\\front.png",
+    "side": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\models\\lobby-snowbanks\\review\\side.png",
+    "back": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\models\\lobby-snowbanks\\review\\back.png",
+    "top": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\models\\lobby-snowbanks\\review\\top.png",
+    "three-quarter": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\models\\lobby-snowbanks\\review\\three-quarter.png"
+  },
+  "render_settings": {
+    "engine": "BLENDER_EEVEE",
+    "clay": false,
+    "backface_culling": true,
+    "film_transparent": false,
+    "player": false,
+    "grid": {
+      "minor": 1.0,
+      "major": 10.0
+    }
+  }
+}

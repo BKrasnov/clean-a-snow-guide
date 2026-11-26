@@ -1,0 +1,109 @@
+{
+  "date": "2026-11-25",
+  "base": "2aa4ba12b",
+  "versions": {
+    "models/lobby/Workspace/LobbyArea.rbxm": "75c9be4cafdbe9e9594af4fdfd36d0d46959121da5f5b86b6c7d685c9a63d2ba",
+    "art/models/farmyard-lobby/source/assemble.luau": "c68d03501bbebf1d9037f198ad15a37f05cb36fedb863deefabc073c5e0d0d57",
+    "art/models/farmyard-lobby/source/build_farmyard.py": "b57da2be39d5ea05c916d8599932ed4e9412d740c1a51f51ce47f6026646c825",
+    "art/models/farmyard-lobby/export/parts.json": "67f1e40ad4319efa4277604427e5c798512389af3ee3c4730418e15d75cbb279",
+    "tools/places/farmyard-lobby.test.luau": "2ab1bb991a577baf79267668da71861d8f5bf650c08d8ec806e0f0c792e7007b",
+    "tools/places/lobby.test.luau": "d766dfd195b80c59864a075f11b14da2c639048c2d3a75d4dd50967b39c5544b",
+    "tools/places/content.test.mjs": "2f99823e5dceec28090bb9223003439110e46dee56078b129285ffb64da6691d",
+    "tools/studio-scenarios/farmyard-lobby.json": "7f151e7954c86e40add54a6382523323a8f3ab39b28c1f75aca8d65b6248e6c6",
+    "tools/studio-scenarios/farmyard-lobby-flow.json": "dfd3fe04c6eed821b179dad6d143b98f4fa49eeb124e6ea883cd9d1334d4825f"
+  },
+  "command": "node --test tools/places/content.test.mjs tools/studio-scenarios/graphics.test.mjs",
+  "result": {
+    "pass": 15,
+    "fail": 0
+  },
+  "testOutput": "art/frames/2026-11-25-farmyard-lobby/tests.log",
+  "binaryInvariants": "art/frames/2026-11-25-farmyard-lobby/world-invariants.json",
+  "runtimeFlow": {
+    "initialWalkMeasurements": {
+      "garageDistance": 0.795619,
+      "porchDistance": 0.893434,
+      "log": "art/frames/2026-11-25-farmyard-lobby/flow.log"
+    },
+    "finalRun": {
+      "steps": 54,
+      "result": "farmyard-json-flow-complete",
+      "garageWalkAssert": "distance <2 studs",
+      "porchWalkAssert": "distance <2 studs",
+      "soloRuns": 6,
+      "returns": 6,
+      "queueObjectCountBeforeAfter": 234,
+      "originalRuntimeActions": [
+        "open.LobbyUpgrades",
+        "open.Classes",
+        "open.GemWheel"
+      ],
+      "log": "art/frames/2026-11-25-farmyard-lobby/flow-json.log",
+      "reproducibleScenario": "tools/studio-scenarios/farmyard-lobby-flow.json",
+      "scenarioSha256": "dfd3fe04c6eed821b179dad6d143b98f4fa49eeb124e6ea883cd9d1334d4825f"
+    }
+  },
+  "interactions": "Original enabled open.Upgrades/open.Classes/open.GemWheel prompts preserved. Live prompt data checked; UI purchases not retested.",
+  "limitations": [
+    "No new gameplay modules or src changes.",
+    "Two or more real players and physical phone were not tested; existing manual checklist remains.",
+    "Full game unit-test suite was not run."
+  ],
+  "exportNormalization": {
+    "reviewedVisualWorldSha256": "75c9be4cafdbe9e9594af4fdfd36d0d46959121da5f5b86b6c7d685c9a63d2ba",
+    "committedWorldSha256": "fa9e0ba86464065d563f756e56d22d4fd41b327082cc07b2d55190f2b392bcb7",
+    "onlyChange": "89 empty ExplorerIconContent properties removed after Studio export; no visual/gameplay property changed",
+    "reproduction": "lune run art/models/farmyard-lobby/source/normalize-editor-icons.luau input.rbxm output.rbxm",
+    "proof": "Complete Lobby assemble/split: 40/40 source parts byte-identical after normalization; before normalization 11 mismatches"
+  },
+  "integration": {
+    "upstream": "8d139a73c",
+    "builtCommit": "1ec63140ed775649713fc2a3d5419c3d1008a195",
+    "places": [
+      {
+        "file": "place/NaLovi-Lobby.rbxl",
+        "scripts": 489,
+        "instances": 15771,
+        "problems": []
+      },
+      {
+        "file": "place/NaLovi-Match.rbxl",
+        "scripts": 489,
+        "instances": 24540,
+        "problems": []
+      },
+      {
+        "file": "place/NaLovi.rbxl",
+        "scripts": 489,
+        "instances": 27391,
+        "problems": []
+      }
+    ],
+    "profileTests": {
+      "pass": 84,
+      "fail": 0,
+      "log": "art/frames/2026-11-25-farmyard-lobby/integration-tests.log"
+    },
+    "liveReplay": {
+      "scenarioSha256": "dfd3fe04c6eed821b179dad6d143b98f4fa49eeb124e6ea883cd9d1334d4825f",
+      "steps": 54,
+      "result": "farmyard-json-flow-complete",
+      "log": "art/frames/2026-11-25-farmyard-lobby/flow-integrated.log"
+    },
+    "normalizationReview": {
+      "agent": "farmyard_flow_acceptance",
+      "result": "accepted; only 89 empty icon fields removed, no other XML differences"
+    },
+    "graphicsRestored": "Automatic",
+    "guideTests": {
+      "pass": 56,
+      "fail": 0,
+      "log": "art/frames/2026-11-25-farmyard-lobby/guide-tests.log"
+    },
+    "boardAudit": {
+      "preexistingViolations": 12,
+      "newCardViolations": 0,
+      "log": "art/frames/2026-11-25-farmyard-lobby/board-audit.log"
+    }
+  }
+}

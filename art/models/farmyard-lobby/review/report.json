@@ -1,0 +1,8006 @@
+{
+  "file": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\models\\farmyard-lobby\\source\\FarmyardLobby.blend",
+  "sha256": "72ee620dddf7165f8ad3f501fd317d9431cc434fdc7f5fa0cfd1166fd2cee0ea",
+  "blender": "5.0.1",
+  "collection": null,
+  "export": [
+    "Foundation",
+    "Floor",
+    "BackWall",
+    "SideWall",
+    "SideWall.001",
+    "FrontPier",
+    "FrontPier.001",
+    "DoorHeader",
+    "DoorFrame",
+    "DoorFrame.001",
+    "UpperWall",
+    "SidePlank",
+    "SidePlank.001",
+    "BackPlank",
+    "SidePlank.002",
+    "SidePlank.003",
+    "BackPlank.001",
+    "SidePlank.004",
+    "SidePlank.005",
+    "BackPlank.002",
+    "SidePlank.006",
+    "SidePlank.007",
+    "BackPlank.003",
+    "SidePlank.008",
+    "SidePlank.009",
+    "BackPlank.004",
+    "SidePlank.010",
+    "SidePlank.011",
+    "BackPlank.005",
+    "SidePlank.012",
+    "SidePlank.013",
+    "BackPlank.006",
+    "CornerPost",
+    "CornerPost.001",
+    "CornerPost.002",
+    "CornerPost.003",
+    "RoofTimber",
+    "SnowRoof",
+    "SnowRoofLip",
+    "SnowRoofLip.001",
+    "SnowEave",
+    "SnowEave.001",
+    "SnowEave.002",
+    "SnowEave.003",
+    "SnowEave.004",
+    "RoofTimber.001",
+    "SnowRoof.001",
+    "SnowRoofLip.002",
+    "SnowRoofLip.003",
+    "SnowEave.005",
+    "SnowEave.006",
+    "SnowEave.007",
+    "SnowEave.008",
+    "SnowEave.009",
+    "Gable",
+    "Gable.001",
+    "Gable.002",
+    "Gable.003",
+    "RidgeSnow",
+    "RidgeSnow.001",
+    "RidgeSnow.002",
+    "RidgeSnow.003",
+    "LoftDoor",
+    "LoftFrame",
+    "LoftFrame.001",
+    "LoftFrame.002",
+    "LoftFrame.003",
+    "LoftBrace",
+    "LoftBrace.001",
+    "GarageSign",
+    "Shelf",
+    "Shelf.001",
+    "Shelf.002",
+    "ShelfLeg",
+    "ShelfLeg.001",
+    "Crate",
+    "Crate.001",
+    "Crate.002",
+    "Shelf.003",
+    "Shelf.004",
+    "Shelf.005",
+    "ShelfLeg.002",
+    "ShelfLeg.003",
+    "Crate.003",
+    "Crate.004",
+    "Crate.005",
+    "LeftLampBracket",
+    "LeftLampBase",
+    "LeftLampLight",
+    "LeftLampFrame",
+    "LeftLampFrame.001",
+    "LeftLampCap",
+    "LeftLampSnow",
+    "RightLampBracket",
+    "RightLampBase",
+    "RightLampLight",
+    "RightLampFrame",
+    "RightLampFrame.001",
+    "RightLampCap",
+    "RightLampSnow",
+    "Foundation.001",
+    "Floor.001",
+    "BackWall.001",
+    "SideWall.002",
+    "SideWall.003",
+    "FrontWall",
+    "Door",
+    "DoorInset",
+    "DoorKnob",
+    "WindowFrame",
+    "WindowGlow",
+    "WindowVertical",
+    "WindowHorizontal",
+    "WindowFrame.001",
+    "WindowGlow.001",
+    "WindowVertical.001",
+    "WindowHorizontal.001",
+    "SidePlank.014",
+    "SidePlank.015",
+    "BackPlank.007",
+    "FrontPlank",
+    "SidePlank.016",
+    "SidePlank.017",
+    "BackPlank.008",
+    "FrontPlank.001",
+    "SidePlank.018",
+    "SidePlank.019",
+    "BackPlank.009",
+    "FrontPlank.002",
+    "SidePlank.020",
+    "SidePlank.021",
+    "BackPlank.010",
+    "FrontPlank.003",
+    "SidePlank.022",
+    "SidePlank.023",
+    "BackPlank.011",
+    "FrontPlank.004",
+    "SidePlank.024",
+    "SidePlank.025",
+    "BackPlank.012",
+    "FrontPlank.005",
+    "SidePlank.026",
+    "SidePlank.027",
+    "BackPlank.013",
+    "FrontPlank.006",
+    "CornerPost.004",
+    "CornerPost.005",
+    "CornerPost.006",
+    "CornerPost.007",
+    "RoofTimber.002",
+    "SnowRoof.002",
+    "SnowRoofLip.004",
+    "SnowRoofLip.005",
+    "SnowEave.010",
+    "SnowEave.011",
+    "SnowEave.012",
+    "SnowEave.013",
+    "SnowEave.014",
+    "RoofTimber.003",
+    "SnowRoof.003",
+    "SnowRoofLip.006",
+    "SnowRoofLip.007",
+    "SnowEave.015",
+    "SnowEave.016",
+    "SnowEave.017",
+    "SnowEave.018",
+    "SnowEave.019",
+    "Gable.004",
+    "Gable.005",
+    "Gable.006",
+    "Gable.007",
+    "RidgeSnow.004",
+    "RidgeSnow.005",
+    "RidgeSnow.006",
+    "RidgeSnow.007",
+    "PorchDeck",
+    "StepLow",
+    "StepHigh",
+    "PorchPost",
+    "RailSide",
+    "RailSpindle",
+    "RailSpindle.001",
+    "RailSpindle.002",
+    "PorchPost.001",
+    "RailSide.001",
+    "RailSpindle.003",
+    "RailSpindle.004",
+    "RailSpindle.005",
+    "FrontRail",
+    "RailSpindle.006",
+    "RailSpindle.007",
+    "RailSpindle.008",
+    "RailSpindle.009",
+    "FrontRail.001",
+    "RailSpindle.010",
+    "RailSpindle.011",
+    "RailSpindle.012",
+    "RailSpindle.013",
+    "PorchCanopy",
+    "PorchSnow",
+    "PorchSnowPillow",
+    "PorchSnowPillow.001",
+    "PorchSnowPillow.002",
+    "PorchSnowPillow.003",
+    "Chimney",
+    "ChimneyCap",
+    "LeftLampBracket.001",
+    "LeftLampBase.001",
+    "LeftLampLight.001",
+    "LeftLampFrame.002",
+    "LeftLampFrame.003",
+    "LeftLampCap.001",
+    "LeftLampSnow.001",
+    "RightLampBracket.001",
+    "RightLampBase.001",
+    "RightLampLight.001",
+    "RightLampFrame.002",
+    "RightLampFrame.003",
+    "RightLampCap.001",
+    "RightLampSnow.001",
+    "StoneFoot",
+    "Pillar",
+    "PillarInset",
+    "ArchLampBracket",
+    "ArchLampBase",
+    "ArchLampLight",
+    "ArchLampFrame",
+    "ArchLampFrame.001",
+    "ArchLampCap",
+    "ArchLampSnow",
+    "Bolt",
+    "Brace",
+    "StoneFoot.001",
+    "Pillar.001",
+    "PillarInset.001",
+    "ArchLampBracket.001",
+    "ArchLampBase.001",
+    "ArchLampLight.001",
+    "ArchLampFrame.002",
+    "ArchLampFrame.003",
+    "ArchLampCap.001",
+    "ArchLampSnow.001",
+    "Bolt.001",
+    "Brace.001",
+    "Header",
+    "HeaderPlank",
+    "Sign",
+    "SnowCap",
+    "SnowCap.001",
+    "SnowCap.002",
+    "SnowCap.003",
+    "SnowCap.004",
+    "SnowCap.005",
+    "SnowCap.006",
+    "SnowCap.007",
+    "SnowCap.008",
+    "SnowCap.009",
+    "SnowCap.010",
+    "SnowCap.011",
+    "MapBack",
+    "MapSky",
+    "MapField",
+    "MapPost",
+    "MapFoot",
+    "MapPost.001",
+    "MapFoot.001",
+    "MapCrossbar",
+    "MapCrossbar.001",
+    "MapSnow",
+    "MapSnowPillow",
+    "MapSnowPillow.001",
+    "MapMountain",
+    "MapMountain.001",
+    "MapMountain.002",
+    "MapMountain.003",
+    "MapMountain.004",
+    "MapMountain.005",
+    "MapBack.001",
+    "MapSky.001",
+    "MapField.001",
+    "MapPost.002",
+    "MapFoot.002",
+    "MapPost.003",
+    "MapFoot.003",
+    "MapCrossbar.002",
+    "MapCrossbar.003",
+    "MapSnow.001",
+    "MapSnowPillow.002",
+    "MapSnowPillow.003",
+    "MapMountain.006",
+    "MapMountain.007",
+    "MapMountain.008",
+    "MapMountain.009",
+    "MapMountain.010",
+    "MapMountain.011",
+    "MapBack.002",
+    "MapSky.002",
+    "MapField.002",
+    "MapPost.004",
+    "MapFoot.004",
+    "MapPost.005",
+    "MapFoot.005",
+    "MapCrossbar.004",
+    "MapCrossbar.005",
+    "MapSnow.002",
+    "MapSnowPillow.004",
+    "MapSnowPillow.005",
+    "MapMountain.012",
+    "MapMountain.013",
+    "MapMountain.014",
+    "MapMountain.015",
+    "MapMountain.016",
+    "MapMountain.017",
+    "MapBack.003",
+    "MapSky.003",
+    "MapField.003",
+    "MapPost.006",
+    "MapFoot.006",
+    "MapPost.007",
+    "MapFoot.007",
+    "MapCrossbar.006",
+    "MapCrossbar.007",
+    "MapSnow.003",
+    "MapSnowPillow.006",
+    "MapSnowPillow.007",
+    "MapMountain.018",
+    "MapMountain.019",
+    "MapMountain.020",
+    "MapMountain.021",
+    "MapMountain.022",
+    "MapMountain.023",
+    "MapBack.004",
+    "MapSky.004",
+    "MapField.004",
+    "MapPost.008",
+    "MapFoot.008",
+    "MapPost.009",
+    "MapFoot.009",
+    "MapCrossbar.008",
+    "MapCrossbar.009",
+    "MapSnow.004",
+    "MapSnowPillow.008",
+    "MapSnowPillow.009",
+    "MapMountain.024",
+    "MapMountain.025",
+    "MapMountain.026",
+    "MapMountain.027",
+    "MapMountain.028",
+    "MapMountain.029",
+    "MapBack.005",
+    "MapSky.005",
+    "MapField.005",
+    "MapPost.010",
+    "MapFoot.010",
+    "MapPost.011",
+    "MapFoot.011",
+    "MapCrossbar.010",
+    "MapCrossbar.011",
+    "MapSnow.005",
+    "MapSnowPillow.010",
+    "MapSnowPillow.011",
+    "MapMountain.030",
+    "MapMountain.031",
+    "MapMountain.032",
+    "MapMountain.033",
+    "MapMountain.034",
+    "MapMountain.035",
+    "Post",
+    "Post.001",
+    "Counter",
+    "CounterBody",
+    "Cabinet",
+    "Cabinet.001",
+    "Cabinet.002",
+    "Roof",
+    "SnowRoof.004",
+    "StallSnowPillow",
+    "StallSnowPillow.001",
+    "StallSnowPillow.002",
+    "Sign.001",
+    "StallLampBracket",
+    "StallLampBase",
+    "StallLampLight",
+    "StallLampFrame",
+    "StallLampFrame.001",
+    "StallLampCap",
+    "StallLampSnow",
+    "Gift",
+    "Ribbon",
+    "Gift.001",
+    "Ribbon.001",
+    "Gift.002",
+    "Ribbon.002",
+    "Post.002",
+    "Post.003",
+    "Counter.001",
+    "CounterBody.001",
+    "Cabinet.003",
+    "Cabinet.004",
+    "Cabinet.005",
+    "Roof.001",
+    "SnowRoof.005",
+    "StallSnowPillow.003",
+    "StallSnowPillow.004",
+    "StallSnowPillow.005",
+    "Sign.002",
+    "StallLampBracket.001",
+    "StallLampBase.001",
+    "StallLampLight.001",
+    "StallLampFrame.002",
+    "StallLampFrame.003",
+    "StallLampCap.001",
+    "StallLampSnow.001",
+    "ToolBox",
+    "ToolBox.001",
+    "ToolBox.002",
+    "Post.004",
+    "Post.005",
+    "Counter.002",
+    "CounterBody.002",
+    "Cabinet.006",
+    "Cabinet.007",
+    "Cabinet.008",
+    "Roof.002",
+    "SnowRoof.006",
+    "StallSnowPillow.006",
+    "StallSnowPillow.007",
+    "StallSnowPillow.008",
+    "Sign.003",
+    "StallLampBracket.002",
+    "StallLampBase.002",
+    "StallLampLight.002",
+    "StallLampFrame.004",
+    "StallLampFrame.005",
+    "StallLampCap.002",
+    "StallLampSnow.002",
+    "MannequinBody",
+    "MannequinHead",
+    "MannequinBody.001",
+    "MannequinHead.001",
+    "Base",
+    "Post.006",
+    "SnowCap.012",
+    "GateLampBracket",
+    "GateLampBase",
+    "GateLampLight",
+    "GateLampFrame",
+    "GateLampFrame.001",
+    "GateLampCap",
+    "GateLampSnow",
+    "Base.001",
+    "Post.007",
+    "SnowCap.013",
+    "GateLampBracket.001",
+    "GateLampBase.001",
+    "GateLampLight.001",
+    "GateLampFrame.002",
+    "GateLampFrame.003",
+    "GateLampCap.001",
+    "GateLampSnow.001"
+  ],
+  "dimensions": {
+    "width": 48.47274,
+    "depth": 38.34885,
+    "height": 8.084378,
+    "min_z": 0.0,
+    "center": [
+      -0.003449,
+      -4.485574,
+      4.042189
+    ]
+  },
+  "totals": {
+    "tris": 16732,
+    "verts": 9286,
+    "meshes": 460,
+    "touching_verts": 0,
+    "materials": [
+      "M_Farmyard_bark",
+      "M_Farmyard_blue",
+      "M_Farmyard_cream",
+      "M_Farmyard_dark",
+      "M_Farmyard_gold",
+      "M_Farmyard_ice",
+      "M_Farmyard_metal",
+      "M_Farmyard_oak",
+      "M_Farmyard_pine",
+      "M_Farmyard_red",
+      "M_Farmyard_shade",
+      "M_Farmyard_snow",
+      "M_Farmyard_sun",
+      "M_Farmyard_wood"
+    ],
+    "bones": 0,
+    "textures": []
+  },
+  "objects": [
+    {
+      "name": "Foundation",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Floor",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "BackWall",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_red"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SideWall",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_red"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SideWall.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_red"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "FrontPier",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_red"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "FrontPier.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_red"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "DoorHeader",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "DoorFrame",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_cream"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "DoorFrame.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_cream"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "UpperWall",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_red"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "BackPlank",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "BackPlank.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.004",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.005",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "BackPlank.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.006",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.007",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "BackPlank.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.008",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.009",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "BackPlank.004",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.010",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.011",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "BackPlank.005",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.012",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.013",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "BackPlank.006",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "CornerPost",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_cream"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "CornerPost.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_cream"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "CornerPost.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_cream"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "CornerPost.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_cream"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RoofTimber",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowRoof",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowRoofLip",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowRoofLip.001",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowEave",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowEave.001",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowEave.002",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowEave.003",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowEave.004",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RoofTimber.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowRoof.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowRoofLip.002",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowRoofLip.003",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowEave.005",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowEave.006",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowEave.007",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowEave.008",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowEave.009",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Gable",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_red"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Gable.001",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_red"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Gable.002",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_red"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Gable.003",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_red"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RidgeSnow",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RidgeSnow.001",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RidgeSnow.002",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RidgeSnow.003",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LoftDoor",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_red"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LoftFrame",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_cream"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LoftFrame.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_cream"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LoftFrame.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_cream"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LoftFrame.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_cream"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LoftBrace",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_cream"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LoftBrace.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_cream"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "GarageSign",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shelf",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shelf.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shelf.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "ShelfLeg",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "ShelfLeg.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Crate",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Crate.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_gold"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Crate.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shelf.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shelf.004",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shelf.005",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "ShelfLeg.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "ShelfLeg.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Crate.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Crate.004",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_gold"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Crate.005",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LeftLampBracket",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_dark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LeftLampBase",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LeftLampLight",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_sun"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LeftLampFrame",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LeftLampFrame.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LeftLampCap",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_dark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LeftLampSnow",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RightLampBracket",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_dark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RightLampBase",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RightLampLight",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_sun"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RightLampFrame",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RightLampFrame.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RightLampCap",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_dark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RightLampSnow",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Foundation.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Floor.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "BackWall.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SideWall.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SideWall.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "FrontWall",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Door",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "DoorInset",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_gold"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "DoorKnob",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_dark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "WindowFrame",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "WindowGlow",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_sun"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "WindowVertical",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_cream"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "WindowHorizontal",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_cream"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "WindowFrame.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "WindowGlow.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_sun"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "WindowVertical.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_cream"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "WindowHorizontal.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_cream"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.014",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.015",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "BackPlank.007",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "FrontPlank",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.016",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.017",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "BackPlank.008",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "FrontPlank.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.018",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.019",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "BackPlank.009",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "FrontPlank.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.020",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.021",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "BackPlank.010",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "FrontPlank.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.022",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.023",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "BackPlank.011",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "FrontPlank.004",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.024",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.025",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "BackPlank.012",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "FrontPlank.005",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.026",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SidePlank.027",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "BackPlank.013",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "FrontPlank.006",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "CornerPost.004",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "CornerPost.005",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "CornerPost.006",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "CornerPost.007",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RoofTimber.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowRoof.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowRoofLip.004",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowRoofLip.005",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowEave.010",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowEave.011",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowEave.012",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowEave.013",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowEave.014",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RoofTimber.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowRoof.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowRoofLip.006",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowRoofLip.007",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowEave.015",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowEave.016",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowEave.017",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowEave.018",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowEave.019",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Gable.004",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Gable.005",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Gable.006",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Gable.007",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RidgeSnow.004",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RidgeSnow.005",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RidgeSnow.006",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RidgeSnow.007",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "PorchDeck",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StepLow",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StepHigh",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "PorchPost",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RailSide",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RailSpindle",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RailSpindle.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RailSpindle.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "PorchPost.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RailSide.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RailSpindle.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RailSpindle.004",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RailSpindle.005",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "FrontRail",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RailSpindle.006",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RailSpindle.007",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RailSpindle.008",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RailSpindle.009",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "FrontRail.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RailSpindle.010",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RailSpindle.011",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RailSpindle.012",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RailSpindle.013",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "PorchCanopy",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "PorchSnow",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "PorchSnowPillow",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "PorchSnowPillow.001",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "PorchSnowPillow.002",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "PorchSnowPillow.003",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Chimney",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_metal"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "ChimneyCap",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LeftLampBracket.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_dark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LeftLampBase.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LeftLampLight.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_sun"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LeftLampFrame.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LeftLampFrame.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LeftLampCap.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_dark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LeftLampSnow.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RightLampBracket.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_dark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RightLampBase.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RightLampLight.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_sun"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RightLampFrame.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RightLampFrame.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RightLampCap.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_dark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RightLampSnow.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StoneFoot",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_metal"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Pillar",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "PillarInset",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "ArchLampBracket",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_dark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "ArchLampBase",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "ArchLampLight",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_sun"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "ArchLampFrame",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "ArchLampFrame.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "ArchLampCap",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_dark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "ArchLampSnow",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Bolt",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_gold"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Brace",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StoneFoot.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_metal"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Pillar.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "PillarInset.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "ArchLampBracket.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_dark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "ArchLampBase.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "ArchLampLight.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_sun"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "ArchLampFrame.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "ArchLampFrame.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "ArchLampCap.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_dark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "ArchLampSnow.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Bolt.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_gold"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Brace.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Header",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "HeaderPlank",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Sign",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowCap",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowCap.001",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowCap.002",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowCap.003",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowCap.004",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowCap.005",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowCap.006",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowCap.007",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowCap.008",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowCap.009",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowCap.010",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowCap.011",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapBack",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSky",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_ice"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapField",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_pine"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapPost",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapFoot",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_metal"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapPost.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapFoot.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_metal"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapCrossbar",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapCrossbar.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSnow",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSnowPillow",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSnowPillow.001",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.001",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.002",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.003",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.004",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.005",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapBack.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSky.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_ice"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapField.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_pine"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapPost.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapFoot.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_metal"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapPost.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapFoot.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_metal"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapCrossbar.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapCrossbar.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSnow.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSnowPillow.002",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSnowPillow.003",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.006",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.007",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.008",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.009",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.010",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.011",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapBack.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSky.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_ice"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapField.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_pine"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapPost.004",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapFoot.004",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_metal"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapPost.005",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapFoot.005",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_metal"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapCrossbar.004",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapCrossbar.005",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSnow.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSnowPillow.004",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSnowPillow.005",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.012",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.013",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.014",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.015",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.016",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.017",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapBack.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSky.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_ice"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapField.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_pine"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapPost.006",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapFoot.006",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_metal"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapPost.007",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapFoot.007",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_metal"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapCrossbar.006",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapCrossbar.007",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSnow.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSnowPillow.006",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSnowPillow.007",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.018",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.019",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.020",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.021",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.022",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.023",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapBack.004",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSky.004",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_ice"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapField.004",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_pine"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapPost.008",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapFoot.008",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_metal"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapPost.009",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapFoot.009",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_metal"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapCrossbar.008",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapCrossbar.009",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSnow.004",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSnowPillow.008",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSnowPillow.009",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.024",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.025",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.026",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.027",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.028",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.029",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapBack.005",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSky.005",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_ice"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapField.005",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_pine"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapPost.010",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapFoot.010",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_metal"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapPost.011",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapFoot.011",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_metal"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapCrossbar.010",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapCrossbar.011",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSnow.005",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSnowPillow.010",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapSnowPillow.011",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.030",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.031",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.032",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.033",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.034",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MapMountain.035",
+      "tris": 8,
+      "verts": 6,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_shade"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Post",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Post.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Counter",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "CounterBody",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Cabinet",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_pine"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Cabinet.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_pine"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Cabinet.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_pine"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Roof",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowRoof.004",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallSnowPillow",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallSnowPillow.001",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallSnowPillow.002",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Sign.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallLampBracket",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_dark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallLampBase",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallLampLight",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_sun"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallLampFrame",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallLampFrame.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallLampCap",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_dark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallLampSnow",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Gift",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_red"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Ribbon",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_gold"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Gift.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_blue"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Ribbon.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_gold"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Gift.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_red"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Ribbon.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_gold"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Post.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Post.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Counter.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "CounterBody.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Cabinet.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_pine"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Cabinet.004",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_pine"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Cabinet.005",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_pine"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Roof.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowRoof.005",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallSnowPillow.003",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallSnowPillow.004",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallSnowPillow.005",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Sign.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallLampBracket.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_dark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallLampBase.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallLampLight.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_sun"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallLampFrame.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallLampFrame.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallLampCap.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_dark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallLampSnow.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "ToolBox",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_red"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "ToolBox.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_gold"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "ToolBox.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_red"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Post.004",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Post.005",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Counter.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "CounterBody.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Cabinet.006",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_pine"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Cabinet.007",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_pine"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Cabinet.008",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_pine"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Roof.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowRoof.006",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallSnowPillow.006",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallSnowPillow.007",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallSnowPillow.008",
+      "tris": 168,
+      "verts": 86,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Sign.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallLampBracket.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_dark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallLampBase.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallLampLight.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_sun"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallLampFrame.004",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallLampFrame.005",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallLampCap.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_dark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StallLampSnow.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MannequinBody",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_blue"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MannequinHead",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_cream"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MannequinBody.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_red"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "MannequinHead.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_cream"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Base",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Post.006",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowCap.012",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "GateLampBracket",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_dark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "GateLampBase",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "GateLampLight",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_sun"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "GateLampFrame",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "GateLampFrame.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "GateLampCap",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_dark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "GateLampSnow",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Base.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_oak"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Post.007",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_wood"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "SnowCap.013",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "GateLampBracket.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_dark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "GateLampBase.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "GateLampLight.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_sun"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "GateLampFrame.002",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "GateLampFrame.003",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_bark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "GateLampCap.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_dark"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "GateLampSnow.001",
+      "tris": 12,
+      "verts": 8,
+      "parts": 1,
+      "touching_verts": 0,
+      "materials": [
+        "M_Farmyard_snow"
+      ],
+      "modifiers": []
+    }
+  ],
+  "issues": [
+    {
+      "code": "unapplied_transform",
+      "object": "Foundation",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Floor",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "BackWall",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SideWall",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SideWall.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "FrontPier",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "FrontPier.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "DoorHeader",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "DoorFrame",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "DoorFrame.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "UpperWall",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "BackPlank",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "BackPlank.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.004",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.005",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "BackPlank.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.006",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.007",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "BackPlank.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.008",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.009",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "BackPlank.004",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.010",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.011",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "BackPlank.005",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.012",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.013",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "BackPlank.006",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "CornerPost",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "CornerPost.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "CornerPost.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "CornerPost.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RoofTimber",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowRoof",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowRoofLip",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowRoofLip.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowEave",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowEave.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowEave.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowEave.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowEave.004",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RoofTimber.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowRoof.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowRoofLip.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowRoofLip.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowEave.005",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowEave.006",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowEave.007",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowEave.008",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowEave.009",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Gable",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Gable.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Gable.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Gable.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RidgeSnow",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RidgeSnow.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RidgeSnow.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RidgeSnow.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "LoftDoor",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "LoftFrame",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "LoftFrame.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "LoftFrame.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "LoftFrame.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "LoftBrace",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "LoftBrace.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "GarageSign",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Shelf",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Shelf.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Shelf.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "ShelfLeg",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "ShelfLeg.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Crate",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Crate.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Crate.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Shelf.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Shelf.004",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Shelf.005",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "ShelfLeg.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "ShelfLeg.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Crate.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Crate.004",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Crate.005",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "LeftLampBracket",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "LeftLampBase",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "LeftLampLight",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "LeftLampFrame",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "LeftLampFrame.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "LeftLampCap",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "LeftLampSnow",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RightLampBracket",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RightLampBase",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RightLampLight",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RightLampFrame",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RightLampFrame.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RightLampCap",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RightLampSnow",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Foundation.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Floor.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "BackWall.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SideWall.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SideWall.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "FrontWall",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Door",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "DoorInset",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "DoorKnob",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "WindowFrame",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "WindowGlow",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "WindowVertical",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "WindowHorizontal",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "WindowFrame.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "WindowGlow.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "WindowVertical.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "WindowHorizontal.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.014",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.015",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "BackPlank.007",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "FrontPlank",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.016",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.017",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "BackPlank.008",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "FrontPlank.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.018",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.019",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "BackPlank.009",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "FrontPlank.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.020",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.021",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "BackPlank.010",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "FrontPlank.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.022",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.023",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "BackPlank.011",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "FrontPlank.004",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.024",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.025",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "BackPlank.012",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "FrontPlank.005",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.026",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SidePlank.027",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "BackPlank.013",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "FrontPlank.006",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "CornerPost.004",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "CornerPost.005",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "CornerPost.006",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "CornerPost.007",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RoofTimber.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowRoof.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowRoofLip.004",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowRoofLip.005",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowEave.010",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowEave.011",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowEave.012",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowEave.013",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowEave.014",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RoofTimber.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowRoof.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowRoofLip.006",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowRoofLip.007",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowEave.015",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowEave.016",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowEave.017",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowEave.018",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowEave.019",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Gable.004",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Gable.005",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Gable.006",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Gable.007",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RidgeSnow.004",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RidgeSnow.005",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RidgeSnow.006",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RidgeSnow.007",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "PorchDeck",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StepLow",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StepHigh",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "PorchPost",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RailSide",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RailSpindle",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RailSpindle.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RailSpindle.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "PorchPost.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RailSide.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RailSpindle.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RailSpindle.004",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RailSpindle.005",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "FrontRail",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RailSpindle.006",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RailSpindle.007",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RailSpindle.008",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RailSpindle.009",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "FrontRail.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RailSpindle.010",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RailSpindle.011",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RailSpindle.012",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RailSpindle.013",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "PorchCanopy",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "PorchSnow",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "PorchSnowPillow",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "PorchSnowPillow.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "PorchSnowPillow.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "PorchSnowPillow.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Chimney",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "ChimneyCap",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "LeftLampBracket.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "LeftLampBase.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "LeftLampLight.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "LeftLampFrame.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "LeftLampFrame.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "LeftLampCap.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "LeftLampSnow.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RightLampBracket.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RightLampBase.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RightLampLight.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RightLampFrame.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RightLampFrame.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RightLampCap.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "RightLampSnow.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Brace",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Brace.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.004",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.005",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.006",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.007",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.008",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.009",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.010",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.011",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.012",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.013",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.014",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.015",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.016",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.017",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.018",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.019",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.020",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.021",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.022",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.023",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.024",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.025",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.026",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.027",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.028",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.029",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.030",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.031",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.032",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.033",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.034",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MapMountain.035",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Post",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Post.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Counter",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "CounterBody",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Cabinet",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Cabinet.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Cabinet.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Roof",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowRoof.004",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallSnowPillow",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallSnowPillow.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallSnowPillow.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Sign.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallLampBracket",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallLampBase",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallLampLight",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallLampFrame",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallLampFrame.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallLampCap",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallLampSnow",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Gift",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Ribbon",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Gift.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Ribbon.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Gift.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Ribbon.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Post.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Post.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Counter.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "CounterBody.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Cabinet.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Cabinet.004",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Cabinet.005",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Roof.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowRoof.005",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallSnowPillow.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallSnowPillow.004",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallSnowPillow.005",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Sign.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallLampBracket.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallLampBase.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallLampLight.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallLampFrame.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallLampFrame.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallLampCap.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallLampSnow.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "ToolBox",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "ToolBox.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "ToolBox.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Post.004",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Post.005",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Counter.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "CounterBody.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Cabinet.006",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Cabinet.007",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Cabinet.008",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Roof.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "SnowRoof.006",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallSnowPillow.006",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallSnowPillow.007",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallSnowPillow.008",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Sign.003",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallLampBracket.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallLampBase.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallLampLight.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallLampFrame.004",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallLampFrame.005",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallLampCap.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "StallLampSnow.002",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MannequinBody",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MannequinHead",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MannequinBody.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "MannequinHead.001",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    }
+  ],
+  "ok": true,
+  "eyes": {
+    "skipped": true,
+    "reason": "имя модели не задано: --model <Модель> или мастер <Модель>_master.blend",
+    "objects": [],
+    "issues": []
+  },
+  "palette": {
+    "file": "art/palette.json",
+    "materials": [
+      {
+        "name": "M_Farmyard_bark",
+        "hex": "#80401B",
+        "match": "Тёмное дерево",
+        "checked": true
+      },
+      {
+        "name": "M_Farmyard_oak",
+        "hex": "#C28E49",
+        "match": "Доска",
+        "checked": true
+      },
+      {
+        "name": "M_Farmyard_red",
+        "hex": "#D6392B",
+        "match": "Красный амбар",
+        "checked": true
+      },
+      {
+        "name": "M_Farmyard_wood",
+        "hex": "#CD925C",
+        "match": "Дерево",
+        "checked": true
+      },
+      {
+        "name": "M_Farmyard_cream",
+        "hex": "#FFFDF5",
+        "match": "Крем",
+        "checked": true
+      },
+      {
+        "name": "M_Farmyard_snow",
+        "hex": "#F3F6F5",
+        "match": "Снег",
+        "checked": true
+      },
+      {
+        "name": "M_Farmyard_gold",
+        "hex": "#FFCE43",
+        "match": "Золото",
+        "checked": true
+      },
+      {
+        "name": "M_Farmyard_dark",
+        "hex": "#2B1A11",
+        "match": "Контур",
+        "checked": true
+      },
+      {
+        "name": "M_Farmyard_sun",
+        "hex": "#FAD66E",
+        "match": "Солома",
+        "checked": true
+      },
+      {
+        "name": "M_Farmyard_metal",
+        "hex": "#A0B0C4",
+        "match": "Металл",
+        "checked": true
+      },
+      {
+        "name": "M_Farmyard_ice",
+        "hex": "#A8DEE7",
+        "match": "Лёд",
+        "checked": true
+      },
+      {
+        "name": "M_Farmyard_pine",
+        "hex": "#54A577",
+        "match": "Хвоя",
+        "checked": true
+      },
+      {
+        "name": "M_Farmyard_shade",
+        "hex": "#CDCDED",
+        "match": "Тень снега",
+        "checked": true
+      },
+      {
+        "name": "M_Farmyard_blue",
+        "hex": "#40A5FF",
+        "match": "Редкий",
+        "checked": true
+      }
+    ]
+  },
+  "naming": {
+    "model": null,
+    "skipped": "имя модели не задано: --model <Модель> или мастер <Модель>_master.blend"
+  },
+  "export_copies": {
+    "duplicates": [],
+    "skipped": "файл вне проекта Unity и без --assets: папка движка неизвестна"
+  },
+  "renders": {
+    "front": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\models\\farmyard-lobby\\review\\front.png",
+    "side": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\models\\farmyard-lobby\\review\\side.png",
+    "back": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\models\\farmyard-lobby\\review\\back.png",
+    "top": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\models\\farmyard-lobby\\review\\top.png",
+    "three-quarter": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\models\\farmyard-lobby\\review\\three-quarter.png"
+  },
+  "render_settings": {
+    "engine": "BLENDER_EEVEE",
+    "clay": false,
+    "backface_culling": true,
+    "film_transparent": false,
+    "player": true,
+    "grid": {
+      "minor": 1.0,
+      "major": 10.0
+    }
+  }
+}

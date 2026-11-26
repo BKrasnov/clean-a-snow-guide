@@ -1,0 +1,366 @@
+{
+  "file": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\farmyard-props\\source\\FarmyardProps.blend",
+  "sha256": "ee892a0e77f115c3f8c83dfddafbec58d500eaf9111efb33abb21b12d38f61f8",
+  "blender": "5.0.1",
+  "collection": "FarmyardProps",
+  "export": [
+    "Rewards",
+    "Upgrades",
+    "Classes",
+    "StartGameArch",
+    "LaunchStation01",
+    "LaunchStation02",
+    "LaunchStation03",
+    "LaunchStation04",
+    "LaunchStation05",
+    "LaunchStation06",
+    "LeaderboardLeft",
+    "LeaderboardRight",
+    "PrizeWheel",
+    "PrizeWheel_Dial",
+    "BarnGarage",
+    "GarageSnowplow",
+    "LogCabin",
+    "LanternFence",
+    "LanternFenceRight"
+  ],
+  "dimensions": {
+    "width": 40.899761,
+    "depth": 14.279747,
+    "height": 5.40286,
+    "min_z": 0.0,
+    "center": [
+      1.415545,
+      -6.775496,
+      2.70143
+    ]
+  },
+  "totals": {
+    "tris": 36962,
+    "verts": 20093,
+    "meshes": 19,
+    "touching_verts": 0,
+    "materials": [
+      "Farmyard | painted wood and snow"
+    ],
+    "bones": 0,
+    "textures": [
+      {
+        "name": "GardenPlants_Palette",
+        "size": [
+          64,
+          32
+        ]
+      }
+    ]
+  },
+  "objects": [
+    {
+      "name": "Rewards",
+      "tris": 4932,
+      "verts": 2704,
+      "parts": 123,
+      "touching_verts": 0,
+      "materials": [
+        "Farmyard | painted wood and snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Upgrades",
+      "tris": 4620,
+      "verts": 2498,
+      "parts": 98,
+      "touching_verts": 0,
+      "materials": [
+        "Farmyard | painted wood and snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Classes",
+      "tris": 5892,
+      "verts": 3170,
+      "parts": 113,
+      "touching_verts": 0,
+      "materials": [
+        "Farmyard | painted wood and snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "StartGameArch",
+      "tris": 3068,
+      "verts": 1604,
+      "parts": 38,
+      "touching_verts": 0,
+      "materials": [
+        "Farmyard | painted wood and snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LaunchStation01",
+      "tris": 532,
+      "verts": 288,
+      "parts": 11,
+      "touching_verts": 0,
+      "materials": [
+        "Farmyard | painted wood and snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LaunchStation02",
+      "tris": 532,
+      "verts": 288,
+      "parts": 11,
+      "touching_verts": 0,
+      "materials": [
+        "Farmyard | painted wood and snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LaunchStation03",
+      "tris": 532,
+      "verts": 288,
+      "parts": 11,
+      "touching_verts": 0,
+      "materials": [
+        "Farmyard | painted wood and snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LaunchStation04",
+      "tris": 532,
+      "verts": 288,
+      "parts": 11,
+      "touching_verts": 0,
+      "materials": [
+        "Farmyard | painted wood and snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LaunchStation05",
+      "tris": 532,
+      "verts": 288,
+      "parts": 11,
+      "touching_verts": 0,
+      "materials": [
+        "Farmyard | painted wood and snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LaunchStation06",
+      "tris": 532,
+      "verts": 288,
+      "parts": 11,
+      "touching_verts": 0,
+      "materials": [
+        "Farmyard | painted wood and snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LeaderboardLeft",
+      "tris": 592,
+      "verts": 312,
+      "parts": 8,
+      "touching_verts": 0,
+      "materials": [
+        "Farmyard | painted wood and snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LeaderboardRight",
+      "tris": 592,
+      "verts": 312,
+      "parts": 8,
+      "touching_verts": 0,
+      "materials": [
+        "Farmyard | painted wood and snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "PrizeWheel",
+      "tris": 300,
+      "verts": 170,
+      "parts": 10,
+      "touching_verts": 0,
+      "materials": [
+        "Farmyard | painted wood and snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "PrizeWheel_Dial",
+      "tris": 1606,
+      "verts": 849,
+      "parts": 23,
+      "touching_verts": 0,
+      "materials": [
+        "Farmyard | painted wood and snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "BarnGarage",
+      "tris": 3988,
+      "verts": 2218,
+      "parts": 115,
+      "touching_verts": 0,
+      "materials": [
+        "Farmyard | painted wood and snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "GarageSnowplow",
+      "tris": 1004,
+      "verts": 550,
+      "parts": 24,
+      "touching_verts": 0,
+      "materials": [
+        "Farmyard | painted wood and snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LogCabin",
+      "tris": 5000,
+      "verts": 2810,
+      "parts": 155,
+      "touching_verts": 0,
+      "materials": [
+        "Farmyard | painted wood and snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LanternFence",
+      "tris": 1088,
+      "verts": 584,
+      "parts": 20,
+      "touching_verts": 0,
+      "materials": [
+        "Farmyard | painted wood and snow"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "LanternFenceRight",
+      "tris": 1088,
+      "verts": 584,
+      "parts": 20,
+      "touching_verts": 0,
+      "materials": [
+        "Farmyard | painted wood and snow"
+      ],
+      "modifiers": []
+    }
+  ],
+  "issues": [
+    {
+      "code": "unapplied_transform",
+      "object": "Rewards",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Upgrades",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "Classes",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "BarnGarage",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "GarageSnowplow",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "LogCabin",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    },
+    {
+      "code": "unapplied_transform",
+      "object": "LanternFenceRight",
+      "count": 1,
+      "severity": "warning",
+      "message": "масштаб не 1 или поворот не 0"
+    }
+  ],
+  "ok": true,
+  "eyes": {
+    "skipped": true,
+    "reason": "имя модели не задано: --model <Модель> или мастер <Модель>_master.blend",
+    "objects": [],
+    "issues": []
+  },
+  "palette": {
+    "file": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\palette.json",
+    "materials": [
+      {
+        "name": "Farmyard | painted wood and snow",
+        "hex": null,
+        "texture": "GardenPlants_Palette",
+        "match": null,
+        "checked": true,
+        "off": [],
+        "legacy": []
+      }
+    ]
+  },
+  "naming": {
+    "model": null,
+    "skipped": "имя модели не задано: --model <Модель> или мастер <Модель>_master.blend"
+  },
+  "export_copies": {
+    "duplicates": [],
+    "skipped": "файл вне проекта Unity и без --assets: папка движка неизвестна"
+  },
+  "renders": {
+    "front": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\farmyard-props\\review\\front.png",
+    "side": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\farmyard-props\\review\\side.png",
+    "back": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\farmyard-props\\review\\back.png",
+    "top": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\farmyard-props\\review\\top.png",
+    "three-quarter": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\models\\farmyard-props\\review\\three-quarter.png"
+  },
+  "render_settings": {
+    "engine": "BLENDER_EEVEE",
+    "clay": false,
+    "backface_culling": true,
+    "film_transparent": false,
+    "player": true,
+    "grid": {
+      "minor": 1.0,
+      "major": 10.0
+    }
+  }
+}

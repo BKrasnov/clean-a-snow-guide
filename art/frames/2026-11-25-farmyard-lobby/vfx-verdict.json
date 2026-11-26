@@ -1,0 +1,81 @@
+{
+  "record": "Summary of independent farmyard_vfx_review messages; complete verdict is in conversation",
+  "verdict": "pass",
+  "blocked": false,
+  "round": 2,
+  "version": "75c9be4cafdbe9e9594af4fdfd36d0d46959121da5f5b86b6c7d685c9a63d2ba",
+  "scores": {
+    "clarity": 9,
+    "style": 9
+  },
+  "issues": [],
+  "missing": [],
+  "checks": {
+    "clarity": "pass",
+    "style": "pass",
+    "timing": "n/a - static boundary",
+    "low": "pass",
+    "reduced_motion": "pass",
+    "target": "pass",
+    "load": "pass"
+  },
+  "frames_viewed": [
+    "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\01-entry.png",
+    "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\02-overview.png",
+    "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\03-launch.png",
+    "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\04-garage.png",
+    "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\05-house.png",
+    "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\vfx\\vfx-static-1.png",
+    "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\vfx\\vfx-static-2.png",
+    "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\vfx\\vfx-static-3.png",
+    "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\vfx\\vfx-static-4.png",
+    "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\vfx\\vfx-reduced.png",
+    "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\06-low.png",
+    "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\vfx\\vfx-low.png",
+    "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\build\\rebuilt-latest-2aa4ba12b\\art\\frames\\2026-11-25-farmyard-lobby\\vfx\\vfx-low-reduced.png"
+  ],
+  "counts": [
+    {
+      "quality": "Level21",
+      "moment": "before",
+      "objects": 234,
+      "beams": 102,
+      "particles": 0,
+      "parts": 6
+    },
+    {
+      "quality": "Level21",
+      "moment": "after",
+      "objects": 234,
+      "beams": 102,
+      "particles": 0,
+      "parts": 6
+    },
+    {
+      "quality": "Level01",
+      "moment": "before",
+      "objects": 234,
+      "beams": 102,
+      "particles": 0,
+      "parts": 6
+    },
+    {
+      "quality": "Level01",
+      "moment": "after",
+      "objects": 234,
+      "beams": 102,
+      "particles": 0,
+      "parts": 6
+    }
+  ],
+  "previousRound": {
+    "verdict": "fail",
+    "scores": {
+      "clarity": 9,
+      "style": 8
+    },
+    "cause": "Beam widths remained from 43x20 footprints and produced white wedges",
+    "evidence": "art/frames/2026-11-25-farmyard-lobby/review-round1/manifest.json"
+  },
+  "limits": "Static authored queue lighting only; no physical mobile, FPS, multiplayer or weather review."
+}

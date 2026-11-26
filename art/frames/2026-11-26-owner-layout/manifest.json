@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-26",
+  "method": "Native CaptureService PNG in live Play; quality set and asserted in Edit plugin before Play",
+  "board": "SoloRecordsStand/Leaderboard2_Node",
+  "liveRecordsMounted": true,
+  "result": "pass",
+  "studioWindow": 68760,
+  "frames": [
+    {
+      "capturedAt": "2026-11-26T00:33:23.732Z",
+      "name": "layout",
+      "contentId": "rbxtemp://295",
+      "path": "art/frames/2026-11-26-owner-layout/layout.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "ea5290920993fb51fc62444055a3ef667c24273207a34fe62107edc5033c8cb6",
+      "cacheTimeDeltaMs": 3
+    },
+    {
+      "capturedAt": "2026-11-26T00:33:27.318Z",
+      "name": "boards",
+      "contentId": "rbxtemp://296",
+      "path": "art/frames/2026-11-26-owner-layout/boards.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "e1d5a8154bd8a5ad40e34d885d9815dc4007ca1c83f3ef45f6b48ed35ffeb340",
+      "cacheTimeDeltaMs": 10
+    },
+    {
+      "capturedAt": "2026-11-26T00:33:30.832Z",
+      "name": "records",
+      "contentId": "rbxtemp://297",
+      "path": "art/frames/2026-11-26-owner-layout/records.png",
+      "resolution": [
+        1618,
+        761
+      ],
+      "quality": "Level21",
+      "sha256": "994037bce348ffd1354c4b381be9089a0f01ffa8f132a64a51618edeeee50f53",
+      "cacheTimeDeltaMs": 2
+    }
+  ],
+  "model": {
+    "path": "models/lobby/Workspace/LobbyArea.rbxm",
+    "sha256": "60584b12a1f868943e6b2af05fe0d35e9d19e505fe604326dd90b6fa830a5782",
+    "baseline": "74d83ba0e"
+  },
+  "note": "Live Play shows exact owner visual transforms and new Face binding. Afterwards only three auto-scaled prompt ranges were restored to baseline; static content tests passed. Temporary QA removed before save/export."
+}
