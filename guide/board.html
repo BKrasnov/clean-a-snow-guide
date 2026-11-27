@@ -311,8 +311,29 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <section class="part"><h2>Доска</h2><div class="board-filters" role="group" aria-label="Фильтр по участнику"><button type="button" data-person-filter="all" aria-pressed="true">Все</button><button type="button" data-person-filter="Богдан" aria-pressed="false">Богдан</button><button type="button" data-person-filter="Леонид" aria-pressed="false">Леонид</button><button type="button" data-person-filter="Георгий" aria-pressed="false">Георгий</button></div>
 <div class="board-filters" role="group" aria-label="Порядок карточек"><button type="button" data-board-sort="new" aria-pressed="true">Сначала новые</button><button type="button" data-board-sort="old" aria-pressed="false">Как раньше</button></div>
 <div class="board-columns"><section class="board-column" data-status="todo">
-  <h3>К выполнению <span class="board-count">13</span></h3>
-  <div class="board-cards"><article class="board-card" id="card-25b0fb" data-person="Богдан" data-status="todo" data-new-rank="9" data-old-rank="428">
+  <h3>К выполнению <span class="board-count">14</span></h3>
+  <div class="board-cards"><article class="board-card" id="card-e67c71" data-person="Леонид" data-status="todo" data-new-rank="-1" data-old-rank="453">
+  <h3>Молотов не бросается второй раз</h3>
+  <p class="board-meta"><span class="person" data-person="Леонид">Леонид</span> <code>e67c71</code> баг · bug</p>
+  <p class="board-origin">Автор: <span class="board-author" data-author="Пользователь">Пользователь</span> <time datetime="2026-11-27T05:16:19+03:00">27.11 05:16</time></p>
+  <p class="board-lead">Проверить, почему после первого броска Молотов не бросается второй раз. Воспроизвести в том же забеге после окончания перезарядки, пока в ведре есть место.</p>
+
+  <details><summary>Текст</summary><div class="prose"><h2>Что сделать</h2>
+<p>Проверить, почему после первого броска Молотов не бросается второй раз. Воспроизвести в том же забеге после окончания перезарядки, пока в ведре есть место.</p>
+<h2>Готово когда</h2>
+<ul>
+<li><input disabled="" type="checkbox"> В Studio проверена попытка второго броска до и после окончания перезарядки. В журнале записаны версия плейса, пауза между бросками и заполненность ведра.</li>
+<li><input disabled="" type="checkbox"> При доступной цели и свободном месте в ведре второй и третий броски проходят после своих перезарядок. До окончания перезарядки бросок по-прежнему недоступен.</li>
+<li><input disabled="" type="checkbox"> В <code>tasks/bugs.md</code> записаны исправление и проверка либо причина <code>wont_fix</code>.</li>
+</ul>
+<h2>Работа</h2>
+<h2>Заметки</h2>
+<ul>
+<li>Журнал: <code>BUG-20261127-001</code>.</li>
+</ul>
+</div></details>
+</article>
+<article class="board-card" id="card-25b0fb" data-person="Богдан" data-status="todo" data-new-rank="9" data-old-rank="428">
   <h3>Сервер: разбор цены среза машин (трак 18, танк 25 мс/с на водителя)</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>25b0fb</code> техработа · perf</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Claude">Claude</span> <time datetime="2026-11-26T19:52:44+07:00">26.11 19:52</time></p>
