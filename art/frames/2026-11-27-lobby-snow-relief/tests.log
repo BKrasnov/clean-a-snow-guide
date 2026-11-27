@@ -1,0 +1,30 @@
+✔ central packed route, all six starts and stand approaches stay below the old floor (5.3454ms)
+✔ snow accumulates in connected shallow banks and stays bounded and walkable (37.1536ms)
+✔ a .luau file maps to the instance Rojo makes of it (1.2721ms)
+✔ the build manages exactly the services default.project.json fills, in build.mjs and placeparts.luau (6.5317ms)
+✔ old code left in a place, a stale source and a changed world are all reported (0.8872ms)
+✔ a place gets the parts of its own layers: Dev has the island and the valley terrain, the lobby has no valley (2.3669ms)
+✔ an export writes a changed part where the place takes it from, a new one to its own layer, and removes a gone one (0.4147ms)
+✔ a part name Windows cannot hold is encoded, two names that differ only by case are an error (0.9223ms)
+✔ a build does not overwrite a place whose world was changed in Studio and not exported (0.4651ms)
+✔ Lune: the lobby stands have no E prompt, the plates say START A RUN (51a4ef, BUG-20261115-001, BUG-20261115-010) (181.5639ms)
+✔ Lune: imported farmyard stands retain six separated launch pads and remove retired houses (104.9627ms)
+✔ Lune: white snow surface and rolling hills preserve the owner lobby layout (2142.9852ms)
+✔ Lune: the driver of each ride vehicle sits on its seat, the head under the roof (5edc04, BUG-20261115-005) (91.4211ms)
+✔ Lune: the Santa model ships with its imported loop and matching skinned rig (104.3457ms)
+✔ Lune: no window of the place shows the ice frame or the paper, SnowUpgradesGui is gone (6137fd) (109.9607ms)
+✔ Lune: the old garden and the slab art of snow on the ground are only the server's (7704f7) (183.7393ms)
+✔ Lune: the world in models/ runs no script, the windmill's rotor turns on the client (e5a924) (390.5643ms)
+✔ Lune: the valley's Terrain reads and writes back byte for byte, a cut keeps the ground within it, and the valley is cut (5729bf) (8015.6099ms)
+✔ Lune: split keeps the world without code, assemble and a second split give the same parts (89.9018ms)
+✔ Lune: the frames' level goes back to the level found, not to Level01 (77.3968ms)
+✔ no scenario sets the graphics level on its own (185.5075ms)
+✔ no generator of scenarios writes the graphics level itself (21.1481ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11575.1449

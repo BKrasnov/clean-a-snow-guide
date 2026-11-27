@@ -1,0 +1,15 @@
+2026-11-27T06:33:11.506Z,15944.506836,5f80,6,Info [FLog::CreatorOutput] GROVEQA server 184 68 {"AlpineFir":27,"WinterBirch":13,"WindPine":14,"SnowCedar":14}
+2026-11-27T06:33:15.590Z,15948.590820,9d7c,6,Info [FLog::CreatorOutput] GROVEQA asset rbxassetid://73420425818873 Enum.AssetFetchStatus.Success
+2026-11-27T06:33:15.590Z,15948.590820,9d7c,6,Info [FLog::CreatorOutput] GROVEQA asset rbxassetid://73420425818873 Enum.AssetFetchStatus.Success
+2026-11-27T06:33:15.590Z,15948.590820,9d7c,6,Info [FLog::CreatorOutput] GROVEQA asset rbxassetid://73420425818873 Enum.AssetFetchStatus.Success
+2026-11-27T06:33:15.590Z,15948.590820,9d7c,6,Info [FLog::CreatorOutput] GROVEQA asset rbxassetid://73420425818873 Enum.AssetFetchStatus.Success
+2026-11-27T06:33:15.932Z,15948.932617,adc0,6,Info [FLog::CreatorOutput] GROVEQA asset rbxassetid://106950195536019 Enum.AssetFetchStatus.Success
+2026-11-27T06:33:15.932Z,15948.932617,adc0,6,Info [FLog::CreatorOutput] GROVEQA asset rbxassetid://125564237618023 Enum.AssetFetchStatus.Success
+2026-11-27T06:33:15.932Z,15948.932617,adc0,6,Info [FLog::CreatorOutput] GROVEQA asset rbxassetid://122189226648288 Enum.AssetFetchStatus.Success
+2026-11-27T06:33:15.932Z,15948.932617,adc0,6,Info [FLog::CreatorOutput] GROVEQA asset rbxassetid://100593374844785 Enum.AssetFetchStatus.Success
+2026-11-27T06:33:18.447Z,15951.447266,8f94,6,Info [FLog::CreatorOutput] GROVEQA capture overview rbxtemp://238
+2026-11-27T06:33:20.931Z,15953.931641,ac8c,6,Info [FLog::CreatorOutput] GROVEQA capture west rbxtemp://239
+2026-11-27T06:33:23.314Z,15956.314453,1fc4,6,Info [FLog::CreatorOutput] GROVEQA capture east rbxtemp://240
+2026-11-27T06:33:25.762Z,15958.762695,ac8c,6,Info [FLog::CreatorOutput] GROVEQA capture behind-arch rbxtemp://241
+2026-11-27T06:33:33.146Z,15966.146484,ac8c,6,Info [FLog::CreatorOutput] GROVEQA pass four meshes and shared texture loaded, path and solo run passed
+2026-11-27T06:33:38.776Z,15971.776367,8398,6,Info [FLog::CreatorOutput] GROVEQA END true grove-pass

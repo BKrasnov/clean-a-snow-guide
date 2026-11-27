@@ -1,0 +1,26 @@
+{
+  "capturedAt": "2026-11-27T09:33:18+03:00",
+  "place": "NaLovi.rbxl",
+  "graphics": "Level21",
+  "treeSlots": 184,
+  "importedTrees": 68,
+  "variants": {
+    "AlpineFir": 27,
+    "WindPine": 14,
+    "WinterBirch": 13,
+    "SnowCedar": 14
+  },
+  "rings": {
+    "west": 10,
+    "east": 10,
+    "behind": 17,
+    "entrance": 12,
+    "outer": 19
+  },
+  "meshesLoaded": 4,
+  "sharedTextureLoaded": true,
+  "soloStation": "Station04",
+  "files": {
+    "models/lobby/Workspace/LobbyArea.rbxm": "3ba9d36a515c5fbab37be1759abfb5414ea34186ca675fc3c5e445059e05cffb"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "capturedAt": "2026-11-27T08:02:56+03:00",
+  "place": "NaLovi.rbxl",
+  "graphics": "Level21",
+  "avatarHeightStuds": 6.44,
+  "standardAvatarScale": 1,
+  "defaultCameraDistanceStuds": 12.5,
+  "heightsStuds": {
+    "arch": [
+      33.71,
+      24.27
+    ],
+    "wheel": [
+      33.44,
+      24.08
+    ],
+    "maps": [
+      17.89,
+      12.88
+    ],
+    "upgrades": [
+      23.14,
+      16.66
+    ],
+    "classes": [
+      23.11,
+      16.64
+    ],
+    "rewards": [
+      22.34,
+      16.09
+    ],
+    "centralBoard": [
+      28.59,
+      20.59
+    ],
+    "sideBoards": [
+      23.9,
+      17.21
+    ]
+  },
+  "textureLumaDifference": [
+    24.4,
+    50.1
+  ],
+  "floorRaycasts": 500,
+  "queuePrompts": 6,
+  "approaches": [
+    "Classes",
+    "PrizeWheel",
+    "Upgrades"
+  ],
+  "soloStation": "Station04",
+  "files": {
+    "models/lobby/Workspace/LobbyArea.rbxm": "c1c935d4adc7748936b9882a79c78167c7fc67e7bbcb502c407566691ac263d8",
+    "src/StarterPlayer/StarterPlayerScripts/CleanSnow/LobbySnowPreview.client.luau": "af5f4f7923420e50086a00021d0b87c41d1ad85c245c88c4398c8ecad4829997",
+    "art/terrain/lobby-flat-snow/snow-color-contrast.png": "0c7c0f3b6044038bbb58eecb3d742505c75ba1a05d7445656faf37b08ada43b2"
+  }
+}

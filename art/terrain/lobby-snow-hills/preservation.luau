@@ -8,9 +8,16 @@ function M.xml(root)
 end
 function M.protected(root)
  local copy=root:Clone();local plaza=copy.WinterPlaza
- for _,name in {'Snowbanks','SnowLandscape'}do local p=plaza:FindFirstChild(name);if p then p:Destroy()end end
+ for _,name in {'Snowbanks','SnowLandscape','SnowRelief'}do local p=plaza:FindFirstChild(name);if p then p:Destroy()end end
  for _,p in plaza.SnowFirs:GetChildren()do if p:IsA('BasePart')then p.CFrame=roblox.CFrame.identity;p:SetAttribute('SnowTerrainOriginalY',nil)end end
  for _,p in {plaza.PlazaSurface,copy.SnowGround}do p.Material=Enum.Material.Snow;p.MaterialVariant='';p:SetAttribute('WhiteGrassAsset',nil)end
+ -- 27.11: only these floor display fields are now owned by the local snow relief.
+ plaza.PlazaSurface.Transparency=0
+ plaza.EntrancePath.Transparency=0;plaza.EntrancePath.Material=Enum.Material.Concrete;plaza.EntrancePath.MaterialVariant=''
+ local entrance=plaza.EntrancePath
+ local frame={entrance.CFrame:GetComponents()}
+ frame[2]=0
+ entrance.CFrame=roblox.CFrame.new(table.unpack(frame))
  return M.xml(copy)
 end
 return M

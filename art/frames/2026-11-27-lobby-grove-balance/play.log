@@ -1,0 +1,42 @@
+2026-11-27T06:50:03.189Z,16956.189453,9810,6,Info [FLog::CreatorOutput] GROVEBALANCE server 184 112 {"AlpineFir":35,"WinterBirch":25,"WindPine":26,"SnowCedar":26}
+2026-11-27T06:50:12.458Z,16965.458984,8f94,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://106950195536019 Enum.AssetFetchStatus.Success
+2026-11-27T06:50:12.458Z,16965.458984,8f94,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://122189226648288 Enum.AssetFetchStatus.Success
+2026-11-27T06:50:12.458Z,16965.458984,8f94,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://100593374844785 Enum.AssetFetchStatus.Success
+2026-11-27T06:50:12.458Z,16965.458984,8f94,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://125564237618023 Enum.AssetFetchStatus.Success
+2026-11-27T06:50:12.458Z,16965.458984,8f94,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://73420425818873 Enum.AssetFetchStatus.Success
+2026-11-27T06:50:12.458Z,16965.458984,8f94,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://73420425818873 Enum.AssetFetchStatus.Success
+2026-11-27T06:50:12.458Z,16965.458984,8f94,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://73420425818873 Enum.AssetFetchStatus.Success
+2026-11-27T06:50:12.458Z,16965.458984,8f94,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://73420425818873 Enum.AssetFetchStatus.Success
+2026-11-27T06:50:15.066Z,16968.066406,8f94,6,Info [FLog::CreatorOutput] GROVEBALANCE capture overview rbxtemp://242
+2026-11-27T06:50:17.925Z,16970.925781,9108,6,Info [FLog::CreatorOutput] GROVEBALANCE capture west rbxtemp://243
+2026-11-27T06:50:20.410Z,16973.410156,3078,6,Info [FLog::CreatorOutput] GROVEBALANCE capture east rbxtemp://244
+2026-11-27T06:50:22.941Z,16975.941406,8f94,6,Info [FLog::CreatorOutput] GROVEBALANCE capture behind-arch rbxtemp://245
+2026-11-27T06:50:30.484Z,16983.484375,8f94,6,Info [FLog::CreatorOutput] GROVEBALANCE pass four meshes and shared texture loaded, path and solo run passed
+2026-11-27T06:50:36.185Z,16989.185547,8398,6,Info [FLog::CreatorOutput] GROVEBALANCE END true grove-pass
+2026-11-27T06:51:27.982Z,17040.982422,5f80,6,Info [FLog::CreatorOutput] GROVEBALANCE server 184 112 {"AlpineFir":35,"WinterBirch":25,"WindPine":26,"SnowCedar":26}
+2026-11-27T06:51:34.306Z,17047.306641,8f94,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://73420425818873 Enum.AssetFetchStatus.Success
+2026-11-27T06:51:34.306Z,17047.306641,8f94,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://73420425818873 Enum.AssetFetchStatus.Success
+2026-11-27T06:51:34.308Z,17047.308594,8f94,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://73420425818873 Enum.AssetFetchStatus.Success
+2026-11-27T06:51:34.308Z,17047.308594,8f94,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://73420425818873 Enum.AssetFetchStatus.Success
+2026-11-27T06:51:34.521Z,17047.521484,adc0,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://100593374844785 Enum.AssetFetchStatus.Success
+2026-11-27T06:51:34.521Z,17047.521484,adc0,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://106950195536019 Enum.AssetFetchStatus.Success
+2026-11-27T06:51:34.523Z,17047.523438,adc0,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://122189226648288 Enum.AssetFetchStatus.Success
+2026-11-27T06:51:34.523Z,17047.523438,adc0,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://125564237618023 Enum.AssetFetchStatus.Success
+2026-11-27T06:51:42.988Z,17055.988281,ac8c,6,Info [FLog::CreatorOutput] GROVEBALANCE capture overview rbxtemp://246
+2026-11-27T06:51:45.439Z,17058.439453,8f94,6,Info [FLog::CreatorOutput] GROVEBALANCE capture west rbxtemp://247
+2026-11-27T06:51:47.923Z,17060.923828,9810,6,Info [FLog::CreatorOutput] GROVEBALANCE capture east rbxtemp://248
+2026-11-27T06:51:50.421Z,17063.421875,8398,6,Info [FLog::CreatorOutput] GROVEBALANCE capture behind-arch rbxtemp://249
+2026-11-27T06:52:24.371Z,17097.371094,3078,6,Info [FLog::CreatorOutput] GROVEBALANCE fail Players.gio1234525.PlayerScripts._GroveQAClient:85: solo start did not reach the valley
+2026-11-27T06:52:28.658Z,17101.658203,3078,6,Info [FLog::CreatorOutput] GROVEBALANCE END true grove-fail
+2026-11-27T06:54:14.996Z,17207.996094,9810,6,Info [FLog::CreatorOutput] GROVEBALANCE server 184 112 {"AlpineFir":35,"WinterBirch":25,"WindPine":26,"SnowCedar":26}
+2026-11-27T06:54:24.958Z,17217.958984,3078,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://106950195536019 Enum.AssetFetchStatus.Success
+2026-11-27T06:54:24.958Z,17217.958984,3078,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://122189226648288 Enum.AssetFetchStatus.Success
+2026-11-27T06:54:24.960Z,17217.960938,3078,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://100593374844785 Enum.AssetFetchStatus.Success
+2026-11-27T06:54:24.960Z,17217.960938,3078,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://125564237618023 Enum.AssetFetchStatus.Success
+2026-11-27T06:54:24.960Z,17217.960938,3078,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://73420425818873 Enum.AssetFetchStatus.Success
+2026-11-27T06:54:24.960Z,17217.960938,3078,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://73420425818873 Enum.AssetFetchStatus.Success
+2026-11-27T06:54:24.960Z,17217.960938,3078,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://73420425818873 Enum.AssetFetchStatus.Success
+2026-11-27T06:54:24.960Z,17217.960938,3078,6,Info [FLog::CreatorOutput] GROVEBALANCE asset rbxassetid://73420425818873 Enum.AssetFetchStatus.Success
+2026-11-27T06:54:35.867Z,17228.867188,ac8c,6,Info [FLog::CreatorOutput] GROVEBALANCE queue true OK
+2026-11-27T06:54:40.242Z,17233.242188,8398,6,Info [FLog::CreatorOutput] GROVEBALANCE pass four meshes and shared texture loaded, path and solo run passed
+2026-11-27T06:54:55.626Z,17248.626953,8f94,6,Info [FLog::CreatorOutput] GROVEBALANCE END true grove-pass

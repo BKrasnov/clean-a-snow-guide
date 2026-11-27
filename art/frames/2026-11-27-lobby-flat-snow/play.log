@@ -1,0 +1,13 @@
+2026-11-27T04:42:21.522Z,9294.522461,8398,6,Info [FLog::CreatorOutput] FLATSNOW maps Content{SourceType=Object, Object=EditableImage} Content{SourceType=Object, Object=EditableImage} Content{SourceType=Object, Object=EditableImage}
+2026-11-27T04:42:21.522Z,9294.522461,8398,6,Info [FLog::CreatorOutput] FLATSNOW floor 500 120.7199935913086 120.7199935913086
+2026-11-27T04:42:30.307Z,9303.307617,ac8c,6,Info [FLog::CreatorOutput] FLATSNOW walk 5 segments nil nil
+2026-11-27T04:42:32.322Z,9305.322266,5f80,6,Info [FLog::CreatorOutput] FLATSNOW camera overview 13935, 194, 106 1618, 761
+2026-11-27T04:42:32.790Z,9305.790039,9810,6,Info [FLog::CreatorOutput] FLATSNOW capture overview rbxtemp://219 9301.800818899996
+2026-11-27T04:42:34.890Z,9307.890625,5f80,6,Info [FLog::CreatorOutput] FLATSNOW camera path 14000, 204, 64 1618, 761
+2026-11-27T04:42:35.507Z,9308.507812,9810,6,Info [FLog::CreatorOutput] FLATSNOW capture path rbxtemp://220 9304.520238099998
+2026-11-27T04:42:37.590Z,9310.590820,8f94,6,Info [FLog::CreatorOutput] FLATSNOW camera trail 14000, 134, 78 1618, 761
+2026-11-27T04:42:38.106Z,9311.106445,b5d8,6,Info [FLog::CreatorOutput] FLATSNOW capture trail rbxtemp://221 9307.114268699981
+2026-11-27T04:42:40.139Z,9313.139648,8f94,6,Info [FLog::CreatorOutput] FLATSNOW camera surface 14025, 126.5, 48 1618, 761
+2026-11-27T04:42:40.556Z,9313.556641,1fc4,6,Info [FLog::CreatorOutput] FLATSNOW capture surface rbxtemp://222 9309.567754899996
+2026-11-27T04:42:44.094Z,9317.094727,9d7c,6,Info [FLog::CreatorOutput] FLATSNOW pass 500 raycasts, 5 walking segments, 6 prompts, 1 solo run nil nil
+2026-11-27T04:42:49.594Z,9322.594727,5f80,6,Info [FLog::CreatorOutput] FLATSNOW END true flatsnow-pass

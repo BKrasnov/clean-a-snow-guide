@@ -1,0 +1,28 @@
+{
+  "capturedAt": "2026-11-27T07:42:32+03:00",
+  "place": "NaLovi.rbxl",
+  "track": "Studio Play",
+  "graphics": "Level21",
+  "casts": 500,
+  "minimumY": 120.7199935913086,
+  "maximumY": 120.7199935913086,
+  "walkingSegments": 5,
+  "queuePrompts": 6,
+  "soloStation": "Station04",
+  "previewUnloadedDuringRun": true,
+  "frames": [
+    "overview.png",
+    "path.png",
+    "trail.png",
+    "surface.png"
+  ],
+  "files": {
+    "models/lobby/Workspace/LobbyArea.rbxm": "1ac6929583e154a4ce46a24c64f61f10e5232076a95ab793605c8808b016360f",
+    "models/lobby/Workspace/Terrain.rbxm": "b42c4365a3bca271d8aaecaab4061c797bb4abcd475eaa8225f5170fad826908",
+    "models/match/Workspace/Terrain.rbxm": "c1de4bf14d31479ede0b8f58912cadb2676f48716ea7ce128fb3f6ea588f70ad",
+    "src/StarterPlayer/StarterPlayerScripts/CleanSnow/LobbySnowPreview.client.luau": "6be6f3f05790845487a82ff3824623ee804730514ba85a32c7df9ad12ad688d1",
+    "art/terrain/lobby-flat-snow/snow-color.png": "24c6e8bc0b95f828186be3d35fdd5bb744eb37fd3b8a7a2977a70cc103f5c0e3",
+    "art/terrain/lobby-flat-snow/snow-normal.png": "3d546dabd55bda87e69ecd42dcc641df87a711b69be0eb77e6090193e5dec8a3",
+    "art/terrain/lobby-flat-snow/snow-roughness.png": "b77315151244b092c4cb0bcb1782b7b684d53055e796b9f211a81c5f5775437a"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "capturedAt": "2026-11-27T08:40:10+03:00",
+  "place": "NaLovi.rbxl",
+  "graphics": "Level21",
+  "floorBefore": [
+    208,
+    166
+  ],
+  "floorAfter": [
+    182,
+    146
+  ],
+  "floorHeightStuds": 120.72,
+  "floorRaycasts": 378,
+  "entranceCrossed": true,
+  "approaches": [
+    "Classes",
+    "PrizeWheel",
+    "Upgrades"
+  ],
+  "queuePrompts": 6,
+  "soloStation": "Station04",
+  "valleyLightingRestored": true,
+  "files": {
+    "models/lobby/Workspace/LobbyArea.rbxm": "aaa77a4cdfb79e005102252071e810845a0ccfafcbac7ff78d63cc8b581c4a27",
+    "src/StarterPlayer/StarterPlayerScripts/CleanSnow/AmbientLifeController.luau": "63471478e1ff710a2431128b5e2adca93848b43a0f16be4f28fe09d252883e20",
+    "src/StarterPlayer/StarterPlayerScripts/CleanSnow/LobbySnowPreview.client.luau": "57b0403e4d924910790ad21b50d99d68244cdf48b3706841d6436101cd345090",
+    "art/terrain/lobby-flat-snow/snow-path-footprints.png": "3ce6891ba19c16d5e743f31ce6fb71455bef1293d3f86deb4561e766e3133fee"
+  }
+}

@@ -1,0 +1,47 @@
+2026-11-27T03:16:28.540Z,4141.540527,9d7c,6,Info [FLog::CreatorOutput] Info: Script 'Players.gio1234525.PlayerScripts._LobbyReliefQAClient', Line 5
+2026-11-27T03:16:28.540Z,4141.540527,9d7c,6,Info [FLog::CreatorOutput] Info: Script 'Players.gio1234525.PlayerScripts._LobbyReliefQAClient', Line 3
+2026-11-27T03:17:37.704Z,4210.704102,ac8c,6,Info [FLog::CreatorOutput] LOBBYRELIEF END false Failed to start the test because a previous one is still in progress.
+2026-11-27T03:18:20.312Z,4253.312500,3078,6,Info [FLog::CreatorOutput] LOBBYRELIEF END true lobbyrelief-timeout
+2026-11-27T03:19:18.316Z,4311.316895,8f94,6,Info [FLog::CreatorOutput] LOBBYRELIEF walk 5 segments passed nil nil
+2026-11-27T03:19:18.316Z,4311.316895,8f94,6,Info [FLog::CreatorOutput] LOBBYRELIEF height 0,0=120.5625 nil nil
+2026-11-27T03:19:18.316Z,4311.316895,8f94,6,Info [FLog::CreatorOutput] LOBBYRELIEF height -98,50=122.994140625 nil nil
+2026-11-27T03:19:18.316Z,4311.316895,8f94,6,Info [FLog::CreatorOutput] LOBBYRELIEF height 98,50=122.701171875 nil nil
+2026-11-27T03:19:18.316Z,4311.316895,8f94,6,Info [FLog::CreatorOutput] LOBBYRELIEF height -40,55=122.1953125 nil nil
+2026-11-27T03:19:20.798Z,4313.798828,3078,6,Info [FLog::CreatorOutput] LOBBYRELIEF capture overview rbxtemp://178 4309.81251649998
+2026-11-27T03:19:23.098Z,4316.098633,3078,6,Info [FLog::CreatorOutput] LOBBYRELIEF capture ground rbxtemp://179 4312.115022999991
+2026-11-27T03:19:25.549Z,4318.549316,3078,6,Info [FLog::CreatorOutput] LOBBYRELIEF capture snowbank rbxtemp://180 4314.559715699987
+2026-11-27T03:19:27.932Z,4320.932129,3078,6,Info [FLog::CreatorOutput] LOBBYRELIEF capture stands rbxtemp://181 4316.941844199988
+2026-11-27T03:19:27.999Z,4320.999023,1fc4,6,Info [FLog::CreatorOutput] LOBBYRELIEF pass walk=5, queues=6, snow raycasts=4 nil nil
+2026-11-27T03:19:33.151Z,4326.151855,5f80,6,Info [FLog::CreatorOutput] LOBBYRELIEF END true lobbyrelief-pass
+2026-11-27T03:21:11.395Z,4424.395508,3078,6,Info [FLog::CreatorOutput] LOBBYRELIEF walk 5 segments passed nil nil
+2026-11-27T03:21:11.395Z,4424.395508,3078,6,Info [FLog::CreatorOutput] LOBBYRELIEF height 0,0=120.5625 nil nil
+2026-11-27T03:21:11.395Z,4424.395508,3078,6,Info [FLog::CreatorOutput] LOBBYRELIEF height -98,50=122.994140625 nil nil
+2026-11-27T03:21:11.395Z,4424.395508,3078,6,Info [FLog::CreatorOutput] LOBBYRELIEF height 98,50=122.701171875 nil nil
+2026-11-27T03:21:11.395Z,4424.395508,3078,6,Info [FLog::CreatorOutput] LOBBYRELIEF height -40,55=122.1953125 nil nil
+2026-11-27T03:21:13.862Z,4426.862305,ac8c,6,Info [FLog::CreatorOutput] LOBBYRELIEF capture overview rbxtemp://182 4422.872823199985
+2026-11-27T03:21:16.113Z,4429.113281,8f94,6,Info [FLog::CreatorOutput] LOBBYRELIEF capture ground rbxtemp://183 4425.121230699995
+2026-11-27T03:21:18.628Z,4431.628906,ac8c,6,Info [FLog::CreatorOutput] LOBBYRELIEF capture snowbank rbxtemp://184 4427.635907699994
+2026-11-27T03:21:21.080Z,4434.080078,8f94,6,Info [FLog::CreatorOutput] LOBBYRELIEF capture stands rbxtemp://185 4430.082989199989
+2026-11-27T03:21:21.112Z,4434.112793,ac8c,6,Info [FLog::CreatorOutput] LOBBYRELIEF pass walk=5, queues=6, snow raycasts=4 nil nil
+2026-11-27T03:21:26.441Z,4439.441895,9d7c,6,Info [FLog::CreatorOutput] LOBBYRELIEF END true lobbyrelief-pass
+2026-11-27T03:25:07.654Z,4660.654297,8f94,6,Info [FLog::CreatorOutput] LOBBYRELIEF height 0,0=120.5625 nil nil
+2026-11-27T03:25:07.654Z,4660.654297,8f94,6,Info [FLog::CreatorOutput] LOBBYRELIEF height -98,50=122.994140625 nil nil
+2026-11-27T03:25:07.654Z,4660.654297,8f94,6,Info [FLog::CreatorOutput] LOBBYRELIEF height 98,50=122.701171875 nil nil
+2026-11-27T03:25:07.654Z,4660.654297,8f94,6,Info [FLog::CreatorOutput] LOBBYRELIEF height -40,55=122.1953125 nil nil
+2026-11-27T03:25:09.969Z,4662.969727,9810,6,Info [FLog::CreatorOutput] LOBBYRELIEF capture overview rbxtemp://186 4658.988247400004
+2026-11-27T03:25:12.402Z,4665.402832,8398,6,Info [FLog::CreatorOutput] LOBBYRELIEF capture ground rbxtemp://187 4661.4084598000045
+2026-11-27T03:25:14.769Z,4667.769043,5f80,6,Info [FLog::CreatorOutput] LOBBYRELIEF capture snowbank rbxtemp://188 4663.7903193999955
+2026-11-27T03:25:17.101Z,4670.101562,ac8c,6,Info [FLog::CreatorOutput] LOBBYRELIEF capture stands rbxtemp://189 4666.111926099984
+2026-11-27T03:25:17.203Z,4670.203613,8f94,6,Info [FLog::CreatorOutput] LOBBYRELIEF pass photos, queues=6, snow raycasts=4 nil nil
+2026-11-27T03:25:22.375Z,4675.375488,3078,6,Info [FLog::CreatorOutput] LOBBYRELIEF END true lobbyrelief-pass
+2026-11-27T03:26:59.132Z,4772.132812,9d7c,6,Info [FLog::CreatorOutput] LOBBYRELIEF walk 5 segments passed nil nil
+2026-11-27T03:26:59.132Z,4772.132812,9d7c,6,Info [FLog::CreatorOutput] LOBBYRELIEF height 0,0=120.5625 nil nil
+2026-11-27T03:26:59.132Z,4772.132812,9d7c,6,Info [FLog::CreatorOutput] LOBBYRELIEF height -98,50=122.994140625 nil nil
+2026-11-27T03:26:59.132Z,4772.132812,9d7c,6,Info [FLog::CreatorOutput] LOBBYRELIEF height 98,50=122.701171875 nil nil
+2026-11-27T03:26:59.132Z,4772.132812,9d7c,6,Info [FLog::CreatorOutput] LOBBYRELIEF height -40,55=122.1953125 nil nil
+2026-11-27T03:27:01.566Z,4774.566406,9810,6,Info [FLog::CreatorOutput] LOBBYRELIEF capture overview rbxtemp://190 4770.5787004999875
+2026-11-27T03:27:03.982Z,4776.982422,9810,6,Info [FLog::CreatorOutput] LOBBYRELIEF capture ground rbxtemp://191 4772.999404500006
+2026-11-27T03:27:06.482Z,4779.482422,ac8c,6,Info [FLog::CreatorOutput] LOBBYRELIEF capture snowbank rbxtemp://192 4775.4999197
+2026-11-27T03:27:08.933Z,4781.933105,3078,6,Info [FLog::CreatorOutput] LOBBYRELIEF capture stands rbxtemp://193 4777.940076500003
+2026-11-27T03:27:08.981Z,4781.981934,5f80,6,Info [FLog::CreatorOutput] LOBBYRELIEF pass walk=5, queues=6, snow raycasts=4 nil nil
+2026-11-27T03:27:14.151Z,4787.151855,5f80,6,Info [FLog::CreatorOutput] LOBBYRELIEF END true lobbyrelief-pass

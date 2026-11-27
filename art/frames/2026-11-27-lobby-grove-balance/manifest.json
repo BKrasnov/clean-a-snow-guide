@@ -1,0 +1,21 @@
+{
+  "capturedAt": "2026-11-27T09:51:42+03:00",
+  "place": "NaLovi.rbxl",
+  "graphics": "Level21",
+  "treeSlots": 184,
+  "firstPassTrees": 68,
+  "additionalTrees": 44,
+  "importedTrees": 112,
+  "originalTrees": 72,
+  "variants": {
+    "AlpineFir": 35,
+    "WindPine": 26,
+    "WinterBirch": 25,
+    "SnowCedar": 26
+  },
+  "lastQueueResult": "OK",
+  "soloStation": "Station04",
+  "files": {
+    "models/lobby/Workspace/LobbyArea.rbxm": "20ca18173ac386093badbf623da19a9d19827a24690e4a2bb6bbb25d76b94803"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "base": "b4ba5cf97",
+  "checkedBuild": "fc54eb2c8aa0d98ccb1df826e5574f5315c25060",
+  "versions": {
+    "models/lobby/Workspace/LobbyArea.rbxm": "a28d229b5db615b816814c361c09ac25ae1b456a017768473d9b50a7d2720208",
+    "models/lobby/Workspace/Terrain.rbxm": "5e29e88f92e64ab2cd4cd5c527688c2a4e52513bea93db07a879cbd8a273716b",
+    "models/match/Workspace/Terrain.rbxm": "b5618a6367eb61da303c55ec2a3fd6b1824f2bf5fb43adab66671f5800f0dcf8",
+    "src/StarterPlayer/StarterPlayerScripts/CleanSnow/AmbientLifeController.luau": "406d4cd976f0f6ab325eb59498cd18704e6dee047377b3a113954cc3a8041fbd",
+    "art/terrain/lobby-snow-relief/shape.mjs": "5f516fdb7448d2e05714d04f9c4a6727391653ec0932c568c9fc14d20b50f74c",
+    "art/terrain/lobby-snow-relief/prepare-qa.mjs": "f08010d2f527688c60702741729ea7544b31dbd8a10a5b6a8229c096d420d97c",
+    "tools/studio-scenarios/lobby-snow-relief.json": "ed02216339cd4ccc17c13553ed96e82928c821b6515c3da632a14cf7f3689896"
+  },
+  "frames": [
+    {
+      "file": "overview.png",
+      "utc": "2026-11-27T04:02:55.515Z",
+      "captureId": "rbxtemp://199",
+      "clientClock": 6924.519151699991,
+      "viewport": [
+        1618,
+        761
+      ],
+      "sha256": "2d2db5bd94bbc12c40f8a9a64575b47eb662db06fa2512cddf06a54ff0a69090"
+    },
+    {
+      "file": "ground.png",
+      "utc": "2026-11-27T04:02:57.965Z",
+      "captureId": "rbxtemp://200",
+      "clientClock": 6926.9753573999915,
+      "viewport": [
+        1618,
+        761
+      ],
+      "sha256": "c8a79348258e8628eb303c3c1882be667a372ada7d74496bb9713b01b71b8761"
+    },
+    {
+      "file": "snowbank.png",
+      "utc": "2026-11-27T04:03:00.448Z",
+      "captureId": "rbxtemp://201",
+      "clientClock": 6929.457191099995,
+      "viewport": [
+        1618,
+        761
+      ],
+      "sha256": "a0028369c13b2731eb33a7b4f1a5ab1706be6338543d0b89e3dfe9ee8cc20238"
+    },
+    {
+      "file": "stands.png",
+      "utc": "2026-11-27T04:03:02.930Z",
+      "captureId": "rbxtemp://202",
+      "clientClock": 6931.939079300006,
+      "viewport": [
+        1618,
+        761
+      ],
+      "sha256": "fae3979f80d949298f78576f03a1d99a0d0f1b61539fd69a0fc08cf3134d5c05"
+    },
+    {
+      "file": "trail.png",
+      "utc": "2026-11-27T04:03:05.530Z",
+      "captureId": "rbxtemp://203",
+      "clientClock": 6934.546937799983,
+      "viewport": [
+        1618,
+        761
+      ],
+      "sha256": "1af3216e0a111ef30498d6f042be850b84beb2f95e8d95b1b0b3420a54385f87"
+    }
+  ],
+  "capture": "Local Studio Play using CaptureService. Fixed review cameras, HUD hidden, graphics Level21 requested.",
+  "before": "art/frames/2026-11-27-lobby-snow-relief/",
+  "validation": {
+    "walkingSegments": 8,
+    "queuePrompts": 6,
+    "soloRuns": 1,
+    "valleyLightingRestored": true,
+    "testedTerrainPoints": 5,
+    "targetedTests": 22
+  },
+  "limits": "Desktop Play only. Full game suite and physical devices were outside this check."
+}

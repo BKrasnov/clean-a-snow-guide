@@ -1,0 +1,87 @@
+{
+  "date": "2026-11-27",
+  "base": "75631b6cc",
+  "verifiedBuild": "a74b72be2d6a05c574d84fca4516320d86ac54ca",
+  "versions": {
+    "models/lobby/Workspace/LobbyArea.rbxm": "a28d229b5db615b816814c361c09ac25ae1b456a017768473d9b50a7d2720208",
+    "models/lobby/Workspace/Terrain.rbxm": "4af9a305ef47702ec3b3e24ecd677fba5f1fcc97b25a479ffcb8b39ea81b30fd",
+    "models/match/Workspace/Terrain.rbxm": "b2ced761de82157251e5d257dccd7f80fbcdc4164b827ad074423ad4ac9827fc",
+    "art/terrain/lobby-snow-relief/shape.mjs": "523c54769bc16d933c1c0f6ddffcb760de3c3c5c8e49238a78d9b744a2cdaa49",
+    "art/terrain/lobby-snow-relief/prepare.mjs": "2852b6263226af87314d60631dca7baf295300488892a8d6482dbc62f8a222d2",
+    "art/terrain/lobby-snow-relief/prepare-qa.mjs": "83154f407a10a1c22358484ffe8df895b64115b8da40ed5e42fc48addc69427d",
+    "art/terrain/lobby-snow-relief/export.luau": "711ef75d5f07d80653b243a6f83fc6d09cf776e183483dde7e48cb2bb95745c8"
+  },
+  "frames": [
+    {
+      "file": "overview.png",
+      "absolutePath": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\frames\\2026-11-27-lobby-snow-relief\\overview.png",
+      "capturedAtUtc": "2026-11-27T03:27:01.566Z,4774.566406,9810,6",
+      "clientClockSeconds": 4770.5787004999875,
+      "captureId": "rbxtemp://190",
+      "viewport": [
+        1618,
+        761
+      ],
+      "sha256": "c23d2146305d0d1d7e1c59efdeb1298b617002e2b05df63c6b1e9891275c7808",
+      "method": "CaptureService in local Studio Play, camera locked for framing, HUD hidden, normal game lighting; no image editing",
+      "frozen": false
+    },
+    {
+      "file": "ground.png",
+      "absolutePath": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\frames\\2026-11-27-lobby-snow-relief\\ground.png",
+      "capturedAtUtc": "2026-11-27T03:27:03.982Z,4776.982422,9810,6",
+      "clientClockSeconds": 4772.999404500006,
+      "captureId": "rbxtemp://191",
+      "viewport": [
+        1618,
+        761
+      ],
+      "sha256": "2a5735fe083185c166d251a44a01d41870c2bff2863abb7cbf3865c33186a2e4",
+      "method": "CaptureService in local Studio Play, camera locked for framing, HUD hidden, normal game lighting; no image editing",
+      "frozen": false
+    },
+    {
+      "file": "snowbank.png",
+      "absolutePath": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\frames\\2026-11-27-lobby-snow-relief\\snowbank.png",
+      "capturedAtUtc": "2026-11-27T03:27:06.482Z,4779.482422,ac8c,6",
+      "clientClockSeconds": 4775.4999197,
+      "captureId": "rbxtemp://192",
+      "viewport": [
+        1618,
+        761
+      ],
+      "sha256": "351b33348c8c59df35739c1d2dff1709653894c47ab512181c3358e3b71be9d3",
+      "method": "CaptureService in local Studio Play, camera locked for framing, HUD hidden, normal game lighting; no image editing",
+      "frozen": false
+    },
+    {
+      "file": "stands.png",
+      "absolutePath": "C:\\Users\\Антон\\Documents\\ChatGPT\\Clean a snow\\art\\frames\\2026-11-27-lobby-snow-relief\\stands.png",
+      "capturedAtUtc": "2026-11-27T03:27:08.933Z,4781.933105,3078,6",
+      "clientClockSeconds": 4777.940076500003,
+      "captureId": "rbxtemp://193",
+      "viewport": [
+        1618,
+        761
+      ],
+      "sha256": "488bc3c80c5261561f1faaf7b09d8e52561e401cc1d07c8a7f9fa206675b6e3e",
+      "method": "CaptureService in local Studio Play, camera locked for framing, HUD hidden, normal game lighting; no image editing",
+      "frozen": false
+    }
+  ],
+  "verification": {
+    "walkSegments": 5,
+    "queuePrompts": 6,
+    "terrainRaycasts": 4,
+    "testsPassed": 22,
+    "geometryPreserved": true,
+    "changedVoxels": 2879,
+    "changedChunksPerRole": 6
+  },
+  "limits": [
+    "Graphics Level21 requested through the standard helper in Edit and Client; actual per-frame engine quality was not logged. Original Edit quality restored to Automatic.",
+    "Desktop only; Low and physical devices not tested. No new animated VFX.",
+    "Subtle 1–3 stud snow relief; reference lighting and footprint details are not reproduced.",
+    "First QA timed out waiting for absent PlayerModule; successful repeat uses optional PlayerModule lookup. Initial graphics unit test lacked Lune in PATH; corrected repeat passed."
+  ]
+}

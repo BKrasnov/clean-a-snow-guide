@@ -1,0 +1,124 @@
+{
+  "source": {
+    "dimensions": {
+      "width": 16.17704,
+      "depth": 2.458091,
+      "height": 5.04,
+      "min_z": 0.0,
+      "center": [
+        -0.326993,
+        0.117655,
+        2.52
+      ]
+    },
+    "totals": {
+      "tris": 2204,
+      "verts": 1168,
+      "meshes": 4,
+      "touching_verts": 0,
+      "materials": [
+        "M_LobbySnowTrees"
+      ],
+      "bones": 0,
+      "textures": [
+        {
+          "name": "LobbySnowTrees_Palette",
+          "size": [
+            64,
+            32
+          ]
+        }
+      ]
+    },
+    "objects": [
+      {
+        "name": "AlpineFir",
+        "tris": 356,
+        "verts": 188,
+        "parts": 5,
+        "touching_verts": 0,
+        "materials": [
+          "M_LobbySnowTrees"
+        ],
+        "modifiers": []
+      },
+      {
+        "name": "WindPine",
+        "tris": 552,
+        "verts": 292,
+        "parts": 8,
+        "touching_verts": 0,
+        "materials": [
+          "M_LobbySnowTrees"
+        ],
+        "modifiers": []
+      },
+      {
+        "name": "WinterBirch",
+        "tris": 674,
+        "verts": 359,
+        "parts": 11,
+        "touching_verts": 0,
+        "materials": [
+          "M_LobbySnowTrees"
+        ],
+        "modifiers": []
+      },
+      {
+        "name": "SnowCedar",
+        "tris": 622,
+        "verts": 329,
+        "parts": 9,
+        "touching_verts": 0,
+        "materials": [
+          "M_LobbySnowTrees"
+        ],
+        "modifiers": []
+      }
+    ],
+    "issues": [],
+    "ok": true
+  },
+  "exports": {
+    "AlpineFir": {
+      "studs": [
+        9.64,
+        7.83,
+        18.0
+      ],
+      "triangles": 356,
+      "coplanar_overlaps": 0,
+      "materials": 1
+    },
+    "WindPine": {
+      "studs": [
+        16.6,
+        7.31,
+        16.0
+      ],
+      "triangles": 552,
+      "coplanar_overlaps": 0,
+      "materials": 1
+    },
+    "WinterBirch": {
+      "studs": [
+        7.61,
+        3.7,
+        15.0
+      ],
+      "triangles": 674,
+      "coplanar_overlaps": 0,
+      "materials": 1
+    },
+    "SnowCedar": {
+      "studs": [
+        15.39,
+        8.78,
+        13.0
+      ],
+      "triangles": 622,
+      "coplanar_overlaps": 0,
+      "materials": 1
+    }
+  }
+}
