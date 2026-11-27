@@ -313,7 +313,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <div class="board-columns"><section class="board-column" data-status="todo">
   <h3>К выполнению <span class="board-count">14</span></h3>
   <div class="board-cards"><article class="board-card" id="card-1fb5ba" data-person="Богдан" data-status="todo" data-new-rank="0" data-old-rank="454">
-  <h3>Аналитика туториала: воронка новичка (28 шагов), воронка первой игры и события «застрял», SKIP, выход</h3>
+  <h3>Аналитика туториала: воронка новичка (28 шагов), воронка первой игры, события «застрял», SKIP, выход и своя история игроков</h3>
   <p class="board-meta"><span class="person" data-person="Богдан">Богдан</span> <code>1fb5ba</code> фича · analytics</p>
   <p class="board-origin">Автор: <span class="board-author" data-author="Леонид">Леонид</span> <time datetime="2026-11-27T11:04:12-05:00">27.11 11:04</time></p>
   <p class="board-lead">Первая волна плана аналитики (спека `docs/superpowers/specs/2026-11-27-analytics-design.md`, раздел 4.1 и 5). Решение Леонида 27.11.2026: начать с туториала.</p>
@@ -325,10 +325,12 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <li>Разбор по <code>improve-codebase-architecture</code>: модуль <code>Analytics</code> на сервере, файл <code>Data/analytics.json</code> со всеми именами, тестовый приёмник, в Studio — печать в Output вместо отправки.</li>
 <li>Шаги пишет только сервер, один раз в жизни игрока; отметки — в профиле (лобби и забег — два плейса). Шаги туториала — по <code>FirstRunSteps.step(state)</code>; лобби — по <code>QueueService</code> и <code>PartyTeleport</code>.</li>
 <li>Старые игроки без отметки аналитики — <code>legacy</code>, в воронку не попадают.</li>
+<li>Своя история игрока (спека, 4.7; решение Леонида 27.11.2026): отдельный DataStore, пачкой раз в минуту и при выходе; все события только в первые 3 сессии, дальше покупки, выход и важные события; 90 дней; выключатель в данных (вкл / выкл / часть игроков). Когда онлайн станет немаленьким — выключить и смотреть дашборд Roblox.</li>
 </ol>
 <h2>Готово когда</h2>
 <ul>
 <li><input disabled="" type="checkbox"> Luau-тесты с подменённым приёмником: шаги по порядку, без повторов, второй плейс не пишет шаг заново, <code>TutorialStuck</code> через 60 с на одном шаге, SKIP пишет шаг.</li>
+<li><input disabled="" type="checkbox"> Тест своей истории (с подменённым хранилищем): пачка раз в минуту, после 3 сессий пишутся только покупки и важные события, выключатель останавливает запись, старше 90 дней удаляется.</li>
 <li><input disabled="" type="checkbox"> Тест данных: лимиты Roblox (воронок ≤ 10, шагов ≤ 100, своих событий ≤ 100, значения полей из списков).</li>
 <li><input disabled="" type="checkbox"> Play в Studio: весь путь от лобби до второго забега, один и вдвоём; шаги Onboarding (1–28) и <code>FirstGameV1</code> (1–6) видны в Output по порядку.</li>
 <li><input disabled="" type="checkbox"> Ручной чек-лист: после публикации воронка видна в Creator Hub → Analytics.</li>
@@ -338,6 +340,7 @@ h3 { color: var(--ice-dark); margin-top: 28px; }
 <ul>
 <li>Лимиты Roblox: 10 воронок по 100 шагов, 100 своих событий, 3 своих поля до 8000 сочетаний, данные живут 90 дней, запросов в минуту 120 + 20 × CCU.</li>
 <li>Как сделано в Build a Kingdom — спека, раздел 1 (<code>TutorialAnalytics</code>, <code>PlayerEventAnalytics</code>).</li>
+<li>Решения Леонида 27.11.2026 для всего плана (спека, разделы 4.2, 4.6, 7): отдельной воронки <code>TutorialV1</code> нет — повтор туториала в новом мире пишется событием <code>TutorialRepeatedInNewWorld</code>; воронки покупки слиты в <code>ShopCheckoutV1</code>; добавлены <code>PlaytimeV1</code>, <code>DailyStreakV1</code>, <code>RobuxStoreV1</code>, <code>FirstPayerV1</code>; донат отслеживается по моменту и месту покупки. Это следующие волны, после этой карточки — тоже Богдану.</li>
 </ul>
 </div></details>
 </article>
